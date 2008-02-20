@@ -1,7 +1,0 @@
-#summary Requirements formulated in the everyday language of the user
-
-=Site Administration=
-
-=Course Authoring=
-
-=Facilitated Classroom Management=

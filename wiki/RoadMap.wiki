@@ -9,6 +9,8 @@
 =Milestone 2=
 
  * E-commerce integration (issue 9)
+ * Translation
+ * Student registration
 
 =Milestone 3=
 

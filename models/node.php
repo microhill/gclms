@@ -46,19 +46,25 @@ class Node extends AppModel {
 		$previousPageId = $this->findPreviousPageId($node);
 		$nextPageId = $this->findNextPageId($node);
 		$this->id = $node['Node']['id'];
-		
+
 		$this->save(array('Node' => array(
 			'previous_page_id' => $previousPageId,
 			'next_page_id' => $nextPageId
 		)));
-		
-		$this->updateNextPageId($previousPageId);
-		$this->updatePreviousPageId($nextPageId);
+
+		if(!empty($previousPageId))
+			$this->updateNextPageId($previousPageId);
+		if(!empty($nextPageId))
+			$this->updatePreviousPageId($nextPageId);
 	}
 		
-	function updatePreviousPageId($nodeId) {
-		$node = $this->findById($nodeId);
-		$this->id = $nodeId;
+	function updatePreviousPageId($node) {
+		if(is_string($node)) {
+			$this->contain();
+			$node = $this->findById($node);			
+		}
+		
+		$this->id = $node['Node']['id'];
 
 		$previousPageId = $this->findPreviousPageId($node);
 		$this->saveField('previous_page_id',$previousPageId);
@@ -122,7 +128,7 @@ class Node extends AppModel {
 
 		// Is there a node immediately to the right of this one?
 		$this->contain();
-		$siblingNode = $this->find(array('Node.course_id' => $node['Node']['course_id'],'Node.parent_node_id' => $node['Node']['parent_node_id'],'Node.order' => $node['Node']['order'] + 1),array('id','course_id','parent_node_id','type'));
+		$siblingNode = $this->find(array('Node.course_id' => $node['Node']['course_id'],'Node.parent_node_id' => $node['Node']['parent_node_id'],'Node.order' => $node['Node']['order'] + 1),array('id','course_id','parent_node_id','type','order'));
 		if(!empty($siblingNode)) {
 			if($siblingNode['Node']['type'] == 0) {
 				return $siblingNode['Node']['id'];
@@ -194,6 +200,9 @@ class Node extends AppModel {
 				'order' => $oldParentNode['Node']['order'] + 1
 			));
 		}
+		
+		$this->contain();
+		$siblingNode = $this->find(array('Node.course_id' => $formerNodeData['Node']['course_id'],'Node.parent_node_id' => $formerNodeData['Node']['parent_node_id'],'Node.order' => $formerNodeData['Node']['order'] + 1),array('id','course_id','parent_node_id','type','order'));
 
 		$this->id = $nodeId;
     	$this->save($newNodeData);
@@ -215,6 +224,11 @@ class Node extends AppModel {
 			$this->updatePreviousPageId($formerNodeData['Node']['next_page_id']);
 
 		$this->updatePreviousAndNextConnections($newNodeData);
+
+		if($siblingNode) {
+			$siblingNode = $this->findById($siblingNode['Node']['id']);
+			$this->updatePreviousAndNextConnections($siblingNode);
+		}
 		
 		return $newNodeData;
 	}

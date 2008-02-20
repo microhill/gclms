@@ -1,0 +1,2 @@
+<?
+class AppHelper extends Helper {}

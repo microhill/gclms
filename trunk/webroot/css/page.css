@@ -1,0 +1,200 @@
+body {
+	background-color: #f9f9f9;
+	font-size: 85%;
+	padding: 10px;
+	margin: 0;
+}
+
+img {
+	border: 0px none;	
+}
+
+*, input {
+    font-family: Segoe UI, Tahoma, Arial, Helvetica, sans-serif;
+    -moz-outline: 0px none;
+}
+
+h1:first-child {
+	margin-top: 0px;
+	margin-bottom: 6px;
+}
+
+#gclms-page-navigation {
+	overflow: hidden;
+}
+
+	#gclms-page-navigation .gclms-back {
+		float: left;
+	}
+	
+	#gclms-page-navigation .gclms-next {
+		float: right;	
+	}
+	
+.multipleChoice table,
+.matchingHeaders table,
+.matching table {
+	width: 100%;
+}
+
+div.matching,
+div.multipleChoice {
+	margin-top: 0;
+	margin-bottom: 6px;	
+}
+
+.questions button,
+#gradeResults {
+	font-size: 1.2em;
+}
+
+.gradedAssessment .checkAnswerButton {
+	display: none;
+}
+
+p.correctAnswer {
+	font-style: italic
+}
+
+.multipleChoice ul {
+	list-style: none;
+	padding-left: 12px;
+	margin-left: 0;
+}
+
+.multipleChoice ul li {
+	margin-bottom: .4em;
+	margin-top: .4em;
+}
+
+/* Matching question */
+
+.matchingHeaders th.column,
+.matchingHeaders td.column,
+.matching td.column {
+	width: 50%;
+}
+
+.matching .answers {
+	overflow: hidden;
+}
+
+	.matching h2 {
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+
+	.matching .answers h3 {
+		margin-top: 0;
+		margin-bottom: 8px;
+	}
+
+	.matching .draggableColor0 {
+		background-color: #B1945F; 
+		background-image: url(/img/draggable0.png);
+	}
+	.matching .draggableColor1 {
+		background-color: #1B616D; 
+		background-image: url(/img/draggable1.png);		
+	}
+	.matching .draggableColor2 {
+		background-color: #819ED3; 
+		background-image: url(/img/draggable2.png);
+	}
+	.matching .draggableColor3 {
+		background-color: #4E6BA0;
+		background-image: url(/img/draggable3.png);
+	}
+	.matching .draggableColor4 {
+		background-color: #6D501B;
+		background-image: url(/img/draggable4.png);
+	}
+	.matching .draggableColor5 {
+		background-color: #6D271B;
+		background-image: url(/img/draggable5.png);
+	}
+	.matching .draggableColor6 {
+		background-color: #386D1B; 
+		background-image: url(/img/draggable6.png);
+	}
+	.matching .draggableColor7 {
+		background-color: #6D1B38;
+		background-image: url(/img/draggable7.png);
+	}
+	.matching .draggableColor8 {
+		background-color: #616D1B;
+		background-image: url(/img/draggable8.png);
+	}
+
+	.matching .answers h4 {
+		padding-top: 0;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-bottom: 8px;
+	}
+	
+	.matching td {
+		margin: 4px;
+	}
+
+	.matching .leftColumn {
+		width: 35%;
+		float: left;
+		margin-right: 5%;
+	}
+	
+		.matching .leftColumn .draggableContainer {
+			width: 50px;
+		}
+	
+		.matching .leftColumn .draggable {
+			height: 50px;
+			width: 50px;
+			display: block;	
+			line-height: 50px;
+			vertical-align: center;
+			text-align: center;
+			color: white;
+			font-size: 1.4em;
+			font-weight: bold;
+			cursor: move;
+			font-family: Cambria, Times;
+		}
+
+		.matching .leftColumn .text div {
+			padding: 6px;
+		}
+	
+	.matching .rightColumn {
+		float: left;
+		width: 55%;
+	}
+		
+		.matching .rightColumn .description {
+		}
+		
+		.matching .rightColumn .description div {
+			padding: 6px;
+		}
+		
+		.matching .rightColumn td.droppableContainer {
+			width: 50px;
+		}
+			.matching .rightColumn .droppableContainer .defaultDroppableColor {
+				background-color: #e8e8e8;		
+			}
+		
+			.matching .rightColumn .droppableContainer .droppable {
+				height: 50px;
+				line-height: 50px;
+				vertical-align: center;
+				text-align: center;
+				color: white;
+				font-size: 1.4em;
+				font-weight: bold;
+				font-family: Cambria, Times;
+			}
+			
+.gclms-notebook {
+	cursor: pointer;
+}

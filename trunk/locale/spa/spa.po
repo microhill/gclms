@@ -1,0 +1,2 @@
+msgid "TEXT DIRECTION"
+msgstr "rtl"

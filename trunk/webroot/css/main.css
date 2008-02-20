@@ -1,0 +1,235 @@
+.gclms-logout {
+	font-size: 1.1em;
+	padding: 6px;
+	padding-bottom: 7px;
+}
+
+	.gclms-logout a {
+		color: white;
+		text-decoration: none;
+	}
+
+	.gclms-logout a:hover {
+		text-decoration: underline;
+	}
+
+.gclms-breadcrumbs {
+	padding: 6px;
+	font-size: 1.15em;
+	color: white;
+	/* border-bottom: 1px solid #ddd; */
+}
+
+	.gclms-breadcrumbs a {
+		text-decoration: none;
+		color: white;
+	}
+
+	.gclms-breadcrumbs a:hover {
+		text-decoration: underline;
+	}
+
+.gclms-message {
+	padding: 6px;
+	border: 1px solid red;
+	background-color: #ffeeee;
+}
+
+.gclms-success-message {
+	border: 1px solid green;
+}
+
+.gclms-center-column ul.Lessons {
+	padding-left: 0;
+	margin-left: 0;
+}
+
+	.gclms-center-column form div {
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+
+	ul.Lessons li {
+		list-style: none;
+		margin-bottom: 12px;
+		font-size: 1.15em;
+	}
+
+	ul.Lessons li span {
+		font-size: .9em;
+	}
+
+.hidden {
+	display: none;
+}
+
+form {}
+
+	form input.Save,
+	form input.Cancel,
+	form input.delete {
+		font-size: 1.3em;
+	}
+
+	form input.Save:hover,
+	form input.Cancel:hover {
+		color: green;
+	}
+
+	form div {
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+
+	form textarea {
+		font-size: 1em;
+	}
+
+.banner {
+	background-color: white;
+	padding: 10px;
+	padding-left: 12px;
+}
+
+.gclms-choose-language {
+	font-size: 1.2em;
+}
+
+#gclms-spinner {
+	float: right;
+	display: none;
+}
+
+input:readonly {
+	color: grey;
+}
+
+ul.courses li,
+ul.reorder li {
+	font-size: 1.15em;
+	margin-top:4px;
+	margin-bottom:4px;
+}
+ul.reorder li {
+	cursor: move;
+}
+
+.headerlink{
+	font-size: .65em;
+	font-weight: normal;
+}
+
+.classAlias {
+	font-weight: bold;
+}
+
+.assessmentQuestion > table {
+	width: 800px;
+}
+
+input.delete:hover,
+button.delete:hover {
+	color: red;
+}
+
+.tabularForm input {
+	background-color: transparent;
+}
+
+ul.newsItems {
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+	.newsItems li {
+
+	}
+
+div.notifications div {
+	padding: 6px;
+	margin-bottom: 10px;
+	font-size: 1.15em;
+	background-repeat: no-repeat;
+	background-position: 6px;
+	padding-left: 27px;
+}
+
+	div.notifications div.success {
+		background-color: #E6FFE6;
+		border: 1px solid #006600;
+		background-image: url(/img/icons/oxygen/16x16/actions/dialog-ok.png);
+
+	}
+
+	div.notifications div.error {
+		background-color: #FFD9D9;
+		border: 1px solid #FF0000;
+		background-image: url(/img/icons/oxygen/16x16/actions/dialog-error.png);
+	}
+	
+	div.notifications div.warning {
+		background-color: #FFD9D9;
+		border: 1px solid #FF0000;
+		background-image: url(/img/icons/oxygen/16x16/actions/dialog-warning.png);
+	}
+	
+	div.notifications div.information {
+		background-color: #FFD9D9;
+		border: 1px solid #FF0000;
+		background-image: url(/img/icons/oxygen/16x16/actions/dialog-infromation.png);
+	}
+
+.gclms-login {}
+
+	.gclms-login label {
+		margin: 0;
+		padding: 0;
+		font-size: 1em;
+	}
+
+	.gclms-login div {
+		margin-bottom: 0;
+		margin-top: 8px;
+	}
+
+	.gclms-login form {
+		margin-top: -12px;
+	}
+
+	.gclms-login form {
+		font-size: 1.2em;
+	}
+
+	.gclms-login input {
+		font-size: 1.1em;
+	}
+
+	.gclms-panel .gclms-login input[type="text"],
+	.gclms-panel .gclms-login input[type="password"] {
+		width: 90%;
+	}
+
+	.gclms-forgot-login {
+		font-size: .85em;
+	}
+
+.error-message {
+	color: red;	
+}
+
+a.gclms-group-web-address {
+	padding-left: 18px;	
+	background-repeat: no-repeat;
+	background-image: url(/img/icons/oxygen/16x16/emblems/emblem-web.png);
+	background-position: center left;
+}
+
+.gclms-screencast-link {
+	font-size: 1.12em;
+	background-repeat: no-repeat;
+	background-image: url(/img/icons/oxygen/16x16/devices/video-display.png);
+	background-position: 0 .235em;
+	padding-left: 20px;
+	display: block;
+}

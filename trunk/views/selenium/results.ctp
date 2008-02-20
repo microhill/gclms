@@ -1,0 +1,1 @@
+<p><? __('Results posted to GCLMS.com/selenium') ?></p>

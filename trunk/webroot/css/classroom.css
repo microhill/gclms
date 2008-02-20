@@ -1,0 +1,58 @@
+.x-panel-noborder .x-panel-body {
+	/* padding: 8px; */
+	background-color: #f6f6f6;
+}
+
+.x-panel-header {
+	font-size: 1.1em;
+	line-height: 1.15em;
+}
+
+.x-panel-inline-icon {
+	height: 22px;
+	width: 22px;
+	margin-right: 6px;
+}
+
+.x-tab-strip span.x-tab-strip-text {
+	font-size: 1.08em;
+}
+
+.x-tab-strip-wrap ul {
+	list-style-type: none;
+	padding-left: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.x-tool {
+	margin-top: 2px;
+}
+
+.x-panel-body h2:first-child {
+	margin-top: 0;
+}
+
+.x-panel-body ul.articles {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+	.x-panel-body ul.articles li {
+		margin-top: 8px;
+	}
+
+	.x-panel-body ul.articles li:first-child {
+		margin-top: 0;
+	}
+
+.viewportContent {
+	padding-bottom: 8px;
+}
+	
+	.viewportContent h1 {
+		margin-bottom: 6px;
+	}
+

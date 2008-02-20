@@ -1,0 +1,2 @@
+<?
+class BibleKjvAppModel extends AppModel {}

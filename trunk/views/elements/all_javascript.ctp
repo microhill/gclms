@@ -1,0 +1,25 @@
+<?
+$javascript->link('vendors/prototype', false);
+$javascript->link('prototype_extensions', false);
+$javascript->link('vendors/uuid', false);
+$javascript->link('vendors/scriptaculous1.8/scriptaculous', false);
+$javascript->link('vendors/scriptaculous1.8/effects', false);
+$javascript->link('vendors/scriptaculous1.8/dragdrop', false);
+$javascript->link('vendors/scriptaculous1.8/slider', false);
+$javascript->link('vendors/mp3_player', false);
+$javascript->link('vendors/swfupload/SWFUpload', false);
+$javascript->link('gclms', false);
+$javascript->link('edit_article', false);
+$javascript->link('configure_group', false);
+$javascript->link('edit_group', false);
+$javascript->link('edit_textbooks', false);
+$javascript->link('edit_chapters', false);
+$javascript->link('edit_chapter', false);
+$javascript->link('edit_lessons', false);
+$javascript->link('edit_lesson', false);
+$javascript->link('edit_dictionary', false);
+$javascript->link('chat', false);
+$javascript->link('edit_course', false);
+$javascript->link('edit_page', false);
+$javascript->link('classroom', false);
+$javascript->link('upload_files', false);

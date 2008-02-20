@@ -1,0 +1,52 @@
+body {
+	direction: ltr;
+}
+
+.gclms-logout {
+	float: right;
+}
+
+.gclms-breadcrumbs {
+	background-image: url(/img/permanent/header_background2007-09-13.png);
+}
+
+.gclms-menu li a {
+	padding-left: 8px;
+}
+
+.gclms-menu li div {
+	float: left;
+	margin-left: 0;
+	margin-right: 8px;
+}
+
+.Left {
+	text-align: left;
+}
+
+.Right {
+	text-align: right;
+}
+
+.Tabular th {
+	text-align: left;
+}
+
+.gclms-step-back {
+	padding-left: 20px;
+	background-image: url(/img/previous-16.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	font-size: 1.1em;
+	line-height: 16px;
+	vertical-align: middle;
+	margin-bottom: 8px;
+}
+
+	.stepBack a {
+		color: blue;
+	}
+	
+.gclms-content .stepBack {
+	font-size: 1.2em;
+}

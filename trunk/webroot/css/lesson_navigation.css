@@ -1,0 +1,88 @@
+.gclms-lesson-navigation {
+	line-height: 1.65em;
+}
+
+	.gclms-lesson-navigation h2 {
+		font-size: 1.25em;
+	}
+
+	.gclms-lesson-navigation img.gclms-expanded,
+	.gclms-lesson-navigation img.gclms-collapsed {
+		width: 14px;
+		height: 15px;
+		background-repeat: no-repeat;
+		vertical-align: middle;
+	}
+
+	.gclms-lesson-navigation img.gclms-expanded {
+		background-image: url(/img/originals/tree/expanded.png);
+	}
+
+	.gclms-lesson-navigation img.gclms-expanded:hover {
+		background-image: url(/img/originals/tree/expanded-hover.png);
+	}
+
+	.gclms-lesson-navigation img.gclms-collapsed {
+		background-image: url(/img/originals/tree/collapsed.png);
+	}
+
+	.gclms-lesson-navigation img.gclms-collapsed:hover {
+		background-image: url(/img/originals/tree/collapsed-hover.png);
+	}
+
+	.gclms-lesson-navigation img.gclms-folder-icon {
+		margin-left: 2px;
+		margin-right: 4px;
+		vertical-align: middle;
+	}
+
+	.gclms-lesson-navigation img.gclms-page-icon {
+		margin-left: 2px;
+		margin-right: 2px;
+		vertical-align: text-bottom;
+	}
+
+	.gclms-lesson-navigation ul {
+		margin-left: 6px;
+		padding-left: 0;
+	}
+
+		.gclms-lesson-navigation ul li {
+			list-style: none;
+			font-size: 1.15em;
+			margin-top: 6px;
+			margin-bottom: 6px;
+		}
+
+		.gclms-lesson-navigation ul ul {
+			margin-left: 24px;
+			padding-left: 0;
+			margin-top: 1px;
+			margin-bottom: 1px;
+		}
+
+			.gclms-lesson-navigation ul ul li {
+				list-style: none;
+				font-size: .85em;
+				margin-top: 1px;
+				margin-bottom: 1px;
+			}
+
+		.gclms-lesson-navigation ul ul ul {
+			margin-left: 10px;
+		}
+
+		.gclms-lesson-navigation ul ul ul li {
+			list-style: none;
+			font-size: 1em;
+		}
+
+		.gclms-lesson-navigation ul ul li a {
+			padding: 1px;
+		}
+
+		.gclms-lesson-navigation ul ul li a.selected {
+			background-color: #3399ff;
+			color: white;
+			text-decoration: none;
+		}

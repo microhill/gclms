@@ -1,0 +1,12 @@
+fieldset {
+	padding-top: 0;
+}
+
+legend {
+	margin-top: 4px;
+}
+
+*, input {
+    font-family: Segoe UI, Arial, Tahoma, Helvetica, sans-serif;
+    -moz-outline: 0px none;
+}

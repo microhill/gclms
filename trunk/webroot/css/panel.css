@@ -1,0 +1,162 @@
+.gclms-panel {
+	margin-bottom: 8px;
+}
+
+	.gclms-panel h2 {
+		font-size: 1.25em;
+		line-height: 1.25em;
+		padding: 0;
+		margin: 0;
+		-moz-user-select: none;
+	}
+
+	.gclms-panel h3 {
+		font-size: 1em;
+		line-height: 1em;
+		margin: 0;
+		padding: 0;
+	}
+
+	.gclms-panel p {
+		margin-top: 3px;
+		margin-bottom: 3px;
+	}
+
+	.gclms-panel p:first-child {
+		margin-top: 0px;
+	}
+
+	.gclms-panel p:last-child {
+		margin-bottom: 0px;
+	}
+
+	.gclms-panel .gclms-wrapper {
+		padding: 10px;
+	}
+
+	.gclms-panel .gclms-top {
+		background-repeat: repeat-x;
+		background-image: url(/img/panel-top.png);
+	}
+
+	.gclms-panel .gclms-top-left {
+		background-repeat: no-repeat;
+		background-image: url(/img/panel-top-left.png);
+		background-position: top left;
+		cursor: pointer;
+	}
+
+	.gclms-panel .gclms-top-right {
+		background-repeat: no-repeat;
+		background-image: url(/img/panel-top-right.png);
+		background-position: top right;
+		padding-left: 8px;
+		padding-right: 8px;
+		padding-top: 6px;
+		padding-bottom: 6px;
+		margin: 0;
+		font-weight: bold;
+	}
+
+	.gclms-panel .gclms-button {
+		background-repeat: no-repeat;
+		background-position: left center;
+		width: 15px;
+		height: 15px;
+		float: right;
+		margin-top: 3px;
+	}
+
+	.gclms-panel .gclms-up {
+		background-image: url(/img/panel-button-up.png);
+	}
+
+	.gclms-top-right:hover .gclms-up {
+		background-image: url(/img/panel-button-up-hover.png);
+	}
+
+	.gclms-panel .gclms-down {
+		background-image: url(/img/panel-button-down.png);
+	}
+
+	.gclms-top-right:hover .gclms-down {
+		background-image: url(/img/panel-button-down-hover.png);
+	}
+
+	.gclms-panel .gclms-panel-content {
+		background-color: white;
+		border-left: 1px solid #eaeaea;
+		border-right: 1px solid #eaeaea;
+		border-bottom: 1px solid #eaeaea;
+	}
+	
+	.gclms-panel .gclms-panel-content .gclms-padded {
+		padding: 8px;		
+	}
+
+	.gclms-panel .gclms-unbulleted-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+		.gclms-panel .gclms-unbulleted-list li {
+			border: 1px solid #fff;
+			border-top: 1px solid #eaeaea;
+			padding: 0;
+			padding-right: 10px;
+		}
+
+			.gclms-panel .gclms-unbulleted-list li a {
+				color: #333;
+				text-decoration: none;
+				vertical-align: middle;
+				line-height: inherit;
+				display: block;
+				padding: 8px;
+				margin: 0;
+				background-repeat: no-repeat;
+				background-image: url(/img/panel-arrow.png);
+				background-position: center right;
+				padding-right: 8px;
+			}
+
+			.gclms-panel .gclms-unbulleted-list li:hover {
+				background-image: url(/img/permanent/tabular_row_background2007-09-14.png);
+				background-color: #eaf5fb;
+				border: 1px solid #B2CED9;
+			}
+
+			.gclms-panel .detailedList li:hover {
+				background-image: none;
+			}
+
+			.gclms-panel .gclms-unbulleted-list li:hover a {
+				text-decoration: none;
+				background-image: url(/img/panel-arrow-hover.png);
+			}
+
+/*
+.gclms-panel .gclms-iconified li a {
+	color: #333;
+	text-decoration: none;
+	vertical-align: middle;
+	line-height: inherit;
+	display: block;
+	padding: 8px;
+	padding-left: 21px;
+	margin: 0;
+	margin-left: 6px;
+	line-height: 1.3em;
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+
+.gclms-panel .gclms-iconified li.itunes a {
+	background-image: url(/img/itunes-16.png);	
+}
+
+.gclms-panel .gclms-iconified li.rss a {
+	background-image: url(/img/feed-16.png);	
+}
+*/

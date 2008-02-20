@@ -1,0 +1,11 @@
+<ifmodule deflate_module>
+  AddOutputFilterByType DEFLATE text/js text/css
+</ifmodule>
+
+<ifmodule expires_module>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 10 years"
+    ExpiresByType text/js "access plus 10 years"
+</ifmodule>
+
+FileETag none

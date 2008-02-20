@@ -1,6 +1,6 @@
 =GCLMS Development Roadmap=
 
-#Summary development plan
+#summary Development plan
 
 *Milestone 1*
 

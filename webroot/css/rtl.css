@@ -1,0 +1,39 @@
+body {
+	direction: rtl;
+}
+
+.gclms-breadcrumbs {
+	float: right;
+}
+
+.gclms-logout {
+	clear: both;
+	text-align: left;
+	background-image: url(/img/permanent/header_background2007-09-13.png);
+}
+
+.gclms-menu li a {
+	padding-right: 8px;
+}
+
+.gclms-menu li a {
+	padding-right: 8px;
+}
+
+.gclms-menu li div {
+	float: right;
+	margin-right: 0;
+	margin-left: 8px;
+}
+
+.Left {
+	text-align: right;
+}
+
+.Right {
+	text-align: left;
+}
+
+.Tabular th {
+	text-align: right;
+}

@@ -1,0 +1,45 @@
+<?php
+class GradesController extends AppController {
+	var $uses = array('Grade');
+	var $helpers = array('Paginator','MyPaginator');
+	var $paginate = array('order' => 'Username');
+	
+	function beforeFilter() {
+		parent::beforeFilter();
+	}
+
+	function beforeRender() {
+		$this->defaultBreadcrumbsAndLogo();
+
+		parent::beforeRender();
+	}
+
+	function index() {
+		$this->table();
+	}
+	
+	function table() {
+		$data = $this->paginate();
+		$this->set(compact('data'));
+	}
+	
+	function update_assessment() {
+		if(!isset($this->passedArgs['page']) || !isset($this->passedArgs['grade'])
+				 || !isset($this->passedArgs['maximum_possible']) || !isset($this->passedArgs['section']))
+			die();
+		
+		$grade = $this->Grade->find(array('user_id' => $this->viewVars['user']['id'], 'page_id' => $this->passedArgs['page']));
+		if($grade)
+			die();
+			
+		$this->Grade->save(array(
+			'facilitated_class_id' => $this->passedArgs['section'],
+			'user_id' => $this->viewVars['user']['id'],
+			'grade' => $this->passedArgs['grade'],
+			'maximum_possible' => $this->passedArgs['maximum_possible'],
+			'page_id' => $this->passedArgs['page']
+		));
+		
+		die();
+	}
+}

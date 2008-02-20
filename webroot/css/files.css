@@ -1,0 +1,62 @@
+#SWFUploadFileListingFiles h3 {
+	display: none;
+}
+
+#SWFUploadFileListingFiles {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+	
+	.browseButton,
+	.uploadButton,
+	.cancelButton {
+		font-size: 1.2em;
+	}
+	
+	.browseButton,
+	.uploadButton,
+	.cancelButton {
+		display: none;
+	}
+	
+.gclms-center-column .files {
+	list-style: none;
+	padding-left: 8px;
+	margin: 0;
+	padding-bottom: 8px;
+}
+
+	.gclms-center-column .files li {
+		padding-left: 22px;
+		margin-top: 3px;
+		margin-bottom: 3px;
+		background-repeat: no-repeat;
+	}
+	
+	.gclms-center-column .files li.image {
+		background-image: url(/img/permanent/icons/2007-09-13/image-16.png);
+	}
+	
+	.gclms-center-column .files li.audio {
+		background-image: url(/img/permanent/icons/2007-09-13/audio-16.png);
+	}
+	
+	.gclms-center-column .files li.video {
+		background-image: url(/img/permanent/icons/2007-09-13/video-16.png);
+	}
+	
+	.gclms-center-column .files li.document {
+		background-image: url(/img/permanent/icons/2007-09-13/doc-16.png);
+	}
+	
+	.gclms-center-column .files li.mime {
+		background-image: url(/img/permanent/icons/2007-09-13/mime-16.png);
+	}
+	
+	.gclms-center-column .files li.pdf {
+		background-image: url(/img/permanent/icons/2007-09-13/pdf-16.png);
+	}
+	
+	.gclms-center-column .files li.word {
+		background-image: url(/img/permanent/icons/2007-09-13/word-16.png);
+	}

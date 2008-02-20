@@ -1,0 +1,95 @@
+.gclms-menubar {
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+	.gclms-menubar button {
+		font-size: 1.2em;
+	}
+
+.gclms-menubar button.delete,
+.gclms-menubar button.rename,
+.gclms-menubar button.edit,
+.gclms-menubar button.convert,
+.gclms-menubar button.increaseIndent,
+.gclms-menubar button.decreaseIndent {
+	display: none;
+}
+
+#gclms-nodes {}
+	#gclms-nodes ul {
+		min-height: 2px;
+		margin: 0;
+		padding-right: 0;
+		padding-top: 2px;
+		padding-bottom: 2px;
+		margin-left: 15px;
+		padding-left: 15px;
+		list-style: none;
+		font-size: .1em; /* Part 1 of 2 of IE fix */
+	}
+
+		#gclms-nodes ul li {
+			padding-top: 8px;
+			padding-bottom: 1px;
+			font-size: 10em; /* Part 2 of 2 of IE fix */
+		}
+
+	#gclms-nodes a {
+		color: black;
+		text-decoration: none;
+		padding: 1px;			
+	}
+
+	#gclms-nodes a.selected {
+		background-color: #3399ff;
+		color: white;
+	}
+	
+	#gclms-nodes img.gclms-icon {
+		height: 16px;
+		width: 16px;
+		background-repeat: no-repeat;
+	}
+	
+		#gclms-nodes li.gclms-label > span > img.gclms-icon {
+			background-image: url(/img/icons/oxygen/16x16/mimetypes/application-x-font-otf-modified.png);
+		}
+		
+		#gclms-nodes li.gclms-page > span > img.gclms-icon {
+			background-image: url(/img/icons/oxygen/16x16/mimetypes/application-text.png);
+		}
+		
+		#gclms-nodes li.gclms-course > span > img.gclms-icon {
+			background-image: url(/img/icons/oxygen/16x16/filesystems/folder_manilla2.png);
+		}
+		
+	#gclms-nodes img.gclms-expand-button {
+		height: 14px;
+		width: 15px;
+		background-repeat: no-repeat;
+	}
+	
+	#gclms-nodes li.gclms-hidden > ul > li {
+		display: none;
+	}
+	
+	#gclms-nodes li.gclms-collapsed > img.gclms-expand-button {
+		background-image: url(/img/originals/tree/collapsed.png);
+	}
+		
+	#gclms-nodes li.gclms-collapsed > img.gclms-expand-button:hover {
+		background-image: url(/img/originals/tree/collapsed-hover.png);
+	}
+	
+	#gclms-nodes li.gclms-expanded > img.gclms-expand-button {
+		background-image: url(/img/originals/tree/expanded.png);
+	}
+	
+	#gclms-nodes li.gclms-expanded > img.gclms-expand-button:hover {
+		background-image: url(/img/originals/tree/expanded-hover.png);
+	}
+	
+		#gclms-nodes li.gclms-expanded > ul > li {
+			display: block;
+		}	

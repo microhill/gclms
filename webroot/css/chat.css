@@ -1,0 +1,26 @@
+#chatMessages {
+	height: 250px;
+	overflow: auto;
+}
+
+	#chatMessages .name {
+		font-weight: bold;
+	}
+	
+#newChatMessage {
+	margin-top: 4px;
+}
+	
+	#newChatMessage input {
+		font-size: 1.4em;
+	}
+	
+#chatParticipants div {
+	background-image: url(/img/permanent/icons/2007-09-13/chat-user-16.png);
+	background-repeat: no-repeat;
+	background-position: center left;
+	padding-left: 20px;
+	padding-bottom: 3px;
+	padding-top: 2px;
+	margin-bottom: 4px;
+}

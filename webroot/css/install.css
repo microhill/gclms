@@ -1,0 +1,15 @@
+body.install input,
+body.install label,
+body.install button {
+	font-size: 1.2em;
+}
+
+form input.gclms-next {
+	font-size: 1.5em;
+}
+
+body.install #first-user,
+body.install #configuration,
+body.install #install {
+	display: none;
+}

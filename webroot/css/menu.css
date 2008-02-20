@@ -1,0 +1,257 @@
+.gclms-left-column-menu {
+	list-style: none;
+	margin-top: 3px;
+	margin-right: 5px;
+	margin-left: 3px;
+	padding: 0;
+}
+
+	.gclms-left-column-menu li {
+		float: left;
+		width: 100%;
+		border: 1px solid #efefef;
+		margin-bottom: 2px;
+	}
+	
+		.gclms-left-column-menu li.active,
+		.gclms-left-column-menu li:hover {
+			background-color: #eff1fc;
+			background-image: url(/img/permanent/tabular_row_background2007-09-14.png);
+			border: 1px solid #B2CED9;
+		}
+
+		.gclms-left-column-menu li a {
+			margin: 5px;
+			margin-left: 6px;
+			padding-left: 40px;
+			padding-bottom: 2px;
+			font-size: 1.25em;
+			background-repeat: no-repeat;
+			height: 2em;
+			line-height: 1.9em;
+			display: block;
+			text-decoration: none;
+			color: black;
+			white-space: nowrap;
+			background-position: center left;
+		}
+
+	.gclms-left-column-menu .home a {
+		background-image: url(/img/home-32.png);
+	}
+	
+	.gclms-left-column-menu .course-content a,
+	.gclms-left-column-menu .Courses a {
+		background-image: url(/img/lessons-32.png);
+	}
+
+/*
+.gclms-center-column .gclms-left-column-menu li a,
+.gclms-right-column .gclms-left-column-menu li a {
+	border: 1px solid #f4f4f4;
+}
+*/
+
+	.gclms-left-column-menu .profile a {
+		background-image: url(/img/profile-32.png);
+	}
+
+	.gclms-left-column-menu .class-discussion a {
+		background-image: url(/img/permanent/icons/2007-09-13/discussion-32.png);
+	}
+
+	.gclms-left-column-menu .live-chat a {
+		background-image: url(/img/permanent/icons/2007-09-13/chat-32.png);
+	}
+
+	.gclms-left-column-menu .grades a {
+		background-image: url(/img/permanent/icons/2007-09-13/grades-32.png);
+	}
+
+	.gclms-left-column-menu .nodes a,
+	.gclms-left-column-menu .courses a {
+		background-image: url(/img/lessons-32.png);
+	}
+
+	.gclms-left-column-menu .notebook a {
+		background-image: url(/img/notebook-32.png);
+	}
+
+	.gclms-left-column-menu .users a {
+		background-image: url(/img/permanent/icons/2007-09-13/users-32.png);
+	}
+
+	.gclms-left-column-menu .groups a {
+		background-image: url(/img/permanent/icons/2007-09-13/groups-32.png);
+	}
+
+	.gclms-left-column-menu .study-programs a {
+		background-image: url(/img/permanent/icons/2007-09-13/programs-32.png);
+	}
+
+	.gclms-left-column-menu .configuration a {
+		background-image: url(/img/preferences-32.png);
+	}
+
+	.gclms-left-column-menu .administration a {
+		background-image: url(/img/permanent/icons/2007-09-13/administration-32.png);
+	}
+
+	.gclms-left-column-menu .profile a {
+		background-image: url(/img/profile-32.png);
+	}
+
+	.gclms-left-column-menu .group-administrators a {
+		background-image: url(/img/permanent/icons/2007-09-13/group_administrators-32.png);
+	}
+
+	.gclms-left-column-menu .database a {
+		background-image: url(/img/permanent/icons/2007-09-13/database-32.png);
+	}
+
+	.gclms-left-column-menu .tables a {
+		background-image: url(/img/permanent/icons/2007-09-13/tables-32.png);
+	}
+
+	.gclms-left-column-menu .first-user a {
+		background-image: url(/img/permanent/icons/2007-09-13/profile-32.png);
+	}
+
+	.gclms-left-column-menu .facilitators a {
+		background-image: url(/img/permanent/icons/2007-09-13/users-32.png);
+	}
+
+	.gclms-left-column-menu .courses a {
+		background-image: url(/img/lessons-32.png);
+	}
+
+	.gclms-left-column-menu .grading a {
+		background-image: url(/img/permanent/icons/2007-09-13/grades-32.png);
+	}
+
+	.gclms-left-column-menu .files a {
+		background-image: url(/img/folder-32.png);
+	}
+	
+	.gclms-left-column-menu .add a {
+		background-image: url(/img/add-32.png);
+	}
+
+	.gclms-left-column-menu .certificates a {
+		background-image: url(/img/permanent/icons/2007-09-13/certificates-32.png);
+	}
+
+	.gclms-left-column-menu .dictionary a {
+		background-image: url(/img/dictionary-32.png);
+	}
+	
+	.gclms-left-column-menu .export a {
+		background-image: url(/img/icons/oxygen/32x32/actions/file-export.png);
+	}
+
+	.gclms-left-column-menu .textbooks a {
+		background-image: url(/img/book-32.png);
+	}
+
+	.gclms-left-column-menu .news a {
+		background-image: url(/img/permanent/icons/2007-09-13/news-32.png);
+	}
+
+	.gclms-left-column-menu .register a {
+		background-image: url(/img/register-32.png);
+	}
+
+	.gclms-left-column-menu .register a {
+		background-image: url(/img/register-32.png);
+	}
+
+	.gclms-left-column-menu .articles a {
+		background-image: url(/img/articles-32.png);
+	}
+
+	.gclms-left-column-menu .plugins a {
+		background-image: url(/img/icons/oxygen/32x32/emblems/emblem-system.png);
+	}
+
+	.x-panel img.notebook {
+		background-image: url(/img/notebook-22.png);
+	}
+
+	.x-panel img.chat {
+		background-image: url(/img/chat-22.png);
+	}
+
+	.x-panel img.navigation {
+		background-image: url(/img/navigation-22.png);
+	}
+
+	.x-panel img.dictionary {
+		background-image: url(/img/dictionary-22.png);
+	}
+
+	.x-panel img.textbooks {
+		background-image: url(/img/books-22.png);
+	}
+
+	.x-panel img.bible {
+		background-image: url(/img/bible-22.png);
+	}
+
+	.x-panel img.articles {
+		background-image: url(/img/articles-22.png);
+	}
+	
+.gclms-popup-overlay {
+     position: fixed;
+     left: 0px;
+     top: 0px;
+     width: 100%;
+     height: 100%;
+     text-align: center;
+     z-index: 1000;
+     background-image: url(/img/popup-overlay.png);
+}
+
+	.gclms-popup-dialog {
+	     width: 325px;
+	     margin: 0 auto;
+	     background-color: #fff;
+	     border: 3px solid #ddd;
+	     padding: 12px;
+		 z-index: 1001;
+	     text-align: center;
+	}
+
+		.gclms-popup-dialog input[type='text'] {
+			width: 96.5%;
+		}
+	
+		.gclms-popup-dialog button {
+			font-size: 1.3em;
+			width: 5em;
+		}
+
+		.gclms-popup-dialog p {
+			margin-top: 0;
+			padding-top: 0;
+			text-align: left;
+			font-size: 1.2em;
+		}
+		
+		.gclms-popup-dialog .ok {
+			background-color: green;
+			color: white;
+			border: 1px solid #006633;
+			margin-right: 4px;
+			background-image: url(/img/popup-dialog-ok-background.png);
+			cursor: pointer;
+		}
+
+		.gclms-popup-dialog .cancel {
+			background-color: red;
+			color: white;
+			border: 1px solid #9D0000;
+			margin-left: 4px;
+			background-image: url(/img/popup-dialog-cancel-background.png);
+			cursor: pointer;
+		}

@@ -1,0 +1,2 @@
+<?
+class BibleKjvAppController extends AppController {}

@@ -1,0 +1,11 @@
+.gclms-plugins {
+	margin-top: 6px;
+}
+
+	.gclms-plugins .gclms-plugin-activated {
+		text-align: center;
+	}
+	
+	.gclms-plugins .gclms-plugin-version {
+		text-align: center;	
+	}

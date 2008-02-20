@@ -1,0 +1,8 @@
+msgid "TEXT DIRECTION"
+msgstr "ltr"
+
+msgid "Password"
+msgstr "Contraseña"
+
+msgid "Username"
+msgstr "Nombre de Usuario"

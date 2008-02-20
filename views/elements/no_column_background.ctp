@@ -1,0 +1,1 @@
+<style>body {background-image: none;}</style>

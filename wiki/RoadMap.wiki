@@ -3,7 +3,7 @@
 =Milestone 1=
 
  * Overhauled course authoring tool (Issue 1)
- * Integration of newest TinyMCE tool
+ * Integration of newest TinyMCE tool (Issue 8)
  * Basic export-to-ODT functionality
 
 =Milestone 2=

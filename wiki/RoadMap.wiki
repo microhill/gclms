@@ -1,15 +1,15 @@
 #summary Development plan
 
-===Milestone 1===
+====Milestone 1====
 
  * Overhauled course authoring tool
  * Integration of newest TinyMCE tool
  * Basic export-to-ODT functionality
 
-===Milestone 2===
+====Milestone 2====
 
  * E-commerce integration
 
-===Milestone 3===
+====Milestone 3====
 
  * Facilitated classroom environment

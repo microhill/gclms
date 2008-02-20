@@ -2,14 +2,14 @@
 
 =Milestone 1=
 
- * Overhauled course authoring tool (Issue 1)
- * Integration of newest TinyMCE tool (Issue 8)
- * Basic export-to-ODT functionality
+ * Overhauled course authoring tool (issue 1)
+ * Integration of newest TinyMCE tool (issue 8)
+ * Basic export-to-ODT functionality (issue 2)
 
 =Milestone 2=
 
- * E-commerce integration
+ * E-commerce integration (Issue 9)
 
 =Milestone 3=
 
- * Facilitated classroom environment
+ * Facilitated classroom environment (issues forthcoming)

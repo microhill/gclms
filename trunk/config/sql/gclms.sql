@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: gclms
 Target Host: localhost
 Target Database: gclms
-Date: 2/16/2008 5:56:02 PM
+Date: 2/19/2008 8:15:36 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,20 +52,6 @@ CREATE TABLE `articles` (
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for bible_verses_kjv
--- ----------------------------
-DROP TABLE IF EXISTS `bible_verses_kjv`;
-CREATE TABLE `bible_verses_kjv` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `book` tinyint(3) unsigned NOT NULL,
-  `chapter` tinyint(3) unsigned NOT NULL,
-  `verse` tinyint(3) unsigned NOT NULL,
-  `text` text collate latin1_general_ci NOT NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `unique` (`book`,`chapter`,`verse`)
-) ENGINE=MyISAM AUTO_INCREMENT=31103 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 -- ----------------------------
 -- Table structure for chapters
@@ -317,8 +303,8 @@ CREATE TABLE `nodes` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `course_id` int(11) unsigned NOT NULL,
   `parent_node_id` int(11) unsigned NOT NULL default '0',
-  `previous_page_id` varchar(50) default NULL,
-  `next_page_id` varchar(50) default NULL,
+  `previous_page_id` int(11) unsigned default '0',
+  `next_page_id` int(11) unsigned default '0',
   `grade_recorded` int(1) unsigned NOT NULL default '0',
   `title` varchar(255) NOT NULL,
   `type` int(1) unsigned NOT NULL default '0',
@@ -328,7 +314,7 @@ CREATE TABLE `nodes` (
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `course_id` (`course_id`,`parent_node_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for notebooks

@@ -1,4 +1,4 @@
-_Development plan_
+#summary Development plan
 
 = Road Map =
 
@@ -10,7 +10,7 @@ _Development plan_
 
 ==Milestone 2==
 
-* E-commerce / PayPal integration, etc.
+* E-commerce integration
 
 ==Milestone 3==
 

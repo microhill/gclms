@@ -8,7 +8,7 @@
 
 =Milestone 2=
 
- * E-commerce integration (Issue 9)
+ * E-commerce integration (issue 9)
 
 =Milestone 3=
 

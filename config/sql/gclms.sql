@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: gclms
 Target Host: localhost
 Target Database: gclms
-Date: 2/19/2008 8:15:36 PM
+Date: 2/24/2008 10:12:31 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,6 +52,20 @@ CREATE TABLE `articles` (
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for bible_verses_kjv
+-- ----------------------------
+DROP TABLE IF EXISTS `bible_verses_kjv`;
+CREATE TABLE `bible_verses_kjv` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `book` tinyint(3) unsigned NOT NULL,
+  `chapter` tinyint(3) unsigned NOT NULL,
+  `verse` tinyint(3) unsigned NOT NULL,
+  `text` text collate latin1_general_ci NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `unique` (`book`,`chapter`,`verse`)
+) ENGINE=MyISAM AUTO_INCREMENT=31103 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 -- ----------------------------
 -- Table structure for chapters
@@ -293,7 +307,7 @@ CREATE TABLE `groups` (
   `modified` datetime NOT NULL,
   `deprecated` int(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for nodes
@@ -416,4 +430,4 @@ CREATE TABLE `users` (
   `deprecated` int(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `UniqueUsername` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='utf8_general_ci';
+) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COMMENT='utf8_general_ci';

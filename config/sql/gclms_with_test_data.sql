@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: gclms
 Target Host: localhost
 Target Database: gclms
-Date: 2/24/2008 10:15:47 PM
+Date: 2/24/2008 10:15:32 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -417,3 +417,14 @@ CREATE TABLE `users` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `UniqueUsername` (`username`)
 ) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COMMENT='utf8_general_ci';
+
+-- ----------------------------
+-- Records 
+-- ----------------------------
+INSERT INTO `groups` VALUES ('103', 'Boyce College', 'boyce-college', '', null, null, 'http://www.letu.edu/', '8675309', '9 Westlake Ave', 'APO 320', 'Louisville', 'KY', '80132', null, 'Some very descriptive text here.', '1', '2008-02-19 20:35:24', '2008-02-19 20:35:24', '0');
+INSERT INTO `groups` VALUES ('104', 'Covenant Theological Seminary', 'covenant-theological-seminary', '', null, null, 'http://www.letu.edu/', '8675309', '9 Westlake Ave', 'APO 320', 'St. Louis', 'MO', '80132', null, 'Some very descriptive text here.', '1', '2008-02-19 20:35:37', '2008-02-19 20:35:37', '0');
+INSERT INTO `users` VALUES ('52', 'aaronshaf', '3a00070e691147f18e69201fc1431b0d39248af9', 'Aaron', 'Shafovaloff', 'abc', 'abc', 'Midvale', 'UT', '90210', 'aaronshaf@gmail.com', '1', '0', null, '0', '1', '0000-00-00 00:00:00', '2008-02-19 20:39:50', '0');
+INSERT INTO `users` VALUES ('53', 'patty.thompson', null, 'Patty', 'Thompson', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', 'patty.thompson@fake_domain_name.org', '1', '0', null, '0', '0', '2008-02-19 20:36:38', '2008-02-19 20:36:38', '0');
+INSERT INTO `users` VALUES ('54', 'paul.walgren', null, 'Paul', 'Walgren', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', 'paul.walgren@fake_domain_name.org', '1', '0', null, '0', '0', '2008-02-19 20:36:52', '2008-02-19 20:36:52', '0');
+INSERT INTO `users` VALUES ('57', 'TestUserODD', 'f51917152d00e8f50f3bdde3674397b1e4825ffc', 'John', 'Doe', '32325 CR 323', 'some 32 houses down', 'Killgore', 'TX', '75603', 'spamthisallyouwant@pysquared.com', '1', '0', '47bba0d0-a538-4ba9-9cf1-08ccab4a69cb', '0', '0', '2008-02-19 20:38:56', '2008-02-19 20:38:56', '0');
+INSERT INTO `users` VALUES ('56', 'linus.torvalds', null, 'Linus', 'Torvalds', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', 'linus.torvalds@fake_domain_name.org', '1', '0', null, '0', '0', '2008-02-19 20:37:21', '2008-02-19 20:37:21', '0');

@@ -41,7 +41,7 @@
  * In development mode, you need to click the flash message to continue.
  */
 	//Configure::write('debug', 1);
-	Configure::write('debug', 1);
+	Configure::write('debug', 2);
 /**
  * To configure CakePHP *not* to use mod_rewrite and to
  * use CakePHP pretty URLs, remove these .htaccess

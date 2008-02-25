@@ -26,9 +26,10 @@ class Node extends AppModel {
 
 	function add($node) {
 		$this->id = null;
+
 		$node['Node']['order'] = $this->getLastOrderInParentNode($node['Node']['course_id'],$node['Node']['parent_node_id']) + 1;
 		$this->save($node);
-		
+
 		if(empty($node['Node']['id']))
 			$node['Node']['id'] = $this->getLastInsertId();
 			
@@ -201,8 +202,7 @@ class Node extends AppModel {
 			));
 		}
 		
-		$this->contain();
-		$siblingNode = $this->find(array('Node.course_id' => $formerNodeData['Node']['course_id'],'Node.parent_node_id' => $formerNodeData['Node']['parent_node_id'],'Node.order' => $formerNodeData['Node']['order'] + 1),array('id','course_id','parent_node_id','type','order'));
+		$nextSiblingNodeId = $this->field('id',array('Node.course_id' => $formerNodeData['Node']['course_id'],'Node.parent_node_id' => $formerNodeData['Node']['parent_node_id'],'Node.order' => $formerNodeData['Node']['order'] + 1));
 
 		$this->id = $nodeId;
     	$this->save($newNodeData);
@@ -220,14 +220,17 @@ class Node extends AppModel {
 		if(!empty($formerNodeData['Node']['previous_page_id']))
 			$this->updateNextPageId($formerNodeData['Node']['previous_page_id']);
 		
-		if(!empty($formerNodeData['Node']['next_page_id']))
-			$this->updatePreviousPageId($formerNodeData['Node']['next_page_id']);
+		if($type == 'increase') {
+			if(!empty($formerNodeData['Node']['next_page_id']))
+				$this->updatePreviousPageId($formerNodeData['Node']['next_page_id']);
+		}
 
 		$this->updatePreviousAndNextConnections($newNodeData);
 
-		if($siblingNode) {
-			$siblingNode = $this->findById($siblingNode['Node']['id']);
-			$this->updatePreviousAndNextConnections($siblingNode);
+		if($nextSiblingNodeId) {
+			$this->contain();
+			$nextSiblingNode = $this->findById($nextSiblingNodeId);
+			$this->updatePreviousAndNextConnections($nextSiblingNode);
 		}
 		
 		return $newNodeData;

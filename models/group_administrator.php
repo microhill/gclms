@@ -12,8 +12,8 @@ class GroupAdministrator extends AppModel {
 		if(empty($this->data['GroupAdministrator']['username']))
 			return false;
 
-		ClassRegistry::init('Page');
-		$this->Page =& new Page();
+		ClassRegistry::init('User');
+		$this->User =& new User();
 
 		$this->User->contain();
 		$user = $this->User->findByUsername($this->data['GroupAdministrator']['username'],'id');

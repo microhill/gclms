@@ -16,13 +16,11 @@ class AppController extends Controller {
 		*/
 		Configure::write('Config.language', 'en');
 
-		/*
 		if(0 && !$this->Session->check('Config.language')) {
        		$this->set('language', $this->Session->read('Config.language'));
        	} else {
        		$this->set('language', 'en');
 		}
-		*/
 		
 		if(Configure::read('Configuration.database_set') && $this->name == 'Update') {
 			return false;
@@ -47,14 +45,13 @@ class AppController extends Controller {
     }
 
     function beforeRender() {
-		/*
 		if(Browser::agent() == 'IE' && Browser::version() < 7)
 			$this->Notifications->add(__('This application was not designed to work with older browsers like yours. Please download the latest version of <a href="http://www.microsoft.com/windows/downloads/ie/getitnow.mspx">Internet Explorer</a>, <a href="http://www.firefox.com/">Firefox</a>, <a href="http://www.apple.com/safari/download/">Safari</a>, or <a href="http://www.opera.com/">Opera</a>.',true),'error');
 
    	   	$this->set('breadcrumbs',$this->Breadcrumbs->getTrail());
    	   	$this->set('notifications',$this->Notifications->getAll());
     	$this->set('lessonOrder',isset($this->viewVars['lesson']['order']) ? $this->viewVars['lesson']['order'] : null);
-    	*/
+
     	//$this->set('pageId',isset($this->viewVars['page']['order']) ? $this->viewVars['page']['order'] : null);
 		//$this->set('groupId', isset($this->viewVars['group']['id']) ? $this->viewVars['group']['id'] : null);
        	$this->set('css_for_layout', $this->css_for_layout);

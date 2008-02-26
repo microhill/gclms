@@ -30,53 +30,12 @@ class Node extends AppModel {
 		$node['Node']['order'] = $this->getLastOrderInParentNode($node['Node']['course_id'],$node['Node']['parent_node_id']) + 1;
 		$this->save($node);
 
-		if(empty($node['Node']['id']))
-			$node['Node']['id'] = $this->getLastInsertId();
-			
-		$this->updatePreviousAndNextConnections($node);
-		
-		return $node['Node']['id'];
+		return $this->id;
 	}
 	
 	function getLastOrderInParentNode($courseId,$parentNodeId) {
 		$order = $this->field('order',array('Node.course_id' => $courseId, 'Node.parent_node_id' => $parentNodeId),'Node.order DESC');
 		return $order === false ? -1 : $order;
-	}
-	
-	function updatePreviousAndNextConnections($node) {
-		$previousPageId = $this->findPreviousPageId($node);
-		$nextPageId = $this->findNextPageId($node);
-		$this->id = $node['Node']['id'];
-
-		$this->save(array('Node' => array(
-			'previous_page_id' => $previousPageId,
-			'next_page_id' => $nextPageId
-		)));
-
-		if(!empty($previousPageId))
-			$this->updateNextPageId($previousPageId);
-		if(!empty($nextPageId))
-			$this->updatePreviousPageId($nextPageId);
-	}
-		
-	function updatePreviousPageId($node) {
-		if(is_string($node)) {
-			$this->contain();
-			$node = $this->findById($node);			
-		}
-		
-		$this->id = $node['Node']['id'];
-
-		$previousPageId = $this->findPreviousPageId($node);
-		$this->saveField('previous_page_id',$previousPageId);
-	}
-	
-	function updateNextPageId($nodeId) {
-		$node = $this->findById($nodeId);
-		$this->id = $nodeId;
-
-		$nextPageId = $this->findNextPageId($node);
-		$this->saveField('next_page_id',$nextPageId);
 	}
 	
 	// Finds previous node of type page; recursive
@@ -162,7 +121,6 @@ class Node extends AppModel {
 	function convert_type($node) {
     	$this->id = $node['Node']['id'];
     	$this->saveField('type', $node['Node']['type']);
-		$this->updatePreviousAndNextConnections($node);
 	}
 	
 	function increaseIndent($nodeId){
@@ -175,7 +133,7 @@ class Node extends AppModel {
 	
 	function changeIndentation($nodeId,$type = 'increase') {
 		$this->contain();
-		$formerNodeData = $this->findById($nodeId,array('id','type','previous_page_id','next_page_id','parent_node_id','course_id','order'));
+		$formerNodeData = $this->findById($nodeId,array('id','type','parent_node_id','course_id','order'));
 
 		if($type == 'increase') {
 			if($formerNodeData['Node']['order'] < 1)
@@ -212,27 +170,6 @@ class Node extends AppModel {
 			$this->updateOrdersWithNewNodeData($newNodeData);
 		}
 		
-		$newNodeData = array('Node' => am($formerNodeData['Node'],$newNodeData['Node']));
-
-		if($formerNodeData['Node']['type'] != 0 || $type == 'increase')
-			return $newNodeData;
-			
-		if(!empty($formerNodeData['Node']['previous_page_id']))
-			$this->updateNextPageId($formerNodeData['Node']['previous_page_id']);
-		
-		if($type == 'increase') {
-			if(!empty($formerNodeData['Node']['next_page_id']))
-				$this->updatePreviousPageId($formerNodeData['Node']['next_page_id']);
-		}
-
-		$this->updatePreviousAndNextConnections($newNodeData);
-
-		if($nextSiblingNodeId) {
-			$this->contain();
-			$nextSiblingNode = $this->findById($nextSiblingNodeId);
-			$this->updatePreviousAndNextConnections($nextSiblingNode);
-		}
-		
 		return $newNodeData;
 	}
 	
@@ -249,8 +186,9 @@ class Node extends AppModel {
 	
 	function updateOrdersWithNewNodeData($node) {
 		$order = $node['Node']['order'];
+		$this->contain();
 		$nodes = $this->findAll(array('Node.parent_node_id' => $node['Node']['parent_node_id'],'Node.order' => '>= ' . $order,'Node.id' => '<> ' . $node['Node']['id']));
-		
+				
 		foreach($nodes as $node) {
 			$this->id = $node['Node']['id'];
 			$this->saveField('order',++$order);

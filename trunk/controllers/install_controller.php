@@ -37,12 +37,12 @@ class InstallController extends AppController {
     }
     
     function database() {
-    	if(!empty($this->data['Database']['host']) && !empty($this->data['Database']['username']) && !empty($this->data['Database']['database'])) {     	
+    	if(!empty($this->data['Database']['host']) && !empty($this->data['Database']['email']) && !empty($this->data['Database']['database'])) {     	
 			$content = "<?\nclass DATABASE_CONFIG{\n	var \$default = array("
 				. "\n		'driver' => 'mysql',"
 				. "\n		'connect' => 'mysql_connect',"
 				. "\n		'host' => '" . $this->data['Database']['host'] . "',"
-				. "\n		'login' => '" . $this->data['Database']['username'] . "',"
+				. "\n		'login' => '" . $this->data['Database']['email'] . "',"
 				. "\n		'password' => '" . @$this->data['Database']['password'] . "',"
 				. "\n		'database' => '" . $this->data['Database']['database'] . "',"
 				. "\n		'prefix' => '');\n}";
@@ -93,7 +93,7 @@ class InstallController extends AppController {
             exit();
         }
 
-        if(!empty($this->data['User']['username'])
+        if(!empty($this->data['User']['email'])
 				&& !empty($this->data['User']['password'])
 				&& !empty($this->data['User']['first_name'])
 				&& !empty($this->data['User']['last_name'])
@@ -103,7 +103,7 @@ class InstallController extends AppController {
 			$this->data['User']['password'] = Security::hash(Configure::read('Security.salt') . $this->data['User']['password'], 'sha1');
 			//die(Security::hash(CAKE_SESSION_STRING . $this->data['User']['Password']));
 			$statement = "INSERT INTO users (`username`,`password`,`first_name`,`last_name`,`email`,`super_administrator`) VALUES (" .
-				"'{$this->data['User']['username']}'," .
+				"'{$this->data['User']['email']}'," .
 				"'{$this->data['User']['password']}'," .
 				"'{$this->data['User']['first_name']}'," .
 				"'{$this->data['User']['last_name']}'," .

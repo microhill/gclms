@@ -2,7 +2,7 @@
 class GradesController extends AppController {
 	var $uses = array('Grade');
 	var $helpers = array('Paginator','MyPaginator');
-	var $paginate = array('order' => 'Username');
+	var $paginate = array('order' => 'email');
 	
 	function beforeFilter() {
 		parent::beforeFilter();

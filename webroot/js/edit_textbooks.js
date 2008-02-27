@@ -85,10 +85,10 @@ GCLMS.TextbooksController = {
 		$$('.buttons button').each(function(node){
 			node.hide();
 		});
-		$('addTextbook').showAsInline();
-		$('renameTextbook').showAsInline();
-		$('deleteTextbook').showAsInline();
-		$('editTextbook').showAsInline();
+		$('addTextbook').displayAsInline();
+		$('renameTextbook').displayAsInline();
+		$('deleteTextbook').displayAsInline();
+		$('editTextbook').displayAsInline();
 	}
 };
 

@@ -102,7 +102,7 @@ GCLMS.Triggers.update({
 							}
 						});
 					} else {
-						li.select('ul').first().showAsBlock();
+						li.select('ul').first().displayAsBlock();
 					}
 				}
 				event.stop();

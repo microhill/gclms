@@ -4,7 +4,7 @@ class ProfileController extends AppController {
 	var $itemName = 'Profile';
 
 	function beforeRender() {
-		$this->Breadcrumbs->addStudentCenterCrumb();
+		$this->Breadcrumbs->addHomeCrumb();
 		$this->Breadcrumbs->addCrumb('Your Profile','/profile');
 		parent::beforeRender();
 	}

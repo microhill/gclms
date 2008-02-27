@@ -10,12 +10,12 @@ GCLMS.LessonController = {
 		$$('.buttons button').each(function(node){
 			node.hide();
 		});
-		$('addTopic').showAsInline();
-		$('addPage').showAsInline();
-		$('editTopic').showAsInline();
+		$('addTopic').displayAsInline();
+		$('addPage').displayAsInline();
+		$('editTopic').displayAsInline();
 		if(this.up('div').getAttribute('id') != 'uncategorizedPagesContainer') {
-			$('renameTopic').showAsInline();
-			$('deleteTopic').showAsInline();
+			$('renameTopic').displayAsInline();
+			$('deleteTopic').displayAsInline();
 		}
 	},
 
@@ -122,7 +122,7 @@ GCLMS.LessonController = {
 			id: tmpTopicId,
 			title: title
 		}));
-		$('uncategorizedPagesHeader').showAsBlock();
+		$('uncategorizedPagesHeader').displayAsBlock();
 		
 		GCLMS.Page.add({
 			title: title,
@@ -205,11 +205,11 @@ GCLMS.LessonController = {
 			node.hide();
 		});
 	
-		$('addTopic').showAsInline();
-		$('addPage').showAsInline();
-		$('renamePage').showAsInline();
-		$('deletePage').showAsInline();
-		$('editPage').showAsInline();
+		$('addTopic').displayAsInline();
+		$('addPage').displayAsInline();
+		$('renamePage').displayAsInline();
+		$('deletePage').displayAsInline();
+		$('editPage').displayAsInline();
 	
 		event.stop();
 	},

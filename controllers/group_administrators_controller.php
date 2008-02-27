@@ -6,7 +6,7 @@ class GroupAdministratorsController extends AppController {
 	var $paginate = array('order' => 'Name');
 
 	function beforeFilter() {
-		$this->Breadcrumbs->addStudentCenterCrumb();
+		$this->Breadcrumbs->addHomeCrumb();
 		$this->Breadcrumbs->addSiteAdministrationCrumb();
 		
 		if($this->action != Configure::read('Routing.admin') . '_index')

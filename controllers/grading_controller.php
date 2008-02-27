@@ -6,7 +6,7 @@ class GradingController extends AppController {
 	function beforeFilter() {
 		//$this->Security->requireAuth('save');
 		$this->Security->requirePost('save');
-		$this->Breadcrumbs->addCrumb('Student Center','/');
+		$this->Breadcrumbs->addHomeCrumb();
 		parent::beforeFilter();
 	}
 

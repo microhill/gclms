@@ -5,7 +5,7 @@ class RegisterController extends AppController {
     function beforeFilter() {
 		$this->MyAuth->allowedActions = array('*');
 		//$this->Security->requirePost('save');
-		$this->Breadcrumbs->addCrumb('Student Center','/');
+		$this->Breadcrumbs->addHomeCrumb();
 		parent::beforeFilter();
     }
 

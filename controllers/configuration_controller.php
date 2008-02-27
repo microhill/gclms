@@ -4,7 +4,7 @@ class ConfigurationController extends AppController {
 	var $itemName = 'Group';
 
 	function beforeFilter() {
-		$this->Breadcrumbs->addCrumb('Student Center','/');
+		$this->Breadcrumbs->addHomeCrumb();
 		parent::beforeFilter();
 	}
 

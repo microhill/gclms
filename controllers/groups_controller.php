@@ -6,7 +6,7 @@ class GroupsController extends AppController {
 	var $paginate = array('order' => 'name');
 
 	function beforeFilter() {
-		$this->Breadcrumbs->addStudentCenterCrumb();
+		$this->Breadcrumbs->addHomeCrumb();
 		
 		if($this->Session->check('Auth.User')) {
 			$user = $this->Session->read('Auth.User');

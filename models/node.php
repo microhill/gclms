@@ -26,7 +26,6 @@ class Node extends AppModel {
 
 	function add($node) {
 		$this->id = null;
-
 		$node['Node']['order'] = $this->getLastOrderInParentNode($node['Node']['course_id'],$node['Node']['parent_node_id']) + 1;
 		$this->save($node);
 

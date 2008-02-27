@@ -25,12 +25,12 @@ class ContentController extends AppController {
     	exit;
 	}
 	
-	function increaseIndent($nodeId) {
+	function increase_indent($nodeId) {
 		$this->Node->increaseIndent($nodeId);			
     	exit;	
 	}
 	
-	function decreaseIndent($nodeId) {
+	function decrease_indent($nodeId) {
 		$this->Node->decreaseIndent($nodeId);			
     	exit;
 	}	
@@ -44,7 +44,7 @@ class ContentController extends AppController {
 	function reorder() {
 		if(empty($this->data['Node']['children_nodes']))
 			exit;
-		
+
 		$parentNodeId = $this->data['Node']['id'];
 		$nodes = explode(',',$this->data['Node']['children_nodes']);
 
@@ -57,7 +57,7 @@ class ContentController extends AppController {
 			)));
     		$order++;
     	}
-		
+
     	exit;
 	}
     

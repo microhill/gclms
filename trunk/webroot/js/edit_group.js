@@ -7,7 +7,7 @@ GCLMS.Triggers.update({
 	'#gclms-clear-group-logo:click' : function(event) {
 		event.stop();
 		this.hide();
-		$('GroupLogo').showAsInline();
+		$('GroupLogo').displayAsInline();
 		$('gclms-page').select('form').first().insert({top:
 				new Element('input',{
 					name: 'data[Group][clear_logo]',

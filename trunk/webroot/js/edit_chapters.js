@@ -13,10 +13,10 @@ GCLMS.ChaptersController = {
 		$$('.buttons button').each(function(node){
 			node.hide();
 		});
-		$('addChapter').showAsInline();
-		$('renameChapter').showAsInline();
-		$('deleteChapter').showAsInline();
-		$('editChapter').showAsInline();
+		$('addChapter').displayAsInline();
+		$('renameChapter').displayAsInline();
+		$('deleteChapter').displayAsInline();
+		$('editChapter').displayAsInline();
 	},
 	getTitleForAddition: function() {
 		GCLMS.popup.create({

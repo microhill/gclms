@@ -1,4 +1,4 @@
-/*global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __ */
+/* global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __ */
 
 GCLMS.NodesController = {
 	initialize: function() {
@@ -16,7 +16,7 @@ GCLMS.NodesController = {
 		
 		if(li.hasClassName('gclms-collapsed')) {
 			$$('#' + li.getAttribute('id') + ' > ul > li').each(function(node){
-				node.showAsBlock();
+				node.displayAsBlock();
 			});
 			li.removeClassName('gclms-collapsed');
 			li.addClassName('gclms-expanded');
@@ -198,7 +198,7 @@ GCLMS.NodesController = {
 		GCLMS.NodesController.toggleMenubarButtons();
 		GCLMS.NodesController.createSortables();
 		
-		GCLMS.Node.changeParent({
+		GCLMS.Node.increaseIndent({
 			parentNodeId: previousNode.getAttribute('gclms:node-id'),
 			id: selectedNode.getAttribute('gclms:node-id')
 		});
@@ -222,7 +222,7 @@ GCLMS.NodesController = {
 		GCLMS.NodesController.toggleMenubarButtons();
 		GCLMS.NodesController.createSortables();
 		
-		GCLMS.Node.changeParent({
+		GCLMS.Node.decreaseIndent({
 			parentNodeId: parentNodeList.up('li').getAttribute('gclms:node-id'),
 			id: selectedNode.getAttribute('gclms:node-id')
 		});		
@@ -262,8 +262,8 @@ GCLMS.NodesController = {
 			node.hide();
 		});
 
-		$('addLabel').showAsInline();
-		$('addPage').showAsInline();
+		$('addLabel').displayAsInline();
+		$('addPage').displayAsInline();
 
 		var selectedAnchor = $('gclms-nodes').down('li a.selected');
 		if(!selectedAnchor) {
@@ -273,19 +273,19 @@ GCLMS.NodesController = {
 		var selectedNode = selectedAnchor.up('li');
 		
 		if(selectedNode.hasClassName('gclms-page')) {
-			$('editPage').showAsInline();
+			$('editPage').displayAsInline();
 		}		
 		
 		if(!selectedNode || selectedNode.getAttribute('gclms:node-id') == '0') {
 			return false;
 		}
 
-		$('renameNode').showAsInline();
+		$('renameNode').displayAsInline();
 		
 		if(selectedNode.down('li')) {
 			
 		} else {
-			$('deleteNode').showAsInline();
+			$('deleteNode').displayAsInline();
 		}
 		
 		var ancestorLevels = GCLMS.NodesController.countAncestorLevels(selectedNode);
@@ -297,17 +297,17 @@ GCLMS.NodesController = {
 		}
 		
 		if(selectedNode.previous('li') && ancestorLevels + descendentLevels <= 2) {
-			$('increaseIndent').showAsInline();
+			$('increaseIndent').displayAsInline();
 		}
 			
 		if(ancestorLevels >= 1) {
-			$('decreaseIndent').showAsInline();
+			$('decreaseIndent').displayAsInline();
 		}
 		
 		if (selectedNode.hasClassName('gclms-label')) {
-			$('convertLabelToPage').showAsInline();
+			$('convertLabelToPage').displayAsInline();
 		} else {
-			$('convertPageToLabel').showAsInline();
+			$('convertPageToLabel').displayAsInline();
 		}
 	},
 	createSortables: function() {		
@@ -351,7 +351,7 @@ GCLMS.NodesController = {
 			parentNode.addClassName('gclms-expanded');
 			
 			$$('#' + parentNode.getAttribute('id') + ' > ul > li').each(function(node){
-				node.showAsBlock();
+				node.displayAsBlock();
 			});
 			parentNode.removeClassName('gclms-collapsed');
 		} else {
@@ -405,12 +405,18 @@ GCLMS.Node = {
 	},
 	increaseIndent: function(options) {
 		var request = new Ajax.Request(this.ajaxUrl + 'increase_indent/' + options.id,{
-			method: 'post'
+			method: 'post',
+			onComplete: function(request) {
+				//alert(request.responseText);
+			}
 		});	
 	},
 	decreaseIndent: function(options) {
 		var request = new Ajax.Request(this.ajaxUrl + 'decrease_indent/' + options.id,{
-			method: 'post'
+			method: 'post',
+			onComplete: function(request) {
+				//alert(request.responseText);
+			}
 		});	
 	}
 };

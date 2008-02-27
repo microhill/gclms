@@ -44,7 +44,7 @@ GCLMS.AppController = {
 			document.body.appendChild(GCLMS.tooltip);		
 		}
 		$('gclms-tooltip-content').update(this.getAttribute('tooltip:text'));	
-		$('gclms-tooltip').showAsBlock();
+		$('gclms-tooltip').displayAsBlock();
 		$('gclms-tooltip').setStyle({
 			left: (this.cumulativeOffset()[0] + this.getWidth()) + 'px',
 			top: (this.cumulativeOffset()[1] - GCLMS.tooltip.getHeight()) + 'px'
@@ -174,12 +174,21 @@ GCLMS.AppController = {
 		} else if (GCLMS.popup.cancelCallback) {
 			GCLMS.popup.cancelCallback();
 		}
+	},
+	updateLoginPanel: function(event) {
+		//alert(event.keyCode)
+		if($F(this).indexOf('@') != -1) {
+			$('UserPasswordDiv').displayAsBlock();
+		} else {
+			$('UserPasswordDiv').hide();
+		}
 	}
 };
 
 GCLMS.Views = $H({});
 
 GCLMS.Triggers = $H({
+	'input#UserStudentId:keyup' : GCLMS.AppController.updateLoginPanel,
 	'img.gclms-tooltip-button:mouseover': GCLMS.AppController.showTooltip,
 	'img.gclms-tooltip-button:mouseout': GCLMS.AppController.hideTooltip,
 	'.Records' : {
@@ -231,7 +240,7 @@ GCLMS.Triggers = $H({
 		div = panel.select('.gclms-panel-content').first();
 		button = panel.select('.gclms-button').first();
 		if(div.style.display == 'none') {
-			div.showAsBlock();
+			div.displayAsBlock();
 			button.removeClassName('gclms-down');
 			button.addClassName('gclms-up');
 		} else {

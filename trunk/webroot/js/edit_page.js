@@ -114,7 +114,7 @@ GCLMS.PagesController = {
 	
 	changePageAudio: function(event){
 		if($F(this) == 'External URL') {
-			$('PageExternalAudioFile').showAsInline();
+			$('PageExternalAudioFile').displayAsInline();
 			$('PageExternalAudioFile').disabled = false;
 			if(event) {
 				$('PageExternalAudioFile').focus();
@@ -267,17 +267,17 @@ GCLMS.PagesController = {
 	addMultipleChoiceAnswer: function(event) {
 		div = this.up('div');
 
-		div.select('.loadingAnswerIndicator').first().showAsInline();
+		div.select('.loadingAnswerIndicator').first().displayAsInline();
 		new Ajax.Request('/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/pages/add_multiple_choice_answer/' + div.getAttribute('question:id'), {
 			div : div,
 			onComplete:function(request) {
 				answersDiv = this.div.select('tr.multipleChoice .answers').first();
 				answersDiv.up('td').select('.loadingAnswerIndicator').first().hide();
 				answersDiv.insert(request.responseText);
-				answersDiv.showAsBlock();
+				answersDiv.displayAsBlock();
 				lastTable = answersDiv.select('table').last();
 				lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']['tr.multipleChoice,tr.matching']);
-				lastTable.parentNode.showAsBlock();
+				lastTable.parentNode.displayAsBlock();
 				this.select('input[type="text"]').first().focus();
 			}
 		})
@@ -287,17 +287,17 @@ GCLMS.PagesController = {
 	addMatchingAnswer: function(event) {
 		div = this.up('div');
 
-		div.select('.loadingAnswerIndicator').first().showAsInline();
+		div.select('.loadingAnswerIndicator').first().displayAsInline();
 		new Ajax.Request('/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/pages/add_matching_answer/' + div.getAttribute('question:id'), {
 			div : div,
 			onComplete:function(request) {
 				answersDiv = this.div.select('tr.matching .answers').first();
 				answersDiv.up('td').select('.loadingAnswerIndicator').first().hide();
 				answersDiv.insert(request.responseText);
-				answersDiv.showAsBlock();
+				answersDiv.displayAsBlock();
 				lastTable = answersDiv.select('table').last();
 				lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']['tr.multipleChoice,tr.matching']);
-				lastTable.parentNode.showAsBlock();
+				lastTable.parentNode.displayAsBlock();
 			}
 		})
 		event.stop();

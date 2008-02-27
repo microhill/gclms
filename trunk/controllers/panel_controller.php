@@ -3,7 +3,7 @@ class PanelController extends AppController {
 	var $uses = array();
 	
 	function beforeRender() {
-		$this->Breadcrumbs->addStudentCenterCrumb();
+		$this->Breadcrumbs->addHomeCrumb();
 		$this->Breadcrumbs->addSiteAdministrationCrumb();
 		parent::beforeRender();
 	}

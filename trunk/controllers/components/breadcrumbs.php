@@ -14,8 +14,8 @@ class BreadcrumbsComponent extends Object {
 		return true;
 	}
 	
-	function addStudentCenterCrumb() {
-		$this->addCrumb('Student Center','/');
+	function addHomeCrumb() {
+		$this->addCrumb('Home','/');
 	}
 	
 	function addSiteAdministrationCrumb() {

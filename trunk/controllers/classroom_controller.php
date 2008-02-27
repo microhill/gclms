@@ -6,7 +6,7 @@ class ClassroomController extends AppController {
 
 	function beforeRender() {
 		if($this->action == 'lesson') {
-			$this->Breadcrumbs->addStudentCenterCrumb();
+			$this->Breadcrumbs->addHomeCrumb();
 			$this->Breadcrumbs->addGroupCrumb();
 			$this->Breadcrumbs->addCourseCrumb();
 			$this->Breadcrumbs->addLessonCrumb();

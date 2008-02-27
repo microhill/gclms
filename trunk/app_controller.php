@@ -91,7 +91,7 @@ class AppController extends Controller {
     }
 
     function defaultBreadcrumbsAndLogo() {
-		$this->Breadcrumbs->addStudentCenterCrumb();
+		$this->Breadcrumbs->addHomeCrumb();
 
 		if(isset($this->params['group'])) {
 			$this->Breadcrumbs->addGroupCrumb();

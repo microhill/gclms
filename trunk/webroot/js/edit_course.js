@@ -7,7 +7,7 @@ if(document.body.getAttribute('lms:controller') == 'Courses' && (document.body.g
 		},
 		'input.allowRedistribution:change' : function() {
 			if($F(this) == '1') {
-				$('extendedLicensingOptions').showAsBlock();
+				$('extendedLicensingOptions').displayAsBlock();
 			} else {
 				$('extendedLicensingOptions').hide();
 			}

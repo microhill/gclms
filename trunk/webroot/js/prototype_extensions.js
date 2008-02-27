@@ -50,12 +50,12 @@ Element.addMethods({
 	    return element;
 	},
 
-	showAsBlock: function(element) {
+	displayAsBlock: function(element) {
 	    $(element).style.display = 'block';
 	    return element;
 	},
 
-	showAsInline: function(element) {
+	displayAsInline: function(element) {
 	    $(element).style.display = 'inline';
 	    return element;
 	},

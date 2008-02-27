@@ -10,7 +10,7 @@ class UsersController extends AppController {
 
 	function beforeFilter() {
 		$this->MyAuth->allowedActions = array('register','choose_language','reset_password','verify','logout');
-		$this->Breadcrumbs->addCrumb('Student Center','/');
+		$this->Breadcrumbs->addHomeCrumb();
 
 		$cake_admin = isset($this->params[Configure::read('Routing.admin')]) ? Configure::read('Routing.admin') : null;
 		if($cake_admin)

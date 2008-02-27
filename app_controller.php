@@ -28,6 +28,7 @@ class AppController extends Controller {
 
     	$this->paginate = am($this->paginateDefaults,$this->paginate);
        	$this->set('itemName', @$this->itemName);
+       	$this->MyAuth->fields = array('username' => 'email', 'password' => 'password');
        	$this->MyAuth->logoutRedirect = '/';
        	$this->MyAuth->loginRedirect = '/';
        	$this->MyAuth->logoutAction = array('controller'=>'users','action'=>'logout');

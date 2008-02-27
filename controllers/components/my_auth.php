@@ -1,5 +1,6 @@
 <?
 include(CAKE_CORE_INCLUDE_PATH . DS . 'cake' . DS . 'libs' . DS . 'controller' . DS . 'components' . DS . 'auth.php');
+
 class MyAuthComponent extends AuthComponent {
 	var $components = array('Session', 'RequestHandler');
 	
@@ -8,7 +9,6 @@ class MyAuthComponent extends AuthComponent {
 	}
 	
 	function redirect($url = null) {
-		
 		if(!is_null($url)) {
 			return $this->Session->write('Auth.redirect', $url);
 		}

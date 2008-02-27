@@ -21,28 +21,32 @@ echo $this->renderElement('left_column');
 			array(
 				'id' => 'addPage',
 				'class' => 'add',
-				'label' => 'Add Page',
+				'label' => '<u>A</u>dd Page',
 				'strings' => array(
 					'prompt:text' => 'Enter the name of the page:'
-				)
+				),
+				'accesskey' => 'a'
 			),
 			array(
 				'id' => 'addLabel',
 				'class' => 'add',
-				'label' => 'Add Label',
+				'label' => 'Add <u>L</u>abel',
 				'strings' => array(
 					'prompt:text' => 'Enter the name of the label:'
-				)
+				),
+				'accesskey' => 'l'
 			),
 			array(
 				'id' => 'convertPageToLabel',
 				'class' => 'convert',
-				'label' => 'Convert to Label'
+				'label' => '<u>C</u>onvert to Label',
+				'accesskey' => 'c'
 			),
 			array(
 				'id' => 'convertLabelToPage',
 				'class' => 'convert',
-				'label' => 'Convert to Page'
+				'label' => '<u>C</u>onvert to Page',
+				'accesskey' => 'c'
 			),
 			array(
 				'id' => 'decreaseIndent',
@@ -65,11 +69,12 @@ echo $this->renderElement('left_column');
 			array(
 				'id' => 'deleteNode',
 				'class' => 'delete',
-				'label' => 'Delete',
+				'label' => '<u>D</u>elete',
 				'strings' => array(
 					'notempty:text' => 'Must be empty before deletion.',
 					'confirm:text' => 'Are you sure you want to delete this?'
-				)
+				),
+				'accesskey' => 'd'
 			),
 			array(
 				'id' => 'editPage',

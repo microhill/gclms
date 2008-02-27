@@ -191,25 +191,34 @@ div.notifications div {
 	.gclms-login div {
 		margin-bottom: 0;
 		margin-top: 8px;
+		max-width: 90%;
 	}
 
 	.gclms-login form {
 		margin-top: -12px;
-	}
-
-	.gclms-login form {
 		font-size: 1.2em;
 	}
 
 	.gclms-login input {
-		font-size: 1.1em;
+		font-size: 1.08em;
+	}
+	
+	.gclms-login input[type="text"],
+	.gclms-login input[type="password"] {
+		border: 1px solid #ABADB3;
+		width: 100%;
+		max-width: 90%;
+		padding: 2px;
+		background-position: 3px 50%;
 	}
 
-	.gclms-panel .gclms-login input[type="text"],
-	.gclms-panel .gclms-login input[type="password"] {
-		width: 90%;
+	.gclms-login input.gclms-openid {
+		background-repeat: no-repeat;
+		background-image: url(/img/openid-22.png);
+		padding-left: 30px;
+		background-position: 3px 50%;
 	}
-
+	
 	.gclms-forgot-login {
 		font-size: .85em;
 	}

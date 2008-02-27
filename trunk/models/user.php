@@ -1,8 +1,8 @@
 <?
-class User extends AppModel {
-    var $hasMany = array('ChatMessage','Notebook','ChatParticipant');
-   
-    var $hasAndBelongsToMany = array(
+class User extends AppModel {   
+    var $recursive = 1;
+    
+	var $hasAndBelongsToMany = array(
 		'GroupsAdministrating' => array(
 				'className'    => 'Group',
 				'joinTable'    => 'group_administrators',

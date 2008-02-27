@@ -54,7 +54,6 @@ class UsersController extends AppController {
 	}
 
 	function login() {
-		die('test');
 	}
 	
 	function choose_language() {

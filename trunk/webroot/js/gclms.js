@@ -182,13 +182,23 @@ GCLMS.AppController = {
 		} else {
 			$('UserPasswordDiv').hide();
 		}
+		
+		if($F('UserEmail').trim().indexOf('http:') == 0) {
+			if(!$('UserEmail').hasClassName('gclms-openid')) {
+				$('UserEmail').addClassName('gclms-openid');
+			}
+		} else {
+			if($('UserEmail').hasClassName('gclms-openid')) {
+				$('UserEmail').removeClassName('gclms-openid');				
+			}
+		}
 	}
 };
 
 GCLMS.Views = $H({});
 
 GCLMS.Triggers = $H({
-	'input#UserStudentId:keyup' : GCLMS.AppController.updateLoginPanel,
+	'input#UserEmail:keyup,input#UserEmail:change,input#UserEmail:click,input#UserEmail:focus,input#UserEmail' : GCLMS.AppController.updateLoginPanel,
 	'img.gclms-tooltip-button:mouseover': GCLMS.AppController.showTooltip,
 	'img.gclms-tooltip-button:mouseout': GCLMS.AppController.hideTooltip,
 	'.Records' : {

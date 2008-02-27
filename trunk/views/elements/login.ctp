@@ -1,8 +1,8 @@
 <div class="gclms-login gclms-wrapper">
 	<?php $session->flash('Auth.login'); ?>
     <?= $form->create('User', array('url' => '/users/login','id'=>'UserLogin'));?>
-        <?= $form->input('student_id',array(
-        	'label' => array('text' => __("E-mail or Student Id", true)),
+        <?= $form->input('email',array(
+        	'label' => array('text' => __("E-mail or Student ID", true)),
         	'between' => '<br/>'
         ));?>
         <?= $form->input('password',array(

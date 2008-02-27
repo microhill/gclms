@@ -16,7 +16,8 @@ class ContentController extends AppController {
 	
 	function add() {
 		$this->data['Node']['course_id'] = $this->viewVars['course']['id'];
-		return $this->Node->add($this->data);
+		echo $this->Node->add($this->data);
+		exit;
 	}	
 	
 	function convert_type($id) {

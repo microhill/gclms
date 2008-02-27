@@ -61,10 +61,11 @@ echo $this->renderElement('left_column');
 			array(
 				'id' => 'renameNode',
 				'class' => 'rename',
-				'label' => 'Rename',
+				'label' => '<u>R</u>ename',
 				'strings' => array(
 					'prompt:text' => 'Enter the new name:'
-				)
+				),
+				'accesskey' => 'r'
 			),
 			array(
 				'id' => 'deleteNode',
@@ -79,7 +80,8 @@ echo $this->renderElement('left_column');
 			array(
 				'id' => 'editPage',
 				'class' => 'edit',
-				'label' => 'Edit'
+				'label' => '<u>E</u>dit',
+				'accesskey' => 'e'
 			))
 		));
 		?>

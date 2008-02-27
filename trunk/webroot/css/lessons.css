@@ -3,8 +3,28 @@
 	padding-bottom: 6px;
 }
 
+	.gclms-menubar td {
+		background-image: url('/img/button-background.png');
+		background-color: #ededed;
+	}
+
 	.gclms-menubar button {
 		font-size: 1.2em;
+		border: 1px solid #8B8B8B;
+		background-color: transparent;
+		background-repeat: no-repeat;
+		background-position-x: 2px;
+		padding-right: 3px;
+		padding-bottom: 1px;
+		padding-top: 1px;
+		padding-left: 24px;
+		width: 100%;
+		white-space: nowrap;
+		text-align: right;
+	}
+
+	.gclms-menubar button:hover {
+		/* background-color: #ddd; */
 	}
 
 .gclms-menubar button.delete,

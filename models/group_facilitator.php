@@ -3,7 +3,7 @@ class GroupFacilitator extends AppModel {
 	var $belongsTo = array('Group','User');
 	
 	var $validate = array(
-		'username' => array(
+		'email' => array(
 			'rule' => 'validUser'
 		)
 	);
@@ -13,7 +13,7 @@ class GroupFacilitator extends AppModel {
 		$this->User =& new User();
 
 		$this->User->contain();
-		$user = $this->User->findByUsername($this->data['GroupFacilitator']['username'],array('id'));
+		$user = $this->User->findByUsername($this->data['GroupFacilitator']['email'],array('id'));
 		if(empty($user))
 			return false;
 			

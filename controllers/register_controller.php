@@ -26,7 +26,7 @@ class RegisterController extends AppController {
 				return false;
 			}
 
-			$this->data['User']['username'] = $this->data['User']['new_username'];
+			$this->data['User']['email'] = $this->data['User']['new_username'];
 			$this->data['User']['password'] = Security::hash(Configure::read('Security.salt') . $this->data['User']['new_password'], 'sha1');
 			$this->data['User']['verification_code'] = String::uuid();
 			$this->User->create();

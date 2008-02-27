@@ -8,7 +8,7 @@ class Group extends AppModel {
 		        'foreignKey'  	=> 'group_id',
 		        'associationForeignKey'=> 'user_id',
 		        'unique'      	=> true,
-		        'fields'		=> array('id','username','first_name','last_name','email')
+		        'fields'		=> array('id','email','first_name','last_name','email')
 			)
     );	
 

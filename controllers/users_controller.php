@@ -5,7 +5,7 @@ class UsersController extends AppController {
     var $uses = array('User');
 	var $helpers = array('Paginator','MyPaginator');
 	var $itemName = 'User';
-	var $paginate = array('order' => 'Username');
+	var $paginate = array('order' => 'email');
 	var $components = array('Notifications','MyAuth');
 
 	function beforeFilter() {
@@ -23,7 +23,7 @@ class UsersController extends AppController {
 	
 	function administration_dropdown($name) {
 		$this->User->contain();
-		$user = $this->User->findAll('User.Username LIKE "' . Sanitize::paranoid($name) . '%"',array('username'));
+		$user = $this->User->findAll('User.Username LIKE "' . Sanitize::paranoid($name) . '%"',array('email'));
 		if(count($user) != 1)
 			die();
 		$this->set(compact('user'));
@@ -53,7 +53,9 @@ class UsersController extends AppController {
 		}
 	}
 
-	function login() {}
+	function login() {
+		die('test');
+	}
 	
 	function choose_language() {
 		$this->Session->write('Config.language',Sanitize::paranoid($this->data['User']['language']));
@@ -68,7 +70,7 @@ class UsersController extends AppController {
     
     function reset_password() {
     	if(!empty($this->data)) {
-    		$user = $this->User->findByUsername($this->data['User']['username']);
+    		$user = $this->User->findByUsername($this->data['User']['email']);
     		if(empty($user['User']['id'])) {
 	    		$this->Notifications->add(__('Username could not be found.',true),'error');
     		} else {
@@ -81,7 +83,7 @@ class UsersController extends AppController {
     				'password' => Security::hash(Configure::read('Security.salt') . $newPassword, 'sha1')
     			));
     			
-    			mail($user['User']['email'],__('Your password has been reset',true),sprintf(__('The password for %s has been reset to %s',true),$user['User']['username'],$newPassword), 'From: aaronshaf@gmail.com');
+    			mail($user['User']['email'],__('Your password has been reset',true),sprintf(__('The password for %s has been reset to %s',true),$user['User']['email'],$newPassword), 'From: aaronshaf@gmail.com');
 				$this->Notifications->add(__('Your password has been reset. Please check your e-mail.',true));
 				$this->redirect('/');
     		}    		

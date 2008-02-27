@@ -1,4 +1,4 @@
-<?php
+<?
 class User extends AppModel {
     var $hasMany = array('ChatMessage','Notebook','ChatParticipant');
    
@@ -38,9 +38,6 @@ class User extends AppModel {
 	);
 	
 	var $validate = array(
-		'username' => array(
-			'rule' => VALID_NOT_EMPTY
-		),
 		'email' => array(
 			'rule' => VALID_NOT_EMPTY
 		),

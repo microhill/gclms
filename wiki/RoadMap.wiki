@@ -16,7 +16,7 @@
 ==Home Page Functions==
  * (issue 32) (issue 33) 
 ==Group Administration Functions== 
- * Curriculum related (issue 38) 
+ * Curriculum related * (issue 38) 
  * Credentialing related  (issue 31) (issue 37) (issue 39) (issue 40)
 ==Student Functions==
  * Due in Milestone 2: (issue 13) 

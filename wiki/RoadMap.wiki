@@ -1,39 +1,41 @@
 #summary Development plan
 
-=Milestone 1=
+=Milestone 1 - Due March 7=
 
  * Overhaul course authoring tool / Restructure course to Node model (issue 1)
  * Integration of newest TinyMCE tool (issue 5) (issue 8) (issue 11) 
  * Basic export-to-ODT functionality (issue 2)
 
-=Milestone 2=
+=Milestone 2 - Due March 21 =
 
  * E-commerce integration (issue 9)
  * Translation (issue 14) 
  * Student registration (issue 13)
 
-=Milestone 3=
-==Home Page / General Functions==
- * (issue 32) (issue 33) (issue 24) (issue 34) 
-==Communications==
- * (issue 35) 
+=Milestone 3 - Due May 2=
+==General Functions==
+ * *Language related* (issue 32) 
+ * (issue 33) (issue 24) (issue 34) 
+ * *Communications related* (issue 35)
+ * *Personalization related* (issue 36)  
 ==Group Administration Functions== 
  * *Curriculum related*  (issue 38) 
  * *Credentialing related*  (issue 31) (issue 37) (issue 39) (issue 40)
-==Student Functions==
- * From Milestone 2: (issue 13) 
- * (issue 3) 
- * *Life Notebook related* (issue 4)
- * *Evaluations related* (issue 47)  
 ==Course Development Functions== 
  * (issue 16) (issue 15) (issue 20) (issue 19) (issue 22) (issue 28)
  * *Course Authoring related*  From Milestone 1 -(issue 1);  (issue 18) (issue 23) (issue 24) (issue 27) 
- * *Complementary Material related* (issue 26)  
- * *Assignment/Question related* (issue 17) (issue 30) (issue 7)  
+ * *Course Calendar related* (issue 21)
+ * *Complementary Material related*  (issue 25) (issue 26)  
+ * *Assignment/Question related* (issue 17) (issue 30) (issue 7) (issue 6)   
  * *Exam related* (issue 28) (issue 29) 
 ==Facilitator Functions==
  * (issue 41) (issue 44) (issue 45)  (issue 57) 
  * *Class Development/Creation/Definition related* (issue 45)(issue 43) (issue 42) 
- * *Class Management related* (issue 50) (issue 51) Gradebook - (issue 58)   
- * *Credentialing related* (issue 40) 
+ * *Class Management related* (issue 50) (issue 51) Gradebook - (issue 58) Calendar - (issue 53)(issue 54)   
+ * *Credentialing related* (issue 40) (issue 42) (issue 52)  
  * *Evalutations related* (issue 46) (issue 49) 
+==Student Functions==
+ * From Milestone 2: (issue 13) 
+ * (issue 3) 
+ * *Life Notebook related* (issue 4)
+ * *Evaluations related* (issue 47) 

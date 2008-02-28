@@ -233,7 +233,7 @@ GCLMS.PagesController = {
 		switch(this.value) {
 			case '0': // Multiple choice
 				alert(div.select('.trueFalse'));
-				div.select('.multipleChoice')[0].showAsTableRow();
+				div.select('.multipleChoice')[0].displayAsTableRow();
 				div.select('.trueFalse')[0].hide();
 				div.select('.fillInTheBlank')[0].hide();
 				div.select('.matching')[0].hide();
@@ -241,7 +241,7 @@ GCLMS.PagesController = {
 				break;
 			case '1': // True/false
 				div.select('.multipleChoice')[0].hide();
-				div.select('.trueFalse')[0].showAsTableRow();
+				div.select('.trueFalse')[0].displayAsTableRow();
 				div.select('.fillInTheBlank')[0].hide();
 				div.select('.matching')[0].hide();
 				div.select('.matchingHeaders')[0].hide();
@@ -249,7 +249,7 @@ GCLMS.PagesController = {
 			case '2': // Fill in the blank
 				div.select('.multipleChoice')[0].hide();
 				div.select('.trueFalse')[0].hide();
-				div.select('.fillInTheBlank')[0].showAsTableRow();
+				div.select('.fillInTheBlank')[0].displayAsTableRow();
 				div.select('.matching')[0].hide();
 				div.select('.matchingHeaders')[0].hide();
 				div.select('.fillInTheBlank')[0].getElementsByTagName('input')[0].focus();
@@ -258,8 +258,8 @@ GCLMS.PagesController = {
 				div.select('.multipleChoice')[0].hide();
 				div.select('.trueFalse')[0].hide();
 				div.select('.fillInTheBlank')[0].hide();
-				div.select('.matching')[0].showAsTableRow();
-				div.select('.matchingHeaders')[0].showAsTableRow();
+				div.select('.matching')[0].displayAsTableRow();
+				div.select('.matchingHeaders')[0].displayAsTableRow();
 				break;
 		}
 	},

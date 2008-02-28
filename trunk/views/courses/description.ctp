@@ -23,10 +23,11 @@
 		<? 
 		if(!empty($nodes) && strlen($course['description']) < 1500): ?>
 			<?
-			pr($nodes);
-			echo $this->renderElement('primary_node_list',array(
-				'nodes' => $nodes
+			echo $this->renderElement('nodes_list',array(
+				'nodes' => $nodes,
+				'max_levels' => 2
 			));
+			pr($nodes);
 			?>
 		<? endif; ?>
 		

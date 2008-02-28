@@ -1,3 +1,17 @@
+#gclms-menubars {
+	padding: 0;
+}
+
+	#gclms-menubars-floater.gclms-floating {
+		background-image: url(/img/menubars-background.png);
+		background-position-y: bottom;
+		padding-bottom: 14px;
+		position: fixed;
+		z-index: 2;
+		width: 100%;
+		top: 0px;
+	}
+
 .gclms-menubar {
 	padding-top: 6px;
 	padding-bottom: 6px;
@@ -9,18 +23,17 @@
 	}
 
 	.gclms-menubar button {
-		font-size: 1.2em;
+		font-size: 1.1em;
 		border: 1px solid #8B8B8B;
 		background-color: transparent;
 		background-repeat: no-repeat;
-		background-position-x: 2px;
-		padding-right: 3px;
+		background-position: 3px 50%;
+		padding-right: 4px;
 		padding-bottom: 1px;
 		padding-top: 1px;
-		padding-left: 24px;
+		padding-left: 22px;
 		width: 100%;
 		white-space: nowrap;
-		text-align: right;
 	}
 
 	.gclms-menubar button:hover {
@@ -34,6 +47,34 @@
 .gclms-menubar button.increaseIndent,
 .gclms-menubar button.decreaseIndent {
 	display: none;
+}
+
+.gclms-menubar button.add {
+	background-image: url(/img/icons/add-16.png);
+}
+
+.gclms-menubar button.delete {
+	background-image: url(/img/icons/oxygen/16x16/actions/edit-delete.png);
+}
+
+.gclms-menubar button.increaseIndent {
+	background-image: url(/img/icons/oxygen/16x16/actions/format-indent-more.png);
+}
+
+.gclms-menubar button.decreaseIndent {
+	background-image: url(/img/icons/oxygen/16x16/actions/format-indent-less.png);
+}
+
+.gclms-menubar button.label {
+	background-image: url(/img/icons/oxygen/16x16/mimetypes/application-x-font-otf-modified.png);
+}
+
+.gclms-menubar button.page {
+	background-image: url(/img/icons/oxygen/16x16/mimetypes/application-text.png);
+}
+
+.gclms-menubar button.edit {
+	background-image: url(/img/icons/oxygen/16x16/apps/kate.png);
 }
 
 #gclms-nodes {}

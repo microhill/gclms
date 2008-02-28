@@ -37,31 +37,35 @@ echo $this->renderElement('left_column');
 							'prompt:text' => 'Enter the name of the label:'
 						),
 						'accesskey' => 'l'
-					)
-				)));
-				
-				echo $this->renderElement('menubar',array('buttons' => array(
+					),
 					array(
 						'id' => 'convertPageToLabel',
 						'class' => 'label',
 						'label' => '<u>C</u>onvert to Label',
-						'accesskey' => 'c'
+						'accesskey' => 'c',
+						'disabled' => 'disabled'
 					),
 					array(
 						'id' => 'convertLabelToPage',
 						'class' => 'page',
 						'label' => '<u>C</u>onvert to Page',
-						'accesskey' => 'c'
-					),
+						'accesskey' => 'c',
+						'disabled' => 'disabled'
+					)
+				)));
+				
+				echo $this->renderElement('menubar',array('id' => 'secondaryMenubar','buttons' => array(
 					array(
 						'id' => 'decreaseIndent',
 						'class' => 'decreaseIndent',
-						'label' => 'Decrease Indent'
+						'label' => 'Decrease Indent',
+						'disabled' => 'disabled'
 					),
 					array(
 						'id' => 'increaseIndent',
 						'class' => 'increaseIndent',
-						'label' => 'Increase Indent'
+						'label' => 'Increase Indent',
+						'disabled' => 'disabled'
 					),
 					array(
 						'id' => 'renameNode',
@@ -70,7 +74,8 @@ echo $this->renderElement('left_column');
 						'strings' => array(
 							'prompt:text' => 'Enter the new name:'
 						),
-						'accesskey' => 'r'
+						'accesskey' => 'r',
+						'disabled' => 'disabled'
 					),
 					array(
 						'id' => 'deleteNode',
@@ -80,13 +85,15 @@ echo $this->renderElement('left_column');
 							'notempty:text' => 'Must be empty before deletion.',
 							'confirm:text' => 'Are you sure you want to delete this?'
 						),
-						'accesskey' => 'd'
+						'accesskey' => 'd',
+						'disabled' => 'disabled'
 					),
 					array(
 						'id' => 'editPage',
 						'class' => 'edit',
 						'label' => '<u>E</u>dit',
-						'accesskey' => 'e'
+						'accesskey' => 'e',
+						'disabled' => 'disabled'
 					))
 				));
 				?>

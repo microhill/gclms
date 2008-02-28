@@ -19,11 +19,15 @@
 	<? endforeach; ?>
 </div--> 
 
-<table class="gclms-menubar">
+<table class="gclms-menubar"<?
+	if(!empty($id)) {
+		echo 'id="' . $id . '" ';
+	}
+?>>
 	<tr>
 	<? foreach($buttons as $button): ?>
-		<td>
-			<button id="<?= $button['id'] ?>" class="<?= $button['class'] ?>"
+		<td id="<?= $button['id'] ?>">
+			<button class="<?= $button['class'] ?>"
 			<?
 			
 			if(!empty($button['disabled'])) {

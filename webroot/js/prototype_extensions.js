@@ -60,17 +60,33 @@ Element.addMethods({
 	    return element;
 	},
 
-	showAsTableRow: function(element) {
+	displayAsTableRow: function(element) {
 	    $(element).style.display = 'table-row';
 	    return element;
 	},
 
+	displayAsTableCell: function(element) {
+	    $(element).setStyle({
+			display: 'table-cell'
+		});
+	    return element;
+	},
+
+	display: function(element) {
+	    switch($(element).nodeName) {
+			case 'table':
+				displayType = 'table';
+				break;
+		}
+	    $(element).style.display = 'table-cell';
+	},
+
 	disable: function(element) {
-	    $(element).disabled = true;
+	    $(element).setAttribute('disabled','disabled');
 	},
 
 	enable: function(element) {
-	    $(element).disabled = false;
+		$(element).removeAttribute('disabled');
 	}
 });
 

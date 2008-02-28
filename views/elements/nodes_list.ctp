@@ -1,12 +1,19 @@
 <?
-$flag = false;
+if(!isset($max_levels))
+	$maxLevels = 4;
+	
+if(!isset($parent_node_id))
+	$parent_node_id = 0;
+
+if(!isset($level))
+	$level = 1;
 
 echo '<ul id="' . String::uuid(). '">';
 
 foreach($nodes as $key => $node) {
 	if($node['Node']['parent_node_id'] == $parent_node_id) {
 		unset($nodes[$key]);
-		if($level < 4) {
+		if($level < $max_levels) {
 			$childrenNodes = $this->renderElement('nodes_list',array(
 				'nodes' => $nodes,
 				'parent_node_id' => $node['Node']['id'],

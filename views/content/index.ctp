@@ -111,8 +111,6 @@ echo $this->renderElement('left_column');
 					<?
 					echo $this->renderElement('nodes_list',array(
 						'nodes' => $this->data,
-						'parent_node_id' => 0,
-						'level' => 1
 					));
 					?>	
 				</li>

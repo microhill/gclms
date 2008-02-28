@@ -63,6 +63,14 @@ Element.addMethods({
 	showAsTableRow: function(element) {
 	    $(element).style.display = 'table-row';
 	    return element;
+	},
+
+	disable: function(element) {
+	    $(element).disabled = true;
+	},
+
+	enable: function(element) {
+	    $(element).disabled = false;
 	}
 });
 

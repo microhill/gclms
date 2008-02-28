@@ -3,14 +3,10 @@ class ContentController extends AppController {
     var $uses = array('Node','Group','FacilitatedClass','User','Course');
 	var $helpers = array('Paginator','MyPaginator');
 	var $itemName = 'Node';
-
+	
 	function beforeRender() {
-		//$this->defaultBreadcrumbsAndLogo();
-		//if($this->action == 'view')
-			//$this->Breadcrumbs->addCrumb(__('Nodes',true), $this->viewVars['groupAndCoursePath'] . '/Nodes/view/' . $this->passedArgs[0]);
-		
-//		$this->addCrumb($this->controller->viewVars['Node']['title'], $this->viewvars['groupAndCoursePath'] . '/Node/view/' . $Node['Node']['id']);
-		
+		$this->defaultBreadcrumbsAndLogo();
+		$this->Breadcrumbs->addCrumb('Edit Course Content','/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path']). '/content';
 		parent::beforeRender();
 	}
 	

@@ -33,9 +33,11 @@
  * *Class Development/Creation/Definition related* (issue 45)(issue 43) (issue 42) 
  * *Class Management related* (issue 50) (issue 51) 
  * *Gradebook related* - (issue 58) 
+ * *Exam related* - (issue 57)
+ * *Attendance book related* - (issue 59)  
  * *Class Calendar related* - (issue 53)(issue 54) (issue 55)   
  * *Credentialing related* (issue 40) (issue 42) (issue 52)  
- * *Evalutations related* (issue 46) (issue 49) 
+ * *Evaluations related* (issue 46) (issue 49) 
 ==Student Functions==
  * From Milestone 2: (issue 13) 
  * (issue 3) 

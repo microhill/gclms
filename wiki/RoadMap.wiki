@@ -13,17 +13,23 @@
  * Student registration (issue 13)
 
 =Milestone 3=
-==HomePage Functions==
+==Home Page Functions==
  * (issue 32) (issue 33) 
 ==Group Administration Functions== 
  * Curriculum related (issue 38) 
- * Credentialing related  (issue 31) (issue 37) (issue 39)
+ * Credentialing related  (issue 31) (issue 37) (issue 39)(issue 40)
 ==Student Functions==
  * Due in Milestone 2: (issue 13) 
+ * (issue 3) 
  * Life Notebook related (issue 4) 
 ==Course Development Functions== 
  * (issue 16) (issue 15)(issue 20)(issue 19) (issue 22) (issue 28)
+ * Course Authoring related Due in Milestone 1 -(issue 1);  (issue 18) 
+ * Complementary Material related (issue 26)  
  * Assignment/Question related (issue 17) (issue 30) (issue 7)  
  * Exam related (issue 28) (issue 29) 
 ==Facilitator Functions==
  * (issue 41) (issue 44) (issue 45)  (issue 57) 
+ * Class Development/Creation/Definition (issue 45)(issue 43) 
+ * Class Management related (issue 50) (issue 51) Gradebook - (issue 58)  * 
+ * Credentialing related (issue 40) 

@@ -14,10 +14,11 @@
 
 =Milestone 3 - Due May 2=
 ==General Functions==
- * *Registration/Logon related* (issue 33)  (issue 34) 
+ * *Registration/Logon related* (issue 33) 
  * *Language related* (issue 32) 
  * *Communications related* (issue 35)
  * *Personalization related* (issue 36)  
+ * *Help related*  (issue 34) 
 ==Group Administration Functions== 
  * *Curriculum related*  (issue 38) 
  * *Credentialing related*  (issue 31) (issue 37) (issue 39) (issue 40)

@@ -14,7 +14,7 @@
 
 =Milestone 3 - Due May 2=
 ==General Functions==
- * (issue 33) (issue 24) (issue 34) 
+ * (issue 33)  (issue 34) 
  * *Language related* (issue 32) 
  * *Communications related* (issue 35)
  * *Personalization related* (issue 36)  
@@ -26,7 +26,7 @@
  * *Course Authoring related*  From Milestone 1 -(issue 1);  (issue 18) (issue 23) (issue 24) (issue 27) 
  * *Course Calendar related* (issue 21)
  * *Complementary Material related*  (issue 25) (issue 26)  
- * *Assignment/Question related* (issue 17) (issue 30) (issue 7) (issue 6)   
+ * *Assignment/Question related* (issue 17) (issue 30) (issue 7) (issue 6) (issue 24)  
  * *Exam related* (issue 28) (issue 29) 
 ==Facilitator Functions==
  * (issue 41) (issue 44) (issue 45)  (issue 57) 

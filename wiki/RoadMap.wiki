@@ -44,4 +44,4 @@
  * From Milestone 2: (issue 13) 
  * (issue 3) 
  * *Evaluations related* (issue 47) 
- * -*Life Notebook related*- (issue 4)
+ * _*Life Notebook related*_ (issue 61) (issue 4)

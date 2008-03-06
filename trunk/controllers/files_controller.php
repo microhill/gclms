@@ -37,7 +37,7 @@ class FilesController extends AppController {
 		if(!file_exists($directory))
 			mkdir($directory);
 
-		vendor('mimetypehandler'.DS.'mimetypehandler');
+		App::import('Vendor', 'mimetypehandler'.DS.'mimetypehandler');
 		$mime = new MimetypeHandler();
 
 		$files = array();
@@ -76,7 +76,7 @@ class FilesController extends AppController {
 		if(!file_exists($directory))
 			mkdir($directory);
 
-		vendor('mimetypehandler'.DS.'mimetypehandler');
+		App::import('Vendor', 'mimetypehandler'.DS.'mimetypehandler');
 		$mime = new MimetypeHandler();
 
 		$files = array();
@@ -114,7 +114,7 @@ class FilesController extends AppController {
 		if(!file_exists($directory))
 			mkdir($directory);
 
-		vendor('mimetypehandler'.DS.'mimetypehandler');
+		App::import('Vendor', 'mimetypehandler'.DS.'mimetypehandler');
 		$mime = new MimetypeHandler();
 
 		$files = array();
@@ -155,7 +155,7 @@ class FilesController extends AppController {
 		$sourceFilename = $file;
 		
 		if(is_readable($sourceFilename)){
-			vendor("phpthumb" . DS . "phpthumb.class");
+			App::import('Vendor',"phpthumb" . DS . "phpthumb.class");
 			$phpThumb = new phpThumb();
 
 			$phpThumb->src = $sourceFilename;
@@ -209,7 +209,7 @@ class FilesController extends AppController {
 		$path_parts = pathinfo($file);
 		$basename = $path_parts['basename'];
 
-		vendor('mimetypehandler'.DS.'mimetypehandler');
+		App::import('Vendor','mimetypehandler'.DS.'mimetypehandler');
 		$mime = new MimetypeHandler();
 		$content_type = $mime->getMimetype($file);
 

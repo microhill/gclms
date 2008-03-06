@@ -163,7 +163,7 @@ class CoursesController extends AppController {
 
 	function show() {
 		$this->Node->contain();
-		$nodes = $this->Node->findAll(array('Node.parent_node_id' => 0,'Node.course_id' => $this->viewVars['course']['id']),null,'Node.order ASC');
+		$nodes = $this->Node->findAll(array('Node.course_id' => $this->viewVars['course']['id']),null,'Node.order ASC');
 		$this->set(compact('nodes'));
 		
 		if(empty($this->viewVars['facilitated_class']['id'])) {

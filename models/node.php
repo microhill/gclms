@@ -6,11 +6,11 @@ class Node extends AppModel {
     var $recursive = 1;
 
     var $belongsTo = array(
-		/* 'ParentNode' => array(
+		'ParentNode' => array(
 			'className' => 'Node',
 			'foreignKey' => 'parent_node_id',
 			'fields' => array('id')
-		), */
+		),
 		'Course'
 	);
 
@@ -20,7 +20,7 @@ class Node extends AppModel {
 		'ChildNode' => array(
 			'className' => 'Node',
 			'foreignKey' => 'parent_node_id',
-			'fields' => array('id')
+			//'fields' => array('id')
 		)
 	);
 

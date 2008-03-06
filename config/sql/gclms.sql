@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: gclms
 Target Host: localhost
 Target Database: gclms
-Date: 2/24/2008 10:15:47 PM
+Date: 3/6/2008 1:17:01 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -154,7 +154,7 @@ CREATE TABLE `courses` (
   `deprecated` int(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `group_id` (`group_id`,`web_path`)
-) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for dictionary_terms
@@ -206,7 +206,7 @@ CREATE TABLE `forum_posts` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `forum_id` (`forum_id`,`parent_post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for forums
@@ -237,7 +237,7 @@ CREATE TABLE `grades` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for group_administrators
@@ -251,7 +251,7 @@ CREATE TABLE `group_administrators` (
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `unique_admin` (`group_id`,`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for group_facilitators
@@ -303,8 +303,6 @@ CREATE TABLE `nodes` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `course_id` int(11) unsigned NOT NULL,
   `parent_node_id` int(11) unsigned NOT NULL default '0',
-  `previous_page_id` int(11) unsigned default '0',
-  `next_page_id` int(11) unsigned default '0',
   `grade_recorded` int(1) unsigned NOT NULL default '0',
   `title` varchar(255) NOT NULL,
   `type` int(1) unsigned NOT NULL default '0',
@@ -314,7 +312,7 @@ CREATE TABLE `nodes` (
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `course_id` (`course_id`,`parent_node_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=256 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for notebooks
@@ -375,7 +373,7 @@ CREATE TABLE `textareas` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for textbooks
@@ -396,8 +394,9 @@ CREATE TABLE `textbooks` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL auto_increment,
-  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(255) default NULL,
+  `alias` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `address_1` varchar(255) default NULL,
@@ -405,7 +404,6 @@ CREATE TABLE `users` (
   `city` varchar(255) default NULL,
   `state` varchar(255) default NULL,
   `postal_code` varchar(255) default NULL,
-  `email` varchar(255) NOT NULL,
   `mailing_list` int(1) unsigned NOT NULL default '1',
   `autoplay_audio` int(1) unsigned NOT NULL default '0',
   `verification_code` varchar(255) default NULL,
@@ -415,5 +413,5 @@ CREATE TABLE `users` (
   `updated` datetime NOT NULL,
   `deprecated` int(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `UniqueUsername` (`username`)
+  UNIQUE KEY `UniqueUsername` (`alias`)
 ) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COMMENT='utf8_general_ci';

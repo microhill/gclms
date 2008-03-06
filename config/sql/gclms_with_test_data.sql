@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: gclms
 Target Host: localhost
 Target Database: gclms
-Date: 2/24/2008 10:15:32 PM
+Date: 3/6/2008 1:16:42 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -154,7 +154,7 @@ CREATE TABLE `courses` (
   `deprecated` int(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `group_id` (`group_id`,`web_path`)
-) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for dictionary_terms
@@ -206,7 +206,7 @@ CREATE TABLE `forum_posts` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `forum_id` (`forum_id`,`parent_post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for forums
@@ -237,7 +237,7 @@ CREATE TABLE `grades` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for group_administrators
@@ -251,7 +251,7 @@ CREATE TABLE `group_administrators` (
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `unique_admin` (`group_id`,`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for group_facilitators
@@ -303,8 +303,6 @@ CREATE TABLE `nodes` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `course_id` int(11) unsigned NOT NULL,
   `parent_node_id` int(11) unsigned NOT NULL default '0',
-  `previous_page_id` int(11) unsigned default '0',
-  `next_page_id` int(11) unsigned default '0',
   `grade_recorded` int(1) unsigned NOT NULL default '0',
   `title` varchar(255) NOT NULL,
   `type` int(1) unsigned NOT NULL default '0',
@@ -314,7 +312,7 @@ CREATE TABLE `nodes` (
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `course_id` (`course_id`,`parent_node_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=256 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for notebooks
@@ -375,7 +373,7 @@ CREATE TABLE `textareas` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for textbooks
@@ -396,8 +394,9 @@ CREATE TABLE `textbooks` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL auto_increment,
-  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(255) default NULL,
+  `alias` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `address_1` varchar(255) default NULL,
@@ -405,7 +404,6 @@ CREATE TABLE `users` (
   `city` varchar(255) default NULL,
   `state` varchar(255) default NULL,
   `postal_code` varchar(255) default NULL,
-  `email` varchar(255) NOT NULL,
   `mailing_list` int(1) unsigned NOT NULL default '1',
   `autoplay_audio` int(1) unsigned NOT NULL default '0',
   `verification_code` varchar(255) default NULL,
@@ -415,16 +413,50 @@ CREATE TABLE `users` (
   `updated` datetime NOT NULL,
   `deprecated` int(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `UniqueUsername` (`username`)
+  UNIQUE KEY `UniqueUsername` (`alias`)
 ) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COMMENT='utf8_general_ci';
 
 -- ----------------------------
 -- Records 
 -- ----------------------------
+INSERT INTO `courses` VALUES ('92', '103', 'test', 'test', 'test', '', 'en', '0', '0', '0', '2008-02-26 13:17:18', '2008-02-26 13:17:18', '0');
+INSERT INTO `group_administrators` VALUES ('40', '103', '52', '2008-02-26 13:11:47', '2008-02-26 13:11:47');
 INSERT INTO `groups` VALUES ('103', 'Boyce College', 'boyce-college', '', null, null, 'http://www.letu.edu/', '8675309', '9 Westlake Ave', 'APO 320', 'Louisville', 'KY', '80132', null, 'Some very descriptive text here.', '1', '2008-02-19 20:35:24', '2008-02-19 20:35:24', '0');
 INSERT INTO `groups` VALUES ('104', 'Covenant Theological Seminary', 'covenant-theological-seminary', '', null, null, 'http://www.letu.edu/', '8675309', '9 Westlake Ave', 'APO 320', 'St. Louis', 'MO', '80132', null, 'Some very descriptive text here.', '1', '2008-02-19 20:35:37', '2008-02-19 20:35:37', '0');
-INSERT INTO `users` VALUES ('52', 'aaronshaf', '3a00070e691147f18e69201fc1431b0d39248af9', 'Aaron', 'Shafovaloff', 'abc', 'abc', 'Midvale', 'UT', '90210', 'aaronshaf@gmail.com', '1', '0', null, '0', '1', '0000-00-00 00:00:00', '2008-02-19 20:39:50', '0');
-INSERT INTO `users` VALUES ('53', 'patty.thompson', null, 'Patty', 'Thompson', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', 'patty.thompson@fake_domain_name.org', '1', '0', null, '0', '0', '2008-02-19 20:36:38', '2008-02-19 20:36:38', '0');
-INSERT INTO `users` VALUES ('54', 'paul.walgren', null, 'Paul', 'Walgren', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', 'paul.walgren@fake_domain_name.org', '1', '0', null, '0', '0', '2008-02-19 20:36:52', '2008-02-19 20:36:52', '0');
-INSERT INTO `users` VALUES ('57', 'TestUserODD', 'f51917152d00e8f50f3bdde3674397b1e4825ffc', 'John', 'Doe', '32325 CR 323', 'some 32 houses down', 'Killgore', 'TX', '75603', 'spamthisallyouwant@pysquared.com', '1', '0', '47bba0d0-a538-4ba9-9cf1-08ccab4a69cb', '0', '0', '2008-02-19 20:38:56', '2008-02-19 20:38:56', '0');
-INSERT INTO `users` VALUES ('56', 'linus.torvalds', null, 'Linus', 'Torvalds', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', 'linus.torvalds@fake_domain_name.org', '1', '0', null, '0', '0', '2008-02-19 20:37:21', '2008-02-19 20:37:21', '0');
+INSERT INTO `nodes` VALUES ('248', '92', '232', '0', 'asdfasdfsadf', '0', null, '9', '2008-02-27 17:39:50', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('246', '92', '232', '0', 'asdfasdfsadf', '0', null, '7', '2008-02-27 17:39:47', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('247', '92', '232', '0', 'asdfasdasdf', '0', null, '8', '2008-02-27 17:39:49', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('245', '92', '232', '0', 'afsdfasdf', '0', null, '6', '2008-02-27 17:39:46', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('241', '92', '232', '0', 'asdfsfsad', '0', null, '2', '2008-02-27 17:39:42', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('242', '92', '232', '0', 'asdfasdf', '0', null, '3', '2008-02-27 17:39:43', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('167', '0', '0', '0', '', '0', null, '1', '2008-02-26 15:16:28', '2008-02-26 15:16:28');
+INSERT INTO `nodes` VALUES ('168', '0', '0', '0', '', '0', null, '3', '2008-02-26 15:16:28', '2008-02-28 12:28:57');
+INSERT INTO `nodes` VALUES ('243', '92', '232', '0', 'fasdfsadf', '0', null, '4', '2008-02-27 17:39:44', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('244', '92', '232', '0', 'asdfasdf', '0', null, '5', '2008-02-27 17:39:45', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('227', '92', '233', '0', 'Using This Course', '0', null, '1', '2008-02-27 09:56:03', '2008-02-28 12:28:39');
+INSERT INTO `nodes` VALUES ('228', '92', '0', '0', 'Unit One: His Preparation and Early Years', '0', null, '3', '2008-02-27 09:56:13', '2008-02-28 23:50:35');
+INSERT INTO `nodes` VALUES ('229', '92', '228', '0', 'Lesson 1: Preparation for the Birth', '0', null, '1', '2008-02-27 09:56:35', '2008-02-27 10:02:05');
+INSERT INTO `nodes` VALUES ('230', '92', '229', '0', 'Topic 1: Christ\'s Titles-Jesus, Christ, Son of God', '0', null, '1', '2008-02-27 09:56:42', '2008-02-27 20:03:16');
+INSERT INTO `nodes` VALUES ('231', '92', '228', '0', 'Topic 2: Christ\'s (The Word) Manifestation in the Flesh', '0', null, '3', '2008-02-27 09:56:59', '2008-02-28 08:24:56');
+INSERT INTO `nodes` VALUES ('232', '92', '228', '0', 'Topic 3: Christ\'s Lineage', '0', null, '2', '2008-02-27 09:57:18', '2008-02-28 08:24:56');
+INSERT INTO `nodes` VALUES ('233', '92', '0', '0', 'Topic 4: The Historical Accuracy of the Record', '1', null, '4', '2008-02-27 09:57:26', '2008-02-28 23:50:35');
+INSERT INTO `nodes` VALUES ('234', '92', '229', '0', 'Topic 5: An Answered Prayer', '0', null, '2', '2008-02-27 09:57:35', '2008-02-28 08:24:56');
+INSERT INTO `nodes` VALUES ('238', '92', '167', '0', 'awfwe', '0', null, '1', '2008-02-27 15:13:14', '2008-02-27 15:13:17');
+INSERT INTO `nodes` VALUES ('239', '92', '233', '0', 'fsdfsdf', '0', null, '2', '2008-02-27 17:21:32', '2008-02-28 12:28:39');
+INSERT INTO `nodes` VALUES ('240', '92', '232', '0', 'tetse', '0', null, '1', '2008-02-27 17:39:41', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('224', '92', '0', '0', 'Course Introduction', '0', null, '1', '2008-02-27 09:55:40', '2008-02-28 23:50:35');
+INSERT INTO `nodes` VALUES ('225', '92', '167', '0', 'One Solitary Life', '0', null, '0', '2008-02-27 09:55:46', '2008-02-27 15:13:02');
+INSERT INTO `nodes` VALUES ('226', '92', '0', '0', 'Course Information', '1', null, '2', '2008-02-27 09:55:55', '2008-02-28 23:50:35');
+INSERT INTO `nodes` VALUES ('249', '92', '232', '0', 'asdfasdfasdf', '0', null, '11', '2008-02-27 17:39:51', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('250', '92', '232', '0', 'asdfasdfsd', '0', null, '12', '2008-02-27 17:39:53', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('251', '92', '232', '0', 'asdfasdfsad', '0', null, '10', '2008-02-27 17:39:54', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('252', '92', '232', '0', 'asdfasdfasdf', '0', null, '13', '2008-02-27 17:39:55', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('253', '92', '232', '0', 'asdfasdsdfsadfds', '0', null, '14', '2008-02-27 17:39:57', '2008-02-28 04:56:11');
+INSERT INTO `nodes` VALUES ('254', '92', '240', '0', 'asdfasdfasdfasdf', '0', null, '0', '2008-02-28 12:58:56', '2008-02-28 12:58:56');
+INSERT INTO `nodes` VALUES ('255', '92', '228', '0', 'asdf', '0', null, '4', '2008-02-28 12:59:05', '2008-02-28 12:59:05');
+INSERT INTO `textareas` VALUES ('28', '224', '<blockquote>You are about to begin study of the Greatest Life Ever Lived! We are praying with you that this course will dramatically affect your life and ministry.</blockquote> <p>This course is part 1 of a 2 part course consisting of a total of 24 lessons.</p>', '1', '2008-02-27 09:59:22', '2008-02-27 09:59:22');
+INSERT INTO `users` VALUES ('52', 'aaronshaf@gmail.com', '3a00070e691147f18e69201fc1431b0d39248af9', 'aaronshaf', 'Aaron', 'Shafovaloff', 'abc', 'abc', 'Midvale', 'UT', '90210', '1', '0', null, '0', '1', '0000-00-00 00:00:00', '2008-02-19 20:39:50', '0');
+INSERT INTO `users` VALUES ('53', 'patty.thompson@fake_domain_name.org', null, 'patty.thompson', 'Patty', 'Thompson', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', '1', '0', null, '0', '0', '2008-02-19 20:36:38', '2008-02-19 20:36:38', '0');
+INSERT INTO `users` VALUES ('54', 'paul.walgren@fake_domain_name.org', null, 'paul.walgren', 'Paul', 'Walgren', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', '1', '0', null, '0', '0', '2008-02-19 20:36:52', '2008-02-19 20:36:52', '0');
+INSERT INTO `users` VALUES ('57', 'spamthisallyouwant@pysquared.com', 'f51917152d00e8f50f3bdde3674397b1e4825ffc', 'TestUserODD', 'John', 'Doe', '32325 CR 323', 'some 32 houses down', 'Killgore', 'TX', '75603', '1', '0', '47bba0d0-a538-4ba9-9cf1-08ccab4a69cb', '0', '0', '2008-02-19 20:38:56', '2008-02-19 20:38:56', '0');
+INSERT INTO `users` VALUES ('56', 'linus.torvalds@fake_domain_name.org', null, 'linus.torvalds', 'Linus', 'Torvalds', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', '1', '0', null, '0', '0', '2008-02-19 20:37:21', '2008-02-19 20:37:21', '0');

@@ -11,7 +11,7 @@
 		<p>
 			<?
 			if(empty($facilitated_class)) {
-				vendor('scripturizer'.DS.'scripturizer');
+				App::import('Vendor','scripturizer'.DS.'scripturizer');
 				$course['description'] = scripturize($course['description'],'NET');
 				echo $course['description'];
 			} else if(!empty($news_items)){

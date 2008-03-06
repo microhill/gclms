@@ -183,13 +183,13 @@ class AssetHelper extends Helper {
                 case 'js':
                     //jsmin only works with PHP5
                     if (PHP5) {
-                        vendor('jsmin' . DS . 'jsmin');
+						App::import('Vendor','jsmin' . DS . 'jsmin');
                         $scriptBuffer = JSMin::minify($scriptBuffer);
                     }
                     break;
 
                 case 'css':
-                    vendor('csstidy' . DS . 'class.csstidy');
+					App::import('Vendor','csstidy' . DS . 'class.csstidy');
                     $tidy = new csstidy();
                     $tidy->load_template($this->cssCompression);
                     $tidy->parse($scriptBuffer);

@@ -12,7 +12,8 @@
 */	
 define('SELENIUM_TESTS', APP.'tests'.DS.'selenium');
 
-vendor('selenium'.DS.'selenium_test_suite', 'selenium'.DS.'selenium_test_case');
+App::import('Vendor', 'selenium'.DS.'selenium_test_suite');
+App::import('Vendor', 'selenium'.DS.'selenium_test_case');
 
 class SeleniumController extends AppController {
 	var $uses = null;

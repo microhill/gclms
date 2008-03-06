@@ -1,7 +1,7 @@
 <?
 uses('L10n');
 
-vendor('browserdetection'.DS.'browserdetection');
+App::import('Vendor', 'browserdetection'.DS.'browserdetection');
 class AppController extends Controller {
     var $components = array('Breadcrumbs','Languages','RequestHandler','Notifications');
     var $uses = array('User','Group','Course','GroupAdministrator','FacilitatedClass');

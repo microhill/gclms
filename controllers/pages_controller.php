@@ -42,7 +42,7 @@ class PagesController extends AppController {
 		if(!file_exists($directory))
 			mkdir($directory);
 
-		vendor('mimetypehandler'.DS.'mimetypehandler');
+		App::import('Vendor', 'mimetypehandler'.DS.'mimetypehandler');
 		$mime = new MimetypeHandler();
 
 		if($handle = opendir($directory)) {

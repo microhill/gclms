@@ -5,7 +5,7 @@ class ExportController extends AppController {
 	function index() {}
 	
 	function odt() {
-		vendor('open_document'. DS . 'open_document');
+		App::import('Vendor', 'open_document'. DS . 'open_document');
 
 		$test = new OpenDocument;
 			

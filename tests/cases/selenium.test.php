@@ -1,5 +1,5 @@
 <?
-vendor('selenium' . DS . 'Selenium');
+App::import('Vendor', 'selenium' . DS . 'Selenium');
 
 class SeleniumTest extends UnitTestCase
 {

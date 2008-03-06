@@ -109,7 +109,7 @@ echo $this->renderElement('left_column');
 						<a href="#"><?= $course['title'] ?></a>
 					</span>		
 					<?
-					echo $this->renderElement('nodes_list',array(
+					echo $this->renderElement('nodes_edit_tree',array(
 						'nodes' => $this->data,
 					));
 					?>	

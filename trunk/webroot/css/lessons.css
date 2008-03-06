@@ -97,6 +97,23 @@
 	background-image: url(/img/icons/crystal_clear/16x16/actions/editclear.png);
 }
 
+#gclms-nodes-show-tree {}
+
+	#gclms-nodes-show-tree ul {
+		margin: 0;
+		padding: 0;
+		margin-left: 10px;
+		padding-left: 10px;
+		list-style: none;
+	}
+	
+		#gclms-nodes-show-tree li {
+			padding-left: 2px;
+			padding-right: 2px;
+			margin-top: 4px;
+			margin-bottom: 4px;
+		}
+
 #gclms-nodes {}
 	#gclms-nodes ul {
 		min-height: 2px;
@@ -145,29 +162,29 @@
 			background-image: url(/img/icons/oxygen/16x16/filesystems/folder_manilla2.png);
 		}
 		
-	#gclms-nodes img.gclms-expand-button {
+	.gclms-expandable-list img.gclms-expand-button {
 		height: 14px;
 		width: 15px;
 		background-repeat: no-repeat;
 	}
 	
-	#gclms-nodes li.gclms-hidden > ul > li {
+	.gclms-expandable-list li.gclms-hidden > ul > li {
 		display: none;
 	}
 	
-	#gclms-nodes li.gclms-collapsed > img.gclms-expand-button {
+	.gclms-expandable-list li.gclms-collapsed > img.gclms-expand-button {
 		background-image: url(/img/originals/tree/collapsed.png);
 	}
 		
-	#gclms-nodes li.gclms-collapsed > img.gclms-expand-button:hover {
+	.gclms-expandable-list li.gclms-collapsed > img.gclms-expand-button:hover {
 		background-image: url(/img/originals/tree/collapsed-hover.png);
 	}
 	
-	#gclms-nodes li.gclms-expanded > img.gclms-expand-button {
+	.gclms-expandable-list li.gclms-expanded > img.gclms-expand-button {
 		background-image: url(/img/originals/tree/expanded.png);
 	}
 	
-	#gclms-nodes li.gclms-expanded > img.gclms-expand-button:hover {
+	.gclms-expandable-list li.gclms-expanded > img.gclms-expand-button:hover {
 		background-image: url(/img/originals/tree/expanded-hover.png);
 	}
 	

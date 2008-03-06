@@ -5,7 +5,8 @@
 class Node extends AppModel {
     var $recursive = 1;
 
-    var $belongsTo = array(
+    /*
+	var $belongsTo = array(
 		'ParentNode' => array(
 			'className' => 'Node',
 			'foreignKey' => 'parent_node_id',
@@ -13,15 +14,16 @@ class Node extends AppModel {
 		),
 		'Course'
 	);
+	*/
 
 	var $hasMany = array(
 		'Textarea',
 		'Question',
-		'ChildNode' => array(
+		/*'ChildNode' => array(
 			'className' => 'Node',
 			'foreignKey' => 'parent_node_id',
 			//'fields' => array('id')
-		)
+		)*/
 	);
 
 	function add($node) {

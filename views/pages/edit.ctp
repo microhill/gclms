@@ -1,5 +1,4 @@
 <?
-
 $html->css('edit_page', null, null, false);
 
 $javascript->link(array(

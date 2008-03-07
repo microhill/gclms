@@ -25,9 +25,14 @@ input[type="password"] {
 	padding: 2px;
 }
 
-p {
+p, blockquote {
 	margin-top: 8px;
 	margin-bottom: 8px;
+}
+
+blockquote {
+	margin-left: 20px;
+	padding-left: 0;
 }
 
 form {

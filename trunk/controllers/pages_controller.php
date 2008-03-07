@@ -88,6 +88,8 @@ class PagesController extends AppController {
 			$this->data['Node']['external_audio_file'] = $this->data['Node']['audio_file'];
 			$this->data['Node']['audio_file'] = 'External URL';
 		}
+		
+		$this->set('title',$this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('Site.name'));
     }
 
 	function save($id) {		

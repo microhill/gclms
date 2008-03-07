@@ -1,4 +1,16 @@
-<? echo $this->renderElement('no_column_background'); ?>
+<?
+$html->css(am($css_for_layout,__('TEXT DIRECTION',true)), null, null, false);
+$html->css('tags', null, null, false);
+$html->css('main', null, null, false);
+$html->css('layout', null, null, false);
+$html->css('recordset', null, null, false);
+$html->css('tooltip', null, null, false);
+$html->css('menu', null, null, false);
+$html->css('page', null, null, false);
+$html->css('panel', null, null, false);
+
+echo $this->renderElement('no_column_background');
+?>
 
 <div class="gclms-content">
 	<div class="page gclms-noframes">
@@ -11,7 +23,7 @@
 		}
 		?>
 	
-		<div style="float: right;font-size: 1.1em;"><a style="padding-left: 20px; background-position: left center; background-repeat: no-repeat; background-image: url(/img/icons/oxygen/16x16/actions/view-left-right-modified.png);" href="<?= $groupAndCoursePath ?>/classroom/page/<?= $node['Node']['id'] ?>">View with Frames</a></div>
+		<div class="gclms-frames-button"><a href="<?= $groupAndCoursePath ?>/classroom/page/<?= $node['Node']['id'] ?>">View with frames</a></div>
 		
 		<h1><?= $node['Node']['title'] ?></h1>
 		<?

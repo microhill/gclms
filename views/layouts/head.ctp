@@ -3,8 +3,9 @@
 	<!--  <? if(!empty($title_for_layout)) echo '&raquo; ' . Configure::read('Site.name'); ?> -->
 
 	<?= $html->charset('UTF-8'); ?>
-    <?= $html->css(am($css_for_layout,__('TEXT DIRECTION',true))) ?>
 	<?
+	/*
+	$html->css(am($css_for_layout,__('TEXT DIRECTION',true)), null, null, false);
 	$html->css('tags', null, null, false);
 	$html->css('main', null, null, false);
 	$html->css('layout', null, null, false);
@@ -18,11 +19,13 @@
 	$html->css('chapters', null, null, false);
 	$html->css('files', null, null, false);
 	$html->css('edit_page', null, null, false);
+	$html->css('page', null, null, false);
 	$html->css('chat', null, null, false);
 	$html->css('panel', null, null, false);
 	$html->css('classroom', null, null, false);
 	$html->css('plugins', null, null, false);
 	$html->css('export', null, null, false);
+	*/
 
 	echo $asset->css_for_layout();
 	?>

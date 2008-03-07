@@ -198,3 +198,15 @@ p.correctAnswer {
 .gclms-notebook {
 	cursor: pointer;
 }
+
+.gclms-frames-button {
+	float: right;
+	font-size: 1.1em;
+}
+
+	.gclms-frames-button a {
+		padding-left: 20px;
+		background-position: left center;
+		background-repeat: no-repeat;
+		background-image: url(/img/icons/oxygen/16x16/actions/view-left-right-modified.png);		
+	}

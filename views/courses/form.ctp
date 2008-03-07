@@ -59,5 +59,3 @@ echo $form->input('css',array(
 	'between' => '<br/>'
 ));
 ?>
-
-<script type="text/javascript" src="/js/tinymce/tiny_mce.js"></script>

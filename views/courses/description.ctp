@@ -1,5 +1,6 @@
 <?
 $html->css('main', null, null, false);
+$html->css('course', null, null, false);
 
 $javascript->link(array(
 	'vendors/prototype',

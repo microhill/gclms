@@ -1,5 +1,5 @@
 /**
- * $Id: editor_plugin_src.js 520 2008-01-07 16:30:32Z spocke $
+ * $Id: editor_plugin_src.js 651 2008-02-29 10:00:25Z spocke $
  *
  * @author Moxiecode
  * @copyright Copyright © 2004-2008, Moxiecode Systems AB, All rights reserved.
@@ -72,6 +72,26 @@
 							m.add({title : 'table.desc', icon : 'table', cmd : 'mceInsertTable', ui : true});
 					});
 				}
+			});
+
+			// Block delete on gecko inside TD:s. Gecko is removing table elements and then produces incorrect tables
+			// The backspace key also removed TD:s but this one can not be blocked
+			if (tinymce.isGecko) {
+				ed.onKeyPress.add(function(ed, e) {
+					var n;
+
+					if (e.keyCode == 46) {
+						n = ed.dom.getParent(ed.selection.getNode(), 'TD,TH');
+						if (n && (!n.hasChildNodes() || (n.childNodes.length == 1 && n.firstChild.nodeName == 'BR')))
+							tinymce.dom.Event.cancel(e);
+					}
+				});
+			}
+
+			// Add undo level when new rows are created using the tab key
+			ed.onKeyDown.add(function(ed, e) {
+				if (e.keyCode == 9 && ed.dom.getParent(ed.selection.getNode(), 'TABLE'))
+					ed.undoManager.add();
 			});
 
 			ed.onNodeChange.add(function(ed, cm, n) {

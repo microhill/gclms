@@ -1,5 +1,4 @@
 <?
-
 $html->css('course', null, null, false);
 
 $javascript->link(array(

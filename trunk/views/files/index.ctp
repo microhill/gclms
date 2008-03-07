@@ -1,4 +1,6 @@
 <?
+$html->css('files', null, null, false);
+
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',

@@ -1,4 +1,8 @@
-<?= $this->renderElement('left_column'); ?>
+<?
+$html->css('main', null, null, false);
+
+echo $this->renderElement('left_column');
+?>
 
 <div class="gclms-center-column">
 	<div class="gclms-content">

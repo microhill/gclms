@@ -34,7 +34,7 @@
 		return $resultArray;
 	}
 	
-	function display_nodes($nodes,$level = 1) {
+	function display_nodes($nodes,$level = 1,$groupAndCoursePath) {
 		echo '<ul>';
 		
 		foreach($nodes as $node) {
@@ -49,15 +49,18 @@
 				echo ' gclms-empty';
 			echo '">';
 			echo '<img class="gclms-expand-button" src="/img/blank-1.png"/> ';
-			echo $node['title'];
+			if($node['type'] == 0)
+				echo '<a href="' . $groupAndCoursePath . '/pages/view/' . $node['id'] . '">' . $node['title'] . '</a>';
+			else
+				echo $node['title'];
 			if(!empty($node['ChildNode']))
-				display_nodes($node['ChildNode'],$level + 1);
+				display_nodes($node['ChildNode'],$level + 1,$groupAndCoursePath);
 			echo '</li>';	
 		}
 		
 		echo '</ul>';
 	}
 	
-	display_nodes($nodes);
+	display_nodes($nodes,1,$groupAndCoursePath);
 	?>
 </div>

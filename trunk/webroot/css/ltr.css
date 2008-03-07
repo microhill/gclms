@@ -2,7 +2,7 @@ body {
 	direction: ltr;
 }
 
-.gclms-logout {
+.gclms-userbar {
 	float: right;
 }
 
@@ -20,15 +20,15 @@ body {
 	margin-right: 8px;
 }
 
-.Left {
+.gclms-left {
 	text-align: left;
 }
 
-.Right {
+.gclms-right {
 	text-align: right;
 }
 
-.Tabular th {
+.gclms-tabular th {
 	text-align: left;
 }
 

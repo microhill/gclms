@@ -3,9 +3,8 @@
  * Node type: 0 - page, 1 - label
  */
 class Node extends AppModel {
-    var $recursive = 1;
+    var $recursive = 0;
 
-    /*
 	var $belongsTo = array(
 		'ParentNode' => array(
 			'className' => 'Node',
@@ -14,16 +13,15 @@ class Node extends AppModel {
 		),
 		'Course'
 	);
-	*/
 
 	var $hasMany = array(
 		'Textarea',
 		'Question',
-		/*'ChildNode' => array(
+		'ChildNode' => array(
 			'className' => 'Node',
 			'foreignKey' => 'parent_node_id',
 			//'fields' => array('id')
-		)*/
+		)
 	);
 
 	function add($node) {

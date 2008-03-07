@@ -14,6 +14,7 @@ class AppController extends Controller {
 		$this->L10n = new L10n();
 		$this->L10n->get('en');
 		*/
+		
 		Configure::write('Config.language', 'en');
 
 		if(0 && !$this->Session->check('Config.language')) {

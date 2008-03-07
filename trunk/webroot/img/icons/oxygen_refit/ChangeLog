@@ -1,0 +1,91 @@
+1.0:
+
+- cleaned up mimetypes
+- new glade mimetype
+- new .theme mimetype
+- new shellscript mimetypes
+- new credits mimetype
+- new authors mimetype
+- new copying mimetype
+- fixed audio-volume-muted-oldschool name
+
+0.9.99:
+
+- added unreal2007 icon
+- new gnome-mines icon
+- new lockscreen icon
+- new gaim icon
+- new bum icon (to fit other icons)
+- new atunes icon (to fit other icons)
+- new realplay icon (to fit other icons)
+- new serpentine icon (to fit other icons)
+- new software-properties icon (to fit other icons)
+- vegastrike and alienblaster have now different icons
+- added alternative exaile icon
+- added new menu icons
+- fixed name of the fedora menu icon
+
+new options for change-type.sh:
+
+- ./change-type.sh firefox-jr [cute little fox]
+- ./change-type.sh exaile-new [new exaile icon]
+- ./change-type.sh exaile-old [old exaile icon]
+- ./change-type.sh gnome-flat [flat gnome menu icon]
+- ./change-type.sh slack [slackware menu icon]
+- ./change-type.sh suse [suse menu icon]
+- ./change-type.sh redhat [redhat menu icon]
+- ./change-type.sh kde3 [kde3 menu icon]
+
+
+0.9.2:
+
+- re-added the old trash and navi icons
+- added oxygen menu-logo
+- added kde menu-logo
+- added a second gnome menu logo
+
+- many new options for the change-type.sh script:
+- ./change-type.sh oxygen [oxygen menu logo]
+- ./change-type.sh kde [oxygen menu logo]
+- ./change-type.sh gnomeorange [orange gnome menu logo]
+- ./change-type.sh naviblack [black navigation icons]
+- ./change-type.sh naviblue [blue navigation icons]
+- ./change-type.sh oldtrash [old trash icons]
+- ./change-type.sh newtrash [new trash icons]
+- ./change-type.sh bluefolder [blue folders]
+- ./change-type.sh darkbluefolder [dark-blue folders]
+- ./change-type.sh brownfolder [brown folders]
+- ./change-type.sh cyanfolder [cyan folders]
+- ./change-type.sh greenfolder [green folders]
+- ./change-type.sh greyfolder [grey folders]
+- ./change-type.sh orangefolder [orange folders]
+- ./change-type.sh redfolder [red folders]
+- ./change-type.sh violetfolder [violet folders]
+- ./change-type.sh yellowfolder [yellow folders]
+
+0.9.1:
+
+- fixed index.theme [displayed wrong Name]
+
+- new navigation icons
+- new vegastrike icon
+- new epiphany icon
+- new frostwire icon
+- new gnome-panel-clock icon
+- new package-supported icon
+- added kopete icon
+- added xpdf icon
+- added energy-statistics icon
+- added debian menu-logo
+- added fedora menu-logo
+- added gentoo menu-logo
+- added ubuntu menu-logo
+- added mandriva menu-logo
+
+- change-type.sh can now also switch the menu logo:
+- ./change-type.sh debian [debian menu logo]
+- ./change-type.sh gnome [gnome menu logo (default)]
+- ./change-type.sh fedora [fedora menu logo]
+- ./change-type.sh gentoo [gentoo menu logo]
+- ./change-type.sh ubuntu [ubuntu menu logo]
+- ./change-type.sh mandriva [ubuntu menu logo]

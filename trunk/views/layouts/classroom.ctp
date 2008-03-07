@@ -14,8 +14,6 @@
 	$html->css('menu', null, null, false);
 	$html->css('mp3_player', null, null, false);
 	$html->css('lesson_navigation', null, null, false);
-	$html->css('page_navigation', null, null, false);
-	$html->css('lesson', null, null, false);
 	$html->css('lessons', null, null, false);
 	$html->css('textbooks', null, null, false);
 	$html->css('chapters', null, null, false);

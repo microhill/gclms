@@ -3,7 +3,7 @@ class BreadcrumbsComponent extends Object {
 	var $crumbs = array();
     
     function startup(&$controller){
-    	$this->controller = &$controller;
+		$this->controller = &$controller;
 
     }
     
@@ -39,7 +39,7 @@ class BreadcrumbsComponent extends Object {
 		$this->addCrumb($this->controller->viewVars['lesson']['title'], $url . '/classroom/lesson/' . $this->controller->viewVars['lesson']['id']);
 	}
 
-	function getTrail() {
+	function getTrail() {		
 		if(!$this->controller->params['isAjax'] && !empty($this->crumbs))
 			return $this->crumbs;
 		else

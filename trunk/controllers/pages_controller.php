@@ -1,17 +1,40 @@
 <?
 class PagesController extends AppController {
     var $uses = array('Node','Question','Textarea');
-    var $helpers = array('Form','MyForm');
+	var $helpers = array('Scripturizer','Dictionary','Notebook','License','Form','MyForm');
     var $itemName = 'Node';
     var $components = array('Notifications');
 
     function beforeRender() {
-		$this->defaultBreadcrumbsAndLogo();
+		//$this->defaultBreadcrumbsAndLogo();
 		
 		//$this->Breadcrumbs->addCrumb(__('Lessons',true), $this->viewVars['groupAndCoursePath'] . '/lessons/view/' . $this->data['Node']['lesson_id']);
 		
     	parent::beforeRender();
     }
+	
+	function view($id) {
+		$this->Node->contain(array('Question' => 'Answer','Textarea'));
+		$node = $this->Node->findById($id);
+		
+		if($node['Node']['type'] != 0)
+			die('Node is not a page.');
+			
+		$node['Node']['previous_page_id'] = $this->Node->findPreviousPageId($node);
+		$node['Node']['next_page_id'] = $this->Node->findNextPageId($node);
+			
+		$this->set('node',$node);
+		
+		//$this->DictionaryTerm = ClassRegistry::getInstance('Model', 'DictionaryTerm');
+		$this->DictionaryTerm =& ClassRegistry::init('DictionaryTerm'); 
+		$dictionary_terms = $this->DictionaryTerm->findAll(array('course_id'=>$this->viewVars['course']['id']),array('term'));
+		$dictionary_terms = Set::extract($dictionary_terms, '{n}.DictionaryTerm.term');
+		$this->set('dictionary_terms',$dictionary_terms);
+		
+		$this->defaultBreadcrumbsAndLogo();
+		
+		$this->Breadcrumbs->addCrumb($node['Node']['title'], $this->viewVars['groupAndCoursePath'] . '/pages/view/' . $this->data['Node']['id']);		
+	}
 
 	function add_textarea($textarea_id = '#{id}') {
 		$this->set('textarea_id',$textarea_id);

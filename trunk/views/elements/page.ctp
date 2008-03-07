@@ -1,49 +1,72 @@
-<div class="page">
-	<?	
-	if(!empty($page['Page']['audio_file'])) {
-		$page['Page']['audio_file'] = $groupAndCoursePath  . 'files/' . $page['Page']['audio_file'];
-	?>
-		<div class="mp3player" mp3player:autoplay="true" mp3player:file="<?= $page['Page']['audio_file'] ?>"></div>
-	<?
-	}
-	?>
+<? echo $this->renderElement('no_column_background'); ?>
 
-	<h1><?= $page['Page']['title'] ?></h1>
-	<?
-	if(!empty($facilitated_class))
-		$classUri = $groupAndCoursePath . 'notebook/' . '/section:' . $facilitated_class['id'];
-	else
-		$classUri = null;
-
-	$pageItems = array();
-	foreach($page['Textarea'] as $textarea) {
-		$pageItems[$textarea['order']] = $textarea;
-	}
-
-	foreach($page['Question'] as $question) {
-		$pageItems[$question['order']] = $question;
-	}
-
-	ksort($pageItems);
-
-	foreach($pageItems as $pageItem) {
-		if(isset($pageItem['content'])) {
-			$pageItem['content'] = $scripturizer->linkify($pageItem['content']);
-			$pageItem['content'] = $notebook->linkify($pageItem['content'],$classUri);
-			$pageItem['content'] = $dictionary->linkify($pageItem['content'],$groupAndCoursePath . '/dictionary/panel',$dictionary_terms);
-			echo $pageItem['content'];
-		} else
-			echo $this->renderElement('page_question',array('question' => $pageItem));
-	}
-
-	if(0 && $page['Page']['grade_recorded']): ?>
-		<p id="gradeResults"><button id="gradeQuestions"><? __('Grade') ?></button></p>
-	<? endif;
-
-	?>
-	<?= $this->renderElement('page_navigation'); ?>
+<div class="gclms-content">
+	<div class="page gclms-noframes">
+		<?	
+		if(!empty($node['Node']['audio_file'])) {
+			$node['Node']['audio_file'] = $groupAndCoursePath  . 'files/' . $node['Node']['audio_file'];
+		?>
+			<div class="mp3player" mp3player:autoplay="true" mp3player:file="<?= $node['Node']['audio_file'] ?>"></div>
+		<?
+		}
+		?>
+	
+		<div style="float: right;font-size: 1.1em;"><a style="padding-left: 20px; background-position: left center; background-repeat: no-repeat; background-image: url(/img/icons/oxygen/16x16/actions/view-left-right-modified.png);" href="<?= $groupAndCoursePath ?>/classroom/page/<?= $node['Node']['id'] ?>">View with Frames</a></div>
+		
+		<h1><?= $node['Node']['title'] ?></h1>
+		<?
+		if(!empty($facilitated_class))
+			$classUri = $groupAndCoursePath . 'notebook/' . '/section:' . $facilitated_class['id'];
+		else
+			$classUri = null;
+	
+		$nodeItems = array();
+		foreach($node['Textarea'] as $textarea) {
+			$nodeItems[$textarea['order']] = $textarea;
+		}
+	
+		foreach($node['Question'] as $question) {
+			$nodeItems[$question['order']] = $question;
+		}
+	
+		ksort($nodeItems);
+	
+		foreach($nodeItems as $nodeItem) {
+			if(isset($nodeItem['content'])) {
+				$nodeItem['content'] = $scripturizer->linkify($nodeItem['content']);
+				$nodeItem['content'] = $notebook->linkify($nodeItem['content'],$classUri);
+				$nodeItem['content'] = $dictionary->linkify($nodeItem['content'],$groupAndCoursePath . '/dictionary/panel',$dictionary_terms);
+				echo $nodeItem['content'];
+			} else
+				echo $this->renderElement('page_question',array('question' => $nodeItem));
+		}
+	
+		if(0 && $node['Node']['grade_recorded']): ?>
+			<p id="gradeResults"><button id="gradeQuestions"><? __('Grade') ?></button></p>
+		<? endif;
+		
+		if(!empty($facilitated_class))
+			$sectionUriComponent = '/section:' . $facilitated_class['id'];
+		else
+			$sectionUriComponent = '';
+		?>
+		<div id="gclms-page-navigation">
+			<? if(!empty($node['Node']['previous_page_id'])): ?>
+				<a class="gclms-back" href="<?= $groupAndCoursePath ?>/pages/view/<?= $node['Node']['previous_page_id'] ?>">
+					<img src="/img/icons/oxygen_refit/32x32/actions/go-previous-blue.png" alt="<? __('Previous page') ?>" />
+				</a>
+			<? endif; ?>
+		
+			<? if(!empty($node['Node']['next_page_id'])): ?>
+				<a class="gclms-next" href="<?= $groupAndCoursePath ?>/pages/view/<?= $node['Node']['next_page_id'] ?>">
+					<img src="/img/icons/oxygen_refit/32x32/actions/go-next-blue.png" alt="<? __('Next page') ?>" />
+				</a>
+			<? endif; ?>
+		</div>
+	</div>
+	
+	<? 	if(!empty($node['Node']['audio_file'])): ?>
+	<script type="text/javascript" src="/js/vendors/soundmanager/soundmanager2-jsmin.js"></script>
+	<? endif; ?>
 </div>
 
-<? 	if(!empty($page['Page']['audio_file'])): ?>
-<script type="text/javascript" src="/js/vendors/soundmanager/soundmanager2-jsmin.js"></script>
-<? endif; ?>

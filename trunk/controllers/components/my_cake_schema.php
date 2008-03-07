@@ -1,5 +1,0 @@
-<?
-class MyCakeSchema extends CakeSchema {
-	
-	
-}

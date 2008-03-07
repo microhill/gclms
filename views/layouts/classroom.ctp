@@ -8,7 +8,7 @@
     <?= $html->css(am($css_for_layout,__('TEXT DIRECTION',true))) ?>
 	<?
 	$html->css('tags', null, null, false);
-	$html->css('main', null, null, false);
+	
 	$html->css('layout', null, null, false);
 	$html->css('recordset', null, null, false);
 	$html->css('menu', null, null, false);

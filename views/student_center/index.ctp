@@ -1,6 +1,4 @@
 <?
-$html->css('main', null, null, false);
-
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',

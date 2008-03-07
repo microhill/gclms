@@ -1,4 +1,7 @@
 <?
+$html->css(__('TEXT DIRECTION',true), null, null, false);
+$html->css('main', null, null, false);
+
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',

@@ -1,3 +1,4 @@
+/*
 body {
 	background-color: #f9f9f9;
 	font-size: 85%;
@@ -5,13 +6,14 @@ body {
 	margin: 0;
 }
 
-img {
-	border: 0px none;	
-}
-
 *, input {
     font-family: Segoe UI, Tahoma, Arial, Helvetica, sans-serif;
     -moz-outline: 0px none;
+}
+*/
+
+img {
+	border: 0px none;	
 }
 
 h1:first-child {
@@ -210,3 +212,65 @@ p.correctAnswer {
 		background-repeat: no-repeat;
 		background-image: url(/img/icons/oxygen/16x16/actions/view-left-right-modified.png);		
 	}
+	
+/* MP3 Player */
+
+.mp3player {
+	background-image: url(/img/mp3_player/background.png);
+	width: 219px;
+	height: 38px;
+	float: right;
+}
+	
+	.mp3player .play {
+		background-image: url(/img/mp3_player/play.png);
+		width: 29px;
+		height: 29px;
+		float: left;
+		margin-top: 4px;
+		margin-left: 6px;
+		cursor: pointer;
+	}
+
+	.mp3player .blankTrack {
+		background-image: url(/img/mp3_player/track_blank.png);
+		background-repeat: no-repeat;
+		background-position: center left;
+		width: 167px;
+		height: 5px;
+		margin-left: 43px;
+		margin-top: 16px;
+		cursor: pointer;
+	}
+
+	.mp3player .progressTrack {
+		background-image: url(/img/mp3_player/track_loaded.png);
+		background-repeat: no-repeat;		
+		background-position: center left;
+		width: 0px;
+		height: 5px;
+		margin-left: 43px;
+		margin-top: -5px;
+		cursor: pointer;
+	}
+
+	.mp3player .transparentTrack {
+		background-image: url(/img/mp3_player/track_transparent.png);
+		background-repeat: no-repeat;
+		background-position: center left;
+		width: 167px;
+		height: 11px;
+		cursor: pointer;
+		margin-left: 43px;
+		margin-top: -8px;
+	}
+	
+		.mp3player .transparentTrack .handle {
+			background-image: url(/img/mp3_player/handle.png);
+			background-repeat: no-repeat;
+			width: 11px;
+			height: 11px;
+			cursor: pointer;
+			position: relative;
+			top: 0px;
+		}

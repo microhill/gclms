@@ -1,13 +1,7 @@
 <?
-$html->css(am($css_for_layout,__('TEXT DIRECTION',true)), null, null, false);
-$html->css('tags', null, null, false);
+$html->css(__('TEXT DIRECTION',true), null, null, false);
 $html->css('main', null, null, false);
-$html->css('layout', null, null, false);
-$html->css('recordset', null, null, false);
-$html->css('tooltip', null, null, false);
-$html->css('menu', null, null, false);
 $html->css('page', null, null, false);
-$html->css('panel', null, null, false);
 
 echo $this->renderElement('no_column_background');
 ?>

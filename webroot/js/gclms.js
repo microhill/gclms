@@ -291,12 +291,12 @@ GCLMS.tinyMCEConfig = {
 	theme_advanced_path_location : 'bottom',
     theme_advanced_blockformats : 'p,h2,h3,h4',
 	extended_valid_elements : 'a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]',
-	//content_css : '/css/tinymce.css',
-	file_browser_callback : 'GCLMS.fileBrowser'
+	file_browser_callback : 'GCLMS.fileBrowser',
+	content_css : "/css/main.css, /css/page.css",
 };
 
 if(document.body.getAttribute('lms:group') && !document.body.getAttribute('lms:group').empty() && !document.body.getAttribute('lms:course').empty()) {
-	GCLMS.tinyMCEConfig.content_css = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/files/css' + '/1';
+	//GCLMS.tinyMCEConfig.content_css = '/css/reset.css, ' + '/css/main.css, ' + '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/files/css' + '/1';
 }
 
 GCLMS.fileBrowser = function(field_name, url, type, win) {

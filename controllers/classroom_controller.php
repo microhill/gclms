@@ -50,22 +50,6 @@ class ClassroomController extends AppController {
 		//$this->set('lesson_order_in_course',$lessonNumber);
 		$this->render('lesson','classroom');
 	}
-
-	function page($page) {
-		if(is_string($page) || is_int($page)) {
-			$this->Page->contain(array('Textarea','Question' => 'Answer'));
-			$page = $this->Page->findById($page);
-		}
-		
-		$this->set(compact('page'));
-
-		$dictionary_terms = $this->DictionaryTerm->findAll(array('course_id'=>$this->viewVars['course']['id']),array('term'));
-		$dictionary_terms = Set::extract($dictionary_terms, '{n}.DictionaryTerm.term');
-		$this->set('dictionary_terms',$dictionary_terms);
-
-		$this->render('page','page');
-		exit;
-	}
 	
 	function lessonNavigation($lessonId) {
 		$this->Unit->contain();

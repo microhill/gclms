@@ -39,14 +39,14 @@ class Node extends AppModel {
 	
 	// Finds previous node of type page; recursive
 	function findPreviousPageId($node) {
-		if($node['Node']['order'] > 0) {
+		if($node['Node']['order'] > 1) {
 			$immediatePreviousNode = $this->find(array('Node.course_id' => $node['Node']['course_id'],'Node.parent_node_id' => $node['Node']['parent_node_id'],'Node.order' => $node['Node']['order'] - 1),array('id','course_id','parent_node_id','type','order'));
 			$node = $this->findBottomDescendentInParentNode($node['Node']['course_id'],$immediatePreviousNode);
 		} else if(empty($node['Node']['parent_node_id'])) {
 			return 0;
 		} else {
 			$this->contain();
-			$node = $this->findById($node['Node']['parent_node_id'],array('id','course_id','parent_node_id','type'));
+			$node = $this->findById($node['Node']['parent_node_id'],array('id','course_id','parent_node_id','type','order'));
 		}
 		
 		if($node['Node']['type'] == 0) {

@@ -1,5 +1,4 @@
 <?
-$html->css(__('TEXT DIRECTION',true), null, null, false);
 $html->css('main', null, null, false);
 $html->css('page', null, null, false);
 

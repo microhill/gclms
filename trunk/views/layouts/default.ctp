@@ -20,9 +20,6 @@
 		</div>
 	</div>
 
-	<?
-	//$this->renderElement('all_javascript');
-	echo $asset->js_for_layout();
-	?>
+	<?= $asset->js_for_layout(); ?>
 </body>
 </html>

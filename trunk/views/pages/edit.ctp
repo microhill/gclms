@@ -1,9 +1,11 @@
-<!-- script type="text/javascript" src="/js/tinymce/tiny_mce.js"></script -->
 <?
+$html->css('main', null, null, false);
+$html->css('edit_page', null, null, false);
+
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
-	'tinymce/tiny_mce.js',
+	'vendors/tinymce/tiny_mce.js',
 	'gclms',
 	'vendors/uuid',
 	'edit_page'

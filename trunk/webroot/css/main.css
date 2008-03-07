@@ -1049,4 +1049,35 @@ img.gclms-tooltip-button {
 	background-image: url(/img/feed-16.png);	
 }
 */
- */
+
+/* Expandable list */
+
+.gclms-expandable-list img.gclms-expand-button {
+	height: 14px;
+	width: 15px;
+	background-repeat: no-repeat;
+}
+
+.gclms-expandable-list li.gclms-hidden > ul > li {
+	display: none;
+}
+
+.gclms-expandable-list li.gclms-collapsed > img.gclms-expand-button {
+	background-image: url(/img/originals/tree/collapsed.png);
+}
+	
+.gclms-expandable-list li.gclms-collapsed > img.gclms-expand-button:hover {
+	background-image: url(/img/originals/tree/collapsed-hover.png);
+}
+
+.gclms-expandable-list li.gclms-expanded > img.gclms-expand-button {
+	background-image: url(/img/originals/tree/expanded.png);
+}
+
+.gclms-expandable-list li.gclms-expanded > img.gclms-expand-button:hover {
+	background-image: url(/img/originals/tree/expanded-hover.png);
+}
+
+	#gclms-nodes li.gclms-expanded > ul > li {
+		display: block;
+	}	

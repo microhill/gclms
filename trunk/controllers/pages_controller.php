@@ -6,9 +6,7 @@ class PagesController extends AppController {
     var $components = array('Notifications');
 
     function beforeRender() {
-		//$this->defaultBreadcrumbsAndLogo();
-		
-		//$this->Breadcrumbs->addCrumb(__('Lessons',true), $this->viewVars['groupAndCoursePath'] . '/lessons/view/' . $this->data['Node']['lesson_id']);
+		$this->defaultBreadcrumbsAndLogo();
 		
     	parent::beforeRender();
     }
@@ -31,9 +29,9 @@ class PagesController extends AppController {
 		$dictionary_terms = Set::extract($dictionary_terms, '{n}.DictionaryTerm.term');
 		$this->set('dictionary_terms',$dictionary_terms);
 		
-		$this->defaultBreadcrumbsAndLogo();
+
 		
-		$this->Breadcrumbs->addCrumb($node['Node']['title'], $this->viewVars['groupAndCoursePath'] . '/pages/view/' . $this->data['Node']['id']);		
+		//$this->Breadcrumbs->addCrumb($node['Node']['title'], $this->viewVars['groupAndCoursePath'] . '/pages/view/' . $this->data['Node']['id']);		
 	}
 
 	function add_textarea($textarea_id = '#{id}') {

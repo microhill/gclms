@@ -5,4 +5,3 @@ Header unset ETag
 FileETag None
 Header set Expires "Thu, 15 Apr 2010 20:00:00 GMT"
 </FilesMatch>
-

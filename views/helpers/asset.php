@@ -88,10 +88,12 @@ class AssetHelper extends Helper {
         }
 
         //move the layout scripts to the front
-        $view->__scripts = array_merge(
+        /*
+		$view->__scripts = array_merge(
                                array_slice($view->__scripts, $this->viewScriptCount),
                                array_slice($view->__scripts, 0, $this->viewScriptCount)
                            );
+		*/
 
         if(1 || Configure::read('debug')) {
             $js = array();

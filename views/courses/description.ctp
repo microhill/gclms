@@ -1,5 +1,4 @@
 <?
-$html->css(__('TEXT DIRECTION',true), null, null, false);
 $html->css('main', null, null, false);
 
 $javascript->link(array(
@@ -30,16 +29,12 @@ echo $this->renderElement('left_column'); ?>
 			?>
 		</p>
 
-		<? 
-		if(!empty($nodes) && strlen($course['description']) < 1500): ?>
-			<?
-			echo $this->renderElement('nodes_show_tree',array(
-				'nodes' => $nodes
-			));
-			?>
-		<? endif; ?>
+		<?
+		echo $this->renderElement('nodes_show_tree',array(
+			'nodes' => $nodes
+		));
 		
-		<? if(!empty($course['redistribution_allowed'])): ?>
+		if(!empty($course['redistribution_allowed'])): ?>
 			<p>
 				<a href="<?= $license->getUrl($course['redistribution_allowed'],$course['commercial_use_allowed'],$course['derivative_works_allowed']) ?>"><img src="/img/somerights_en.png" width="88" height="31" /></a>
 			</p>

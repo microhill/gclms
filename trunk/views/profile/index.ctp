@@ -1,4 +1,6 @@
-<? echo $this->renderElement('no_column_background'); ?>
+<?
+echo $this->renderElement('no_column_background');
+?>
 <div class="gclms-content">
 	<?= $this->renderElement('notifications'); ?>
 	<h1><?= __('Your Profile') ?></h1>    

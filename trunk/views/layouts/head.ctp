@@ -4,7 +4,9 @@
 
 	<?= $html->charset('UTF-8'); ?>
 	<?
+	$html->css('main', null, null, false);
 	$html->css(__('TEXT DIRECTION',true), null, null, false);
+	
 	echo $asset->css_for_layout();
 	?>
 	<!--[if lte IE 6]><?= $html->css('ie6_or_less') ?><![endif]-->

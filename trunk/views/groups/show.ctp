@@ -1,6 +1,4 @@
 <?
-$html->css('main', null, null, false);
-
 echo $this->renderElement('left_column');
 ?>
 

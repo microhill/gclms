@@ -1,5 +1,5 @@
 <?
-$html->css('main', null, null, false);
+
 $html->css('page', null, null, false);
 
 echo $this->renderElement('no_column_background');

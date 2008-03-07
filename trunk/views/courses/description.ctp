@@ -5,7 +5,8 @@ $html->css('course', null, null, false);
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
-	'gclms'
+	'gclms',
+	'course'
 ), false);
 
 echo $this->renderElement('left_column'); ?>

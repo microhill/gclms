@@ -1,4 +1,7 @@
 <?
+$html->css('main', null, null, false);
+$html->css('edit_content', null, null, false);
+
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
@@ -100,7 +103,7 @@ echo $this->renderElement('left_column');
 			</div>
 		</div>
 
-		<div id="gclms-nodes" class="gclms-nodes">
+		<div id="gclms-nodes" class="gclms-nodes gclms-expandable-list">
 			<ul id="<?= String::uuid() ?>">
 				<li gclms:node-id="0" class="gclms-course">
 					<img class="gclms-icon" src="/img/blank-1.png"/>

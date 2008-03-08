@@ -2,6 +2,9 @@
 
 <div class="gclms-content">	
 	<div class="gclms-images">
+	<? if(empty($files)): ?>
+		Empty.
+	<? endif; ?>
 	<?
 	foreach($files as $file) { ?>
 		<a href="<?= $file['uri'] ?>" onclick="return FileBrowserDialogue.chooseImage(this);" image:width="<?= $file['width'] ?>" image:height="<?= $file['height'] ?>" title="<?= $file['basename'] . ' (' . $file['width'] . 'x' . $file['height'] . ')' ?>">

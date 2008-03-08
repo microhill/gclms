@@ -2,7 +2,10 @@
 echo $html->css('files', null, null, false);
 
 echo $this->renderElement('no_column_background'); ?>
-<div class="gclms-content">	
+<div class="gclms-content">
+	<? if(empty($files)): ?>
+		Empty.
+	<? endif; ?>
 	<ul class="gclms-files">
 	<?
 	

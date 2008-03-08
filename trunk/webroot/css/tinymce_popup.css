@@ -1,0 +1,22 @@
+div.gclms-images a {
+	display: block;
+	width: 100px;
+	height: 100px;
+	padding: 5px;
+	float: left;
+	text-align: center;
+	border: 1px solid #eaeaea;
+	background-color: white;
+	margin-right: 5px;
+}
+
+	div.gclms-images a div {
+		width: 100px;
+		height: 100px;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+
+div.gclms-images a:hover {
+	border: 1px solid #adadad;
+}

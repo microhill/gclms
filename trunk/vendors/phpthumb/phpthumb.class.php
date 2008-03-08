@@ -7,7 +7,7 @@
 // See: phpthumb.readme.txt for usage instructions          //
 //                                                         ///
 //////////////////////////////////////////////////////////////
-
+die('worked');
 ob_start();
 if (!include_once(dirname(__FILE__).'/phpthumb.functions.php')) {
 	ob_end_flush();

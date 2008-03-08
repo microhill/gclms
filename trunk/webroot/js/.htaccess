@@ -1,4 +1,4 @@
-<FilesMatch "\.(js|php)$">
+<FilesMatch "\.(js)$">
 	<IfModule mod_headers.c>
 	Header unset Last-Modified
 	# Header set Cache-Control "max-age=29030400, public"
@@ -9,6 +9,5 @@ FileETag None
 </FilesMatch>
 
 <IfModule mod_deflate.c>
-php_value output_handler ob_gzhandler
-AddOutputFilterByType DEFLATE text/html text/plain text/xml text/javascript text/css application/x-javascript
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/javascript text/css application/x-javascript application/javascript
 </IfModule>

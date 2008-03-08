@@ -4,7 +4,7 @@ $html->css('edit_page', null, null, false);
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
-	'vendors/tinymce/tiny_mce.js',
+	'vendors/tinymce3.0.4/tiny_mce',
 	'gclms',
 	'vendors/uuid',
 	'edit_page'

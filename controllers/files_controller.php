@@ -87,7 +87,7 @@ class FilesController extends AppController {
 
 		        $fileinfo = pathinfo($file);
 
-		        if ($file != "." && $file != ".." && in_array($fileinfo['extension'],array('swf'))) {
+		        if ($file != "." && $file != ".." && in_array($fileinfo['extension'],array('swf','mp4','mov'))) {
 		            $files[strtolower($file)] = array(
 		            	'basename' => $file,
 		            	'type' => $mime->getMimetype($directory . DS . $file),
@@ -121,12 +121,14 @@ class FilesController extends AppController {
 		if ($handle = opendir($directory)) {
 		    while (false !== ($file = readdir($handle))) {
 		        $fileinfo = pathinfo($file);
-
 		        if ($file != "." && $file != ".." && in_array($fileinfo['extension'],array('png','gif','jpg'))) {
+					$imageSize = getimagesize($directory . DS . $file);
 		            $files[strtolower($file)] = array(
 		            	'basename' => $file,
 		            	'type' => $mime->getMimetype($directory . DS . $file),
-		            	'uri' => '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files/' . $file
+		            	'uri' => '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files/' . $file,
+						'width' => $imageSize[0],
+						'height' => $imageSize[1]
 		            );
 		        }
 		    }
@@ -148,14 +150,14 @@ class FilesController extends AppController {
 			exit;
 		}
 
-		$width = (!isset($_GET['w'])) ? 150 : $_GET['w'];
-		$height = (!isset($_GET['h'])) ? 225 : $_GET['h'];
+		$width = (!isset($_GET['w'])) ? 100 : $_GET['w'];
+		$height = (!isset($_GET['h'])) ? 100 : $_GET['h'];
 		$quality = (!isset($_GET['q'])) ? 85 : $_GET['q'];
 		
 		$sourceFilename = $file;
-		
+
 		if(is_readable($sourceFilename)){
-			App::import('Vendor',"phpthumb" . DS . "phpthumb.class");
+			App::import('Vendor','phpthumb' . DS . 'phpthumbclass');
 			$phpThumb = new phpThumb();
 
 			$phpThumb->src = $sourceFilename;
@@ -163,7 +165,7 @@ class FilesController extends AppController {
 			$phpThumb->h = $height;
 			$phpThumb->q = $quality;
 			//$phpThumb->config_imagemagick_path = 'C:\Program Files\ImageMagick-6.3.6-Q16';
-			$phpThumb->config_prefer_imagemagick = true;
+			$phpThumb->config_prefer_imagemagick = false;
 			$phpThumb->config_output_format = 'jpg';
 			$phpThumb->config_error_die_on_error = true;
 			$phpThumb->config_allow_src_above_docroot = true;

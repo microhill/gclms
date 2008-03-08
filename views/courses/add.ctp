@@ -2,7 +2,7 @@
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
-	'vendors/tinymce/tiny_mce.js',
+	'vendors/tinymce3.0.4/tiny_mce',
 	'gclms',
 	'edit_course'
 ), false);

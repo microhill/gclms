@@ -25,7 +25,7 @@ h1:first-child {
 
 body.mceContentBody p:first-child,
 body.mceContentBody blockquote:first-child {
-	margin-top: 0px;
+	margin-top: 8px;
 	margin-bottom: 8px;
 }
 

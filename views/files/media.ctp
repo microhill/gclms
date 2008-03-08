@@ -1,6 +1,9 @@
-<?= $this->renderElement('no_column_background'); ?>
+<?
+echo $html->css('files', null, null, false);
+
+echo $this->renderElement('no_column_background'); ?>
 <div class="gclms-content">	
-	<ul class="files">
+	<ul class="gclms-files">
 	<?
 	
 	foreach($files as $file) {
@@ -20,7 +23,7 @@
 			$type = 'mime';
 		}
 
-		echo "<li class='" . $type . "'><a href='" . $file['uri'] . "' onclick='return chooseFile(this);'>" . $file['basename'] . "</a>" . '</li>';		
+		echo "<li class='" . $type . "'><a href='" . $file['uri'] . "' onclick='return FileBrowserDialogue.chooseMediaFile(this);'>" . $file['basename'] . "</a>" . '</li>';		
 	}
 	?>
 	</ul>

@@ -70,7 +70,7 @@ echo $this->renderElement('left_column'); ?>
 		// $this->renderElement('notifications');
 		?>
 		<h1><? __('Media Files') ?></h1>	
-		<ul class="files">
+		<ul class="gclms-files">
 		<?
 		
 		foreach($files as $file) {

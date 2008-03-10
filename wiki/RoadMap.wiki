@@ -30,7 +30,7 @@
  * *Complementary Material related*  (issue 25) (issue 26)  
  * *Assignment/Question related* (issue 17) (issue 30) (issue 7) (issue 6) (issue 24)  (issue 22)
  * *Exam related* (issue 28) (issue 29) 
- * *Course Calendar related* (issue 21)
+ * *Course Calendar related* (issue 21) (issue 68)
 ==Facilitator Functions==
  * (issue 44) (issue 41)
  * *Class Development/Creation/Definition related* (issue 45)(issue 43) (issue 42) 

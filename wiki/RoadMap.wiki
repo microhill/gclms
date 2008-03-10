@@ -9,7 +9,6 @@
 =Milestone 2 - Due March 21 =
 
  * E-commerce integration (issue 9)
- * Translation (issue 14) (issue 66) (issue 67)
  * Student registration (issue 13)
 
 =Milestone 3 - Due May 2=

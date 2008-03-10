@@ -1,6 +1,12 @@
 <?
-
 $html->css('page', null, null, false);
+
+$javascript->link(array(
+	'vendors/prototype',
+	'prototype_extensions',
+	'gclms',
+	'page'
+), false);
 
 echo $this->renderElement('no_column_background');
 ?>

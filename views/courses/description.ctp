@@ -30,9 +30,10 @@ echo $this->renderElement('left_column'); ?>
 		</p>
 
 		<?
-		echo $this->renderElement('nodes_tree',array(
-			'nodes' => $nodes
-		));
+		if(!empty($nodes))
+			echo $this->renderElement('nodes_tree',array(
+				'nodes' => $nodes
+			));
 		
 		if(!empty($course['redistribution_allowed'])): ?>
 			<p>

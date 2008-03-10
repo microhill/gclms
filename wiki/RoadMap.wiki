@@ -44,6 +44,6 @@
 ==Student Functions==
  * From Milestone 2: (issue 13) 
  * (issue 3) 
- * *Authorizations related* (issue 71) 
+ * *Authorizations related* (issue 71) (issue 72) (issue 73) 
  * *Evaluations related* (issue 47) 
  * _*Life Notebook related*_ (issue 61) (issue 4)

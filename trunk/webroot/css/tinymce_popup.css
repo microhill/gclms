@@ -20,3 +20,24 @@ div.gclms-images a {
 div.gclms-images a:hover {
 	border: 1px solid #adadad;
 }
+
+#gclms-files.gclms-content ul,
+#textbooks,
+#articles,
+#dictionary {
+	list-style: none;
+	padding: 4px;
+	margin: 0;
+}
+
+	#gclms-files.gclms-content ul li,
+	#textbooks,
+	#articles,
+	#dictionary {
+		padding-left: 22px;
+		margin-top: 3px;
+		margin-bottom: 3px;
+		background-repeat: no-repeat;
+		line-height: 1.2em;
+		font-size: 1.05em;
+	}

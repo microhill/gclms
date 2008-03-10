@@ -2,9 +2,10 @@
 GCLMS.CourseController = {
 	toggleNodeExpansion: function() {
 		var li = this.up('li');
-		
+
 		if(li.hasClassName('gclms-collapsed')) {
 			$$('#' + li.getAttribute('id') + ' > ul > li').each(function(node){
+				alert(1);
 				node.displayAsBlock();
 			});
 			li.removeClassName('gclms-collapsed');
@@ -20,7 +21,7 @@ GCLMS.CourseController = {
 }
 
 GCLMS.Triggers.update({
-	'#gclms-nodes-show-tree' : {
+	'#gclms-nodes-tree' : {
 		'li': {
 			'img.gclms-expand-button:click': GCLMS.CourseController.toggleNodeExpansion
 		}

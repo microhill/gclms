@@ -1,14 +1,20 @@
 <?
-echo $html->css('files', null, null, false);
+$html->css('files', null, null, false);
+
+$javascript->link(array(
+	'vendors/prototype',
+	'prototype_extensions',
+	'vendors/tinymce3.0.4/tiny_mce_popup',
+	'tinymce_popup'
+), false);
 
 echo $this->renderElement('no_column_background'); ?>
-<div class="gclms-content">
+<div class="gclms-content gclms-files">
 	<? if(empty($files)): ?>
 		Empty.
 	<? endif; ?>
-	<ul class="gclms-files">
+	<ul>
 	<?
-	
 	foreach($files as $file) {
 		if(eregi('application/pdf',$file['type'])) {
 			$type = 'pdf';

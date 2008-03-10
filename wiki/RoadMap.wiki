@@ -22,7 +22,7 @@
  * *Help related*  (issue 34) 
 ==Group Administration Functions== 
  * *Curriculum related*  (issue 38) 
- * *Credentials related*  (issue 31) (issue 37) (issue 39) (issue 40) (issue 69)
+ * *Credentials related*  (issue 31) (issue 37) (issue 39) (issue 40) (issue 69) (issue 70) 
 ==Course Development Functions== 
  * (issue 16)
  * *Credentials related*   (issue 15) (issue 31)   
@@ -37,7 +37,7 @@
  * *Class Management related* (issue 50) (issue 51) 
  * *Gradebook related* - (issue 58) 
  * *Exam related* - (issue 57)
- * *Credentials related* (issue 40) (issue 42) (issue 52) (issue 69)  
+ * *Credentials related* (issue 40) (issue 42) (issue 52) (issue 69) (issue 70)  
  * *Evaluations related* (issue 46) (issue 49) 
  * *Class Calendar related* - (issue 53)(issue 54) (issue 55) 
  * *Attendance book related* - (issue 59)    

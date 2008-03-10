@@ -22,10 +22,10 @@
  * *Help related*  (issue 34) 
 ==Group Administration Functions== 
  * *Curriculum related*  (issue 38) 
- * *Credentials related*  (issue 31) (issue 37) (issue 39) (issue 40) (issue 69) (issue 70) 
+ * *Authorizations related*  (issue 31) (issue 37) (issue 39) (issue 40) (issue 69) (issue 70) (issue 71)  
 ==Course Development Functions== 
  * (issue 16)
- * *Credentials related*   (issue 15) (issue 31)   
+ * *Authorizations related*   (issue 15) (issue 31)   
  * *Course Authoring related*  From Milestone 1 -(issue 1);  (issue 20) (issue 18) (issue 23) (issue 24) (issue 27) (issue 19)  
  * *Complementary Material related*  (issue 25) (issue 26)  
  * *Assignment/Question related* (issue 17) (issue 30) (issue 7) (issue 6) (issue 24)  (issue 22)
@@ -37,12 +37,13 @@
  * *Class Management related* (issue 50) (issue 51) 
  * *Gradebook related* - (issue 58) 
  * *Exam related* - (issue 57)
- * *Credentials related* (issue 40) (issue 42) (issue 52) (issue 69) (issue 70)  
+ * *Authorizations related* (issue 40) (issue 42) (issue 52) (issue 69) (issue 70) (issue 71)   
  * *Evaluations related* (issue 46) (issue 49) 
  * *Class Calendar related* - (issue 53)(issue 54) (issue 55) 
  * *Attendance book related* - (issue 59)    
 ==Student Functions==
  * From Milestone 2: (issue 13) 
  * (issue 3) 
+ * *Authorizations related* (issue 71) 
  * *Evaluations related* (issue 47) 
  * _*Life Notebook related*_ (issue 61) (issue 4)

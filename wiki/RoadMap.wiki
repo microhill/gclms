@@ -14,6 +14,7 @@
 
 =Milestone 3 - Due May 2=
 ==General Functions==
+ * *Introductory Material* (issue 65)
  * *Registration/Logon/Logoff related* (issue 33) (issue 60)  
  * *Language related* (issue 32) 
  * *Communications related* (issue 35)

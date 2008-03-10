@@ -1,4 +1,4 @@
-<div id="gclms-nodes-show-tree" class="gclms-expandable-list">
+<div id="gclms-nodes-tree" class="gclms-expandable-list gclms-nodes-tree">
 	<?
 	$max_levels = 4;
 		
@@ -38,7 +38,7 @@
 		echo '<ul>';
 		
 		foreach($nodes as $node) {
-			echo '<li class="';
+			echo '<li gclms:node-id="' . $node['id'] . '" class="';			 
 			
 			if(!empty($node['ChildNode'])) {
 				if($level < 2)

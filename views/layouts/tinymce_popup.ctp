@@ -6,7 +6,7 @@
 
 	<?= $html->charset('UTF-8'); ?>
 	<?
-	echo $html->css('reset', null, null, false);
+	//echo $html->css('reset', null, null, false);
 	echo $html->css('main', null, null, false);
 	echo $html->css(__('TEXT DIRECTION',true), null, null, false); 
 	echo $html->css('tinymce_popup', null, null, false);
@@ -14,14 +14,6 @@
 	echo $asset->css_for_layout();
 	?>
 	<!--[if lte IE 7]><?= $html->css('ie7_or_less') ?><![endif]-->
-
-	<?
-	$javascript->link(array(
-		//'vendors/prototype',
-		'vendors/tinymce3.0.4/tiny_mce_popup',
-		'tinymce_popup'
-	),false);
-	?>
 </head>
 
 <body>

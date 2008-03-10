@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: gclms
 Target Host: localhost
 Target Database: gclms
-Date: 3/6/2008 1:16:42 PM
+Date: 3/10/2008 1:55:48 AM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -13,8 +13,8 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `announcements`;
 CREATE TABLE `announcements` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `facilitated_class_id` int(11) NOT NULL,
+  `id` char(36) NOT NULL,
+  `facilitated_class_id` char(36) NOT NULL,
   `title` varchar(255) default NULL,
   `post_date` date NOT NULL,
   `content` text,
@@ -29,8 +29,8 @@ CREATE TABLE `announcements` (
 -- ----------------------------
 DROP TABLE IF EXISTS `answers`;
 CREATE TABLE `answers` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `question_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `question_id` char(36) NOT NULL,
   `text` text,
   `correct` int(1) unsigned NOT NULL default '0',
   `explanation` text,
@@ -44,22 +44,22 @@ CREATE TABLE `answers` (
 -- ----------------------------
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE `articles` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `course_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `course_id` char(36) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for chapters
 -- ----------------------------
 DROP TABLE IF EXISTS `chapters`;
 CREATE TABLE `chapters` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `textbook_id` int(11) unsigned default NULL,
+  `id` char(36) NOT NULL,
+  `textbook_id` char(36) default NULL,
   `title` varchar(255) NOT NULL,
   `content` text,
   `order` int(11) unsigned NOT NULL,
@@ -73,10 +73,10 @@ CREATE TABLE `chapters` (
 -- ----------------------------
 DROP TABLE IF EXISTS `chat_messages`;
 CREATE TABLE `chat_messages` (
-  `id` int(11) unsigned NOT NULL auto_increment,
+  `id` char(36) NOT NULL,
   `content` varchar(255) NOT NULL,
-  `facilitated_class_id` int(11) unsigned NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `facilitated_class_id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=456 DEFAULT CHARSET=utf8;
@@ -86,9 +86,9 @@ CREATE TABLE `chat_messages` (
 -- ----------------------------
 DROP TABLE IF EXISTS `chat_participants`;
 CREATE TABLE `chat_participants` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `user_id` int(11) unsigned NOT NULL,
-  `facilitated_class_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
+  `facilitated_class_id` char(36) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
@@ -99,8 +99,8 @@ CREATE TABLE `chat_participants` (
 -- ----------------------------
 DROP TABLE IF EXISTS `class_completions`;
 CREATE TABLE `class_completions` (
-  `facilitated_class_id` int(11) unsigned NOT NULL default '0',
-  `user_id` int(11) unsigned NOT NULL default '0',
+  `facilitated_class_id` char(36) NOT NULL default '0',
+  `user_id` char(36) NOT NULL default '0',
   `date` date NOT NULL,
   `grade` smallint(5) unsigned default NULL,
   `created` datetime NOT NULL,
@@ -113,9 +113,9 @@ CREATE TABLE `class_completions` (
 -- ----------------------------
 DROP TABLE IF EXISTS `class_enrollees`;
 CREATE TABLE `class_enrollees` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `facilitated_class_id` int(11) unsigned NOT NULL default '0',
-  `user_id` int(11) unsigned NOT NULL default '0',
+  `id` char(36) NOT NULL,
+  `facilitated_class_id` char(36) NOT NULL default '0',
+  `user_id` char(36) NOT NULL default '0',
   `created` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `unique` (`facilitated_class_id`,`user_id`)
@@ -126,9 +126,9 @@ CREATE TABLE `class_enrollees` (
 -- ----------------------------
 DROP TABLE IF EXISTS `class_facilitators`;
 CREATE TABLE `class_facilitators` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `facilitated_class_id` int(11) unsigned NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `facilitated_class_id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
@@ -139,8 +139,8 @@ CREATE TABLE `class_facilitators` (
 -- ----------------------------
 DROP TABLE IF EXISTS `courses`;
 CREATE TABLE `courses` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `group_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `group_id` char(36) NOT NULL,
   `title` varchar(255) NOT NULL,
   `web_path` varchar(255) NOT NULL,
   `description` text,
@@ -161,11 +161,10 @@ CREATE TABLE `courses` (
 -- ----------------------------
 DROP TABLE IF EXISTS `dictionary_terms`;
 CREATE TABLE `dictionary_terms` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `course_id` int(11) NOT NULL,
+  `id` char(36) NOT NULL,
+  `course_id` char(36) NOT NULL,
   `term` varchar(255) NOT NULL,
   `description` text,
-  `lesson_item_order` int(11) unsigned default NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
@@ -176,8 +175,8 @@ CREATE TABLE `dictionary_terms` (
 -- ----------------------------
 DROP TABLE IF EXISTS `facilitated_classes`;
 CREATE TABLE `facilitated_classes` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `course_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `course_id` char(36) NOT NULL,
   `type` int(1) unsigned NOT NULL default '1',
   `alias` varchar(255) NOT NULL,
   `enrollment_deadline` date default NULL,
@@ -195,10 +194,10 @@ CREATE TABLE `facilitated_classes` (
 -- ----------------------------
 DROP TABLE IF EXISTS `forum_posts`;
 CREATE TABLE `forum_posts` (
-  `id` char(32) NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
-  `forum_id` int(11) unsigned NOT NULL,
-  `parent_post_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
+  `forum_id` char(36) NOT NULL,
+  `parent_post_id` char(36) NOT NULL,
   `title` varchar(255) default NULL,
   `content` text NOT NULL,
   `created` datetime NOT NULL,
@@ -213,8 +212,8 @@ CREATE TABLE `forum_posts` (
 -- ----------------------------
 DROP TABLE IF EXISTS `forums`;
 CREATE TABLE `forums` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `facilitated_class_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `facilitated_class_id` char(36) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) default NULL,
   `order` int(3) NOT NULL default '0',
@@ -224,29 +223,13 @@ CREATE TABLE `forums` (
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for grades
--- ----------------------------
-DROP TABLE IF EXISTS `grades`;
-CREATE TABLE `grades` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `facilitated_class_id` int(11) unsigned NOT NULL,
-  `page_id` int(11) unsigned default NULL,
-  `user_id` int(11) NOT NULL,
-  `grade` int(11) unsigned NOT NULL default '0',
-  `maximum_possible` int(11) unsigned NOT NULL default '0',
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
 -- Table structure for group_administrators
 -- ----------------------------
 DROP TABLE IF EXISTS `group_administrators`;
 CREATE TABLE `group_administrators` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `group_id` int(11) unsigned NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `group_id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`),
@@ -258,9 +241,9 @@ CREATE TABLE `group_administrators` (
 -- ----------------------------
 DROP TABLE IF EXISTS `group_facilitators`;
 CREATE TABLE `group_facilitators` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `user_id` int(11) unsigned NOT NULL,
-  `group_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
+  `group_id` char(36) NOT NULL,
   `approved` int(1) unsigned NOT NULL default '0',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
@@ -273,7 +256,7 @@ CREATE TABLE `group_facilitators` (
 -- ----------------------------
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE `groups` (
-  `id` int(11) unsigned NOT NULL auto_increment,
+  `id` char(36) NOT NULL,
   `name` varchar(255) NOT NULL,
   `web_path` varchar(255) NOT NULL,
   `css` text,
@@ -300,9 +283,9 @@ CREATE TABLE `groups` (
 -- ----------------------------
 DROP TABLE IF EXISTS `nodes`;
 CREATE TABLE `nodes` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `course_id` int(11) unsigned NOT NULL,
-  `parent_node_id` int(11) unsigned NOT NULL default '0',
+  `id` char(36) NOT NULL,
+  `course_id` char(36) NOT NULL,
+  `parent_node_id` char(36) NOT NULL default '0',
   `grade_recorded` int(1) unsigned NOT NULL default '0',
   `title` varchar(255) NOT NULL,
   `type` int(1) unsigned NOT NULL default '0',
@@ -319,9 +302,9 @@ CREATE TABLE `nodes` (
 -- ----------------------------
 DROP TABLE IF EXISTS `notebooks`;
 CREATE TABLE `notebooks` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `course_id` int(11) unsigned NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `course_id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
   `content` text,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
@@ -334,8 +317,8 @@ CREATE TABLE `notebooks` (
 -- ----------------------------
 DROP TABLE IF EXISTS `questions`;
 CREATE TABLE `questions` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `node_id` int(11) unsigned NOT NULL default '0',
+  `id` char(36) NOT NULL,
+  `node_id` char(36) NOT NULL default '0',
   `title` varchar(255) default NULL,
   `type` int(1) unsigned NOT NULL default '1',
   `order` int(3) unsigned NOT NULL default '1',
@@ -353,8 +336,8 @@ CREATE TABLE `questions` (
 -- ----------------------------
 DROP TABLE IF EXISTS `registration_codes`;
 CREATE TABLE `registration_codes` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `user_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
   `code` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
@@ -366,22 +349,22 @@ CREATE TABLE `registration_codes` (
 -- ----------------------------
 DROP TABLE IF EXISTS `textareas`;
 CREATE TABLE `textareas` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `node_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `node_id` char(36) NOT NULL,
   `content` text,
   `order` int(11) unsigned NOT NULL default '9999',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for textbooks
 -- ----------------------------
 DROP TABLE IF EXISTS `textbooks`;
 CREATE TABLE `textbooks` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `course_id` int(11) unsigned default NULL,
+  `id` char(36) NOT NULL,
+  `course_id` char(36) default NULL,
   `title` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
@@ -393,7 +376,7 @@ CREATE TABLE `textbooks` (
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` char(36) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) default NULL,
   `alias` varchar(255) NOT NULL,
@@ -419,7 +402,8 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `courses` VALUES ('92', '103', 'test', 'test', 'test', '', 'en', '0', '0', '0', '2008-02-26 13:17:18', '2008-02-26 13:17:18', '0');
+INSERT INTO `articles` VALUES ('21', '92', 'Test', '<p>test</p>', '2008-03-08 01:17:40', '2008-03-08 01:17:40');
+INSERT INTO `courses` VALUES ('92', '103', 'Systematic Theology', 'systematic-theology', '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam pretium accumsan elit. Nullam massa. Sed tristique, quam sed pellentesque vestibulum, magna erat ultricies mauris, ac pharetra nisl mi at turpis. Quisque hendrerit neque eu nisl. Aenean consectetuer tincidunt nulla. Praesent ut velit. Suspendisse ac urna. Aenean consequat lacus id mi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi dolor purus, lacinia at, rhoncus id, facilisis in, enim. Praesent sit amet justo. Suspendisse et risus. Maecenas adipiscing tempus ipsum. Nunc adipiscing.</p>  <p>Quisque vel purus. Vestibulum placerat, odio scelerisque rutrum sodales, erat nulla varius orci, eget auctor nulla lorem in quam. Maecenas dapibus. Suspendisse pulvinar ligula ac mi porta faucibus. Mauris a erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Donec mattis nulla eu lorem. Praesent vulputate, augue ut viverra pulvinar, nisi sem condimentum risus, ut tristique erat pede non erat. Curabitur ac massa. Nam vitae turpis nec elit ullamcorper eleifend. </p>', '', 'en', '0', '0', '0', '2008-02-26 13:17:18', '2008-03-07 01:30:48', '0');
 INSERT INTO `group_administrators` VALUES ('40', '103', '52', '2008-02-26 13:11:47', '2008-02-26 13:11:47');
 INSERT INTO `groups` VALUES ('103', 'Boyce College', 'boyce-college', '', null, null, 'http://www.letu.edu/', '8675309', '9 Westlake Ave', 'APO 320', 'Louisville', 'KY', '80132', null, 'Some very descriptive text here.', '1', '2008-02-19 20:35:24', '2008-02-19 20:35:24', '0');
 INSERT INTO `groups` VALUES ('104', 'Covenant Theological Seminary', 'covenant-theological-seminary', '', null, null, 'http://www.letu.edu/', '8675309', '9 Westlake Ave', 'APO 320', 'St. Louis', 'MO', '80132', null, 'Some very descriptive text here.', '1', '2008-02-19 20:35:37', '2008-02-19 20:35:37', '0');
@@ -434,7 +418,7 @@ INSERT INTO `nodes` VALUES ('168', '0', '0', '0', '', '0', null, '3', '2008-02-2
 INSERT INTO `nodes` VALUES ('243', '92', '232', '0', 'fasdfsadf', '0', null, '4', '2008-02-27 17:39:44', '2008-02-28 04:56:11');
 INSERT INTO `nodes` VALUES ('244', '92', '232', '0', 'asdfasdf', '0', null, '5', '2008-02-27 17:39:45', '2008-02-28 04:56:11');
 INSERT INTO `nodes` VALUES ('227', '92', '233', '0', 'Using This Course', '0', null, '1', '2008-02-27 09:56:03', '2008-02-28 12:28:39');
-INSERT INTO `nodes` VALUES ('228', '92', '0', '0', 'Unit One: His Preparation and Early Years', '0', null, '3', '2008-02-27 09:56:13', '2008-02-28 23:50:35');
+INSERT INTO `nodes` VALUES ('228', '92', '0', '0', 'Unit One: His Preparation and Early Years', '0', null, '3', '2008-02-27 09:56:13', '2008-03-07 03:38:33');
 INSERT INTO `nodes` VALUES ('229', '92', '228', '0', 'Lesson 1: Preparation for the Birth', '0', null, '1', '2008-02-27 09:56:35', '2008-02-27 10:02:05');
 INSERT INTO `nodes` VALUES ('230', '92', '229', '0', 'Topic 1: Christ\'s Titles-Jesus, Christ, Son of God', '0', null, '1', '2008-02-27 09:56:42', '2008-02-27 20:03:16');
 INSERT INTO `nodes` VALUES ('231', '92', '228', '0', 'Topic 2: Christ\'s (The Word) Manifestation in the Flesh', '0', null, '3', '2008-02-27 09:56:59', '2008-02-28 08:24:56');
@@ -444,7 +428,7 @@ INSERT INTO `nodes` VALUES ('234', '92', '229', '0', 'Topic 5: An Answered Praye
 INSERT INTO `nodes` VALUES ('238', '92', '167', '0', 'awfwe', '0', null, '1', '2008-02-27 15:13:14', '2008-02-27 15:13:17');
 INSERT INTO `nodes` VALUES ('239', '92', '233', '0', 'fsdfsdf', '0', null, '2', '2008-02-27 17:21:32', '2008-02-28 12:28:39');
 INSERT INTO `nodes` VALUES ('240', '92', '232', '0', 'tetse', '0', null, '1', '2008-02-27 17:39:41', '2008-02-28 04:56:11');
-INSERT INTO `nodes` VALUES ('224', '92', '0', '0', 'Course Introduction', '0', null, '1', '2008-02-27 09:55:40', '2008-02-28 23:50:35');
+INSERT INTO `nodes` VALUES ('224', '92', '0', '0', 'Course Introduction', '0', null, '1', '2008-02-27 09:55:40', '2008-03-07 23:09:52');
 INSERT INTO `nodes` VALUES ('225', '92', '167', '0', 'One Solitary Life', '0', null, '0', '2008-02-27 09:55:46', '2008-02-27 15:13:02');
 INSERT INTO `nodes` VALUES ('226', '92', '0', '0', 'Course Information', '1', null, '2', '2008-02-27 09:55:55', '2008-02-28 23:50:35');
 INSERT INTO `nodes` VALUES ('249', '92', '232', '0', 'asdfasdfasdf', '0', null, '11', '2008-02-27 17:39:51', '2008-02-28 04:56:11');
@@ -454,8 +438,10 @@ INSERT INTO `nodes` VALUES ('252', '92', '232', '0', 'asdfasdfasdf', '0', null, 
 INSERT INTO `nodes` VALUES ('253', '92', '232', '0', 'asdfasdsdfsadfds', '0', null, '14', '2008-02-27 17:39:57', '2008-02-28 04:56:11');
 INSERT INTO `nodes` VALUES ('254', '92', '240', '0', 'asdfasdfasdfasdf', '0', null, '0', '2008-02-28 12:58:56', '2008-02-28 12:58:56');
 INSERT INTO `nodes` VALUES ('255', '92', '228', '0', 'asdf', '0', null, '4', '2008-02-28 12:59:05', '2008-02-28 12:59:05');
-INSERT INTO `textareas` VALUES ('28', '224', '<blockquote>You are about to begin study of the Greatest Life Ever Lived! We are praying with you that this course will dramatically affect your life and ministry.</blockquote> <p>This course is part 1 of a 2 part course consisting of a total of 24 lessons.</p>', '1', '2008-02-27 09:59:22', '2008-02-27 09:59:22');
-INSERT INTO `users` VALUES ('52', 'aaronshaf@gmail.com', '3a00070e691147f18e69201fc1431b0d39248af9', 'aaronshaf', 'Aaron', 'Shafovaloff', 'abc', 'abc', 'Midvale', 'UT', '90210', '1', '0', null, '0', '1', '0000-00-00 00:00:00', '2008-02-19 20:39:50', '0');
+INSERT INTO `nodes` VALUES ('47d4db79-33fc-46ba-9a24-0854ab4a69cb', '92', '0', '0', 'test', '0', null, '5', '2008-03-10 00:55:53', '2008-03-10 00:55:53');
+INSERT INTO `textareas` VALUES ('28', '224', '<blockquote>You are about to begin study of the Greatest Life Ever Lived! We are praying with you that this course will dramatically affect your life and ministry.</blockquote>\r\n<p>This course is part 1 of a 2 part course consisting of a total of 24 lessons.</p>\r\n<p><img src=\"/boyce-college/systematic-theology/files/lc0309_icon53_220.gif\" border=\"0\" width=\"220\" height=\"220\" /><img src=\"/boyce-college/systematic-theology/files/pg.gif\" border=\"0\" width=\"50\" height=\"50\" /><img src=\"/boyce-college/systematic-theology/files/pg.gif\" border=\"0\" width=\"50\" height=\"50\" /></p>', '1', '2008-02-27 09:59:22', '2008-03-07 23:09:52');
+INSERT INTO `textareas` VALUES ('29', '228', '<p>asdfasdfa dasfasdfasd fasdfasdf</p>', '1', '2008-03-07 03:38:33', '2008-03-07 03:38:33');
+INSERT INTO `users` VALUES ('52', 'aaronshaf@gmail.com', '3a00070e691147f18e69201fc1431b0d39248af9', 'Aaron Shafovaloff', 'Aaron', 'Shafovaloff', 'abc', 'abc', 'Midvale', 'UT', '90210', '1', '0', null, '0', '1', '0000-00-00 00:00:00', '2008-02-19 20:39:50', '0');
 INSERT INTO `users` VALUES ('53', 'patty.thompson@fake_domain_name.org', null, 'patty.thompson', 'Patty', 'Thompson', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', '1', '0', null, '0', '0', '2008-02-19 20:36:38', '2008-02-19 20:36:38', '0');
 INSERT INTO `users` VALUES ('54', 'paul.walgren@fake_domain_name.org', null, 'paul.walgren', 'Paul', 'Walgren', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', '1', '0', null, '0', '0', '2008-02-19 20:36:52', '2008-02-19 20:36:52', '0');
 INSERT INTO `users` VALUES ('57', 'spamthisallyouwant@pysquared.com', 'f51917152d00e8f50f3bdde3674397b1e4825ffc', 'TestUserODD', 'John', 'Doe', '32325 CR 323', 'some 32 houses down', 'Killgore', 'TX', '75603', '1', '0', '47bba0d0-a538-4ba9-9cf1-08ccab4a69cb', '0', '0', '2008-02-19 20:38:56', '2008-02-19 20:38:56', '0');

@@ -1,5 +1,4 @@
 <?
-$html->css('course', null, null, false);
 
 $javascript->link(array(
 	'vendors/prototype',
@@ -31,7 +30,7 @@ echo $this->renderElement('left_column'); ?>
 		</p>
 
 		<?
-		echo $this->renderElement('nodes_show_tree',array(
+		echo $this->renderElement('nodes_tree',array(
 			'nodes' => $nodes
 		));
 		

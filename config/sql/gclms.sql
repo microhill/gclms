@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: gclms
 Target Host: localhost
 Target Database: gclms
-Date: 3/6/2008 1:17:01 PM
+Date: 3/10/2008 1:55:17 AM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -13,8 +13,8 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `announcements`;
 CREATE TABLE `announcements` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `facilitated_class_id` int(11) NOT NULL,
+  `id` char(36) NOT NULL,
+  `facilitated_class_id` char(36) NOT NULL,
   `title` varchar(255) default NULL,
   `post_date` date NOT NULL,
   `content` text,
@@ -29,8 +29,8 @@ CREATE TABLE `announcements` (
 -- ----------------------------
 DROP TABLE IF EXISTS `answers`;
 CREATE TABLE `answers` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `question_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `question_id` char(36) NOT NULL,
   `text` text,
   `correct` int(1) unsigned NOT NULL default '0',
   `explanation` text,
@@ -44,22 +44,22 @@ CREATE TABLE `answers` (
 -- ----------------------------
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE `articles` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `course_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `course_id` char(36) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for chapters
 -- ----------------------------
 DROP TABLE IF EXISTS `chapters`;
 CREATE TABLE `chapters` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `textbook_id` int(11) unsigned default NULL,
+  `id` char(36) NOT NULL,
+  `textbook_id` char(36) default NULL,
   `title` varchar(255) NOT NULL,
   `content` text,
   `order` int(11) unsigned NOT NULL,
@@ -73,10 +73,10 @@ CREATE TABLE `chapters` (
 -- ----------------------------
 DROP TABLE IF EXISTS `chat_messages`;
 CREATE TABLE `chat_messages` (
-  `id` int(11) unsigned NOT NULL auto_increment,
+  `id` char(36) NOT NULL,
   `content` varchar(255) NOT NULL,
-  `facilitated_class_id` int(11) unsigned NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `facilitated_class_id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=456 DEFAULT CHARSET=utf8;
@@ -86,9 +86,9 @@ CREATE TABLE `chat_messages` (
 -- ----------------------------
 DROP TABLE IF EXISTS `chat_participants`;
 CREATE TABLE `chat_participants` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `user_id` int(11) unsigned NOT NULL,
-  `facilitated_class_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
+  `facilitated_class_id` char(36) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
@@ -99,8 +99,8 @@ CREATE TABLE `chat_participants` (
 -- ----------------------------
 DROP TABLE IF EXISTS `class_completions`;
 CREATE TABLE `class_completions` (
-  `facilitated_class_id` int(11) unsigned NOT NULL default '0',
-  `user_id` int(11) unsigned NOT NULL default '0',
+  `facilitated_class_id` char(36) NOT NULL default '0',
+  `user_id` char(36) NOT NULL default '0',
   `date` date NOT NULL,
   `grade` smallint(5) unsigned default NULL,
   `created` datetime NOT NULL,
@@ -113,9 +113,9 @@ CREATE TABLE `class_completions` (
 -- ----------------------------
 DROP TABLE IF EXISTS `class_enrollees`;
 CREATE TABLE `class_enrollees` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `facilitated_class_id` int(11) unsigned NOT NULL default '0',
-  `user_id` int(11) unsigned NOT NULL default '0',
+  `id` char(36) NOT NULL,
+  `facilitated_class_id` char(36) NOT NULL default '0',
+  `user_id` char(36) NOT NULL default '0',
   `created` datetime NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `unique` (`facilitated_class_id`,`user_id`)
@@ -126,9 +126,9 @@ CREATE TABLE `class_enrollees` (
 -- ----------------------------
 DROP TABLE IF EXISTS `class_facilitators`;
 CREATE TABLE `class_facilitators` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `facilitated_class_id` int(11) unsigned NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `facilitated_class_id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
@@ -139,8 +139,8 @@ CREATE TABLE `class_facilitators` (
 -- ----------------------------
 DROP TABLE IF EXISTS `courses`;
 CREATE TABLE `courses` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `group_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `group_id` char(36) NOT NULL,
   `title` varchar(255) NOT NULL,
   `web_path` varchar(255) NOT NULL,
   `description` text,
@@ -161,11 +161,10 @@ CREATE TABLE `courses` (
 -- ----------------------------
 DROP TABLE IF EXISTS `dictionary_terms`;
 CREATE TABLE `dictionary_terms` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `course_id` int(11) NOT NULL,
+  `id` char(36) NOT NULL,
+  `course_id` char(36) NOT NULL,
   `term` varchar(255) NOT NULL,
   `description` text,
-  `lesson_item_order` int(11) unsigned default NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
@@ -176,8 +175,8 @@ CREATE TABLE `dictionary_terms` (
 -- ----------------------------
 DROP TABLE IF EXISTS `facilitated_classes`;
 CREATE TABLE `facilitated_classes` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `course_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `course_id` char(36) NOT NULL,
   `type` int(1) unsigned NOT NULL default '1',
   `alias` varchar(255) NOT NULL,
   `enrollment_deadline` date default NULL,
@@ -195,10 +194,10 @@ CREATE TABLE `facilitated_classes` (
 -- ----------------------------
 DROP TABLE IF EXISTS `forum_posts`;
 CREATE TABLE `forum_posts` (
-  `id` char(32) NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
-  `forum_id` int(11) unsigned NOT NULL,
-  `parent_post_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
+  `forum_id` char(36) NOT NULL,
+  `parent_post_id` char(36) NOT NULL,
   `title` varchar(255) default NULL,
   `content` text NOT NULL,
   `created` datetime NOT NULL,
@@ -213,8 +212,8 @@ CREATE TABLE `forum_posts` (
 -- ----------------------------
 DROP TABLE IF EXISTS `forums`;
 CREATE TABLE `forums` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `facilitated_class_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `facilitated_class_id` char(36) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) default NULL,
   `order` int(3) NOT NULL default '0',
@@ -224,29 +223,13 @@ CREATE TABLE `forums` (
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for grades
--- ----------------------------
-DROP TABLE IF EXISTS `grades`;
-CREATE TABLE `grades` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `facilitated_class_id` int(11) unsigned NOT NULL,
-  `page_id` int(11) unsigned default NULL,
-  `user_id` int(11) NOT NULL,
-  `grade` int(11) unsigned NOT NULL default '0',
-  `maximum_possible` int(11) unsigned NOT NULL default '0',
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
 -- Table structure for group_administrators
 -- ----------------------------
 DROP TABLE IF EXISTS `group_administrators`;
 CREATE TABLE `group_administrators` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `group_id` int(11) unsigned NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `group_id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`),
@@ -258,9 +241,9 @@ CREATE TABLE `group_administrators` (
 -- ----------------------------
 DROP TABLE IF EXISTS `group_facilitators`;
 CREATE TABLE `group_facilitators` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `user_id` int(11) unsigned NOT NULL,
-  `group_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
+  `group_id` char(36) NOT NULL,
   `approved` int(1) unsigned NOT NULL default '0',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
@@ -273,7 +256,7 @@ CREATE TABLE `group_facilitators` (
 -- ----------------------------
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE `groups` (
-  `id` int(11) unsigned NOT NULL auto_increment,
+  `id` char(36) NOT NULL,
   `name` varchar(255) NOT NULL,
   `web_path` varchar(255) NOT NULL,
   `css` text,
@@ -300,9 +283,9 @@ CREATE TABLE `groups` (
 -- ----------------------------
 DROP TABLE IF EXISTS `nodes`;
 CREATE TABLE `nodes` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `course_id` int(11) unsigned NOT NULL,
-  `parent_node_id` int(11) unsigned NOT NULL default '0',
+  `id` char(36) NOT NULL,
+  `course_id` char(36) NOT NULL,
+  `parent_node_id` char(36) NOT NULL default '0',
   `grade_recorded` int(1) unsigned NOT NULL default '0',
   `title` varchar(255) NOT NULL,
   `type` int(1) unsigned NOT NULL default '0',
@@ -319,9 +302,9 @@ CREATE TABLE `nodes` (
 -- ----------------------------
 DROP TABLE IF EXISTS `notebooks`;
 CREATE TABLE `notebooks` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `course_id` int(11) unsigned NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `course_id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
   `content` text,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
@@ -334,8 +317,8 @@ CREATE TABLE `notebooks` (
 -- ----------------------------
 DROP TABLE IF EXISTS `questions`;
 CREATE TABLE `questions` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `node_id` int(11) unsigned NOT NULL default '0',
+  `id` char(36) NOT NULL,
+  `node_id` char(36) NOT NULL default '0',
   `title` varchar(255) default NULL,
   `type` int(1) unsigned NOT NULL default '1',
   `order` int(3) unsigned NOT NULL default '1',
@@ -353,8 +336,8 @@ CREATE TABLE `questions` (
 -- ----------------------------
 DROP TABLE IF EXISTS `registration_codes`;
 CREATE TABLE `registration_codes` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `user_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
   `code` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
@@ -366,22 +349,22 @@ CREATE TABLE `registration_codes` (
 -- ----------------------------
 DROP TABLE IF EXISTS `textareas`;
 CREATE TABLE `textareas` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `node_id` int(11) unsigned NOT NULL,
+  `id` char(36) NOT NULL,
+  `node_id` char(36) NOT NULL,
   `content` text,
   `order` int(11) unsigned NOT NULL default '9999',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for textbooks
 -- ----------------------------
 DROP TABLE IF EXISTS `textbooks`;
 CREATE TABLE `textbooks` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `course_id` int(11) unsigned default NULL,
+  `id` char(36) NOT NULL,
+  `course_id` char(36) default NULL,
   `title` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
@@ -393,7 +376,7 @@ CREATE TABLE `textbooks` (
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` char(36) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) default NULL,
   `alias` varchar(255) NOT NULL,

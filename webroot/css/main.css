@@ -1088,3 +1088,31 @@ img.gclms-tooltip-button {
 		.gclms-expandable-list li.gclms-expanded > ul > li {
 			display: block;
 		}	
+		
+		.gclms-expandable-list li.gclms-collapsed > ul > li {
+			display: none;
+		}	
+		
+/* Nodes tree */
+		
+.gclms-nodes-tree {}
+
+	.gclms-nodes-tree ul {
+		margin: 0;
+		padding: 0;
+		margin-left: 0px;
+		padding-left: 0px;
+		list-style: none;
+	}
+	
+		.gclms-nodes-tree ul ul {
+			margin-left: 12px;
+			padding-left: 12px;
+		}
+	
+		.gclms-nodes-tree li {
+			padding-left: 2px;
+			padding-right: 2px;
+			margin-top: 7px;
+			margin-bottom: 7px;
+		}

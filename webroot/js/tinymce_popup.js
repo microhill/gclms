@@ -1,28 +1,34 @@
-var FileBrowserDialogue = {
+var GCLMS = {};
+
+GCLMS.PopupController = {
     init : function () {
 		var allLinks = document.getElementsByTagName("link");
 		allLinks[allLinks.length-1].parentNode.removeChild(allLinks[allLinks.length-1]);
+		$(document.body).observeRules(GCLMS.Triggers);		
     },
-    chooseImage: function (obj) {
-		URL = obj.getAttribute('href');
+    chooseImage: function () {
+		URL = this.getAttribute('href');
 		var win = tinyMCEPopup.getWindowArg("window");
 		win.document.getElementById(tinyMCEPopup.getWindowArg("input")).value = URL;
-		win.document.getElementById('width').value = obj.getAttribute('image:width');
-		win.document.getElementById('height').value = obj.getAttribute('image:height');		
-		if (win.getImageData) win.getImageData();
+		win.document.getElementById('width').value = this.getAttribute('image:width');
+		win.document.getElementById('height').value = this.getAttribute('image:height');	
 		tinyMCEPopup.close();
 
 		return false;
     },
-    chooseMediaFile: function (obj) {
-		URL = obj.getAttribute('href');
+    chooseLink: function () {
+		URL = this.getAttribute('href');
 		var win = tinyMCEPopup.getWindowArg("window");
 		win.document.getElementById(tinyMCEPopup.getWindowArg("input")).value = URL;
-		if (win.getImageData) win.getImageData();
 		tinyMCEPopup.close();
 
 		return false;
     }
 }
 
-tinyMCEPopup.onInit.add(FileBrowserDialogue.init, FileBrowserDialogue);
+tinyMCEPopup.onInit.add(GCLMS.PopupController.init, GCLMS.PopupController);
+
+GCLMS.Triggers = $H({
+	'div.gclms-images a:click': GCLMS.PopupController.chooseImage,
+	'div.gclms-files a:click,div.gclms-links a:click': GCLMS.PopupController.chooseLink
+});

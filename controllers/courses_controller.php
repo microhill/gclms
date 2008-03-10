@@ -38,7 +38,10 @@ class CoursesController extends AppController {
 		$articles = $this->Article->findAllByCourseId($this->viewVars['course']['id']);
 		$this->set(compact('articles'));
 
-		//Lessons
+		//Pages
+		$this->Node->contain();
+		$nodes = $this->Node->findAll(array('Node.course_id' => $this->viewVars['course']['id']),null,'Node.order ASC');
+		$this->set(compact('nodes'));		
 
 		//Textbooks
 		$this->Textbook->contain('Chapter');

@@ -1,4 +1,12 @@
-<?= $this->renderElement('no_column_background'); ?>
+<?
+$javascript->link(array(
+	'vendors/prototype',
+	'prototype_extensions',
+	'vendors/tinymce3.0.4/tiny_mce_popup',
+	'tinymce_popup'
+), false);
+
+echo $this->renderElement('no_column_background'); ?>
 
 <div class="gclms-content">	
 	<div class="gclms-images">

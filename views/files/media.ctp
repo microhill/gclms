@@ -32,7 +32,7 @@ echo $this->renderElement('no_column_background'); ?>
 			$type = 'mime';
 		}
 
-		echo "<li class='" . $type . "'><a href='" . $file['uri'] . "' onclick='return FileBrowserDialogue.chooseMediaFile(this);'>" . $file['basename'] . "</a>" . '</li>';		
+		echo "<li class='" . $type . "'><a href='" . $file['uri'] . "'>" . $file['basename'] . "</a>" . '</li>';		
 	}
 	?>
 	</ul>

@@ -1,5 +1,4 @@
-<!-- div class="questions <?= $page['Page']['grade_recorded'] ? 'gradedAssessment' : 'selfCheck' ?>" -->
-<?
+<? /* <!-- div class="questions <?= $page['Page']['grade_recorded'] ? 'gradedAssessment' : 'selfCheck' ?>" --> */
 switch($question['type']){
 	case 0: //Multiple choice
 		echo $this->renderElement('question_multiple_choice',array('question'=>$question));
@@ -15,7 +14,7 @@ switch($question['type']){
 		break;
 }
 
-if($page['Page']['grade_recorded']): ?>
+if($node['Node']['grade_recorded']): ?>
 	<!-- p id="gradeResults"><button id="gradeQuestions"><? __('Grade') ?></button></p -->
 <? endif; ?>
 <!--/div-->

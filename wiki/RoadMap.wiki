@@ -55,5 +55,5 @@
  * _*Life Notebook related*_ (issue 61) (issue 4)
 
 =Miscellaneous=
-* Ability to delete media files (issue 77)
-* Fix drag & drop "ghosting" error in IE (issue 79)
+ * Ability to delete media files (issue 77)
+ * Fix drag & drop "ghosting" error in IE (issue 79)

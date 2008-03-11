@@ -194,7 +194,7 @@ if(empty($question_id) && !empty($question['id']))
 		</tbody>
 	</table>
 	<p>
-		<button class="insertQuestion add"><img src="/img/permanent/icons/2007-09-13/add-12.png" /> <? __('Insert Question') ?></button>
-		<button class="insertTextarea add"><img src="/img/permanent/icons/2007-09-13/add-12.png" /> <? __('Insert Content') ?></button>
+		<button class="insertQuestion add"><? __('Insert Question') ?></button>
+		<button class="insertTextarea add"><? __('Insert Content') ?></button>
 	</p>
 </div>

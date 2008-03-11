@@ -97,7 +97,7 @@ echo $this->renderElement('left_column'); ?>
 		<div id="SWFUploadTarget" swfupload:uploadScript="/<?= $group['web_path'] ?>/<?= $course['web_path'] ?>/files/upload/file">
 			<div id="loadingSWFTarget">Loading...</div>
 			<button id="browseButton" class="browseButton">
-				<img src="/img/permanent/icons/2007-09-13/add-12.png"/> <? __('Add File(s)') ?>
+				<? __('Add File(s)') ?>
 			</button>
 			<button id="cancelQueueButton" class="cancelButton">
 				<img src="/img/permanent/icons/2007-09-13/cancel-12.png"/> <? __('Cancel File Upload(s)') ?>

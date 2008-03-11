@@ -425,8 +425,11 @@ class OpenDocument {
         $frame = $node->appendChild($frame);
 
 		$frame->setAttributeNS(OpenDocument::NS_TEXT,'anchor-type','as-char');
-		$frame->setAttributeNS(OpenDocument::NS_SVG,'width','200px');
-		$frame->setAttributeNS(OpenDocument::NS_SVG,'height','200px');
+		
+		list($width, $height, $type, $attr) = getimagesize($this->mediaDirectory . DS . $src);
+		
+		$frame->setAttributeNS(OpenDocument::NS_SVG,'width',($width / 100) . 'in');
+		$frame->setAttributeNS(OpenDocument::NS_SVG,'height',($height / 100) . 'in');
 		
 		//<draw:frame draw:style-name="fr1" draw:name="graphics1" text:anchor-type="as-char" svg:width="4.1665in" svg:height="2.778in" draw:z-index="0">
 		

@@ -10,6 +10,7 @@
   * English spellchecker (issue 5)
  * Basic export-to-ODT functionality (issue 2)
   * Shrink large images (issue 74)
+  * Table of contents / "bookmarks" for course structure (issue 75)
 
 =Milestone 2 - Due March 21 =
 

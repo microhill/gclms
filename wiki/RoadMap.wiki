@@ -18,7 +18,6 @@
  * E-commerce integration (issue 9)
  * Student registration (issue 13)
  * Miscellaneous
-  * Ability to delete media files (issue 77)
 
 =Milestone 3 - Due May 2=
 ==General Functions==
@@ -55,3 +54,7 @@
  * *Authorizations related* (issue 71) (issue 72) (issue 73) 
  * *Evaluations related* (issue 47) 
  * _*Life Notebook related*_ (issue 61) (issue 4)
+
+=Miscellaneous=
+* Ability to delete media files (issue 77)
+* Fix drag & drop "ghosting" error in IE (issue 79)

@@ -30,10 +30,10 @@ if(empty($page_section)) {
 		?>
 	</div>
 	<p>
-		<button class="addQuestion"><img src="/img/permanent/icons/2007-09-13/add-12.png" /> <? __('Add Question') ?></button> <span class="loadingQuestionIndicator"><img src="/img/permanent/spinner2007-09-14.gif" /></span>
+		<button class="addQuestion"><? __('Add Question') ?></button> <span class="loadingQuestionIndicator"><img src="/img/permanent/spinner2007-09-14.gif" /></span>
 	</p>
 
 	<p>
-		<button class="insertSection"><img src="/img/permanent/icons/2007-09-13/add-12.png" /> <? __('Add Content') ?></button> <span class="loadingQuestionIndicator"><img src="/img/permanent/spinner2007-09-14.gif" /></span>
+		<button class="insertSection"><? __('Add Content') ?></button> <span class="loadingQuestionIndicator"><img src="/img/permanent/spinner2007-09-14.gif" /></span>
 	</p>
 </div>

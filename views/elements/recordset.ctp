@@ -40,7 +40,6 @@ if(@$showDefaultAddButton) {
 		<td class="Left">
 			<? if(@$showDefaultAddButton): ?>
 				<button class="gclms-add" link:href="<?= $defaultAddButtonUri ?>" id="gclmsAdd">
-					<img src="/img/permanent/icons/2007-09-13/add-12.png"/>
 					<? __(isset($defaultAddButtonTitle) ? $defaultAddButtonTitle : 'Add') ?>
 				</button>
 			<? endif;

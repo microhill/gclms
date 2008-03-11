@@ -168,7 +168,7 @@ GCLMS.PageController = {
 	createMatchingDraggables: function(event) {
 		var draggable = new Draggable(this,{
 			revert:true,
-			ghosting:true,
+			//ghosting:true,
 			reverteffect: function(element, top_offset, left_offset){
 		        var moveEffect = new Effect.Move(element, { x: -left_offset, y: -top_offset, duration: 0});
 			}
@@ -178,6 +178,7 @@ GCLMS.PageController = {
 		Droppables.add(this, {
 			containment: $A(this.up('div.matching').select('td.draggableContainer')),
 			onDrop: function(draggableElement, droppableElement) {
+				
 				// See if answer has already been dropped
 				tbody = droppableElement.findParent('tbody');
 				
@@ -193,6 +194,7 @@ GCLMS.PageController = {
 				droppableElement.className = 'droppable ' + $A(draggableElement.classNames())[1];
 				droppableElement.innerHTML = draggableElement.innerHTML;
 				droppableElement.setAttribute('attemptedAnswer:id',draggableElement.getAttribute('answer:id'));
+				// */
 			}
 		});
 	},

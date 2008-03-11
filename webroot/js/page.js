@@ -168,7 +168,7 @@ GCLMS.PageController = {
 	createMatchingDraggables: function(event) {
 		var draggable = new Draggable(this,{
 			revert:true,
-			//ghosting:true,
+			ghosting:false,
 			reverteffect: function(element, top_offset, left_offset){
 		        var moveEffect = new Effect.Move(element, { x: -left_offset, y: -top_offset, duration: 0});
 			}

@@ -19,10 +19,10 @@
 		<?=  $content_for_layout; ?>
 		<script type="text/javascript" src="/js/vendors/prototype.js"></script>
 		<script type="text/javascript" src="/js/prototype_extensions.js"></script>		
-		<script type="text/javascript" src="/js/vendors/scriptaculous1.7.0//scriptaculous.js"></script>
-		<script type="text/javascript" src="/js/vendors/scriptaculous1.7.0//effects.js"></script>
-		<script type="text/javascript" src="/js/vendors/scriptaculous1.7.0//dragdrop.js"></script>
-		<script type="text/javascript" src="/js/vendors/scriptaculous1.7.0//slider.js"></script>
+		<script type="text/javascript" src="/js/vendors/scriptaculous1.8.1/scriptaculous.js"></script>
+		<script type="text/javascript" src="/js/vendors/scriptaculous1.8.1/effects.js"></script>
+		<script type="text/javascript" src="/js/vendors/scriptaculous1.8.1/dragdrop.js"></script>
+		<script type="text/javascript" src="/js/vendors/scriptaculous1.8.1/slider.js"></script>
 		<script type="text/javascript" src="/js/vendors/mp3_player.js"></script>
 		<script type="text/javascript" src="/js/gclms.js"></script>		
 		<script type="text/javascript" src="/js/page.js"></script>	

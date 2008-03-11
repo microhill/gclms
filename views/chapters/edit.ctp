@@ -34,5 +34,4 @@ echo $this->renderElement('no_column_background'); ?>
 	echo $form->end();
 	?>
 	</div>
-	<script type="text/javascript" src="/js/tinymce/tiny_mce.js"></script>
 </div>

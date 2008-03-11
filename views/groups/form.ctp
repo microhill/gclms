@@ -91,5 +91,3 @@ if($this->action != 'register') {
 	}
 	echo '</div>';
 }
-?>
-<script type="text/javascript" src="/js/tinymce/tiny_mce.js"></script>

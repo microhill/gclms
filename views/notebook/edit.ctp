@@ -6,8 +6,6 @@ $javascript->link(array(
 ), false);
 ?>
 <div class="gclms-content">
-	<script type="text/javascript" src="/js/tinymce/tiny_mce.js"></script>
-	
 	<script type="text/javascript">
 	    tinyMCE.init({
 	        theme : "advanced",

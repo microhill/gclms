@@ -5,8 +5,8 @@ $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
 	'gclms',
-	'vendors/scriptaculous1.8/scriptaculous',
-	'vendors/scriptaculous1.8/dragdrop',
+	'vendors/scriptaculous1.8.1/scriptaculous',
+	'vendors/scriptaculous1.8.1/dragdrop',
 	'page'
 ), false);
 

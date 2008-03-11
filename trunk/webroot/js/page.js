@@ -1,3 +1,5 @@
+/* global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __ */
+
 GCLMS.Triggers.update({
 	'img.gclms-notebook:click' : function(event) {
 		parent.Ext.getCmp('classroomTabs').activate('notebookTab');
@@ -26,7 +28,7 @@ GCLMS.Triggers.update({
 							completelyCorrect = false;
 						}
 					}
-				})
+				});
 
 				if(completelyCorrect) {
 					totalCorrectAnswers++;
@@ -43,8 +45,9 @@ GCLMS.Triggers.update({
 				div = question;
 
 				div.getElementsByClassName('droppable').each(function(node){
-					if(node.getAttribute('attemptedAnswer:id') != node.getAttribute('correctAnswer:id'))
+					if(node.getAttribute('attemptedAnswer:id') != node.getAttribute('correctAnswer:id')) {
 						completelyCorrect = false;
+					}
 				});
 
 				if(completelyCorrect) {
@@ -75,7 +78,7 @@ GCLMS.Triggers.update({
 			return false;
 		});
 		$('gradeResults').update('Submitting grade...');
-		new Ajax.Request('/' + document.body.getAttribute('lms:group') + '/grades/update_assessment/section:' + document.body.getAttribute('section:id') + '/page:' + document.body.getAttribute('page:id') + '/grade:' + totalCorrectAnswers + '/maximum_possible:' + totalQuestions, {
+		var request = new Ajax.Request('/' + document.body.getAttribute('lms:group') + '/grades/update_assessment/section:' + document.body.getAttribute('section:id') + '/page:' + document.body.getAttribute('page:id') + '/grade:' + totalCorrectAnswers + '/maximum_possible:' + totalQuestions, {
 		  onSuccess: function(request) {
 			document.body.insert(request.responseText);
 			$('gradeResults').update('Your score is ' + totalCorrectAnswers + ' out of ' + totalQuestions + '.');
@@ -99,12 +102,12 @@ GCLMS.Triggers.update({
 					completelyCorrect = false;
 				}
 			}
-		})
+		});
 
 		if(completelyCorrect) {
 			alert(div.getAttribute('question:defaultCorrectMessage'));
-		} else if(parseInt(div.getAttribute('question:triesLeft')) > 0) {
-			div.setAttribute('question:triesLeft',parseInt(div.getAttribute('question:triesLieft')) - 1);
+		} else if(parseInt(div.getAttribute('question:triesLeft'),10) > 0) {
+			div.setAttribute('question:triesLeft',parseInt(div.getAttribute('question:triesLieft'),10) - 1);
 			if(atLeastPartiallyCorrect) {
 				alert(div.getAttribute('question:defaultPartiallyCorrectMessage'));
 			} else {
@@ -119,7 +122,7 @@ GCLMS.Triggers.update({
 					node.checked = false;
 					node.removeAttribute('checked');
 				}
-			})
+			});
 			alert(div.getAttribute('question:defaultNoMoreIncorrectTriesMessage'));
 		}
 
@@ -132,16 +135,17 @@ GCLMS.Triggers.update({
 			atLeastPartiallyCorrect = false;
 
 			div.getElementsByClassName('droppable').each(function(node){
-				if(node.getAttribute('attemptedAnswer:id') != node.getAttribute('correctAnswer:id'))
+				if (node.getAttribute('attemptedAnswer:id') != node.getAttribute('correctAnswer:id')) {
 					completelyCorrect = false;
-				else
+				} else {
 					atLeastPartiallyCorrect = true;
+				}
 			});
 
 			if(completelyCorrect) {
 				alert(div.getAttribute('question:defaultCorrectMessage'));
-			} else if(parseInt(div.getAttribute('question:triesLeft')) > 0) {
-				div.setAttribute('question:triesLeft',parseInt(div.getAttribute('question:triesLieft')) - 1);
+			} else if(parseInt(div.getAttribute('question:triesLeft'),10) > 0) {
+				div.setAttribute('question:triesLeft',parseInt(div.getAttribute('question:triesLieft'),10) - 1);
 				if(atLeastPartiallyCorrect) {
 					alert(div.getAttribute('question:defaultPartiallyCorrectMessage'));
 				} else {
@@ -166,11 +170,11 @@ GCLMS.Triggers.update({
 			event.stop();
 		},
 		'div.draggable' : function(event) {
-			new Draggable(this,{
+			var draggable = new Draggable(this,{
 				revert:true,
 				ghosting:true,
 				reverteffect: function(element, top_offset, left_offset){
-			        new Effect.Move(element, { x: -left_offset, y: -top_offset, duration: 0});
+			        var moveEffect = new Effect.Move(element, { x: -left_offset, y: -top_offset, duration: 0});
 				}
 			});
 		},
@@ -201,10 +205,14 @@ GCLMS.Triggers.update({
 		'input:keyup' : function(event) {
 			answerLength = this.value.length;
 
-			if(this.size < answerLength && answerLength < 100 && answerLength > 30)
+			if (this.size < answerLength && answerLength < 100 && answerLength > 30) {
 				this.size = answerLength;
-			else if(this.size > answerLength && this.size > 30)
-				this.size = 30;
+			}
+			else {
+				if (this.size > answerLength && this.size > 30) {
+					this.size = 30;
+				}
+			}
 		},
 		'button.checkAnswerButton:click' : function(event) {
 			div = event.findElement('div');
@@ -212,13 +220,15 @@ GCLMS.Triggers.update({
 
 			if(input.value.trim().toLowerCase() == input.getAttribute('correctAnswer:text').trim().toLowerCase()) {
 				alert(div.getAttribute('question:defaultCorrectMessage'));
-			} else if(parseInt(div.getAttribute('question:triesLeft')) > 0) {
-				div.setAttribute('question:triesLeft',parseInt(div.getAttribute('question:triesLieft')) - 1);
+			} else if(parseInt(div.getAttribute('question:triesLeft'),10) > 0) {
+				div.setAttribute('question:triesLeft',parseInt(div.getAttribute('question:triesLieft'),10) - 1);
 				alert(div.getAttribute('question:defaultTryAgainMessage'));
 			} else {
 				correctAnswer = input.getAttribute('correctAnswer:text').trim();
-				$A(div.getElementsByTagName('p')).each(function(node){Element.remove(node)});
-				new Insertion.Bottom(div,'<p class="correctAnswer">' + correctAnswer + '</p>');
+				$A(div.getElementsByTagName('p')).each(function(node){
+					Element.remove(node);
+				});
+				var tmpInsertion1 = new Insertion.Bottom(div,'<p class="correctAnswer">' + correctAnswer + '</p>');
 				alert(div.getAttribute('question:defaultNoMoreIncorrectTriesMessage'));
 			}
 		}
@@ -228,43 +238,54 @@ GCLMS.Triggers.update({
 		correctAnswerInteger = div.getAttribute('correctAnswer:integer');
 
 		if(this.getAttribute('answer:integer') == correctAnswerInteger) {
-			$A(div.getElementsByTagName('p')).each(function(node){Element.remove(node)});
-			if(correctAnswerInteger == "0")
-				new Insertion.Bottom(div,'<p class="correctAnswer">' + div.getAttribute('question:defaultCorrectMessageFalse') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
-			else
-				new Insertion.Bottom(div,'<p class="correctAnswer">' + div.getAttribute('question:defaultCorrectMessageTrue') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
-
+			$A(div.getElementsByTagName('p')).each(function(node){
+				Element.remove(node);
+			});
+			if (correctAnswerInteger == "0") {
+				var tmpInsertion1 = new Insertion.Bottom(div, '<p class="correctAnswer">' + div.getAttribute('question:defaultCorrectMessageFalse') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+			}
+			else {
+				var tmpInsertion2 = new Insertion.Bottom(div, '<p class="correctAnswer">' + div.getAttribute('question:defaultCorrectMessageTrue') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+			}
 		} else {
-			$A(div.getElementsByTagName('p')).each(function(node){Element.remove(node)});
-			if(correctAnswerInteger == "0")
-				new Insertion.Bottom(div,'<p class="correctAnswer">' + div.getAttribute('question:defaultIncorrectMessageFalse') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
-			else
-				new Insertion.Bottom(div,'<p class="correctAnswer">' + div.getAttribute('question:defaultIncorrectMessageTrue') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+			$A(div.getElementsByTagName('p')).each(function(node){
+				Element.remove(node);
+			});
+			if (correctAnswerInteger == "0") {
+				var tmpInsertion3 = new Insertion.Bottom(div, '<p class="correctAnswer">' + div.getAttribute('question:defaultIncorrectMessageFalse') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+			}
+			else {
+				var tmpInsertion4 = new Insertion.Bottom(div, '<p class="correctAnswer">' + div.getAttribute('question:defaultIncorrectMessageTrue') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+			}
 		}
 		event.stop();
 	},
 	'a[href*="/bible_kjv/"]:click': function(event) {
 		top.Ext.getCmp('bibleViewport').expand();
-		if(!top.$('bibleViewportContent').contentDocument.body.innerHTML)
+		if (!top.$('bibleViewportContent').contentDocument.body.innerHTML) {
 			top.$('bibleViewportContent').src = this.getAttribute('href');
+		}
 		event.stop();
 	},
 	'a[href*="/chapters/"]:click': function(event) {
 		top.Ext.getCmp('textbooksViewport').expand();
-		if(!top.$('textbooksViewportContent').contentDocument.body.innerHTML)
+		if (!top.$('textbooksViewportContent').contentDocument.body.innerHTML) {
 			top.$('textbooksViewportContent').src = this.getAttribute('href');
+		}
 		event.stop();
 	},
 	'a[href*="/articles/"]:click': function(event) {
 		top.Ext.getCmp('articlesViewport').expand();
-		if(!top.$('articlesViewportContent').contentDocument.body.innerHTML)
+		if (!top.$('articlesViewportContent').contentDocument.body.innerHTML) {
 			top.$('articlesViewportContent').src = this.getAttribute('href');
+		}
 		event.stop();
 	},
 	'a[href*="/dictionary/"]:click': function(event) {
 		top.Ext.getCmp('dictionaryViewport').expand();
-		if(!top.$('dictionaryViewportContent').contentDocument.body.innerHTML)
+		if (!top.$('dictionaryViewportContent').contentDocument.body.innerHTML) {
 			top.$('dictionaryViewportContent').src = this.getAttribute('href');
+		}
 		event.stop();
 	}
 });
@@ -286,8 +307,7 @@ if(window.soundManager !== undefined && mp3Player) {
 
 	soundManager.onload = function(){
 		$$('div.mp3player').each(function(node){
-			new MP3Player(node);
+			var MP3PlayerObject = new MP3Player(node);
 		});
-	}
+	};
 }
-	

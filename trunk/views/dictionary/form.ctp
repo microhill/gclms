@@ -10,7 +10,3 @@ echo $form->input('description',array(
 	'rows' => 25,
 	'cols' => 100
 ));
-
-?>
-
-<script type="text/javascript" src="/js/tinymce/tiny_mce.js"></script>

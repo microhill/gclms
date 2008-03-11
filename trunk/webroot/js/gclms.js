@@ -1,3 +1,5 @@
+/* global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __ */
+
 var GCLMS = {};
 
 function __(text) {
@@ -183,7 +185,7 @@ GCLMS.AppController = {
 			$('UserPasswordDiv').hide();
 		}
 		
-		if($F('UserEmail').trim().indexOf('http:') == 0) {
+		if($F('UserEmail').trim().indexOf('http:') === 0) {
 			if(!$('UserEmail').hasClassName('gclms-openid')) {
 				$('UserEmail').addClassName('gclms-openid');
 			}
@@ -292,7 +294,7 @@ GCLMS.tinyMCEConfig = {
     theme_advanced_blockformats : 'p,h2,h3,h4',
 	extended_valid_elements : 'a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]',
 	file_browser_callback : 'GCLMS.fileBrowser',
-	content_css : "/css/main.css,/css/page.css",
+	content_css : "/css/main.css,/css/page.css"
 };
 
 if(document.body.getAttribute('lms:group') && !document.body.getAttribute('lms:group').empty() && !document.body.getAttribute('lms:course').empty()) {
@@ -328,4 +330,4 @@ GCLMS.fileBrowser = function(field_name, url, type, win) {
     });
 
 	return false;
-}
+};

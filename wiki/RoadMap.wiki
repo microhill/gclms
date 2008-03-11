@@ -2,7 +2,9 @@
 
 =Milestone 1 - Due March 7=
 
- * Overhaul course authoring tool / Restructure course to Node model (issue 1, issue 62, issue 63)
+ * Overhaul course authoring tool / Restructure course to Node model (issue 1)
+  * Render in framed environment (issue 62)
+  * Unexpected behavior when decreasing indent of node (issue 63)
  * Integration of newest TinyMCE tool (issue 8) (issue 11) 
   * English spellchecker (issue 5)
  * Basic export-to-ODT functionality (issue 2)

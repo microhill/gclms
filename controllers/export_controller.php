@@ -18,8 +18,20 @@ class ExportController extends AppController {
 			}
 		}
 		
-		$destinationFile = ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . 'course.odt';
-		$test->save('test.odt');
+		$destinationFile = ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . $this->viewVars['course']['id'] . '.odt';
+		$test->save($destinationFile);
+		
+		if(!file_exists($destinationFile))
+			die('There was an error in the export.');
+			
+		header('Content-type: application/vnd.oasis.opendocument.text');	
+		header('Content-Disposition: attachment; filename="' . $this->viewVars['course']['title'] . '.odt"');
+		header("Content-Length: " .  filesize($destinationFile));
+		header("Content-Transfer-Encoding: binary\n");
+		
+		readfile($destinationFile);
+		exit;
+		
 //		echo $destinationFile;
 
 		/*		

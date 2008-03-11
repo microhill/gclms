@@ -17,7 +17,6 @@
 
  * E-commerce integration (issue 9)
  * Student registration (issue 13)
- * Miscellaneous
 
 =Milestone 3 - Due May 2=
 ==General Functions==

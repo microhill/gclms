@@ -623,12 +623,11 @@ class OpenDocument {
     }
     
     public static function zipWrite($archive, $filename, $content) {
-		
 		$zip = new ZipArchive;
         if (file_exists($archive)) {
             $zip->open(realpath($archive));
         } else {
-            $zip->open(getcwd() . '/' .  $archive, ZipArchive::CREATE);
+            $zip->open($archive, ZipArchive::CREATE);
         }
 
         if ($zip->locateName($filename) !== false) {

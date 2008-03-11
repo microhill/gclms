@@ -7,21 +7,23 @@ class ExportController extends AppController {
 	function odt() {
 		App::import('Vendor', 'open_document'. DS . 'open_document');
 
-		$test = new OpenDocument;
+		$openDocument = new OpenDocument;
+		$openDocument->mediaDirectory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
+		$openDocument->imagePrefix = $this->viewVars['groupAndCoursePath'] . '/files/';
+		$openDocument->destinationFile = ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . $this->viewVars['course']['id'] . '.odt';
 			
 		$this->Node->contain('Textarea');
 		$nodes = $this->Node->findAll(array('Node.course_id' => $this->viewVars['course']['id']),null,'Node.order ASC');
 
 		foreach($nodes as $node) {
 			foreach($node['Textarea'] as $textarea) {
-				$test->importHTML($textarea['content']);
+				$openDocument->importHTML($textarea['content']);
 			}
 		}
 		
-		$destinationFile = ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . $this->viewVars['course']['id'] . '.odt';
-		$test->save($destinationFile);
+		$openDocument->save($openDocument->destinationFile);
 		
-		if(!file_exists($destinationFile))
+		if(!file_exists($openDocument->destinationFile))
 			die('There was an error in the export.');
 			
 		header('Content-type: application/vnd.oasis.opendocument.text');	

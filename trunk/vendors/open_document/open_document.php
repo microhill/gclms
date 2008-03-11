@@ -174,6 +174,11 @@ class OpenDocument {
     const NS_TEXT = 'urn:oasis:names:tc:opendocument:xmlns:text:1.0';
 	
     /**
+     * text namespace URL
+     */
+    const NS_DRAW = 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0';
+	
+    /**
      * table namespace URL
      */
     const NS_TABLE = 'urn:oasis:names:tc:opendocument:xmlns:table:1.0';
@@ -202,6 +207,11 @@ class OpenDocument {
      * xlink namespace URL
      */
     const NS_XLINK = 'http://www.w3.org/1999/xlink';
+	
+    /**
+     * xlink namespace URL
+     */
+    const NS_MANIFEST = 'urn:oasis:names:tc:opendocument:xmlns:manifest:1.0';
 
    /**
      * Constructor
@@ -257,6 +267,16 @@ class OpenDocument {
     	$this->fonts  = $this->contentXPath->query('/office:document-content/office:font-face-decls')->item(0);
     	$this->contentXPath->registerNamespace('text', self::NS_TEXT);
     }
+	
+	function addFileToManifest($fullPath,$mediaType = '') {
+		$manifestCursor = &$this->manifestXPath->query('/manifest:manifest')->item(0);
+		
+		$fileEntry = $manifestCursor->ownerDocument->createElementNS(OpenDocument::NS_MANIFEST, 'file-entry');
+        $fileEntry = $manifestCursor->appendChild($fileEntry);
+
+		$fileEntry->setAttributeNS(OpenDocument::NS_MANIFEST,'media-type',$mediaType);
+		$fileEntry->setAttributeNS(OpenDocument::NS_MANIFEST,'full-path',$fullPath);
+	}
 	
 	function importHTML($HTML) {
 		$this->HTMLDOM = new DOMDocument;
@@ -387,6 +407,39 @@ class OpenDocument {
 		
 		return $element;
 	}
+	
+	function appendImage(&$node,$src,$styles = null) {
+		if(stripos($src,$this->imagePrefix) !== 0)
+			return false;
+			
+		$src = str_ireplace($this->imagePrefix,'',$src);
+		//write image to zip file
+        if (!$this->zipAddFile('Pictures/' . $src, $this->mediaDirectory . DS . $src)) {
+            die('Error');
+            throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_IMAGE_ERR);
+        }
+		
+		$this->addFileToManifest('Pictures/' . $src,'image/jpeg');
+		
+		$frame = $node->ownerDocument->createElementNS(OpenDocument::NS_DRAW, 'frame');
+        $frame = $node->appendChild($frame);
+
+		$frame->setAttributeNS(OpenDocument::NS_TEXT,'anchor-type','as-char');
+		$frame->setAttributeNS(OpenDocument::NS_SVG,'width','200px');
+		$frame->setAttributeNS(OpenDocument::NS_SVG,'height','200px');
+		
+		//<draw:frame draw:style-name="fr1" draw:name="graphics1" text:anchor-type="as-char" svg:width="4.1665in" svg:height="2.778in" draw:z-index="0">
+		
+		$image = $node->ownerDocument->createElementNS(OpenDocument::NS_DRAW, 'image');
+        $image = $frame->appendChild($image);
+		
+		$image->setAttributeNS(OpenDocument::NS_XLINK,'type','simple');
+		$image->setAttributeNS(OpenDocument::NS_XLINK,'show','embed');
+		$image->setAttributeNS(OpenDocument::NS_XLINK,'actuate','onLoad');		
+		$image->setAttributeNS(OpenDocument::NS_XLINK,'href','Pictures/' . $src);
+		
+		return $frame;
+	}
 
 	function importHTMLNode(&$HTMLNode, &$ODTNode, $level = 1) {
 		if($HTMLNode->nodeName == 'body') {
@@ -508,6 +561,10 @@ class OpenDocument {
 				$newODTNode = $this->appendHyperlink(&$ODTNode,$HTMLNode->getAttribute('href'));
 				break;
 				
+			case 'img':
+				$newODTNode = $this->appendImage(&$ODTNode,$HTMLNode->getAttribute('src'));
+				break;				
+				
 			default:
 				return true;
 				break;
@@ -608,8 +665,7 @@ class OpenDocument {
         }
     }
 	
-    public static function zipRead($archive, $filename)
-    {
+    public static function zipRead($archive, $filename) {
         $zip = new ZipArchive;
         if (file_exists($archive)) {
             if ($zip->open(realpath($archive))) {
@@ -634,6 +690,25 @@ class OpenDocument {
             $zip->deleteName($filename);
         }
         $error = $zip->addFromString($filename, $content);
+
+        return $error;
+    }
+    
+    public function zipAddFile($filename, $localname) {
+		$zip = new ZipArchive;
+		$archive = $this->destinationFile;
+        if (file_exists($archive)) {
+            $zip->open(realpath($archive));
+        } else {
+			$zip->open($archive, ZipArchive::CREATE);
+        }
+
+        if ($zip->locateName($filename) !== false) {
+		    $zip->deleteName($filename);
+        }
+
+		//var_dump(file_exists($localname));
+        $error = $zip->addFile($localname, $filename) or die ("Could not add file: $localname");
 
         return $error;
     }

@@ -31,7 +31,7 @@ class ExportController extends AppController {
 		header("Content-Length: " .  filesize($openDocument->destinationFile));
 		header("Content-Transfer-Encoding: binary\n");
 		
-		readfile($destinationFile);
+		readfile($openDocument->destinationFile);
 		exit;
 		
 //		echo $destinationFile;

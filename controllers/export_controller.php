@@ -28,7 +28,7 @@ class ExportController extends AppController {
 			
 		header('Content-type: application/vnd.oasis.opendocument.text');	
 		header('Content-Disposition: attachment; filename="' . $this->viewVars['course']['title'] . '.odt"');
-		header("Content-Length: " .  filesize($destinationFile));
+		header("Content-Length: " .  filesize($openDocument->destinationFile));
 		header("Content-Transfer-Encoding: binary\n");
 		
 		readfile($destinationFile);

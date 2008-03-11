@@ -11,6 +11,7 @@
  * Basic export-to-ODT functionality (issue 2)
   * Shrink large images (issue 74)
   * Table of contents / "bookmarks" for course structure (issue 75)
+  * Footer on every page after ToC (issue 76)
 
 =Milestone 2 - Due March 21 =
 

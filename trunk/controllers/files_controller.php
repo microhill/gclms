@@ -8,7 +8,7 @@ class FilesController extends AppController {
 			return false;
 
 		if(!empty($this->params['form']['Filedata']['tmp_name'])) {
-			$newFile = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'] . DS . low($this->params['form']['Filedata']['name']);
+			$newFile = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'] . DS . str_replace(' ','',low($this->params['form']['Filedata']['name']));
 			$this->log('Old file: ' . $this->params['form']['Filedata']['tmp_name']);
 			$this->log('New file: ' . $newFile);
 			if(file_exists($newFile))

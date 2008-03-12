@@ -36,10 +36,12 @@ class BooksController extends AppController {
 		$this->Book->contain();
 		$books = $this->Book->findAll(array("Book.course_id" => $this->viewVars['course']['id']),null,'Book.title ASC');
 		$this->set(compact('books'));
+		
+		$this->set('title',__('Books',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
 	}
 
-    function rename() {
-    	$this->Book->id = $this->passedArgs['id'];
+    function rename($id) {
+    	$this->Book->id = $id;
     	$this->Book->saveField('title', $this->data['Book']['title']);
     	exit;
     }

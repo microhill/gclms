@@ -12,6 +12,7 @@ class ArticlesController extends AppController {
 
 	function index() {
 		$this->data = $this->Article->findAllByCourseId(array('course_id'=>$this->viewVars['course']['id']),null,'Article.title ASC');
+		$this->set('title',__('Articles',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
 	}
 
 	function view($id) {

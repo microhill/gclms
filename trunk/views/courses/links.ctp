@@ -17,7 +17,7 @@ echo $this->renderElement('no_column_background'); ?>
 	));
 	?>
 	
-	<? if(!empty($book)): ?>	
+	<? if(!empty($books)): ?>	
 	<h2>Books</h2>	
 	<div id="books">
 		<?

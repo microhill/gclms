@@ -50,6 +50,10 @@ class BooksController extends AppController {
     	$this->Book->delete($id);
     	exit;
     }
+	
+	function chapter($id) {
+		
+	}
 
 	function afterSave() {
 		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path']) . '/books';

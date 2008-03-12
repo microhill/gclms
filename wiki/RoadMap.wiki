@@ -13,7 +13,8 @@
   * Table of contents / "bookmarks" for course structure (issue 75)
   * Footer on every page after ToC (issue 76)
   * Capable to Print in English
- * Enable Essay Question Type (needed to support Course migration from IBS 2.0)
+ * Enable Essay Question Type (needed to support Course migration from IBS 2.0)(issue 82) 
+ * ??? what is the plan with Flash/Drag & Drop questions for now ???
 
 =Milestone 2 - Due March 21 =
 

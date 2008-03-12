@@ -280,8 +280,9 @@ class OpenDocument {
 	
 	function importHTML($HTML) {
 		$this->HTMLDOM = new DOMDocument;
+		$HTML = str_replace(array('<embed','</embed'),'',$HTML); //ugly fix!
 		$this->HTMLDOM->loadHTML($HTML);
-		
+
 		$this->importHTMLNode($this->HTMLDOM->getElementsByTagName('body')->item(0), &$this->cursor);
 		$this->contentDOM->saveXML();
 	}
@@ -566,6 +567,10 @@ class OpenDocument {
 				
 			case 'img':
 				$newODTNode = $this->appendImage(&$ODTNode,$HTMLNode->getAttribute('src'));
+				break;	
+				
+			case 'embed':
+				$newODTNode = &$ODTNode;
 				break;				
 				
 			default:

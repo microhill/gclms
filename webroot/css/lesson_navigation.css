@@ -19,15 +19,15 @@
 	}
 
 	.gclms-lesson-navigation img.gclms-expanded:hover {
-		background-image: url(/img/originals/tree/expanded-hover.png);
+		background-image: url(/img/tree/expanded-hover.png);
 	}
 
 	.gclms-lesson-navigation img.gclms-collapsed {
-		background-image: url(/img/originals/tree/collapsed.png);
+		background-image: url(/img/tree/collapsed.png);
 	}
 
 	.gclms-lesson-navigation img.gclms-collapsed:hover {
-		background-image: url(/img/originals/tree/collapsed-hover.png);
+		background-image: url(/img/tree/collapsed-hover.png);
 	}
 
 	.gclms-lesson-navigation img.gclms-folder-icon {

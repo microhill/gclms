@@ -61,6 +61,8 @@ class ContentController extends AppController {
     function index() {		
 		$this->Node->contain();
 		$this->data = $this->Node->findAll(array('Node.course_id' => $this->viewVars['course']['id']),null,'Node.order ASC');
+		
+		$this->set('title',__('Course Content',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
     }
     
     function view($id) {

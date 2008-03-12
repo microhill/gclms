@@ -15,13 +15,13 @@
   * Shrink large images (issue 74)
   * Table of contents / "bookmarks" for course structure (issue 75)
   * Footer on every page after ToC (issue 76)
-  * Capable to Print in English
+  * Capable to Print in English (issue 2) 
  
  
 =Milestone 2 - Due March 21 =
 
  * Translation capability (asserting no PHP coding required)
- * Capable to Print in non-English (Chinese and Arabic) 
+ * Capable to Print in non-English (Chinese and Arabic) (issue 83)
  
 =Milestone 3 - Due May 2=
 ==General Functions==

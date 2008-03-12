@@ -25,7 +25,7 @@ echo $this->renderElement('no_column_background'); ?>
 			echo '<h3>' . $book['Book']['title'] . '</h3>';
 			echo '<ul>';
 			foreach($book['Chapter'] as $chapter) {
-				echo '<li><a href="' . $groupAndCoursePath . '/chapters/view/' . $chapter['id'] . '">' . $chapter['title'] . '</a></li>';
+				echo '<li><a href="' . $groupAndCoursePath . '/books/chapter/' . $chapter['id'] . '">' . $chapter['title'] . '</a></li>';
 			}
 			echo '</ul>';
 

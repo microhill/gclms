@@ -18,5 +18,7 @@ class ArticlesController extends AppController {
 	function view($id) {
 		$this->Article->contain();
 		$this->data = $this->Article->findById($id);
+		
+		$this->set('title',$this->data['Article']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
 	}
 }

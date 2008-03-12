@@ -11,64 +11,9 @@ $javascript->link(array(
 
 echo $this->renderElement('left_column'); ?>
 
-	<style type="text/css">
-		
-		.swfuploadbtn {
-			display: block;
-			width: 100px;
-			padding: 0 0 0 20px;
-		}
-		
-		.browsebtn { background: url(/images/add.png) no-repeat 0 4px; }
-		.uploadbtn { 
-			display: none;
-			background: url(/images/accept.png) no-repeat 0 4px; 
-		}
-		
-		.cancelbtn { 
-			display: block;
-			width: 16px;
-			height: 16px;
-			float: right;
-			background: url(/img/permanent/icons/2007-09-13/cancel-16.png) no-repeat; 
-		}
-		
-		#SWFUploadFileListingFiles ul {
-			margin: 0;
-			padding: 0;
-			list-style: none;
-		}
-
-		.SWFUploadFileItem {
-			margin-bottom: 4px;
-		}
-
-		.fileUploading {
-			/* background: #fee727; */
-		}
-		.uploadCompleted { background: #d2fa7c; }
-		.uploadCancelled { background: #f77c7c; }
-		
-		.uploadCompleted .cancelbtn, .uploadCancelled .cancelbtn {
-			display: none;
-		}
-		
-		span.progressBar {
-			display: block;
-			padding: 4px;
-			background-color: #00B521;
-			background-image: url(/img/progress-background.gif);
-			background-repeat: no-repeat;
-			background-position: 0 0;
-		}
-		
-	</style>
-
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<?
-		// $this->renderElement('notifications');
-		?>
+		<?= $this->renderElement('notifications'); ?>
 		<h1><? __('Media Files') ?></h1>	
 		<ul class="gclms-files">
 		<?

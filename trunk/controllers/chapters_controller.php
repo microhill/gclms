@@ -77,10 +77,4 @@ class ChaptersController extends AppController {
 		$this->redirect($this->viewVars['groupAndCoursePath'] . '/chapters/toc/' . $this->data['Chapter']['book_id']);
 		exit;
 	}
-
-	function view($id) {
-		$this->Chapter->contain();
-		$chapter = $this->Chapter->findById($id);
-		$this->set('chapter',$chapter);
-	}
 }

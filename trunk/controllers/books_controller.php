@@ -1,9 +1,7 @@
 <?
 class BooksController extends AppController {
     var $uses = array('Book');
-	var $helpers = array('Paginator','MyPaginator');
 	var $itemName = 'Book ';
-	var $paginate = array('order' => 'title');
 	var $components = array('MyAuth');
 
 	function add() {
@@ -52,7 +50,14 @@ class BooksController extends AppController {
     }
 	
 	function chapter($id) {
+		App::import('Model','Chapter');
+		$this->Chapter = new Chapter;
 		
+		$this->Chapter->contain();
+		$chapter = $this->Chapter->findById($id);
+		$this->set('chapter',$chapter);
+		
+		$this->set('title',$chapter['Chapter']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
 	}
 
 	function afterSave() {

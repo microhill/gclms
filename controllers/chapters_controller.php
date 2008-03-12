@@ -82,6 +82,5 @@ class ChaptersController extends AppController {
 		$this->Chapter->contain();
 		$chapter = $this->Chapter->findById($id);
 		$this->set('chapter',$chapter);
-		$this->render('view','classroom_panel');
 	}
 }

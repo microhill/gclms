@@ -1092,19 +1092,19 @@ img.gclms-tooltip-button {
 	}
 	
 	.gclms-expandable-list li.gclms-collapsed > img.gclms-expand-button {
-		background-image: url(/img/originals/tree/collapsed.png);
+		background-image: url(/img/tree/collapsed.png);
 	}
 		
 	.gclms-expandable-list li.gclms-collapsed > img.gclms-expand-button:hover {
-		background-image: url(/img/originals/tree/collapsed-hover.png);
+		background-image: url(/img/tree/collapsed-hover.png);
 	}
 	
 	.gclms-expandable-list li.gclms-expanded > img.gclms-expand-button {
-		background-image: url(/img/originals/tree/expanded.png);
+		background-image: url(/img/tree/expanded.png);
 	}
 	
 	.gclms-expandable-list li.gclms-expanded > img.gclms-expand-button:hover {
-		background-image: url(/img/originals/tree/expanded-hover.png);
+		background-image: url(/img/tree/expanded-hover.png);
 	}
 	
 		.gclms-expandable-list li.gclms-expanded > ul > li {

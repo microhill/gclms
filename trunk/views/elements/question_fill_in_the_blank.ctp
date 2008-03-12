@@ -4,7 +4,7 @@
 	question:defaultCorrectMessage="<? __('Correct!') ?>"
 	question:defaultNoMoreIncorrectTriesMessage="<? __('You are out of tries. The correct answer is shown.') ?>"
 	>
-	<h3><?= $question['title'] ?></h3>
+	<h2><?= $question['title'] ?></h2>
 	<p>
 		<input type="text" correctAnswer:text="<?= $question['fill_in_the_blank_answer'] ?>" />
 	</p>

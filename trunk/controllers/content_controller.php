@@ -12,7 +12,7 @@ class ContentController extends AppController {
 	
 	function add() {
 		$this->data['Node']['course_id'] = $this->viewVars['course']['id'];
-		echo $this->Node->add($this->data);
+		$this->Node->add($this->data); // Needs error checking
 		exit;
 	}	
 	

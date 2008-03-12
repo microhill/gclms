@@ -113,11 +113,8 @@ class PagesController extends AppController {
 
 		$this->saveQuestions($id);
 
-		$lessonId = $this->Node->field('lesson_id',array('id' => $id));
-		$lesson = array('id' => $lessonId);
-		$this->set(compact('lesson'));
-
-		$this->afterSave();
+		$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/pages/view/' . $id;
+		parent::afterSave();
 	}
 
 	function saveQuestions($id = null) {

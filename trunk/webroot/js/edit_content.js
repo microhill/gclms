@@ -80,7 +80,7 @@ GCLMS.ContentController = {
 	},
 	getNodeTitleForRename: function() {
 		GCLMS.popup.create({
-			text: this.getAttribute('prompt:text'),
+			text: this.down('button').getAttribute('prompt:text'),
 			value: $('gclms-nodes').down('a.selected').innerHTML,
 			callback: GCLMS.ContentController.renameNode
 		});
@@ -102,14 +102,14 @@ GCLMS.ContentController = {
 	},
 	getLabelTitleForAddition: function() {
 		GCLMS.popup.create({
-			text: this.getAttribute('prompt:text'),
+			text: this.down('button').getAttribute('prompt:text'),
 			callback: GCLMS.ContentController.addLabel
 		});
 		return false;
 	},
 	getPageTitleForAddition: function() {
 		GCLMS.popup.create({
-			text: this.getAttribute('prompt:text'),
+			text: this.down('button').getAttribute('prompt:text'),
 			callback: GCLMS.ContentController.addPage
 		});
 		return false;

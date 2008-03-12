@@ -1,33 +1,3 @@
-.gclms-menubar {}
-
-	.gclms-menubar button.delete {
-		background-image: url(/img/icons/oxygen/16x16/actions/edit-delete.png);
-	}
-	
-	.gclms-menubar button.increaseIndent {
-		background-image: url(/img/icons/oxygen/16x16/actions/format-indent-more.png);
-	}
-	
-	.gclms-menubar button.decreaseIndent {
-		background-image: url(/img/icons/oxygen/16x16/actions/format-indent-less.png);
-	}
-	
-	.gclms-menubar button.label {
-		background-image: url(/img/icons/oxygen/16x16/mimetypes/application-x-font-otf-modified.png);
-	}
-	
-	.gclms-menubar button.page {
-		background-image: url(/img/icons/oxygen/16x16/mimetypes/application-text.png);
-	}
-	
-	.gclms-menubar button.edit {
-		background-image: url(/img/icons/oxygen/16x16/apps/kate.png);
-	}
-	
-	.gclms-menubar button.rename {
-		background-image: url(/img/icons/crystal_clear/16x16/actions/editclear.png);
-	}
-
 #gclms-nodes {}
 	#gclms-nodes ul {
 		min-height: 2px;

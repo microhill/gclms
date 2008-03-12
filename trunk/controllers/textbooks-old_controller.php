@@ -1,5 +1,5 @@
 <?php
-class TextbooksController extends AppController {
+class BooksController extends AppController {
     var $uses = array('Course');
 
 	function beforeFilter() {
@@ -10,16 +10,16 @@ class TextbooksController extends AppController {
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
-		$this->Breadcrumbs->addCrumb('Textbooks','/' . $this->viewVars['group']['web_path'] . '/dictionary/course:' . $this->viewVars['course']['web_path']);
+		$this->Breadcrumbs->addCrumb('Books','/' . $this->viewVars['group']['web_path'] . '/dictionary/course:' . $this->viewVars['course']['web_path']);
 		parent::beforeRender();
 	}
 
-	function checkCourseFilesAndTextbooksDirectory() {
+	function checkCourseFilesAndBooksDirectory() {
 		$directory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
 		if(!file_exists($directory))
 			mkdir($directory);
 
-		$directory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'] . DS . 'textbooks';
+		$directory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'] . DS . 'books';
 		if(!file_exists($directory))
 			mkdir($directory);
 
@@ -27,7 +27,7 @@ class TextbooksController extends AppController {
 	}
 
 	function file() {
-		$directory = $this->checkCourseFilesAndTextbooksDirectory();
+		$directory = $this->checkCourseFilesAndBooksDirectory();
 		$file = $directory . DS . $this->passedArgs[0] . DS . $this->passedArgs[1];
 
 		if (!file_exists($file)) {
@@ -61,38 +61,38 @@ class TextbooksController extends AppController {
 			exit;
 		}
 
-		$directory = $this->checkCourseFilesAndTextbooksDirectory();
+		$directory = $this->checkCourseFilesAndBooksDirectory();
 
-		$textbooks = array();
+		$books = array();
 		if ($handle = opendir($directory)) {
 		    while (false !== ($file = readdir($handle))) {
 		        if(!is_dir($directory . DS . $file) || $file == '.' || $file == '..')
 		        	continue;
 
-	            $textbooks[strtolower($file)] = $file;
+	            $books[strtolower($file)] = $file;
 		    }
 		    closedir($handle);
 		}
-		ksort($textbooks);
-		$this->set(compact('textbooks'));
+		ksort($books);
+		$this->set(compact('books'));
 	}
 
 	function add() {
-		$textbooksDirectory = $this->checkCourseFilesAndTextbooksDirectory();
+		$booksDirectory = $this->checkCourseFilesAndBooksDirectory();
 
-		$zip = zip_open($this->data['Textbook']['archive']['tmp_name']);
+		$zip = zip_open($this->data['Book']['archive']['tmp_name']);
 		if(!$zip || is_int($zip)) {
 			die('That is not an archive file, dude. Aaron, change this error message to something more professional.');
 		}
 
-		$pathinfo = pathinfo($this->data['Textbook']['archive']['name']);
-		$textbook_slug = Inflector::slug($pathinfo['filename']);
+		$pathinfo = pathinfo($this->data['Book']['archive']['name']);
+		$book_slug = Inflector::slug($pathinfo['filename']);
 
-		if(!file_exists($textbooksDirectory . DS . $textbook_slug))
-			mkdir($textbooksDirectory . DS . $textbook_slug);
+		if(!file_exists($booksDirectory . DS . $book_slug))
+			mkdir($booksDirectory . DS . $book_slug);
 
 	    while ($zip_entry = zip_read($zip)) {
-		    $fp = fopen($textbooksDirectory . DS . $textbook_slug . DS . zip_entry_name($zip_entry), 'w');
+		    $fp = fopen($booksDirectory . DS . $book_slug . DS . zip_entry_name($zip_entry), 'w');
 		    if (zip_entry_open($zip, $zip_entry, 'r')) {
 				$buf = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
 				fwrite($fp,$buf);
@@ -103,7 +103,7 @@ class TextbooksController extends AppController {
 
 	    zip_close($zip);
 
-		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/textbooks/course:' . $this->viewVars['course']['web_path']);
+		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/books/course:' . $this->viewVars['course']['web_path']);
 	}
 
 	function delete() {
@@ -114,6 +114,6 @@ class TextbooksController extends AppController {
 	}
 
 	function afterSave() {
-		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/textbooks/course:' . $this->viewVars['course']['web_path']);
+		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/books/course:' . $this->viewVars['course']['web_path']);
 	}
 }

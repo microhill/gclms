@@ -1,11 +1,11 @@
 <?php
 class Chapter extends AppModel {
-    var $belongsTo = array('Textbook');
+    var $belongsTo = array('Book');
 
-	function getLastOrderInTextbook($textbookId) {
+	function getLastOrderInBook($bookId) {
 		$this->contain();
 		$order = $this->find(array(
-			'textbook_id' => $textbookId
+			'book_id' => $bookId
 		),array('order'),'Chapter.order DESC');
 		if(empty($order))
 			return 0;

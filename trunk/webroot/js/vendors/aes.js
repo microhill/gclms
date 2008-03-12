@@ -7,7 +7,7 @@
  *   returns byte-array encrypted value (16 bytes)
  *
  * http://www.movable-type.co.uk/scripts/AES.html
- * � 2005�2007 Chris Veness. Used with permission.
+ * (c) 2005-2007 Chris Veness. Used with permission.
  * Put into AES namespace by Aaron Shafovaloff.
  */
 

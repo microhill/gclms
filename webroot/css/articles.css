@@ -1,0 +1,16 @@
+.articles ul {
+	list-style: none;
+}
+
+	.articles ul li  {
+		margin-top: 8px;
+		margin-bottom: 8px;		
+	}
+
+	.articles ul a {
+		background-image: url(/img/icons/oxygen_refit/16x16/mimetypes/text-enriched.png);
+		background-repeat: no-repeat;
+		padding-left: 20px;
+		background-position: left center;
+		color: blue;
+	}

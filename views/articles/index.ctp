@@ -4,13 +4,14 @@ $html->css('articles', null, null, false);
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
-	'gclms'
+	'gclms',
+	'articles'
 ), false);
 
 echo $this->renderElement('left_column'); ?>
 	
 <div class="gclms-center-column">
-	<div class="gclms-content">	
+	<div class="gclms-content articles">	
 		<?= $this->renderElement('notifications'); ?>
 		<h1><? __('Articles') ?></h1>
 		<div id="gclms-menubars">

@@ -19,12 +19,50 @@ echo $this->renderElement('left_column'); ?>
 		<?= $this->renderElement('notifications'); ?>
 		<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/books"><? __('Back to Books') ?></a></div>
 		<h1><?= $book['Book']['title'] ?> </h1>
-		<p class="buttons">
-			<button id="addChapter" class="add" prompt:text="<? __('Enter the name of the chapter:') ?>"><? __('Add Chapter') ?></button>
-			<button id="renameChapter" class="rename" prompt:text="<? __('Enter the new name of the chapter:') ?>"><? __('Rename') ?></button>
-			<button id="deleteChapter" class="delete" confirm:text="<? __('Are you sure you want to delete this chapter?') ?>"><? __('Delete') ?></button>
-			<button id="editChapter" class="edit"><? __('Edit') ?></button>
-		</p>
+		<div id="gclms-menubar">
+			<? echo $this->renderElement('menubar',array('buttons' => array(
+				array(
+					'id' => 'addChapter',
+					'class' => 'add',
+					'label' => '<u>A</u>dd Chapter',
+					'accesskey' => 'a',
+					'strings' => array(
+						'prompt:text' => 'Enter the name of the chapter:'
+					)
+				),
+				array(
+					'id' => 'renameChapter',
+					'class' => 'rename',
+					'label' => '<u>R</u>ename Chapter',
+					'accesskey' => 'r',
+					'strings' => array(
+						'prompt:text' => 'Enter the new name of the chapter:'
+					),
+					'disabled' => 'disabled'
+				),
+				array(
+					'id' => 'deleteChapter',
+					'class' => 'delete',
+					'label' => '<u>D</u>elete Chapter',
+					'accesskey' => 'd',
+					'strings' => array(
+						'confirm:text' => 'Are you sure you want to delete this chapter?'
+					),
+					'disabled' => 'disabled'
+				),
+				array(
+					'id' => 'editChapter',
+					'class' => 'edit',
+					'label' => '<u>E</u>dit Chapter',
+					'accesskey' => 'e',
+					'strings' => array(
+						'confirm:text' => 'Are you sure you want to delete this chapter?'
+					),
+					'disabled' => 'disabled'
+				)
+			)));
+			?>
+		</div>
 		<?
 		echo '<ul id="chapters" class="chapters" book:id="' . $book['Book']['id'] . '">';
 		foreach($chapters as $chapter) {

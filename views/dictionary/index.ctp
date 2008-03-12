@@ -12,10 +12,10 @@ $javascript->link(array(
 echo $this->renderElement('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<h1>Course Dictionary</h1>
+		<?= $this->renderElement('notifications'); ?>
+		<h1><? __('Dictionary') ?></h1>
 		<div id="gclms-menubars">
-			<?
-			echo $this->renderElement('menubar',array('buttons' => array(
+			<? echo $this->renderElement('menubar',array('buttons' => array(
 				array(
 					'id' => 'addDictionaryTerm',
 					'class' => 'add',
@@ -27,7 +27,7 @@ echo $this->renderElement('left_column'); ?>
 		</div>
 		<? foreach($this->data as $dictionary_term): ?>
 			<h2>
-				<a name="<?= Inflector::variable($dictionary_term['DictionaryTerm']['term']) ?>" /><?= $dictionary_term['DictionaryTerm']['term'] ?>
+				<a name="<?= Inflector::camelize($dictionary_term['DictionaryTerm']['term']) ?>" /><?= $dictionary_term['DictionaryTerm']['term'] ?>
 				<a class="gclms-edit" href="<?= $groupAndCoursePath ?>/dictionary/edit/<?= $dictionary_term['DictionaryTerm']['id'] ?>"><? __('Edit') ?></a>
 			</h2>
 			<div class="description">

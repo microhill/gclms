@@ -59,6 +59,8 @@ class FilesController extends AppController {
 		ksort($files);
 
 		$this->set(compact('files'));
+		
+		$this->set('title',__('Media Files',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
 	}
 
 	function afterSave() {

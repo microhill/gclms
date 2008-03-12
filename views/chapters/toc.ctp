@@ -1,4 +1,6 @@
 <?
+$html->css('chapters', null, null, false);
+
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
@@ -8,7 +10,6 @@ $javascript->link(array(
 	'vendors/scriptaculous1.8.1/dragdrop',
 	'edit_chapters'
 ), false);
-
 
 echo $this->renderElement('left_column'); ?>
 

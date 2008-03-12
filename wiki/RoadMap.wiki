@@ -6,8 +6,7 @@
   * Render in framed environment (issue 62) (issue 81)
   * Unexpected behavior when decreasing indent of node (issue 63)
  * Integration of newest TinyMCE tool (issue 8)
-  * Popup linker/embedder of links/images/media (issue 11) 
-  * English spellchecker (issue 5)
+  * Popup linker/embedder of links/images/media (issue 11)   
  * Basic export-to-ODT functionality (issue 2)
   * Shrink large images (issue 74)
   * Table of contents / "bookmarks" for course structure (issue 75)
@@ -54,11 +53,13 @@
  * *Authorizations related* (issue 71) (issue 72) (issue 73) 
  * *Evaluations related* (issue 47) 
  * _*Life Notebook related*_ (issue 61) (issue 4)
+=e-commerce integration (low priority)=  
 
 =Miscellaneous / Unsorted=
+ * Add Tiny MCE English spellchecker (issue 5)
  * Ability to delete media files (issue 77)
  * Fix drag & drop "ghosting" error in IE (issue 79)
  * Ability to pick up where one last left off in a course (issue 80)
 
-=e-commerce integration (low priority)=  
+
  * E-commerce integration (issue 9)

@@ -14,7 +14,7 @@
   * Footer on every page after ToC (issue 76)
   * Capable to Print in English
  * Enable Essay Question Type (needed to support Course migration from IBS 2.0)(issue 82) 
- * ??? what is the plan with Flash/Drag & Drop questions for now ???
+ * ??? Aaron - what is the plan with IBS 2.0 "Flash/Drag & Drop" Questions for now -- as in are you DEVELOPING any code to support their migration or documenting a PROCESS for Caleb to follow???
 
 =Milestone 2 - Due March 21 =
 

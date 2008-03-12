@@ -16,6 +16,11 @@
 			padding-bottom: 1px;
 			font-size: 10em; /* Part 2 of 2 of IE fix */
 		}
+		
+	#gclms-nodes > ul {
+		margin-left: 0px;
+		padding-left: 0px;
+	}
 
 	#gclms-nodes a {
 		color: black;

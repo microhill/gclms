@@ -1,7 +1,7 @@
 <?
 class PagesController extends AppController {
     var $uses = array('Node','Question','Textarea');
-	var $helpers = array('Scripturizer','Dictionary','Notebook','License','Form','MyForm');
+	var $helpers = array('Scripturizer','Dictionary','Notebook','License','Form','MyForm','Javascript');
     var $itemName = 'Node';
     var $components = array('Notifications');
 
@@ -32,16 +32,6 @@ class PagesController extends AppController {
 		//$this->Breadcrumbs->addCrumb($node['Node']['title'], $this->viewVars['groupAndCoursePath'] . '/pages/view/' . $this->data['Node']['id']);
 		$this->set('title',$node['Node']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
 	}
-
-	function add_textarea($textarea_id = '#{id}') {
-		$this->set('textarea_id',$textarea_id);
-		$this->render('textarea','ajax');
-	}
-
-    function add_question($question_id = '#{id}') {
-		$this->set('question_id',$question_id);
-		$this->render('question','ajax');
-    }
 
     function add_multiple_choice_answer($id) {
 		$this->set('question_id',$id);

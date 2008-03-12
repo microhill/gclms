@@ -86,3 +86,9 @@ $javascript->link(array(
 	echo $form->end();
 	?>
 </div>
+<script>
+var tmpTextareaView = <?= $javascript->object($this->renderElement('textarea',array('textarea_id' => '#{id}'))); ?>;
+var tmpQuestionView = <?= $javascript->object($this->renderElement('question',array('question_id' => '#{id}'))); ?>;
+var tmpMultipleChoiceAnswerView = <?= $javascript->object($this->renderElement('answer_multiple_choice',array('question_id' => '#{id}'))); ?>;
+var tmpMatchingAnswerView = <?= $javascript->object($this->renderElement('answer_matching',array('question_id' => '#{id}'))); ?>;
+</script>

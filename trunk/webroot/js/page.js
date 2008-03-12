@@ -282,11 +282,13 @@ GCLMS.PageController = {
 	},
 	
 	loadDictionaryTerm: function(event) {
-		top.Ext.getCmp('dictionaryViewport').expand();
+		alert(1);
+		/* top.Ext.getCmp('dictionaryViewport').expand();
 		if (!top.$('dictionaryViewportContent').contentDocument.body.innerHTML) {
 			top.$('dictionaryViewportContent').src = this.getAttribute('href');
 		}
-		event.stop();
+		event.stop(); */
+		return true;
 	},
 	
 	loadNotebook: function() {
@@ -333,8 +335,10 @@ GCLMS.Triggers.update({
 		'button.checkAnswerButton:click' : GCLMS.PageController.checkFillInTheBlankQuestion
 	},
 	'.trueFalse button:click' : GCLMS.PageController.checkTrueFalseQuestion,
-	'a[href*="/bible_kjv/"]:click': GCLMS.PageController.loadBibleVerse,
-	'a[href*="/chapters/"]:click': GCLMS.PageController.loadChapter,
-	'a[href*="/articles/"]:click': GCLMS.PageController.loadArticle,
-	'a[href*="/dictionary/"]:click': GCLMS.PageController.loadDictionaryTerm
+	'div.gclms-framed' : {
+		'a[href*="/bible_kjv/"]:click': GCLMS.PageController.loadBibleVerse,
+		'a[href*="/chapters/"]:click': GCLMS.PageController.loadChapter,
+		'a[href*="/articles/"]:click': GCLMS.PageController.loadArticle,
+		'a[href*="/dictionary/"]:click': GCLMS.PageController.loadDictionaryTerm	
+	}
 });

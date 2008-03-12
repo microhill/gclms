@@ -51,7 +51,7 @@ echo $this->renderElement('no_column_background');
 			if(isset($nodeItem['content'])) {
 				$nodeItem['content'] = $scripturizer->linkify($nodeItem['content']);
 				$nodeItem['content'] = $notebook->linkify($nodeItem['content'],$classUri);
-				$nodeItem['content'] = $dictionary->linkify($nodeItem['content'],$groupAndCoursePath . '/dictionary/panel',$dictionary_terms);
+				$nodeItem['content'] = $dictionary->linkify($nodeItem['content'],$groupAndCoursePath . '/dictionary',$dictionary_terms);
 				echo $nodeItem['content'];
 			} else
 				echo $this->renderElement('page_question',array('question' => $nodeItem));

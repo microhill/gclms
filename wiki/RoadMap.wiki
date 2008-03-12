@@ -54,6 +54,7 @@
  * *Evaluations related* (issue 47) 
  * _*Life Notebook related*_ (issue 61) (issue 4)
 
-=Miscellaneous=
+=Miscellaneous / Unsorted=
  * Ability to delete media files (issue 77)
  * Fix drag & drop "ghosting" error in IE (issue 79)
+ * Ability to pick up where one last left off in a course (issue 80)

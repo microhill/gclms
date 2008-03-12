@@ -13,6 +13,7 @@
   * Table of contents / "bookmarks" for course structure (issue 75)
   * Footer on every page after ToC (issue 76)
   * Capable to Print in English
+ * Enable Essay Question Type (needed to support Course migration from IBS 2.0)
 
 =Milestone 2 - Due March 21 =
 

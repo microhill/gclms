@@ -5,17 +5,19 @@
  * Overhaul course authoring tool / Restructure course to Node model (issue 1)
   * Render in framed environment (issue 62) (issue 81)
   * Unexpected behavior when decreasing indent of node (issue 63)
-  * Page authoring tool needs ability to add essay questions (issue 82)
+  * Page authoring tool needs ability to add essay questions (needed to support Course migration from IBS 2.0)(issue 82) 
+  * ??? Aaron - what is the plan with IBS 2.0 "Flash/Drag & Drop" Questions for now -- as in are you DEVELOPING any code to support their migration or documenting a PROCESS for Caleb to follow???
+
  * Integration of newest TinyMCE tool (issue 8)
   * Popup linker/embedder of links/images/media (issue 11)   
+
  * Basic export-to-ODT functionality (issue 2)
   * Shrink large images (issue 74)
   * Table of contents / "bookmarks" for course structure (issue 75)
   * Footer on every page after ToC (issue 76)
   * Capable to Print in English
- * Enable Essay Question Type (needed to support Course migration from IBS 2.0)(issue 82) 
- * ??? Aaron - what is the plan with IBS 2.0 "Flash/Drag & Drop" Questions for now -- as in are you DEVELOPING any code to support their migration or documenting a PROCESS for Caleb to follow???
-
+ 
+ 
 =Milestone 2 - Due March 21 =
 
  * Translation capability (asserting no PHP coding required)

@@ -16,9 +16,8 @@
 =Milestone 2 - Due March 21 =
 
  * Translation capability (asserting no PHP coding required)
- * E-commerce integration (issue 9)
- * Student registration (issue 13)
-
+ * Enable non-English Print capability
+ 
 =Milestone 3 - Due May 2=
 ==General Functions==
  * *Introductory Material* (issue 65)
@@ -59,3 +58,6 @@
  * Ability to delete media files (issue 77)
  * Fix drag & drop "ghosting" error in IE (issue 79)
  * Ability to pick up where one last left off in a course (issue 80)
+
+=e-commerce integration (low priority)=  
+ * E-commerce integration (issue 9)

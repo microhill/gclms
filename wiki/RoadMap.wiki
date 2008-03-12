@@ -15,6 +15,7 @@
 
 =Milestone 2 - Due March 21 =
 
+ * Translation capability (asserting no PHP coding required)
  * E-commerce integration (issue 9)
  * Student registration (issue 13)
 

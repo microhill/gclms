@@ -127,14 +127,14 @@ GCLMS.ContentController = {
 		GCLMS.ContentController.addNode(title,'page');
 	},
 	addNode: function(title,type) {
-		var tmpNodeId = UUID.generate();
+		var id = UUID.generate();
 	
 		var ul = GCLMS.ContentController.selectListForNodeAddition();
 		var parentNode = ul.up('li.gclms-node');
 		var parentNodeId = parentNode ? parentNode.getAttribute('gclms:node-id') : 0;
 			
 		ul.insert(GCLMS.Views.get('node').interpolate({
-			id: tmpNodeId,
+			id: id,
 			title: title,
 			typeClass: 'gclms-' + type,
 			randomListId: UUID.generate()
@@ -142,11 +142,11 @@ GCLMS.ContentController = {
 	
 		GCLMS.Node.add({
 			parentNodeId: parentNodeId,
+			id: id,
 			title: title,
 			type: type == 'label' ? 1 : 0,
 			callback: function(request) {
-				$(tmpNodeId).setAttribute('gclms:node-id',request.responseText);
-				$(tmpNodeId).observeRules(GCLMS.Triggers.get('#gclms-nodes').li);
+				$(id).observeRules(GCLMS.Triggers.get('#gclms-nodes').li);
 				GCLMS.ContentController.createSortables();
 		}});
 		
@@ -393,6 +393,7 @@ GCLMS.Node = {
 		var request = new Ajax.Request(this.ajaxUrl + 'add',{
 			method: 'post',
 			parameters: {
+				'data[Node][id]': options.id,
 				'data[Node][parent_node_id]': options.parentNodeId,
 				'data[Node][title]': options.title,
 				'data[Node][type]': options.type

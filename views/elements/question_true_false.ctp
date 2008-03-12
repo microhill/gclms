@@ -7,7 +7,7 @@
 	question:defaultIncorrectMessageFalse="<? __('Incorrect. The answer is false.') ?>"
 	correctAnswer:explanation="<? @$question['exaplanation'] ?>"
 	>
-	<h3><?= $question['title'] ?></h3>
+	<h2><?= $question['title'] ?></h2>
 	<p>
 		<button answer:integer="1"><? __('True') ?></button> <button answer:integer="0"><? __('False') ?></button>
 	</p>

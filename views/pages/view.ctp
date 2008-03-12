@@ -25,7 +25,7 @@ echo $this->renderElement('no_column_background');
 		?>
 	
 		<div class="gclms-option-buttons">
-			<a class="gclms-edit-page" href="<?= $groupAndCoursePath ?>/pages/edit/<?= $node['Node']['id'] ?>">Edit page</a>
+			<a class="gclms-edit-page" href="<?= $groupAndCoursePath ?>/pages/edit/<?= $node['Node']['id'] ?>">Edit</a>
 			<a class="gclms-view-with-frames" href="<?= $groupAndCoursePath ?>/classroom/page/<?= $node['Node']['id'] ?>">View with frames</a>
 		</div>
 		

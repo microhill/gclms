@@ -1,6 +1,6 @@
 <?
 class ClassroomController extends AppController {
-    var $uses = array('Course','Group','Lesson','Unit','FacilitatedClass','Page','ClassEnrollee','Announcement','DictionaryTerm','Article','DictionaryTerm','Textbook');
+    var $uses = array('Course','Group','Lesson','Unit','FacilitatedClass','Page','ClassEnrollee','Announcement','DictionaryTerm','Article','DictionaryTerm','Book');
 	var $helpers = array('Scripturizer','Dictionary','Notebook','License');
 	var $components = array('MyAuth');
 
@@ -38,8 +38,8 @@ class ClassroomController extends AppController {
 		}
 		$this->set(compact('page'));
 		
-		$textbook_count = $this->Textbook->findCount(array('course_id'=>$this->viewVars['course']['id']),0);
-		$this->set('textbook_count',$textbook_count);
+		$book_count = $this->Book->findCount(array('course_id'=>$this->viewVars['course']['id']),0);
+		$this->set('book_count',$book_count);
 		
 		$article_count = $this->Article->findCount(array('course_id'=>$this->viewVars['course']['id']),0);
 		$this->set('article_count',$article_count);

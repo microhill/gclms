@@ -571,7 +571,7 @@ a.gclms-group-web-address {
 		background-image: url(/img/icons/oxygen/32x32/actions/file-export.png);
 	}
 
-	.gclms-left-column-menu .textbooks a {
+	.gclms-left-column-menu .books a {
 		background-image: url(/img/book-32.png);
 	}
 
@@ -611,7 +611,7 @@ a.gclms-group-web-address {
 		background-image: url(/img/dictionary-22.png);
 	}
 
-	.x-panel img.textbooks {
+	.x-panel img.books {
 		background-image: url(/img/books-22.png);
 	}
 
@@ -1195,4 +1195,32 @@ img.gclms-tooltip-button {
 	
 	.gclms-menubar button.add {
 		background-image: url(/img/icons/add-16.png);
+	}
+
+	.gclms-menubar button.delete {
+		background-image: url(/img/icons/oxygen/16x16/actions/edit-delete.png);
+	}
+	
+	.gclms-menubar button.increaseIndent {
+		background-image: url(/img/icons/oxygen/16x16/actions/format-indent-more.png);
+	}
+	
+	.gclms-menubar button.decreaseIndent {
+		background-image: url(/img/icons/oxygen/16x16/actions/format-indent-less.png);
+	}
+	
+	.gclms-menubar button.label {
+		background-image: url(/img/icons/oxygen/16x16/mimetypes/application-x-font-otf-modified.png);
+	}
+	
+	.gclms-menubar button.page {
+		background-image: url(/img/icons/oxygen/16x16/mimetypes/application-text.png);
+	}
+	
+	.gclms-menubar button.edit {
+		background-image: url(/img/icons/oxygen/16x16/apps/kate.png);
+	}
+	
+	.gclms-menubar button.rename {
+		background-image: url(/img/icons/crystal_clear/16x16/actions/editclear.png);
 	}

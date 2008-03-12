@@ -10,7 +10,7 @@
 uses('model' . DS . 'connection_manager');
 
 /**
- * Add/Edit/Del Chapters from a Course Textbook selenium test case.
+ * Add/Edit/Del Chapters from a Course Book selenium test case.
  *
  * @author     Aaron Shafovaloff
  * @version    1.0 Dec 21, 2007
@@ -30,9 +30,9 @@ class ChaptersTest extends SeleniumTestCase {
 		
 		$this->clickAndWait("link=Boyce College");
 		$this->clickAndWait("link=Systematic Theology");
-		$this->clickAndWait("link=Edit Textbooks");
+		$this->clickAndWait("link=Edit Books");
 		$this->click("link=Desiring God");
-		$this->clickAndWait('editTextbook');
+		$this->clickAndWait('editBook');
 		
 		/* Add chapters */
 		$this->assertBadTextNotPresent();
@@ -41,10 +41,10 @@ class ChaptersTest extends SeleniumTestCase {
 		$this->addChapter('Appendix I');
     	
     	/* Edit chapters */
-		$this->open('/boyce-college/systematic-theology/textbooks');
+		$this->open('/boyce-college/systematic-theology/books');
 		$this->assertBadTextNotPresent();
 		$this->click('link=Desiring God');
-		$this->clickAndWait('editTextbook');
+		$this->clickAndWait('editBook');
 		$this->assertBadTextNotPresent();
 		$this->click('link=Christian Hedonism');
 		$this->clickAndWait('editChapter');

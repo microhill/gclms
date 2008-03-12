@@ -1,6 +1,6 @@
 <?
 class CoursesController extends AppController {
-    var $uses = array('Course','Group','FacilitatedClass','Node','ClassEnrollee','Announcement','DictionaryTerm','Article','DictionaryTerm','Textbook','Node');
+    var $uses = array('Course','Group','FacilitatedClass','Node','ClassEnrollee','Announcement','DictionaryTerm','Article','DictionaryTerm','Book','Node');
 	var $helpers = array('Paginator','MyPaginator','Time','MyTime','Scripturizer','Dictionary','Notebook','License');
 	var $itemName = 'Course';
 
@@ -43,10 +43,10 @@ class CoursesController extends AppController {
 		$nodes = $this->Node->findAll(array('Node.course_id' => $this->viewVars['course']['id']),null,'Node.order ASC');
 		$this->set(compact('nodes'));		
 
-		//Textbooks
-		$this->Textbook->contain('Chapter');
-		$textbooks = $this->Textbook->findAllByCourseId($this->viewVars['course']['id']);
-		$this->set(compact('textbooks'));
+		//Books
+		$this->Book->contain('Chapter');
+		$books = $this->Book->findAllByCourseId($this->viewVars['course']['id']);
+		$this->set(compact('books'));
 
 		//Dictionary
 		$this->DictionaryTerm->contain();

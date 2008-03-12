@@ -6,7 +6,7 @@ $menu = array(
 	//If group admin?
 	array('label' => __('Course Content', true), 'class' => 'course-content', 'active' => $this->name == 'Content', 'url' => $groupAndCoursePath . '/content'),
 	array('label' => __('Media Files', true), 'class' => 'Files', 'active' => $this->name == 'Files', 'url' => $groupAndCoursePath . '/files'),
-	array('label' => __('Textbooks', true), 'class' => 'textbooks', 'active' => $this->name == 'Textbooks' || $this->name == 'Chapters', 'url' => $groupAndCoursePath . '/textbooks'),
+	array('label' => __('Books', true), 'class' => 'books', 'active' => $this->name == 'Books' || $this->name == 'Chapters', 'url' => $groupAndCoursePath . '/books'),
 	array('label' => __('Articles', true), 'class' => 'articles', 'active' => $this->name == 'Articles', 'url' => $groupAndCoursePath . '/articles'),
 	array('label' => __('Dictionary', true), 'class' => 'dictionary', 'active' => $this->name == 'Dictionary', 'url' => $groupAndCoursePath . '/dictionary'),
 	array('label' => __('Configure Course', true), 'class' => 'Configuration', 'active' => $this->name == 'Courses' && $this->action == 'edit', 'url' => $groupAndCoursePath . '/configuration'),

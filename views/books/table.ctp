@@ -1,6 +1,6 @@
 <div id="table">
 	<?
-	$myPaginator->options(array('url' => '/' . $group['web_path'] . '/textbooks/course:' . $course['web_path']));
+	$myPaginator->options(array('url' => '/' . $group['web_path'] . '/books/course:' . $course['web_path']));
 
 	$headers = array(
 		$myPaginator->sort(__('Title',true),'Book.title')
@@ -18,7 +18,7 @@
 	echo $this->renderElement('recordset',array(
 		'headers' => $headers,
 		'fields' => $fields,
-		'heading' => 'Textbooks',
+		'heading' => 'Books',
 		'data' => $data,
 		'addButtonUrl' => '/' . $group['web_path'] . '/books/add/course:' . $course['web_path']
 	));

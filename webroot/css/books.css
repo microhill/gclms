@@ -1,4 +1,4 @@
-#textbooks {
+#books {
 	min-height:8px;
 	margin: 0;
 	padding-right: 0;
@@ -8,19 +8,19 @@
 	padding-left: 16px;
 }
 
-	#textbooks li {
+	#books li {
 		font-size: 1.05em;
 		padding-top: 1px;
 		padding-bottom: 1px;
 	}
 
-		#textbooks a {
+		#books a {
 			color: black;
 			text-decoration: none;
 			padding: 1px;
 		}
 
-		#textbooks a.selected {
+		#books a.selected {
 			background-color: #3399ff;
 			color: white;
 		}

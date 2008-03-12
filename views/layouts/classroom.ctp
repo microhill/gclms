@@ -15,7 +15,7 @@
 	$html->css('mp3_player', null, null, false);
 	$html->css('lesson_navigation', null, null, false);
 	$html->css('lessons', null, null, false);
-	$html->css('textbooks', null, null, false);
+	$html->css('books', null, null, false);
 	$html->css('chapters', null, null, false);
 	$html->css('files', null, null, false);
 	$html->css('edit_page', null, null, false);
@@ -51,8 +51,8 @@
 		
 		<iframe id="lessonViewportContent" name="courseContent" src="<?= $groupAndCoursePath . '/classroom/page/' . $page['Page']['id'] ?>" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 			
-		<? if($textbook_count): ?>
-			<iframe id="textbooksViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
+		<? if($book_count): ?>
+			<iframe id="booksViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif; ?>
 	
 		<? if($article_count): ?>
@@ -100,15 +100,15 @@
             listeners: {beforeexpand: GCLMS.Triggers.get('#bibleViewport:expand')}
          });
          
-         if($('textbooksViewportContent'))
+         if($('booksViewportContent'))
 	         sidebarItems.push({
-	            title:'Textbooks',
-	            id: 'textbooksViewport',
-	            contentEl: 'textbooksViewportContent',
+	            title:'Books',
+	            id: 'booksViewport',
+	            contentEl: 'booksViewportContent',
 	            border:false,
 	            autoScroll:false,
-	            iconCls:'textbooks',
-	            listeners: {beforeexpand: GCLMS.Triggers.get('#textbooksViewport:expand')}
+	            iconCls:'books',
+	            listeners: {beforeexpand: GCLMS.Triggers.get('#booksViewport:expand')}
 			});
 			
          if($('articlesViewportContent'))

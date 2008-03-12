@@ -18,11 +18,11 @@ echo $this->renderElement('no_column_background'); ?>
 	?>
 	
 	<? if(!empty($book)): ?>	
-	<h2>Textbooks</h2>	
-	<div id="textbooks">
+	<h2>Books</h2>	
+	<div id="books">
 		<?
-		foreach($textbooks as $book) {
-			echo '<h3>' . $book['Textbook']['title'] . '</h3>';
+		foreach($books as $book) {
+			echo '<h3>' . $book['Book']['title'] . '</h3>';
 			echo '<ul>';
 			foreach($book['Chapter'] as $chapter) {
 				echo '<li><a href="' . $groupAndCoursePath . '/chapters/view/' . $chapter['id'] . '">' . $chapter['title'] . '</a></li>';

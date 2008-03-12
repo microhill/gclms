@@ -10,11 +10,11 @@ $javascript->link(array(
 echo $this->renderElement('no_column_background'); ?>
 <div class="gclms-content">
 	<?= $this->renderElement('notifications'); ?>
-	<div class="gclms-step-back"><a href="<?= $groupAndCoursePath . '/chapters/toc/' . $this->data['Chapter']['textbook_id'] ?>"><? __('Cancel and go back') ?></a></div>
+	<div class="gclms-step-back"><a href="<?= $groupAndCoursePath . '/chapters/toc/' . $this->data['Chapter']['book_id'] ?>"><? __('Cancel and go back') ?></a></div>
 	<h1><?= __('Edit Chapter') ?></h1>
 	<?
 	echo $form->create('Chapter',array('url'=> $groupAndCoursePath . '/chapters/edit/' . $this->data['Chapter']['id']));
-	echo $form->hidden('textbook_id');
+	echo $form->hidden('book_id');
 
 	echo $form->input('title',array(
 		'label' =>  __('Title', true),

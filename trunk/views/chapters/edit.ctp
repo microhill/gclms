@@ -2,8 +2,9 @@
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
+	'vendors/tinymce3.0.4/tiny_mce',
 	'gclms',
-	'edit_chapter.js'
+	'edit_chapter'
 ), false);
 
 echo $this->renderElement('no_column_background'); ?>

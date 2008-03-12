@@ -1,4 +1,12 @@
 <?
+$javascript->link(array(
+	'vendors/prototype',
+	'prototype_extensions',
+	'vendors/tinymce3.0.4/tiny_mce',
+	'gclms',
+	'edit_dictionary'
+), false);
+
 echo $form->input('term',array(
 	'label' =>  __('Term', true),
 	'between' => '<br/>',

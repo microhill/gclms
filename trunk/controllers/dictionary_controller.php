@@ -1,10 +1,7 @@
 <?
 class DictionaryController extends AppController {
     var $uses = array('DictionaryTerm');
-	var $helpers = array('Paginator','MyPaginator');
 	var $itemName = 'Dictionary Term';
-	var $paginate = array('order' => 'term');
-	var $components = array('MyAuth');
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
@@ -12,27 +9,9 @@ class DictionaryController extends AppController {
 		parent::beforeRender();
 	}
 	
-	function panel(){
-		$this->DictionaryTerm->contain();
-		$dictionary_terms = $this->DictionaryTerm->findAllByCourseId(array('course_id'=>$this->viewVars['course']['id']),null,'DictionaryTerm.term ASC');
-		$this->set('dictionary_terms',$dictionary_terms);
-		$this->render('show','classroom_panel');
-		exit;
-	}
-	
 	function index() {
-		if($this->params['isAjax'] && empty($this->passedArgs['page'])) {
-			$this->DictionaryTerm->contain();
-			$dictionary_terms = $this->DictionaryTerm->findAllByCourseId(array('course_id'=>$this->viewVars['course']['id']),null,'DictionaryTerm.term ASC');
-			$this->set('dictionary_terms',$dictionary_terms);
-			$this->render('show','blank');
-			exit;
-		}
-
-	    $this->table();
-
-	    if($this->RequestHandler->isAjax())
-	    	$this->render('table','ajax');
+		$this->data = $this->DictionaryTerm->findAllByCourseId(array('course_id'=>$this->viewVars['course']['id']),null,'DictionaryTerm.term ASC');
+		$this->set('title',__('Dictionary',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
 	}
 
 	function table() {

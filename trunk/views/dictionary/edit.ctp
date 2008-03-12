@@ -1,12 +1,4 @@
-<?
-$javascript->link(array(
-	'vendors/prototype',
-	'prototype_extensions',
-	'gclms',
-	'edit_dictionary'
-), false);
-
-echo $this->renderElement('no_column_background'); ?>
+<?= $this->renderElement('no_column_background'); ?>
 
 <div class="gclms-content">
 	<?= $this->renderElement('notifications'); ?>

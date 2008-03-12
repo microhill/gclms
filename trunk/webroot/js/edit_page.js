@@ -25,7 +25,7 @@ GCLMS.PagesController = {
 	},
 	
 	insertTextarea: function(div) {
-		test = div.insert({after: GCLMS.Views.textarea.interpolate({id: UUID.generate()})});
+		test = div.insert({after: GCLMS.Views.get('textarea').interpolate({id: UUID.generate()})});
 		div.next('div.gclms-page-item').observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']);
 		GCLMS.PagesController.configureMoveUpAndMoveDownButtons();
 		var windowHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight;
@@ -46,7 +46,7 @@ GCLMS.PagesController = {
 	},
 	
 	insertQuestion: function(div) {
-		test = div.insert({after: GCLMS.Views.question.interpolate({id: UUID.generate()})});
+		test = div.insert({after: GCLMS.Views.get('question').interpolate({id: UUID.generate()})});
 		nextDiv = div.next('div.gclms-page-item');
 		nextDiv.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']);
 		GCLMS.PagesController.configureMoveUpAndMoveDownButtons();
@@ -57,25 +57,12 @@ GCLMS.PagesController = {
 	},
 	
 	loadTextareas: function() {
-		$$('button.insertTextarea').each(function(node){node.setAttribute('disabled','disabled')});
-		if(!GCLMS.Views.textarea) {
-			new Ajax.Request('/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/pages/add_textarea',{
-				onComplete: function(request) {
-					GCLMS.Views.textarea = request.responseText;
-					$$('button.insertTextarea').each(function(node){node.removeAttribute('disabled')});
-				}
-			});
-		}
-
-		$$('button.insertQuestion').each(function(node){node.setAttribute('disabled','disabled')});
-		if(!GCLMS.Views.question) {
-			new Ajax.Request('/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/pages/add_question',{
-				onComplete: function(request) {
-					GCLMS.Views.question = request.responseText;
-					$$('button.insertQuestion').each(function(node){node.removeAttribute('disabled')});
-				}
-			});
-		}
+		GCLMS.Views.update({
+			textarea: tmpTextareaView,
+			question: tmpQuestionView,
+			multipleChoiceAnswer: tmpMultipleChoiceAnswerView,
+			matchingAnswer: tmpMatchingAnswerView
+		});
 	},
 	
 	submitForm: function(event) {
@@ -267,40 +254,29 @@ GCLMS.PagesController = {
 	addMultipleChoiceAnswer: function(event) {
 		div = this.up('div');
 
-		div.select('.loadingAnswerIndicator').first().displayAsInline();
-		new Ajax.Request('/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/pages/add_multiple_choice_answer/' + div.getAttribute('question:id'), {
-			div : div,
-			onComplete:function(request) {
-				answersDiv = this.div.select('tr.multipleChoice .answers').first();
-				answersDiv.up('td').select('.loadingAnswerIndicator').first().hide();
-				answersDiv.insert(request.responseText);
-				answersDiv.displayAsBlock();
-				lastTable = answersDiv.select('table').last();
-				lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']['tr.multipleChoice,tr.matching']);
-				lastTable.parentNode.displayAsBlock();
-				this.select('input[type="text"]').first().focus();
-			}
-		})
+		answersDiv = div.select('tr.multipleChoice .answers').first();
+		answersDiv.insert(GCLMS.Views.get('multipleChoiceAnswer'));
+		answersDiv.displayAsBlock();
+		lastTable = answersDiv.select('table').last();
+		lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']['tr.multipleChoice,tr.matching']);
+		lastTable.parentNode.displayAsBlock();		
 		event.stop();
+
+		//this.select('input[type="text"]').first().focus();
 	},
 	
 	addMatchingAnswer: function(event) {
 		div = this.up('div');
-
-		div.select('.loadingAnswerIndicator').first().displayAsInline();
-		new Ajax.Request('/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/pages/add_matching_answer/' + div.getAttribute('question:id'), {
-			div : div,
-			onComplete:function(request) {
-				answersDiv = this.div.select('tr.matching .answers').first();
-				answersDiv.up('td').select('.loadingAnswerIndicator').first().hide();
-				answersDiv.insert(request.responseText);
-				answersDiv.displayAsBlock();
-				lastTable = answersDiv.select('table').last();
-				lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']['tr.multipleChoice,tr.matching']);
-				lastTable.parentNode.displayAsBlock();
-			}
-		})
+		
+		answersDiv = div.select('tr.matching .answers').first();
+		answersDiv.insert(GCLMS.Views.get('matchingAnswer'));
+		answersDiv.displayAsBlock();
+		lastTable = answersDiv.select('table').last();
+		lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']['tr.multipleChoice,tr.matching']);
+		lastTable.parentNode.displayAsBlock();
 		event.stop();
+		
+		//this.select('input[type="text"]').first().focus();
 	}
 }
 

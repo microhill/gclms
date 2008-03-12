@@ -5,6 +5,7 @@
  * Overhaul course authoring tool / Restructure course to Node model (issue 1)
   * Render in framed environment (issue 62) (issue 81)
   * Unexpected behavior when decreasing indent of node (issue 63)
+  * Page authoring tool needs ability to add essay questions (issue 82)
  * Integration of newest TinyMCE tool (issue 8)
   * Popup linker/embedder of links/images/media (issue 11)   
  * Basic export-to-ODT functionality (issue 2)
@@ -60,6 +61,4 @@
  * Ability to delete media files (issue 77)
  * Fix drag & drop "ghosting" error in IE (issue 79)
  * Ability to pick up where one last left off in a course (issue 80)
-
-
  * E-commerce integration (issue 9)

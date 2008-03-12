@@ -1,6 +1,6 @@
 #summary Development plan
 
-=Milestone 1 - Due March 7=
+=Milestone 1 - Due March 7 ... Revised Date =
 
  * Overhaul course authoring tool / Restructure course to Node model (issue 1)
   * Render in framed environment (issue 62) (issue 81)
@@ -12,11 +12,12 @@
   * Shrink large images (issue 74)
   * Table of contents / "bookmarks" for course structure (issue 75)
   * Footer on every page after ToC (issue 76)
+  * Capable to Print in English
 
 =Milestone 2 - Due March 21 =
 
  * Translation capability (asserting no PHP coding required)
- * Enable non-English Print capability
+ * Capable to Print in non-English (Chinese and Arabic) 
  
 =Milestone 3 - Due May 2=
 ==General Functions==

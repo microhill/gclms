@@ -3,7 +3,7 @@
 =Milestone 1 - Due March 7=
 
  * Overhaul course authoring tool / Restructure course to Node model (issue 1)
-  * Render in framed environment (issue 62)
+  * Render in framed environment (issue 62) (issue 81)
   * Unexpected behavior when decreasing indent of node (issue 63)
  * Integration of newest TinyMCE tool (issue 8)
   * Popup linker/embedder of links/images/media (issue 11) 

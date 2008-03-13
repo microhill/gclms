@@ -14,13 +14,13 @@ if(empty($textarea_id) && !empty($textarea['id']))
 		<tbody>
 			<tr>
 				<th>
-					<p class="left">
+					<div class="left">
 						<button class="deleteTextarea delete" confirm:text="<? __('Are you sure you want to delete this content?') ?>">
 							<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" />
 						</button>
-					</p>
+					</div>
 
-					<p class="right">
+					<div class="right">
 						<button class="moveUp">
 							<img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" />
 						</button>
@@ -28,7 +28,7 @@ if(empty($textarea_id) && !empty($textarea['id']))
 						<button class="moveDown">
 							<img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" />
 						</button>
-					</p>
+					</div>
 				</th>
 			</tr>
 			<tr>

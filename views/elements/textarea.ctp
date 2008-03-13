@@ -16,17 +16,17 @@ if(empty($textarea_id) && !empty($textarea['id']))
 				<th>
 					<p class="left">
 						<button class="deleteTextarea delete" confirm:text="<? __('Are you sure you want to delete this content?') ?>">
-							<? __('Delete Content') ?>
+							<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" />
 						</button>
 					</p>
 
 					<p class="right">
 						<button class="moveUp">
-							<? __('Move up') ?>
+							<img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" />
 						</button>
 
 						<button class="moveDown">
-							<? __('Move down') ?>
+							<img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" />
 						</button>
 					</p>
 				</th>

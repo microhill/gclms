@@ -17,17 +17,17 @@ if(empty($question_id) && !empty($question['id']))
 				<th colspan="2">
 					<p class="left">
 						<button class="deleteQuestion delete" confirm:text="<? __('Are you sure you want to delete this question?') ?>">
-							<? __('Delete Question') ?>
+							<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" />
 						</button>
 					</p>
 
 					<p class="right">
 						<button class="moveUp">
-							<? __('Move up') ?>
+							<img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" />
 						</button>
 
 						<button class="moveDown">
-							<? __('Move down') ?>
+							<img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" />
 						</button>
 					</p>
 				</th>
@@ -56,15 +56,16 @@ if(empty($question_id) && !empty($question['id']))
 				<?= $form->label('Question.' . $question_id . '.type','Type'); ?>
 				</th>
 				<td>
-				<?= $myForm->radio('Question.' . $question_id . '.type',
-					array('0' => 'Multiple choice','1' => 'True/false','2' => 'Fill in the blank','3' => 'Matching'),
+				<?= $myForm->input('Question' . $question_id . 'Type',
 					array(
-					'div' => false,
-					'class' => 'questionType',
-					'value' => isset($question['type']) ? $question['type'] : '0',
-					'separator' => ' ',
-					'legend' => false,
-					'name' => "data[Question][$question_id][type]"
+						'options' => array('0' => 'Multiple choice','1' => 'True/false','2' => 'Fill in the blank','3' => 'Matching'),
+						'type' => 'radio',
+						'div' => false,
+						'class' => 'questionType',
+						'value' => isset($question['type']) ? $question['type'] : '0',
+						'separator' => '&nbsp;&nbsp;',
+						'legend' => false,
+						'name' => "data[Question][$question_id][type]"
 				)); ?>
 				</td>
 			</tr>

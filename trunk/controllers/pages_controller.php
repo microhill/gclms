@@ -81,17 +81,14 @@ class PagesController extends AppController {
 		$this->set('title',$this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('Site.name'));
     }
 
-	function save($id) {		
-		pr($this->data);die;
+	function save($id) {
+		//pr($this->data);die;
 		$this->Node->id = $id;
-		$this->Question->deleteAllInNode(array('node_id'=>$id)); // This should be done smarter!!!
+		//$this->Question->deleteAllInNode(array('node_id'=>$id)); // This should be done smarter!!!
 
 		if(!empty($this->data['Node']['audio_file'])
 				&& $this->data['Node']['audio_file'] == 'External URL' && !empty($this->data['Node']['external_audio_file']))
 			$this->data['Node']['audio_file'] = $this->data['Node']['external_audio_file'];
-
-		$this->data['Node']['previous_node_id'] = $this->Node->findPreviousNodeId();
-		$this->data['Node']['next_node_id'] = $this->Node->findNextNodeId();
 
 		$this->Node->save($this->data);
 

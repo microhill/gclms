@@ -1,7 +1,9 @@
 <?
-$question_id = empty($question_id) ? String::uuid() : $question_id;
-if(empty($question_id) && !empty($question['id']))
+if(empty($question_id))
 	$question_id = $question['id'];
+	
+if(empty($question_id))
+	die;
 ?>
 
 <div class="gclms-page-item question" question:id="<?= $question_id ?>">
@@ -80,6 +82,7 @@ if(empty($question_id) && !empty($question['id']))
 							foreach($question['Answer'] as $answer) {
 								echo $this->renderElement('answer_multiple_choice',array(
 									'answer' => $answer,
+									'answer_id' => $answer['id'],
 									'question_id' => $question_id
 								));
 							}
@@ -183,6 +186,7 @@ if(empty($question_id) && !empty($question['id']))
 							foreach($question['Answer'] as $answer) {
 									echo $this->renderElement('answer_matching',array(
 									'answer' => $answer,
+									'answer_id' => $answer['id'],
 									'question_id' => $question_id
 								));
 							}

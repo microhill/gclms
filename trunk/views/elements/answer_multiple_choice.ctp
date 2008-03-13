@@ -1,7 +1,6 @@
 <?
-if(empty($question_id))
+if(empty($question_id) || empty($answer_id))
 	die();
-$answer_id = String::uuid();
 ?>
 
 <div class="multipleChoice" <?= empty($answer['id']) ? 'style="display: none;"' : '' ?>>

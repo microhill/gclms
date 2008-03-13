@@ -89,6 +89,12 @@ $javascript->link(array(
 <script>
 var tmpTextareaView = <?= $javascript->object($this->renderElement('textarea',array('textarea_id' => '#{id}'))); ?>;
 var tmpQuestionView = <?= $javascript->object($this->renderElement('question',array('question_id' => '#{id}'))); ?>;
-var tmpMultipleChoiceAnswerView = <?= $javascript->object($this->renderElement('answer_multiple_choice',array('question_id' => '#{id}'))); ?>;
-var tmpMatchingAnswerView = <?= $javascript->object($this->renderElement('answer_matching',array('question_id' => '#{id}'))); ?>;
+var tmpMultipleChoiceAnswerView = <?= $javascript->object($this->renderElement('answer_multiple_choice',array(
+	'question_id' => '#{question_id}',
+	'answer_id' => '#{answer_id}'
+))); ?>;
+var tmpMatchingAnswerView = <?= $javascript->object($this->renderElement('answer_matching',array(
+	'question_id' => '#{question_id}',
+	'answer_id' => '#{answer_id}'
+))); ?>;
 </script>

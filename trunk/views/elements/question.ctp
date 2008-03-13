@@ -86,7 +86,7 @@ if(empty($question_id) && !empty($question['id']))
 						}
 						?>
 					</div>
-					<button class="add"><? __('Add Answer') ?></button> <span class="loadingAnswerIndicator"><img src="/img/permanent/spinner2007-09-14.gif" /></span>
+					<button class="add"><img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" /></button> <span class="loadingAnswerIndicator"><img src="/img/permanent/spinner2007-09-14.gif" /></span>
 				</td>
 			</tr>
 			<tr class="trueFalse<?= @$question['type'] != '1' ? ' hidden' : '' ?>">
@@ -189,7 +189,7 @@ if(empty($question_id) && !empty($question['id']))
 						}
 						?>
 					</div>
-					<button class="add"><? __('Add Answer') ?></button> <span class="loadingAnswerIndicator"><img src="/img/permanent/spinner2007-09-14.gif" /></span>
+					<button class="add"><img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" /></button>
 				</td>
 			</tr>
 		</tbody>

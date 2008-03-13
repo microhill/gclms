@@ -136,8 +136,7 @@ GCLMS.ContentController = {
 		ul.insert(GCLMS.Views.get('node').interpolate({
 			id: id,
 			title: title,
-			typeClass: 'gclms-' + type,
-			randomListId: UUID.generate()
+			typeClass: 'gclms-' + type
 		}));
 	
 		GCLMS.Node.add({
@@ -146,7 +145,7 @@ GCLMS.ContentController = {
 			title: title,
 			type: type == 'label' ? 1 : 0,
 			callback: function(request) {
-				$(id).observeRules(GCLMS.Triggers.get('#gclms-nodes').li);
+				$('node_' + id).observeRules(GCLMS.Triggers.get('#gclms-nodes').li);
 				GCLMS.ContentController.createSortables();
 		}});
 		
@@ -448,7 +447,7 @@ GCLMS.Node = {
 };
 
 GCLMS.Views.update({
-	node: '<li id="#{id}" class="gclms-node #{typeClass}"> <img class="gclms-expand-button" src="/img/blank-1.png"/><span class="gclms-handle"> <img class="gclms-icon" src="/img/blank-1.png"/> <a href="#">#{title}</a></span><ul id="#{randomListId}"></ul></li>'
+	node: '<li id="node_#{id}" gclms:node-id="#{id}" class="gclms-node #{typeClass}"> <img class="gclms-expand-button" src="/img/blank-1.png"/><span class="gclms-handle"> <img class="gclms-icon" src="/img/blank-1.png"/> <a href="#">#{title}</a></span><ul id="list_#{id}"></ul></li>'
 });
 
 Event.observe(window, 'scroll', GCLMS.ContentController.updateMenubars.bind(this));

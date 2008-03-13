@@ -38,7 +38,8 @@
 		}
 		
 		.gclms-page-item .left button,
-		.gclms-page-item .right button {
+		.gclms-page-item .right button,
+		.gclms-page-item table button.add {
 			border: 0px none;
 			background-color: transparent;
 			padding: 0;

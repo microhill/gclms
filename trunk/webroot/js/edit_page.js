@@ -219,7 +219,6 @@ GCLMS.PagesController = {
 
 		switch(this.value) {
 			case '0': // Multiple choice
-				alert(div.select('.trueFalse'));
 				div.select('.multipleChoice')[0].displayAsTableRow();
 				div.select('.trueFalse')[0].hide();
 				div.select('.fillInTheBlank')[0].hide();

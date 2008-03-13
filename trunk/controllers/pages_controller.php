@@ -82,6 +82,7 @@ class PagesController extends AppController {
     }
 
 	function save($id) {		
+		pr($this->data);die;
 		$this->Node->id = $id;
 		$this->Question->deleteAllInNode(array('node_id'=>$id)); // This should be done smarter!!!
 

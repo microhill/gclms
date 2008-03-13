@@ -32,6 +32,24 @@
 		.gclms-page-item textarea {
 			width: 100%;
 		}
+		
+		.gclms-page-item td > input[type='radio'] {
+			margin-right: 3px;
+		}
+		
+		.gclms-page-item p.left button,
+		.gclms-page-item p.right button {
+			border: 0px none;
+			background-color: transparent;
+			padding: 0;
+			margin: 0;
+			cursor: pointer;
+		}
+		
+		.gclms-page-item p.left button[disabled],
+		.gclms-page-item p.right button[disabled] {
+			visibility: hidden;
+		}
 
 .textarea td td {
 	background-color: inherit;

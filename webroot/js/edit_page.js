@@ -162,7 +162,7 @@ GCLMS.PagesController = {
 	},
 	
 	deleteMatchingAnswer: function() {
-		this.up('div').remove();
+		this.up('div').up('div').remove();
 	},
 	
 	confirmDeleteQuestion: function(event) {

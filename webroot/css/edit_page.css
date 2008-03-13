@@ -37,8 +37,8 @@
 			margin-right: 3px;
 		}
 		
-		.gclms-page-item p.left button,
-		.gclms-page-item p.right button {
+		.gclms-page-item .left button,
+		.gclms-page-item .right button {
 			border: 0px none;
 			background-color: transparent;
 			padding: 0;
@@ -46,8 +46,8 @@
 			cursor: pointer;
 		}
 		
-		.gclms-page-item p.left button[disabled],
-		.gclms-page-item p.right button[disabled] {
+		.gclms-page-item .left button[disabled],
+		.gclms-page-item .right button[disabled] {
 			visibility: hidden;
 		}
 

@@ -14,9 +14,11 @@ $answer_id = String::uuid();
 	<table class="gclms-tabular-form" cellspacing="0">
 		<tr>
 			<th colspan="2" class="gclms-answer-header">
-				<button style="float: left;" class="deleteAnswer delete" confirm:text="<? __('Are you sure you want to delete this answer?') ?>">
-					<? __('Delete Answer') ?>
-				</button>
+				<div class="left">
+					<button class="deleteAnswer delete left" confirm:text="<? __('Are you sure you want to delete this answer?') ?>">
+						<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" />
+					</button>		
+				</div>
 			</th>
 		</tr>
 		<!-- tr>

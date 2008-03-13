@@ -251,31 +251,31 @@ GCLMS.PagesController = {
 	},
 	
 	addMultipleChoiceAnswer: function(event) {
-		div = this.up('div');
+		div = this.up('div.question');
 
 		answersDiv = div.select('tr.multipleChoice .answers').first();
-		answersDiv.insert(GCLMS.Views.get('multipleChoiceAnswer'));
+		answersDiv.insert(GCLMS.Views.get('multipleChoiceAnswer').interpolate({answer_id: UUID.generate(),question_id: div.getAttribute('question:id')}));		
 		answersDiv.displayAsBlock();
 		lastTable = answersDiv.select('table').last();
 		lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']['tr.multipleChoice,tr.matching']);
 		lastTable.parentNode.displayAsBlock();		
 		event.stop();
 
-		//this.select('input[type="text"]').first().focus();
+		lastTable.select('input[type="text"]').first().focus();
 	},
 	
 	addMatchingAnswer: function(event) {
-		div = this.up('div');
+		div = this.up('div.question');
 		
 		answersDiv = div.select('tr.matching .answers').first();
-		answersDiv.insert(GCLMS.Views.get('matchingAnswer'));
+		answersDiv.insert(GCLMS.Views.get('matchingAnswer').interpolate({answer_id: UUID.generate(),question_id: div.getAttribute('question:id')}));
 		answersDiv.displayAsBlock();
 		lastTable = answersDiv.select('table').last();
 		lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']['tr.multipleChoice,tr.matching']);
 		lastTable.parentNode.displayAsBlock();
 		event.stop();
 		
-		//this.select('input[type="text"]').first().focus();
+		lastTable.select('input[type="text"]').first().focus();
 	}
 }
 

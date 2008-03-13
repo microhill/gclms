@@ -82,7 +82,6 @@ class PagesController extends AppController {
     }
 
 	function save($id) {
-		pr($this->data);die;
 		$this->Node->id = $id;
 		//$this->Question->deleteAllInNode(array('node_id'=>$id)); // This should be done smarter!!!
 
@@ -106,6 +105,16 @@ class PagesController extends AppController {
 	}
 
 	function saveQuestions($id = null) {
+		$this->Question->contain();		
+		$existingQuestionIds = Set::extract($this->Question->FindAllByNodeId($id,array('id')), '{n}.Question.id');
+		$newQuestionIds = array_keys($this->data['Question']);
+		
+		$deletedQuestionIds = array_diff($newQuestionIds,$existingQuestionIds);
+		
+		foreach($deletedQuestionIds as $questionId) {
+			$this->Question->delete($id);
+		}
+		
 		if(isset($this->data['Question'])) {
 			foreach($this->data['Question'] as $question) {
 				$question['node_id'] = $this->Node->id;

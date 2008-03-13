@@ -37,7 +37,7 @@ echo $this->renderElement('left_column'); ?>
 		
 		if(!empty($course['redistribution_allowed'])): ?>
 			<p>
-				<a href="<?= $license->getUrl($course['redistribution_allowed'],$course['commercial_use_allowed'],$course['derivative_works_allowed']) ?>"><img src="/img/somerights_en.png" width="88" height="31" /></a>
+				<a rel="license" href="<?= $license->getUrl($course['redistribution_allowed'],$course['commercial_use_allowed'],$course['derivative_works_allowed']) ?>"><img src="/img/somerights_en.png" width="88" height="31" /></a>
 			</p>
 		<? endif; ?>
 	</div>

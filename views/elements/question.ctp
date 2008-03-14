@@ -37,7 +37,7 @@ if(empty($question_id))
 			<tr>
 				<th>
 					<?
-					echo $form->label('Question.' . $question_id . '.title','Question');
+					echo $form->label('Question.' . $question_id . '.title','Title');
 					?>
 				</th>
 				<td>
@@ -60,7 +60,7 @@ if(empty($question_id))
 				<td>
 				<?= $myForm->input('Question' . $question_id . 'Type',
 					array(
-						'options' => array('0' => 'Multiple choice','1' => 'True/false','2' => 'Fill in the blank','3' => 'Matching'),
+						'options' => array('0' => 'Multiple choice','1' => 'True/false','2' => 'Matching','3' => 'Order','4' => 'Fill in the blank','5' => 'Essay'),
 						'type' => 'radio',
 						'div' => false,
 						'class' => 'questionType',
@@ -110,20 +110,41 @@ if(empty($question_id))
 					?>
 				</td>
 			</tr>
+			<tr class="order<?= @$question['type'] != '3' ? ' hidden' : '' ?>">
+				<th>
+					<? __('Answers'); ?>
+				</th>
+				<td>
+					<div class="answers<?= empty($question['Answer']) ? ' hidden' : '' ?>">
+						<?
+						if(isset($question['Answer'])) {
+							foreach($question['Answer'] as $answer) {
+								echo $this->renderElement('answer_order',array(
+									'answer' => $answer,
+									'answer_id' => $answer['id'],
+									'question_id' => $question_id
+								));
+							}
+						}
+						?>
+					</div>
+					<button class="add"><img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" /></button> <span class="loadingAnswerIndicator"><img src="/img/permanent/spinner2007-09-14.gif" /></span>
+				</td>
+			</tr>
 			<tr class="fillInTheBlank<?= @$question['type'] != '2' ? ' hidden' : '' ?>">
 				<th>
 				<?
-				echo $form->label('Question.' . $question_id . '.fill_in_the_blank_answer','Answer');
+				echo $form->label('Question.' . $question_id . '.text_answer','Answer');
 				?>
 				</th>
 				<td>
 				<?
-				echo $form->input('Question.' . $question_id . '.fill_in_the_blank_answer',array(
+				echo $form->input('Question.' . $question_id . '.text_answer',array(
 					'label' =>  false,
 					'size' => 40,
 					'div' => false,
-					'value' => @$question['fill_in_the_blank_answer'],
-					'name' => "data[Question][$question_id][fill_in_the_blank_answer]"
+					'value' => @$question['text_answer'],
+					'name' => "data[Question][$question_id][text_answer]"
 				));
 				?>
 				</td>
@@ -194,6 +215,26 @@ if(empty($question_id))
 						?>
 					</div>
 					<button class="add"><img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" /></button>
+				</td>
+			</tr>
+
+		</tbody>
+		<tbody>
+			<tr class="explanation">
+				<th>
+					<? __('Explanation'); ?>
+				</th>
+				<td>
+				<?
+				echo $form->input('Question.' . $question_id . '.explanation',array(
+					'label' =>  false,
+					'cols' => 40,
+					'rows' => 10,
+					'div' => false,
+					'value' => @$question['explanation'],
+					'name' => "data[Question][$question_id][explanation]"
+				));
+				?>
 				</td>
 			</tr>
 		</tbody>

@@ -32,7 +32,7 @@ if(empty($question_id) || empty($answer_id))
 					'label' => false,
 					'value' => @$answer['text'],
 					'div' => false,
-					'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][text]"
+					'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][text1]"
 				));
 				?>
 
@@ -53,24 +53,6 @@ if(empty($question_id) || empty($answer_id))
 					'value' => '1'
 				));
 				?>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				<?
-				echo $form->label('Question.' . $question_id . '.MultipleChoiceAnswer.' . $answer_id . '.explanation','Explanation');
-				?>
-			</th>
-			<td>
-				<?
-				echo $form->text('Question.' . $question_id . '.MultipleChoiceAnswer.' . $answer_id . '.explanation',array(
-					'label' => false,
-					'div' => false,
-					'value' => @$answer['explanation'],
-					'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][explanation]"
-				));
-				?>
-
 			</td>
 		</tr>
 	</table>

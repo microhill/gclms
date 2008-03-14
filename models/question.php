@@ -1,6 +1,6 @@
 <?php
 /*
- * Question.type: 0 => Multiple choice, 1 => True/false, 2 => Fill in the blank, 3 => Matching
+ * Question.type: 0 => Multiple choice, 1 => True/false, 2 => Matching, 3=> Order, 4 => Fill in the blank, 5 => Essay
  */
 
 class Question extends AppModel {

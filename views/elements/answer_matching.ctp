@@ -20,14 +20,6 @@ if(empty($question_id) || empty($answer_id))
 				</div>
 			</th>
 		</tr>
-		<!-- tr>
-			<th>
-				<?= $form->label('Question.' . $question_id . '.MatchingAnswer.' . $answer_id . '.text','Left Column'); ?>
-			</th>
-			<th>
-				<?= $form->label('Question.' . $question_id . '.MatchingAnswer.' . $answer_id . '.explanation','Right Column'); ?>
-			</th>
-		</tr -->
 		</tr>
 			<td class="column">
 				<?
@@ -36,7 +28,7 @@ if(empty($question_id) || empty($answer_id))
 					'value' => @$answer['text'],
 					'div' => false,
 					'type' => 'text',
-					'name' => "data[Question][$question_id][MatchingAnswer][$answer_id][text]"
+					'name' => "data[Question][$question_id][MatchingAnswer][$answer_id][text1]"
 				));
 				?>
 			</td>
@@ -47,7 +39,7 @@ if(empty($question_id) || empty($answer_id))
 					'div' => false,
 					'value' => @$answer['explanation'],
 					'type' => 'text',
-					'name' => "data[Question][$question_id][MatchingAnswer][$answer_id][explanation]"
+					'name' => "data[Question][$question_id][MatchingAnswer][$answer_id][text2]"
 				));
 				?>
 			</td>

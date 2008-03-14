@@ -21,4 +21,9 @@ class ArticlesController extends AppController {
 		
 		$this->set('title',$this->data['Article']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
 	}
+	
+	function afterSave() {
+		$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/articles/view/' . $this->data['Article']['id'];
+		parent::afterSave();
+	}
 }

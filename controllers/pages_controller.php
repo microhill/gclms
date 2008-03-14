@@ -105,14 +105,18 @@ class PagesController extends AppController {
 	}
 
 	function saveQuestions($id = null) {
+		if(empty($this->data['Question']))
+			$this->data['Question'] = array();
+
 		$this->Question->contain();		
-		$existingQuestionIds = Set::extract($this->Question->FindAllByNodeId($id,array('id')), '{n}.Question.id');
+		$existingQuestionIds = Set::extract($this->Question->findAll(array('node_id' => $id),array('id')), '{n}.Question.id');
+
 		$newQuestionIds = array_keys($this->data['Question']);
-		
-		$deletedQuestionIds = array_diff($newQuestionIds,$existingQuestionIds);
-		
+		$deletedQuestionIds = array_diff($existingQuestionIds,$newQuestionIds);
+
 		foreach($deletedQuestionIds as $questionId) {
-			$this->Question->delete($id);
+			$this->Question->id = $questionId;
+			$this->Question->delete();
 		}
 		
 		if(isset($this->data['Question'])) {
@@ -138,6 +142,7 @@ class PagesController extends AppController {
 				$this->Node->Question->id = null;
 			}
 		}
+		// */
 	}
 
 	function afterSave() {

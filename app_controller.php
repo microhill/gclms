@@ -158,13 +158,14 @@ class AppController extends Controller {
 
 		if(!empty($this->data)) {
 			$this->{$model}->id = $id;
+			$this->data[$model]['id'] = $id; // For accessibility outside of this method
 			if($this->{$model}->save($this->data)) {
 				if(!empty($this->itemName))
 					$this->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully saved.',true));
 				$this->afterSave();
 			} else {
 				if($id)
-					$this->data[$model]['id'] = $id;	
+					$this->data[$model]['id'] = $id;
 				if(!empty($this->itemName))
 					$this->Notifications->add(__('There was an error when attempting to edit the ' . low($this->itemName) . '.',true),'error');
 			}

@@ -217,35 +217,57 @@ GCLMS.PagesController = {
 	selectQuestionType: function(event) {
 		div = this.up('div');
 
+		/*
+		 * 0: Multiple choice
+		 * 1: True/false
+		 * 2: Matching
+		 * 3: Fill in the blank
+		 * 4: Essay
+		 */
+
+		if(this.value != '0') {
+			div.down('.multipleChoice').hide();
+		}
+
+		if(this.value != '1') {
+			div.down('.trueFalse').hide();
+		}
+
+		if(this.value != '2') {
+			div.down('.matching').hide();
+			div.down('.matchingHeaders').hide();
+		}
+
+		if(this.value != '3') {
+			div.down('.order').hide();
+		}
+		
+		if(this.value != '4') {
+			div.down('.fillInTheBlank').hide();
+		}
+		
+		if(this.value != '5') {
+			div.down('.essay').hide();	
+		}
+
 		switch(this.value) {
-			case '0': // Multiple choice
-				div.select('.multipleChoice')[0].displayAsTableRow();
-				div.select('.trueFalse')[0].hide();
-				div.select('.fillInTheBlank')[0].hide();
-				div.select('.matching')[0].hide();
-				div.select('.matchingHeaders')[0].hide();
+			case '0':
+				div.down('.multipleChoice').displayAsTableRow();
 				break;
-			case '1': // True/false
-				div.select('.multipleChoice')[0].hide();
-				div.select('.trueFalse')[0].displayAsTableRow();
-				div.select('.fillInTheBlank')[0].hide();
-				div.select('.matching')[0].hide();
-				div.select('.matchingHeaders')[0].hide();
+			case '1':
+				div.down('.trueFalse').displayAsTableRow();
 				break;
-			case '2': // Fill in the blank
-				div.select('.multipleChoice')[0].hide();
-				div.select('.trueFalse')[0].hide();
-				div.select('.fillInTheBlank')[0].displayAsTableRow();
-				div.select('.matching')[0].hide();
-				div.select('.matchingHeaders')[0].hide();
-				div.select('.fillInTheBlank')[0].getElementsByTagName('input')[0].focus();
+			case '2':
+				div.down('.matching').displayAsTableRow();
+				div.down('.matchingHeaders').displayAsTableRow();
 				break;
-			case '3': // Matching
-				div.select('.multipleChoice')[0].hide();
-				div.select('.trueFalse')[0].hide();
-				div.select('.fillInTheBlank')[0].hide();
-				div.select('.matching')[0].displayAsTableRow();
-				div.select('.matchingHeaders')[0].displayAsTableRow();
+			case '3':
+				div.down('.order').displayAsTableRow();
+				div.down('.order').down('input').focus();
+				break;
+			case '4':
+				div.down('.fillInTheBlank').displayAsTableRow();
+				div.down('.fillInTheBlank').down('input').focus();
 				break;
 		}
 	},

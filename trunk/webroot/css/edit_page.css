@@ -27,6 +27,10 @@
 		width: 800px;
 	}
 	
+		.gclms-page-item tr.explanation td {
+			padding: 0;
+		}
+	
 		.gclms-page-item table,
 		.gclms-page-item input[type='text'],
 		.gclms-page-item textarea {

@@ -1,8 +1,31 @@
 tinyMCE.init(GCLMS.tinyMCEConfig);
 
 GCLMS.PagesController = {
+	addExplanationToQuestion: function() {
+		div = this.up('div.question');
+		questionId = div.getAttribute('question:id');
+		var tinyMCEInstance = this.replace(GCLMS.Views.get('questionExplanation').interpolate({id: questionId}));
+		GCLMS.PagesController.enableTinyMCE.bind(div.down('textarea.gclms-question-explanation'))();
+		alert(div.down('textarea.gclms-question-explanation'));
+		div.down('tr.question-explanation td').addClassName('filled');
+	},
+	
+	addExplanationToMultipleChoiceAnswer: function() {
+		questionDiv = this.up('div.question');
+		questionId = questionDiv.getAttribute('question:id');
+		
+		div = this.up('div.multipleChoice');
+		answerId = div.getAttribute('gclms:answer-id');
+		this.replace(GCLMS.Views.get('multipleChoiceAnswerExplanation').interpolate({answer_id: answerId,question_id: questionId}));
+		
+		//div.down('textarea.gclms-answer-explanation').style.backgroundColor = 'red';
+		
+		GCLMS.PagesController.enableTinyMCE.bind(div.down('textarea.gclms-answer-explanation'))();
+		div.down('tr.answer-explanation td').addClassName('filled');
+	},
+
 	enableTinyMCE: function() {
-		tinyMCE.execCommand('mceAddControl', false, this.id);
+		tinyMCE.execCommand('mceAddControl', true, this.id);
 	},
 
 	configureMoveUpAndMoveDownButtons: function() {
@@ -60,7 +83,9 @@ GCLMS.PagesController = {
 		GCLMS.Views.update({
 			textarea: tmpTextareaView,
 			question: tmpQuestionView,
+			questionExplanation: tmpQuestionExplanationView,			
 			multipleChoiceAnswer: tmpMultipleChoiceAnswerView,
+			multipleChoiceAnswerExplanation: tmpMultipleChoiceAnswerExplanationView,			
 			matchingAnswer: tmpMatchingAnswerView
 		});
 	},
@@ -130,7 +155,7 @@ GCLMS.PagesController = {
 				pageItem.insert({after: adjacentPageItem})
 		} else {
 			if(pageItem.hasClassName('textarea'))
-				tinyMCE.execCommand('mceRemoveControl', false, pageItem.select('textarea').first().id);
+				tinyMCE.execCommand('mceRemoveControl', false, pageItem.down('textarea').id);
 
 			if(this.hasClassName('moveDown'))
 				adjacentPageItem.insert({after: pageItem});
@@ -138,7 +163,7 @@ GCLMS.PagesController = {
 				adjacentPageItem.insert({before: pageItem})
 
 			if(pageItem.hasClassName('textarea'))
-				tinyMCE.execCommand('mceAddControl', false, pageItem.select('textarea').first().id);
+				tinyMCE.execCommand('mceAddControl', false, pageItem.down('textarea').id);
 		}
 
 		GCLMS.PagesController.configureMoveUpAndMoveDownButtons();
@@ -227,6 +252,8 @@ GCLMS.PagesController = {
 
 		if(this.value != '0') {
 			div.down('.multipleChoice').hide();
+			div.down('.question-explanation').displayAsTableRow();
+			//tinyMCE.execCommand('mceRemoveControl', false, pageItem.down('textarea').id);
 		}
 
 		if(this.value != '1') {
@@ -245,14 +272,11 @@ GCLMS.PagesController = {
 		if(this.value != '4') {
 			div.down('.fillInTheBlank').hide();
 		}
-		
-		if(this.value != '5') {
-			div.down('.essay').hide();	
-		}
 
 		switch(this.value) {
 			case '0':
 				div.down('.multipleChoice').displayAsTableRow();
+				div.down('.question-explanation').hide();
 				break;
 			case '1':
 				div.down('.trueFalse').displayAsTableRow();
@@ -260,14 +284,16 @@ GCLMS.PagesController = {
 			case '2':
 				div.down('.matching').displayAsTableRow();
 				div.down('.matchingHeaders').displayAsTableRow();
+				div.down('.matchingHeaders').down('input').focus();				
 				break;
 			case '3':
 				div.down('.order').displayAsTableRow();
-				div.down('.order').down('input').focus();
 				break;
 			case '4':
 				div.down('.fillInTheBlank').displayAsTableRow();
 				div.down('.fillInTheBlank').down('input').focus();
+				break;
+			case '5':
 				break;
 		}
 	},
@@ -303,28 +329,30 @@ GCLMS.PagesController = {
 
 GCLMS.Triggers.update({
 	'.gclms-edit-page' : {
-		':loaded': 										GCLMS.PagesController.loadTextareas,
-		'form:submit': 									GCLMS.PagesController.submitForm,
-		'#PageAudioFile,#PageAudioFile:change': 		GCLMS.PagesController.changePageAudio,
+		':loaded': GCLMS.PagesController.loadTextareas,
+		'form:submit': GCLMS.PagesController.submitForm,
+		'#PageAudioFile,#PageAudioFile:change': GCLMS.PagesController.changePageAudio,
 		'.gclms-top-buttons' : {
-			'.insertTextarea:click':					GCLMS.PagesController.insertTextareaOnTopOfPage,
-			'.insertQuestion:click':					GCLMS.PagesController.insertQuestionOnTopOfPage
+			'.insertTextarea:click': GCLMS.PagesController.insertTextareaOnTopOfPage,
+			'.insertQuestion:click': GCLMS.PagesController.insertQuestionOnTopOfPage
 		},
 
 		'.gclms-page-item' : {
-			':loaded': 									GCLMS.PagesController.configureMoveUpAndMoveDownButtons,
-			'textarea': 								GCLMS.PagesController.enableTinyMCE,
-			'.moveDown:click,.moveUp:click':			GCLMS.PagesController.moveItem,
-			'.insertTextarea:click':					GCLMS.PagesController.insertTextareaBelowPageItem,
-			'.insertQuestion:click':					GCLMS.PagesController.insertQuestionBelowPageItem,
+			':loaded': 	GCLMS.PagesController.configureMoveUpAndMoveDownButtons,
+			'textarea': GCLMS.PagesController.enableTinyMCE,
+			'.moveDown:click,.moveUp:click': GCLMS.PagesController.moveItem,
+			'.insertTextarea:click': GCLMS.PagesController.insertTextareaBelowPageItem,
+			'.insertQuestion:click': GCLMS.PagesController.insertQuestionBelowPageItem,
 			'tr.multipleChoice,tr.matching' : {
-				'button.deleteAnswer:click':			GCLMS.PagesController.confirmDeleteMatchingAnswer
-			},
-			'button.deleteQuestion:click':				GCLMS.PagesController.confirmDeleteQuestion,
-			'button.deleteTextarea:click':				GCLMS.PagesController.confirmDeleteTextarea,
-			'input[type="radio"].questionType:click':	GCLMS.PagesController.selectQuestionType,
-			'.multipleChoice button.add:click':			GCLMS.PagesController.addMultipleChoiceAnswer,
-			'.matching button.add:click':				GCLMS.PagesController.addMatchingAnswer
+				'img.deleteAnswer:click': GCLMS.PagesController.confirmDeleteMatchingAnswer,
+				'tr.answer-explanation img.addTinyMCEBox:click' : GCLMS.PagesController.addExplanationToMultipleChoiceAnswer
+			},			
+			'img.deleteQuestion:click':GCLMS.PagesController.confirmDeleteQuestion,
+			'img.deleteTextarea:click':GCLMS.PagesController.confirmDeleteTextarea,
+			'input[type="radio"].questionType:click': GCLMS.PagesController.selectQuestionType,
+			'.multipleChoice img.add:click': GCLMS.PagesController.addMultipleChoiceAnswer,
+			'.matching img.add:click':GCLMS.PagesController.addMatchingAnswer,
+			'tr.question-explanation img.addTinyMCEBox:click': GCLMS.PagesController.addExplanationToQuestion
 		}
 	}
 });

@@ -4,7 +4,7 @@ $html->css('edit_page', null, null, false);
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
-	'vendors/tinymce3.0.4/tiny_mce',
+	'vendors/tinymce3.0.5/tiny_mce',
 	'gclms',
 	'vendors/uuid',
 	'edit_page'
@@ -12,9 +12,15 @@ $javascript->link(array(
 ?>
 <?= $this->renderElement('no_column_background'); ?>
 <div class="gclms-content gclms-edit-page">
-	<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/content"><? __('Cancel and go back') ?></a></div>
-	<h1><? __('Edit Page') ?></h1>
-	<?
+    <div class="gclms-step-back">
+        <a href="<?= $groupAndCoursePath ?>/content">
+            <? __('Cancel and go back') ?>
+        </a>
+    </div>
+    <h1>
+        <? __('Edit Page') ?>
+    </h1>
+    <?
 	echo $form->create('Node', array(
 		'url' => $groupAndCoursePath . '/pages/save/' . $this->data['Node']['id'],
 		'gclms:no-empty-question-title-message' => __('Every question must have a title.',true)
@@ -26,13 +32,15 @@ $javascript->link(array(
 		'size'=>45
 	));
 	?>
-
-	<div class="gclms-top-buttons">
-		<button class="insertQuestion add"><? __('Insert Question') ?></button>
-		<button class="insertTextarea add"><? __('Insert Content') ?></button>
-	</div>
-
-	<?
+    <div class="gclms-top-buttons">
+        <button class="insertQuestion add">
+            <? __('Insert Question') ?>
+        </button>
+        <button class="insertTextarea add">
+            <? __('Insert Content') ?>
+        </button>
+    </div>
+    <?
 	$nodeItems = array();
 	foreach($this->data['Textarea'] as $textarea) {
 		$nodeItems[$textarea['order']] = $textarea;
@@ -87,14 +95,19 @@ $javascript->link(array(
 	?>
 </div>
 <script>
-var tmpTextareaView = <?= $javascript->object($this->renderElement('textarea',array('textarea_id' => '#{id}'))); ?>;
-var tmpQuestionView = <?= $javascript->object($this->renderElement('question',array('question_id' => '#{id}'))); ?>;
-var tmpMultipleChoiceAnswerView = <?= $javascript->object($this->renderElement('answer_multiple_choice',array(
-	'question_id' => '#{question_id}',
-	'answer_id' => '#{answer_id}'
-))); ?>;
-var tmpMatchingAnswerView = <?= $javascript->object($this->renderElement('answer_matching',array(
-	'question_id' => '#{question_id}',
-	'answer_id' => '#{answer_id}'
-))); ?>;
+    var tmpTextareaView = <?= $javascript->object($this->renderElement('textarea',array('textarea_id' => '#{id}'))); ?>;
+    var tmpQuestionView = <?= $javascript->object($this->renderElement('question',array('question_id' => '#{id}'))); ?>;
+    var tmpQuestionExplanationView = <?= $javascript->object($this->renderElement('question_explanation',array('question_id' => '#{id}'))); ?>;
+    var tmpMultipleChoiceAnswerExplanationView = <?= $javascript->object($this->renderElement('answer_multiple_choice_explanation',array(
+    	'question_id' => '#{question_id}',
+    	'answer_id' => '#{answer_id}'
+    ))); ?>;
+    var tmpMultipleChoiceAnswerView = <?= $javascript->object($this->renderElement('answer_multiple_choice',array(
+    	'question_id' => '#{question_id}',
+    	'answer_id' => '#{answer_id}'
+    ))); ?>;
+    var tmpMatchingAnswerView = <?= $javascript->object($this->renderElement('answer_matching',array(
+    	'question_id' => '#{question_id}',
+    	'answer_id' => '#{answer_id}'
+    ))); ?>;
 </script>

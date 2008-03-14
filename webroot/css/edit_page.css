@@ -24,16 +24,17 @@
 	}
 
 	.gclms-page-item {
-		width: 800px;
+		/* width: 800px; */
 	}
 	
-		.gclms-page-item tr.explanation td {
+		.gclms-page-item tr.question-explanation td.filled,
+		.gclms-page-item tr.answer-explanation td.filled {
 			padding: 0;
 		}
 	
 		.gclms-page-item table,
 		.gclms-page-item input[type='text'],
-		.gclms-page-item textarea {
+		.gclms-page-item-a textarea {
 			width: 100%;
 		}
 		
@@ -51,9 +52,14 @@
 			cursor: pointer;
 		}
 		
-		.gclms-page-item .left button[disabled],
-		.gclms-page-item .right button[disabled] {
-			visibility: hidden;
+		
+		.gclms-page-item img.add {
+			cursor: pointer;
+		}
+		
+		.gclms-page-item .left,
+		.gclms-page-item .right {
+			line-height: 0;
 		}
 
 .textarea td td {
@@ -68,8 +74,9 @@
 	border: 0px none;
 }
 
-span.mceEditor table.mceLayout {
+div.textarea span.mceEditor table.mceLayout {
 	border: 0px none;
+	/*width: 800px; */
 }
 
 .textarea table.mceEditor td {
@@ -79,7 +86,11 @@ span.mceEditor table.mceLayout {
 	background-color: white;
 }
 
-tr.mceFirst td.mceToolbar {
+.defaultSkin table.mceLayout tr.mceFirst > td.mceToolbar {
+	border: 0px none;
+}
+
+.defaultSkin table.mceLayout tr.mceLast > td.mceStatusbar {
 	border: 0px none;
 }
 

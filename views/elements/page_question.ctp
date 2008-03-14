@@ -6,12 +6,19 @@ switch($question['type']){
 	case 1: //True/false
 		echo $this->renderElement('question_true_false',array('question'=>$question));
 		break;
-	case 2: //Fill in the blank
-		echo $this->renderElement('question_fill_in_the_blank',array('question'=>$question));
-		break;
-	case 3: //Matching
+	case 2: //Matching
 		echo $this->renderElement('question_matching',array('question'=>$question));
 		break;
+	case 3: //Order
+		echo $this->renderElement('question_order',array('question'=>$question));
+		break;
+	case 4: //Fill in the blank
+		echo $this->renderElement('question_fill_in_the_blank',array('question'=>$question));
+		break;
+	case 5: //Fill in the blank
+		echo $this->renderElement('question_essay',array('question'=>$question));
+		break;
+
 }
 
 if($node['Node']['grade_recorded']): ?>

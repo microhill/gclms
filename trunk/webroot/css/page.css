@@ -208,26 +208,6 @@ p.correctAnswer {
 .gclms-notebook {
 	cursor: pointer;
 }
-
-.gclms-option-buttons {
-	float: right;
-	font-size: 1.1em;
-}
-
-	.gclms-option-buttons a {
-		padding-left: 20px;
-		margin-left: 10px;
-		background-position: left center;
-		background-repeat: no-repeat;		
-	}
-	
-	.gclms-option-buttons a.gclms-edit-page {
-		background-image: url(/img/icons/oxygen/16x16/apps/kate.png);
-	}
-	
-	.gclms-option-buttons a.gclms-view-with-frames {
-		background-image: url(/img/icons/oxygen/16x16/actions/view-left-right-modified.png);		
-	}
 	
 /* MP3 Player */
 

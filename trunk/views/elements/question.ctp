@@ -18,19 +18,13 @@ if(empty($question_id))
 			<tr>
 				<th colspan="2">
 					<div class="left">
-						<button class="deleteQuestion delete" confirm:text="<? __('Are you sure you want to delete this question?') ?>">
-							<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" />
-						</button>
+						<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" class="deleteQuestion delete" confirm:text="<? __('Are you sure you want to delete this question?') ?>" />
 					</div>
 
 					<div class="right">
-						<button class="moveUp">
-							<img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" />
-						</button>
+						<img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" class="moveUp" />
 
-						<button class="moveDown">
-							<img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" />
-						</button>
+						<img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" class="moveDown" />
 					</div>
 				</th>
 			</tr>
@@ -89,7 +83,7 @@ if(empty($question_id))
 						}
 						?>
 					</div>
-					<button class="add"><img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" /></button> <span class="loadingAnswerIndicator"><img src="/img/permanent/spinner2007-09-14.gif" /></span>
+					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="add" />
 				</td>
 			</tr>
 			<tr class="trueFalse<?= @$question['type'] != '1' ? ' hidden' : '' ?>">
@@ -128,7 +122,7 @@ if(empty($question_id))
 						}
 						?>
 					</div>
-					<button class="add"><img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" /></button> <span class="loadingAnswerIndicator"><img src="/img/permanent/spinner2007-09-14.gif" /></span>
+					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="add" />
 				</td>
 			</tr>
 			<tr class="fillInTheBlank<?= @$question['type'] != '2' ? ' hidden' : '' ?>">
@@ -151,7 +145,7 @@ if(empty($question_id))
 			</tr>
 		</tbody>
 		<tbody>
-			<tr class="matchingHeaders<?= @$question['type'] != '3' ? ' hidden' : '' ?>">
+			<tr class="matchingHeaders<?= @$question['type'] != '2' ? ' hidden' : '' ?>">
 				<th>
 					<? __('Headers') ?>
 				</th>
@@ -196,7 +190,7 @@ if(empty($question_id))
 					</table>
 				</td>
 			</tr>
-			<tr class="matching<?= @$question['type'] != '3' ? ' hidden' : '' ?>">
+			<tr class="matching<?= @$question['type'] != '2' ? ' hidden' : '' ?>">
 				<th>
 					<? __('Answers'); ?>
 				</th>
@@ -205,7 +199,7 @@ if(empty($question_id))
 						<?
 						if(isset($question['Answer'])) {
 							foreach($question['Answer'] as $answer) {
-									echo $this->renderElement('answer_matching',array(
+								echo $this->renderElement('answer_matching',array(
 									'answer' => $answer,
 									'answer_id' => $answer['id'],
 									'question_id' => $question_id
@@ -214,27 +208,26 @@ if(empty($question_id))
 						}
 						?>
 					</div>
-					<button class="add"><img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" /></button>
+					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="add" />
 				</td>
 			</tr>
 
 		</tbody>
 		<tbody>
-			<tr class="explanation">
+			<tr class="question-explanation<?= @$question['type'] !== '0' && isset($question) ? '' : ' hidden' ?>">
 				<th>
 					<? __('Explanation'); ?>
 				</th>
 				<td>
-				<?
-				echo $form->input('Question.' . $question_id . '.explanation',array(
-					'label' =>  false,
-					'cols' => 40,
-					'rows' => 10,
-					'div' => false,
-					'value' => @$question['explanation'],
-					'name' => "data[Question][$question_id][explanation]"
-				));
-				?>
+					<? pr($question['type']); if(empty($question['right_column_header'])): ?>
+						<img src="/img/icons/oxygen/22x22/apps/kate.png" class="addTinyMCEBox" />
+					<?
+					else:
+						echo $this->renderElement('question_explanation',array(
+							'question_id' => $question_id,
+							'question' => @$question
+						));					
+					endif; ?>
 				</td>
 			</tr>
 		</tbody>

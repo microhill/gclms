@@ -2,7 +2,7 @@
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
-	'vendors/tinymce3.0.4/tiny_mce_popup',
+	'vendors/tinymce3.0.5/tiny_mce_popup',
 	'tinymce_popup',
 	'course'
 ), false);

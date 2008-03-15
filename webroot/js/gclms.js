@@ -292,6 +292,12 @@ GCLMS.tinyMCEConfig = {
 	theme_advanced_toolbar_align : 'left',
 	theme_advanced_path_location : 'bottom',
     theme_advanced_blockformats : 'p,h2,h3,h4',
+	theme_advanced_toolbar_location : 'external',
+	theme_advanced_resizing: true,
+	gecko_spellcheck: true,
+	theme : 'advanced',
+	tab_focus : ':next',
+	theme_advanced_resize_horizontal: false,
 	extended_valid_elements : 'a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]',
 	file_browser_callback : 'GCLMS.fileBrowser',
 	content_css : "/css/main.css,/css/page.css"

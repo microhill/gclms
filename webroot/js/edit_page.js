@@ -313,6 +313,7 @@ GCLMS.PagesController = {
 			case '0':
 				div.down('.multipleChoice').displayAsTableRow();
 				div.down('.question-explanation').hide();
+				div.down('.multipleChoice input[type="text"]').focus();
 				break;
 			case '1':
 				div.down('.trueFalse').displayAsTableRow();
@@ -320,10 +321,11 @@ GCLMS.PagesController = {
 			case '2':
 				div.down('.matching').displayAsTableRow();
 				div.down('.matchingHeaders').displayAsTableRow();
-				div.down('.matchingHeaders').down('input').focus();				
+				div.down('.matchingHeaders input').focus();				
 				break;
 			case '3':
 				div.down('.order').displayAsTableRow();
+				div.down('.order input[type="text"]').focus();
 				break;
 			case '4':
 				div.down('.fillInTheBlank').displayAsTableRow();
@@ -373,7 +375,17 @@ GCLMS.PagesController = {
 		lastTable.parentNode.displayAsBlock();
 		event.stop();
 		
+		GCLMS.PagesController.createSortablesForOrderQuestion(div);
 		lastTable.select('input[type="text"]').first().focus();		
+	},
+	
+	createSortablesForOrderQuestion: function(div) {
+		Sortable.create(div.down('tr.order div.answers').getAttribute('id'),{
+			containment: div.down('tr.order div.answers'),
+			handle: 'gclms-answer-header',
+			tag: 'div',
+			scroll: window
+		});
 	}
 };
 

@@ -109,7 +109,7 @@ if(empty($question_id))
 					<? __('Answers'); ?>
 				</th>
 				<td>
-					<div class="answers<?= empty($question['Answer']) ? ' hidden' : '' ?>">
+					<div class="answers<?= empty($question['Answer']) ? ' hidden' : '' ?>" id="<?= String::uuid() ?>">
 						<?
 						if(isset($question['Answer'])) {
 							foreach($question['Answer'] as $answer) {

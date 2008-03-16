@@ -19,12 +19,14 @@ GCLMS.PagesController = {
 		answerId = div.getAttribute('gclms:answer-id');
 		this.replace(GCLMS.Views.get('multipleChoiceAnswerExplanation').interpolate({answer_id: answerId,question_id: questionId}));
 		
+		GCLMS.tinyMCEConfig.height = '75px';
 		GCLMS.PagesController.enableTinyMCE.bind(div.down('textarea.gclms-answer-explanation'))();
 		div.down('tr.answer-explanation td').addClassName('filled');
 	},
 
 	enableTinyMCE: function() {
 		tinyMCE.execCommand('mceAddControl', true, this.id);
+		GCLMS.tinyMCEConfig.height = '250px';
 	},
 
 	configureMoveUpAndMoveDownButtons: function() {

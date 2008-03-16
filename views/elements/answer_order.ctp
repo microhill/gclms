@@ -3,7 +3,7 @@ if(empty($question_id) || empty($answer_id))
 	die();
 ?>
 
-<div class="multipleChoice" <?= empty($answer['id']) ? 'style="display: none;"' : '' ?>>
+<div class="order" <?= empty($answer['id']) ? 'style="display: none;"' : '' ?>>
 	<?
 	echo $form->hidden('Question.' . $question_id . '.OrderAnswer.' . $answer_id . '.id',array(
 		'value' => @$answer['id'],

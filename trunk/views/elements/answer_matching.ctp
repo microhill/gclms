@@ -19,7 +19,7 @@ if(empty($question_id) || empty($answer_id))
             </div>
         </th>
     </tr>
-    </tr>
+    <tr>
     <td class="column">
         <?
 		echo $form->text('Question.' . $question_id . '.MatchingAnswer.' . $answer_id . '.text',array(

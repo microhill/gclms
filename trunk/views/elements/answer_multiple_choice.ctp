@@ -1,15 +1,11 @@
 <?
 if(empty($question_id) || empty($answer_id))
 	die();
-?>
-
-<div class="multipleChoice" <?= empty($answer['id']) ? 'style="display: none;"' : '' ?> gclms:answer-id="<?= $answer_id ?>">
-	<?
-	echo $form->hidden('Question.' . $question_id . '.MultipleChoiceAnswer.' . $answer_id . '.id',array(
+?><div class="multipleChoice" <?= empty($answer['id']) ? 'style="display: none;"' : '' ?> gclms:answer-id="<?= $answer_id ?>">
+	<?= $form->hidden('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'id',array(
 		'value' => @$answer['id'],
 		'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][id]"
-	));
-	?>
+	)); ?>
 	<table class="gclms-tabular-form" cellspacing="0">
 		<tr>
 			<th colspan="2" class="gclms-answer-header">
@@ -20,31 +16,25 @@ if(empty($question_id) || empty($answer_id))
 		</tr>
 		<tr>
 			<th>
-				<?
-				echo $form->label('Question.' . $question_id . '.MultipleChoiceAnswer.' . $answer_id . '.text','Text');
-				?>
+				<?= $form->label('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text','Text'); ?>
 			</th>
 			<td>
-				<?
-				echo $form->text('Question.' . $question_id . '.MultipleChoiceAnswer.' . $answer_id . '.text',array(
+				<?= $form->text('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text',array(
 					'label' => false,
 					'value' => @$answer['text'],
 					'div' => false,
 					'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][text1]"
-				));
-				?>
+				)); ?>
 
 			</td>
 		</tr>
 		<tr>
 			<th>
-				<?
-				echo $form->label('Question.' . $question_id . '.MultipleChoiceAnswer.' . $answer_id . '.correct','Correct');
-				?>
+				<?= $form->label('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'correct','Correct'); ?>
 			</th>
 			<td>
 				<?
-				echo $myForm->checkbox('Question][' . $question_id . '][MultipleChoiceAnswer][' . $answer_id . '.correct',array(
+				echo $myForm->checkbox('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'correct',array(
 					'checked' => empty($answer['correct']) ? '' : 'checked',
 					'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][correct]"
 				),array(
@@ -55,9 +45,7 @@ if(empty($question_id) || empty($answer_id))
 		</tr>
 		<tr class="answer-explanation">
 			<th>
-				<?
-				echo $form->label('Question.' . $question_id . '.MultipleChoiceAnswer.' . $answer_id . '.text2','Explanation');
-				?>
+				<?= $form->label('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text2','Explanation'); ?>
 			</th>
 			<td>
 				<img src="/img/icons/oxygen/16x16/apps/kate.png" class="addTinyMCEBox" />

@@ -17,7 +17,8 @@ if(empty($textarea_id) && !empty($textarea['id']))
                         <img src="/img/icons/oxygen/16x16/actions/edit-delete.png" confirm:text="<? __('Are you sure you want to delete this content?') ?>" class="deleteTextarea"/>
                     </div>
                     <div class="right">
-                        <img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" class="moveUp"/><img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" class="moveDown"/>
+                        <img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" class="moveUp" alt="<? __('Move up') ?>" />
+                        <img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" class="moveDown" alt="<? __('Move down') ?>" />
                     </div>
                 </th>
             </tr>

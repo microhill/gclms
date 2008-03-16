@@ -95,19 +95,24 @@ $javascript->link(array(
 	?>
 </div>
 <script>
-    var tmpTextareaView = <?= $javascript->object($this->renderElement('textarea',array('textarea_id' => '#{id}'))); ?>;
-    var tmpQuestionView = <?= $javascript->object($this->renderElement('question',array('question_id' => '#{id}'))); ?>;
-    var tmpQuestionExplanationView = <?= $javascript->object($this->renderElement('question_explanation',array('question_id' => '#{id}'))); ?>;
-    var tmpMultipleChoiceAnswerExplanationView = <?= $javascript->object($this->renderElement('answer_multiple_choice_explanation',array(
+    var tmpTextareaView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->renderElement('textarea',array('textarea_id' => '#{id}')))); ?>;
+    
+    var tmpQuestionView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->renderElement('question',array('question_id' => '#{id}')))); ?>;
+    
+    var tmpQuestionExplanationView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->renderElement('question_explanation',array('question_id' => '#{id}')))); ?>;
+    
+    var tmpMultipleChoiceAnswerExplanationView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->renderElement('answer_multiple_choice_explanation',array(
     	'question_id' => '#{question_id}',
     	'answer_id' => '#{answer_id}'
-    ))); ?>;
-    var tmpMultipleChoiceAnswerView = <?= $javascript->object($this->renderElement('answer_multiple_choice',array(
+    )))); ?>;
+    
+    var tmpMultipleChoiceAnswerView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->renderElement('answer_multiple_choice',array(
     	'question_id' => '#{question_id}',
     	'answer_id' => '#{answer_id}'
-    ))); ?>;
-    var tmpMatchingAnswerView = <?= $javascript->object($this->renderElement('answer_matching',array(
+    )))); ?>;
+    
+    var tmpMatchingAnswerView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->renderElement('answer_matching',array(
     	'question_id' => '#{question_id}',
     	'answer_id' => '#{answer_id}'
-    ))); ?>;
+    )))); ?>;
 </script>

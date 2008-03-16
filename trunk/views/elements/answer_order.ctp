@@ -21,11 +21,11 @@ if(empty($question_id) || empty($answer_id))
 
 				<div class="right">
 					<button class="moveUp">
-						<img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" />
+						<img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" alt="<? __('Move up') ?>" />
 					</button>
 
 					<button class="moveDown">
-						<img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" />
+						<img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" alt="<? __('Move down') ?>" />
 					</button>
 				</div>
 				

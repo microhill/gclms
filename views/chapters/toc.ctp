@@ -46,7 +46,7 @@ echo $this->renderElement('left_column'); ?>
 					'label' => '<u>D</u>elete Chapter',
 					'accesskey' => 'd',
 					'strings' => array(
-						'confirm:text' => 'Are you sure you want to delete this chapter?'
+						'gclms:confirm-text' => 'Are you sure you want to delete this chapter?'
 					),
 					'disabled' => 'disabled'
 				),
@@ -56,7 +56,7 @@ echo $this->renderElement('left_column'); ?>
 					'label' => '<u>E</u>dit Chapter',
 					'accesskey' => 'e',
 					'strings' => array(
-						'confirm:text' => 'Are you sure you want to delete this chapter?'
+						'gclms:confirm-text' => 'Are you sure you want to delete this chapter?'
 					),
 					'disabled' => 'disabled'
 				)

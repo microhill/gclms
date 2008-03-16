@@ -25,16 +25,16 @@ h1:first-child {
 
 body.mceContentBody p:first-child,
 body.mceContentBody blockquote:first-child {
-	padding-top: 8px;
-	padding-bottom: 8px;
+	padding-top: 4px;
+	padding-bottom: 4px;
 }
 
 body.mceContentBody p,
 body.mceContentBody blockquote {
 	margin-top: 0;
 	margin-bottom: 0;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 #gclms-page-navigation {

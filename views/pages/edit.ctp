@@ -4,6 +4,7 @@ $html->css('edit_page', null, null, false);
 $javascript->link(array(
 	'vendors/tinymce3.0.5/tiny_mce',
 	'vendors/prototype',
+	'vendors/client_detection',
 	'prototype_extensions',
 	'gclms',
 	'vendors/uuid',
@@ -88,7 +89,7 @@ $javascript->link(array(
 
 	echo '<div class="submit">';
 	echo $form->submit(__('Save',true),array('class'=>'Save','div'=>false));
-	echo $form->submit(__('Delete',true),array('class'=>'delete','div'=>false,'confirm:text'=>__('Are you sure you want to delete this page?',true)));
+	echo $form->submit(__('Delete',true),array('class'=>'delete','div'=>false,'gclms:confirm-text'=>__('Are you sure you want to delete this page?',true)));
 	echo '</div>';
 
 	echo $form->end();
@@ -112,6 +113,11 @@ $javascript->link(array(
     )))); ?>;
     
     var tmpMatchingAnswerView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->renderElement('answer_matching',array(
+    	'question_id' => '#{question_id}',
+    	'answer_id' => '#{answer_id}'
+    )))); ?>;
+    
+    var tmpOrderAnswerView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->renderElement('answer_order',array(
     	'question_id' => '#{question_id}',
     	'answer_id' => '#{answer_id}'
     )))); ?>;

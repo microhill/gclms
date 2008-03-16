@@ -62,7 +62,7 @@ GCLMS.ChaptersController = {
 	},
 	confirmDelete: function() {
 		GCLMS.popup.create({
-			text: this.down('button').getAttribute('confirm:text'),
+			text: this.down('button').getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',

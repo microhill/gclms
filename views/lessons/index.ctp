@@ -20,9 +20,9 @@ echo $this->renderElement('left_column');
 			<button id="addUnit" class="add" prompt:text="<? __('Enter the name of the unit:') ?>"><? __('Add Unit') ?></button>
 			<button id="addLesson" class="add" prompt:text="<? __('Enter the name of the lesson:') ?>"><? __('Add Lesson') ?></button>
 			<button id="renameUnit" class="rename" prompt:text="<? __('Enter the new name of the unit:') ?>"><? __('Rename') ?></button>
-			<button id="deleteUnit" class="delete" notempty:text="<? __('This unit is not empty.') ?>" confirm:text="<? __('Are you sure you want to delete this unit?') ?>"><? __('Delete') ?></button>
+			<button id="deleteUnit" class="delete" notempty:text="<? __('This unit is not empty.') ?>" gclms:confirm-text="<? __('Are you sure you want to delete this unit?') ?>"><? __('Delete') ?></button>
 			<button id="renameLesson" class="rename" prompt:text="<? __('Enter the new title of the lesson:') ?>"><? __('Rename') ?></button>
-			<button id="deleteLesson" class="delete" confirm:text="<? __('Are you sure you want to delete this lesson?') ?>"><? __('Delete') ?></button>
+			<button id="deleteLesson" class="delete" gclms:confirm-text="<? __('Are you sure you want to delete this lesson?') ?>"><? __('Delete') ?></button>
 			<button id="showLesson" class="edit"><? __('Show in Classroom') ?></button>
 			<button id="editLesson" class="edit"><? __('Edit') ?></button>
 		</p>

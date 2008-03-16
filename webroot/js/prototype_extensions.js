@@ -1,3 +1,5 @@
+/*global $, Client */
+
 Element.addMethods({
 	findParent: function(element, tagName) {
 		while(element.parentNode && element.tagName) {
@@ -61,7 +63,12 @@ Element.addMethods({
 	},
 
 	displayAsTableRow: function(element) {
-	    $(element).style.display = 'table-row';
+		if(Client.browser == 'Internet Explorer' && Client.version < 8) {
+			$(element).style.display = 'block';
+		} else{
+			$(element).style.display = 'table-row';
+		}
+
 	    return element;
 	},
 
@@ -94,7 +101,7 @@ String.prototype.trim = function() {
     return this.replace(/^\s*/, "").replace(/\s*$/, "");
 };
 
-String.prototype.interpolate = function(hash) {
+String.prototype.interpolate = function(hash) { // Is this even necessary in Prototype 1.6?
     template = new Template(this);
     return template.evaluate(hash);
 };

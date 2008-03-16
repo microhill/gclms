@@ -24,8 +24,8 @@ echo $this->renderElement('left_column');
 			<button class="add" id="addPage" prompt:text="<? __('Enter the title of the page:') ?>">Add Page</button>
 			<button class="rename" id="renamePage" prompt:text="<? __('Enter the new title of the page:') ?>">Rename</button>
 			<button class="rename" id="renameTopic" prompt:text="<? __('Enter the new title of the topic:') ?>">Rename</button>
-			<button class="delete" id="deleteTopic" notempty:message="<? __('This topic is not empty.') ?>" confirm:text="<? __('Are you sure you want to delete this topic?') ?>">Delete</button>
-			<button class="delete" id="deletePage" confirm:text="<? __('Are you sure you want to delete this page?') ?>">Delete</button>
+			<button class="delete" id="deleteTopic" notempty:message="<? __('This topic is not empty.') ?>" gclms:confirm-text="<? __('Are you sure you want to delete this topic?') ?>">Delete</button>
+			<button class="delete" id="deletePage" gclms:confirm-text="<? __('Are you sure you want to delete this page?') ?>">Delete</button>
 			<button class="edit" id="editTopic">Edit</button>
 			<button class="edit" id="editPage">Edit</button>
 		</p>

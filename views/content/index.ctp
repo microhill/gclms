@@ -85,7 +85,7 @@ echo $this->renderElement('left_column');
 						'label' => '<u>D</u>elete',
 						'strings' => array(
 							'notempty:text' => 'Must be empty before deletion.',
-							'confirm:text' => 'Are you sure you want to delete this?'
+							'gclms:confirm-text' => 'Are you sure you want to delete this?'
 						),
 						'accesskey' => 'd',
 						'disabled' => 'disabled'

@@ -43,7 +43,7 @@ echo $this->renderElement('left_column'); ?>
 					'label' => '<u>D</u>elete Book',
 					'accesskey' => 'd',
 					'strings' => array(
-						'confirm:text' => 'Are you sure you want to delete this book?'
+						'gclms:confirm-text' => 'Are you sure you want to delete this book?'
 					),
 					'disabled' => 'disabled'
 				),
@@ -53,7 +53,7 @@ echo $this->renderElement('left_column'); ?>
 					'label' => '<u>E</u>dit Book',
 					'accesskey' => 'e',
 					'strings' => array(
-						'confirm:text' => 'Are you sure you want to delete this book?'
+						'gclms:confirm-text' => 'Are you sure you want to delete this book?'
 					),
 					'disabled' => 'disabled'
 				)

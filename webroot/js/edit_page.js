@@ -1,9 +1,11 @@
+/*global $, $$, $F, Ajax, Element, GCLMS, Sortable, document, window, tinyMCE, self, UUID, __, tmpTextareaView, tmpQuestionView, tmpQuestionExplanationView, tmpMultipleChoiceAnswerView, tmpMultipleChoiceAnswerExplanationView, tmpMatchingAnswerView, tmpOrderAnswerView */
+
 tinyMCE.init(GCLMS.tinyMCEConfig);
 
 GCLMS.PagesController = {
 	addExplanationToQuestion: function() {
-		div = this.up('div.question');
-		questionId = div.getAttribute('question:id');
+		var div = this.up('div.question');
+		var questionId = div.getAttribute('question:id');
 		
 		this.replace(GCLMS.Views.get('questionExplanation').interpolate({id: questionId}));
 		
@@ -12,11 +14,11 @@ GCLMS.PagesController = {
 	},
 	
 	addExplanationToMultipleChoiceAnswer: function() {
-		questionDiv = this.up('div.question');
-		questionId = questionDiv.getAttribute('question:id');
+		var questionDiv = this.up('div.question');
+		var questionId = questionDiv.getAttribute('question:id');
 		
-		div = this.up('div.multipleChoice');
-		answerId = div.getAttribute('gclms:answer-id');
+		var div = this.up('div.multipleChoice');
+		var answerId = div.getAttribute('gclms:answer-id');
 		this.replace(GCLMS.Views.get('multipleChoiceAnswerExplanation').interpolate({answer_id: answerId,question_id: questionId}));
 		
 		GCLMS.tinyMCEConfig.height = '75px';
@@ -30,12 +32,13 @@ GCLMS.PagesController = {
 	},
 
 	configureMoveUpAndMoveDownButtons: function() {
-		$$('button.moveUp[disabled="disabled"],button.moveDown[disabled="disabled"]').each(function(node){node.removeAttribute('disabled')});
-		moveUpButtons = $$('button.moveUp');
-		if(!moveUpButtons.first())
+		$$('img.moveUp[disabled="disabled"],img.moveDown[disabled="disabled"]').each(function(node){node.removeAttribute('disabled');});
+		var moveUpButtons = $$('img.moveUp');
+		if (!moveUpButtons.first()) {
 			return true;
+		}
 		moveUpButtons.first().setAttribute('disabled','disabled');
-		$$('button.moveDown').last().setAttribute('disabled','disabled');
+		$$('img.moveDown').last().setAttribute('disabled','disabled');
 	},
 	
 	insertTextareaOnTopOfPage: function(event) {
@@ -49,7 +52,7 @@ GCLMS.PagesController = {
 	},
 	
 	insertTextarea: function(div) {
-		test = div.insert({after: GCLMS.Views.get('textarea').interpolate({id: UUID.generate()})});
+		var test = div.insert({after: GCLMS.Views.get('textarea').interpolate({id: UUID.generate()})});
 		div.next('div.gclms-page-item').observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']);
 		GCLMS.PagesController.configureMoveUpAndMoveDownButtons();
 		var windowHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight;
@@ -60,7 +63,9 @@ GCLMS.PagesController = {
 	
 	insertQuestionOnTopOfPage: function(event) {
 		event.stop();
-		if(!event.isLeftClick()) return false;
+		if(!event.isLeftClick()) {
+			return false;
+		}
 		GCLMS.PagesController.insertQuestion(this.up('div.gclms-top-buttons'));
 	},
 	
@@ -70,8 +75,8 @@ GCLMS.PagesController = {
 	},
 	
 	insertQuestion: function(div) {
-		test = div.insert({after: GCLMS.Views.get('question').interpolate({id: UUID.generate()})});
-		nextDiv = div.next('div.gclms-page-item');
+		var test = div.insert({after: GCLMS.Views.get('question').interpolate({id: UUID.generate()})});
+		var nextDiv = div.next('div.gclms-page-item');
 		nextDiv.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']);
 		GCLMS.PagesController.configureMoveUpAndMoveDownButtons();
 		var windowHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight;
@@ -86,18 +91,20 @@ GCLMS.PagesController = {
 			question: tmpQuestionView,
 			questionExplanation: tmpQuestionExplanationView,			
 			multipleChoiceAnswer: tmpMultipleChoiceAnswerView,
-			multipleChoiceAnswerExplanation: tmpMultipleChoiceAnswerExplanationView,			
-			matchingAnswer: tmpMatchingAnswerView
+			multipleChoiceAnswerExplanation: tmpMultipleChoiceAnswerExplanationView,
+			matchingAnswer: tmpMatchingAnswerView,
+			orderAnswer: tmpOrderAnswerView
 		});
 	},
 	
 	submitForm: function(event) {
-		order = 0;
+		var order = 0;
 		
-		noQuestionTitlesEmpty = true;
+		var noQuestionTitlesEmpty = true;
 		$$('input.gclms-question-title').each(function(node){
-			if($F(node).empty())
-				noQuestionTitlesEmpty = false;		
+			if ($F(node).empty()) {
+				noQuestionTitlesEmpty = false;
+			}
 		});
 		if(!noQuestionTitlesEmpty) {
 			GCLMS.popup.create({
@@ -143,28 +150,43 @@ GCLMS.PagesController = {
 		event.stop();
 		pageItem = this.up('div.gclms-page-item');
 
-		if(this.hasClassName('moveDown') && !(adjacentPageItem = pageItem.next('div.gclms-page-item')))
+		if (this.hasClassName('moveDown') && !(adjacentPageItem = pageItem.next('div.gclms-page-item'))) {
 			return false;
-		else if(this.hasClassName('moveUp') && !(adjacentPageItem = pageItem.previous('div.gclms-page-item')))
+		} else if (this.hasClassName('moveUp') && !(adjacentPageItem = pageItem.previous('div.gclms-page-item'))) {
 			return false;
+		}
 
 		if(pageItem.hasClassName('textarea') && adjacentPageItem.hasClassName('question')) {
 			// A trick to avoid reloading the TinyMCE component if possible
-			if(this.hasClassName('moveDown'))
-				pageItem.insert({before: adjacentPageItem});
-			else
-				pageItem.insert({after: adjacentPageItem})
+			if (this.hasClassName('moveDown')) {
+				pageItem.insert({
+					before: adjacentPageItem
+				});
+			}
+			else {
+				pageItem.insert({
+					after: adjacentPageItem
+				});
+			}
 		} else {
-			if(pageItem.hasClassName('textarea'))
+			if (pageItem.hasClassName('textarea')) {
 				tinyMCE.execCommand('mceRemoveControl', false, pageItem.down('textarea').id);
+			}
 
-			if(this.hasClassName('moveDown'))
-				adjacentPageItem.insert({after: pageItem});
-			else
-				adjacentPageItem.insert({before: pageItem})
+			if (this.hasClassName('moveDown')) {
+				adjacentPageItem.insert({
+					after: pageItem
+				});
+			}
+			else {
+				adjacentPageItem.insert({
+					before: pageItem
+				});
+			}
 
-			if(pageItem.hasClassName('textarea'))
+			if (pageItem.hasClassName('textarea')) {
 				tinyMCE.execCommand('mceAddControl', false, pageItem.down('textarea').id);
+			}
 		}
 
 		GCLMS.PagesController.configureMoveUpAndMoveDownButtons();
@@ -172,17 +194,13 @@ GCLMS.PagesController = {
 	
 	confirmDeleteMatchingAnswer: function(event) {
 		event.stop();
-		this.style.color = 'red';
 				
 		GCLMS.popup.create({
-			text: this.getAttribute('confirm:text'),
+			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
-			callback: GCLMS.PagesController.deleteMatchingAnswer.bind(this),
-			cancelCallback: function(){
-				this.style.color = '';
-			}.bind(this)
+			callback: GCLMS.PagesController.deleteMatchingAnswer.bind(this)
 		});
 		return false;
 	},
@@ -191,12 +209,29 @@ GCLMS.PagesController = {
 		this.up('div').up('div').remove();
 	},
 	
+	confirmDeleteOrderAnswer: function(event) {
+		event.stop();
+				
+		GCLMS.popup.create({
+			text: this.getAttribute('gclms:confirm-text'),
+			confirmButtonText: __('Yes'),
+			cancelButtonText: __('No'),
+			type: 'confirm',
+			callback: GCLMS.PagesController.deleteOrderAnswer.bind(this)
+		});
+		return false;
+	},
+	
+	deleteOrderAnswer: function() {
+		this.up('div.order').remove();
+	},
+	
 	confirmDeleteQuestion: function(event) {
 		event.stop();
 		this.style.color = 'red';
 				
 		GCLMS.popup.create({
-			text: this.getAttribute('confirm:text'),
+			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
@@ -218,7 +253,7 @@ GCLMS.PagesController = {
 		this.style.color = 'red';
 				
 		GCLMS.popup.create({
-			text: this.getAttribute('confirm:text'),
+			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
@@ -231,7 +266,7 @@ GCLMS.PagesController = {
 	},
 	
 	deleteTextarea: function() {
-		div = this.up('div.gclms-page-item')
+		div = this.up('div.gclms-page-item');
 		div.select('textarea').each(function(node){
 			tinyMCE.execCommand('mceRemoveControl', false, node.id);
 		});
@@ -325,8 +360,22 @@ GCLMS.PagesController = {
 		event.stop();
 		
 		lastTable.select('input[type="text"]').first().focus();
+	},
+	
+	addOrderAnswer: function(event) {
+		div = this.up('div.question');
+		
+		answersDiv = div.select('tr.order .answers').first();
+		answersDiv.insert(GCLMS.Views.get('orderAnswer').interpolate({answer_id: UUID.generate(),question_id: div.getAttribute('question:id')}));
+		answersDiv.displayAsBlock();
+		lastTable = answersDiv.select('table').last();
+		lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']['tr.order']);
+		lastTable.parentNode.displayAsBlock();
+		event.stop();
+		
+		lastTable.select('input[type="text"]').first().focus();		
 	}
-}
+};
 
 GCLMS.Triggers.update({
 	'.gclms-edit-page' : {
@@ -347,7 +396,11 @@ GCLMS.Triggers.update({
 			'tr.multipleChoice,tr.matching' : {
 				'img.deleteAnswer:click': GCLMS.PagesController.confirmDeleteMatchingAnswer,
 				'tr.answer-explanation img.addTinyMCEBox:click' : GCLMS.PagesController.addExplanationToMultipleChoiceAnswer
-			},			
+			},
+			'tr.order' : {
+				'img.add:click': GCLMS.PagesController.addOrderAnswer,
+				'img.deleteAnswer:click': GCLMS.PagesController.confirmDeleteOrderAnswer
+			},	
 			'img.deleteQuestion:click':GCLMS.PagesController.confirmDeleteQuestion,
 			'img.deleteTextarea:click':GCLMS.PagesController.confirmDeleteTextarea,
 			'input[type="radio"].questionType:click': GCLMS.PagesController.selectQuestionType,

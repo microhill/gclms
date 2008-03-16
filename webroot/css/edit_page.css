@@ -1,10 +1,14 @@
 .gclms-edit-page {}
 
-	.gclms-page-item > table > tbody > tr > th,
+	table.question > tbody > tr > th,
 	.multipleChoice > table > tbody > tr > th,
 	.order > table > tbody > tr > th {
 		width: 30px;
 		min-width: 30px;
+	}
+	
+	.order th.gclms-answer-header {
+		width: 100%;
 	}
 	
 	.gclms-page-item > table > tbody > tr > td,
@@ -46,9 +50,12 @@
 		}
 	
 		.gclms-page-item table,
-		.gclms-page-item input[type='text'],
 		.gclms-page-item textarea {
 			width: 100%;
+		}
+		
+		.gclms-page-item input[type='text'] {
+			width: 99%;			
 		}
 		
 		.gclms-page-item td > input[type='radio'] {
@@ -56,13 +63,19 @@
 		}
 		
 		.gclms-page-item .left img,
-		.gclms-page-item .right img {
+		.gclms-page-item .right img,
+		.gclms-page-item img.add,
+		.gclms-page-item img.addTinyMCEBox {
 			cursor: pointer;
 		}
 		
 		.gclms-page-item .left,
 		.gclms-page-item .right {
 			line-height: 0;
+		}
+		
+		.gclms-page-item td.column {
+			width: 50%;
 		}
 
 .textarea td td {

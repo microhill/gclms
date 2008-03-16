@@ -17,7 +17,7 @@ GCLMS.AppController = {
 	confirmRemove: function(event) {
 		event.stop();
 		GCLMS.popup.create({
-			text: this.getAttribute('confirm:text'),
+			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
@@ -281,7 +281,7 @@ document.observe("dom:loaded", function() {
 
 GCLMS.tinyMCEConfig = {
     theme : 'advanced',
-    plugins : 'media,inlinepopups,style,safari', // sidebartext,notebook
+    plugins : 'media,inlinepopups,style', // sidebartext,notebook,safari
     mode: 'none',
 	button_tile_map: true,
 	cleanup_serializer: 'xml',

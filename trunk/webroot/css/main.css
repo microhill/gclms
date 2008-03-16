@@ -26,8 +26,8 @@ input[type="password"] {
 }
 
 p, blockquote {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 blockquote {
@@ -299,7 +299,7 @@ ul.reorder li {
 }
 
 .assessmentQuestion > table {
-	width: 800px;
+	/* width: 800px; */
 }
 
 input.delete:hover,

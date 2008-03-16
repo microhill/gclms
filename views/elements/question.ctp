@@ -219,7 +219,7 @@ if(empty($question_id))
 					<? __('Explanation'); ?>
 				</th>
 				<td>
-					<? pr($question['type']); if(empty($question['right_column_header'])): ?>
+					<? if(empty($question['right_column_header'])): ?>
 						<img src="/img/icons/oxygen/22x22/apps/kate.png" class="addTinyMCEBox" />
 					<?
 					else:

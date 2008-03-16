@@ -284,6 +284,7 @@ GCLMS.tinyMCEConfig = {
     plugins : 'media,inlinepopups,style', // sidebartext,notebook
     mode: 'none',
 	skin: 'gclms',
+	width: '100%',
 	relative_urls : false,
     editor_selector : 'wysiwyg',
 	theme_advanced_buttons1 : 'bold,italic,underline,separator,strikethrough,outdent,indent,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,forecolor,backcolor,formatselect,styleselect,link,unlink,image,media,cleanup,code', //,notebook,sidebartext
@@ -293,7 +294,7 @@ GCLMS.tinyMCEConfig = {
 	theme_advanced_toolbar_align : 'left',
 	theme_advanced_path_location : 'bottom',
     theme_advanced_blockformats : 'p,h2,h3,h4',
-	theme_advanced_toolbar_location : 'external',
+	//theme_advanced_toolbar_location : 'external',
 	theme_advanced_resizing: true,
 	gecko_spellcheck: true,
 	theme : 'advanced',

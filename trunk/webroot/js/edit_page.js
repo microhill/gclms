@@ -375,13 +375,13 @@ GCLMS.PagesController = {
 		lastTable.parentNode.displayAsBlock();
 		event.stop();
 		
-		GCLMS.PagesController.createSortablesForOrderQuestion(div);
+		GCLMS.PagesController.createSortablesForOrderQuestion.bind(div.down('tr.order div.answers'))();
 		lastTable.select('input[type="text"]').first().focus();		
 	},
 	
-	createSortablesForOrderQuestion: function(div) {
-		Sortable.create(div.down('tr.order div.answers').getAttribute('id'),{
-			containment: div.down('tr.order div.answers'),
+	createSortablesForOrderQuestion: function() {
+		Sortable.create(this.getAttribute('id'),{
+			containment: this,
 			handle: 'gclms-answer-header',
 			tag: 'div',
 			scroll: window
@@ -411,7 +411,8 @@ GCLMS.Triggers.update({
 			},
 			'tr.order' : {
 				'img.add:click': GCLMS.PagesController.addOrderAnswer,
-				'img.deleteAnswer:click': GCLMS.PagesController.confirmDeleteOrderAnswer
+				'img.deleteAnswer:click': GCLMS.PagesController.confirmDeleteOrderAnswer,
+				'div.answers': GCLMS.PagesController.createSortablesForOrderQuestion
 			},	
 			'img.deleteQuestion:click':GCLMS.PagesController.confirmDeleteQuestion,
 			'img.deleteTextarea:click':GCLMS.PagesController.confirmDeleteTextarea,

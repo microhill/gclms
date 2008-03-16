@@ -26,7 +26,7 @@
 							</div>
 						</td>
 						<td class="text">
-							<div><?= $answer['text'] ?></div>
+							<div><?= $answer['text1'] ?></div>
 						</td>
 					</tr>
 				<?
@@ -51,7 +51,7 @@
 							<div class="droppable defaultDroppableColor" correctAnswer:id="<?= $answer['id'] ?>">&nbsp;</div>
 						</td>
 						<td class="description">
-							<div><?= $answer['explanation'] ?></div>
+							<div><?= $answer['text2'] ?></div>
 						</td>
 					</tr>
 				<? endforeach; ?>

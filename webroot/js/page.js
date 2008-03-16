@@ -1,6 +1,12 @@
 /* global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __ */
 
 GCLMS.PageController = {
+	createOrderSortable: function(event) {
+		Sortable.create(this.getAttribute('id'),{
+			containment: this,
+			scroll: window
+		});
+	},
 	checkMultipleChoiceQuestion: function(event) {
 		div = event.findElement('div');
 		completelyCorrect = true;
@@ -322,19 +328,22 @@ GCLMS.PageController = {
 
 GCLMS.Triggers.update({
 	'div.page': GCLMS.PageController.loadPageAudio,
-	'img.gclms-notebook:click' : GCLMS.PageController.loadNotebook,
-	'#gradeQuestions:click' : GCLMS.PageController.gradeQuestions,
-	'.multipleChoice button.checkAnswerButton:click' : GCLMS.PageController.checkMultipleChoiceQuestion,
+	'img.gclms-notebook:click': GCLMS.PageController.loadNotebook,
+	'#gradeQuestions:click': GCLMS.PageController.gradeQuestions,
+	'.multipleChoice button.checkAnswerButton:click': GCLMS.PageController.checkMultipleChoiceQuestion,
 	'.matching' : {
-		'button.checkAnswerButton:click' : GCLMS.PageController.checkMatchingQuestion,
-		'div.draggable' : GCLMS.PageController.createMatchingDraggables,
-		'div.droppable' : GCLMS.PageController.createMatchingDroppables
+		'button.checkAnswerButton:click': GCLMS.PageController.checkMatchingQuestion,
+		'div.draggable': GCLMS.PageController.createMatchingDraggables,
+		'div.droppable': GCLMS.PageController.createMatchingDroppables
 	},
-	'.fillInTheBlank' :{
-		'input:keyup' : GCLMS.PageController.expandFillInTheBlankField,
-		'button.checkAnswerButton:click' : GCLMS.PageController.checkFillInTheBlankQuestion
+	'.fillInTheBlank':{
+		'input:keyup': GCLMS.PageController.expandFillInTheBlankField,
+		'button.checkAnswerButton:click': GCLMS.PageController.checkFillInTheBlankQuestion
 	},
-	'.trueFalse button:click' : GCLMS.PageController.checkTrueFalseQuestion,
+	'.orderQuestion': {
+		'ul': GCLMS.PageController.createOrderSortable
+	},	
+	'.trueFalse button:click': GCLMS.PageController.checkTrueFalseQuestion,
 	'div.gclms-framed' : {
 		'a[href*="/bible_kjv/"]:click': GCLMS.PageController.loadBibleVerse,
 		'a[href*="/chapters/"]:click': GCLMS.PageController.loadChapter,

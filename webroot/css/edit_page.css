@@ -1,5 +1,9 @@
 .gclms-edit-page {}
 
+	img[disabled='disabled'] {
+		visibility: hidden;
+	}
+	
 	table.question > tbody > tr > th,
 	.multipleChoice > table > tbody > tr > th,
 	.order > table > tbody > tr > th {

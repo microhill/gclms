@@ -278,3 +278,7 @@ p.correctAnswer {
 			position: relative;
 			top: 0px;
 		}
+
+div.orderQuestion li {
+	cursor: move;
+}

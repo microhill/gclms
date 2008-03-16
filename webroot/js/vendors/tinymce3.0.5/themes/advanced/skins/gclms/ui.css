@@ -16,7 +16,7 @@
 .gclmsSkin .mceExternalClose {position:absolute; top:3px; right:3px; width:7px; height:7px; background:url(../../img/icons.gif) -820px 0}
 
 /* Layout */
-.gclmsSkin table.mceLayout {border:0; border-left:1px solid #CCC; border-right:1px solid #CCC}
+.gclmsSkin table.mceLayout {border:0;}
 .gclmsSkin table.mceLayout tr.mceFirst td {border-top:1px solid #CCC}
 .gclmsSkin table.mceLayout tr.mceLast td {border-bottom:1px solid #CCC}
 .gclmsSkin table.mceToolbar, .gclmsSkin tr.mceFirst .mceToolbar tr td, .gclmsSkin tr.mceLast .mceToolbar tr td {border:0; margin:0; padding:0;}

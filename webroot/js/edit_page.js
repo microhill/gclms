@@ -4,9 +4,10 @@ GCLMS.PagesController = {
 	addExplanationToQuestion: function() {
 		div = this.up('div.question');
 		questionId = div.getAttribute('question:id');
-		var tinyMCEInstance = this.replace(GCLMS.Views.get('questionExplanation').interpolate({id: questionId}));
+		
+		this.replace(GCLMS.Views.get('questionExplanation').interpolate({id: questionId}));
+		
 		GCLMS.PagesController.enableTinyMCE.bind(div.down('textarea.gclms-question-explanation'))();
-		alert(div.down('textarea.gclms-question-explanation'));
 		div.down('tr.question-explanation td').addClassName('filled');
 	},
 	
@@ -17,8 +18,6 @@ GCLMS.PagesController = {
 		div = this.up('div.multipleChoice');
 		answerId = div.getAttribute('gclms:answer-id');
 		this.replace(GCLMS.Views.get('multipleChoiceAnswerExplanation').interpolate({answer_id: answerId,question_id: questionId}));
-		
-		//div.down('textarea.gclms-answer-explanation').style.backgroundColor = 'red';
 		
 		GCLMS.PagesController.enableTinyMCE.bind(div.down('textarea.gclms-answer-explanation'))();
 		div.down('tr.answer-explanation td').addClassName('filled');

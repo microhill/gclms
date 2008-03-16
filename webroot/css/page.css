@@ -29,6 +29,14 @@ body.mceContentBody blockquote:first-child {
 	padding-bottom: 8px;
 }
 
+body.mceContentBody p,
+body.mceContentBody blockquote {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 #gclms-page-navigation {
 	overflow: hidden;
 }

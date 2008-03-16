@@ -14,19 +14,13 @@ if(empty($question_id) || empty($answer_id))
 		<tr>
 			<th colspan="2" class="gclms-answer-header">
 				<div class="left">
-					<button class="deleteAnswer delete" confirm:text="<? __('Are you sure you want to delete this answer?') ?>">
-						<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" />
-					</button>
+					<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" class="deleteAnswer" gclms:confirm-text="<? __('Are you sure you want to delete this answer?') ?>"/>
 				</div>
 
 				<div class="right">
-					<button class="moveUp">
-						<img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" alt="<? __('Move up') ?>" />
-					</button>
+					<img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" alt="<? __('Move up') ?>" class="moveUp" />
 
-					<button class="moveDown">
-						<img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" alt="<? __('Move down') ?>" />
-					</button>
+					<img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" alt="<? __('Move down') ?>" class="moveDown" />
 				</div>
 				
 			</th>

@@ -2,9 +2,9 @@
 $html->css('edit_page', null, null, false);
 
 $javascript->link(array(
+	'vendors/tinymce3.0.5/tiny_mce',
 	'vendors/prototype',
 	'prototype_extensions',
-	'vendors/tinymce3.0.5/tiny_mce',
 	'gclms',
 	'vendors/uuid',
 	'edit_page'

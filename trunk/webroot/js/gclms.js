@@ -281,8 +281,11 @@ document.observe("dom:loaded", function() {
 
 GCLMS.tinyMCEConfig = {
     theme : 'advanced',
-    plugins : 'media,inlinepopups,style', // sidebartext,notebook
+    plugins : 'media,inlinepopups,style,safari', // sidebartext,notebook
     mode: 'none',
+	button_tile_map: true,
+	cleanup_serializer: 'xml',
+	entity_encoding: 'raw',
 	skin: 'gclms',
 	width: '100%',
 	height: '250px',

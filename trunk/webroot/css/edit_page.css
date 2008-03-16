@@ -1,5 +1,18 @@
 .gclms-edit-page {}
 
+	.gclms-page-item > table > tbody > tr > th,
+	.multipleChoice > table > tbody > tr > th,
+	.order > table > tbody > tr > th {
+		width: 30px;
+		min-width: 30px;
+	}
+	
+	.gclms-page-item > table > tbody > tr > td,
+	.multipleChoice > table > tbody > tr > td,
+	.order > table > tbody > tr > td {
+		width: 98%;
+	}
+
 	.gclms-edit-page .add {
 		font-size: 1.2em;
 	}

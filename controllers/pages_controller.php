@@ -137,6 +137,12 @@ class PagesController extends AppController {
 						$this->Node->Question->Answer->save($answer);
 						$this->Node->Question->Answer->id = null;
 					}
+				} else if(isset($question['OrderAnswer']) && $question['type'] == '3') {
+					foreach($question['OrderAnswer'] as $answer) {
+						$answer['question_id'] = $this->Node->Question->id;
+						$this->Node->Question->Answer->save($answer);
+						$this->Node->Question->Answer->id = null;
+					}
 				}
 
 				$this->Node->Question->id = null;

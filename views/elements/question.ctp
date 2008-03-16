@@ -31,7 +31,7 @@ if(empty($question_id))
 			<tr>
 				<th>
 					<?
-					echo $form->label('Question.' . $question_id . '.title','Title');
+					echo $form->label('Question.' . $question_id . '.title','Question');
 					?>
 				</th>
 				<td>
@@ -218,8 +218,8 @@ if(empty($question_id))
 				<th>
 					<? __('Explanation'); ?>
 				</th>
-				<td>
-					<? if(empty($question['right_column_header'])): ?>
+				<td class="<?= !empty($question['explanation']) ? 'filled' : '' ?>">
+					<? if(empty($question['explanation'])): ?>
 						<img src="/img/icons/oxygen/22x22/apps/kate.png" class="addTinyMCEBox" />
 					<?
 					else:

@@ -313,7 +313,7 @@ GCLMS.PagesController = {
 			case '0':
 				div.down('.multipleChoice').displayAsTableRow();
 				div.down('.question-explanation').hide();
-				div.down('.multipleChoice input[type="text"]').focus();
+				try{div.down('.multipleChoice input[type="text"]').focus();}catch(e){}
 				break;
 			case '1':
 				div.down('.trueFalse').displayAsTableRow();
@@ -325,7 +325,7 @@ GCLMS.PagesController = {
 				break;
 			case '3':
 				div.down('.order').displayAsTableRow();
-				div.down('.order input[type="text"]').focus();
+				try{div.down('.order input[type="text"]').focus();}catch(e){}
 				break;
 			case '4':
 				div.down('.fillInTheBlank').displayAsTableRow();

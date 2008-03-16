@@ -21,7 +21,7 @@ if(empty($question_id) || empty($answer_id))
 			<td>
 				<?= $form->text('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text',array(
 					'label' => false,
-					'value' => @$answer['text'],
+					'value' => @$answer['text1'],
 					'div' => false,
 					'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][text1]"
 				)); ?>

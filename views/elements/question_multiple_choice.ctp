@@ -19,7 +19,7 @@
 	
 	if($correctAnswers > 1) {
 		foreach($question['Answer'] as $answer) {
-			$text = $answer['text'];
+			$text = $answer['text1'];
 			$correct = $answer['correct'] ? 'true' : 'false';
 			$id = String::uuid();
 			echo "<li><input type='checkbox' answer:correct='$correct' id='$id'/><label for='$id'> $text</label></li>";
@@ -32,7 +32,7 @@
 			echo '<li>'
 				. '<input type="radio" name="' . $uniqueQuestionName . '"  id="' . $uniqueAnswerName . '"'
 				. 'answer:correct="' . ($answer['correct'] ? 'true' : 'false') . '" />'
-				. '<label for="' . $uniqueAnswerName . '">' . $answer['text'] . '</label></li>';
+				. '<label for="' . $uniqueAnswerName . '">' . $answer['text1'] . '</label></li>';
 			if($answer['correct'])
 				$correctAnswers++;
 		}

@@ -18,9 +18,7 @@ if(empty($question_id) || empty($answer_id))
 				</div>
 
 				<div class="right">
-					<img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" alt="<? __('Move up') ?>" class="moveUp" />
-
-					<img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" alt="<? __('Move down') ?>" class="moveDown" />
+					<img src="/img/icons/crystal_clear/16x16/actions/move.png" alt="<? __('Move up') ?>" />
 				</div>
 				
 			</th>
@@ -28,14 +26,14 @@ if(empty($question_id) || empty($answer_id))
 		<tr>
 			<th>
 				<?
-				echo $form->label('Question.' . $question_id . '.OrderAnswer.' . $answer_id . '.text','Text');
+				echo $form->label('Question' . $question_id . 'OrderAnswer' . $answer_id . 'text','Text');
 				?>
 			</th>
 			<td>
 				<?
-				echo $form->text('Question.' . $question_id . '.OrderAnswer.' . $answer_id . '.text',array(
+				echo $form->text('Question' . $question_id . 'OrderAnswer' . $answer_id . 'text',array(
 					'label' => false,
-					'value' => @$answer['text'],
+					'value' => @$answer['text1'],
 					'div' => false,
 					'name' => "data[Question][$question_id][OrderAnswer][$answer_id][text1]"
 				));

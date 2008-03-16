@@ -24,7 +24,7 @@ if(empty($question_id) || empty($answer_id))
         <?
 		echo $form->text('Question.' . $question_id . '.MatchingAnswer.' . $answer_id . '.text',array(
 			'label' => false,
-			'value' => @$answer['text'],
+			'value' => @$answer['text1'],
 			'div' => false,
 			'type' => 'text',
 			'name' => "data[Question][$question_id][MatchingAnswer][$answer_id][text1]"
@@ -36,9 +36,9 @@ if(empty($question_id) || empty($answer_id))
 		echo $form->text('Question.' . $question_id . '.MatchingAnswer.' . $answer_id . '.explanation',array(
 			'label' => false,
 			'div' => false,
-			'value' => @$answer['explanation'],
+			'value' => @$answer['text2'],
 			'type' => 'text',
-			'name' => "data[Question][$question_id][MatchingAnswer][$answer_id][text3]"
+			'name' => "data[Question][$question_id][MatchingAnswer][$answer_id][text2]"
 		));
 		?>
     </td>

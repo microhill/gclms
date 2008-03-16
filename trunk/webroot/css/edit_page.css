@@ -69,6 +69,10 @@
 			cursor: pointer;
 		}
 		
+		.gclms-page-item .order th.gclms-answer-header {
+			cursor: move;
+		}
+		
 		.gclms-page-item .left,
 		.gclms-page-item .right {
 			line-height: 0;

@@ -291,7 +291,7 @@ GCLMS.tinyMCEConfig = {
 	height: '250px',
 	relative_urls : false,
     editor_selector : 'wysiwyg',
-	theme_advanced_buttons1 : 'bold,italic,underline,separator,strikethrough,outdent,indent,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,forecolor,backcolor,formatselect,styleselect,link,unlink,image,media,cleanup,code', //,notebook,sidebartext
+	theme_advanced_buttons1 : 'bold,italic,underline,separator,strikethrough,outdent,indent,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,forecolor,backcolor,formatselect,styleselect,link,unlink,image,media,cleanup,code,notebook', //,notebook,sidebartext
 	theme_advanced_buttons2 : '',
 	theme_advanced_buttons3_add : 'styleprops',
 	theme_advanced_toolbar_location : 'top',
@@ -306,7 +306,16 @@ GCLMS.tinyMCEConfig = {
 	theme_advanced_resize_horizontal: false,
 	extended_valid_elements : 'a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]',
 	file_browser_callback : 'GCLMS.fileBrowser',
-	content_css : "/css/main.css,/css/page.css"
+	content_css : "/css/main.css,/css/page.css",
+    setup : function(editor) {
+        editor.addButton('notebook', {
+            title : 'Add Notebook button',
+            image : '/img/notebook-22.png',
+            onclick : function() {
+                editor.selection.setContent('<img src="/img/notebook-32.png" />');
+            }
+        });
+    }
 };
 
 if(document.body.getAttribute('lms:group') && !document.body.getAttribute('lms:group').empty() && !document.body.getAttribute('lms:course').empty()) {

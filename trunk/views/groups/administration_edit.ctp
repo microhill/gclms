@@ -20,7 +20,7 @@ echo $this->renderElement('no_column_background'); ?>
 	include('form.ctp');
 	echo '<div>';
 	echo $form->submit(__('Save',true),array('class'=>'save','div'=>false,'id' => 'GroupSave'));
-	echo $form->submit(__('Delete',true),array('class'=>'delete','div'=>false,'id' => 'GroupDelete','confirm:text'=>__('Are you sure you sure you want to delete this?',true)));
+	echo $form->submit(__('Delete',true),array('class'=>'delete','div'=>false,'id' => 'GroupDelete','gclms:confirm-text'=>__('Are you sure you sure you want to delete this?',true)));
 	echo '</div>';
 	echo $form->end();
 	?>

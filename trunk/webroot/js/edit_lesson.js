@@ -89,7 +89,7 @@ GCLMS.LessonController = {
 	},
 	confirmDeletePage: function() {
 		GCLMS.popup.create({
-			text: this.getAttribute('confirm:text'),
+			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
@@ -168,7 +168,7 @@ GCLMS.LessonController = {
 		}
 
 		GCLMS.popup.create({
-			text: this.getAttribute('confirm:text'),
+			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',

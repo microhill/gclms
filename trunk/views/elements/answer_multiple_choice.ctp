@@ -1,7 +1,7 @@
 <?
 if(empty($question_id) || empty($answer_id))
 	die();
-?><div class="multipleChoice" <?= empty($answer['id']) ? 'style="display: none;"' : '' ?> gclms:answer-id="<?= $answer_id ?>">
+?><div class="multipleChoice" gclms:answer-id="<?= $answer_id ?>">
 	<?= $form->hidden('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'id',array(
 		'value' => @$answer['id'],
 		'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][id]"
@@ -10,7 +10,7 @@ if(empty($question_id) || empty($answer_id))
 		<tr>
 			<th colspan="2" class="gclms-answer-header">
 				<div class="left">
-					<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" class="deleteAnswer delete" confirm:text="<? __('Are you sure you want to delete this answer?') ?>" />
+					<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" class="deleteAnswer delete" gclms:confirm-text="<? __('Are you sure you want to delete this answer?') ?>" />
 				</div>
 			</th>
 		</tr>

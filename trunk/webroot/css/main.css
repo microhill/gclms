@@ -873,7 +873,8 @@ td.az {
 	}
 	
 .multipleChoice div,
-.matching div {
+.matching div,
+.order div {
 	margin: 0;
 }
 

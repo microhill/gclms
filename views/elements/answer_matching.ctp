@@ -38,7 +38,7 @@ if(empty($question_id) || empty($answer_id))
 			'div' => false,
 			'value' => @$answer['explanation'],
 			'type' => 'text',
-			'name' => "data[Question][$question_id][MatchingAnswer][$answer_id][text2]"
+			'name' => "data[Question][$question_id][MatchingAnswer][$answer_id][text3]"
 		));
 		?>
     </td>

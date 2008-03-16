@@ -45,7 +45,7 @@ if(empty($question_id) || empty($answer_id))
 		</tr>
 		<tr class="answer-explanation">
 			<th>
-				<?= $form->label('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text2','Explanation'); ?>
+				<?= $form->label('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text3','Explanation'); ?>
 			</th>
 			<td>
 				<img src="/img/icons/oxygen/16x16/apps/kate.png" class="addTinyMCEBox" />

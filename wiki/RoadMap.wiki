@@ -4,6 +4,7 @@
  * Course structuring tool
   * Overhauled to generic node model (issue 1)
   * In Firefox, menu buttons now stay on top of page when scrolling through a long list of nodes
+ * [http://en.wikipedia.org/wiki/UUID UUIDs] now used for primary keys for all db records
  * Reduced page loads from about 500k (4-8s) to 100-150k (2-4s)
   * Optimized sizes of commonly used images
   * Turned mod_deflate functionality back on to reduce .js and .css file size

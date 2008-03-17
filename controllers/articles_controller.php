@@ -22,7 +22,11 @@ class ArticlesController extends AppController {
 	}
 	
 	function afterSave() {
-		$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/articles/view/' . $this->data['Article']['id'];
+		if(empty($this->data['Article']['id'])) {
+			$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/articles/view/' . $this->data['Article']['id'];
+		} else {
+			$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/articles';
+		}
 		parent::afterSave();
 	}
 }

@@ -2,5 +2,4 @@
 
 http://www.pixelmator.com/support/images/Bug.png
 
- * IE7 - Node builder buttons function but do not highlight
  * Parents with Children on nodebuilder page can be deleted in ie but not in firefox

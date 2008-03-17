@@ -32,6 +32,7 @@
  * Dictionary and article authoring interfaces now displayed more how students will see them; no longer displayed in tabular format
  * Answers to multiple choice questions now have TinyMCE-enabled explanations; students can be shown flash video or directed to page/article/chapter
  * Fixed: After clicking root node in course structure rool, clicking other nodes would not yield enabled menubar buttons (issue 86)
+ * Fixed: Parents with Children on node builder page could be deleted in IE but not in firefox
 ==General Improvements== 
 
  

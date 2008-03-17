@@ -249,15 +249,35 @@ class FilesController extends AppController {
 		readfile($file);
 		exit;
 	}
-
+	
 	function css() {
+		if(empty($this->viewVars['course'])) {
+			$this->group_css();
+		} else {
+			$this->course_css();
+		}
+	}
+
+	function group_css() {
+		header('Content-type: text/css');
+		header('Content-length: ' . strlen($this->viewVars['group']['css']));
+    	header("Cache-Control: public");
+    	header("Cache-Control: maxage=604800");
+		//header('Expires: Thu, 15 Apr 2010 20:00:00 GMT');
+		//header('Last-Modified: '.date('D, d M Y H:i:s', filemtime($file)).' GMT');
+		//echo '@import url("/css/page.css");';
+		echo $this->viewVars['group']['css'];
+		exit;
+	}
+
+	function course_css() {
 		header('Content-type: text/css');
 		header('Content-length: ' . strlen($this->viewVars['course']['css']));
     	header("Cache-Control: public");
     	header("Cache-Control: maxage=604800");
 		//header('Expires: Thu, 15 Apr 2010 20:00:00 GMT');
 		//header('Last-Modified: '.date('D, d M Y H:i:s', filemtime($file)).' GMT');
-		echo '@import url("/css/page.css");';
+		//echo '@import url("/css/page.css");';
 		echo $this->viewVars['course']['css'];
 		exit;
 	}

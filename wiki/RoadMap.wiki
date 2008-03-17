@@ -14,6 +14,7 @@
   * Basic functionality for essay questions (issue 82) 
   * Improved responsiveness; no more waiting for Ajax calls
  * Pages now can be viewed and linked to in non-framed environment; convenient links on these pages for immediate access to page authoring tool
+ * User now logs in with e-mail or user id; incipient functionality prepared for OpenID
  
 =Milestone 2=
  * Basic export-to-ODT functionality (issue 2)

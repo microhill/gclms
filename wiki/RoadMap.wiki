@@ -17,7 +17,7 @@
  * User now logs in with e-mail or student id; incipient functionality prepared for OpenID
  
 =Milestone 2=
- * Answers to multiple choice questions now have TinyMCE-enabled explanations
+ * Answers to multiple choice questions now have TinyMCE-enabled explanations; students can be shown flash video or directed to page/article/chapter
  * Basic export-to-ODT functionality (issue 2)
   * Export now includes some basic image functionality
   * User now prompted to download ODT immediately after clicking the export to ODT link

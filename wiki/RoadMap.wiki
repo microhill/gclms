@@ -1,6 +1,9 @@
 #summary Development plan
 
 =Milestone 1=
+ * Course structuring tool
+  * Overhauled to generic node model (issue 1)
+  * In Firefox, menu buttons now stay on top of page when scrolling through a long list of nodes
  * Reduced page loads from about 500k (4-8s) to 100-150k (2-4s)
   * Optimized sizes of commonly used images
   * Turned mod_deflate functionality back on to reduce .js and .css file size
@@ -10,9 +13,6 @@
   * Question of type "ordered list" (issue 85)
   * Basic functionality for essay questions (issue 82) 
   * Improved responsiveness; no more waiting for Ajax calls
- * Course structuring tool
-  * Overhauled to generic node model (issue 1)
-  * In Firefox, menu buttons now stay on top of page when scrolling through a long list of nodes
  * Pages now can be viewed and linked to in non-framed environment; convenient links on these pages for immediate access to page authoring tool
  
 =Milestone 2=

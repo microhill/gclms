@@ -7,6 +7,8 @@
  * Integration of newest TinyMCE tool (issue 8)
  * Popup linker/embedder of links/images/media (issue 11)   
  * Question of type "ordered list" (issue 85)
+ * Improved responsiveness in page authoring tool; no more waiting for Ajax calls
+ * In Firefox, menu of course structuring tool now stays on top of page when scrolling through a long list of nodes
 
  
 =Milestone 2=

@@ -1,26 +1,27 @@
 #summary Development plan
 
-=Milestone 1 - Due March 7 ... Revised Date =
+=Milestone 1=
 
  * Overhaul course authoring tool / Restructure course to Node model (issue 1)
-  * Render in framed environment (issue 62) (issue 81)
-  * Unexpected behavior when decreasing indent of node (issue 63)
-  * Page authoring tool needs ability to add essay questions (needed to support Course migration from IBS 2.0)(issue 82) 
+ * Page authoring tool needs ability to add essay questions (issue 82) 
  * Integration of newest TinyMCE tool (issue 8)
-  * Popup linker/embedder of links/images/media (issue 11)   
+ * Popup linker/embedder of links/images/media (issue 11)   
+
+ 
+=Milestone 2=
+ * Fix and re-enable framed environment (issue 62) (issue 81)
  * Basic export-to-ODT functionality (issue 2)
   * Shrink large images (issue 74)
   * Table of contents / "bookmarks" for course structure (issue 75)
   * Footer on every page after ToC (issue 76)
   * Capable to Print in English (issue 2) 
- 
- 
-=Milestone 2 - Due March 21 =
 
- * Translation capability (asserting no PHP coding required)
- * Capable to Print in non-English (Chinese and Arabic) (issue 83)
+=Milestone 3=
+
+ * Export to ODT in Chinese (issue 83)
+ * Export to ODT in Arabic (issue 84)
  
-=Milestone 3 - Due May 2=
+=Milestone 4 - Due May 2=
 ==General Functions==
  * *Introductory Material* (issue 65)
  * *Registration/Logon/Logoff related* (issue 33) (issue 60)  
@@ -63,3 +64,4 @@
  * Fix drag & drop "ghosting" error in IE (issue 79)
  * Ability to pick up where one last left off in a course (issue 80)
  * E-commerce integration (issue 9)
+ * Unexpected behavior when decreasing indent of node (issue 63)

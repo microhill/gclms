@@ -1,6 +1,6 @@
 #summary Development plan
 
-=Milestone 1=
+=Milestone 1 http://buy1.snapon.com/images/checkmark.gif=
  * Course structuring tool
   * Overhauled to generic node model (issue 1)
   * In Firefox, menu buttons now stay on top of page when scrolling through a long list of nodes

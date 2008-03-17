@@ -1,6 +1,9 @@
 #summary Development plan
 
 =Milestone 1=
+ * Reduced page loads from about 500k (4-8s) to 100-150k (2-4s)
+  * Optimized sizes commonly used images
+  * Turned mod_deflate functionality back on to reduce .js and .css file size
  * Integration of newest TinyMCE tool (issue 8)
   * Popup linker/embedder of links/images/media (issue 11)   
  * Page authoring tool
@@ -14,6 +17,7 @@
 =Milestone 2=
  * Basic export-to-ODT functionality (issue 2)
   * Export now includes some basic image functionality
+  * 
   * Shrink large images (issue 74)
   * Table of contents / "bookmarks" for course structure (issue 75)
   * Footer on every page after ToC (issue 76)

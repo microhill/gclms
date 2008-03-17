@@ -54,7 +54,7 @@ if(empty($question_id))
 				<td>
 				<?= $myForm->input('Question' . $question_id . 'Type',
 					array(
-						'options' => array('0' => 'Multiple choice','1' => 'True/false','2' => 'Matching','3' => 'Order','4' => 'Fill in the blank','5' => 'Essay'),
+						'options' => array('0' => 'Multiple choice','1' => 'True/false','2' => 'Matching','3' => 'Ordered List','4' => 'Fill in the blank','5' => 'Essay'),
 						'type' => 'radio',
 						'div' => false,
 						'class' => 'questionType',

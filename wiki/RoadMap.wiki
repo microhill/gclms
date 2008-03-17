@@ -20,21 +20,26 @@
   * User now logs in with e-mail or student id; incipient functionality prepared for OpenID
  
 =Milestone 2=
- * Answers to multiple choice questions now have TinyMCE-enabled explanations; students can be shown flash video or directed to page/article/chapter
- * Basic export-to-ODT functionality (issue 2)
+==Print to English==
+  * Basic export-to-ODT functionality (issue 2)
   * Export now includes some basic image functionality
   * User now prompted to download ODT immediately after clicking the export to ODT link
   * Shrink large images (issue 74)
   * Table of contents / "bookmarks" for course structure (issue 75)
   * Footer on every page after ToC (issue 76)
   * Capable to Print in English (issue 2)
+==Authoring==
  * Dictionary and article authoring interfaces now displayed more how students will see them; no longer displayed in tabular format
+ * Answers to multiple choice questions now have TinyMCE-enabled explanations; students can be shown flash video or directed to page/article/chapter
  * Fix bug: Course structure tool: After clicking root node, clicking other nodes will not yield enabled menubar buttons (issue 86)
+==General Improvements== 
+
+ 
 
 =Milestone 3=
 
- * Export to ODT in Chinese (issue 83)
- * Export to ODT in Arabic (issue 84)
+ * Print / Export to ODT in Chinese (issue 83)
+ * Print / Export to ODT in Arabic (issue 84)
  * Fix and re-enable framed environment (issue 62) (issue 81)
  
 =Milestone 4 - Due May 2=

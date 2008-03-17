@@ -9,7 +9,7 @@
         	'label' => array('text' => __("Password", true)),
         	'between' => '<br/>',
         	'type' => 'password',
-			'div' => array('id' => 'UserPasswordDiv','class' => 'hidden')
+			'div' => array('id' => 'UserPasswordDiv')
         ));?>
         <?
         echo $form->submit('Login');

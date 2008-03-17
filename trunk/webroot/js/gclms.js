@@ -182,7 +182,7 @@ GCLMS.AppController = {
 		if($F(this).indexOf('@') != -1) {
 			$('UserPasswordDiv').displayAsBlock();
 		} else {
-			$('UserPasswordDiv').hide();
+			//$('UserPasswordDiv').hide();
 		}
 		
 		if($F('UserEmail').trim().indexOf('http:') === 0) {
@@ -306,7 +306,7 @@ GCLMS.tinyMCEConfig = {
 	theme_advanced_resize_horizontal: false,
 	extended_valid_elements : 'a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]',
 	file_browser_callback : 'GCLMS.fileBrowser',
-	content_css : "/css/main.css,/css/page.css",
+	//content_css : "/css/main.css,/css/page.css",
     setup : function(editor) {
         editor.addButton('notebook', {
             title : 'Add Notebook button',
@@ -319,7 +319,7 @@ GCLMS.tinyMCEConfig = {
 };
 
 if(document.body.getAttribute('lms:group') && !document.body.getAttribute('lms:group').empty()) { // && !document.body.getAttribute('lms:course').empty()
-	GCLMS.tinyMCEConfig.content_css = '/'+ document.body.getAttribute('lms:group') + '/files/css' + ',' + GCLMS.tinyMCEConfig.content_css;
+	GCLMS.tinyMCEConfig.content_css = '/'+ document.body.getAttribute('lms:group') + '/files/css'
 }
 
 GCLMS.fileBrowser = function(field_name, url, type, win) {

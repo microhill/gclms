@@ -265,7 +265,8 @@ class FilesController extends AppController {
     	header("Cache-Control: maxage=604800");
 		//header('Expires: Thu, 15 Apr 2010 20:00:00 GMT');
 		//header('Last-Modified: '.date('D, d M Y H:i:s', filemtime($file)).' GMT');
-		//echo '@import url("/css/page.css");';
+		echo '@import url("/css/main.css");';
+		echo '@import url("/css/page.css");';
 		echo $this->viewVars['group']['css'];
 		exit;
 	}

@@ -17,7 +17,7 @@
 =Milestone 2=
  * Basic export-to-ODT functionality (issue 2)
   * Export now includes some basic image functionality
-  * User promoted to download ODT immediately after clicking the export to ODT link
+  * User now prompted to download ODT immediately after clicking the export to ODT link
   * Shrink large images (issue 74)
   * Table of contents / "bookmarks" for course structure (issue 75)
   * Footer on every page after ToC (issue 76)

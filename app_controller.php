@@ -128,6 +128,7 @@ class AppController extends Controller {
 			if($this->{$model}->save($this->data)) {
 				if(!empty($this->itemName))
 					$this->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully added.',true));
+				$this->data[$model]['id'] = $this->{$model}->id;
 				$this->afterSave();
 			} else {
 				if(!empty($this->itemName))

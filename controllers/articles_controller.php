@@ -2,7 +2,6 @@
 class ArticlesController extends AppController {
     var $uses = array('Article');
 	var $itemName = 'Article';
-	var $components = array('MyAuth');
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();

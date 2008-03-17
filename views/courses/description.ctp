@@ -1,5 +1,4 @@
 <?
-
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',

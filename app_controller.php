@@ -65,7 +65,7 @@ class AppController extends Controller {
 
        	if(isset($this->params['group'])) {
 			$this->Group->contain();
-			$group = $this->Group->find(array('Group.web_path' => $this->params['group']),array('id','name','web_path','external_web_address','logo','logo_updated','description','web_path'));
+			$group = $this->Group->find(array('Group.web_path' => $this->params['group']),array('id','name','web_path','external_web_address','logo','logo_updated','description','web_path','css'));
 			$this->set('group',$group['Group']);
        	}
 

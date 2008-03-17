@@ -318,8 +318,8 @@ GCLMS.tinyMCEConfig = {
     }
 };
 
-if(document.body.getAttribute('lms:group') && !document.body.getAttribute('lms:group').empty() && !document.body.getAttribute('lms:course').empty()) {
-	//GCLMS.tinyMCEConfig.content_css = '/css/reset.css, ' + '/css/main.css, ' + '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/files/css' + '/1';
+if(document.body.getAttribute('lms:group') && !document.body.getAttribute('lms:group').empty()) { // && !document.body.getAttribute('lms:course').empty()
+	GCLMS.tinyMCEConfig.content_css = '/'+ document.body.getAttribute('lms:group') + '/files/css' + ',' + GCLMS.tinyMCEConfig.content_css;
 }
 
 GCLMS.fileBrowser = function(field_name, url, type, win) {

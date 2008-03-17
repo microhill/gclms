@@ -291,7 +291,7 @@ GCLMS.tinyMCEConfig = {
 	height: '250px',
 	relative_urls : false,
     editor_selector : 'wysiwyg',
-	theme_advanced_buttons1 : 'bold,italic,underline,separator,strikethrough,outdent,indent,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,forecolor,backcolor,formatselect,styleselect,link,unlink,image,media,cleanup,code,notebook', //,notebook,sidebartext
+	theme_advanced_buttons1 : 'bold,italic,underline,separator,strikethrough,outdent,indent,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,forecolor,backcolor,formatselect,styleselect,link,unlink,image,media,cleanup,removeformat,code,notebook', //,notebook,sidebartext
 	theme_advanced_buttons2 : '',
 	theme_advanced_buttons3_add : 'styleprops',
 	theme_advanced_toolbar_location : 'top',

@@ -26,6 +26,7 @@
   * Footer on every page after ToC (issue 76)
   * Capable to Print in English (issue 2)
  * Dictionary and article authoring interfaces now displayed more how students will see them; not longer displayed in tabular format
+ * Fix bug: Course structure tool: After clicking root node, clicking other nodes will not yield enabled menubar buttons (issue 86)
 
 =Milestone 3=
 

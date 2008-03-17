@@ -23,7 +23,7 @@
   * Table of contents / "bookmarks" for course structure (issue 75)
   * Footer on every page after ToC (issue 76)
   * Capable to Print in English (issue 2)
- * Dictionary and article authoring interfaces display more inline with how students will see them; not longer displayed in tabular format
+ * Dictionary and article authoring interfaces now displayed more how students will see them; not longer displayed in tabular format
 
 =Milestone 3=
 

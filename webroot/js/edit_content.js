@@ -262,11 +262,11 @@ GCLMS.ContentController = {
 			node.disable();
 		});
 
-		$$('#convertPageToLabel > button').first().disable();
-		$$('#convertLabelToPage > button').first().disable();
+		$('convertPageToLabel').down('button').disable();
+		$('convertLabelToPage').down('button').disable();
 
-		$$('#addLabel > button').first().enable();
-		$$('#addPage > button').first().enable();
+		$('addLabel').down('button').enable();
+		$('addPage').down('button').enable();
 
 		var selectedAnchor = $('gclms-nodes').down('li a.selected');
 		if(!selectedAnchor) {
@@ -276,46 +276,45 @@ GCLMS.ContentController = {
 		var selectedNode = selectedAnchor.up('li');
 			
 		if(!selectedNode || selectedNode.getAttribute('gclms:node-id') == '0') {
-			$('secondaryMenubar').disable();
 			return false;
 		}
 		
 		if(selectedNode.hasClassName('gclms-page')) {
-			$$('#editPage > button').first().enable();
+			$('editPage').down('button').enable();
 		}	
 		
 		$('secondaryMenubar').displayAsBlock();
 
-		$$('#renameNode > button').first().enable();
+		$('renameNode').down('button').enable();
 		
 		if(selectedNode.down('li')) {
-			$$('#deleteNode > button').first().disable();
+			$('deleteNode').down('button').disable();
 		} else {
-			$$('#deleteNode > button').first().enable();
+			$('deleteNode').down('button').enable();
 		}
 		
 		var ancestorLevels = GCLMS.ContentController.countAncestorLevels(selectedNode);
 		var descendentLevels = GCLMS.ContentController.countDescendentLevels(selectedNode);
 				
 		if(ancestorLevels >= 3) {
-			$$('#addLabel > button').first().disable();
-			$$('#addPage > button').first().disable();
+			$('addLabel').down('button').disable();
+			$('addPage').down('button').disable();
 		}
 		
 		if(selectedNode.previous('li') && ancestorLevels + descendentLevels <= 2) {
-			$$('#increaseIndent > button').first().enable();
+			$('increaseIndent').down('button').enable();
 		}
 			
 		if(ancestorLevels >= 1) {
-			$$('#decreaseIndent > button').first().enable();
+			$('decreaseIndent').down('button').enable();
 		}
 		
 		if (selectedNode.hasClassName('gclms-label')) {
-			$$('#convertLabelToPage > button').first().enable();
-			$$('#convertPageToLabel > button').first().disable();
+			$('convertLabelToPage').down('button').enable();
+			$('convertPageToLabel').down('button').disable();
 		} else {
-			$$('#convertPageToLabel > button').first().enable();
-			$$('#convertLabelToPage > button').first().disable();
+			$('convertPageToLabel').down('button').enable();
+			$('convertLabelToPage').down('button').disable();
 		}
 	},
 	createSortables: function() {		

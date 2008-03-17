@@ -7,7 +7,6 @@
   * Question of type "ordered list" (issue 85)
   * Basic functionality for essay questions (issue 82) 
   * Improved responsiveness; no more waiting for Ajax calls
-  * 
  * Course structuring tool
   * Overhauled to generic node model (issue 1)
   * In Firefox, menu buttons now stay on top of page when scrolling through a long list of nodes

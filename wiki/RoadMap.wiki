@@ -37,7 +37,7 @@
  
 
 =Milestone 3=
-==Print to English==
+==Print to Non-English==
  * Print / Export to ODT in Chinese (issue 83)
  * Print / Export to ODT in Arabic (issue 84)
 ==Other== 

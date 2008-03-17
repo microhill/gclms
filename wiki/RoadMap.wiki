@@ -6,6 +6,7 @@
  * Page authoring tool needs ability to add essay questions (issue 82) 
  * Integration of newest TinyMCE tool (issue 8)
  * Popup linker/embedder of links/images/media (issue 11)   
+ * Question of type "ordered list" (issue 85)
 
  
 =Milestone 2=

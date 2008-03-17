@@ -5,7 +5,7 @@
  * Course structuring tool
   * Overhauled to generic node model (issue 1)
   * In Firefox, menu buttons now stay on top of page when scrolling through a long list of nodes
-* Integration of newest TinyMCE tool (issue 8)
+ * Integration of newest TinyMCE tool (issue 8)
   * Popup linker/embedder of links/images/media (issue 11)   
  * Page authoring tool
   * Question of type "ordered list" (issue 85)

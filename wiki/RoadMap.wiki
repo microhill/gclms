@@ -9,17 +9,17 @@
 
  
 =Milestone 2=
- * Fix and re-enable framed environment (issue 62) (issue 81)
  * Basic export-to-ODT functionality (issue 2)
   * Shrink large images (issue 74)
   * Table of contents / "bookmarks" for course structure (issue 75)
   * Footer on every page after ToC (issue 76)
-  * Capable to Print in English (issue 2) 
+  * Capable to Print in English (issue 2)
 
 =Milestone 3=
 
  * Export to ODT in Chinese (issue 83)
  * Export to ODT in Arabic (issue 84)
+ * Fix and re-enable framed environment (issue 62) (issue 81)
  
 =Milestone 4 - Due May 2=
 ==General Functions==

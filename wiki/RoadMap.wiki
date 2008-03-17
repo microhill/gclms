@@ -13,6 +13,7 @@
  * Course structuring tool
   * Overhauled to generic node model (issue 1)
   * In Firefox, menu buttons now stay on top of page when scrolling through a long list of nodes
+ * Pages now can be viewed and linked to in non-framed environment; convenient links on these pages for immediate access to page authoring tool
  
 =Milestone 2=
  * Basic export-to-ODT functionality (issue 2)

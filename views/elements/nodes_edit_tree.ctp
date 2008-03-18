@@ -4,7 +4,7 @@ $sortedNodes = $nodeSorter->sort($nodes);
 display_nodes($sortedNodes,1,$groupAndCoursePath);
 
 function display_nodes($nodes,$level = 1,$groupAndCoursePath) {
-	if($level >= 4) {
+	if($level > 4) {
 		return false;
 	}
 	

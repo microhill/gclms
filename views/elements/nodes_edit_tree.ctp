@@ -1,7 +1,5 @@
 <?
-$sortedNodes = $nodeSorter->sort($nodes);
-
-display_nodes($sortedNodes,1,$groupAndCoursePath);
+display_nodes($nodeSorter->sort($nodes),1,$groupAndCoursePath);
 
 function display_nodes($nodes,$level = 1,$groupAndCoursePath) {
 	if($level > 4) {
@@ -14,7 +12,7 @@ function display_nodes($nodes,$level = 1,$groupAndCoursePath) {
 		echo '<li id="node_' . $node['id'] . '" gclms:node-id="' . $node['id'] . '" class="gclms-node';			 
 		
 		if(!empty($node['ChildNode'])) {
-			if($level < 3)
+			if($level < 2)
 				echo ' gclms-expanded';	
 			else
 				echo ' gclms-collapsed gclms-hidden';	
@@ -28,10 +26,8 @@ function display_nodes($nodes,$level = 1,$groupAndCoursePath) {
 		echo '<img class="gclms-expand-button" src="/img/blank-1.png" alt="Icon" /> ';
 		echo '<span class="gclms-handle">';
 			echo '<img class="gclms-icon" src="/img/blank-1.png" alt="Icon" />';
-		if($node['type'] == 0)
-			echo ' <a href="' . $groupAndCoursePath . '/pages/edit/' . $node['id'] . '">' . $node['title'] . '</a>';
-		else
-			echo $node['title'];
+		
+		echo ' <a href="' . $groupAndCoursePath . '/pages/edit/' . $node['id'] . '">' . $node['title'] . '</a>';
 			
 		echo '</span>';
 			

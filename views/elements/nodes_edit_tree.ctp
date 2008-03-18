@@ -1,5 +1,6 @@
 <?
-display_nodes($nodeSorter->sort($nodes),1,$groupAndCoursePath);
+if(!empty($nodes))
+	display_nodes($nodeSorter->sort($nodes),1,$groupAndCoursePath);
 
 function display_nodes($nodes,$level = 1,$groupAndCoursePath) {
 	if($level > 4) {
@@ -34,7 +35,7 @@ function display_nodes($nodes,$level = 1,$groupAndCoursePath) {
 		if(!empty($node['ChildNode']))
 			display_nodes($node['ChildNode'],$level + 1,$groupAndCoursePath);
 		else
-			echo '<ul test:test id="' . String::uuid() . '"></ul>';
+			echo '<ul id="' . String::uuid() . '"></ul>';
 			
 		echo "</li>\n";
 	}

@@ -1,4 +1,4 @@
-/* global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __ */
+/*global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, Event, __ */
 
 GCLMS.ContentController = {
 	initialize: function() {
@@ -33,9 +33,17 @@ GCLMS.ContentController = {
 		}
 	},
 	convertLabelToPage: function() {
+		if (this.down('button').getAttribute('disabled')) {
+			return false;
+		}
+			
 		GCLMS.ContentController.convertNodeType(GCLMS.Node.PAGE_TYPE_INT);
 	},
 	convertPageToLabel: function() {
+		if (this.down('button').getAttribute('disabled')) {
+			return false;
+		}
+
 		GCLMS.ContentController.convertNodeType(GCLMS.Node.LABEL_TYPE_INT);
 	},
 	convertNodeType: function(type) {
@@ -52,12 +60,20 @@ GCLMS.ContentController = {
 		});	
 	},
 	editPage: function() {
+		if(this.down('button').getAttribute('disabled')) {
+			return false;
+		}			
+
 		var li = $$('#gclms-nodes a.selected').first().up('li');
 		if(li.hasClassName('gclms-page')) {
 			self.location = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/pages/edit/' + li.getAttribute('gclms:node-id');
 		}
 	},
-	confirmDeleteNode: function() {
+	confirmDeleteNode: function() {		
+		if(this.down('button').getAttribute('disabled')) {
+			return false;	
+		}			
+		
 		GCLMS.popup.create({
 			text: this.down('button').getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
@@ -71,7 +87,7 @@ GCLMS.ContentController = {
 		var li = $$('#gclms-nodes a.selected').first().up('li');
 
 		GCLMS.Node.remove({id: li.getAttribute('gclms:node-id')});
-		ul = li.up('ul');
+		var ul = li.up('ul');
 	
 		li.remove();
 
@@ -79,6 +95,10 @@ GCLMS.ContentController = {
 		GCLMS.ContentController.toggleListClass(ul);
 	},
 	getNodeTitleForRename: function() {
+		if(this.down('button').getAttribute('disabled')) {
+			return false;
+		}			
+
 		GCLMS.popup.create({
 			text: this.down('button').getAttribute('prompt:text'),
 			value: $('gclms-nodes').down('a.selected').innerHTML,
@@ -181,39 +201,54 @@ GCLMS.ContentController = {
 		return false;
 	},
 	increaseIndent: function(event) {
+		if(this.down('button').getAttribute('disabled')) {
+			return false;			
+		}
+
+
 		var selectedNode = $('gclms-nodes').down('li a.selected').up('li');
 		var selectedNodeList = selectedNode.up('ul');	
 		var previousNode = selectedNode.previous('li');
-		
+
 		if(!previousNode || GCLMS.ContentController.countAncestorLevels(selectedNode) + GCLMS.ContentController.countDescendentLevels(selectedNode) > 2) {
 			return false;
 		}
 
-		var previousNodeChildList = previousNode.down('ul');
-		
-		previousNodeChildList.insert(selectedNode);
-		GCLMS.ContentController.toggleListClass(selectedNodeList);
-		GCLMS.ContentController.toggleListClass(previousNodeChildList);		
-		
-		GCLMS.ContentController.toggleMenubarButtons();
-		GCLMS.ContentController.createSortables();
-		
 		GCLMS.Node.increaseIndent({
 			parentNodeId: previousNode.getAttribute('gclms:node-id'),
 			id: selectedNode.getAttribute('gclms:node-id')
 		});
+
+		var previousNodeChildList = previousNode.down('ul');
 		
+		previousNodeChildList.insert(selectedNode);
+
+		GCLMS.ContentController.toggleListClass(selectedNodeList);
+		GCLMS.ContentController.toggleListClass(previousNodeChildList);		
+
+		GCLMS.ContentController.toggleMenubarButtons();
+		GCLMS.ContentController.createSortables();
+
 		return false;
 	},
 	decreaseIndent: function(event) {
+		if (this.down('button').getAttribute('disabled')) {
+			return false;
+		}
+
 		var selectedNode = $('gclms-nodes').down('li a.selected').up('li');
 		var selectedNodeList = selectedNode.up('ul');
 		var parentNode = selectedNode.up('li');
 		var parentNodeList = parentNode.up('ul');
-		
+
 		if(!parentNode || GCLMS.ContentController.countAncestorLevels(selectedNode) < 1) {
 			return false;
 		}
+		
+		GCLMS.Node.decreaseIndent({
+			parentNodeId: parentNodeList.up('li').getAttribute('gclms:node-id'),
+			id: selectedNode.getAttribute('gclms:node-id')
+		});	
 		
 		parentNode.insert({after: selectedNode});
 		GCLMS.ContentController.toggleListClass(selectedNodeList);
@@ -221,11 +256,6 @@ GCLMS.ContentController = {
 		
 		GCLMS.ContentController.toggleMenubarButtons();
 		GCLMS.ContentController.createSortables();
-		
-		GCLMS.Node.decreaseIndent({
-			parentNodeId: parentNodeList.up('li').getAttribute('gclms:node-id'),
-			id: selectedNode.getAttribute('gclms:node-id')
-		});		
 		
 		return false;
 	},
@@ -357,9 +387,12 @@ GCLMS.ContentController = {
 			var parentNode = ul.up('li');
 			parentNode.addClassName('gclms-expanded');
 			
-			$$('#' + parentNode.getAttribute('id') + ' > ul > li').each(function(node){
-				node.displayAsBlock();
-			});
+			try {
+				$$('#' + parentNode.getAttribute('id') + ' > ul > li').each(function(node){ //IE croaks on this sometimes
+					node.displayAsBlock();
+				});
+			} catch (e) {}
+
 			parentNode.removeClassName('gclms-collapsed');
 		} else {
 			ul.up('li').removeClassName('gclms-expanded');
@@ -368,7 +401,7 @@ GCLMS.ContentController = {
 	updateMenubars: function(event) {
 		if(self.scrollY > $('gclms-menubars').cumulativeOffset().top) {
 			if(!$('gclms-menubars-floater').hasClassName('gclms-floating')) {
-				offsetHeight = $('gclms-menubars').offsetHeight;
+				var offsetHeight = $('gclms-menubars').offsetHeight;
 				$('gclms-menubars-floater').addClassName('gclms-floating');	
 				$('gclms-menubars').setStyle({
 					height: offsetHeight + 'px'

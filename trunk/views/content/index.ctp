@@ -7,7 +7,7 @@ $javascript->link(array(
 	'gclms',
 	'vendors/uuid',
 	'vendors/scriptaculous1.8.1/scriptaculous',
-//	'vendors/scriptaculous1.8.1/dragdrop',
+	'vendors/scriptaculous1.8.1/dragdrop',
 	'edit_content'
 ), false);
 
@@ -43,7 +43,7 @@ echo $this->renderElement('left_column');
 					array(
 						'id' => 'convertPageToLabel',
 						'class' => 'label',
-						'label' => '<u>C</u>onvert to Label',
+						'label' => 'C<u>o</u>nvert to Label',
 						'accesskey' => 'c',
 						'disabled' => 'disabled'
 					),
@@ -51,7 +51,7 @@ echo $this->renderElement('left_column');
 						'id' => 'convertLabelToPage',
 						'class' => 'page',
 						'label' => '<u>C</u>onvert to Page',
-						'accesskey' => 'c',
+						'accesskey' => 'o',
 						'disabled' => 'disabled'
 					)
 				)));

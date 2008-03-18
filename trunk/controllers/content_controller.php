@@ -64,6 +64,11 @@ class ContentController extends AppController {
 		
 		$this->set('title',__('Course Content',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
     }
+	
+	function fix_orphans() {
+		$this->Node->contain();
+		//$this->data = $this->Node->findAll(array('Node.course_id' => $this->viewVars['course']['id']),null,'Node.order ASC');
+	}
     
     function view($id) {
 		$this->Node->contain();

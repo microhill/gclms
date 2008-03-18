@@ -89,8 +89,14 @@ GCLMS.ContentController = {
 		GCLMS.Node.remove({id: li.getAttribute('gclms:node-id')});
 		var ul = li.up('ul');
 	
-		li.remove();
+		if(previousNode = li.previous('li')) {
+			previousNode.down('a').addClassName('selected');
+		} else if(parentNode = li.up('li')) {
+			parentNode.down('a').addClassName('selected');
+		} 
 
+		li.remove();
+		
 		GCLMS.ContentController.toggleMenubarButtons();
 		GCLMS.ContentController.toggleListClass(ul);
 	},
@@ -216,7 +222,10 @@ GCLMS.ContentController = {
 
 		GCLMS.Node.increaseIndent({
 			parentNodeId: previousNode.getAttribute('gclms:node-id'),
-			id: selectedNode.getAttribute('gclms:node-id')
+			id: selectedNode.getAttribute('gclms:node-id'),
+			callback: function(request) {
+				document.body.insert(request.responseText);
+			}
 		});
 
 		var previousNodeChildList = previousNode.down('ul');

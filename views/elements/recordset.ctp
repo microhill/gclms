@@ -29,7 +29,7 @@ if(@$showDefaultAddButton) {
 }
 ?>
 
-<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif"/></div>
+<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
 
 <? if(!empty($heading)): ?>
 <h1><?= Inflector::humanize(__($heading,true)); ?></h1>

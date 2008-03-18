@@ -14,16 +14,16 @@ echo $this->renderElement('left_column');
 		
 <div class="gclms-center-column">
 	<div class="gclms-content" id="lesson" lesson:id="<?= $lesson['id'] ?>">
-		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif"/></div>
+		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
 		<div class="gclms-step-back gclms-forceload"><a href="/<?= $group['web_path'] ?>/<?= $course['web_path'] ?>/lessons"><? __('Back to Units and Lessons') ?></a></div>
 		<h1>
 			<span class="title"><?= implode(order(array(__('Lesson: ',true),$lesson['title'])))?></span>
 		</h1>
 		<p class="buttons">
-			<button class="add" id="addTopic" prompt:text="<? __('Enter the title of the topic:') ?>">Add Topic</button>
-			<button class="add" id="addPage" prompt:text="<? __('Enter the title of the page:') ?>">Add Page</button>
-			<button class="rename" id="renamePage" prompt:text="<? __('Enter the new title of the page:') ?>">Rename</button>
-			<button class="rename" id="renameTopic" prompt:text="<? __('Enter the new title of the topic:') ?>">Rename</button>
+			<button class="add" id="addTopic" gclms:prompt-text="<? __('Enter the title of the topic:') ?>">Add Topic</button>
+			<button class="add" id="addPage" gclms:prompt-text="<? __('Enter the title of the page:') ?>">Add Page</button>
+			<button class="rename" id="renamePage" gclms:prompt-text="<? __('Enter the new title of the page:') ?>">Rename</button>
+			<button class="rename" id="renameTopic" gclms:prompt-text="<? __('Enter the new title of the topic:') ?>">Rename</button>
 			<button class="delete" id="deleteTopic" notempty:message="<? __('This topic is not empty.') ?>" gclms:confirm-text="<? __('Are you sure you want to delete this topic?') ?>">Delete</button>
 			<button class="delete" id="deletePage" gclms:confirm-text="<? __('Are you sure you want to delete this page?') ?>">Delete</button>
 			<button class="edit" id="editTopic">Edit</button>

@@ -16,8 +16,8 @@ echo $this->renderElement('left_column');
 		
 <div class="gclms-center-column">
 	<div class="gclms-content">	
-		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif"/></div>
-		<h1><? __('Course Content') ?> </h1>
+		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
+		<h1><? __('Course Structure') ?> </h1>
 		<div id="gclms-menubars">
 			<div id="gclms-menubars-floater">
 				<?
@@ -27,7 +27,7 @@ echo $this->renderElement('left_column');
 						'class' => 'add',
 						'label' => '<u>A</u>dd Page',
 						'strings' => array(
-							'prompt:text' => 'Enter the name of the page:'
+							'gclms:prompt-text' => 'Enter the name of the page:'
 						),
 						'accesskey' => 'a'
 					),
@@ -36,7 +36,7 @@ echo $this->renderElement('left_column');
 						'class' => 'add',
 						'label' => 'Add <u>L</u>abel',
 						'strings' => array(
-							'prompt:text' => 'Enter the name of the label:'
+							'gclms:prompt-text' => 'Enter the name of the label:'
 						),
 						'accesskey' => 'l'
 					),
@@ -74,7 +74,7 @@ echo $this->renderElement('left_column');
 						'class' => 'rename',
 						'label' => '<u>R</u>ename',
 						'strings' => array(
-							'prompt:text' => 'Enter the new name:'
+							'gclms:prompt-text' => 'Enter the new name:'
 						),
 						'accesskey' => 'r',
 						'disabled' => 'disabled'
@@ -84,7 +84,7 @@ echo $this->renderElement('left_column');
 						'class' => 'delete',
 						'label' => '<u>D</u>elete',
 						'strings' => array(
-							'notempty:text' => 'Must be empty before deletion.',
+							'gclms:notempty-text' => 'Must be empty before deletion.',
 							'gclms:confirm-text' => 'Are you sure you want to delete this?'
 						),
 						'accesskey' => 'd',
@@ -105,9 +105,9 @@ echo $this->renderElement('left_column');
 		<div id="gclms-nodes" class="gclms-nodes gclms-expandable-list">
 			<ul id="<?= String::uuid() ?>">
 				<li gclms:node-id="0" class="gclms-course">
-					<img class="gclms-icon" src="/img/blank-1.png"/>
+					<img class="gclms-icon" src="/img/blank-1.png" alt="Icon" />
 					<span>
-						<img class="gclms-icon" src="/img/blank-1.png"/>
+						<img class="gclms-icon" src="/img/blank-1.png" alt="Icon" />
 						<a href="#"><?= $course['title'] ?></a>
 					</span>		
 					<?

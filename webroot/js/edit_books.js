@@ -1,7 +1,7 @@
 GCLMS.BooksController = {
 	getBookTitleForAddition: function() {
 		GCLMS.popup.create({
-			text: this.down('button').getAttribute('prompt:text'),
+			text: this.down('button').getAttribute('gclms:prompt-text'),
 			callback: GCLMS.BooksController.addBook
 		});
 		return false;
@@ -26,7 +26,7 @@ GCLMS.BooksController = {
 		});
 	},
 	editBook: function() {
-		self.location = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/chapters/toc/' + $$('#books a.selected').first().up('li').getAttribute('book:id');		
+		self.location = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/chapters/toc/' + $$('#books a.selected').first().up('li').getAttribute('book:id');		
 	},
 	confirmDeleteBook: function() {
 		GCLMS.popup.create({
@@ -51,7 +51,7 @@ GCLMS.BooksController = {
 	},
 	getBookTitleForRename: function() {
 		GCLMS.popup.create({
-			text: this.down('button').getAttribute('prompt:text'),
+			text: this.down('button').getAttribute('gclms:prompt-text'),
 			value: $$('#books a.selected').first().innerHTML,
 			callback: GCLMS.BooksController.renameBook
 		});
@@ -89,7 +89,7 @@ GCLMS.BooksController = {
 };
 
 GCLMS.Book = {
-	ajaxUrl: '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/books/',
+	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/books/',
 	add: function(options) {		request = new Ajax.Request(this.ajaxUrl + 'add/' + options.id,{
 			method: 'post',
 			parameters: {

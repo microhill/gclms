@@ -2,25 +2,25 @@ GCLMS.classroom = {};
 
 GCLMS.Triggers.update({
 	'#bibleViewport:expand' : function(elm) {
-		url = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/bible_kjv/books';
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/bible_kjv/books';
 		if(!Ext.get('bibleViewportContent').loaded)
 			Ext.get('bibleViewportContent').dom.src = url;
 		Ext.get('bibleViewportContent').loaded = true;
 	},
 	'#textbooksViewport:expand' : function(elm) {
-		url = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/textbooks/panel';
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/textbooks/panel';
 		if(!Ext.get('textbooksViewportContent').loaded)
 			Ext.get('textbooksViewportContent').dom.src = url;
 		Ext.get('textbooksViewportContent').loaded = true;
 	},
 	'#articlesViewport:expand' : function(elm) {
-		url = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/articles/panel';
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/articles/panel';
 		if(!Ext.get('articlesViewportContent').loaded)
 			Ext.get('articlesViewportContent').dom.src = url;
 		Ext.get('articlesViewportContent').loaded = true;
 	},
 	'#dictionaryViewport:expand' : function(elm) {
-		url = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/dictionary/panel';
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/dictionary/panel';
 		if(!Ext.get('dictionaryViewportContent').loaded)
 			Ext.get('dictionaryViewportContent').dom.src = url;
 		Ext.get('dictionaryViewportContent').loaded = true;
@@ -54,7 +54,7 @@ GCLMS.Triggers.update({
 		//alert(elm);
 	},
 	'#discussionTab:activate' : function(elm) {
-		url = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/' + document.body.getAttribute('lms:facilitated_class') + '/discussion/forums';
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('lms:facilitated_class') + '/discussion/forums';
 		currentSrc = Ext.get('discussionViewportContent').dom.src;
 		if(currentSrc.indexOf(url) == -1) {
 			Ext.get('discussionViewportContent').dom.src = url;
@@ -63,7 +63,7 @@ GCLMS.Triggers.update({
 		return true;
 	},
 	'#notebookTab:activate' : function(elm) {
-		url = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/' + document.body.getAttribute('lms:facilitated_class') + '/notebook/edit';
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('lms:facilitated_class') + '/notebook/edit';
 		currentSrc = Ext.get('notebookViewportContent').dom.src;
 		if(currentSrc.indexOf(url) == -1) {
 			Ext.get('notebookViewportContent').dom.src = url;

@@ -164,7 +164,7 @@ GCLMS.PageController = {
 			return false;
 		});
 		$('gradeResults').update('Submitting grade...');
-		var request = new Ajax.Request('/' + document.body.getAttribute('lms:group') + '/grades/update_assessment/section:' + document.body.getAttribute('section:id') + '/page:' + document.body.getAttribute('page:id') + '/grade:' + totalCorrectAnswers + '/maximum_possible:' + totalQuestions, {
+		var request = new Ajax.Request('/' + document.body.getAttribute('gclms:group') + '/grades/update_assessment/section:' + document.body.getAttribute('section:id') + '/page:' + document.body.getAttribute('page:id') + '/grade:' + totalCorrectAnswers + '/maximum_possible:' + totalQuestions, {
 		  onSuccess: function(request) {
 			document.body.insert(request.responseText);
 			$('gradeResults').update('Your score is ' + totalCorrectAnswers + ' out of ' + totalQuestions + '.');

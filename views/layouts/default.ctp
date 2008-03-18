@@ -3,10 +3,10 @@
 <? include 'views/layouts/head.ctp'; ?>
 
 <body
-		lms:group="<?= @$group['web_path'] ?>"
-		lms:course="<?= @$course['web_path'] ?>"
-		lms:controller="<?= $this->name ?>"
-		lms:action="<?= $this->action ?>">
+		gclms:group="<?= @$group['web_path'] ?>"
+		gclms:course="<?= @$course['web_path'] ?>"
+		gclms:controller="<?= $this->name ?>"
+		gclms:action="<?= $this->action ?>">
 	<div style="min-height: 100%;">
 		<?= $this->renderElement('banner') ?>
 		

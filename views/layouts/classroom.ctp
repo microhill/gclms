@@ -30,11 +30,11 @@
 	?>
 </head>
 <body class="classroom"
-	lms:group="<?= @$group['web_path'] ?>"
-	lms:course="<?= @$course['web_path'] ?>"
+	gclms:group="<?= @$group['web_path'] ?>"
+	gclms:course="<?= @$course['web_path'] ?>"
 	lms:facilitated_class="<?= @$facilitated_class['id'] ?>"
-	lms:controller="<?= $this->name ?>"
-	lms:action="<?= $this->action ?>">
+	gclms:controller="<?= $this->name ?>"
+	gclms:action="<?= $this->action ?>">
 
 	<?= $this->renderElement('no_column_background'); ?>
 	

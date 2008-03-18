@@ -318,8 +318,8 @@ GCLMS.tinyMCEConfig = {
     }
 };
 
-if(document.body.getAttribute('lms:group') && !document.body.getAttribute('lms:group').empty()) { // && !document.body.getAttribute('lms:course').empty()
-	GCLMS.tinyMCEConfig.content_css = '/'+ document.body.getAttribute('lms:group') + '/files/css'
+if(document.body.getAttribute('gclms:group') && !document.body.getAttribute('gclms:group').empty()) { // && !document.body.getAttribute('gclms:course').empty()
+	GCLMS.tinyMCEConfig.content_css = '/'+ document.body.getAttribute('gclms:group') + '/files/css'
 }
 
 GCLMS.fileBrowser = function(field_name, url, type, win) {
@@ -330,9 +330,9 @@ GCLMS.fileBrowser = function(field_name, url, type, win) {
 	}
 
 	if(type == 'images' || type == 'media') {
-	   	cmsURL = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/files/' + type;
+	   	cmsURL = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/files/' + type;
 	} else {
-		cmsURL = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/courses/links';
+		cmsURL = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/courses/links';
 	}
 
    tinyMCE.activeEditor.windowManager.open({

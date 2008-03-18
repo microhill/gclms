@@ -12,10 +12,10 @@
 	</head>
 	
 	<body
-			lms:group="<?= @$group['web_path'] ?>"
-			lms:course="<?= @$course['web_path'] ?>"
-			lms:controller="<?= $this->name ?>"
-			lms:action="<?= $this->action ?>">
+			gclms:group="<?= @$group['web_path'] ?>"
+			gclms:course="<?= @$course['web_path'] ?>"
+			gclms:controller="<?= $this->name ?>"
+			gclms:action="<?= $this->action ?>">
 		<?
 		echo $content_for_layout;
 		echo $asset->js_for_layout();

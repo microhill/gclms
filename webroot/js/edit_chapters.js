@@ -16,7 +16,7 @@ GCLMS.ChaptersController = {
 	},
 	getTitleForAddition: function() {
 		GCLMS.popup.create({
-			text: this.down('button').getAttribute('prompt:text'),
+			text: this.down('button').getAttribute('gclms:prompt-text'),
 			callback: GCLMS.ChaptersController.add
 		});
 		return false;
@@ -42,7 +42,7 @@ GCLMS.ChaptersController = {
 	},
 	getTitleForRename: function() {
 		GCLMS.popup.create({
-			text: this.down('button').getAttribute('prompt:text'),
+			text: this.down('button').getAttribute('gclms:prompt-text'),
 			value: $$('#chapters a.selected').first().innerHTML,
 			callback: GCLMS.ChaptersController.rename
 		});
@@ -82,7 +82,7 @@ GCLMS.ChaptersController = {
 		$$('#editChapter > button').first().disable();
 	},
 	edit: function(event){
-		self.location = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/chapters/edit/' + $$('#chapters a.selected').first().up('li').getAttribute('chapter:id');
+		self.location = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/chapters/edit/' + $$('#chapters a.selected').first().up('li').getAttribute('chapter:id');
 	},
 	createSortables: function() {
 		Sortable.create($('chapters'),{
@@ -103,7 +103,7 @@ GCLMS.ChaptersController = {
 }
 
 GCLMS.Chapter = {
-	ajaxUrl: '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/chapters/',
+	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/chapters/',
 	add: function(options) {
 		new Ajax.Request(this.ajaxUrl + 'add',{
 			method: 'post',

@@ -14,7 +14,7 @@ echo $this->renderElement('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content articles">	
 		<?= $this->renderElement('notifications'); ?>
-		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif"/></div>
+		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
 		<h1><? __('Books') ?></h1>
 		<div id="gclms-menubar">
 			<? echo $this->renderElement('menubar',array('buttons' => array(
@@ -24,7 +24,7 @@ echo $this->renderElement('left_column'); ?>
 					'label' => '<u>A</u>dd Book',
 					'accesskey' => 'a',
 					'strings' => array(
-						'prompt:text' => 'Enter the name of the book:'
+						'gclms:prompt-text' => 'Enter the name of the book:'
 					)
 				),
 				array(
@@ -33,7 +33,7 @@ echo $this->renderElement('left_column'); ?>
 					'label' => '<u>R</u>ename Book',
 					'accesskey' => 'r',
 					'strings' => array(
-						'prompt:text' => 'Enter the new name of the book:'
+						'gclms:prompt-text' => 'Enter the new name of the book:'
 					),
 					'disabled' => 'disabled'
 				),

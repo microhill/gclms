@@ -56,6 +56,19 @@ function array_intersect_key_and_sort($array1, $array2) {
 	return $array3;
 }
 
+// http://www.php.net/manual/en/function.array-flip.php#54417
+function array_invert($arr) {
+   $flipped = array();
+   foreach(array_keys($arr) as $key) {
+      if(array_key_exists($arr[$key],$flipped)) {
+         $flipped[$arr[$key]] = array_merge((array)$flipped[$arr[$key]], (array)$key);
+      } else {
+         $flipped[$arr[$key]] = array($key);
+      }
+   }
+   return $flipped;
+}
+
 function order($items) {
 	return __('TEXT DIRECTION',true) == 'rtl' ? array_reverse($items) : $items;
 }

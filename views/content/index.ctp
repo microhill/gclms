@@ -34,24 +34,24 @@ echo $this->renderElement('left_column');
 					array(
 						'id' => 'addLabel',
 						'class' => 'add',
-						'label' => 'Add <u>L</u>abel',
+						'label' => 'A<u>d/u>d L<abel',
 						'strings' => array(
 							'gclms:prompt-text' => 'Enter the name of the label:'
 						),
-						'accesskey' => 'l'
+						'accesskey' => 'd'
 					),
 					array(
 						'id' => 'convertPageToLabel',
 						'class' => 'label',
-						'label' => 'C<u>o</u>nvert to Label',
-						'accesskey' => 'c',
+						'label' => 'Convert to <u>L</u>abel',
+						'accesskey' => 'l',
 						'disabled' => 'disabled'
 					),
 					array(
 						'id' => 'convertLabelToPage',
 						'class' => 'page',
-						'label' => '<u>C</u>onvert to Page',
-						'accesskey' => 'o',
+						'label' => 'Convert to <u>P</u>age',
+						'accesskey' => 'p',
 						'disabled' => 'disabled'
 					)
 				)));

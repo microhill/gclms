@@ -34,7 +34,7 @@ echo $this->renderElement('left_column');
 					array(
 						'id' => 'addLabel',
 						'class' => 'add',
-						'label' => 'A<u>d</u>d L<abel',
+						'label' => 'A<u>d</u>d Label',
 						'strings' => array(
 							'gclms:prompt-text' => 'Enter the name of the label:'
 						),
@@ -82,7 +82,7 @@ echo $this->renderElement('left_column');
 					array(
 						'id' => 'deleteNode',
 						'class' => 'delete',
-						'label' => '<u>D</u>elete',
+						'label' => 'D<u>e</u>lete',
 						'strings' => array(
 							'gclms:notempty-text' => 'Must be empty before deletion.',
 							'gclms:confirm-text' => 'Are you sure you want to delete this?'

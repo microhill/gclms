@@ -34,7 +34,7 @@ echo $this->renderElement('left_column');
 					array(
 						'id' => 'addLabel',
 						'class' => 'add',
-						'label' => 'A<u>d/u>d L<abel',
+						'label' => 'A<u>d</u>d L<abel',
 						'strings' => array(
 							'gclms:prompt-text' => 'Enter the name of the label:'
 						),

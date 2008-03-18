@@ -129,7 +129,7 @@ echo $this->renderElement('left_column');
 							echo '<li id="node_' . $node['id'] . '" gclms:node-id="' . $node['id'] . '" class="gclms-node';			 
 							
 							if(!empty($node['ChildNode'])) {
-								if($level < 2)
+								if($level < 1)
 									echo ' gclms-expanded';	
 								else
 									echo ' gclms-collapsed gclms-hidden';	

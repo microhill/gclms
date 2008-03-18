@@ -60,7 +60,7 @@ GCLMS.ContentController = {
 		});	
 	},
 	editPage: function() {
-		if(this.down('button').getAttribute('disabled')) {
+		if(this.nodeName.toUpperCase() != 'A' && this.down('button').getAttribute('disabled')) {
 			return false;
 		}			
 

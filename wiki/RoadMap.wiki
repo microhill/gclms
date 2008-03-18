@@ -33,7 +33,7 @@
  * Answers to multiple choice questions now have TinyMCE-enabled explanations; students can be shown flash video or directed to page/article/chapter
  * Fixed: After clicking root node in course structure tool, clicking other nodes would not yield enabled menubar buttons (issue 86)
  * Fixed: Parents with children on course structure page could be deleted in IE but not in Firefox
- * Fixed: A IE JavaScript bug when indenting node
+ * Fixed: A IE Javascript bug when indenting node
 ==General Improvements== 
 
  

@@ -66,7 +66,7 @@ GCLMS.ContentController = {
 
 		var li = $$('#gclms-nodes a.selected').first().up('li');
 		if(li.hasClassName('gclms-page')) {
-			self.location = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/pages/edit/' + li.getAttribute('gclms:node-id');
+			self.location = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/pages/edit/' + li.getAttribute('gclms:node-id');
 		}
 	},
 	confirmDeleteNode: function() {		
@@ -100,7 +100,7 @@ GCLMS.ContentController = {
 		}			
 
 		GCLMS.popup.create({
-			text: this.down('button').getAttribute('prompt:text'),
+			text: this.down('button').getAttribute('gclms:prompt-text'),
 			value: $('gclms-nodes').down('a.selected').innerHTML,
 			callback: GCLMS.ContentController.renameNode
 		});
@@ -122,14 +122,14 @@ GCLMS.ContentController = {
 	},
 	getLabelTitleForAddition: function() {
 		GCLMS.popup.create({
-			text: this.down('button').getAttribute('prompt:text'),
+			text: this.down('button').getAttribute('gclms:prompt-text'),
 			callback: GCLMS.ContentController.addLabel
 		});
 		return false;
 	},
 	getPageTitleForAddition: function() {
 		GCLMS.popup.create({
-			text: this.down('button').getAttribute('prompt:text'),
+			text: this.down('button').getAttribute('gclms:prompt-text'),
 			callback: GCLMS.ContentController.addPage
 		});
 		return false;
@@ -417,7 +417,7 @@ GCLMS.ContentController = {
 };
 
 GCLMS.Node = {
-	ajaxUrl: '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/content/',
+	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/content/',
 	PAGE_TYPE_INT: 0,
 	LABEL_TYPE_INT: 1,	
 	add: function(options) {

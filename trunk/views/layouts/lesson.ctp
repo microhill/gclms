@@ -4,8 +4,8 @@
 <? include 'views/layouts/head.ctp'; ?>
 
 <body
-	lms:group="<?= @$group['web_path'] ?>"
-	lms:course="<?= @$course['web_path'] ?>"
+	gclms:group="<?= @$group['web_path'] ?>"
+	gclms:course="<?= @$course['web_path'] ?>"
 	class="page"
 	<?
 	if(!empty($page['Page']['id']))

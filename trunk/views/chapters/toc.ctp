@@ -15,7 +15,7 @@ echo $this->renderElement('left_column'); ?>
 
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif"/></div>
+		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
 		<?= $this->renderElement('notifications'); ?>
 		<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/books"><? __('Back to Books') ?></a></div>
 		<h1><?= $book['Book']['title'] ?> </h1>
@@ -27,7 +27,7 @@ echo $this->renderElement('left_column'); ?>
 					'label' => '<u>A</u>dd Chapter',
 					'accesskey' => 'a',
 					'strings' => array(
-						'prompt:text' => 'Enter the name of the chapter:'
+						'gclms:prompt-text' => 'Enter the name of the chapter:'
 					)
 				),
 				array(
@@ -36,7 +36,7 @@ echo $this->renderElement('left_column'); ?>
 					'label' => '<u>R</u>ename Chapter',
 					'accesskey' => 'r',
 					'strings' => array(
-						'prompt:text' => 'Enter the new name of the chapter:'
+						'gclms:prompt-text' => 'Enter the new name of the chapter:'
 					),
 					'disabled' => 'disabled'
 				),

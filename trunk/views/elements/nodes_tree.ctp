@@ -7,7 +7,7 @@
 	
 	if(!isset($level))
 		$level = 1;
-	
+
 	$root_node = array('id' => 0);
 	
 	$indexedNodes = array_combine(
@@ -16,7 +16,7 @@
 	);
 	
 	$nodes = sort_nodes($root_node,&$indexedNodes);
-	
+
 	function sort_nodes($parent_node,&$unsortedNodes) {
 		$resultArray = array();
 		$keys = array_keys($unsortedNodes);
@@ -29,7 +29,6 @@
 				$node['ChildNode'] = sort_nodes($node,$unsortedNodes);
 				$resultArray[] = $node;
 			}
-			
 		}
 		return $resultArray;
 	}
@@ -48,7 +47,7 @@
 			} else
 				echo ' gclms-empty';
 			echo '">';
-			echo '<img class="gclms-expand-button" src="/img/blank-1.png"/> ';
+			echo '<img class="gclms-expand-button" src="/img/blank-1.png" alt="Icon" /> ';
 			if($node['type'] == 0)
 				echo '<a href="' . $groupAndCoursePath . '/pages/view/' . $node['id'] . '">' . $node['title'] . '</a>';
 			else

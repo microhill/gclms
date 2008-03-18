@@ -7,8 +7,8 @@
 	</head>
 	
 	<body
-		lms:group="<?= @$group['web_path'] ?>"
-		lms:course="<?= @$course['web_path'] ?>"
+		gclms:group="<?= @$group['web_path'] ?>"
+		gclms:course="<?= @$course['web_path'] ?>"
 	>
 		<?=  $content_for_layout; ?>	
 		<?

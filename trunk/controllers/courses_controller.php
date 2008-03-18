@@ -1,7 +1,7 @@
 <?
 class CoursesController extends AppController {
     var $uses = array('Course','Group','FacilitatedClass','Node','ClassEnrollee','Announcement','DictionaryTerm','Article','DictionaryTerm','Book','Node');
-	var $helpers = array('Paginator','MyPaginator','Time','MyTime','Scripturizer','Dictionary','Notebook','License');
+	var $helpers = array('Paginator','MyPaginator','Time','MyTime','Scripturizer','Dictionary','Notebook','License','NodeSorter');
 	var $itemName = 'Course';
 
 	function beforeRender() {

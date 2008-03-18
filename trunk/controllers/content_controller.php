@@ -1,7 +1,7 @@
 <?
 class ContentController extends AppController {
     var $uses = array('Node','Group','FacilitatedClass','User','Course');
-	var $helpers = array('Paginator','MyPaginator');
+	var $helpers = array('Paginator','MyPaginator','NodeSorter');
 	var $itemName = 'Node';
 	
 	function beforeRender() {

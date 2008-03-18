@@ -1,6 +1,6 @@
 GCLMS.ArticleController = {
 	addArticle: function() {
-		self.location = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/articles/add';
+		self.location = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/articles/add';
 	}
 }
 

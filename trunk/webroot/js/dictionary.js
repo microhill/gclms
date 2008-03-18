@@ -1,6 +1,6 @@
 GCLMS.DictionaryController = {
 	addDictionaryTerm: function() {
-		self.location = '/' + document.body.getAttribute('lms:group') + '/' + document.body.getAttribute('lms:course') + '/dictionary/add';
+		self.location = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/dictionary/add';
 	}
 }
 

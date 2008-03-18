@@ -1,3 +1,5 @@
 #summary Live bugs on the latest svn build
 
 http://www.pixelmator.com/support/images/Bug.png
+
+ * Sometimes nodes are duplicated in the node display tree

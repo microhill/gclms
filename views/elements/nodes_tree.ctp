@@ -7,31 +7,6 @@
 	
 	if(!isset($level))
 		$level = 1;
-
-	$root_node = array('id' => 0);
-	
-	$indexedNodes = array_combine(
-		Set::extract($nodes, '{n}.Node.id'),
-		Set::extract($nodes, '{n}.Node')
-	);
-	
-	$nodes = sort_nodes($root_node,&$indexedNodes);
-
-	function sort_nodes($parent_node,&$unsortedNodes) {
-		$resultArray = array();
-		$keys = array_keys($unsortedNodes);
-		foreach($keys as $key) {
-			if(!isset($unsortedNodes[$key]))
-				continue;
-			$node = $unsortedNodes[$key];
-			if($node['parent_node_id'] == $parent_node['id']) {
-				unset($unsortedNodes[$key]);
-				$node['ChildNode'] = sort_nodes($node,$unsortedNodes);
-				$resultArray[] = $node;
-			}
-		}
-		return $resultArray;
-	}
 	
 	function display_nodes($nodes,$level = 1,$groupAndCoursePath) {
 		echo '<ul>';
@@ -60,6 +35,6 @@
 		echo '</ul>';
 	}
 	
-	display_nodes($nodes,1,$groupAndCoursePath);
+	display_nodes($nodeSorter->sort($nodes),1,$groupAndCoursePath);
 	?>
 </div>

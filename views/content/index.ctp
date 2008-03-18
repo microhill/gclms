@@ -82,12 +82,12 @@ echo $this->renderElement('left_column');
 					array(
 						'id' => 'deleteNode',
 						'class' => 'delete',
-						'label' => 'D<u>e</u>lete',
+						'label' => 'Dele<u>t</u>e',
 						'strings' => array(
 							'gclms:notempty-text' => 'Must be empty before deletion.',
 							'gclms:confirm-text' => 'Are you sure you want to delete this?'
 						),
-						'accesskey' => 'd',
+						'accesskey' => 't',
 						'disabled' => 'disabled'
 					),
 					array(

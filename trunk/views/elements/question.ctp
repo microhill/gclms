@@ -22,9 +22,9 @@ if(empty($question_id))
 					</div>
 
 					<div class="gclms-right">
-						<img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" class="moveUp" alt="<? __('Move up') ?>" />
+						<img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" class="gclms-move-up" alt="<? __('Move up') ?>" />
 
-						<img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" class="moveDown" alt="<? __('Move down') ?>" />
+						<img src="/img/icons/oxygen_refit/16x16/actions/go-down-blue.png" class="gclms-move-down" alt="<? __('Move down') ?>" />
 					</div>
 				</th>
 			</tr>

@@ -79,24 +79,24 @@
 			width: 50%;
 		}
 
-.textarea td td {
+.gclms-textarea td td {
 	background-color: inherit;
 }
 
-.textarea td {
+.gclms-textarea td {
 	padding: 0;
 }
 
-.textarea table.mceEditor {
+.gclms-textarea table.mceEditor {
 	border: 0px none;
 }
 
-div.textarea span.mceEditor table.mceLayout {
+div.gclms-textarea span.mceEditor table.mceLayout {
 	border: 0px none;
 	/*width: 800px; */
 }
 
-.textarea table.mceEditor td {
+.gclms-textarea table.mceEditor td {
 	border-right: 0px none;
 	border-bottom: 0px none;
 	padding: 0;

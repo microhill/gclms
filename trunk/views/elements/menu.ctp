@@ -3,10 +3,10 @@ foreach($items as $item) {
 	$link_options = array('escape' => false);
 
 	$label = isset($item['label']) ? $item['label'] : Inflector::humanize(@$item['controller']);
-	$class = isset($item['class']) ? $item['class'] : Inflector::humanize(@$item['controller']);
+	$class = isset($item['class']) ? $item['class'] : 'gclms-' . Inflector::humanize(@$item['controller']);
 
 	if(!empty($item['active']))
-		$class .= ' active';
+		$class .= ' gclms-active';
 	unset($item['active']);
 	
 	unset($item['label']);

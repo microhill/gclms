@@ -48,7 +48,7 @@ if(empty($question_id) || empty($answer_id))
 				<?= $form->label('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text3','Explanation'); ?>
 			</th>
 			<td>
-				<img src="/img/icons/oxygen/16x16/apps/kate.png" class="addTinyMCEBox" />
+				<img src="/img/icons/oxygen/16x16/apps/kate.png" class="gclms-add-tinymce-box" />
 			</td>
 		</tr>
 	</table>

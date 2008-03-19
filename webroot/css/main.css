@@ -419,7 +419,7 @@ a.gclms-group-web-address {
 			background-position: center left;
 		}
 
-	.gclms-left-column-menu .home a {
+	.gclms-left-column-menu .gclms-home a {
 		background-image: url(/img/icons/oxygen_refit/32x32/actions/go-home.png);
 	}
 	
@@ -1137,6 +1137,7 @@ img.gclms-tooltip-button {
 	}
 
 	.gclms-menubar button {
+		font-size: 1.1em;
 		border: 1px solid #8B8B8B;
 		background-color: transparent;
 		background-repeat: no-repeat;

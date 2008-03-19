@@ -123,11 +123,11 @@ GCLMS.AppController = {
 		
 		var div = new Element('div');
 		div.appendChild(new Element('button',{
-			className: 'ok',
+			className: 'gclms-ok',
 			id: 'gclmsPopupDialogOkButton'
 		})).insert(options.get('confirmButtonText'));
 	
-		div.select('button.ok').first().observe('click',function(event){
+		div.select('button.gclms-ok').first().observe('click',function(event){
 			GCLMS.AppController.closePopup({executeCallback: true});
 		});
 		
@@ -144,11 +144,11 @@ GCLMS.AppController = {
 		
 		if(options.get('cancelButtonText') !== null) {
 			div.appendChild(new Element('button',{
-				className: 'cancel',
+				className: 'gclms-cancel',
 				id: 'gclms-popup-dialog-cancel-button'
 			})).insert(options.get('cancelButtonText'));
 			
-			div.select('button.cancel').first().observe('click',function(event){
+			div.select('button.gclms-cancel').first().observe('click',function(event){
 				GCLMS.AppController.closePopup({executeCallback: false});
 			});
 		}

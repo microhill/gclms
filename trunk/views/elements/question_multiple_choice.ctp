@@ -6,7 +6,7 @@
 	question:defaultNoMoreIncorrectTriesMessage="<? __('You are out of tries. The correct answer is shown.') ?>"
 	>
 	<h2><?= $question['title'] ?></h2>
-	<ul class="answers">
+	<ul class="gclms-answers">
 	<?
 	$correctAnswers = 0;
 	foreach($question['Answer'] as $answer) {

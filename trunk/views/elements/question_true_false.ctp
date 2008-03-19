@@ -1,4 +1,4 @@
-<div class="trueFalse"
+<div class="gclms-true-false"
 	correctAnswer:integer="<?= $question['true_false_answer'] ?>"
 	correctAnswer:text="<?= empty($question['true_false_answer']) ? __('False',true) : __('True',true) ?>"
 	question:defaultCorrectMessageTrue="<? __('Correct! The answer is true.') ?>"

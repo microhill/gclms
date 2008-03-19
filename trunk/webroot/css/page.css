@@ -102,7 +102,7 @@ p.gclms-correct-answer {
 		margin-bottom: 8px;
 	}
 
-	.gclms-matching .answers h3 {
+	.gclms-matching .gclms-answers h3 {
 		margin-top: 0;
 		margin-bottom: 8px;
 	}
@@ -144,7 +144,7 @@ p.gclms-correct-answer {
 		background-image: url(/img/draggable8.png);
 	}
 
-	.gclms-matching .answers h4 {
+	.gclms-matching .gclms-answers h4 {
 		padding-top: 0;
 		margin-top: 0;
 		margin-bottom: 0;

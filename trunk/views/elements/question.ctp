@@ -125,7 +125,7 @@ if(empty($question_id))
 					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="gclms-add" />
 				</td>
 			</tr>
-			<tr class="gclms-fill-in-the-blank<?= @$question['type'] != '2' ? ' gclms-hidden' : '' ?>">
+			<tr class="gclms-fill-in-the-blank<?= @$question['type'] != '4' ? ' gclms-hidden' : '' ?>">
 				<th>
 				<?
 				echo $form->label('Question.' . $question_id . '.text_answer','Answer');

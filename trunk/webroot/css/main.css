@@ -110,17 +110,15 @@ legend {
 
 /* Layout */
 
-.gclms-page {
-	/* min-width: 950px; */
-}
+#gclms-page {}
 
-	.gclms-left-column {
+	#gclms-page > .gclms-left-column {
 		float: left;
 		width: 25%;
 		background-color: #efefef;
 	}
 	
-	.gclms-center-column {
+	#gclms-page > .gclms-center-column {
 		float: left;
 		width: 50%;
 	}
@@ -141,7 +139,7 @@ legend {
 		
 
 	
-	.gclms-right-column {
+	#gclms-page > .gclms-right-column {
 		float: right;
 		width: 24.9%;
 	}

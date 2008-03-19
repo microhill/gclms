@@ -219,16 +219,6 @@ legend {
 		margin-bottom: 8px;
 	}
 
-	ul.Lessons li {
-		list-style: none;
-		margin-bottom: 12px;
-		font-size: 1.15em;
-	}
-
-	ul.Lessons li span {
-		font-size: .9em;
-	}
-
 .gclms-hidden {
 	display: none;
 }
@@ -274,7 +264,7 @@ input:readonly {
 	color: grey;
 }
 
-.gclms-headerlink{
+.gclms-headerlink {
 	font-size: .65em;
 	font-weight: normal;
 }
@@ -1147,7 +1137,6 @@ img.gclms-tooltip-button {
 	}
 
 	.gclms-menubar button {
-		font-size: 1.1em;
 		border: 1px solid #8B8B8B;
 		background-color: transparent;
 		background-repeat: no-repeat;

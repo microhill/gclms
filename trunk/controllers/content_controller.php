@@ -67,7 +67,20 @@ class ContentController extends AppController {
 	
 	function fix_orphans() {
 		$this->Node->contain();
-		//$this->data = $this->Node->findAll(array('Node.course_id' => $this->viewVars['course']['id']),null,'Node.order ASC');
+		$nodes = $this->data = $this->Node->findAll(array('Node.course_id' => $this->viewVars['course']['id']),null,'Node.order ASC');
+		$indexedNodes = array_combine(
+			Set::extract($nodes, '{n}.Node.id'),
+			Set::extract($nodes, '{n}.Node')
+		);
+		
+		foreach($indexedNodes as $node) {
+			if(empty($indexedNodes[$node['id']])) {
+				$this->Node->id = $node['id'];
+				$this->Node->saveField('parent_node_id',0);
+			}
+		}
+		
+		$this->afterSave();
 	}
     
     function view($id) {
@@ -82,7 +95,7 @@ class ContentController extends AppController {
     }
 	
 	function afterSave() {
-		$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/Nodes'; 
+		$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/content'; 
 		parent::afterSave();
 	}
 	

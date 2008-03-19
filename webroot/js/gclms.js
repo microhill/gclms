@@ -313,11 +313,17 @@ GCLMS.tinyMCEConfig = {
                 editor.selection.setContent('<img src="/img/notebook-32.png" />');
             }
         });
+    },
+    class_filter : function(className, rule) {
+        if (className.indexOf('gclms-') === 0)
+            return false;
+			
+		return className;
     }
 };
 
 if(document.body.getAttribute('gclms:group') && !document.body.getAttribute('gclms:group').empty()) { // && !document.body.getAttribute('gclms:course').empty()
-	GCLMS.tinyMCEConfig.content_css = '/'+ document.body.getAttribute('gclms:group') + '/files/css'
+	GCLMS.tinyMCEConfig.content_css = '/'+ document.body.getAttribute('gclms:group') + '/files/css?' + new Date().getTime();
 }
 
 GCLMS.fileBrowser = function(field_name, url, type, win) {

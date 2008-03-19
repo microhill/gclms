@@ -182,7 +182,7 @@ GCLMS.PageController = {
 	},
 	createMatchingDroppables: function(event) {
 		Droppables.add(this, {
-			containment: $A(this.up('div.matching').select('td.draggableContainer')),
+			containment: $A(this.up('div.matching').select('td.gclms-draggable-container')),
 			onDrop: function(draggableElement, droppableElement) {
 				
 				// See if answer has already been dropped

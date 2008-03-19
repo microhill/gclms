@@ -4,7 +4,7 @@
 		<?
 		$classUri = $groupAndCoursePath . '/courses/enroll/' . $facilitated_class['FacilitatedClass']['id']; // . $course['web_path'] . '/lesson:' . $lesson['Lesson']['order'] . '/item:1';
 		?>
-		<li><a href="<?= $classUri ?>"><span class="classAlias"><?= $facilitated_class['FacilitatedClass']['alias'] ?></span><br/>
+		<li><a href="<?= $classUri ?>"><span class="gclms-class-alias"><?= $facilitated_class['FacilitatedClass']['alias'] ?></span><br/>
 		Enrollment deadline: <?= $myTime->niceShortDate($facilitated_class['FacilitatedClass']['enrollment_deadline']) ?><br/>
 		Begins: <?= $myTime->niceShortDate($facilitated_class['FacilitatedClass']['beginning']) ?><br/>
 		Ends: <?= $myTime->niceShortDate($facilitated_class['FacilitatedClass']['end']) ?>

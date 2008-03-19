@@ -49,123 +49,123 @@ body.mceContentBody blockquote {
 		float: right;	
 	}
 	
-.multipleChoice table,
-.matchingHeaders table,
-.matching table {
+.gclms-multiple-choice table,
+.gclms-matchingHeaders table,
+.gclms-matching table {
 	width: 100%;
 }
 
-div.matching,
-div.multipleChoice {
+div.gclms-matching,
+div.gclms-multiple-choice {
 	margin-top: 0;
 	margin-bottom: 6px;	
 }
 
-.questions button,
+.gclms-questions button,
 #gradeResults {
 	font-size: 1.2em;
 }
 
-.gradedAssessment .checkAnswerButton {
+.gclms-graded-assessment .gclms-check-answer-button {
 	display: none;
 }
 
-p.correctAnswer {
+p.gclms-correct-answer {
 	font-style: italic
 }
 
-.multipleChoice ul {
+.gclms-multiple-choice ul {
 	list-style: none;
 	padding-left: 12px;
 	margin-left: 0;
 }
 
-.multipleChoice ul li {
-	margin-bottom: .4em;
-	margin-top: .4em;
-}
+	.gclms-multiple-choice ul li {
+		margin-bottom: .4em;
+		margin-top: .4em;
+	}
 
 /* Matching question */
 
-.matchingHeaders th.column,
-.matchingHeaders td.column,
-.matching td.column {
+.gclms-matching-headers th.gclms-column,
+.gclms-matching-headers td.gclms-column,
+.gclms-matching td.gclms-column {
 	width: 50%;
 }
 
-.matching .answers {
+.gclms-matching .gclms-answers {
 	overflow: hidden;
 }
 
-	.matching h2 {
+	.gclms-matching h2 {
 		margin-top: 8px;
 		margin-bottom: 8px;
 	}
 
-	.matching .answers h3 {
+	.gclms-matching .answers h3 {
 		margin-top: 0;
 		margin-bottom: 8px;
 	}
 
-	.matching .draggableColor0 {
+	.gclms-matching .gclms-draggable-color0 {
 		background-color: #B1945F; 
 		background-image: url(/img/draggable0.png);
 	}
-	.matching .draggableColor1 {
+	.gclms-matching .gclms-draggable-color1 {
 		background-color: #1B616D; 
 		background-image: url(/img/draggable1.png);		
 	}
-	.matching .draggableColor2 {
+	.gclms-matching .gclms-draggable-color2 {
 		background-color: #819ED3; 
 		background-image: url(/img/draggable2.png);
 	}
-	.matching .draggableColor3 {
+	.gclms-matching .gclms-draggable-color3 {
 		background-color: #4E6BA0;
 		background-image: url(/img/draggable3.png);
 	}
-	.matching .draggableColor4 {
+	.gclms-matching .gclms-draggable-color4 {
 		background-color: #6D501B;
 		background-image: url(/img/draggable4.png);
 	}
-	.matching .draggableColor5 {
+	.gclms-matching .gclms-draggable-color5 {
 		background-color: #6D271B;
 		background-image: url(/img/draggable5.png);
 	}
-	.matching .draggableColor6 {
+	.gclms-matching .gclms-draggable-color6 {
 		background-color: #386D1B; 
 		background-image: url(/img/draggable6.png);
 	}
-	.matching .draggableColor7 {
+	.gclms-matching .gclms-draggable-color7 {
 		background-color: #6D1B38;
 		background-image: url(/img/draggable7.png);
 	}
-	.matching .draggableColor8 {
+	.gclms-matching .gclms-draggable-color8 {
 		background-color: #616D1B;
 		background-image: url(/img/draggable8.png);
 	}
 
-	.matching .answers h4 {
+	.gclms-matching .answers h4 {
 		padding-top: 0;
 		margin-top: 0;
 		margin-bottom: 0;
 		padding-bottom: 8px;
 	}
 	
-	.matching td {
+	.gclms-matching td {
 		margin: 4px;
 	}
 
-	.matching .leftColumn {
+	.gclms-matching .gclms-left-column {
 		width: 35%;
 		float: left;
 		margin-right: 5%;
 	}
 	
-		.matching .leftColumn .draggableContainer {
+		.gclms-matching .gclms-left-column .gclms-draggable-container {
 			width: 50px;
 		}
 	
-		.matching .leftColumn .draggable {
+		.gclms-matching .gclms-left-column .gclms-draggable {
 			height: 50px;
 			width: 50px;
 			display: block;	
@@ -179,30 +179,30 @@ p.correctAnswer {
 			font-family: Cambria, Times;
 		}
 
-		.matching .leftColumn .text div {
+		.gclms-matching .gclms-left-column .gclms-text div {
 			padding: 6px;
 		}
 	
-	.matching .rightColumn {
+	.gclms-matching .gclms-right-column {
 		float: left;
 		width: 55%;
 	}
 		
-		.matching .rightColumn .description {
+		.gclms-matching .gclms-right-column .gclms-description {
 		}
 		
-		.matching .rightColumn .description div {
+		.gclms-matching .gclms-right-column .gclms-description div {
 			padding: 6px;
 		}
 		
-		.matching .rightColumn td.droppableContainer {
+		.gclms-matching .gclms-right-column td.gclms-droppable-container {
 			width: 50px;
 		}
-			.matching .rightColumn .droppableContainer .defaultDroppableColor {
+			.gclms-matching .gclms-right-column .gclms-droppable-container .gclms-default-droppable-color {
 				background-color: #e8e8e8;		
 			}
 		
-			.matching .rightColumn .droppableContainer .droppable {
+			.gclms-matching .gclms-right-column .gclms-droppable-container .gclms-droppable {
 				height: 50px;
 				line-height: 50px;
 				vertical-align: center;
@@ -219,14 +219,14 @@ p.correctAnswer {
 	
 /* MP3 Player */
 
-.mp3player {
+.gclms-mp3-player {
 	background-image: url(/img/mp3_player/background.png);
 	width: 219px;
 	height: 38px;
 	float: right;
 }
 	
-	.mp3player .play {
+	.gclms-mp3-player .gclms-play {
 		background-image: url(/img/mp3_player/play.png);
 		width: 29px;
 		height: 29px;
@@ -236,7 +236,7 @@ p.correctAnswer {
 		cursor: pointer;
 	}
 
-	.mp3player .blankTrack {
+	.gclms-mp3-player .gclms-blank-track {
 		background-image: url(/img/mp3_player/track_blank.png);
 		background-repeat: no-repeat;
 		background-position: center left;
@@ -247,7 +247,7 @@ p.correctAnswer {
 		cursor: pointer;
 	}
 
-	.mp3player .progressTrack {
+	.gclms-mp3-player .gclms-progress-track {
 		background-image: url(/img/mp3_player/track_loaded.png);
 		background-repeat: no-repeat;		
 		background-position: center left;
@@ -258,7 +258,7 @@ p.correctAnswer {
 		cursor: pointer;
 	}
 
-	.mp3player .transparentTrack {
+	.gclms-mp3-player .gclms-transparent-track {
 		background-image: url(/img/mp3_player/track_transparent.png);
 		background-repeat: no-repeat;
 		background-position: center left;
@@ -269,7 +269,7 @@ p.correctAnswer {
 		margin-top: -8px;
 	}
 	
-		.mp3player .transparentTrack .handle {
+		.gclms-mp3-player .gclms-transparent-track .gclms-handle {
 			background-image: url(/img/mp3_player/handle.png);
 			background-repeat: no-repeat;
 			width: 11px;
@@ -279,6 +279,6 @@ p.correctAnswer {
 			top: 0px;
 		}
 
-div.orderQuestion li {
+div.gclms-order-question li {
 	cursor: move;
 }

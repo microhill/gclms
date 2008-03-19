@@ -1,4 +1,4 @@
-<div class="banner">
+<div class="gclms-banner">
 	<a href="<?= empty($group['web_path']) ? '/' : '/' . $group['web_path'] ?>"><?
 	
 	if(!empty($group['web_path']) && !empty($group['logo'])) {

@@ -7,7 +7,7 @@
 	>
 	<h2><?= $question['title'] ?></h2>
 	<div class="answers">
-		<div class="leftColumn">
+		<div class="gclms-left-column">
 			<? if(!empty($question['left_column_header'])): ?>
 			<h3><?= $question['left_column_header'] ?></h3>
 			<? endif; ?>
@@ -20,8 +20,8 @@
 				foreach($question['Answer'] as $answer): 
 				?>
 					<tr>
-						<td class="draggableContainer">
-							<div class="draggable draggableColor<?= $colors[$count % 9] ?>" answer:id="<?= $answer['id'] ?>">
+						<td class="gclms-draggable-container">
+							<div class="draggable gclms-draggable-color<?= $colors[$count % 9] ?>" answer:id="<?= $answer['id'] ?>">
 								<?= $count ?>
 							</div>
 						</td>

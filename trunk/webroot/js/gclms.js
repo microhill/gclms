@@ -297,7 +297,7 @@ GCLMS.tinyMCEConfig = {
 	theme_advanced_toolbar_location : 'top',
 	theme_advanced_toolbar_align : 'left',
 	theme_advanced_path_location : 'bottom',
-    theme_advanced_blockformats : 'p,h2,h3,h4',
+    theme_advanced_blockformats : 'p,div,blockquote,h2,h3,h4',
 	//content_css: '',
 	gecko_spellcheck: true,
 	theme : 'advanced',

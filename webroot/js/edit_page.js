@@ -32,13 +32,13 @@ GCLMS.PagesController = {
 	},
 
 	configureMoveUpAndMoveDownButtons: function() {
-		$$('img.moveUp[disabled="disabled"],img.moveDown[disabled="disabled"]').each(function(node){node.removeAttribute('disabled');});
-		var moveUpButtons = $$('img.moveUp');
+		$$('img.gclms-move-up[disabled="disabled"],img.gclms-move-down[disabled="disabled"]').each(function(node){node.removeAttribute('disabled');});
+		var moveUpButtons = $$('img.gclms-move-up');
 		if (!moveUpButtons.first()) {
 			return true;
 		}
 		moveUpButtons.first().setAttribute('disabled','disabled');
-		$$('img.moveDown').last().setAttribute('disabled','disabled');
+		$$('img.gclms-move-down').last().setAttribute('disabled','disabled');
 	},
 	
 	insertTextareaOnTopOfPage: function(event) {
@@ -150,13 +150,13 @@ GCLMS.PagesController = {
 		event.stop();
 		pageItem = this.up('div.gclms-page-item');
 
-		if (this.hasClassName('moveDown') && !(adjacentPageItem = pageItem.next('div.gclms-page-item'))) {
+		if (this.hasClassName('gclms-move-down') && !(adjacentPageItem = pageItem.next('div.gclms-page-item'))) {
 			return false;
-		} else if (this.hasClassName('moveUp') && !(adjacentPageItem = pageItem.previous('div.gclms-page-item'))) {
+		} else if (this.hasClassName('gclms-move-up') && !(adjacentPageItem = pageItem.previous('div.gclms-page-item'))) {
 			return false;
 		}
 
-		if(pageItem.hasClassName('textarea') && adjacentPageItem.hasClassName('question')) {
+		if(pageItem.hasClassName('textarea') && adjacentPageItem.hasClassName('gclms-question')) {
 			// A trick to avoid reloading the TinyMCE component if possible
 			if (this.hasClassName('moveDown')) {
 				pageItem.insert({
@@ -169,11 +169,11 @@ GCLMS.PagesController = {
 				});
 			}
 		} else {
-			if (pageItem.hasClassName('textarea')) {
+			if (pageItem.hasClassName('gclms-textarea')) {
 				tinyMCE.execCommand('mceRemoveControl', false, pageItem.down('textarea').id);
 			}
 
-			if (this.hasClassName('moveDown')) {
+			if (this.hasClassName('gclms-move-down')) {
 				adjacentPageItem.insert({
 					after: pageItem
 				});
@@ -184,7 +184,7 @@ GCLMS.PagesController = {
 				});
 			}
 
-			if (pageItem.hasClassName('textarea')) {
+			if (pageItem.hasClassName('gclms-textarea')) {
 				tinyMCE.execCommand('mceAddControl', false, pageItem.down('textarea').id);
 			}
 		}
@@ -402,7 +402,7 @@ GCLMS.Triggers.update({
 		'.gclms-page-item' : {
 			':loaded': 	GCLMS.PagesController.configureMoveUpAndMoveDownButtons,
 			'textarea': GCLMS.PagesController.enableTinyMCE,
-			'.gclms-move-down:click,.moveUp:click': GCLMS.PagesController.moveItem,
+			'.gclms-move-down:click,.gclms-move-up:click': GCLMS.PagesController.moveItem,
 			'.gclms-insert-textarea:click': GCLMS.PagesController.insertTextareaBelowPageItem,
 			'.gclms-insert-question:click': GCLMS.PagesController.insertQuestionBelowPageItem,
 			'tr.gclms-multiple-choice,tr.gclms-matching' : {

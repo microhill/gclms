@@ -6,7 +6,7 @@
 	
 	table.gclms-question > tbody > tr > th,
 	.gclms-multiple-choice > table > tbody > tr > th,
-	.order > table > tbody > tr > th {
+	.gclms-order > table > tbody > tr > th {
 		width: 30px;
 		min-width: 30px;
 	}

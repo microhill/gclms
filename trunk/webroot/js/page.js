@@ -97,7 +97,7 @@ GCLMS.PageController = {
 
 		$$('.questions > div').each(function(question){
 			totalQuestions++;
-			if(question.hasClassName('multipleChoice')) {
+			if(question.hasClassName('gclms-multiple-choice')) {
 				div = question;
 				completelyCorrect = true;
 				atLeastPartiallyCorrect = false;

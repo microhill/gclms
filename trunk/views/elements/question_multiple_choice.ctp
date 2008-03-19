@@ -1,4 +1,4 @@
-<div class="multipleChoice"
+<div class="gclms-multiple-choice"
 	question:triesLeft="3"
 	question:defaultTryAgainMessage="<? __('Incorrect. Try again.') ?>"
 	question:defaultPartiallyCorrectMessage="<? __('You are partially correct. Try again.') ?>"

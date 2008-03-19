@@ -49,7 +49,7 @@ if(empty($question_id))
 			</tr>
 			<tr>
 				<th>
-				<?= $form->label('Question.' . $question_id . '.type','Type'); ?>
+				<?= $form->label('Question' . $question_id . 'Type','Type'); ?>
 				</th>
 				<td>
 				<?= $myForm->input('Question' . $question_id . 'Type',
@@ -57,7 +57,7 @@ if(empty($question_id))
 						'options' => array('0' => 'Multiple choice','1' => 'True/false','2' => 'Matching','3' => 'Ordered List','4' => 'Fill in the blank','5' => 'Essay'),
 						'type' => 'radio',
 						'div' => false,
-						'class' => 'questionType',
+						'class' => 'gclms-question-type',
 						'value' => isset($question['type']) ? $question['type'] : '0',
 						'separator' => '&nbsp;&nbsp;',
 						'legend' => false,
@@ -65,7 +65,7 @@ if(empty($question_id))
 				)); ?>
 				</td>
 			</tr>
-			<tr class="multipleChoice<?= !empty($question['type']) && isset($question) ? ' gclms-hidden' : '' ?>">
+			<tr class="gclms-multiple-choice<?= !empty($question['type']) && isset($question) ? ' gclms-hidden' : '' ?>">
 				<th>
 					<? __('Answers'); ?>
 				</th>
@@ -86,7 +86,7 @@ if(empty($question_id))
 					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="add" />
 				</td>
 			</tr>
-			<tr class="trueFalse<?= @$question['type'] != '1' ? ' gclms-hidden' : '' ?>">
+			<tr class="gclms-true-false<?= @$question['type'] != '1' ? ' gclms-hidden' : '' ?>">
 				<th>
 					<?
 					echo $form->label('Question.' . $question_id . '.true_false_answer','Answer');
@@ -104,7 +104,7 @@ if(empty($question_id))
 					?>
 				</td>
 			</tr>
-			<tr class="order<?= @$question['type'] != '3' ? ' gclms-hidden' : '' ?>">
+			<tr class="gclms-order<?= @$question['type'] != '3' ? ' gclms-hidden' : '' ?>">
 				<th>
 					<? __('Answers'); ?>
 				</th>

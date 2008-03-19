@@ -1,6 +1,6 @@
 <?
 $menu = array(
-	array('label' => __('Course Home', true), 'class' => 'Home', 'active' => $this->name == 'Courses' && $this->action != 'edit', 'url' => $groupAndCoursePath),
+	array('label' => __('Course Home', true), 'class' => 'gclms-ome', 'active' => $this->name == 'Courses' && $this->action != 'edit', 'url' => $groupAndCoursePath),
 	//array('label' => __('Grades', true), 'class' => 'Grades', 'active' => isset($tests) || isset($test) ? true : false, 'url' => '/' . $this->viewVars['group']['web_path'] . '/grades/' . $this->viewVars['course']['web_path']),
 
 	//If group admin?

@@ -1,7 +1,7 @@
 <?
 if(empty($question_id) || empty($answer_id))
 	die();
-?><div class="multipleChoice" gclms:answer-id="<?= $answer_id ?>">
+?><div class="gclms-multiple-choice" gclms:answer-id="<?= $answer_id ?>">
 	<?= $form->hidden('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'id',array(
 		'value' => @$answer['id'],
 		'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][id]"

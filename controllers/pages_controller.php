@@ -85,6 +85,20 @@ class PagesController extends AppController {
 		$this->Node->id = $id;
 		//$this->Question->deleteAllInNode(array('node_id'=>$id)); // This should be done smarter!!!
 
+		if(empty($this->data['Textarea']))
+			$this->data['Textarea'] = array();
+
+		$this->Textarea->contain();		
+		$existingTextareaIds = Set::extract($this->Textarea->findAll(array('node_id' => $id),array('id')), '{n}.Textarea.id');
+
+		$newTextareaIds = array_keys($this->data['Textarea']);
+		$deletedTextareaIds = array_diff($existingTextareaIds,$newTextareaIds);
+
+		foreach($deletedTextareaIds as $questionId) {
+			$this->Textarea->id = $questionId;
+			$this->Textarea->delete();
+		}
+
 		if(!empty($this->data['Node']['audio_file'])
 				&& $this->data['Node']['audio_file'] == 'External URL' && !empty($this->data['Node']['external_audio_file']))
 			$this->data['Node']['audio_file'] = $this->data['Node']['external_audio_file'];

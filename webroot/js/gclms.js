@@ -306,7 +306,6 @@ GCLMS.tinyMCEConfig = {
 	theme_advanced_resize_horizontal: false,
 	extended_valid_elements : 'a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]',
 	file_browser_callback : 'GCLMS.fileBrowser',
-	//content_css : "/css/main.css,/css/page.css",
     setup : function(editor) {
         editor.addButton('notebook', {
             title : 'Add Notebook button',

@@ -15,7 +15,7 @@ echo $this->renderElement('no_column_background'); ?>
 		<?
 		echo $form->create('Group', array('action' => 'add','type'=>'file'));
 		include('form.ctp');
-		echo $form->submit(__('Save',true),array('class'=>'Save'));
+		echo $form->submit(__('Save',true),array('class'=>'gclms-save'));
 		echo $form->end();
 		?>
 	</div>

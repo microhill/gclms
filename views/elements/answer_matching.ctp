@@ -2,7 +2,7 @@
 if(empty($question_id) || empty($answer_id))
 	die();
 ?>
-<div class="matching"
+<div class="gclms-matching"
     <?= empty($answer['id']) ? 'style="display: none;"' : '' ?>
 >
     <?
@@ -20,7 +20,7 @@ if(empty($question_id) || empty($answer_id))
         </th>
     </tr>
     <tr>
-    <td class="column">
+    <td class="gclms-column">
         <?
 		echo $form->text('Question.' . $question_id . '.MatchingAnswer.' . $answer_id . '.text',array(
 			'label' => false,
@@ -31,7 +31,7 @@ if(empty($question_id) || empty($answer_id))
 		));
 		?>
     </td>
-    <td class="column">
+    <td class="gclms-column">
         <?
 		echo $form->text('Question.' . $question_id . '.MatchingAnswer.' . $answer_id . '.explanation',array(
 			'label' => false,

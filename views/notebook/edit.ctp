@@ -33,7 +33,7 @@ $javascript->link(array(
 		'cols' => 40,
 		'class' => 'wysiwyg'
 	));
-	echo $form->submit(__('Save',true),array('class'=>'Save'));
+	echo $form->submit(__('Save',true),array('class'=>'gclms-save'));
 	echo $form->end();
 	?>
 </div>

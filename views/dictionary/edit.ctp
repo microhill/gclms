@@ -8,8 +8,8 @@
 		echo $form->create('DictionaryTerm',array('url' => $groupAndCoursePath . '/dictionary/edit/' . $this->data['DictionaryTerm']['id']));
 		include('form.ctp');
 		echo '<div class="submit">';
-		echo $form->submit(__('Save',true),array('class'=>'Save','div'=>false));
-		echo $form->submit(__('Delete',true),array('class'=>'delete','div'=>false,'gclms:confirm-text'=>__('Are you sure you want to delete this dictionary term?',true)));
+		echo $form->submit(__('Save',true),array('class'=>'gclms-save','div'=>false));
+		echo $form->submit(__('Delete',true),array('class'=>'gclms-delete','div'=>false,'gclms:confirm-text'=>__('Are you sure you want to delete this dictionary term?',true)));
 		echo '</div>';		
 		echo $form->end();
 		?>

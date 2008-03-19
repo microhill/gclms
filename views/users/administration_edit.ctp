@@ -16,8 +16,8 @@ echo $this->renderElement('no_column_background'); ?>
 	include('form.ctp');
 	
 	echo '<div>';
-	echo $form->submit(__('Save',true),array('class'=>'Save','div'=>false,'id'=>'UserSave'));
-	echo $form->submit(__('Delete',true),array('class'=>'delete','div'=>false,'id'=>'UserDelete','gclms:confirm-text'=>__('Are you sure you sure you want to delete this user?',true)));
+	echo $form->submit(__('Save',true),array('class'=>'gclms-save','div'=>false,'id'=>'UserSave'));
+	echo $form->submit(__('Delete',true),array('class'=>'gclms-delete','div'=>false,'id'=>'UserDelete','gclms:confirm-text'=>__('Are you sure you sure you want to delete this user?',true)));
 	echo '</div>';
 	echo $form->end();
 	?>

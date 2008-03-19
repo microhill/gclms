@@ -14,7 +14,7 @@ echo $this->renderElement('no_column_background'); ?>
 	<?
 	echo $form->create('Forum', array('url'=>$groupAndCoursePath . '/discussion/add_forum'));
 	include('forum_form.ctp');
-	echo $form->submit(__('Save',true),array('class'=>'Save'));
+	echo $form->submit(__('Save',true),array('class'=>'gclms-save'));
 	echo $form->end();
 	?>
 </div>

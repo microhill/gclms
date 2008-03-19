@@ -20,7 +20,7 @@ echo $this->renderElement('no_column_background'); ?>
 	
 	include(ROOT . DS . APP_DIR . DS . 'views' . DS . 'groups' . DS . 'form.ctp');
 	
-	echo $form->submit(__('Save',true),array('class'=>'Save','div'=>false));
+	echo $form->submit(__('Save',true),array('class'=>'gclms-save','div'=>false));
 	echo $form->end();
 	?>
 </div>

@@ -65,7 +65,7 @@ $javascript->link(array(
 		'rows' => 19,
 		'cols' => 80
 	));
-	echo $form->submit(__('Post',true),array('class'=>'Save'));
+	echo $form->submit(__('Post',true),array('class'=>'gclms-save'));
 	echo $form->end();
 	?>
 </div>

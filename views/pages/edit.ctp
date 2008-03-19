@@ -90,8 +90,8 @@ $javascript->link(array(
 	}
 
 	echo '<div class="submit">';
-	echo $form->submit(__('Save',true),array('class'=>'Save','div'=>false));
-	echo $form->submit(__('Delete',true),array('class'=>'delete','div'=>false,'gclms:confirm-text'=>__('Are you sure you want to delete this page?',true)));
+	echo $form->submit(__('Save',true),array('class'=>'gclms-save','div'=>false));
+	echo $form->submit(__('Delete',true),array('class'=>'gclms-delete','div'=>false,'gclms:confirm-text'=>__('Are you sure you want to delete this page?',true)));
 	echo '</div>';
 
 	echo $form->end();

@@ -39,10 +39,10 @@ if(empty($textarea_id) && !empty($textarea['id']))
         </tbody>
     </table>
     <p>
-        <button class="insertQuestion add">
+        <button class="gclms-insert-question gclms-add">
             <? __('Insert Question') ?>
         </button>
-        <button class="insertTextarea add">
+        <button class="gclms-insert-textarea gclms-add">
             <? __('Insert Content') ?>
         </button>
     </p>

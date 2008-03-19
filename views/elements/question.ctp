@@ -6,7 +6,7 @@ if(empty($question_id))
 	die;
 ?>
 
-<div class="gclms-page-item question" question:id="<?= $question_id ?>">
+<div class="gclms-page-item gclms-question" question:id="<?= $question_id ?>">
 	<?
 	echo $form->hidden('Question.' . $question_id . '.id',array(
 		'value' => @$question['id'],
@@ -125,7 +125,7 @@ if(empty($question_id))
 					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="add" />
 				</td>
 			</tr>
-			<tr class="fillInTheBlank<?= @$question['type'] != '2' ? ' gclms-hidden' : '' ?>">
+			<tr class="gclms-fill-in-the-blank<?= @$question['type'] != '2' ? ' gclms-hidden' : '' ?>">
 				<th>
 				<?
 				echo $form->label('Question.' . $question_id . '.text_answer','Answer');
@@ -145,7 +145,7 @@ if(empty($question_id))
 			</tr>
 		</tbody>
 		<tbody>
-			<tr class="matchingHeaders<?= @$question['type'] != '2' ? ' gclms-hidden' : '' ?>">
+			<tr class="gclms-matching-headers<?= @$question['type'] != '2' ? ' gclms-hidden' : '' ?>">
 				<th>
 					<? __('Headers') ?>
 				</th>
@@ -190,12 +190,12 @@ if(empty($question_id))
 					</table>
 				</td>
 			</tr>
-			<tr class="matching<?= @$question['type'] != '2' ? ' gclms-hidden' : '' ?>">
+			<tr class="gclms-matching<?= @$question['type'] != '2' ? ' gclms-hidden' : '' ?>">
 				<th>
 					<? __('Answers'); ?>
 				</th>
 				<td>
-					<div class="answers<?= empty($question['Answer']) ? ' gclms-hidden' : '' ?>">
+					<div class="gclms-answers<?= empty($question['Answer']) ? ' gclms-hidden' : '' ?>">
 						<?
 						if(isset($question['Answer'])) {
 							foreach($question['Answer'] as $answer) {
@@ -214,7 +214,7 @@ if(empty($question_id))
 
 		</tbody>
 		<tbody>
-			<tr class="question-explanation<?= @$question['type'] !== '0' && isset($question) ? '' : ' gclms-hidden' ?>">
+			<tr class="gclms-question-explanation<?= @$question['type'] !== '0' && isset($question) ? '' : ' gclms-hidden' ?>">
 				<th>
 					<? __('Explanation'); ?>
 				</th>
@@ -233,7 +233,7 @@ if(empty($question_id))
 		</tbody>
 	</table>
 	<p>
-		<button class="insertQuestion add"><? __('Insert Question') ?></button>
-		<button class="insertTextarea add"><? __('Insert Content') ?></button>
+		<button class="gclms-insert-question add"><? __('Insert Question') ?></button>
+		<button class="gclms-insert-textarea add"><? __('Insert Content') ?></button>
 	</p>
 </div>

@@ -59,13 +59,13 @@ echo $this->renderElement('left_column');
 				echo $this->renderElement('menubar',array('id' => 'secondaryMenubar','buttons' => array(
 					array(
 						'id' => 'decreaseIndent',
-						'class' => 'gclms-decreaseIndent',
+						'class' => 'gclms-decrease-indent',
 						'label' => 'Decrease Indent',
 						'disabled' => 'disabled'
 					),
 					array(
 						'id' => 'increaseIndent',
-						'class' => 'gclms-increaseIndent',
+						'class' => 'gclms-increase-indent',
 						'label' => 'Increase Indent',
 						'disabled' => 'disabled'
 					),

@@ -65,12 +65,12 @@ if(empty($question_id))
 				)); ?>
 				</td>
 			</tr>
-			<tr class="multipleChoice<?= !empty($question['type']) && isset($question) ? ' hidden' : '' ?>">
+			<tr class="multipleChoice<?= !empty($question['type']) && isset($question) ? ' gclms-hidden' : '' ?>">
 				<th>
 					<? __('Answers'); ?>
 				</th>
 				<td>
-					<div class="answers<?= empty($question['Answer']) ? ' hidden' : '' ?>">
+					<div class="answers<?= empty($question['Answer']) ? ' gclms-hidden' : '' ?>">
 						<?
 						if(isset($question['Answer'])) {
 							foreach($question['Answer'] as $answer) {
@@ -86,7 +86,7 @@ if(empty($question_id))
 					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="add" />
 				</td>
 			</tr>
-			<tr class="trueFalse<?= @$question['type'] != '1' ? ' hidden' : '' ?>">
+			<tr class="trueFalse<?= @$question['type'] != '1' ? ' gclms-hidden' : '' ?>">
 				<th>
 					<?
 					echo $form->label('Question.' . $question_id . '.true_false_answer','Answer');
@@ -104,12 +104,12 @@ if(empty($question_id))
 					?>
 				</td>
 			</tr>
-			<tr class="order<?= @$question['type'] != '3' ? ' hidden' : '' ?>">
+			<tr class="order<?= @$question['type'] != '3' ? ' gclms-hidden' : '' ?>">
 				<th>
 					<? __('Answers'); ?>
 				</th>
 				<td>
-					<div class="answers<?= empty($question['Answer']) ? ' hidden' : '' ?>" id="<?= String::uuid() ?>">
+					<div class="answers<?= empty($question['Answer']) ? ' gclms-hidden' : '' ?>" id="<?= String::uuid() ?>">
 						<?
 						if(isset($question['Answer'])) {
 							foreach($question['Answer'] as $answer) {
@@ -125,7 +125,7 @@ if(empty($question_id))
 					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="add" />
 				</td>
 			</tr>
-			<tr class="fillInTheBlank<?= @$question['type'] != '2' ? ' hidden' : '' ?>">
+			<tr class="fillInTheBlank<?= @$question['type'] != '2' ? ' gclms-hidden' : '' ?>">
 				<th>
 				<?
 				echo $form->label('Question.' . $question_id . '.text_answer','Answer');
@@ -145,7 +145,7 @@ if(empty($question_id))
 			</tr>
 		</tbody>
 		<tbody>
-			<tr class="matchingHeaders<?= @$question['type'] != '2' ? ' hidden' : '' ?>">
+			<tr class="matchingHeaders<?= @$question['type'] != '2' ? ' gclms-hidden' : '' ?>">
 				<th>
 					<? __('Headers') ?>
 				</th>
@@ -190,12 +190,12 @@ if(empty($question_id))
 					</table>
 				</td>
 			</tr>
-			<tr class="matching<?= @$question['type'] != '2' ? ' hidden' : '' ?>">
+			<tr class="matching<?= @$question['type'] != '2' ? ' gclms-hidden' : '' ?>">
 				<th>
 					<? __('Answers'); ?>
 				</th>
 				<td>
-					<div class="answers<?= empty($question['Answer']) ? ' hidden' : '' ?>">
+					<div class="answers<?= empty($question['Answer']) ? ' gclms-hidden' : '' ?>">
 						<?
 						if(isset($question['Answer'])) {
 							foreach($question['Answer'] as $answer) {
@@ -214,7 +214,7 @@ if(empty($question_id))
 
 		</tbody>
 		<tbody>
-			<tr class="question-explanation<?= @$question['type'] !== '0' && isset($question) ? '' : ' hidden' ?>">
+			<tr class="question-explanation<?= @$question['type'] !== '0' && isset($question) ? '' : ' gclms-hidden' ?>">
 				<th>
 					<? __('Explanation'); ?>
 				</th>

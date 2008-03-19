@@ -74,7 +74,7 @@ class ContentController extends AppController {
 		);
 		
 		foreach($indexedNodes as $node) {
-			if(empty($indexedNodes[$node['id']])) {
+			if(empty($indexedNodes[$node['parent_node_id']])) {
 				$this->Node->id = $node['id'];
 				$this->Node->saveField('parent_node_id',0);
 			}

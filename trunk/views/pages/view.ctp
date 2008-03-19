@@ -1,4 +1,5 @@
 <?
+$html->css('page_core', null, null, false);
 $html->css('page', null, null, false);
 
 $javascript->link(array(

@@ -1,6 +1,6 @@
-<div class="notifications">
+<div class="gclms-notifications">
 	<? foreach($notifications as $notification): ?>
-	<div class="<?= $notification['type'] ?>">
+	<div class="gclms-<?= $notification['type'] ?>">
 		<?= $notification['text'] ?>
 	</div>
 	<? endforeach;?>

@@ -7,8 +7,8 @@
 			echo $this->renderElement('user_menu');
 		else
 			echo $this->renderElement('menu', array("items" => array(
-				array('controller' => 'Courses','label'=> __('Course Catalogue', true),'url'=>'/courses'),
-				array('controller' => 'Register','label'=> __('Register as New Student', true),'url'=>'/register')
+				array('controller' => 'Courses','class'=>'gclms-courses','label'=> __('Course Catalogue', true),'url'=>'/courses'),
+				array('controller' => 'Register','class'=>'gclms-register','label'=> __('Register as New Student', true),'url'=>'/register')
 			)));
 	}
 

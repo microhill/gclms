@@ -324,7 +324,7 @@ GCLMS.PagesController = {
 				div.down('.gclms-matching-headers input').focus();				
 				break;
 			case '3':
-				div.down('.order').displayAsTableRow();
+				div.down('.gclms-order').displayAsTableRow();
 				try{div.down('.gclms-order input[type="text"]').focus();}catch(e){}
 				break;
 			case '4':
@@ -410,7 +410,7 @@ GCLMS.Triggers.update({
 				'tr.gclms-answer-explanation img.gclms-add-tinymce-box:click' : GCLMS.PagesController.addExplanationToMultipleChoiceAnswer
 			},
 			'tr.gclms-order' : {
-				'img.add:click': GCLMS.PagesController.addOrderAnswer,
+				'img.gclms-add:click': GCLMS.PagesController.addOrderAnswer,
 				'img.gclms-delete-answer:click': GCLMS.PagesController.confirmDeleteOrderAnswer,
 				'div.gclms-answers': GCLMS.PagesController.createSortablesForOrderQuestion
 			},	

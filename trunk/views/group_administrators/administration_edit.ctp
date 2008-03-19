@@ -29,7 +29,7 @@ echo $this->renderElement('no_column_background'); ?>
 		'disabled' => 'disabled'
 	));
 
-	echo $form->submit(__('Delete',true),array('class'=>'delete','gclms:confirm-text'=>__('Are you sure you want to delete this?',true)));
+	echo $form->submit(__('Delete',true),array('class'=>'gclms-delete','gclms:confirm-text'=>__('Are you sure you want to delete this?',true)));
 	echo $form->end();
 	?>
 </div>

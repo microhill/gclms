@@ -54,7 +54,7 @@
 	echo $form->label('mailing_list',__('Add me to the InternetSeminary.org mailing list.',true),null);
 	echo '</p>';	
 	
-	echo $form->submit(__('Register',true),array('class'=>'Save'));
+	echo $form->submit(__('Register',true),array('class'=>'gclms-save'));
 	echo $form->end();
 	?>
 </div>

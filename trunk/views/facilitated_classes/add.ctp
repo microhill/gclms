@@ -13,7 +13,7 @@ echo $this->renderElement('no_column_background');
 		<?
 		echo $form->create('FacilitatedClass',array('url'=> '/' . $groupWebPath . '/facilitated_classes/add'));
 		include('form.ctp');
-		echo $form->submit(__('Save',true),array('class'=>'Save'));
+		echo $form->submit(__('Save',true),array('class'=>'gclms-save'));
 		echo $form->end();
 		?>
 	</div>

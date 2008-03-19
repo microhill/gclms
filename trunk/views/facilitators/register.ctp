@@ -14,7 +14,7 @@ echo $this->renderElement('left_column');
 		echo $form->create('Facilitator', array('action' => 'register'));
 		
 		echo '<div>';
-			echo $form->submit(__('Apply',true),array('class'=>'Save','div'=>false));
+			echo $form->submit(__('Apply',true),array('class'=>'gclms-save','div'=>false));
 			//echo $form->submit(__('Cancel',true),array('class'=>'Cancel','div'=>false));
 		echo '</div>';
 	

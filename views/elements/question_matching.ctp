@@ -1,4 +1,4 @@
-<div class="matching"
+<div class="gclms-matching"
 	question:triesLeft="3"
 	question:defaultTryAgainMessage="<? __('Incorrect. Try again.') ?>"
 	question:defaultPartiallyCorrectMessage="<? __('You are partially correct. Try again.') ?>"
@@ -6,7 +6,7 @@
 	question:defaultNoMoreIncorrectTriesMessage="<? __('You are out of tries. The correct answer is shown.') ?>"
 	>
 	<h2><?= $question['title'] ?></h2>
-	<div class="answers">
+	<div class="gclms-answers">
 		<div class="gclms-left-column">
 			<? if(!empty($question['left_column_header'])): ?>
 			<h3><?= $question['left_column_header'] ?></h3>

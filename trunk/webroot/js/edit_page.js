@@ -116,7 +116,7 @@ GCLMS.PagesController = {
 		}
 		
 		$$('div.gclms-page-item').each(function(node){
-			if(node.hasClassName('textarea')) {
+			if(node.hasClassName('gclms-textarea')) {
 				id = node.getAttribute('textarea:id');
 				type = 'Textarea';
 			} else {
@@ -395,8 +395,8 @@ GCLMS.Triggers.update({
 		'form:submit': GCLMS.PagesController.submitForm,
 		'#PageAudioFile,#PageAudioFile:change': GCLMS.PagesController.changePageAudio,
 		'.gclms-top-buttons' : {
-			'.insertTextarea:click': GCLMS.PagesController.insertTextareaOnTopOfPage,
-			'.insertQuestion:click': GCLMS.PagesController.insertQuestionOnTopOfPage
+			'.gclms-insert-textarea:click': GCLMS.PagesController.insertTextareaOnTopOfPage,
+			'.gclms-insert-question:click': GCLMS.PagesController.insertQuestionOnTopOfPage
 		},
 
 		'.gclms-page-item' : {

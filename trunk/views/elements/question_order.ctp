@@ -1,4 +1,4 @@
-<div class="gclms-orderquestion"
+<div class="gclms-order-question"
 	question:triesLeft="3"
 	question:defaultTryAgainMessage="<? __('Incorrect. Try again.') ?>"
 	question:defaultPartiallyCorrectMessage="<? __('You are partially correct. Try again.') ?>"

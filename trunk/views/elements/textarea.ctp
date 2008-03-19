@@ -14,7 +14,7 @@ if(empty($textarea_id) && !empty($textarea['id']))
             <tr>
                 <th>
                     <div class="gclms-left">
-                        <img src="/img/icons/oxygen/16x16/actions/edit-delete.png" gclms:confirm-text="<? __('Are you sure you want to delete this content?') ?>" class="deleteTextarea"/>
+                        <img src="/img/icons/oxygen/16x16/actions/edit-delete.png" gclms:confirm-text="<? __('Are you sure you want to delete this content?') ?>" class="gclms-delete-textarea"/>
                     </div>
                     <div class="gclms-right">
                         <img src="/img/icons/oxygen_refit/16x16/actions/go-up-blue.png" class="gclms-move-up" alt="<? __('Move up') ?>" />

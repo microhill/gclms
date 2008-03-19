@@ -12,7 +12,7 @@ GCLMS.PageController = {
 		completelyCorrect = true;
 		atLeastPartiallyCorrect = false;
 
-		$A(div.getElementsByTagName('input')).each(function(node) {
+		$A(div.select('input')).each(function(node) {
 			if(node.checked) {
 				if(node.getAttribute('answer:correct') == 'true') {
 					atLeastPartiallyCorrect = true;
@@ -37,7 +37,7 @@ GCLMS.PageController = {
 			}
 		} else {
 			//Set to correct answers
-			div.getElementsBySelector('input').each(function(node) {
+			div.select('input').each(function(node) {
 				if(node.getAttribute('answer:correct') == 'true') {
 					node.checked = true;
 				} else if(node.getAttribute('answer:correct') == 'false') {
@@ -55,7 +55,7 @@ GCLMS.PageController = {
 		completelyCorrect = true;
 		atLeastPartiallyCorrect = false;
 
-		div.getElementsByClassName('droppable').each(function(node){
+		div.select('.gclms-droppable').each(function(node){
 			if (node.getAttribute('attemptedAnswer:id') != node.getAttribute('correctAnswer:id')) {
 				completelyCorrect = false;
 			} else {
@@ -75,10 +75,10 @@ GCLMS.PageController = {
 		} else {
 			//Set to correct answers
 
-			div.getElementsByClassName('droppable').each(function(node){
+			div.select('gclms-droppable').each(function(node){
 				id = node.getAttribute('correctAnswer:id');
 
-				draggableElement = div.getElementsBySelector('div.draggable[answer:id="' + id + '"]').first();
+				draggableElement = div.select('div.gclms-draggable[answer:id="' + id + '"]').first();
 
 				node.className = 'droppable ' + $A(draggableElement.classNames())[1];
 				node.innerHTML = draggableElement.innerHTML;
@@ -102,7 +102,7 @@ GCLMS.PageController = {
 				completelyCorrect = true;
 				atLeastPartiallyCorrect = false;
 
-				$A(div.getElementsByTagName('input')).each(function(node) {
+				$A(div.select('input')).each(function(node) {
 					if(node.checked) {
 						if(node.getAttribute('answer:correct') == 'true') {
 							atLeastPartiallyCorrect = true;
@@ -124,13 +124,13 @@ GCLMS.PageController = {
 					graphic = '<img src="/img/red_x-22.png" /> ';
 					question.style.backgroundColor = '#FEE5E2';
 				}
-				question.getElementsBySelector('h3').first().insert({top: graphic});
+				question.select('h3').first().insert({top: graphic});
 
 			} else if(question.hasClassName('matching')) {
 				completelyCorrect = true;
 				div = question;
 
-				div.getElementsByClassName('droppable').each(function(node){
+				div.select('.droppable').each(function(node){
 					if(node.getAttribute('attemptedAnswer:id') != node.getAttribute('correctAnswer:id')) {
 						completelyCorrect = false;
 					}
@@ -144,10 +144,10 @@ GCLMS.PageController = {
 					graphic = '<img src="/img/red_x-22.png" /> ';
 					question.style.backgroundColor = '#FEE5E2';
 				}
-				question.getElementsBySelector('h3').first().insert({top: graphic});
-			} else if(question.hasClassName('trueFalse')) {
+				question.select('h3').first().insert({top: graphic});
+			} else if(question.hasClassName('gclms-true-false')) {
 
-			} else if(question.hasClassName('fillInTheBlank')) {
+			} else if(question.hasClassName('gclms-fill-in-the-blank')) {
 				div = question;
 				input = div.getElementsByTagName('input').item(0);
 
@@ -159,7 +159,7 @@ GCLMS.PageController = {
 					graphic = '<img src="/img/red_x-22.png" /> ';
 					question.style.backgroundColor = '#FEE5E2';
 				}
-				question.getElementsBySelector('h3').first().insert({top: graphic});
+				question.select('h3').first().insert({top: graphic});
 			}
 			return false;
 		});
@@ -182,13 +182,13 @@ GCLMS.PageController = {
 	},
 	createMatchingDroppables: function(event) {
 		Droppables.add(this, {
-			containment: $A(this.up('div.matching').select('td.gclms-draggable-container')),
+			containment: $A(this.up('div.gclms-matching').select('td.gclms-draggable-container')),
 			onDrop: function(draggableElement, droppableElement) {
 				
 				// See if answer has already been dropped
 				tbody = droppableElement.findParent('tbody');
 				
-				tbody.select('div.droppable').each(function(node){
+				tbody.select('div.gclms-droppable').each(function(node){
 					if(node.getAttribute('attemptedAnswer:id') == this.getAttribute('answer:id')) {
 						node.removeAttribute('attemptedAnswer:id');
 						node.innerHTML = '';
@@ -218,7 +218,7 @@ GCLMS.PageController = {
 			$A(div.getElementsByTagName('p')).each(function(node){
 				Element.remove(node);
 			});
-			var tmpInsertion1 = new Insertion.Bottom(div,'<p class="correctAnswer">' + correctAnswer + '</p>');
+			var tmpInsertion1 = new Insertion.Bottom(div,'<p class="gclms-correct-answer">' + correctAnswer + '</p>');
 			alert(div.getAttribute('question:defaultNoMoreIncorrectTriesMessage'));
 		}
 	},
@@ -245,20 +245,20 @@ GCLMS.PageController = {
 				Element.remove(node);
 			});
 			if (correctAnswerInteger == "0") {
-				var tmpInsertion1 = new Insertion.Bottom(div, '<p class="correctAnswer">' + div.getAttribute('question:defaultCorrectMessageFalse') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+				var tmpInsertion1 = new Insertion.Bottom(div, '<p class="gclms-correct-answer">' + div.getAttribute('question:defaultCorrectMessageFalse') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
 			}
 			else {
-				var tmpInsertion2 = new Insertion.Bottom(div, '<p class="correctAnswer">' + div.getAttribute('question:defaultCorrectMessageTrue') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+				var tmpInsertion2 = new Insertion.Bottom(div, '<p class="gclms-correct-answer">' + div.getAttribute('question:defaultCorrectMessageTrue') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
 			}
 		} else {
 			$A(div.getElementsByTagName('p')).each(function(node){
 				Element.remove(node);
 			});
 			if (correctAnswerInteger == "0") {
-				var tmpInsertion3 = new Insertion.Bottom(div, '<p class="correctAnswer">' + div.getAttribute('question:defaultIncorrectMessageFalse') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+				var tmpInsertion3 = new Insertion.Bottom(div, '<p class="gclms-correct-answer">' + div.getAttribute('question:defaultIncorrectMessageFalse') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
 			}
 			else {
-				var tmpInsertion4 = new Insertion.Bottom(div, '<p class="correctAnswer">' + div.getAttribute('question:defaultIncorrectMessageTrue') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+				var tmpInsertion4 = new Insertion.Bottom(div, '<p class="gclms-correct-answer">' + div.getAttribute('question:defaultIncorrectMessageTrue') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
 			}
 		}
 		event.stop();
@@ -302,7 +302,7 @@ GCLMS.PageController = {
 	},
 	
 	loadPageAudio: function() {
-		mp3Player = $$('div.mp3player')[0];
+		mp3Player = $$('div.gclms-mp3-player')[0];
 		
 		if(window.soundManager !== undefined && mp3Player) {
 			soundManager.useConsole = false;
@@ -310,10 +310,10 @@ GCLMS.PageController = {
 		
 			soundManager.createMovie('/js/vendors/sound_manager/soundmanager2.swf');
 		
-			mp3Player.insert(new Element('div', {className: 'play'}));
-			mp3Player.insert(new Element('div', {className: 'blankTrack'}));
-			mp3Player.insert(new Element('div', {className: 'progressTrack'}));
-			mp3Player.insert(new Element('div', {className: 'transparentTrack'}).insert(
+			mp3Player.insert(new Element('div', {className: 'gclms-play'}));
+			mp3Player.insert(new Element('div', {className: 'gclms-blank-track'}));
+			mp3Player.insert(new Element('div', {className: 'gclms-progress-track'}));
+			mp3Player.insert(new Element('div', {className: 'gclms-transparent-track'}).insert(
 					new Element('div', {className: 'handle'})
 			));
 		
@@ -327,23 +327,23 @@ GCLMS.PageController = {
 }
 
 GCLMS.Triggers.update({
-	'div.page': GCLMS.PageController.loadPageAudio,
+	'div.gclms-page': GCLMS.PageController.loadPageAudio,
 	'img.gclms-notebook:click': GCLMS.PageController.loadNotebook,
 	'#gradeQuestions:click': GCLMS.PageController.gradeQuestions,
-	'.multipleChoice button.checkAnswerButton:click': GCLMS.PageController.checkMultipleChoiceQuestion,
-	'.matching' : {
-		'button.checkAnswerButton:click': GCLMS.PageController.checkMatchingQuestion,
-		'div.draggable': GCLMS.PageController.createMatchingDraggables,
-		'div.droppable': GCLMS.PageController.createMatchingDroppables
+	'.gclms-multiple-choice button.gclms-check-answer-button:click': GCLMS.PageController.checkMultipleChoiceQuestion,
+	'.gclms-matching' : {
+		'button.gclms-check-answer-button:click': GCLMS.PageController.checkMatchingQuestion,
+		'div.gclms-draggable': GCLMS.PageController.createMatchingDraggables,
+		'div.gclms-droppable': GCLMS.PageController.createMatchingDroppables
 	},
-	'.fillInTheBlank':{
+	'.gclms-fill-in-the-blank':{
 		'input:keyup': GCLMS.PageController.expandFillInTheBlankField,
-		'button.checkAnswerButton:click': GCLMS.PageController.checkFillInTheBlankQuestion
+		'button.gclms-check-answer-button:click': GCLMS.PageController.checkFillInTheBlankQuestion
 	},
-	'.orderQuestion': {
+	'.gclms-order-question': {
 		'ul': GCLMS.PageController.createOrderSortable
 	},	
-	'.trueFalse button:click': GCLMS.PageController.checkTrueFalseQuestion,
+	'.gclms-true-false button:click': GCLMS.PageController.checkTrueFalseQuestion,
 	'div.gclms-framed' : {
 		'a[href*="/bible_kjv/"]:click': GCLMS.PageController.loadBibleVerse,
 		'a[href*="/chapters/"]:click': GCLMS.PageController.loadChapter,

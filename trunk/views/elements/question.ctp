@@ -18,7 +18,7 @@ if(empty($question_id))
 			<tr>
 				<th colspan="2">
 					<div class="gclms-left">
-						<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" class="deleteQuestion delete" gclms:confirm-text="<? __('Are you sure you want to delete this question?') ?>" />
+						<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" class="gclms-delete-question gclms-delete" gclms:confirm-text="<? __('Are you sure you want to delete this question?') ?>" />
 					</div>
 
 					<div class="gclms-right">

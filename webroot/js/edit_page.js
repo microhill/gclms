@@ -402,24 +402,24 @@ GCLMS.Triggers.update({
 		'.gclms-page-item' : {
 			':loaded': 	GCLMS.PagesController.configureMoveUpAndMoveDownButtons,
 			'textarea': GCLMS.PagesController.enableTinyMCE,
-			'.moveDown:click,.moveUp:click': GCLMS.PagesController.moveItem,
-			'.insertTextarea:click': GCLMS.PagesController.insertTextareaBelowPageItem,
-			'.insertQuestion:click': GCLMS.PagesController.insertQuestionBelowPageItem,
-			'tr.multipleChoice,tr.matching' : {
-				'img.deleteAnswer:click': GCLMS.PagesController.confirmDeleteMatchingAnswer,
-				'tr.answer-explanation img.addTinyMCEBox:click' : GCLMS.PagesController.addExplanationToMultipleChoiceAnswer
+			'.gclms-move-down:click,.moveUp:click': GCLMS.PagesController.moveItem,
+			'.gclms-insert-textarea:click': GCLMS.PagesController.insertTextareaBelowPageItem,
+			'.gclms-insert-question:click': GCLMS.PagesController.insertQuestionBelowPageItem,
+			'tr.gclms-multiple-choice,tr.gclms-matching' : {
+				'img.gclms-delete-answer:click': GCLMS.PagesController.confirmDeleteMatchingAnswer,
+				'tr.gclms-answer-explanation img.gclms-add-tinymce-box:click' : GCLMS.PagesController.addExplanationToMultipleChoiceAnswer
 			},
-			'tr.order' : {
+			'tr.gclms-order' : {
 				'img.add:click': GCLMS.PagesController.addOrderAnswer,
-				'img.deleteAnswer:click': GCLMS.PagesController.confirmDeleteOrderAnswer,
-				'div.answers': GCLMS.PagesController.createSortablesForOrderQuestion
+				'img.gclms-delete-answer:click': GCLMS.PagesController.confirmDeleteOrderAnswer,
+				'div.gclms-answers': GCLMS.PagesController.createSortablesForOrderQuestion
 			},	
-			'img.deleteQuestion:click':GCLMS.PagesController.confirmDeleteQuestion,
-			'img.deleteTextarea:click':GCLMS.PagesController.confirmDeleteTextarea,
+			'img.gclms-delete-question:click':GCLMS.PagesController.confirmDeleteQuestion,
+			'img.gclms-delete-textarea:click':GCLMS.PagesController.confirmDeleteTextarea,
 			'input[type="radio"].questionType:click': GCLMS.PagesController.selectQuestionType,
-			'.multipleChoice img.add:click': GCLMS.PagesController.addMultipleChoiceAnswer,
-			'.matching img.add:click':GCLMS.PagesController.addMatchingAnswer,
-			'tr.question-explanation img.addTinyMCEBox:click': GCLMS.PagesController.addExplanationToQuestion
+			'.gclms-multiple-choice img.gclms-add:click': GCLMS.PagesController.addMultipleChoiceAnswer,
+			'.gclms-matching img.gclms-add:click':GCLMS.PagesController.addMatchingAnswer,
+			'tr.question-explanation img.gclms-add-tinymce-box:click': GCLMS.PagesController.addExplanationToQuestion
 		}
 	}
 });

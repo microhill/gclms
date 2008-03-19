@@ -220,7 +220,7 @@ if(empty($question_id))
 				</th>
 				<td class="<?= !empty($question['explanation']) ? 'filled' : '' ?>">
 					<? if(empty($question['explanation'])): ?>
-						<img src="/img/icons/oxygen/22x22/apps/kate.png" class="addTinyMCEBox" />
+						<img src="/img/icons/oxygen/22x22/apps/kate.png" class="gclms-add-tinymce-box" />
 					<?
 					else:
 						echo $this->renderElement('question_explanation',array(

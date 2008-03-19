@@ -62,7 +62,7 @@
 		.gclms-page-item .gclms-left img,
 		.gclms-page-item .gclms-right img,
 		.gclms-page-item img.gclms-add,
-		.gclms-page-item img.gclms-addTinyMCEBox {
+		.gclms-page-item img.gclms-gclms-add-tinymce-box {
 			cursor: pointer;
 		}
 		

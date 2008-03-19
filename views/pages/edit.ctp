@@ -36,10 +36,10 @@ $javascript->link(array(
 	));
 	?>
     <div class="gclms-top-buttons">
-        <button class="insertQuestion add">
+        <button class="gclms-insert-question gclms-add">
             <? __('Insert Question') ?>
         </button>
-        <button class="insertTextarea add">
+        <button class="gclms-insert-textarea gclms-add">
             <? __('Insert Content') ?>
         </button>
     </div>

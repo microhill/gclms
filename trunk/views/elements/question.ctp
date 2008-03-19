@@ -70,7 +70,7 @@ if(empty($question_id))
 					<? __('Answers'); ?>
 				</th>
 				<td>
-					<div class="answers<?= empty($question['Answer']) ? ' gclms-hidden' : '' ?>">
+					<div class="gclms-answers<?= empty($question['Answer']) ? ' gclms-hidden' : '' ?>">
 						<?
 						if(isset($question['Answer'])) {
 							foreach($question['Answer'] as $answer) {
@@ -83,7 +83,7 @@ if(empty($question_id))
 						}
 						?>
 					</div>
-					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="add" />
+					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="gclms-add" />
 				</td>
 			</tr>
 			<tr class="gclms-true-false<?= @$question['type'] != '1' ? ' gclms-hidden' : '' ?>">
@@ -122,7 +122,7 @@ if(empty($question_id))
 						}
 						?>
 					</div>
-					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="add" />
+					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="gclms-add" />
 				</td>
 			</tr>
 			<tr class="gclms-fill-in-the-blank<?= @$question['type'] != '2' ? ' gclms-hidden' : '' ?>">
@@ -164,7 +164,7 @@ if(empty($question_id))
 							</th>
 						</tr>
 						<tr>
-							<td class="column">
+							<td class="gclms-column">
 								<?
 								echo $form->input('Question.' . $question_id . '.left_column_header',array(
 									'label' =>  false,
@@ -175,7 +175,7 @@ if(empty($question_id))
 								));
 								?>
 							</td>
-							<td class="column">
+							<td class="gclms-column">
 								<?
 								echo $form->input('Question.' . $question_id . '.right_column_header',array(
 									'label' =>  false,
@@ -208,7 +208,7 @@ if(empty($question_id))
 						}
 						?>
 					</div>
-					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="add" />
+					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="gclms-add" />
 				</td>
 			</tr>
 

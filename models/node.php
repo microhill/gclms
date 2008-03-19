@@ -139,7 +139,7 @@ class Node extends AppModel {
 				die('Error');
 
 			$this->contain();
-			$leftSiblingNode = $this->find(array('Node.parent_node_id' => $formerNodeData['Node']['parent_node_id'],'Node.order' => $formerNodeData['Node']['order'] - 1));
+			$leftSiblingNode = $this->find(array('Node.course_id' => $formerNodeData['Node']['course_id'],'Node.parent_node_id' => $formerNodeData['Node']['parent_node_id'],'Node.order' => $formerNodeData['Node']['order'] - 1));
 			$lastNodeOrderInNewParent = $this->getLastOrderInParentNode($formerNodeData['Node']['course_id'],$leftSiblingNode['Node']['id']);
 			$order = $this->field('order',array('Node.course_id' => $formerNodeData['Node']['course_id'], 'Node.parent_node_id' => $leftSiblingNode['Node']['id']),'Node.order DESC');
 			

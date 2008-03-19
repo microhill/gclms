@@ -233,7 +233,7 @@ if(empty($question_id))
 		</tbody>
 	</table>
 	<p>
-		<button class="gclms-insert-question add"><? __('Insert Question') ?></button>
-		<button class="gclms-insert-textarea add"><? __('Insert Content') ?></button>
+		<button class="gclms-insert-question gclms-add"><? __('Insert Question') ?></button>
+		<button class="gclms-insert-textarea gclms-add"><? __('Insert Content') ?></button>
 	</p>
 </div>

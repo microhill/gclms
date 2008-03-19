@@ -80,7 +80,7 @@ GCLMS.PageController = {
 
 				draggableElement = div.select('div.gclms-draggable[answer:id="' + id + '"]').first();
 
-				node.className = 'droppable ' + $A(draggableElement.classNames())[1];
+				node.className = 'gclms-droppable ' + $A(draggableElement.classNames())[1];
 				node.innerHTML = draggableElement.innerHTML;
 				node.setAttribute('attemptedAnswer:id',draggableElement.getAttribute('answer:id'));
 			});
@@ -130,7 +130,7 @@ GCLMS.PageController = {
 				completelyCorrect = true;
 				div = question;
 
-				div.select('.droppable').each(function(node){
+				div.select('.gclms-droppable').each(function(node){
 					if(node.getAttribute('attemptedAnswer:id') != node.getAttribute('correctAnswer:id')) {
 						completelyCorrect = false;
 					}
@@ -192,12 +192,12 @@ GCLMS.PageController = {
 					if(node.getAttribute('attemptedAnswer:id') == this.getAttribute('answer:id')) {
 						node.removeAttribute('attemptedAnswer:id');
 						node.innerHTML = '';
-						node.className = 'droppable defaultDroppableColor';
+						node.className = 'gclms-droppable gclms-default-droppable-color';
 					}
 				}.bind(draggableElement));
 
 				// Clone answer into droppable container
-				droppableElement.className = 'droppable ' + $A(draggableElement.classNames())[1];
+				droppableElement.className = 'gclms-droppable ' + $A(draggableElement.classNames())[1];
 				droppableElement.innerHTML = draggableElement.innerHTML;
 				droppableElement.setAttribute('attemptedAnswer:id',draggableElement.getAttribute('answer:id'));
 				// */

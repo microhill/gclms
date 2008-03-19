@@ -21,11 +21,11 @@
 				?>
 					<tr>
 						<td class="gclms-draggable-container">
-							<div class="draggable gclms-draggable-color<?= $colors[$count % 9] ?>" answer:id="<?= $answer['id'] ?>">
+							<div class="gclms-draggable gclms-draggable-color<?= $colors[$count % 9] ?>" answer:id="<?= $answer['id'] ?>">
 								<?= $count ?>
 							</div>
 						</td>
-						<td class="text">
+						<td class="gclms-text">
 							<div><?= $answer['text1'] ?></div>
 						</td>
 					</tr>
@@ -36,7 +36,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="rightColumn">
+		<div class="gclms-right-column">
 			<? if(!empty($question['right_column_header'])): ?>
 			<h3><?= $question['right_column_header'] ?></h3>
 			<? endif; ?>
@@ -47,10 +47,10 @@
 				foreach($question['Answer'] as $answer):
 				?>
 					<tr>
-						<td class="droppableContainer">
-							<div class="droppable defaultDroppableColor" correctAnswer:id="<?= $answer['id'] ?>">&nbsp;</div>
+						<td class="gclms-droppable-container">
+							<div class="gclms-droppable gclms-default-droppable-color" correctAnswer:id="<?= $answer['id'] ?>">&nbsp;</div>
 						</td>
-						<td class="description">
+						<td class="gclms-description">
 							<div><?= $answer['text2'] ?></div>
 						</td>
 					</tr>
@@ -60,6 +60,6 @@
 		</div>
 	</div>
 	<p>
-		<button class="checkAnswerButton"><? __('Check answer') ?></button>
+		<button class="gclms-check-answer-button"><? __('Check answer') ?></button>
 	</p>
 </div>

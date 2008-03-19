@@ -218,7 +218,7 @@ if(empty($question_id))
 				<th>
 					<? __('Explanation'); ?>
 				</th>
-				<td class="<?= !empty($question['explanation']) ? 'filled' : '' ?>">
+				<td class="<?= !empty($question['explanation']) ? 'gclms-filled' : '' ?>">
 					<? if(empty($question['explanation'])): ?>
 						<img src="/img/icons/oxygen/22x22/apps/kate.png" class="gclms-add-tinymce-box" />
 					<?

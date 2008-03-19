@@ -10,7 +10,7 @@ GCLMS.PagesController = {
 		this.replace(GCLMS.Views.get('questionExplanation').interpolate({id: questionId}));
 		
 		GCLMS.PagesController.enableTinyMCE.bind(div.down('textarea.gclms-question-explanation'))();
-		div.down('tr.gclms-question-explanation td').addClassName('filled');
+		div.down('tr.gclms-question-explanation td').addClassName('gclms-filled');
 	},
 	
 	addExplanationToMultipleChoiceAnswer: function() {

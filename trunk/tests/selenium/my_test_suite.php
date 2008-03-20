@@ -19,7 +19,7 @@ class MyTestSuite extends SeleniumTestSuite {
 		$this->addTestCase('Topics and pages (create, rename, delete, edit)', 'cases/TopicsAndPagesTest');
 		$this->addTestCase('Register Your Group', 'cases/RegisterGroupTest');
 		$this->addTestCase('Edit Articles', 'cases/EditArticlesTest');
-		$this->addTestCase('Edit Dictionary', 'cases/EditDictionaryTest');
+		$this->addTestCase('Edit Glossary', 'cases/EditGlossaryTest');
 		$this->addTestCase('Edit Books', 'cases/EditBooksTest');
 		$this->addTestCase('Chapters', 'cases/ChaptersTest');
 		$this->addTestCase('Classroom', 'cases/ClassroomTest');

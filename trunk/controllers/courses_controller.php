@@ -1,7 +1,7 @@
 <?
 class CoursesController extends AppController {
-    var $uses = array('Course','Group','FacilitatedClass','Node','ClassEnrollee','Announcement','DictionaryTerm','Article','DictionaryTerm','Book','Node');
-	var $helpers = array('Paginator','MyPaginator','Time','MyTime','Scripturizer','Dictionary','Notebook','License','NodeSorter');
+    var $uses = array('Course','Group','FacilitatedClass','Node','ClassEnrollee','Announcement','GlossaryTerm','Article','GlossaryTerm','Book','Node');
+	var $helpers = array('Paginator','MyPaginator','Time','MyTime','Scripturizer','Glossary','Notebook','License','NodeSorter');
 	var $itemName = 'Course';
 
 	function beforeRender() {
@@ -48,9 +48,9 @@ class CoursesController extends AppController {
 		$books = $this->Book->findAllByCourseId($this->viewVars['course']['id']);
 		$this->set(compact('books'));
 
-		//Dictionary
-		$this->DictionaryTerm->contain();
-		$terms = $this->DictionaryTerm->findAllByCourseId($this->viewVars['course']['id']);
+		//Glossary
+		$this->GlossaryTerm->contain();
+		$terms = $this->GlossaryTerm->findAllByCourseId($this->viewVars['course']['id']);
 		$this->set(compact('terms'));
 
 		$this->render('links','tinymce_popup');
@@ -79,9 +79,9 @@ class CoursesController extends AppController {
 
 		$this->set(compact('page'));
 
-		$dictionary_terms = $this->DictionaryTerm->findAll(array('course_id'=>$this->viewVars['course']['id']),array('term'));
-		$dictionary_terms = Set::extract($dictionary_terms, '{n}.DictionaryTerm.term');
-		$this->set('dictionary_terms',$dictionary_terms);
+		$glossary_terms = $this->GlossaryTerm->findAll(array('course_id'=>$this->viewVars['course']['id']),array('term'));
+		$glossary_terms = Set::extract($glossary_terms, '{n}.GlossaryTerm.term');
+		$this->set('glossary_terms',$glossary_terms);
 
 
 		$this->set('lesson_order_in_course',$this->passedArgs['lesson']);

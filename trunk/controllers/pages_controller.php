@@ -1,7 +1,7 @@
 <?
 class PagesController extends AppController {
     var $uses = array('Node','Question','Textarea');
-	var $helpers = array('Scripturizer','Dictionary','Notebook','License','Form','MyForm','Javascript');
+	var $helpers = array('Scripturizer','Glossary','Notebook','License','Form','MyForm','Javascript');
     var $itemName = 'Node';
     var $components = array('Notifications');
 
@@ -23,11 +23,11 @@ class PagesController extends AppController {
 			
 		$this->set('node',$node);
 		
-		//$this->DictionaryTerm = ClassRegistry::getInstance('Model', 'DictionaryTerm');
-		$this->DictionaryTerm =& ClassRegistry::init('DictionaryTerm'); 
-		$dictionary_terms = $this->DictionaryTerm->findAll(array('course_id'=>$this->viewVars['course']['id']),array('term'));
-		$dictionary_terms = Set::extract($dictionary_terms, '{n}.DictionaryTerm.term');
-		$this->set('dictionary_terms',$dictionary_terms);
+		//$this->GlossaryTerm = ClassRegistry::getInstance('Model', 'GlossaryTerm');
+		$this->GlossaryTerm =& ClassRegistry::init('GlossaryTerm'); 
+		$glossary_terms = $this->GlossaryTerm->findAll(array('course_id'=>$this->viewVars['course']['id']),array('term'));
+		$glossary_terms = Set::extract($glossary_terms, '{n}.GlossaryTerm.term');
+		$this->set('glossary_terms',$glossary_terms);
 		
 		//$this->Breadcrumbs->addCrumb($node['Node']['title'], $this->viewVars['groupAndCoursePath'] . '/pages/view/' . $this->data['Node']['id']);
 		$this->set('title',$node['Node']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);

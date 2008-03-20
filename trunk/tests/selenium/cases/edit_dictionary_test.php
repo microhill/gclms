@@ -1,6 +1,6 @@
 <?
 /**
- * Contains a edit course dictionary test case for selenium.
+ * Contains a edit course glossary test case for selenium.
  *
  * @package    GCLMS
  * @subpackage SeleniumTests
@@ -10,15 +10,15 @@
 uses('model' . DS . 'connection_manager');
 
 /**
- * Edit Course Dictionary selenium test case.
+ * Edit Course Glossary selenium test case.
  *
  * @author     Brandon Tanner <theletterpi@gmail.com>
  * @version    1.1 Jan 1, 2008
  * @package    GCLMS
  * @subpackage SeleniumTests
  */
-class EditDictionaryTest extends SeleniumTestCase {
-    var $title = 'Edit Dictionary';
+class EditGlossaryTest extends SeleniumTestCase {
+    var $title = 'Edit Glossary';
     var $useDbConfig = 'default';
     
     function execute() {
@@ -30,16 +30,16 @@ class EditDictionaryTest extends SeleniumTestCase {
 		
 		$this->clickAndWait("link=Boyce College");
 		$this->clickAndWait("link=Systematic Theology");
-		$this->clickAndWait("link=Edit Dictionary");
+		$this->clickAndWait("link=Edit Glossary");
 		
-		/* Add a dictionary term */
-		$this->addDictionaryTerm('Justification','The declaration that someone is rightous on account of the imputed righteousness of Jesus Christ.');
-		$this->addDictionaryTerm('Sanctification','The process of becoming more like Christ.');
-		$this->addDictionaryTerm('PHP','PHP Hypertext Preprocessor');
+		/* Add a glossary term */
+		$this->addGlossaryTerm('Justification','The declaration that someone is rightous on account of the imputed righteousness of Jesus Christ.');
+		$this->addGlossaryTerm('Sanctification','The process of becoming more like Christ.');
+		$this->addGlossaryTerm('PHP','PHP Hypertext Preprocessor');
     	
-    	/* Edit a dictionary term */
+    	/* Edit a glossary term */
 		$this->clickAndWait('link=PHP');
-    	$this->type('DictionaryTermTerm', 'Ruby');
+    	$this->type('GlossaryTermTerm', 'Ruby');
 		$this->assertTextPresent('PHP Hypertext Preprocessor');
 		$this->verifyEval("selenium.browserbot.getCurrentWindow().tinyMCE.setContent('A newer language.')",'null');
     	$this->clickAndWait("//input[@value='Save']");
@@ -49,7 +49,7 @@ class EditDictionaryTest extends SeleniumTestCase {
 		$this->clickAndWait('link=Ruby');
 		$this->assertTextPresent('A newer language.');
     	
-    	/* Delete a dictionary term */
+    	/* Delete a glossary term */
     	$this->click("//input[@value='Delete']");
 		$this->clickAndWait('gclmsPopupDialogOkButton');
     	$this->assertBadTextNotPresent();
@@ -59,9 +59,9 @@ class EditDictionaryTest extends SeleniumTestCase {
 
     }
 	
-	function addDictionaryTerm($term,$definition) {
+	function addGlossaryTerm($term,$definition) {
 		$this->clickAndWait('gclmsAdd');
-		$this->type('DictionaryTermTerm', $term);
+		$this->type('GlossaryTermTerm', $term);
 		$this->verifyEval("selenium.browserbot.getCurrentWindow().tinyMCE.setContent('" . $definition . "')",'null');
     	$this->clickAndWait("//input[@value='Save']");
     	$this->assertBadTextNotPresent();

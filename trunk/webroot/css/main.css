@@ -522,8 +522,8 @@ a.gclms-group-web-address {
 		background-image: url(/img/permanent/icons/2007-09-13/certificates-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-dictionary a {
-		background-image: url(/img/dictionary-32.png);
+	.gclms-left-column-menu .gclms-glossary a {
+		background-image: url(/img/glossary-32.png);
 	}
 	
 	.gclms-left-column-menu .gclms-export a {
@@ -566,8 +566,8 @@ a.gclms-group-web-address {
 		background-image: url(/img/navigation-22.png);
 	}
 
-	.x-panel img.gclms-dictionary {
-		background-image: url(/img/dictionary-22.png);
+	.x-panel img.gclms-glossary {
+		background-image: url(/img/glossary-22.png);
 	}
 
 	.x-panel img.gclms-books {

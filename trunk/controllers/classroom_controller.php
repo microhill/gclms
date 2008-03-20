@@ -1,7 +1,7 @@
 <?
 class ClassroomController extends AppController {
-    var $uses = array('Course','Group','Lesson','Unit','FacilitatedClass','Page','ClassEnrollee','Announcement','DictionaryTerm','Article','DictionaryTerm','Book');
-	var $helpers = array('Scripturizer','Dictionary','Notebook','License');
+    var $uses = array('Course','Group','Lesson','Unit','FacilitatedClass','Page','ClassEnrollee','Announcement','GlossaryTerm','Article','GlossaryTerm','Book');
+	var $helpers = array('Scripturizer','Glossary','Notebook','License');
 	var $components = array('MyAuth');
 
 	function beforeRender() {
@@ -44,8 +44,8 @@ class ClassroomController extends AppController {
 		$article_count = $this->Article->findCount(array('course_id'=>$this->viewVars['course']['id']),0);
 		$this->set('article_count',$article_count);
 		
-		$dictionary_term_count = $this->DictionaryTerm->findCount(array('course_id'=>$this->viewVars['course']['id']),0);
-		$this->set('dictionary_term_count',$dictionary_term_count);
+		$glossary_term_count = $this->GlossaryTerm->findCount(array('course_id'=>$this->viewVars['course']['id']),0);
+		$this->set('glossary_term_count',$glossary_term_count);
 
 		//$this->set('lesson_order_in_course',$lessonNumber);
 		$this->render('lesson','classroom');

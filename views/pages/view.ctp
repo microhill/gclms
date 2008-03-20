@@ -1,6 +1,7 @@
 <?
-$html->css('page_core', null, null, false);
 $html->css('page', null, null, false);
+$html->css('/' . $group['web_path'] . '/files/css', null, null, false);
+//$html->css($groupAndCoursePath . '/files/css', null, null, false);
 
 $javascript->link(array(
 	'vendors/prototype',
@@ -20,7 +21,7 @@ echo $this->renderElement('no_column_background');
 		if(!empty($node['Node']['audio_file'])) {
 			$node['Node']['audio_file'] = $groupAndCoursePath  . 'files/' . $node['Node']['audio_file'];
 		?>
-			<div class="mp3player" mp3player:autoplay="true" mp3player:file="<?= $node['Node']['audio_file'] ?>"></div>
+			<div class="gclms-mp3-player" mp3player:autoplay="true" mp3player:file="<?= $node['Node']['audio_file'] ?>"></div>
 		<?
 		}
 		?>

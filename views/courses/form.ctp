@@ -25,7 +25,7 @@ echo $form->radio('redistribution_allowed',
 	)
 );
 ?>
-<div id="extendedLicensingOptions" class="<?= empty($this->data['Course']['redistribution_allowed']) ? 'hidden' : '' ?>">
+<div id="extendedLicensingOptions" class="<?= empty($this->data['Course']['redistribution_allowed']) ? 'gclms-hidden' : '' ?>">
 	<?
 	echo $form->radio('derivative_works_allowed',
 		array(0 => __('No', true),1 => __('Yes', true),2 => __('Yes, as long as they share alike', true)),

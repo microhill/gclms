@@ -37,7 +37,7 @@ if(@$showDefaultAddButton) {
 
 <table class="Records" width="100%">
 	<tr class="gclms-menubar">
-		<td class="Left">
+		<td class="gclms-left">
 			<? if(@$showDefaultAddButton): ?>
 				<button class="gclms-add" link:href="<?= $defaultAddButtonUri ?>" id="gclmsAdd">
 					<? __(isset($defaultAddButtonTitle) ? $defaultAddButtonTitle : 'gclms-add') ?>

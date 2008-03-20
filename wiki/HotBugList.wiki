@@ -13,3 +13,4 @@ http://www.pixelmator.com/support/images/Bug.png
 
 
  *linking to a node from a course page gives an error at the top of the page linked too
+ *Navigating with arrows in lesson navigation - once you hit a level 2 node you cant navigate back to a level one, or on to another level 1, the arrows don't even appear

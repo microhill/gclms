@@ -1,4 +1,4 @@
-<div class="fillInTheBlank"
+<div class="gclms-fill-in-the-blank"
 	question:triesLeft="3"
 	question:defaultTryAgainMessage="<? __('Incorrect. Try again.') ?>"
 	question:defaultCorrectMessage="<? __('Correct!') ?>"
@@ -6,9 +6,9 @@
 	>
 	<h2><?= $question['title'] ?></h2>
 	<p>
-		<input type="text" correctAnswer:text="<?= $question['fill_in_the_blank_answer'] ?>" />
+		<input type="text" correctAnswer:text="<?= $question['text_answer'] ?>" />
 	</p>
 	<p>
-		<button class="checkAnswerButton"><? __('Check answer') ?></button>
+		<button class="gclms-check=answer-button"><? __('Check answer') ?></button>
 	</p>
 </div>

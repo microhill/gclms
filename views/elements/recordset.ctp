@@ -40,7 +40,7 @@ if(@$showDefaultAddButton) {
 		<td class="Left">
 			<? if(@$showDefaultAddButton): ?>
 				<button class="gclms-add" link:href="<?= $defaultAddButtonUri ?>" id="gclmsAdd">
-					<? __(isset($defaultAddButtonTitle) ? $defaultAddButtonTitle : 'Add') ?>
+					<? __(isset($defaultAddButtonTitle) ? $defaultAddButtonTitle : 'gclms-add') ?>
 				</button>
 			<? endif;
 			

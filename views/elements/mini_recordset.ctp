@@ -3,7 +3,7 @@
 	//$headers = am(array('<img src="/img/icons/add-14.png" class="Add" />'),$headers);
 	//echo $html->tableHeaders($headers, array('class'=>'Headers'));
 	?>
-	<?= $html->tableHeaders(order($headers), array('class'=>'Headers')) ?>
+	<?= $html->tableHeaders(order($headers), array('class'=>'gclms-headers')) ?>
     <tbody class="gclms-recordset">
 	    <?
 	    foreach ($data as $row) {

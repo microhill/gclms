@@ -25,15 +25,13 @@ echo $this->renderElement('left_column'); ?>
 			)));
 			?>
 		</div>
-		<? foreach($this->data as $glossary_term): ?>
-			<h2>
-				<a name="<?= Inflector::camelize($glossary_term['GlossaryTerm']['term']) ?>" /><?= $glossary_term['GlossaryTerm']['term'] ?>
-				<a class="gclms-edit" href="<?= $groupAndCoursePath ?>/glossary/edit/<?= $glossary_term['GlossaryTerm']['id'] ?>"><? __('Edit') ?></a>
-			</h2>
-			<div class="description">
-				<?= $glossary_term['GlossaryTerm']['description'] ?>
-			</div>
-		<? endforeach; ?>
+		<ul class="glossary">
+			<? foreach($this->data as $term): ?>
+				<li>
+					<a href="/<?= $group['web_path'] ?>/<?= $course['web_path'] ?>/glossary/view/<?= $term['GlossaryTerm']['id'] ?>"><?= $term['GlossaryTerm']['term'] ?></a>
+				</li>
+			<? endforeach; ?>
+		</ul>
 	</div>
 </div>
 

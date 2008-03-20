@@ -10,7 +10,7 @@ class BooksController extends AppController {
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
-		$this->Breadcrumbs->addCrumb('Books','/' . $this->viewVars['group']['web_path'] . '/dictionary/course:' . $this->viewVars['course']['web_path']);
+		$this->Breadcrumbs->addCrumb('Books','/' . $this->viewVars['group']['web_path'] . '/glossary/course:' . $this->viewVars['course']['web_path']);
 		parent::beforeRender();
 	}
 

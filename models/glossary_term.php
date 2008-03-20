@@ -1,5 +1,5 @@
 <?
-class DictionaryTerm extends AppModel {
+class GlossaryTerm extends AppModel {
     var $belongsTo = array('Course');
 	
 	var $validate = array(

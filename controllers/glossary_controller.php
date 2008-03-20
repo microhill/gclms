@@ -25,4 +25,13 @@ class GlossaryController extends AppController {
 		$data = $this->paginate(null,array('GlossaryTerm.course_id' => $this->viewVars['course']['id']));
 		$this->set(compact('data'));
 	}
+	
+	function afterSave() {
+		if(empty($this->data['GlossaryTerm']['id']) && $this->action != 'delete') {
+			$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/glossary/view/' . $this->data['GlossaryTerm']['id'];
+		} else {
+			$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/glossary';
+		}
+		parent::afterSave();
+	}
 }

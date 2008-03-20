@@ -1,4 +1,7 @@
-<? echo $this->renderElement('left_column'); ?>
+<?
+$html->css('/' . $group['web_path'] . '/files/css', null, null, false);
+
+echo $this->renderElement('left_column'); ?>
 <div class="gclms-center-column">
     <div class="gclms-content gclms-article">
         <div class="gclms-option-buttons">

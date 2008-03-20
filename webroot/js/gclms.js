@@ -232,7 +232,7 @@ GCLMS.Triggers = $H({
 	'.gclms-menubar button.gclms-add:click' : function(event) {
 		self.location.href = this.getAttribute('link:href').toLowerCase();
 	},
-	'.gclms-content input.delete:click' : GCLMS.AppController.confirmRemove,
+	'.gclms-content input.gclms-delete:click' : GCLMS.AppController.confirmRemove,
 	'body.gclms-install ul.gclms-menu a:click' : function(event) {
 		event.stop();
 	},
@@ -240,7 +240,7 @@ GCLMS.Triggers = $H({
 		event.findElement('form').submit();
 	},
 	
-	'.Content .stepBack a:click' : function(event){
+	'.gclms-content .gclms-step-back a:click' : function(event){
 		if(!this.up('div').hasClassName('gclms-forceload')) {
 			history.go(-1);
 			event.stop();

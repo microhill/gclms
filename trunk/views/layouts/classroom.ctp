@@ -59,8 +59,8 @@
 			<iframe id="articlesViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif; ?>
 		
-		<? if($dictionary_term_count): ?>
-			<iframe id="dictionaryViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
+		<? if($glossary_term_count): ?>
+			<iframe id="glossaryViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif; ?>
 
 		<? if(!empty($user)): ?>
@@ -122,15 +122,15 @@
 	            listeners: {beforeexpand: GCLMS.Triggers.get('#articlesViewport:expand')}
 			});
 			
-         if($('dictionaryViewportContent'))
+         if($('glossaryViewportContent'))
 	         sidebarItems.push({
-	            title:'Dictionary',
-	            id: 'dictionaryViewport',
-	            contentEl: 'dictionaryViewportContent',
+	            title:'Glossary',
+	            id: 'glossaryViewport',
+	            contentEl: 'glossaryViewportContent',
 	            border:false,
 	            autoScroll: false,
-	            iconCls:'dictionary',
-	            listeners: {beforeexpand: GCLMS.Triggers.get('#dictionaryViewport:expand')}
+	            iconCls:'glossary',
+	            listeners: {beforeexpand: GCLMS.Triggers.get('#glossaryViewport:expand')}
 			});
 
 		var viewport = new Ext.Viewport({

@@ -8,7 +8,7 @@ $menu = array(
 	array('label' => __('Media Files', true), 'class' => 'gclms-files', 'active' => $this->name == 'Files', 'url' => $groupAndCoursePath . '/files'),
 	array('label' => __('Books', true), 'class' => 'gclms-books', 'active' => $this->name == 'Books' || $this->name == 'Chapters', 'url' => $groupAndCoursePath . '/books'),
 	array('label' => __('Articles', true), 'class' => 'gclms-articles', 'active' => $this->name == 'Articles', 'url' => $groupAndCoursePath . '/articles'),
-	array('label' => __('Dictionary', true), 'class' => 'gclms-dictionary', 'active' => $this->name == 'Dictionary', 'url' => $groupAndCoursePath . '/dictionary'),
+	array('label' => __('Glossary', true), 'class' => 'gclms-glossary', 'active' => $this->name == 'Glossary', 'url' => $groupAndCoursePath . '/glossary'),
 	array('label' => __('Configure Course', true), 'class' => 'gclms-configuration', 'active' => $this->name == 'Courses' && $this->action == 'edit', 'url' => $groupAndCoursePath . '/configuration'),
 	array('label' => __('Export Course', true), 'class' => 'gclms-export', 'active' => $this->name == 'Export', 'url' => $groupAndCoursePath . '/export')
 );

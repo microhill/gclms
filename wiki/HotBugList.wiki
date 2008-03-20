@@ -10,3 +10,6 @@ http://www.pixelmator.com/support/images/Bug.png
  * Fill in the blank - Notice (8): Undefined index: fill_in_the_blank_answer [APP\views\elements\question_fill_in_the_blank.ctp, line 9] appears next to blank
  * Fill in the blank - check answer button does not function
  * Essay Question - does not display Not Found: C:\xampp\htdocs\gclms\views\elements\question_essay.ctp
+
+
+ *linking to a node from a course page gives an error at the top of the page linked too

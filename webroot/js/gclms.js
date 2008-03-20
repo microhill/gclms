@@ -208,7 +208,7 @@ GCLMS.Triggers = $H({
 			tr = this.nodeName.toLowerCase() == 'tr' ? this : this.up('tr');
 			self.location.href = tr.select('a').first().getAttribute('href').toLowerCase();
 		},
-		'.Headers th:click,.Pagination .Right a:click,.Pagination .Left a:click' : function(event) {
+		'.gclms-headers th:click,.gclms-pagination .gclms-right a:click,.gclms-pagination .gclms-left a:click' : function(event) {
 			if(this.nodeName == 'TH') {
 				element = this.getElementsByTagName('a').item(0);
 			} else {
@@ -222,7 +222,7 @@ GCLMS.Triggers = $H({
 			response = new Ajax.Updater('table',element.getAttribute('href'), {
 				requestHeaders: ['X-Update', 'table'],
 				onComplete: function() {
-					$('table').observeRules(GCLMS.Triggers.get('.Records'));
+					$('table').observeRules(GCLMS.Triggers.get('.gclms-records'));
 				}
 			});
 			event.stop();
@@ -230,7 +230,7 @@ GCLMS.Triggers = $H({
 	},
 
 	'.gclms-menubar button.gclms-add:click' : function(event) {
-		self.location.href = this.getAttribute('link:href').toLowerCase();
+		self.location.href = this.getAttribute('link:href');
 	},
 	'.gclms-content input.gclms-delete:click' : GCLMS.AppController.confirmRemove,
 	'body.gclms-install ul.gclms-menu a:click' : function(event) {

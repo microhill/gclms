@@ -16,8 +16,7 @@ If something is ~~crossed out~~, please svn update and verify the fix. Please pr
 
  * linking to a node from a course page gives an error at the top of the page linked too
  * Navigating with arrows in lesson navigation - once you hit a level 2 node you cant navigate back to a level one, or on to another level 1, the arrows don't even appear
-
- * Joni 3/20/2008 1:30 PM - nodes and edit/deletes I tried all worked today !!! 
+ 
  * Register as new student just hangs, but then on reentry looks like it worked (tho have not gotten e-mail yet)  
  * Plug in option returns nada, then as you move cursor to other left nav options, slowly populates Plugins with duplicate entries and an error message "Notice 8"
 

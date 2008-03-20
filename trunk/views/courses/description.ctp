@@ -14,21 +14,16 @@ echo $this->renderElement('left_column'); ?>
 		<h1><?= $course['title'] ?></h1>
 		<? if($course['language'] != Configure::read('Config.language')): ?>
 			<p><?= implode(order(array(__('Language:',true), ' ', $languages[$course['language']]))) ?></p>
-		<? endif; ?>
+		<? endif;
+		
+		if(empty($facilitated_class)) {
+			App::import('Vendor','scripturizer'.DS.'scripturizer');
+			$course['description'] = scripturize($course['description'],'NET');
+			echo $course['description'];
+		} else if(!empty($news_items)){
+			echo $this->renderElement('news_items');
+		}
 
-		<p>
-			<?
-			if(empty($facilitated_class)) {
-				App::import('Vendor','scripturizer'.DS.'scripturizer');
-				$course['description'] = scripturize($course['description'],'NET');
-				echo $course['description'];
-			} else if(!empty($news_items)){
-				echo $this->renderElement('news_items');
-			}
-			?>
-		</p>
-
-		<?
 		if(!empty($nodes))
 			echo $this->renderElement('nodes_tree',array(
 				'nodes' => $nodes

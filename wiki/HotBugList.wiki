@@ -3,3 +3,9 @@
 http://www.pixelmator.com/support/images/Bug.png
 
  * Sometimes nodes are duplicated in the node display tree
+ * Responses Do not appear on any question types
+ * Multiple Choice - Check answer button does not function
+ * Matching - Pop up is using external instead of internal pop up system
+ * Ordered list - check answer button does not function
+ * Fill in the blank - Notice (8): Undefined index: fill_in_the_blank_answer [APP\views\elements\question_fill_in_the_blank.ctp, line 9] appears next to blank
+ * Fill in the blank - check answer button does not function

@@ -20,7 +20,7 @@ echo $this->renderElement('left_column'); ?>
 			<? echo $this->renderElement('menubar',array('buttons' => array(
 				array(
 					'id' => 'addBook',
-					'class' => 'add',
+					'class' => 'gclms-add',
 					'label' => '<u>A</u>dd Book',
 					'accesskey' => 'a',
 					'strings' => array(

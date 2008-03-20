@@ -18,7 +18,7 @@ echo $this->renderElement('left_column'); ?>
 			<? echo $this->renderElement('menubar',array('buttons' => array(
 				array(
 					'id' => 'addArticle',
-					'class' => 'add',
+					'class' => 'gclms-add',
 					'label' => '<u>A</u>dd Article',
 					'accesskey' => 'a'
 				)

@@ -1,5 +1,5 @@
 <?
-class DictionaryHelper extends AppHelper {	
+class GlossaryHelper extends AppHelper {	
 	function linkify($text,$urlPrefix,$terms = array()) {
 		foreach($terms as $term) {
 			$pattern = '`\b(' . $term . ')\b`i';

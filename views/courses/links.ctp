@@ -48,13 +48,13 @@ echo $this->renderElement('no_column_background'); ?>
 	<? endif; ?>
 	
 	<? if(!empty($terms)): ?>
-	<h2>Dictionary Terms</h2>
-	<div id="dictionary">
+	<h2>Glossary Terms</h2>
+	<div id="glossary">
 		<ul>
 		<?
-		foreach($terms as $dictionary_term) {
-			echo '<li><a href="/' . $group['web_path'] . '/' . $course['web_path'] . '/dictionary/show#' . Inflector::variable($dictionary_term['DictionaryTerm']['term'])
-					. '">' . $dictionary_term['DictionaryTerm']['term'] . '</a></li>';
+		foreach($terms as $glossary_term) {
+			echo '<li><a href="/' . $group['web_path'] . '/' . $course['web_path'] . '/glossary/show#' . Inflector::variable($glossary_term['GlossaryTerm']['term'])
+					. '">' . $glossary_term['GlossaryTerm']['term'] . '</a></li>';
 		}
 		?>
 		</ul>

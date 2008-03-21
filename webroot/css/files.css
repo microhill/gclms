@@ -19,14 +19,14 @@
 		display: none;
 	}
 	
-.gclms-files {
+div.gclms-files {
 	list-style: none;
 	padding-left: 8px;
 	margin: 0;
 	padding-bottom: 8px;
 }
 
-	.gclms-files li {
+	div.gclms-files li {
 		padding-left: 22px;
 		margin-top: 3px;
 		margin-bottom: 3px;
@@ -35,31 +35,31 @@
 		font-size: 1.05em;
 	}
 	
-	.gclms-files li.image {
+	div.gclms-files li.image {
 		background-image: url(/img/permanent/icons/2007-09-13/image-16.png);
 	}
 	
-	.gclms-files li.audio {
+	div.gclms-files li.audio {
 		background-image: url(/img/permanent/icons/2007-09-13/audio-16.png);
 	}
 	
-	.gclms-files li.video {
+	div.gclms-files li.video {
 		background-image: url(/img/permanent/icons/2007-09-13/video-16.png);
 	}
 	
-	.gclms-files li.document {
+	div.gclms-files li.document {
 		background-image: url(/img/permanent/icons/2007-09-13/doc-16.png);
 	}
 	
-	.gclms-files li.mime {
+	div.gclms-files li.mime {
 		background-image: url(/img/permanent/icons/2007-09-13/mime-16.png);
 	}
 	
-	.gclms-files li.pdf {
+	div.gclms-files li.pdf {
 		background-image: url(/img/permanent/icons/2007-09-13/pdf-16.png);
 	}
 	
-	.gclms-files li.word {
+	div.gclms-files li.word {
 		background-image: url(/img/permanent/icons/2007-09-13/word-16.png);
 	}
 	

@@ -32,7 +32,7 @@ echo $this->renderElement('left_column'); ?>
 				),
 				array(
 					'id' => 'renameChapter',
-					'class' => 'rename',
+					'class' => 'gclms-rename',
 					'label' => '<u>R</u>ename Chapter',
 					'accesskey' => 'r',
 					'strings' => array(
@@ -42,7 +42,7 @@ echo $this->renderElement('left_column'); ?>
 				),
 				array(
 					'id' => 'deleteChapter',
-					'class' => 'delete',
+					'class' => 'gclms-delete',
 					'label' => '<u>D</u>elete Chapter',
 					'accesskey' => 'd',
 					'strings' => array(
@@ -52,7 +52,7 @@ echo $this->renderElement('left_column'); ?>
 				),
 				array(
 					'id' => 'editChapter',
-					'class' => 'edit',
+					'class' => 'gclms-edit',
 					'label' => '<u>E</u>dit Chapter',
 					'accesskey' => 'e',
 					'strings' => array(

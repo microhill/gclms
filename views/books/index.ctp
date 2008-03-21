@@ -29,7 +29,7 @@ echo $this->renderElement('left_column'); ?>
 				),
 				array(
 					'id' => 'renameBook',
-					'class' => 'rename',
+					'class' => 'gclms-rename',
 					'label' => '<u>R</u>ename Book',
 					'accesskey' => 'r',
 					'strings' => array(
@@ -39,7 +39,7 @@ echo $this->renderElement('left_column'); ?>
 				),
 				array(
 					'id' => 'deleteBook',
-					'class' => 'delete',
+					'class' => 'gclms-delete',
 					'label' => '<u>D</u>elete Book',
 					'accesskey' => 'd',
 					'strings' => array(
@@ -49,7 +49,7 @@ echo $this->renderElement('left_column'); ?>
 				),
 				array(
 					'id' => 'editBook',
-					'class' => 'edit',
+					'class' => 'gclms-edit',
 					'label' => '<u>E</u>dit Book',
 					'accesskey' => 'e',
 					'strings' => array(

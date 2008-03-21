@@ -203,7 +203,7 @@ GCLMS.Triggers = $H({
 	'input#UserEmail:keyup,input#UserEmail:change,input#UserEmail:click,input#UserEmail:focus,input#UserEmail' : GCLMS.AppController.updateLoginPanel,
 	'img.gclms-tooltip-button:mouseover': GCLMS.AppController.showTooltip,
 	'img.gclms-tooltip-button:mouseout': GCLMS.AppController.hideTooltip,
-	'.Records' : {
+	'.gclms-recordset' : {
 		'.gclms-recordset tr:click,.gclms-descriptive-recordset tr:click' : function() {
 			tr = this.nodeName.toLowerCase() == 'tr' ? this : this.up('tr');
 			self.location.href = tr.select('a').first().getAttribute('href').toLowerCase();
@@ -230,7 +230,7 @@ GCLMS.Triggers = $H({
 	},
 
 	'.gclms-menubar button.gclms-add:click' : function(event) {
-		self.location.href = this.getAttribute('link:href');
+		//self.location.href = this.getAttribute('link:href');
 	},
 	'.gclms-content input.gclms-delete:click' : GCLMS.AppController.confirmRemove,
 	'body.gclms-install ul.gclms-menu a:click' : function(event) {

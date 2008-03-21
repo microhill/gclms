@@ -138,31 +138,10 @@ class PagesController extends AppController {
 				$question['node_id'] = $this->Node->id;
 
 				$this->Node->Question->save($question);
-
-				if(isset($question['MultipleChoiceAnswer']) && $question['type'] == '0') {
-					foreach($question['MultipleChoiceAnswer'] as $answer) {
-						$answer['question_id'] = $this->Node->Question->id;
-						$this->Node->Question->Answer->save($answer);
-						$this->Node->Question->Answer->id = null;
-					}
-				} else if(isset($question['MatchingAnswer']) && $question['type'] == '2') {
-					foreach($question['MatchingAnswer'] as $answer) {
-						$answer['question_id'] = $this->Node->Question->id;
-						$this->Node->Question->Answer->save($answer);
-						$this->Node->Question->Answer->id = null;
-					}
-				} else if(isset($question['OrderAnswer']) && $question['type'] == '3') {
-					foreach($question['OrderAnswer'] as $answer) {
-						$answer['question_id'] = $this->Node->Question->id;
-						$this->Node->Question->Answer->save($answer);
-						$this->Node->Question->Answer->id = null;
-					}
-				}
-
+				$this->Node->Question->saveAnswers($question);
 				$this->Node->Question->id = null;
 			}
 		}
-		// */
 	}
 
 	function afterSave() {

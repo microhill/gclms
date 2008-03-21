@@ -10,7 +10,7 @@ if(empty($question_id) || empty($answer_id))
 		<tr>
 			<th colspan="2" class="gclms-answer-header">
 				<div class="left">
-					<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" class="gclms-delete-answer delete" gclms:confirm-text="<? __('Are you sure you want to delete this answer?') ?>" />
+					<img src="/img/icons/oxygen/16x16/actions/edit-delete.png" class="gclms-delete-answer gclms-delete" gclms:confirm-text="<? __('Are you sure you want to delete this answer?') ?>" />
 				</div>
 			</th>
 		</tr>

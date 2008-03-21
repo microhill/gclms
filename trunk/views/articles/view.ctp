@@ -5,7 +5,7 @@ echo $this->renderElement('left_column'); ?>
 <div class="gclms-center-column">
     <div class="gclms-content gclms-article">
         <div class="gclms-option-buttons">
-            <a class="gclms-edit href="<?= $groupAndCoursePath ?>/articles/edit/<?= $this->data['Article']['id'] ?>">Edit</a>
+            <a class="gclms-edit" href="<?= $groupAndCoursePath ?>/articles/edit/<?= $this->data['Article']['id'] ?>">Edit</a>
             <a class="gclms-view-with-frames" href="<?= $groupAndCoursePath ?>/classroom/article/<?= $this->data['Article']['id'] ?>">View with frames</a>
         </div>
         <div class="gclms-step-back">

@@ -29,7 +29,7 @@ class ExportController extends AppController {
 	}
 	
 	function odt() {
-		App::import('Vendor', 'open_document'. DS . 'open_document2');
+		App::import('Vendor', 'open_document'. DS . 'open_document');
 
 		$this->openDocument = new OpenDocument;
 		$this->openDocument->mediaDirectory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
@@ -42,7 +42,8 @@ class ExportController extends AppController {
 		
 		// Node structure
 			
-		$this->Node->contain('Textarea');
+		$this->openDocument->appendTableOfContents();
+			
 		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id'],array('Textarea'));
 
 		foreach($nodes as $node) {

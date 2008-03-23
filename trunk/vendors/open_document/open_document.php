@@ -295,6 +295,43 @@ class OpenDocument {
 
 	}
 	
+	public function appendTableOfContents() {
+		$node = &$this->cursor;
+		
+		$tableOfContent = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'table-of-content');
+        $tableOfContent = $node->appendChild($tableOfContent);
+		
+
+		$tableOfContentSource = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'table-of-content-source');
+        $tableOfContentSource = $tableOfContent->appendChild($tableOfContentSource);
+		
+		$indexTitleTemplate = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'index-title-template');
+        $indexTitleTemplate = $tableOfContentSource->appendChild($indexTitleTemplate);
+		
+		$title = $node->ownerDocument->createTextNode(__('Table of Contents',true));
+        $title = $indexTitleTemplate->appendChild($title);
+		
+		for($level = 1; $level < 5; $level++) {
+			$tableOfContentEntryTemplate = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'table-of-content-entry-template');
+			$tableOfContentEntryTemplate->setAttributeNS(OpenDocument::NS_TEXT,'outline-level',$level);
+		    $tableOfContentEntryTemplate = $tableOfContentSource->appendChild($tableOfContentEntryTemplate);			
+
+			$indexEntryChapter = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'index-entry-chapter');
+			$indexEntryChapter = $tableOfContentEntryTemplate->appendChild($indexEntryChapter);
+			
+			$indexEntryText = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'index-entry-text');
+	        $indexEntryText = $tableOfContentEntryTemplate->appendChild($indexEntryText);
+			
+			$indexEntryTabStop = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'index-entry-tab-stop');
+			$indexEntryTabStop->setAttributeNS(OpenDocument::NS_STYLE,'style:type','right');
+			$indexEntryTabStop->setAttributeNS(OpenDocument::NS_STYLE,'style:leader-char','.');
+	        $indexEntryTabStop = $tableOfContentEntryTemplate->appendChild($indexEntryTabStop);
+
+			$indexEntryPageNumber = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'index-entry-page-number');
+	        $indexEntryPageNumber = $tableOfContentEntryTemplate->appendChild($indexEntryPageNumber);
+		}
+	}
+	
 	function appendHeading(&$node,$level,$styles = null) {
 		$element = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'h');
 		$element->setAttributeNS(OpenDocument::NS_TEXT,'outline-level',$level);

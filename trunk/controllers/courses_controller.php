@@ -1,7 +1,7 @@
 <?
 class CoursesController extends AppController {
     var $uses = array('Course','Group','FacilitatedClass','Node','ClassEnrollee','Announcement','GlossaryTerm','Article','GlossaryTerm','Book','Node');
-	var $helpers = array('Paginator','MyPaginator','Time','MyTime','Scripturizer','Glossary','Notebook','License','NodeSorter');
+	var $helpers = array('Time','MyTime','Scripturizer','Glossary','Notebook','License');
 	var $itemName = 'Course';
 
 	function beforeRender() {
@@ -166,7 +166,7 @@ class CoursesController extends AppController {
 
 	function show() {
 		$this->Node->contain();
-		$nodes = $this->Node->findAll(array('Node.course_id' => $this->viewVars['course']['id']),null,'Node.order ASC');
+		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		$this->set(compact('nodes'));
 		
 		if(empty($this->viewVars['facilitated_class']['id'])) {

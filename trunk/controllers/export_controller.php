@@ -13,13 +13,28 @@ class ExportController extends AppController {
 		$this->set('title', __('Export',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('Site.name'));
 	}
 	
+	private function export_node_to_odt($node,$level = 1) {
+		$this->openDocument->importHTML('<h' . $level . '>' . $node['title'] . '</h' . $level . '>');
+		foreach($node['Textarea'] as $textarea) {
+			$this->openDocument->importHTML($textarea['content']);
+		}
+		
+		if(empty($node['ChildNode'])) {
+			return true;	
+		}
+		
+		foreach($node['ChildNode'] as $childNode) {
+			$this->export_node_to_odt($childNode,$level + 1);
+		}
+	}
+	
 	function odt() {
 		App::import('Vendor', 'open_document'. DS . 'open_document2');
 
-		$openDocument = new OpenDocument;
-		$openDocument->mediaDirectory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
-		$openDocument->imagePrefix = $this->viewVars['groupAndCoursePath'] . '/files/';
-		$openDocument->destinationFile = ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . $this->viewVars['course']['id'] . '.odt';
+		$this->openDocument = new OpenDocument;
+		$this->openDocument->mediaDirectory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
+		$this->openDocument->imagePrefix = $this->viewVars['groupAndCoursePath'] . '/files/';
+		$this->openDocument->destinationFile = ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . $this->viewVars['course']['id'] . '.odt';
 		
 		// Title page
 		
@@ -28,13 +43,10 @@ class ExportController extends AppController {
 		// Node structure
 			
 		$this->Node->contain('Textarea');
-		$nodes = $this->Node->findAll(array('Node.course_id' => $this->viewVars['course']['id']),null,'Node.order ASC');
+		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id'],array('Textarea'));
 
 		foreach($nodes as $node) {
-			$openDocument->importHTML('<h1>' . $node['Node']['title'] . '</h1>');
-			foreach($node['Textarea'] as $textarea) {
-				$openDocument->importHTML($textarea['content']);
-			}
+			$this->export_node_to_odt($node);
 		}
 		
 		// Articles
@@ -45,8 +57,8 @@ class ExportController extends AppController {
 		$articles = $this->Article->findAll(array('Article.course_id' => $this->viewVars['course']['id']),null,'Article.title ASC');
 		
 		foreach($articles as $article) {
-			$openDocument->importHTML('<h1>' . $article['Article']['title'] . '</h1>');
-			$openDocument->importHTML($article['Article']['content']);
+			$this->openDocument->importHTML('<h1>' . $article['Article']['title'] . '</h1>');
+			$this->openDocument->importHTML($article['Article']['content']);
 		}
 	
 		// Glossary
@@ -56,27 +68,27 @@ class ExportController extends AppController {
 		
 		$glossary_terms = $this->GlossaryTerm->findAll(array('GlossaryTerm.course_id' => $this->viewVars['course']['id']),null,'GlossaryTerm.term ASC');
 		
-		$openDocument->importHTML('<h1>' . __('Glossary',true) . '</h1>');
+		$this->openDocument->importHTML('<h1>' . __('Glossary',true) . '</h1>');
 		foreach($glossary_terms as $glossary_term) {
-			$openDocument->importHTML('<h2>' . $glossary_term['GlossaryTerm']['term'] . '</h2>');
-			$openDocument->importHTML($glossary_term['GlossaryTerm']['description']);
+			$this->openDocument->importHTML('<h2>' . $glossary_term['GlossaryTerm']['term'] . '</h2>');
+			$this->openDocument->importHTML($glossary_term['GlossaryTerm']['description']);
 		}
 		
 		// Books
 		
 		// ...
 
-		$openDocument->save($openDocument->destinationFile);
+		$this->openDocument->save($this->openDocument->destinationFile);
 		
-		if(!file_exists($openDocument->destinationFile))
+		if(!file_exists($this->openDocument->destinationFile))
 			die('There was an error in the export.');
 			
 		header('Content-type: application/vnd.oasis.opendocument.text');	
 		header('Content-Disposition: attachment; filename="' . $this->viewVars['course']['title'] . '.odt"');
-		header("Content-Length: " .  filesize($openDocument->destinationFile));
+		header("Content-Length: " .  filesize($this->openDocument->destinationFile));
 		header("Content-Transfer-Encoding: binary\n");
 		
-		readfile($openDocument->destinationFile);
+		readfile($this->openDocument->destinationFile);
 		exit; // Needed to keep .zip from being corrupted
 	}
 }

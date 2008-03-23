@@ -114,7 +114,7 @@ echo $this->renderElement('left_column');
 
 					<?
 					if(!empty($this->data))
-						display_nodes($nodeSorter->sort($this->data),1,$groupAndCoursePath);
+						display_nodes($this->data,1,$groupAndCoursePath);
 					else
 						echo '<ul id="' . String::uuid() . '"></ul>';
 					

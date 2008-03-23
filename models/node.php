@@ -192,134 +192,58 @@ class Node extends AppModel {
 			$this->id = $node['Node']['id'];
 			$this->saveField('order',++$order);
 		}
-	}	
-	
-	// getLastOrderInCourse
-	
-	/*
-    function findAllByLessonAndTopic($lessonId,$topicId) {
-    	$pages = $this->findAll(array('Page.lesson_id' => $lessonId,'Page.topic_id' => $topicId,'Page.topic_head' => 0),null,'Page.order ASC');
-    	return $pages;
-    }
-
-    function findAllByLessonId($lessonId) {
-	    $this->contain();
-		return $this->findAll(array('Page.lesson_id' => $lessonId), array('id','title','Page.topic_head','topic_id','order'),'Page.order ASC');
-    }
-
-    function findFirstInLesson($lessonId) {
-		$this->contain('id');
-    	$page = $this->find(array('Page.lesson_id' => $lessonId,'Page.topic_head' => 1),null,'Page.order ASC');
-    	if(!empty($page))
-    		return $page;
-
-    	$this->contain('id');
-    	$page = $this->find(array('Page.lesson_id' => $lessonId,'Page.topic_head' => 0,'Page.topic_id' => 0),null,'Page.order ASC');
-    	if(!empty($page))
-    		return $page;
-
-    	return null;
-    }
-
-	// Looks for the previous page in a lesson, and returns the id
-	function findPreviousPageId($page = null) {
-		if(empty($page)) {
-			$this->contain(array('id','order','topic_id','lesson_id','topic_head'));
-			$page = $this->findById($this->id);
-		}
-
-		$page = $page['Page'];
-		list($lessonId,$topicId,$order,$topicHead) = array($page['lesson_id'],$page['topic_id'],$page['order'],$page['topic_head']);
-
-		if($order > 1 && !$topicHead) {
-			$this->contain();
-			$pageId = $this->field('id',array('lesson_id' => $lessonId,'Page.topic_head' => $topicHead, 'topic_id' => $topicId,'Page.order' => $order - 1));
-			if(!empty($pageId))
-				return $pageId;
-		}
-
-		if(!empty($topicId)) {
-			return $topicId;
-		} else if($topicHead) {
-			$this->contain();
-			// Get previous topic
-
-			$topicId = $this->field('id',array('lesson_id' => $lessonId,'Page.topic_head' => 1,'Page.order' => $order - 1));
-		} else {
-			$this->contain();
-			// Get last topic
-			$topicId = $this->field('id',array('lesson_id' => $lessonId,'Page.topic_head' => 1),'Page.order DESC');
-		}
-		if(empty($topicId))
-			return null;
-
-		$this->contain();
-		$tmpPageId = $this->field('id',array('lesson_id' => $lessonId,'topic_id' => $topicId),'Page.order DESC');
-
-		if(empty($tmpPageId))
-			return $topicId;
-
-		return $tmpPageId;
 	}
-
-	// Looks for the next page in a lesson and returns the id
-	function findNextPageId($page = null) {
-		if(empty($page)) {
-			$this->contain(array('id','order','topic_id','lesson_id','topic_head'));
-			$page = $this->findById($this->id);
+	
+	function findAllInCourse($courseId,$containers = array()) {
+		$this->contain($containers);
+		$nodes = $this->findAll(array('Node.course_id' => $courseId),null,'Node.order ASC');
+		
+		$indexedNodes = array_combine(
+			Set::extract($nodes, '{n}.Node.id'),
+			Set::extract($nodes, '{n}.Node')
+		);
+		
+		if(@$containers[0] == 'Textarea'){
+			$indexedTextareas = array_combine(
+				Set::extract($nodes, '{n}.Node.id'),
+				Set::extract($nodes, '{n}.Textarea')
+			);
+			foreach($indexedNodes as &$indexedNode) {
+				$indexedNode['Textarea'] = $indexedTextareas[$indexedNode['id']];
+			}
 		}
-
-		$page = $page['Page'];
-		$lessonId = $page['lesson_id'];
-
-		// If page isn't topic head
-		if(empty($page['topic_head'])) {
-			// Find page with next order
-			$pageId = $this->field('id',array('Page.lesson_id' => $lessonId,'topic_id' => $page['topic_id'],'Page.order' => $page['order'] + 1));
-			if(!empty($pageId))
-				return $pageId;
-
-			if(!empty($page['topic_id']))
-				$topicOrder = $this->field('order',array('id' => $page['topic_id']));
-			else
-				return null; // Is last uncategorized page
-		} else { // If page is topic head
-			// Find first page in topic
-			$pageId = $this->field('id',array('Page.lesson_id' => $lessonId,'topic_id' => $page['id']),'Page.order ASC');
-			if(!empty($pageId))
-				return $pageId;
-
-			$topicOrder = $page['order'];
+		
+		if(@$containers[1]){
+			$indexedQuestions = array_combine(
+				Set::extract($nodes, '{n}.Node.id'),
+				Set::extract($nodes, '{n}.Question')
+			);
+			foreach($indexedNodes as &$indexedNode) {
+				$indexedNode['Question'] = $indexedQuestions[$indexedNode['id']];
+			}
 		}
-
-		// Find topic with next topic order
-		$pageId = $this->field('id',array('Page.lesson_id' => $page['lesson_id'],'Page.topic_head' => 1,'Page.order' => $topicOrder + 1));
-		if(!empty($pageId))
-			return $pageId;
-
-		// Find first uncategorized page
-		$pageId = $this->field('id',array('Page.lesson_id' => $page['lesson_id'],'Page.topic_id' => 0,'Page.topic_head' => 0),'Page.order ASC');
-		if(!empty($pageId))
-			return $pageId;
-
-		return null;
+		
+		$parentChildRelationships = array_combine(
+			Set::extract($nodes, '{n}.Node.id'),
+			Set::extract($nodes, '{n}.Node.parent_node_id')
+		);
+		
+		$this->indexedNodes = $indexedNodes;
+		$this->parentChildRelationships = array_invert($parentChildRelationships);
+		
+		return $this->__sort();
 	}
-
-    function getLastPageOrderInTopic($topicId, $lessonId = null) {
-		return $this->field('order',array(
-			'Page.topic_id' => $topicId,
-			'Page.topic_head' => 0,
-			'Page.lesson_id' => $lessonId
-		),'Page.order DESC');
-    }
-
-    function getLastPageInTopic($topicId, $lessonId = null) {
-		$this->contain();
-		return $this->find(array(
-			'Page.topic_id' => $topicId,
-			'Page.topic_head' => 0,
-			'Page.lesson_id' => $lessonId
-		),null,'Page.order DESC');
-    }
-	*/
+	
+	function __sort($parentNodeId = 0) {
+		$resultArray = array();
+		
+		foreach($this->parentChildRelationships[$parentNodeId] as $childId) {
+			$node = $this->indexedNodes[$childId];
+			if(!empty($this->parentChildRelationships[$childId]))
+				$node['ChildNode'] = $this->__sort($childId);
+			$resultArray[] = $node;			
+		}
+		
+		return $resultArray;
+	}
 }

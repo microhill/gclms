@@ -1,7 +1,6 @@
 <?
 class ContentController extends AppController {
     var $uses = array('Node','Group','FacilitatedClass','User','Course');
-	var $helpers = array('Paginator','MyPaginator','NodeSorter');
 	var $itemName = 'Node';
 	
 	function beforeRender() {
@@ -60,7 +59,7 @@ class ContentController extends AppController {
     
     function index() {		
 		$this->Node->contain();
-		$this->data = $this->Node->findAll(array('Node.course_id' => $this->viewVars['course']['id']),null,'Node.order ASC');
+		$this->data =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		
 		$this->set('title',__('Course Content',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
     }

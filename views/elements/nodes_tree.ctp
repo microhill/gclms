@@ -35,6 +35,6 @@
 		echo '</ul>';
 	}
 	
-	display_nodes($nodeSorter->sort($nodes),1,$groupAndCoursePath);
+	display_nodes($nodes,1,$groupAndCoursePath);
 	?>
 </div>

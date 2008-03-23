@@ -9,10 +9,12 @@ class ExportController extends AppController {
     	parent::beforeRender();
     }
 	
-	function index() {}
+	function index() {
+		$this->set('title', __('Export',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('Site.name'));
+	}
 	
 	function odt() {
-		App::import('Vendor', 'open_document'. DS . 'open_document');
+		App::import('Vendor', 'open_document'. DS . 'open_document2');
 
 		$openDocument = new OpenDocument;
 		$openDocument->mediaDirectory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
@@ -34,8 +36,6 @@ class ExportController extends AppController {
 				$openDocument->importHTML($textarea['content']);
 			}
 		}
-
-		/*
 		
 		// Articles
 		
@@ -64,8 +64,8 @@ class ExportController extends AppController {
 		
 		// Books
 		
-		*/
-		
+		// ...
+
 		$openDocument->save($openDocument->destinationFile);
 		
 		if(!file_exists($openDocument->destinationFile))
@@ -77,5 +77,6 @@ class ExportController extends AppController {
 		header("Content-Transfer-Encoding: binary\n");
 		
 		readfile($openDocument->destinationFile);
+		exit; // Needed to keep .zip from being corrupted
 	}
 }

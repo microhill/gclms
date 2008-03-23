@@ -416,7 +416,7 @@ class OpenDocument {
 		$src = str_ireplace($this->imagePrefix,'',$src);
 		//write image to zip file
         if (!$this->zipAddFile('Pictures/' . $src, $this->mediaDirectory . DS . $src)) {
-            die('Error');
+            die('Error1');
             throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_IMAGE_ERR);
         }
 		
@@ -594,19 +594,24 @@ class OpenDocument {
 	}
 	
     public function save($filename = '') {
+		if(file_exists($filename)) {
+			unlink($filename);
+		}
+
 		if (strlen($filename)) {
             $this->path = $filename;
         }
+
         //write mimetype
         if (!$this->zipWrite($this->path, self::FILE_MIMETYPE, $this->mimetype)) {
-            die('Error');
+            die('Error mimetype');
 			throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_MIMETYPE_ERR);
         }
-
-        //write content
+		
+		//write content
         $xml = str_replace("'", '&apos;', $this->contentDOM->saveXML());
         if (!$this->zipWrite($this->path, self::FILE_CONTENT, $xml)) {
-            die('Error');
+            die('Error content');
             throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_CONTENT_ERR);
         }
 
@@ -688,8 +693,9 @@ class OpenDocument {
     
     public static function zipWrite($archive, $filename, $content) {
 		$zip = new ZipArchive;
-        if (file_exists($archive)) {
-            $zip->open(realpath($archive));
+
+        if(file_exists($archive)) {
+			$zip->open(realpath($archive));
         } else {
             $zip->open($archive, ZipArchive::CREATE);
         }

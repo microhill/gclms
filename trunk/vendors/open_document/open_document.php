@@ -179,6 +179,11 @@ class OpenDocument {
     const NS_DRAW = 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0';
 	
     /**
+     * text namespace URL
+     */
+    const NS_SCRIPT = 'urn:oasis:names:tc:opendocument:xmlns:script:1.0';
+	
+    /**
      * table namespace URL
      */
     const NS_TABLE = 'urn:oasis:names:tc:opendocument:xmlns:table:1.0';
@@ -265,6 +270,7 @@ class OpenDocument {
         $this->cursor = $this->contentXPath->query('/office:document-content/office:body/office:text')->item(0);
 		$this->styles = $this->contentXPath->query('/office:document-content/office:automatic-styles')->item(0);
     	$this->fonts  = $this->contentXPath->query('/office:document-content/office:font-face-decls')->item(0);
+    	$this->eventListeners  = $this->contentXPath->query('/office:document-content/office:scripts/office:event-listeners')->item(0);
     	$this->contentXPath->registerNamespace('text', self::NS_TEXT);
     }
 	
@@ -300,7 +306,6 @@ class OpenDocument {
 		
 		$tableOfContent = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'table-of-content');
         $tableOfContent = $node->appendChild($tableOfContent);
-		
 
 		$tableOfContentSource = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'table-of-content-source');
         $tableOfContentSource = $tableOfContent->appendChild($tableOfContentSource);
@@ -329,6 +334,41 @@ class OpenDocument {
 
 			$indexEntryPageNumber = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'index-entry-page-number');
 	        $indexEntryPageNumber = $tableOfContentEntryTemplate->appendChild($indexEntryPageNumber);
+		}
+		
+		$indexBody = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'index-body');
+        $indexBody = $tableOfContent->appendChild($indexBody);
+		
+		$this->tocIndexBody = &$indexBody;
+		
+		$indexTitle = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'index-title');
+        $indexTitle = $tableOfContent->appendChild($indexTitle);
+		
+		$indexBodyParagraph = $this->appendParagraph($indexTitle);
+		$indexBodyParagraphText = $this->appendTextElement($indexBodyParagraph,__('Table of Contents',true));
+		
+		//<script:event-listener script:language="ooo:script" script:event-name="dom:load"
+		//		xlink:href="vnd.sun.star.script:Standard.ToC.Main?language=Basic&amp;location=document"/>
+		
+		// Add event listener
+		$eventListener = $node->ownerDocument->createElementNS(OpenDocument::NS_SCRIPT, 'script:event-listener');
+		$eventListener->setAttributeNS(OpenDocument::NS_SCRIPT,'script:language','ooo:script');
+		$eventListener->setAttributeNS(OpenDocument::NS_SCRIPT,'script:event-name','dom:load');
+		$eventListener->setAttributeNS(OpenDocument::NS_XLINK,'xlink:href','vnd.sun.star.script:Standard.ToC.Main?language=Basic&location=document');
+        $eventListener = $node->appendChild($eventListener);
+		$this->eventListeners->appendChild($eventListener);
+	}
+	
+	function appendTocItem($level,$text){
+		if($level < 5) {
+			$tocIndexParagraph = $this->appendParagraph($this->tocIndexBody);
+			$tocIndexParagraph = $this->appendTextElement($tocIndexParagraph,$text);
+
+			$tocIndexTab = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'tab');
+	        $tocIndexTab = $tocIndexParagraph->appendChild($tocIndexTab);
+			
+			$tocIndexPageNumber = $this->appendParagraph($this->tocIndexBody);
+			$tocIndexPageNumber = $this->appendTextElement($tocIndexPageNumber,$text);
 		}
 	}
 	
@@ -636,49 +676,59 @@ class OpenDocument {
 		}
 
 		if (strlen($filename)) {
-            $this->path = $filename;
+            //$this->path = $filename;
         }
 
         //write mimetype
-        if (!$this->zipWrite($this->path, self::FILE_MIMETYPE, $this->mimetype)) {
+        if (!$this->zipWrite($filename, self::FILE_MIMETYPE, $this->mimetype)) {
             die('Error mimetype');
 			throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_MIMETYPE_ERR);
         }
 		
 		//write content
         $xml = str_replace("'", '&apos;', $this->contentDOM->saveXML());
-        if (!$this->zipWrite($this->path, self::FILE_CONTENT, $xml)) {
+        if (!$this->zipWrite($filename, self::FILE_CONTENT, $xml)) {
             die('Error content');
             throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_CONTENT_ERR);
         }
 
         //write meta
         $xml = str_replace("'", '&apos;', $this->metaDOM->saveXML());
-        if (!$this->zipWrite($this->path, self::FILE_META, $xml)) {
+        if (!$this->zipWrite($filename, self::FILE_META, $xml)) {
             die('Error');
             throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_META_ERR);
         }
 
         //write settings
         $xml = str_replace("'", '&apos;', $this->settingsDOM->saveXML());
-        if (!$this->zipWrite($this->path, self::FILE_SETTINGS, $xml)) {
+        if (!$this->zipWrite($filename, self::FILE_SETTINGS, $xml)) {
             die('Error');
             throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_SETTINGS_ERR);
         }
 
         //write styles
         $xml = str_replace("'", '&apos;', $this->stylesDOM->saveXML());
-        if (!$this->zipWrite($this->path, self::FILE_STYLES, $xml)) {
+        if (!$this->zipWrite($filename, self::FILE_STYLES, $xml)) {
             die('Error');
             throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_STYLES_ERR);
         }
 
         //write manifest
         $xml = str_replace("'", '&apos;', $this->manifestDOM->saveXML());
-        if (!$this->zipWrite($this->path, self::FILE_MANIFEST, $xml)) {
+        if (!$this->zipWrite($filename, self::FILE_MANIFEST, $xml)) {
             die('Error');
             throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_MANIFEST_ERR);
         }
+		
+		$filesToCopyFromTemplate = array(
+			'Basic/script-lc.xml',
+			'Basic/Standard/script-lb.xml',
+			'Basic/Standard/ToC.xml'
+		);
+		
+		foreach($filesToCopyFromTemplate as $file) {
+			$this->zipWrite($filename, $file, $this->ZipRead($this->path, $file));			
+		}
     }
 	
     /**

@@ -287,6 +287,9 @@ class OpenDocument {
 	function importHTML($HTML) {
 		$this->HTMLDOM = new DOMDocument;
 		$HTML = str_replace(array('<embed','</embed'),'',$HTML); //ugly fix!
+		if(empty($HTML))
+			return false;
+			
 		if(!$this->HTMLDOM->loadHTML($HTML)) {
 			echo 'Could not import the following HTML:';
 			echo $HTML;

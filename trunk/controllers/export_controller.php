@@ -50,6 +50,10 @@ class ExportController extends AppController {
 			$this->export_node_to_odt($node);
 		}
 		
+		// Appendix
+		
+		$this->openDocument->importHTML('<h1>' . __('Appendix',true) . '</h1>');
+		
 		// Articles
 		
 		App::import('Model','Article');
@@ -58,7 +62,7 @@ class ExportController extends AppController {
 		$articles = $this->Article->findAll(array('Article.course_id' => $this->viewVars['course']['id']),null,'Article.title ASC');
 		
 		foreach($articles as $article) {
-			$this->openDocument->importHTML('<h1>' . $article['Article']['title'] . '</h1>');
+			$this->openDocument->importHTML('<h2>' . $article['Article']['title'] . '</h2>');
 			$this->openDocument->importHTML($article['Article']['content']);
 		}
 	
@@ -69,9 +73,9 @@ class ExportController extends AppController {
 		
 		$glossary_terms = $this->GlossaryTerm->findAll(array('GlossaryTerm.course_id' => $this->viewVars['course']['id']),null,'GlossaryTerm.term ASC');
 		
-		$this->openDocument->importHTML('<h1>' . __('Glossary',true) . '</h1>');
+		$this->openDocument->importHTML('<h2>' . __('Glossary',true) . '</h2>');
 		foreach($glossary_terms as $glossary_term) {
-			$this->openDocument->importHTML('<h2>' . $glossary_term['GlossaryTerm']['term'] . '</h2>');
+			$this->openDocument->importHTML('<h3>' . $glossary_term['GlossaryTerm']['term'] . '</h3>');
 			$this->openDocument->importHTML($glossary_term['GlossaryTerm']['description']);
 		}
 		

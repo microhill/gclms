@@ -287,7 +287,11 @@ class OpenDocument {
 	function importHTML($HTML) {
 		$this->HTMLDOM = new DOMDocument;
 		$HTML = str_replace(array('<embed','</embed'),'',$HTML); //ugly fix!
-		$this->HTMLDOM->loadHTML($HTML);
+		if(!$this->HTMLDOM->loadHTML($HTML)) {
+			echo 'Could not import the following HTML:';
+			echo $HTML;
+			die;
+		}
 
 		$this->importHTMLNode($this->HTMLDOM->getElementsByTagName('body')->item(0), &$this->cursor);
 		$this->contentDOM->saveXML();

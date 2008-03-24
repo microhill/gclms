@@ -198,6 +198,9 @@ class Node extends AppModel {
 		$this->contain($containers);
 		$nodes = $this->findAll(array('Node.course_id' => $courseId),null,'Node.order ASC');
 		
+		if(empty($nodes))
+			return array();
+		
 		$indexedNodes = array_combine(
 			Set::extract($nodes, '{n}.Node.id'),
 			Set::extract($nodes, '{n}.Node')

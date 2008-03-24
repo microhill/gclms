@@ -308,6 +308,7 @@ class OpenDocument {
         $tableOfContent = $node->appendChild($tableOfContent);
 
 		$tableOfContentSource = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'table-of-content-source');
+		$tableOfContentSource->setAttributeNS(OpenDocument::NS_TEXT,'text:outline-level','4');
         $tableOfContentSource = $tableOfContent->appendChild($tableOfContentSource);
 		
 		$indexTitleTemplate = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'index-title-template');

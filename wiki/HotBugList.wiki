@@ -21,3 +21,5 @@ If something is ~~crossed out~~, please svn update and verify the fix. Please pr
  * Plug in option returns nada, then as you move cursor to other left nav options, slowly populates Plugins with duplicate entries and an error message "Notice 8"
 
  * TinyMCE not saving inline alignment of images
+ * TinyMCE does not allow more than 3 indents on a page
+ * Articles linking browse window shows notice 8 errors on page and does not allow linking

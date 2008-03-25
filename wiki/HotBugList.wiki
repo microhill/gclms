@@ -4,7 +4,7 @@ http://www.pixelmator.com/support/images/Bug.png
 
 If something is ~~crossed out~~, please svn update and verify the fix. Please provide some detail for me so I don't have to unnecessarily hunt down the problem (i.e. paste the given PHP error/warning/notice if there is one).
 
- * Sometimes nodes are duplicated in the node display tree
+ * --Sometimes nodes are duplicated in the node display tree--
  * Responses Do not appear on any question types
  * Multiple Choice - Check answer button does not function
  * Matching - Pop up is using external instead of internal pop up system

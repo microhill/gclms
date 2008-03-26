@@ -5,7 +5,7 @@
 	question:defaultCorrectMessage="<? __('Correct!') ?>"
 	question:defaultNoMoreIncorrectTriesMessage="<? __('You are out of tries. The correct answer is shown.') ?>"
 	>
-	<h2><?= $question['title'] ?></h2>
+	<h5><?= $question['title'] ?></h5>
 	<div class="gclms-answers">
 		<div class="gclms-left-column">
 			<? if(!empty($question['left_column_header'])): ?>

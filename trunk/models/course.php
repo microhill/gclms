@@ -26,6 +26,8 @@ class Course extends AppModel {
 			
 		//if($this->data['Course']['web_path'] != urlencode($this->data['Course']['web_path'])) 
 		//	return false;
+		
+		$this->data['Course']['web_path'] = trim($this->data['Course']['web_path']);
 			
 		return true;
 	}

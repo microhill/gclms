@@ -18,7 +18,7 @@ body.mceContentBody {
 	padding-right: 12px;
 }
 
-h1:first-child {
+div.gclms-page > h1 {
 	margin-top: 0px;
 	margin-bottom: 12px;
 }
@@ -97,7 +97,7 @@ p.gclms-correct-answer {
 	overflow: hidden;
 }
 
-	.gclms-matching h2 {
+	.gclms-matching h5 {
 		margin-top: 8px;
 		margin-bottom: 8px;
 	}

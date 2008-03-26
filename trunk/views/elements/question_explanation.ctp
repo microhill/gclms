@@ -8,4 +8,3 @@ echo $form->input('Question' . $question_id . 'explanation',array(
 	'name' => "data[Question][$question_id][explanation]",
 	'class' => 'gclms-question-explanation'
 ));
-?>

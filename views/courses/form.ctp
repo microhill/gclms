@@ -10,6 +10,7 @@ echo $form->input('web_path',array(
 		'duplicateWebPath' => __('A course already exists in your group with this web path.',true)
 	)
 ));
+echo urlencode($this->data['Course']['web_path']);
 echo $form->input('language',array(
 	'label' =>  __('Language', true),
 	'between' => '<br/>',

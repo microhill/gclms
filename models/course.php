@@ -24,6 +24,9 @@ class Course extends AppModel {
 		else
 			$this->data['Course']['web_path'] = stringToSlug($this->data['Course']['title']);
 			
+		//if($this->data['Course']['web_path'] != urlencode($this->data['Course']['web_path'])) 
+		//	return false;
+			
 		return true;
 	}
 	

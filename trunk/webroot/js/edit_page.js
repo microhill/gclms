@@ -23,7 +23,7 @@ GCLMS.PagesController = {
 		
 		GCLMS.tinyMCEConfig.height = '75px';
 		GCLMS.PagesController.enableTinyMCE.bind(div.down('textarea.gclms-answer-explanation'))();
-		div.down('tr.answer-explanation td').addClassName('filled');
+		div.down('tr.gclms-answer-explanation td').addClassName('gclms-filled');
 	},
 
 	enableTinyMCE: function() {

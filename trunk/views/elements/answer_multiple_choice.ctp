@@ -43,7 +43,7 @@ if(empty($question_id) || empty($answer_id))
 				?>
 			</td>
 		</tr>
-		<tr class="answer-explanation">
+		<tr class="gclms-answer-explanation">
 			<th>
 				<?= $form->label('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text3','Explanation'); ?>
 			</th>

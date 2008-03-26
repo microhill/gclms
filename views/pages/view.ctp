@@ -16,7 +16,7 @@ echo $this->renderElement('no_column_background');
 ?>
 
 <div class="gclms-content">
-	<div class="page gclms-noframes">
+	<div class="gclms-page gclms-noframes">
 		<?	
 		if(!empty($node['Node']['audio_file'])) {
 			$node['Node']['audio_file'] = $groupAndCoursePath  . 'files/' . $node['Node']['audio_file'];

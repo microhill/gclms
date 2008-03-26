@@ -9,7 +9,7 @@
 	<div class="gclms-answers">
 		<div class="gclms-left-column">
 			<? if(!empty($question['left_column_header'])): ?>
-			<h3><?= $question['left_column_header'] ?></h3>
+			<h6><?= $question['left_column_header'] ?></h6>
 			<? endif; ?>
 			<table cellspacing="4">
 				<tbody>
@@ -38,7 +38,7 @@
 		</div>
 		<div class="gclms-right-column">
 			<? if(!empty($question['right_column_header'])): ?>
-			<h3><?= $question['right_column_header'] ?></h3>
+			<h6><?= $question['right_column_header'] ?></h6>
 			<? endif; ?>
 			<table cellspacing="4">
 				<tbody>

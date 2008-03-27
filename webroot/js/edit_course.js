@@ -7,7 +7,7 @@ GCLMS.CourseController = {
 	detectLanguage: function() {
 		google.language.detect($F('CourseTitle'),
 		function(result) {
-			if(result.confidence > 0.15 && $$('#CourseLanguage option[value="' + result.language + '"]').length) {
+			if(result.confidence > 0.11 && $$('#CourseLanguage option[value="' + result.language + '"]').length) {
 				$('CourseLanguage').value = result.language;
 			}
 		});

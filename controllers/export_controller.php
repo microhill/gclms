@@ -23,11 +23,49 @@ class ExportController extends AppController {
 		return $string;
 	}
 	
+	private function export_question($question) {
+		$this->openDocument->importHTML('<h4>' . $question['title'] . '</h4>');
+		$orderedLetters = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+
+		switch($question['type']) {
+			case '0':
+				reset($orderedLetters);
+				foreach($question['Answer'] as $answer) {
+					$this->openDocument->importHTML('<p>' . current($orderedLetters) . '. ' . $answer['text1'] . '</p>');
+					next($orderedLetters);
+				}
+			
+				break;
+			case '1': // Fill in the blank
+				$this->openDocument->importHTML('<p> True</p><p> False</p>');
+				break;
+			case '2': // Matching
+				//$this->openDocument->importHTML('<p> True</p><p> False</p>');
+				break;
+			case '3': // Ordered list
+				//$this->openDocument->importHTML('<p> True</p><p> False</p>');
+				break;
+				
+			case '4': // Fill in the blank
+				$this->openDocument->importHTML('<p></p><p></p>');
+				break;
+			case '5': // Essay
+				$this->openDocument->importHTML('<p></p><p></p><p></p><p></p><p></p><p></p>');
+				break;
+		}
+	}
+	
 	private function export_node_to_odt($node,$level = 1) {
 		$this->openDocument->importHTML('<h' . $level . '>' . $node['title'] . '</h' . $level . '>');
-		foreach($node['Textarea'] as $textarea) {
-			$textarea['content'] = $this->prepareTextForODT($textarea['content']);
-			$this->openDocument->importHTML($textarea['content']);
+		
+		$nodeItems = $this->Node->getSortedNodeItems($node);		
+		foreach($nodeItems as $nodeItem) {
+			if(isset($nodeItem['content'])) {
+				$nodeItem['content'] = $this->prepareTextForODT($nodeItem['content']);
+				$this->openDocument->importHTML($nodeItem['content']);
+			} else {
+				$this->export_question($nodeItem);
+			}
 		}
 		
 		if(empty($node['ChildNode'])) {
@@ -55,7 +93,7 @@ class ExportController extends AppController {
 			
 		$this->openDocument->appendTableOfContents();
 			
-		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id'],array('Textarea'));
+		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id'],array('Textarea','Question'=>'Answer'));
 
 		foreach($nodes as $node) {
 			$this->export_node_to_odt($node);

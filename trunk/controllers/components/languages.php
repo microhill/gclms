@@ -20,7 +20,7 @@ class LanguagesComponent extends Object {
 			'active' => true
 		),
 		array(
-			'code' => 'ch',
+			'code' => 'zh',
 			'englishName' => 'Chinese',
 			'internationalName' => '&#31616;&#20307;&#20013;&#25991;',
 			'active' => true

@@ -270,7 +270,8 @@ class OpenDocument {
         $this->cursor = $this->contentXPath->query('/office:document-content/office:body/office:text')->item(0);
 		$this->styles = $this->contentXPath->query('/office:document-content/office:automatic-styles')->item(0);
     	$this->fonts  = $this->contentXPath->query('/office:document-content/office:font-face-decls')->item(0);
-    	$this->eventListeners  = $this->contentXPath->query('/office:document-content/office:scripts/office:event-listeners')->item(0);
+		$this->document  = $this->contentXPath->query('/office:document-content')->item(0);
+
     	$this->contentXPath->registerNamespace('text', self::NS_TEXT);
     }
 	
@@ -309,6 +310,8 @@ class OpenDocument {
 	}
 	
 	public function appendTableOfContents() {
+		return true;
+		
 		$node = &$this->cursor;
 		
 		$tableOfContent = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'table-of-content');
@@ -359,12 +362,17 @@ class OpenDocument {
 		//		xlink:href="vnd.sun.star.script:Standard.ToC.Main?language=Basic&amp;location=document"/>
 		
 		// Add event listener
+		$scripts = $node->ownerDocument->createElementNS(OpenDocument::NS_OFFICE, 'office:scripts');
+		$eventListeners = $node->ownerDocument->createElementNS(OpenDocument::NS_OFFICE, 'office:event-listeners');
+		$scripts->appendChild($eventListeners);
+		$this->document->appendChild($scripts);
+		
 		$eventListener = $node->ownerDocument->createElementNS(OpenDocument::NS_SCRIPT, 'script:event-listener');
 		$eventListener->setAttributeNS(OpenDocument::NS_SCRIPT,'script:language','ooo:script');
 		$eventListener->setAttributeNS(OpenDocument::NS_SCRIPT,'script:event-name','dom:load');
 		$eventListener->setAttributeNS(OpenDocument::NS_XLINK,'xlink:href','vnd.sun.star.script:Standard.ToC.Main?language=Basic&location=document');
         $eventListener = $node->appendChild($eventListener);
-		$this->eventListeners->appendChild($eventListener);
+		$eventListeners->appendChild($eventListener);
 	}
 	
 	function appendTocItem($level,$text){

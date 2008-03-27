@@ -1,4 +1,4 @@
-//tinyMCE.init(GCLMS.tinyMCEConfig);
+tinyMCE.init(GCLMS.tinyMCEConfig);
 
 GCLMS.CourseController = {
 	loadLanguageDetector: function() {
@@ -16,7 +16,7 @@ GCLMS.CourseController = {
 
 GCLMS.Triggers.update({
 	'#CourseDescription' : function() {
-		//tinyMCE.execCommand('mceAddControl', false, this.id);
+		tinyMCE.execCommand('mceAddControl', false, this.id);
 	},
 	'input.allowRedistribution:change' : function() {
 		if($F(this) == '1') {

@@ -310,7 +310,7 @@ class OpenDocument {
 	}
 	
 	public function appendTableOfContents() {
-		return true;
+		return true; // This function is being phased out...
 		
 		$node = &$this->cursor;
 		

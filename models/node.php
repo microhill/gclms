@@ -214,9 +214,9 @@ class Node extends AppModel {
 			foreach($indexedNodes as &$indexedNode) {
 				$indexedNode['Textarea'] = $indexedTextareas[$indexedNode['id']];
 			}
-		}
+		}		
 		
-		if(@$containers[1]){
+		if(@$containers['Question'] == 'Answer'){
 			$indexedQuestions = array_combine(
 				Set::extract($nodes, '{n}.Node.id'),
 				Set::extract($nodes, '{n}.Question')
@@ -248,5 +248,18 @@ class Node extends AppModel {
 		}
 		
 		return $resultArray;
+	}
+	
+	function getSortedNodeItems($node) {
+		$nodeItems = array();
+		foreach($node['Textarea'] as $textarea) {
+			$nodeItems[$textarea['order']] = $textarea;
+		}
+		foreach($node['Question'] as $question) {
+			$nodeItems[$question['order']] = $question;
+		}
+		ksort($nodeItems);
+		
+		return $nodeItems;
 	}
 }

@@ -396,9 +396,11 @@ class OpenDocument {
 		return $element;
 	}
 	
-	function appendParagraph(&$node,$styles = null) {
+	function appendParagraph(&$node,$styles = array('margin-top'=>'0.0799in','margin-bottom'=>'0.0799in')) {
 		$element = $node->ownerDocument->createElementNS(OpenDocument::NS_TEXT, 'p');
         $element = $node->appendChild($element);
+		
+		self::applyStyles($element,'paragraph',$styles);
 		
 		return $element;
 	}
@@ -414,11 +416,18 @@ class OpenDocument {
 		$styleElement->setAttributeNS(OpenDocument::NS_STYLE,'name',$id);
 		$this->styles->appendChild($styleElement);
 		
-		$textPropertiesElement = $node->ownerDocument->createElementNS(OpenDocument::NS_STYLE, 'text-properties');
-		$styleElement->appendChild($textPropertiesElement);
+		switch($family) {
+			case 'paragraph':
+				$propertiesElement = $node->ownerDocument->createElementNS(OpenDocument::NS_STYLE, 'paragraph-properties');
+				break;			
+			default:
+				$propertiesElement = $node->ownerDocument->createElementNS(OpenDocument::NS_STYLE, 'text-properties');
+				break;
+		}
+		$styleElement->appendChild($propertiesElement);
 		
 		foreach($styles as $styleName => $value) {
-			$textPropertiesElement->setAttributeNS(OpenDocument::NS_FO,$styleName,$value);
+			$propertiesElement->setAttributeNS(OpenDocument::NS_FO,$styleName,$value);
 		}
 		
 		$node->setAttributeNS(OpenDocument::NS_TEXT,'style-name',$id);

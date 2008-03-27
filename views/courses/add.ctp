@@ -2,13 +2,13 @@
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
-	'vendors/tinymce3.0.5/tiny_mce',
+	//'vendors/tinymce3.0.5/tiny_mce',
 	'gclms',
 	'edit_course'
 ), false);
 
 echo $this->renderElement('no_column_background'); ?>
-<div class="gclms-content">
+<div class="gclms-content gclms-add-course">
 	<div class="gclms-step-back"><a href="/<?= $group['web_path'] ?>"><? __('Cancel and go back') ?></a></div>
 	<h1><?= __('Add Course') ?></h1>    
 		<?
@@ -20,3 +20,8 @@ echo $this->renderElement('no_column_background'); ?>
 		?>
 	</div>
 </div>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script>
+google.load('language', '1');
+//google.setOnLoadCallback(submitChange);
+</script>

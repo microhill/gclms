@@ -14,6 +14,7 @@ class ExportController extends AppController {
 	}
 	
 	private function prepareTextForODT($string) {
+		$string = str_replace(array('<h1','/h1'),array('<h4','/h4'),$string);
 		$string = str_replace(array('<h2','/h2'),array('<h4','/h4'),$string);
 		$string = str_replace(array('<h3','/h3'),array('<h5','/h5'),$string);
 		$string = str_replace(array('<h4','/h4'),array('<h6','/h6'),$string);
@@ -24,33 +25,43 @@ class ExportController extends AppController {
 	}
 	
 	private function export_question($question) {
-		$this->openDocument->importHTML('<h4>' . $question['title'] . '</h4>');
+		$title = '<h4>' . $question['title'] . '</h4>';
+		$this->openDocument->importHTML($title);
+		$this->answerKey .= $title;
 		$orderedLetters = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
-
+		
 		switch($question['type']) {
 			case '0':
 				reset($orderedLetters);
 				foreach($question['Answer'] as $answer) {
 					$this->openDocument->importHTML('<p>' . current($orderedLetters) . '. ' . $answer['text1'] . '</p>');
+					if($answer['correct'] === 1) {
+						$this->answerKey .= '<p>' . current($orderedLetters) . '. ' . $answer['text1'] . '</p>';
+					}
 					next($orderedLetters);
 				}
 			
 				break;
-			case '1': // Fill in the blank
-				$this->openDocument->importHTML('<p> True</p><p> False</p>');
+			case '1': // True / false
+				$this->openDocument->importHTML('<p><em>True or false?</em></p>');		
+				$this->answerKey .= $question['explanation'];
 				break;
 			case '2': // Matching
 				//$this->openDocument->importHTML('<p> True</p><p> False</p>');
+				$this->answerKey .= $question['explanation'];
 				break;
 			case '3': // Ordered list
 				//$this->openDocument->importHTML('<p> True</p><p> False</p>');
+				$this->answerKey .= $question['explanation'];
 				break;
 				
 			case '4': // Fill in the blank
 				$this->openDocument->importHTML('<p></p><p></p>');
+				$this->answerKey .= $question['explanation'];
 				break;
 			case '5': // Essay
 				$this->openDocument->importHTML('<p></p><p></p><p></p><p></p><p></p><p></p>');
+				$this->answerKey .= $question['explanation'];
 				break;
 		}
 	}
@@ -74,6 +85,12 @@ class ExportController extends AppController {
 		
 		foreach($node['ChildNode'] as $childNode) {
 			$this->export_node_to_odt($childNode,$level + 1);
+		}
+		
+		if($level < 3 && !empty($this->answerKey)) {
+			$this->openDocument->importHTML('<h' . ($level + 1) . '>' . __('Answers',true) . '</h' . ($level + 1) . '>');
+			$this->openDocument->importHTML($this->answerKey);
+			$this->answerKey = '';
 		}
 	}
 	

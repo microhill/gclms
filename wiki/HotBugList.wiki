@@ -23,3 +23,5 @@ If something is ~~crossed out~~, please svn update and verify the fix. Please pr
  * TinyMCE not saving inline alignment of images
  * TinyMCE does not allow more than 3 indents on a page
  * Articles linking browse window shows notice 8 errors on page and does not allow linking
+ * new articles will not save
+ * Notice (8): Undefined index:  extension [APP\controllers\pages_controller.php, line 63] at the top of every autoring page

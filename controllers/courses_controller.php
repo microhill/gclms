@@ -185,7 +185,7 @@ class CoursesController extends AppController {
 	}
 
 	function afterSave() {
-		$this->redirect('/' . $this->params['group'] . '/' . $this->data['Course']['web_path']);
+		$this->redirect('/' . $this->params['group'] . '/' . stringToSlug($this->data['Course']['web_path']));
 		exit;
 	}
 }

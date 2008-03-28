@@ -26,17 +26,17 @@ class ExportController extends AppController {
 	}
 	
 	private function export_question($question) {
-		$title = '<h4>' . $question['title'] . '</h4>';
+		$title = '<p><strong>' . $question['title'] . '</strong></p>';
 		$this->openDocument->importHTML($title);
 		$this->answerKey .= $title;
 		$orderedLetters = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 		
 		switch($question['type']) {
-			case '0':
+			case '0': // Multiple choice
 				reset($orderedLetters);
 				foreach($question['Answer'] as $answer) {
 					$this->openDocument->importHTML('<p>' . current($orderedLetters) . '. ' . $answer['text1'] . '</p>');
-					if($answer['correct'] === 1) {
+					if($answer['correct']) {
 						$this->answerKey .= '<p>' . current($orderedLetters) . '. ' . $answer['text1'] . '</p>';
 					}
 					next($orderedLetters);
@@ -44,20 +44,55 @@ class ExportController extends AppController {
 			
 				break;
 			case '1': // True / false
-				$this->openDocument->importHTML('<p><em>True or false?</em></p>');		
+				$this->openDocument->importHTML('<p><em>True or false</em></p>');		
+				$this->answerKey .= '<p><em>' . ($question['true_false_answer'] ? __('True',true) : __('False',true)) . '</em></p>';
 				$this->answerKey .= $question['explanation'];
 				break;
 			case '2': // Matching
-				//$this->openDocument->importHTML('<p> True</p><p> False</p>');
+				reset($orderedLetters);
+				$answersHTML = '<table>';
+				foreach($question['Answer'] as $answer) {
+					$answersHTML .= '<tr>';
+					
+					$answersHTML .= '<td>_____ ' . $answer['text1'] . '</td>';
+					$answersHTML .= '<td>' . current($orderedLetters) . '. ' . $answer['text2'] . '<br/><br/></td>';
+					
+					$answersHTML .= '</tr>';
+					
+					next($orderedLetters);
+				}
+				$answersHTML .= '</table>';
+				$this->openDocument->importHTML($answersHTML);
+
+				reset($orderedLetters);
+				$answersHTML = '<table>';
+				foreach($question['Answer'] as $answer) {
+					$answersHTML .= '<tr>';
+					
+					$answersHTML .= '<td>__' . current($orderedLetters) . '__ ' . $answer['text1'] . '</td>';
+					$answersHTML .= '<td>' . current($orderedLetters) . '. ' . $answer['text2'] . '<br/><br/></td>';
+					
+					$answersHTML .= '</tr>';
+					
+					next($orderedLetters);
+				}
+				$answersHTML .= '</table>';
+				$this->answerKey .= $answersHTML;
 				$this->answerKey .= $question['explanation'];
 				break;
 			case '3': // Ordered list
-				//$this->openDocument->importHTML('<p> True</p><p> False</p>');
+				reset($orderedLetters);
+				foreach($question['Answer'] as $answer) {
+					$this->openDocument->importHTML('<p>' . current($orderedLetters) . '. ' . $answer['text1'] . '</p>');
+					$this->answerKey .= '<p>' . current($orderedLetters) . '. ' . $answer['text1'] . '</p>';
+					next($orderedLetters);
+				}
 				$this->answerKey .= $question['explanation'];
 				break;
 				
 			case '4': // Fill in the blank
 				$this->openDocument->importHTML('<p></p><p></p>');
+				$this->answerKey .= '<p><em>' . $question['text_answer'] . '</em></p>';
 				$this->answerKey .= $question['explanation'];
 				break;
 			case '5': // Essay

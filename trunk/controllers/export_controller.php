@@ -14,6 +14,7 @@ class ExportController extends AppController {
 	}
 	
 	private function prepareTextForODT($string) {
+		$string = str_replace(array("\n"),array(' '),$string);
 		$string = str_replace(array('<h1','/h1'),array('<h4','/h4'),$string);
 		$string = str_replace(array('<h2','/h2'),array('<h4','/h4'),$string);
 		$string = str_replace(array('<h3','/h3'),array('<h5','/h5'),$string);
@@ -102,6 +103,10 @@ class ExportController extends AppController {
 		$this->openDocument->imagePrefix = $this->viewVars['groupAndCoursePath'] . '/files/';
 		$this->openDocument->destinationFile = ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . $this->viewVars['course']['id'] . '.odt';
 		
+		if(file_exists($this->openDocument->destinationFile)) {
+			unlink($this->openDocument->destinationFile);
+		}
+		
 		// Title page
 		
 		// Table of contents		
@@ -127,8 +132,12 @@ class ExportController extends AppController {
 		
 		$articles = $this->Article->findAll(array('Article.course_id' => $this->viewVars['course']['id']),null,'Article.title ASC');
 		
+		if(!empty($articles)) {
+			$this->openDocument->importHTML('<h2>' . __('Articles',true) . '</h2>');	
+		}
+
 		foreach($articles as $article) {
-			$this->openDocument->importHTML('<h2>' . $article['Article']['title'] . '</h2>');
+			$this->openDocument->importHTML('<h3>' . $article['Article']['title'] . '</h3>');
 			$article['Article']['content'] = $this->prepareTextForODT($article['Article']['content']);
 			$this->openDocument->importHTML($article['Article']['content']);
 		}

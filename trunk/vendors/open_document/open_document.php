@@ -273,9 +273,11 @@ class OpenDocument {
 		$this->document  = $this->contentXPath->query('/office:document-content')->item(0);
 
     	$this->contentXPath->registerNamespace('text', self::NS_TEXT);
+
+		$this->addToManifest('Pictures/','');
     }
 	
-	function addFileToManifest($fullPath,$mediaType = '') {
+	function addToManifest($fullPath,$mediaType = '') {
 		$manifestCursor = &$this->manifestXPath->query('/manifest:manifest')->item(0);
 		
 		$fileEntry = $manifestCursor->ownerDocument->createElementNS(OpenDocument::NS_MANIFEST, 'file-entry');
@@ -393,6 +395,11 @@ class OpenDocument {
 		$element->setAttributeNS(OpenDocument::NS_TEXT,'outline-level',$level);
         $element = $node->appendChild($element);
 		
+		if($level < 2) {
+			$this->applyStyles($element,'paragraph',array('fo:break-before' => 'page'),'Heading');
+		}		
+		//style:parent-style-name="Heading"
+		
 		return $element;
 	}
 	
@@ -405,7 +412,7 @@ class OpenDocument {
 		return $element;
 	}
 	
-	function applyStyles(&$node,$family,$styles = null) {
+	function applyStyles(&$node,$family,$styles = null,$parentStyle = null) {
 		if(!$styles)
 			return false;
 		
@@ -414,6 +421,9 @@ class OpenDocument {
 		$styleElement = $node->ownerDocument->createElementNS(OpenDocument::NS_STYLE, 'style');
 		$styleElement->setAttributeNS(OpenDocument::NS_STYLE,'family',$family);
 		$styleElement->setAttributeNS(OpenDocument::NS_STYLE,'name',$id);
+		if($parentStyle) {
+			$styleElement->setAttributeNS(OpenDocument::NS_STYLE,'parent-style-name',$parentStyle);			
+		}
 		$this->styles->appendChild($styleElement);
 		
 		switch($family) {
@@ -522,7 +532,7 @@ class OpenDocument {
             throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_IMAGE_ERR);
         }
 		
-		$this->addFileToManifest('Pictures/' . $src,'image/jpeg');
+		$this->addToManifest('Pictures/' . $src,'image/jpeg');
 		
 		$frame = $node->ownerDocument->createElementNS(OpenDocument::NS_DRAW, 'frame');
         $frame = $node->appendChild($frame);
@@ -696,10 +706,6 @@ class OpenDocument {
 	}
 	
     public function save($filename = '') {
-		if(file_exists($filename)) {
-			unlink($filename);
-		}
-
 		if (strlen($filename)) {
             //$this->path = $filename;
         }

@@ -1,4 +1,4 @@
-/* global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __ */
+/*global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, $F, $H, __ */
 
 var GCLMS = {};
 
@@ -315,8 +315,9 @@ GCLMS.tinyMCEConfig = {
         });
     },
     class_filter : function(className, rule) {
-        if (className.indexOf('gclms-') === 0)
-            return false;
+        if (className.indexOf('gclms-') === 0) {
+			return false;
+		}
 			
 		return className;
     }

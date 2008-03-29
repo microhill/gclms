@@ -1,0 +1,29 @@
+msgid "TEXT DIRECTION"
+msgstr "rtl"
+
+msgid  "Login"
+msgstr "تسجيل الدخول"
+
+msgid  "Course Catalogue"
+msgstr "طبعا الكتالوج"
+
+msgid  "Password"
+msgstr "كلمة السر"
+
+msgid  "Forgot your login information?"
+msgstr "هل نسيت معلومات الدخول؟"
+
+msgid "E-mail, Student ID, or OpenID"
+msgstr "البريد الالكتروني ، طالب الهوية ، او مفتوحة معرف"
+
+msgid "New student?"
+msgstr "طالب جديد؟"
+
+msgid "Home"
+msgstr "الصفحه الرئيسية"
+
+msgid "Course Home"
+msgstr "طبعا المنزل"
+
+msgid "Register as New Student"
+msgstr "كما سجل الطلابيه الجديدة"

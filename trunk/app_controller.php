@@ -10,18 +10,13 @@ class AppController extends Controller {
 	var $css_for_layout = array();
 
     function beforeFilter() {
-		/*
 		$this->L10n = new L10n();
-		$this->L10n->get('en');
-		*/
-		
-		Configure::write('Config.language', 'en');
+				
+		if(!$this->Session->check('Config.language')) {
+			$this->Session->write('Config.language','en');
+       	}
 
-		if(0 && !$this->Session->check('Config.language')) {
-       		$this->set('language', $this->Session->read('Config.language'));
-       	} else {
-       		$this->set('language', 'en');
-		}
+		$this->L10n->get($this->Session->read('Config.language'));
 		
 		if(Configure::read('Configuration.database_set') && $this->name == 'Update') {
 			return false;

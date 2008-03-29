@@ -1,0 +1,83 @@
+msgid "TEXT DIRECTION"
+msgstr "ltr"
+
+msgid "Articles"
+msgstr "文章"
+
+msgid "Books"
+msgstr "书籍"
+
+msgid "Configure Course"
+msgstr "配置过程"
+
+msgid "Course Catalogue"
+msgstr "当然目录"
+
+msgid "Course Structure"
+msgstr "课程结构"
+
+msgid "Course Home"
+msgstr "当然首页"
+
+msgid "E-mail, Student ID, or OpenID"
+msgstr "电子邮箱，学生证，或公开身分"
+
+msgid "Export Course"
+msgstr "出口课程"
+
+msgid "Glossary"
+msgstr "词汇"
+
+msgid "Groups"
+msgstr "团体"
+
+msgid "Group Administrators"
+msgstr "组管理员"
+
+msgid  "Forgot your login information?"
+msgstr "忘了你的登录信息？"
+
+msgid "Language"
+msgstr "语文"
+
+msgid  "Login"
+msgstr "登录"
+
+msgid "Logout"
+msgstr "登出"
+
+msgid "Home"
+msgstr "首页"
+
+msgid "Media Files"
+msgstr "媒体档案"
+
+msgid "My Groups"
+msgstr "我的社群"
+
+msgid "My Profile"
+msgstr "我的档案"
+
+msgid "New Courses"
+msgstr "新课程"
+
+msgid "New student?"
+msgstr "新的学生吗？"
+
+msgid  "Password"
+msgstr "密码"
+
+msgid "Plugins"
+msgstr "插件"
+
+msgid "Register as New Student"
+msgstr "注册成为新的学生"
+
+msgid "Register Your Group"
+msgstr "注册你的集团"
+
+msgid "Site Administration"
+msgstr "网站管理"
+
+msgid "Users"
+msgstr "用户"

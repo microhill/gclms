@@ -35,7 +35,7 @@ if(@$showDefaultAddButton) {
 <h1><?= Inflector::humanize(__($heading,true)); ?></h1>
 <? endif; ?>
 
-<table class="Records" width="100%">
+<table class="gclms-records" width="100%">
 	<tr class="gclms-menubar">
 		<td class="gclms-left">
 			<? if(@$showDefaultAddButton): ?>

@@ -204,6 +204,7 @@ legend {
 	font-size: 1.15em;
 	color: white;
 	/* border-bottom: 1px solid #ddd; */
+	background-image: url(/img/permanent/header_background2007-09-13.png);
 }
 
 	.gclms-breadcrumbs a {
@@ -678,7 +679,7 @@ a.gclms-group-web-address {
 			text-decoration: none;
 		}
 	
-.Records .gclms-tabular th:hover {
+.gclms-records .gclms-tabular th:hover {
 	background-image: url(/img/permanent/tabular_header_background-hover2007-09-14.png);
 	/* border-bottom: 1px solid red; */
 	cursor: pointer;
@@ -715,8 +716,8 @@ a.gclms-group-web-address {
 }
 
 .gclms-descriptive-recordset tr:hover td,
-.Records .gclms-recordset tr:hover td,
-.gclms-tabular .Hover td {
+.gclms-records .gclms-recordset tr:hover td,
+.gclms-tabular .gclms-hover td {
 	background-color: transparent;
 	border-bottom: 1px solid #b2ced9;
 	border-top: 1px solid #b2ced9;

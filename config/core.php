@@ -42,6 +42,13 @@
  */
 	//Configure::write('debug', 1);
 	include('options.php');
+
+/**
+ * Application wide charset encoding
+ */
+	Configure::write('App.encoding', 'UTF-8');
+
+
 /**
  * To configure CakePHP *not* to use mod_rewrite and to
  * use CakePHP pretty URLs, remove these .htaccess
@@ -143,7 +150,7 @@
  * CakePHP session IDs are also regenerated between requests if
  * 'Security.level' is set to 'high'.
  */
-	Configure::write('Security.level', 'medium');
+	Configure::write('Security.level', 'low');
 /**
  * A random string used in security hashing methods.
  */

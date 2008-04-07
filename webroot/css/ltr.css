@@ -6,10 +6,6 @@ body {
 	float: right;
 }
 
-.gclms-breadcrumbs {
-	background-image: url(/img/permanent/header_background2007-09-13.png);
-}
-
 .gclms-menu li a {
 	padding-left: 8px;
 }
@@ -50,3 +46,4 @@ body {
 .gclms-content .stepBack {
 	font-size: 1.2em;
 }
+

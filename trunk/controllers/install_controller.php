@@ -37,12 +37,12 @@ class InstallController extends AppController {
     }
     
     function database() {
-		if(!empty($this->data['Database']['host']) && !empty($this->data['Database']['email']) && !empty($this->data['Database']['database'])) {     	
+		if(!empty($this->data['Database']['host']) && !empty($this->data['Database']['username']) && !empty($this->data['Database']['database'])) {     	
 			$content = "<?\nclass DATABASE_CONFIG{\n	var \$default = array("
 				. "\n		'driver' => 'mysql',"
 				. "\n		'connect' => 'mysql_connect',"
 				. "\n		'host' => '" . $this->data['Database']['host'] . "',"
-				. "\n		'login' => '" . $this->data['Database']['email'] . "',"
+				. "\n		'login' => '" . $this->data['Database']['username'] . "',"
 				. "\n		'password' => '" . @$this->data['Database']['password'] . "',"
 				. "\n		'database' => '" . $this->data['Database']['database'] . "',"
 				. "\n		'prefix' => '');\n}";
@@ -87,7 +87,7 @@ class InstallController extends AppController {
 	    	$this->redirect('/install/first_user', null, true);   
     }
     
-    function first_user() {
+    function first_user() {		  
         $db = ConnectionManager::getDataSource('default');
         if(!$db->isConnected()) {
             echo 'Could not connect to database. Please check the settings in app/config/database.php and try again';
@@ -100,16 +100,19 @@ class InstallController extends AppController {
 				&& !empty($this->data['User']['last_name'])
 				&& !empty($this->data['User']['email'])) {
 
-			//echo $this->data['User']['Password'] . '<br/>';
+			App::Import('Model','User');
+			$this->User = new User;
+	
 			$this->data['User']['password'] = Security::hash(Configure::read('Security.salt') . $this->data['User']['password'], 'sha1');
-			//die(Security::hash(CAKE_SESSION_STRING . $this->data['User']['Password']));
-			$statement = "INSERT INTO users (`email`,`password`,`first_name`,`last_name`,`super_administrator`) VALUES (" .
-				"'{$this->data['User']['email']}'," .
-				"'{$this->data['User']['password']}'," .
-				"'{$this->data['User']['first_name']}'," .
-				"'{$this->data['User']['last_name']}'," .
-				"'1');";		
-			$db->query($statement);
+			
+			$this->User->save(array(
+				'email' => $this->data['User']['email'],
+				'alias' => $this->data['User']['alias'],
+				'password' => $this->data['User']['password'],
+				'first_name' => $this->data['User']['first_name'],
+				'last_name' => $this->data['User']['last_name'],
+				'super_administrator' => 1
+			));
 		}
    		if(count($db->query('select id from users;')))
 			$this->redirect('/install/congratulations', null, true);

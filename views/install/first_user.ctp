@@ -10,6 +10,10 @@
 			'label' =>  __('E-mail', true),
 			'between' => '<br/>'
 		));
+		echo $form->input('User.alias',array(
+			'label' =>  __('Alias', true),
+			'between' => '<br/>'
+		));
 		echo $form->input('User.password',array(
 			'label' =>  __('Password', true),
 			'type' => 'password',

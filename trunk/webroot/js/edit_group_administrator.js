@@ -9,9 +9,9 @@ GCLMS.Triggers.update({
 				text = request.responseText.stripTags();
 				if(text.empty())
 					return false;
-				$('GroupAdministratorUsername').value = text;
+				$('GroupAdministratorEmail').value = text;
 				$('GroupAdministratorGroupId').focus();
-				$('GroupAdministratorUsername').setAttribute('readonly','readonly');
+				$('GroupAdministratorEmail').setAttribute('readonly','readonly');
 			}
 		})
 	}

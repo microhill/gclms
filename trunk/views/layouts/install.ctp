@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <? include 'views/layouts/head.ctp'; ?>
 
-<body class="install">
+<body class="gclms-install">
 	<?= implode(order(array(
 		$this->renderElement('breadcrumbs')
 	))); ?>

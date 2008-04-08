@@ -4,10 +4,10 @@
 	
 	$headers = array(
 		$myPaginator->sort(__('Group',true),'name'),
-		$myPaginator->sort(__('Username',true),'username'),
+		$myPaginator->sort(__('Email',true),'email'),
 		$myPaginator->sort(__('Name',true),'first_name')	
 	);
-	$fields = array('Group.name','User.username','User.full_name');
+	$fields = array('Group.name','User.email','User.first_name');
 	
 	function customizeCellData($row,$helpers) {
 		$row['User']['full_name'] = $row['User']['first_name'] . ' ' . $row['User']['last_name'];

@@ -12,8 +12,8 @@ echo $this->renderElement('no_column_background'); ?>
 	<h1><?= __('Add Group Administrator') ?></h1>    
 		<?
 		echo $form->create('GroupAdministrator', array('action' => 'add'));
-		echo $form->input('username',array(
-			'label' =>  __('Username', true),
+		echo $form->input('email',array(
+			'label' =>  __('Email', true),
 			'between' => '<br/>',
 			'autocomplete' => 'off'
 		));

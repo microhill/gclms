@@ -1,4 +1,8 @@
-<? include 'views/install/left_column.ctp'; ?>
+<?
+$html->css('install', null, null, false);
+
+include 'views/install/left_column.ctp';
+?>
 
 <div class="gclms-center-column">
 <?= $form->create(null, array('action' => 'database')); ?>

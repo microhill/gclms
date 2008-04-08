@@ -6,25 +6,21 @@
 		<h1><? __('First User') ?></h2>
 		
 		<?
-		echo $form->input('User/username',array(
-			'label' =>  __('Username', true),
+		echo $form->input('User.email',array(
+			'label' =>  __('E-mail', true),
 			'between' => '<br/>'
 		));
-		echo $form->input('User/password',array(
+		echo $form->input('User.password',array(
 			'label' =>  __('Password', true),
 			'type' => 'password',
 			'between' => '<br/>'
 		));
-		echo $form->input('User/first_name',array(
+		echo $form->input('User.first_name',array(
 			'label' =>  __('First Name', true),
 			'between' => '<br/>'
 		));
-		echo $form->input('User/last_name',array(
+		echo $form->input('User.last_name',array(
 			'label' =>  __('Last Name', true),
-			'between' => '<br/>'
-		));
-		echo $form->input('User/email',array(
-			'label' =>  __('Email', true),
 			'between' => '<br/>'
 		));
 		echo $form->submit(__('Next',true),array('class'=>'Next'));

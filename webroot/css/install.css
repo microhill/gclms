@@ -1,6 +1,6 @@
-body.install input,
-body.install label,
-body.install button {
+body.gclms-install input,
+body.gclms-install label,
+body.gclms-install button {
 	font-size: 1.2em;
 }
 
@@ -8,8 +8,8 @@ form input.gclms-next {
 	font-size: 1.5em;
 }
 
-body.install #first-user,
-body.install #configuration,
-body.install #install {
+body.gclms-install #first-user,
+body.gclms-install #configuration,
+body.gclms-install #install {
 	display: none;
 }

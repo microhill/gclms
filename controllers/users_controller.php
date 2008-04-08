@@ -21,9 +21,9 @@ class UsersController extends AppController {
 		parent::beforeFilter();
 	}
 	
-	function administration_dropdown($name) {
+	function administration_dropdown($email) {
 		$this->User->contain();
-		$user = $this->User->findAll('User.Username LIKE "' . Sanitize::paranoid($name) . '%"',array('email'));
+		$user = $this->User->findAll('User.email LIKE "' . Sanitize::paranoid($email) . '%"',array('email'));
 		if(count($user) != 1)
 			die();
 		$this->set(compact('user'));

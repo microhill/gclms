@@ -1,1 +1,1 @@
-<?= $user[0]['User']['username'];
+<?= $user[0]['User']['email'];

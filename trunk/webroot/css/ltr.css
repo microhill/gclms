@@ -1,6 +1,39 @@
 body {
 	direction: ltr;
+	background-image: url(/img/faux-background-ltr.png);
+	background-position: 25% 0;
 }
+
+/* Layout */
+
+#gclms-page {}
+
+	#gclms-page > .gclms-left-column {
+		float: left;
+		width: 25%;
+	}
+	
+	#gclms-page > .gclms-center-column {
+		float: left;
+		width: 50%;
+	}
+	
+		.gclms-center-column ul,
+		.gclms-center-column ol {
+			padding-left: 24px;
+		}
+	
+	#gclms-page > .gclms-right-column {
+		float: right;
+		width: 24.9%;
+	}
+	
+		.gclms-right-column ul,
+		.gclms-right-column ol {
+			padding-left: 24px;
+			padding-top: 6px;
+			padding-bottom: 6px;
+		}
 
 .gclms-userbar {
 	float: right;

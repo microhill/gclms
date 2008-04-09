@@ -6,10 +6,7 @@ body {
 	background-color: #f6f6f6;
 	font-size: .8em;
 	height: 100%;
-	
-	background-image: url("/img/faux-background.png");
 	background-repeat: repeat-y;
-	background-position: 25% 0;
 }
 
 *, input {
@@ -124,17 +121,6 @@ legend {
 /* Layout */
 
 #gclms-page {}
-
-	#gclms-page > .gclms-left-column {
-		float: left;
-		width: 25%;
-		background-color: #efefef;
-	}
-	
-	#gclms-page > .gclms-center-column {
-		float: left;
-		width: 50%;
-	}
 	
 		.gclms-center-column p {
 			line-height: 1.45em;
@@ -145,25 +131,9 @@ legend {
 		.gclms-center-column ul,
 		.gclms-center-column ol {
 			margin: 0;
-			padding-left: 24px;
 			padding-top: 12px;
 			padding-bottom: 12px;
 		}
-		
-
-	
-	#gclms-page > .gclms-right-column {
-		float: right;
-		width: 24.9%;
-	}
-		
-		.gclms-right-column ul,
-		.gclms-right-column ol {
-			padding-left: 24px;
-			padding-top: 6px;
-			padding-bottom: 6px;
-		}
-	
 
 	.gclms-content {
 		padding: 12px;

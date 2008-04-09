@@ -10,10 +10,10 @@
 	<div style="min-height: 100%;">
 		<?= $this->renderElement('banner') ?>
 		
-		<?= implode(order(array(
-			$this->renderElement('user_bar'),
-			$this->renderElement('breadcrumbs')
-		))); ?>
+		<?
+		echo $this->renderElement('user_bar');
+		echo $this->renderElement('breadcrumbs');
+		?>
 		
 		<div id="gclms-page">
 			<?= $content_for_layout; ?>

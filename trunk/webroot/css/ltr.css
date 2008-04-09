@@ -47,3 +47,46 @@ body {
 	font-size: 1.2em;
 }
 
+.gclms-userbar {
+	padding-right: 9px;	
+}
+
+	.gclms-userbar a {
+		padding-left: 19px;
+		background-position: left center;		
+	}
+
+	.gclms-userbar a.gclms-user-logout {
+		margin-left: 8px;	
+	}
+	
+.gclms-panel {}
+	
+	.gclms-panel .gclms-button {
+		background-position: left center;	
+		float: right;
+	}
+	
+	.gclms-panel .gclms-unbulleted-list li {
+		padding-right: 10px;
+	}
+	
+	.gclms-panel .gclms-unbulleted-list li a {
+		background-position: center right;		
+		padding-right: 8px;
+	}
+	
+.gclms-left-column-menu {
+	margin-right: 5px;
+	margin-left: 3px;		
+}
+
+	.gclms-left-column-menu li {
+		float: left;		
+	}
+	
+		.gclms-left-column-menu li a {
+			margin-left: 6px;
+			padding-left: 40px;
+			background-position: center left;	
+		}

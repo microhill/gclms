@@ -2,18 +2,8 @@ body {
 	direction: rtl;
 }
 
-.gclms-breadcrumbs {
-	float: right;
-}
-
-.gclms-logout {
-	clear: both;
-	text-align: left;
-	background-image: url(/img/permanent/header_background2007-09-13.png);
-}
-
-.gclms-menu li a {
-	padding-right: 8px;
+.gclms-userbar {
+	float: left;
 }
 
 .gclms-menu li a {
@@ -26,14 +16,65 @@ body {
 	margin-left: 8px;
 }
 
-.Left {
-	text-align: right;
+.gclms-step-back {
+	padding-left: 20px;
+	background-image: url(/img/previous-16.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	font-size: 1.1em;
+	line-height: 16px;
+	vertical-align: middle;
+	margin-bottom: 8px;
 }
 
-.Right {
-	text-align: left;
+	.stepBack a {
+		color: blue;
+	}
+	
+.gclms-content .stepBack {
+	font-size: 1.2em;
 }
 
-.Tabular th {
-	text-align: right;
+.gclms-userbar {
+	padding-right: 9px;	
 }
+
+	.gclms-userbar a {
+		padding-right: 19px;
+		background-position: right center;		
+	}
+
+	.gclms-userbar a.gclms-user-logout {
+		margin-left: 8px;	
+	}
+	
+.gclms-panel {}
+
+	.gclms-panel .gclms-button {
+		background-position: right center;	
+		float: left;
+	}
+	
+	.gclms-panel .gclms-unbulleted-list li {
+		padding-left: 10px;
+	}
+	
+	.gclms-panel .gclms-unbulleted-list li a {
+		background-position: center left;
+		padding-left: 8px;		
+	}
+	
+.gclms-left-column-menu {
+	margin-left: 5px;
+	margin-right: 3px;		
+}
+
+	.gclms-left-column-menu li {
+		float: right;		
+	}
+	
+		.gclms-left-column-menu li a {
+			margin-right: 6px;
+			padding-right: 40px;
+			background-position: center right;	
+		}

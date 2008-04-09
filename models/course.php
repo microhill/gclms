@@ -19,15 +19,14 @@ class Course extends AppModel {
 		if(empty($this->data['Course']['title']) && empty($this->data['Course']['web_path']))
 			return false;
 		
-		if(!empty($this->data['Course']['web_path']))
+		if(!empty($this->data['Course']['web_path'])) {
 			$this->data['Course']['web_path'] = stringToSlug($this->data['Course']['web_path']);
-		else
-			$this->data['Course']['web_path'] = stringToSlug($this->data['Course']['title']);
+		} else {
+			$this->data['Course']['web_path'] = stringToSlug($this->data['Course']['title']);		
+		}
 			
 		//if($this->data['Course']['web_path'] != urlencode($this->data['Course']['web_path'])) 
 		//	return false;
-		
-		$this->data['Course']['web_path'] = $this->data['Course']['web_path'];
 			
 		return true;
 	}

@@ -174,13 +174,10 @@ legend {
 .gclms-userbar {
 	padding: 6px;
 	padding-bottom: 7px;
-	padding-right: 9px;
 }
 
 	.gclms-userbar a {
 		background-repeat: no-repeat;
-		padding-left: 19px;
-		background-position: left center;
 		color: white;
 		font-size: 1.1em;
 		text-decoration: none;
@@ -188,7 +185,6 @@ legend {
 	
 		.gclms-userbar a.gclms-user-logout {
 			background-image: url(/img/icons/oxygen_refit/16x16/apps/gnome-shutdown.png);
-			margin-left: 8px;
 		}
 		
 		.gclms-userbar a.gclms-user-alias {
@@ -396,13 +392,10 @@ a.gclms-group-web-address {
 .gclms-left-column-menu {
 	list-style: none;
 	margin-top: 3px;
-	margin-right: 5px;
-	margin-left: 3px;
 	padding: 0;
 }
 
 	.gclms-left-column-menu li {
-		float: left;
 		width: 100%;
 		border: 1px solid #efefef;
 		margin-bottom: 2px;
@@ -417,8 +410,6 @@ a.gclms-group-web-address {
 
 		.gclms-left-column-menu li a {
 			margin: 5px;
-			margin-left: 6px;
-			padding-left: 40px;
 			padding-bottom: 2px;
 			font-size: 1.25em;
 			background-repeat: no-repeat;
@@ -428,7 +419,6 @@ a.gclms-group-web-address {
 			text-decoration: none;
 			color: black;
 			white-space: nowrap;
-			background-position: center left;
 		}
 
 	.gclms-left-column-menu .gclms-home a {
@@ -929,14 +919,14 @@ img.gclms-tooltip-button {
 	.gclms-panel .gclms-top-left {
 		background-repeat: no-repeat;
 		background-image: url(/img/panel-top-left.png);
-		background-position: top left;
 		cursor: pointer;
+		background-position: top left;		
 	}
 
 	.gclms-panel .gclms-top-right {
+		background-position: top right;	
 		background-repeat: no-repeat;
 		background-image: url(/img/panel-top-right.png);
-		background-position: top right;
 		padding-left: 8px;
 		padding-right: 8px;
 		padding-top: 6px;
@@ -947,10 +937,8 @@ img.gclms-tooltip-button {
 
 	.gclms-panel .gclms-button {
 		background-repeat: no-repeat;
-		background-position: left center;
 		width: 15px;
 		height: 15px;
-		float: right;
 		margin-top: 3px;
 	}
 
@@ -991,7 +979,6 @@ img.gclms-tooltip-button {
 			border: 1px solid #fff;
 			border-top: 1px solid #eaeaea;
 			padding: 0;
-			padding-right: 10px;
 		}
 
 			.gclms-panel .gclms-unbulleted-list li a {
@@ -1004,8 +991,6 @@ img.gclms-tooltip-button {
 				margin: 0;
 				background-repeat: no-repeat;
 				background-image: url(/img/panel-arrow.png);
-				background-position: center right;
-				padding-right: 8px;
 			}
 
 			.gclms-panel .gclms-unbulleted-list li:hover {

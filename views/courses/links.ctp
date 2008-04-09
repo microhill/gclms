@@ -10,11 +10,13 @@ $javascript->link(array(
 echo $this->renderElement('no_column_background'); ?>
 
 <div class="gclms-content gclms-links">
-	<h2>Pages</h2>
 	<?
-	echo $this->renderElement('nodes_tree',array(
-		'nodes' => $nodes
-	));
+	if(!empty($nodes)) {
+		echo '<h2>Pages</h2>';
+	 	echo $this->renderElement('nodes_tree',array(
+			'nodes' => $nodes
+		));
+	}
 	?>
 	
 	<? if(!empty($books)): ?>	

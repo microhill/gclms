@@ -1,6 +1,38 @@
 body {
 	direction: rtl;
+	background-image: url(/img/faux-background-rtl.png);
+	background-position: 75% 0;
 }
+
+#gclms-page {}
+
+	#gclms-page > .gclms-left-column {
+		float: left;
+		width: 24.9%;
+	}
+	
+		.gclms-left-column ul,
+		.gclms-left-column ol {
+			padding-right: 24px;
+			padding-top: 6px;
+			padding-bottom: 6px;
+		}
+	
+	#gclms-page > .gclms-center-column {
+		float: left;
+		width: 50%;
+	}
+	
+		.gclms-center-column ul,
+		.gclms-center-column ol {
+			padding-right: 24px;
+		}
+	
+	#gclms-page > .gclms-right-column {
+		float: right;
+		background-color: #efefef;
+		width: 25%;
+	}
 
 .gclms-userbar {
 	float: left;

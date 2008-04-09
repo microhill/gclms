@@ -28,5 +28,23 @@ msgstr "طبعا المنزل"
 msgid "Register as New Student"
 msgstr "كما سجل الطلابيه الجديدة"
 
-msgid "Group Home"
-msgstr "المجموعة الرئيسية"+
+msgid "My Profile"
+msgstr "ملفي الشخصي"
+
+msgid "Register Your Group"
+msgstr "سجل مجموعتك"
+
+msgid "Site Administration"
+msgstr "موقع الادارة"
+
+msgid "Groups"
+msgstr "المجموعات"
+
+msgid "Group Administrators"
+msgstr "فريق الإداريين"
+
+msgid "Users"
+msgstr "المستعملون"
+
+msgid "Plugins"
+msgstr "ملحقات"

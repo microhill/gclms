@@ -48,3 +48,24 @@ msgstr "المستعملون"
 
 msgid "Plugins"
 msgstr "ملحقات"
+
+msgid "Group Home"
+msgstr "المجموعة الرئيسية"
+
+msgid "Facilitated Classes"
+msgstr "يسر الطبقات"
+
+msgid "Facilitators"
+msgstr "مسهلات"
+
+msgid "Add Course"
+msgstr "اضافة طبعا"
+
+msgid "Configuration"
+msgstr "التشكيل"
+
+msgid "Logout"
+msgstr "خروج"
+
+msgid "Configure Group"
+msgstr "تكوين فريق"

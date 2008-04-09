@@ -69,3 +69,15 @@ msgstr "خروج"
 
 msgid "Configure Group"
 msgstr "تكوين فريق"
+
+msgid "Title"
+msgtr "العنوان"
+
+msgid "Web path"
+msgtr "شبكة المسار"
+
+msgid "Language"
+msgtr "اللغة"
+
+msgid "Description"
+msgtr "الوصف"

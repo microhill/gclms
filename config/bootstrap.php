@@ -80,9 +80,11 @@ function text_direction() {
 
 // See https://trac.cakephp.org/ticket/3603
 function stringToSlug($string) {
-	$string = str_replace(':','',$string);
-	$unPretty = array('/A-Z/','/ä/', '/ö/', '/ü/', '/Ä/', '/Ö/', '/Ü/', '/ß/', '/\s?-\s?/', '/\s?_\s?/', '/\s?\/\s?/', '/\s?\\\s?/', '/\s/', '/"/', '/\'/');
-	$pretty   = array('/a-z/','ae', 'oe', 'ue', 'Ae', 'Oe', 'Ue', 'ss', '-', '-', '-', '-', '-', '', '');
+	$string = low(trim(str_replace(':','',$string)));
+	$unPretty = array('/\s?-\s?/u', '/\s?_\s?/u', '/\s?\/\s?/u', '/\s?\\\s?/u', '/\s/u', '/"/u', '/\'/u');
+	$pretty   = array('-', '-', '-', '-', '-', '', '');
+	//$unPretty = array('/\s?\\\s?/u', '/\s/u', '/"/', '/\'/');
+	//$pretty   = array('-', '-', '', '');
 	$string = preg_replace($unPretty, $pretty, $string);
 	
 	//$string = preg_replace(array('/[^\w\s]/', '/\\s+/') , array(' ', '-'), $string);

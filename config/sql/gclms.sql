@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: gclms
 Target Host: localhost
 Target Database: gclms
-Date: 3/10/2008 1:55:17 AM
+Date: 4/8/2008 6:34:01 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,9 +31,11 @@ DROP TABLE IF EXISTS `answers`;
 CREATE TABLE `answers` (
   `id` char(36) NOT NULL,
   `question_id` char(36) NOT NULL,
-  `text` text,
-  `correct` int(1) unsigned NOT NULL default '0',
-  `explanation` text,
+  `text1` varchar(255) default NULL,
+  `text2` varchar(255) default NULL,
+  `text3` text,
+  `order` int(3) default NULL,
+  `correct` tinyint(1) unsigned NOT NULL default '0',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
@@ -54,15 +56,28 @@ CREATE TABLE `articles` (
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Table structure for books
+-- ----------------------------
+DROP TABLE IF EXISTS `books`;
+CREATE TABLE `books` (
+  `id` char(36) NOT NULL,
+  `course_id` char(36) default NULL,
+  `title` varchar(255) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 -- Table structure for chapters
 -- ----------------------------
 DROP TABLE IF EXISTS `chapters`;
 CREATE TABLE `chapters` (
   `id` char(36) NOT NULL,
-  `textbook_id` char(36) default NULL,
+  `book_id` char(36) default NULL,
   `title` varchar(255) NOT NULL,
   `content` text,
-  `order` int(11) unsigned NOT NULL,
+  `order` int(3) unsigned NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
@@ -74,9 +89,9 @@ CREATE TABLE `chapters` (
 DROP TABLE IF EXISTS `chat_messages`;
 CREATE TABLE `chat_messages` (
   `id` char(36) NOT NULL,
-  `content` varchar(255) NOT NULL,
   `facilitated_class_id` char(36) NOT NULL,
   `user_id` char(36) NOT NULL,
+  `content` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=456 DEFAULT CHARSET=utf8;
@@ -102,7 +117,7 @@ CREATE TABLE `class_completions` (
   `facilitated_class_id` char(36) NOT NULL default '0',
   `user_id` char(36) NOT NULL default '0',
   `date` date NOT NULL,
-  `grade` smallint(5) unsigned default NULL,
+  `grade` int(5) unsigned default NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`facilitated_class_id`,`user_id`)
@@ -146,29 +161,15 @@ CREATE TABLE `courses` (
   `description` text,
   `css` text,
   `language` varchar(6) NOT NULL default 'en',
-  `redistribution_allowed` int(1) NOT NULL default '0',
-  `commercial_use_allowed` int(1) NOT NULL default '0',
-  `derivative_works_allowed` int(1) NOT NULL default '0',
+  `redistribution_allowed` tinyint(1) NOT NULL default '0',
+  `commercial_use_allowed` tinyint(1) NOT NULL default '0',
+  `derivative_works_allowed` tinyint(1) NOT NULL default '0',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
-  `deprecated` int(1) unsigned NOT NULL default '0',
+  `deprecated` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `group_id` (`group_id`,`web_path`)
 ) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for dictionary_terms
--- ----------------------------
-DROP TABLE IF EXISTS `dictionary_terms`;
-CREATE TABLE `dictionary_terms` (
-  `id` char(36) NOT NULL,
-  `course_id` char(36) NOT NULL,
-  `term` varchar(255) NOT NULL,
-  `description` text,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for facilitated_classes
@@ -185,7 +186,7 @@ CREATE TABLE `facilitated_classes` (
   `capacity` int(11) unsigned default NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
-  `deprecated` int(1) unsigned NOT NULL default '0',
+  `deprecated` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
@@ -223,6 +224,20 @@ CREATE TABLE `forums` (
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Table structure for glossary_terms
+-- ----------------------------
+DROP TABLE IF EXISTS `glossary_terms`;
+CREATE TABLE `glossary_terms` (
+  `id` char(36) NOT NULL,
+  `course_id` char(36) NOT NULL,
+  `term` varchar(255) NOT NULL,
+  `description` text,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 -- Table structure for group_administrators
 -- ----------------------------
 DROP TABLE IF EXISTS `group_administrators`;
@@ -244,7 +259,7 @@ CREATE TABLE `group_facilitators` (
   `id` char(36) NOT NULL,
   `user_id` char(36) NOT NULL,
   `group_id` char(36) NOT NULL,
-  `approved` int(1) unsigned NOT NULL default '0',
+  `approved` tinyint(1) unsigned NOT NULL default '0',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`),
@@ -274,7 +289,7 @@ CREATE TABLE `groups` (
   `approved` int(255) unsigned NOT NULL default '1',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
-  `deprecated` int(1) unsigned NOT NULL default '0',
+  `deprecated` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
 
@@ -286,11 +301,11 @@ CREATE TABLE `nodes` (
   `id` char(36) NOT NULL,
   `course_id` char(36) NOT NULL,
   `parent_node_id` char(36) NOT NULL default '0',
-  `grade_recorded` int(1) unsigned NOT NULL default '0',
+  `grade_recorded` tinyint(1) unsigned NOT NULL default '0',
   `title` varchar(255) NOT NULL,
   `type` int(1) unsigned NOT NULL default '0',
   `audio_file` varchar(255) default NULL,
-  `order` int(11) unsigned NOT NULL default '0',
+  `order` int(4) unsigned NOT NULL default '0',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`),
@@ -320,12 +335,13 @@ CREATE TABLE `questions` (
   `id` char(36) NOT NULL,
   `node_id` char(36) NOT NULL default '0',
   `title` varchar(255) default NULL,
-  `type` int(1) unsigned NOT NULL default '1',
+  `type` int(2) unsigned NOT NULL default '1',
   `order` int(3) unsigned NOT NULL default '1',
-  `fill_in_the_blank_answer` varchar(255) default NULL,
-  `true_false_answer` int(1) unsigned default NULL,
+  `text_answer` varchar(255) default NULL,
+  `true_false_answer` tinyint(1) unsigned default NULL,
   `left_column_header` varchar(255) default NULL,
   `right_column_header` varchar(255) default NULL,
+  `explanation` text,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
@@ -352,24 +368,11 @@ CREATE TABLE `textareas` (
   `id` char(36) NOT NULL,
   `node_id` char(36) NOT NULL,
   `content` text,
-  `order` int(11) unsigned NOT NULL default '9999',
+  `order` int(3) unsigned NOT NULL default '9999',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for textbooks
--- ----------------------------
-DROP TABLE IF EXISTS `textbooks`;
-CREATE TABLE `textbooks` (
-  `id` char(36) NOT NULL,
-  `course_id` char(36) default NULL,
-  `title` varchar(255) NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for users
@@ -387,14 +390,13 @@ CREATE TABLE `users` (
   `city` varchar(255) default NULL,
   `state` varchar(255) default NULL,
   `postal_code` varchar(255) default NULL,
-  `mailing_list` int(1) unsigned NOT NULL default '1',
-  `autoplay_audio` int(1) unsigned NOT NULL default '0',
+  `mailing_list` tinyint(1) unsigned NOT NULL default '1',
+  `autoplay_audio` tinyint(1) unsigned NOT NULL default '0',
   `verification_code` varchar(255) default NULL,
-  `verified` int(1) unsigned NOT NULL default '0',
-  `super_administrator` int(1) unsigned NOT NULL default '0',
+  `verified` tinyint(1) unsigned NOT NULL default '0',
+  `super_administrator` tinyint(1) unsigned NOT NULL default '0',
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `deprecated` int(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `UniqueUsername` (`alias`)
 ) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COMMENT='utf8_general_ci';

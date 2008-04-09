@@ -35,10 +35,6 @@ body {
 			padding-bottom: 6px;
 		}
 
-.gclms-userbar {
-	float: right;
-}
-
 .gclms-menu li a {
 	padding-left: 8px;
 }
@@ -81,11 +77,13 @@ body {
 }
 
 .gclms-userbar {
+	float: right;
 	padding-right: 9px;	
 }
 
 	.gclms-userbar a {
 		padding-left: 19px;
+		float: left;	
 		background-position: left center;		
 	}
 
@@ -96,7 +94,7 @@ body {
 .gclms-panel {}
 	
 	.gclms-panel .gclms-button {
-		background-position: left center;	
+		background-position: center left;	
 		float: right;
 	}
 	

@@ -34,10 +34,6 @@ body {
 		width: 25%;
 	}
 
-.gclms-userbar {
-	float: left;
-}
-
 .gclms-menu li a {
 	padding-right: 8px;
 }
@@ -68,7 +64,8 @@ body {
 }
 
 .gclms-userbar {
-	padding-right: 9px;	
+	float: left;
+	padding-left: 9px;	
 }
 
 	.gclms-userbar a {
@@ -76,8 +73,23 @@ body {
 		background-position: right center;		
 	}
 
+	.ggclms-userbar a.gclms-user-logout {
+		margin-right: 8px;	
+	}
+
+.gclms-userbar {
+	float: left;
+	padding-left: 9px;
+}
+
+	.gclms-userbar a {
+		padding-right: 19px;
+		background-position: right center;	
+		float: left;	
+	}
+
 	.gclms-userbar a.gclms-user-logout {
-		margin-left: 8px;	
+		margin-right: 8px;	
 	}
 	
 .gclms-panel {}

@@ -120,7 +120,9 @@ legend {
 
 /* Layout */
 
-#gclms-page {}
+#gclms-page {
+	clear: both;
+}
 	
 		.gclms-center-column p {
 			line-height: 1.45em;
@@ -138,8 +140,6 @@ legend {
 	.gclms-content {
 		padding: 12px;
 	}
-
-/* Classes */
 
 .gclms-userbar {
 	padding: 6px;

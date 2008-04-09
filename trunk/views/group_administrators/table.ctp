@@ -1,7 +1,6 @@
 <div id="table">
 	<?
 	$myPaginator->options(array('url' => '/administration/group_administrators/index'));	
-	
 	$headers = array(
 		$myPaginator->sort(__('Group',true),'name'),
 		$myPaginator->sort(__('Email',true),'email'),

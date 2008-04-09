@@ -17,6 +17,7 @@ echo $this->renderElement('no_column_background'); ?>
 			'between' => '<br/>',
 			'autocomplete' => 'off'
 		));
+		//echo $form->hidden('user_id');
 		echo $form->input('GroupAdministrator.group_id',array(
 			'label' =>  __('Group', true),
 			'between' => '<br/>',

@@ -9,9 +9,10 @@ class GroupAdministratorsController extends AppController {
 		$this->Breadcrumbs->addHomeCrumb();
 		$this->Breadcrumbs->addSiteAdministrationCrumb();
 		
-		if($this->action != Configure::read('Routing.admin') . '_index')
+		if($this->action != Configure::read('Routing.admin') . '_index') {
 			$this->Breadcrumbs->addCrumb('Group Administrators','/administration/group_administrators');
-
+		}
+		
 		$this->set('groups',$this->Group->generateList());
 		parent::beforeFilter();
 	}

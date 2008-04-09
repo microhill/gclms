@@ -4,11 +4,11 @@ class GroupAdministrator extends AppModel {
 	
 	var $validate = array(
 		'email' => array(
-			'rule' => 'validUsername'
+			'rule' => 'validEmail'
 		)
 	);
 	
-	function validUsername() {
+	function validEmail() {
 		if(empty($this->data['GroupAdministrator']['email']))
 			return false;
 
@@ -16,7 +16,7 @@ class GroupAdministrator extends AppModel {
 		$this->User =& new User();
 
 		$this->User->contain();
-		$user = $this->User->findByUsername($this->data['GroupAdministrator']['email'],'id');
+		$user = $this->User->findByEmail($this->data['GroupAdministrator']['email'],'id');
 
 		if(!empty($user)) {
 			$this->data['GroupAdministrator']['user_id'] = $user['User']['id'];

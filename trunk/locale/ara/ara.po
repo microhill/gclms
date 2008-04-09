@@ -27,3 +27,6 @@ msgstr "طبعا المنزل"
 
 msgid "Register as New Student"
 msgstr "كما سجل الطلابيه الجديدة"
+
+msgid "Group Home"
+msgstr "المجموعة الرئيسية"

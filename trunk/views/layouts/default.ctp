@@ -6,7 +6,9 @@
 		gclms:group="<?= @$group['web_path'] ?>"
 		gclms:course="<?= @$course['web_path'] ?>"
 		gclms:controller="<?= $this->name ?>"
-		gclms:action="<?= $this->action ?>">
+		gclms:action="<?= $this->action ?>"
+		gclms:direction="<? __('TEXT DIRECTION'); ?>"
+		gclms:language="<?= Configure::read('Config.language') ?>">
 	<div style="min-height: 100%;">
 		<?= $this->renderElement('banner') ?>
 		

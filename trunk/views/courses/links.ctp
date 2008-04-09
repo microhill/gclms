@@ -11,6 +11,7 @@ echo $this->renderElement('no_column_background'); ?>
 
 <div class="gclms-content gclms-links">
 	<?
+	pr($nodes);
 	if(!empty($nodes)) {
 		echo '<h2>Pages</h2>';
 	 	echo $this->renderElement('nodes_tree',array(

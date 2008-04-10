@@ -284,7 +284,7 @@ document.observe("dom:loaded", function() {
 GCLMS.tinyMCEConfig = {
     theme : 'advanced',
     plugins : 'media,inlinepopups,style,safari,paste', // sidebartext,notebook,safari
-    //language: document.body.getAttribute('gclms:language'),
+    language: document.body.getAttribute('gclms:language'),
     mode: 'none',
 	button_tile_map: true,
 	cleanup_serializer: 'xml',

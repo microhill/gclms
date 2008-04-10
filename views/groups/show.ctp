@@ -1,4 +1,10 @@
 <?
+$javascript->link(array(
+	'vendors/prototype',
+	'prototype_extensions',
+	'gclms'
+), false);
+
 echo $this->renderElement('left_column');
 ?>
 

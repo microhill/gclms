@@ -4,6 +4,14 @@ body {
 	background-position: 75% 0;
 }
 
+.gclms-choose-language {
+	position: absolute;
+	top: 0;
+	text-align: right;
+	left: 0;
+	padding-left: 8px;
+}
+
 #gclms-page {}
 
 	#gclms-page > .gclms-left-column {

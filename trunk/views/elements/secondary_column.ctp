@@ -40,7 +40,7 @@
 		));
 	}
 
-	if($this->name == 'StudentCenter')
+	if($this->name == 'StudentCenter' || $this->name == 'Groups' || $this->name == 'Courses')
 		echo $this->renderElement('choose_language');
 
 	if($this->name == 'Lessons' && $this->action == 'index')

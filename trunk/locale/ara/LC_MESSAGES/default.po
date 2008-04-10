@@ -25,6 +25,9 @@ msgstr "الصفحه الرئيسية"
 msgid "Course Home"
 msgstr "طبعا المنزل"
 
+msgid "Add Course"
+msgstr "اضافة طبعا"
+
 msgid "Register as New Student"
 msgstr "كما سجل الطلابيه الجديدة"
 
@@ -58,9 +61,6 @@ msgstr "يسر الطبقات"
 msgid "Facilitators"
 msgstr "مسهلات"
 
-msgid "Add Course"
-msgstr "اضافة طبعا"
-
 msgid "Configuration"
 msgstr "التشكيل"
 
@@ -81,3 +81,6 @@ msgtr "اللغة"
 
 msgid "Description"
 msgtr "الوصف"
+
+msgid "Add Course"
+msgtr "اضافة طبعا"

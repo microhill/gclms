@@ -20,7 +20,6 @@ class PagesController extends AppController {
 			
 		$node['Node']['previous_page_id'] = $this->Node->findPreviousPageId($node);
 		$node['Node']['next_page_id'] = $this->Node->findNextPageId($node);
-			
 		$this->set('node',$node);
 		
 		//$this->GlossaryTerm = ClassRegistry::getInstance('Model', 'GlossaryTerm');

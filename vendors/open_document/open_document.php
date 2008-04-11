@@ -287,15 +287,16 @@ class OpenDocument {
 		$fileEntry->setAttributeNS(OpenDocument::NS_MANIFEST,'full-path',$fullPath);
 	}
 	
-	function importHTML($HTML) {
-		$this->HTMLDOM = new DOMDocument;
-		$HTML = str_replace(array('<embed','</embed'),'',$HTML); //ugly fix!
-		if(empty($HTML))
+	function importHTML($html) {
+		$this->HTMLDOM = new DOMDocument('1.0','utf-8');
+		$html = str_replace(array('<embed','</embed'),'',$html); //ugly fix!
+		if(empty($html))
 			return false;
-			
-		if(!$this->HTMLDOM->loadHTML($HTML)) {
+		
+		$html = @mb_convert_encoding($html, 'HTML-ENTITIES', 'utf-8');   
+		if(!$this->HTMLDOM->loadHTML($html)) {
 			echo 'Could not import the following HTML:';
-			echo $HTML;
+			echo $html;
 			die;
 		}
 

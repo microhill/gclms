@@ -21,7 +21,7 @@ class ExportController extends AppController {
 		$string = str_replace(array('<h4','/h4'),array('<h6','/h6'),$string);
 		$string = str_replace(array('<h5','/h5'),array('<strong','/strong'),$string);
 		$string = str_replace(array('<h6','/h6'),array('<em','/em'),$string);		
-		
+
 		return $string;
 	}
 	
@@ -105,10 +105,12 @@ class ExportController extends AppController {
 	private function export_node_to_odt($node,$level = 1) {
 		$this->openDocument->importHTML('<h' . $level . '>' . $node['title'] . '</h' . $level . '>');
 		
-		$nodeItems = $this->Node->getSortedNodeItems($node);		
+		$nodeItems = $this->Node->getSortedNodeItems($node);
+	
 		foreach($nodeItems as $nodeItem) {
 			if(isset($nodeItem['content'])) {
 				$nodeItem['content'] = $this->prepareTextForODT($nodeItem['content']);
+
 				$this->openDocument->importHTML($nodeItem['content']);
 			} else {
 				$this->export_question($nodeItem);

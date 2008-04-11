@@ -373,9 +373,10 @@ a.gclms-group-web-address {
 	
 		.gclms-left-column-menu li.gclms-active,
 		.gclms-left-column-menu li:hover {
-			background-color: #eff1fc;
+			background-color: #D3EDFA;
 			background-image: url(/img/permanent/tabular_row_background2007-09-14.png);
 			border: 1px solid #B2CED9;
+			background-repeat: repeat-x;
 		}
 
 		.gclms-left-column-menu li a {
@@ -725,7 +726,6 @@ td.gclms-az {
 }
 
 .gclms-records {
-	margin-top: 6px;
 	margin-left: -2px;
 }
 

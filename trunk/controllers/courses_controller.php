@@ -15,7 +15,12 @@ class CoursesController extends AppController {
 	
 	function recent() {
         $this->Course->contain(array('Group' => array('web_path')));
-        $this->data = $this->Course->findall(null,null,'Course.created DESC',10);
+		
+		if(empty($this->viewVars['group'])) {
+			$this->data = $this->Course->findall(null,null,'Course.created DESC',10);
+		} else {
+			$this->data = $this->Course->findall(array('Course.group_id' => $this->viewVars['group']['id']),null,'Course.created DESC',10);
+		}
 		
 		$this->RequestHandler->isRss();
 	}

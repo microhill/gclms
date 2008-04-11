@@ -19,5 +19,8 @@
 		echo '<link rel="stylesheet" type="text/css" href="/' . $group['web_path'] . '/files/css' . $cssLastUpdated . '" />';
 	}
 	*/
+	
+	echo $html->meta(array('type' => 'application/rss+xml', 'rel' => 'alternate', 'title' => __('Recently Published Courses',true), 'link' => '/courses/recent.rss'));
 	?>
+	<!-- link href="" type="application/rss+xml" rel="alternate" title="rss"/ -->
 </head>

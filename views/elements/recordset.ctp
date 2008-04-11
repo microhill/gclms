@@ -29,14 +29,27 @@ if(@$showDefaultAddButton) {
 }
 ?>
 
-<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
-
 <? if(!empty($heading)): ?>
 <h1><?= Inflector::humanize(__($heading,true)); ?></h1>
 <? endif; ?>
 
+<? if(@$showDefaultAddButton) {
+
+	echo $this->renderElement('menubar',array('buttons' => array(
+		array(
+			'id' => 'gclms-add',
+			'class' => 'gclms-add',
+			'label' => 'Add',
+			'strings' => array(
+				'link:href' => $defaultAddButtonUri
+			),
+			'accesskey' => 'a'
+	))));
+}
+?>
+
 <table class="gclms-records" width="100%">
-	<tr class="gclms-menubar">
+	<!-- tr class="gclms-menubar">
 		<td class="gclms-left">
 			<? if(@$showDefaultAddButton): ?>
 				<button class="gclms-add" link:href="<?= $defaultAddButtonUri ?>" id="gclmsAdd">
@@ -51,7 +64,7 @@ if(@$showDefaultAddButton) {
 		</td>
 		<td class="Center"></td>
 		<td class="Right Search"><!-- input type="text"/--></td>
-	</tr>
+	</tr -->
 	<tr>
 		<td  colspan="3">
 			<? if(!empty($data)): ?>

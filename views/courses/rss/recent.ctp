@@ -1,6 +1,12 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title><? __('Recently Published Courses') ?></title>
+    <title><? __('Recently Published Courses') ?> - <?
+if(empty($group)) {
+	 echo Configure::read('Site.name');
+} else {
+	echo $group['name'];
+}
+?></title>
     <link>http://lms/courses/recent.rss</link>
     <language>en-us</language>
     <pubDate><? echo date("D, j M Y H:i:s", gmmktime()) . ' GMT';?></pubDate>

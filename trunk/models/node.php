@@ -255,6 +255,7 @@ class Node extends AppModel {
 		foreach($node['Textarea'] as $textarea) {
 			$nodeItems[$textarea['order']] = $textarea;
 		}
+
 		foreach($node['Question'] as $question) {
 			$nodeItems[$question['order']] = $question;
 		}

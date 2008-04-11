@@ -1,6 +1,6 @@
 <?php
 class FacilitatedClassesController extends AppController {
-    var $uses = array('FacilitatedClass','Lesson','Course','Group');
+    var $uses = array('FacilitatedClass','Course','Group');
 	var $helpers = array('Html','Form','MyForm','Paginator','MyPaginator','Time','MyTime');
 	var $itemName = 'Class';
 	var $paginate = array('order' => 'alias');

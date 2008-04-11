@@ -12,8 +12,17 @@ class CoursesController extends AppController {
 	function delete() {
         parent::delete($this->viewVars['course']['id']);
 	}
+	
+	function recent() {
+        $this->Course->contain(array('Group' => array('web_path')));
+        $this->data = $this->Course->findall(null,null,'Course.created DESC',10);
+		
+		$this->RequestHandler->isRss();
+	}
 
 	function index() {
+		$this->RequestHandler->isRss();
+
 		if(isset($this->params['course'])) {
 	       	if(isset($this->passedArgs['file'])) {
 				$this->file();

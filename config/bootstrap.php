@@ -80,23 +80,25 @@ function text_direction() {
 
 // See https://trac.cakephp.org/ticket/3603
 function stringToSlug($string) {
+	$string = strip_tags($string);
+	$string = mb_strtolower($string, 'UTF-8');
+	$string = preg_replace('|-+|', '-', $string);
+	$string = preg_replace('/&.+?;/', '', $string); // kill entities
+	$string = preg_replace('/\s?\/\s?/u', '-', $string);
+	$string = preg_replace('/\s+/', '-', $string);
+	$string = trim($string, '-');
+	
 	//$string = low(trim(str_replace(':','',$string)));
 	//$string = @mb_convert_encoding($string, 'HTML-ENTITIES', 'utf-8');   
 
-	setlocale(LC_CTYPE, 'C');	
-	$string = low($string);
+	//setlocale(LC_CTYPE, 'C');
 
-	$unPretty = array('/\s?-\s?/u', '/\s?_\s?/u', '/\s?\/\s?/u', '/\s?\\\s?/u', '/\s/u', '/"/u', '/\'/u');
-	$pretty   = array('-', '-', '-', '-', '-', '', '');
-	
-	//$unPretty = array('/"/u', '/\'/u');
-	//$pretty   = array('', '');
-	
-	$string = preg_replace($unPretty, $pretty, $string);
-	
+	//$unPretty = array('/\s?-\s?/u', '/\s?_\s?/u', '/\s?\/\s?/u', '/\s?\\\s?/u', '/\s/u', '/"/u', '/\'/u');
+	//$pretty   = array('-', '-', '-', '-', '-', '', '');
+		
 	//$string = preg_replace(array('/[^\w\s]/', '/\\s+/') , array(' ', '-'), $string);
 	
-	return trim($string); // low(...)
+	return $string; // low(...)
 }
 
 function replaceFirst($search, $replace, $subject){

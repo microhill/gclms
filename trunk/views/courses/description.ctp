@@ -13,7 +13,7 @@ echo $this->renderElement('left_column'); ?>
 		<?= $this->renderElement('notifications'); ?>
 		<h1><?= $course['title'] ?></h1>
 		<? if($course['language'] != Configure::read('Config.language')): ?>
-			<p><?= implode(order(array(__('Language:',true), ' ', $languages[$course['language']]))) ?></p>
+			<!-- p><?= implode(order(array(__('Language:',true), ' ', $languages[$course['language']]))) ?></p -->
 		<? endif;
 		
 		if(empty($facilitated_class)) {

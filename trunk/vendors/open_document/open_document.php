@@ -430,7 +430,8 @@ class OpenDocument {
 		switch($family) {
 			case 'paragraph':
 				$propertiesElement = $node->ownerDocument->createElementNS(OpenDocument::NS_STYLE, 'paragraph-properties');
-				break;			
+				//style:writing-mode
+				break;
 			default:
 				$propertiesElement = $node->ownerDocument->createElementNS(OpenDocument::NS_STYLE, 'text-properties');
 				break;

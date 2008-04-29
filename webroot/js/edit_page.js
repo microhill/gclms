@@ -401,7 +401,7 @@ GCLMS.Triggers.update({
 
 		'.gclms-page-item' : {
 			':loaded': 	GCLMS.PagesController.configureMoveUpAndMoveDownButtons,
-			'textarea': GCLMS.PagesController.enableTinyMCE,
+			'textarea.gclms-tinymce-enabled': GCLMS.PagesController.enableTinyMCE,
 			'.gclms-move-down:click,.gclms-move-up:click': GCLMS.PagesController.moveItem,
 			'.gclms-insert-textarea:click': GCLMS.PagesController.insertTextareaBelowPageItem,
 			'.gclms-insert-question:click': GCLMS.PagesController.insertQuestionBelowPageItem,

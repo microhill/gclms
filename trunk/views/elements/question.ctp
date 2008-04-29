@@ -39,10 +39,11 @@ if(empty($question_id))
 				echo $form->input('Question.' . $question_id . '.title',array(
 					'label' => false,
 					'div' => false,
-					'size' => 40,
+					//'size' => 40,
+					'rows' => 2,
 					'value' => @$question['title'],
 					'name' => "data[Question][$question_id][title]",
-					'class' => 'gclms-question-title'
+					'class' => 'gclms-question-title gclms-tinymce-disabled'
 				));
 				?>
 				</td>

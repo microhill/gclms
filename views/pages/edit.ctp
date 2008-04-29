@@ -25,7 +25,7 @@ $javascript->link(array(
     </h1>
     <?
 	echo $form->create('Node', array(
-		'url' => $groupAndCoursePath . '/pages/save/' . $this->data['Node']['id'],
+		'url' => $groupAndCoursePath . '/pages/edit/' . $this->data['Node']['id'],
 		'gclms:no-empty-question-title-message' => __('Every question must have a title.',true)
 	));
 

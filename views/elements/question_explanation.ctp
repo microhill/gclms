@@ -6,5 +6,5 @@ echo $form->input('Question' . $question_id . 'explanation',array(
 	'div' => false,
 	'value' => @$question['explanation'],
 	'name' => "data[Question][$question_id][explanation]",
-	'class' => 'gclms-question-explanation'
+	'class' => 'gclms-question-explanation gclms-tinymce-enabled'
 ));

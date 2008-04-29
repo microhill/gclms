@@ -1,9 +1,9 @@
 <?
 class PagesController extends AppController {
     var $uses = array('Node','Question','Textarea');
-	var $helpers = array('Scripturizer','Glossary','Notebook','License','Form','MyForm','Javascript');
+	var $helpers = array('Scripturizer','Glossary','License','Form','MyForm','Javascript');
     var $itemName = 'Node';
-    var $components = array('Notifications');
+    var $components = array('Notifications','RequestHandler');
 
     function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
@@ -20,6 +20,7 @@ class PagesController extends AppController {
 			
 		$node['Node']['previous_page_id'] = $this->Node->findPreviousPageId($node);
 		$node['Node']['next_page_id'] = $this->Node->findNextPageId($node);
+		//pr($node['Node']['next_page_id']);
 		$this->set('node',$node);
 		
 		//$this->GlossaryTerm = ClassRegistry::getInstance('Model', 'GlossaryTerm');
@@ -43,6 +44,11 @@ class PagesController extends AppController {
     }
 
     function edit($id) {
+		if(!empty($this->data)) {
+			$this->save($id);
+			exit;
+		}
+		
 		$this->Node->contain(array('Textarea','Question' => 'Answer'));
 		$page = $this->Node->findById($id);
 		$this->data = $page;
@@ -150,7 +156,10 @@ class PagesController extends AppController {
 
     function delete($id) {
     	$this->Node->delete($id);
-    	exit;
+    	if(!$this->params['isAjax']) {
+    		$this->afterSave();
+    	}
+		exit;
     }
 
     function rename($id) {

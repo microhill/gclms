@@ -31,7 +31,8 @@ if(empty($textarea_id) && !empty($textarea['id']))
 						'rows' => 20,
 						'cols' => 80,
 						'value' => @$textarea['content'],
-						'div' => false
+						'div' => false,
+						'class' => 'gclms-tinymce-enabled'
 					));
 					?>
                 </td>

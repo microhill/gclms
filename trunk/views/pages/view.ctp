@@ -52,7 +52,7 @@ echo $this->renderElement('no_column_background');
 		foreach($nodeItems as $nodeItem) {
 			if(isset($nodeItem['content'])) {
 				$nodeItem['content'] = $scripturizer->linkify($nodeItem['content']);
-				$nodeItem['content'] = $notebook->linkify($nodeItem['content'],$classUri);
+				//$nodeItem['content'] = $notebook->linkify($nodeItem['content'],$classUri);
 				$nodeItem['content'] = $glossary->linkify($nodeItem['content'],$groupAndCoursePath . '/glossary',$glossary_terms);
 				echo $nodeItem['content'];
 			} else

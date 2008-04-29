@@ -78,6 +78,10 @@
 		.gclms-page-item td.gclms-column {
 			width: 50%;
 		}
+		
+		.gclms-page-item .gclms-tinymce-disabled {
+			border: none;
+		}
 
 .gclms-textarea td td {
 	background-color: inherit;

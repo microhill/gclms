@@ -82,11 +82,12 @@ function text_direction() {
 function stringToSlug($string) {
 	$string = strip_tags($string);
 	$string = mb_strtolower($string, 'UTF-8');
-	$string = preg_replace('|-+|', '-', $string);
+	$string = preg_replace('|-+:|', '-', $string);
 	$string = preg_replace('/&.+?;/', '', $string); // kill entities
 	$string = preg_replace('/\s?\/\s?/u', '-', $string);
 	$string = preg_replace('/\s+/', '-', $string);
-	$string = trim($string, '-');
+	$string = preg_replace('--', '-', $string);
+	$string = trim($string, ' -');
 	
 	//$string = low(trim(str_replace(':','',$string)));
 	//$string = @mb_convert_encoding($string, 'HTML-ENTITIES', 'utf-8');   

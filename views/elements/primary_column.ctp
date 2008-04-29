@@ -27,7 +27,7 @@
 	} if(!empty($course)) {
 
 	} else if(array_search($this->name,array(
-		'Groups','Configuration','Grading','Facilitators','Courses','Courses','FacilitatedClasses'
+		'Groups','Configuration','Grading','Facilitators','Courses','Courses','Classes'
 	)) !== false && empty($this->params['administration']) && @$group) {
 		echo $this->renderElement('group_menu');
 	} else if(!empty($this->params['administration'])) {

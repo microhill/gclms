@@ -4,14 +4,15 @@ uses('L10n');
 App::import('Vendor', 'browserdetection'.DS.'browserdetection');
 class AppController extends Controller {
     var $components = array('Breadcrumbs','Languages','RequestHandler','Notifications');
-    var $uses = array('User','Group','Course','GroupAdministrator','FacilitatedClass');
+    //var $uses = array(); //,
+	var $uses = array('Group','GroupAdministrator','Course','User');
 	var $paginateDefaults = array('limit' => 12);
 	var $helpers = array('Html','Form','Ajax','Asset');
 	var $css_for_layout = array();
 
     function beforeFilter() {
 		$this->L10n = new L10n();
-				
+
 		if(!$this->Session->check('Config.language')) {
 			$this->Session->write('Config.language','en');
        	}
@@ -57,7 +58,6 @@ class AppController extends Controller {
 
     function loadSessionVariables() {
        	// Group
-
        	if(isset($this->params['group'])) {
 			$this->Group->contain();
 			$group = $this->Group->find(array('Group.web_path' => $this->params['group']),array('id','name','web_path','external_web_address','logo','logo_updated','description','web_path','css'));

@@ -2,6 +2,11 @@
 class ExportController extends AppController {
     var $uses = array('Node','Textarea');
 
+	function beforeFilter() {
+		ob_start();
+		parent::beforeFilter();		
+	}
+
     function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
 		$this->Breadcrumbs->addCrumb('Export','/' . $this->viewVars['groupAndCoursePath'] . '/export');
@@ -111,7 +116,9 @@ class ExportController extends AppController {
 		foreach($nodeItems as $nodeItem) {
 			if(isset($nodeItem['content'])) {
 				$nodeItem['content'] = $this->prepareTextForODT($nodeItem['content']);
-
+				echo '.';
+				ob_get_contents();
+				ob_flush();
 				$this->openDocument->importHTML($nodeItem['content']);
 			} else {
 				$this->export_question($nodeItem);

@@ -27,7 +27,7 @@ class ExportController extends AppController {
 		$string = str_replace(array('<h5','/h5'),array('<strong','/strong'),$string);
 		$string = str_replace(array('<h6','/h6'),array('<em','/em'),$string);		
 
-		$string = strip_tags($string,'<i><em><strong><b><u><ul><ol><li><p><div><span><table><tbody><tr><th><td><img>');
+		$string = strip_tags($string,'<i><em><strong><b><u><ul><ol><li><p><div><span><table><tbody><tr><th><td><img><a>');
 		return $string;
 	}
 	

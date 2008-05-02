@@ -117,8 +117,8 @@ class ExportController extends AppController {
 			if(isset($nodeItem['content'])) {
 				$nodeItem['content'] = $this->prepareTextForODT($nodeItem['content']);
 				echo '.';
-				ob_get_contents();
-				ob_flush();
+				
+				
 				$this->openDocument->importHTML($nodeItem['content']);
 			} else {
 				$this->export_question($nodeItem);
@@ -159,20 +159,20 @@ class ExportController extends AppController {
 		// Node structure
 
 		echo '.';
-		ob_get_contents();
-		ob_flush();
+		
+		
 
 		$this->openDocument->appendTableOfContents();
 			
 		echo '.';
-		ob_get_contents();
-		ob_flush();
+		
+		
 			
 		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id'],array('Textarea','Question'=>'Answer'));
 
 		echo '.';
-		ob_get_contents();
-		ob_flush();
+		
+		
 
 		foreach($nodes as $node) {
 			$this->export_node_to_odt($node);

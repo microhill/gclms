@@ -179,7 +179,7 @@ class ExportController extends AppController {
 		echo '<br/>175.';
 		ob_flush();
 
-		$this->nodeTotal = count($nodes);
+		$this->nodeTotal = $this->Node->find('count',array('conditions' => array('Node.course_id' => $this->viewVars['course']['id'])));
 		echo '<br/>Total: ' . $this->nodeTotal . '<br/>';
 		$this->nodeIncrement = 0;
 

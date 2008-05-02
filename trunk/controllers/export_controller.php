@@ -157,10 +157,22 @@ class ExportController extends AppController {
 		// Table of contents		
 		
 		// Node structure
-			
+
+		echo '.';
+		ob_get_contents();
+		ob_flush();
+
 		$this->openDocument->appendTableOfContents();
 			
+		echo '.';
+		ob_get_contents();
+		ob_flush();
+			
 		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id'],array('Textarea','Question'=>'Answer'));
+
+		echo '.';
+		ob_get_contents();
+		ob_flush();
 
 		foreach($nodes as $node) {
 			$this->export_node_to_odt($node);

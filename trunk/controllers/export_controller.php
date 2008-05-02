@@ -113,7 +113,7 @@ class ExportController extends AppController {
 	private function export_node_to_odt($node,$level = 1) {
 		$this->nodeIncrement++;
 
-		echo round(($this->nodeIncrement / $this->nodeTotal),2) . ' ';
+		echo round(($this->nodeIncrement / $this->nodeTotal),2) . ' (' . $this->nodeIncrement . ') ';
 		ob_flush();
 		flush();
 
@@ -180,6 +180,7 @@ class ExportController extends AppController {
 		ob_flush();
 
 		$this->nodeTotal = count($nodes);
+		echo '<br/>Total: ' . $this->nodeTotal . '<br/>';
 		$this->nodeIncrement = 0;
 
 		foreach($nodes as $node) {

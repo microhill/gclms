@@ -37,7 +37,7 @@ Router::connectNamed(array('group','course','file','class'));
 
 //Router::parseExtensions('json');
 //Router::parseExtensions('css');
-Router::parseExtensions();
+Router::parseExtensions('rss');
 
 Router::connect('/selenium/results', array('controller' => 'selenium', 'action' => 'results'));
 Router::connect('/selenium/*', array('controller' => 'selenium', 'action' => 'display'));
@@ -71,15 +71,15 @@ if (file_exists(CONFIGS.'installed.txt')) {
 	
 	Router::connect('/:group/', array('controller' => 'groups','action' => 'show'));
 
-	Router::connect('/:group/(files|configuration|facilitators|facilitated_classes|courses)/:action/*', array(), array('controller' => 'files|configuration|facilitators|facilitated_classes|courses'));
+	Router::connect('/:group/(files|configuration|facilitators|classes|courses)/:action/*', array(), array('controller' => 'files|configuration|facilitators|classes|courses'));
 	Router::connect('/:group/:course', array('controller' => 'courses','action' => 'show'));
 
 	Router::connect('/:group/:course/configuration/delete',array('controller'=>'courses','action'=>'delete'));
 	Router::connect('/:group/:course/configuration',array('controller'=>'courses','action'=>'edit'));
 
-	Router::connect('/:group/:course/:class',array('controller' => 'class'),array('class' => '[0-9]+'));
-	Router::connect('/:group/:course/:class/:controller/:action/*',array(),array('class' => '[0-9]+'));
-	Router::connect('/:group/:course/:class/:controller/*',array(),array('class' => '[0-9]+'));
+	Router::connect('/:group/:course/:class',array('controller' => 'announcements'),array('class' => $UUID));
+	Router::connect('/:group/:course/:class/:controller/:action/*',array(),array('class' => $UUID));
+	Router::connect('/:group/:course/:class/:controller/*',array(),array('class' => $UUID));
 			
 	Router::connect('/:group/:course/:controller');
 	Router::connect('/:group/:course/files/:action',array('controller'=>'files'),array('action' => 'media|images|thumbnail'));

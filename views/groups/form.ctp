@@ -61,13 +61,6 @@ echo $form->input('description',array(
 
 
 if($this->action != 'register') {
-	echo $form->input('css',array(
-		'rows' => 12,
-		'cols' => 100,
-		'label' => __('Custom CSS',true),
-		'between' => '<br/>'
-	));
-
 	echo $form->input('grade_display',array(
 		'label' =>  __('Final Grade Display', true),
 		'between' => '<br/>',

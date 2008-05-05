@@ -60,7 +60,7 @@ class AppController extends Controller {
        	// Group
        	if(isset($this->params['group'])) {
 			$this->Group->contain();
-			$group = $this->Group->find(array('Group.web_path' => $this->params['group']),array('id','name','web_path','external_web_address','logo','logo_updated','description','web_path','css'));
+			$group = $this->Group->find(array('Group.web_path' => $this->params['group']),array('id','name','web_path','external_web_address','logo','logo_updated','description','web_path'));
 			$this->set('group',$group['Group']);
        	}
 
@@ -72,14 +72,14 @@ class AppController extends Controller {
 			$this->set('course',$course['Course']);
        	}
 		
-		// Facilitated Class
+		// Class
        	if(!empty($this->params['class'])) {
-       		$this->FacilitatedClass->contain();
-       		$facilitated_class = $this->FacilitatedClass->find($this->params['class']);
-			$this->Session->write('FacilitatedClass.' . $this->params['class'],$facilitated_class['FacilitatedClass']);
+       		$this->VirtualClass->contain();
+       		$facilitated_class = $this->VirtualClass->find($this->params['class']);
+			$this->Session->write('VirtualClass.' . $this->params['class'],$facilitated_class['VirtualClass']);
        	}
-       	if(isset($this->params['class'])) { // && $this->Session->check('FacilitatedClass.' . $this->params['class'])
-			$this->set('facilitated_class', $this->Session->read('FacilitatedClass.' . $this->params['class']));
+       	if(isset($this->params['class'])) { // && $this->Session->check('VirtualClass.' . $this->params['class'])
+			$this->set('facilitated_class', $this->Session->read('VirtualClass.' . $this->params['class']));
        	}
 
     	$this->set('groupWebPath', isset($this->viewVars['group']['web_path']) ? '/' . $this->viewVars['group']['web_path'] : null);

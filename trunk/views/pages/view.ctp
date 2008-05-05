@@ -1,6 +1,6 @@
 <?
 $html->css('page', null, null, false);
-$html->css('/' . $group['web_path'] . '/files/css', null, null, false);
+$html->css($groupAndCoursePath . '/files/css/' . date('Y-m-d'), null, null, false);
 //$html->css($groupAndCoursePath . '/files/css', null, null, false);
 
 $javascript->link(array(

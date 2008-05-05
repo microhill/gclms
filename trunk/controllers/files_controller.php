@@ -202,11 +202,13 @@ class FilesController extends AppController {
 	}
 
 	function file() {
-		$file = low($this->params['file']);
+		$path_parts = pathinfo($this->params['url']['url']);
+		$file = low($path_parts['basename']);
 		
 		$file = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'] . DS . $file;
 
 		if (!file_exists($file)) {
+			die(__('File not found',true));
 			exit;
 		}
 
@@ -217,6 +219,7 @@ class FilesController extends AppController {
 		$mime = new MimetypeHandler();
 		$content_type = $mime->getMimetype($file);
 
+	
 		if(eregi('image',$content_type) === false && eregi('text',$content_type) === false) {
 			header('Content-Disposition: attachment; filename="' . $basename . '"');
 		} else {

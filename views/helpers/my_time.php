@@ -1,4 +1,6 @@
 <?
+//App::import('Helper','Time');
+
 class MyTimeHelper extends TimeHelper {	
 	function niceShortDate($date_string = null) {
 		$date = $date_string ? $this->fromString($date_string) : time();

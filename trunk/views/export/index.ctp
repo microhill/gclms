@@ -12,8 +12,13 @@ echo $this->renderElement('left_column'); ?>
                 <div class="gclms-export-title"><? __('OpenDocument Text (.odt)') ?></div>
                 <div>This can be opened using the free <a href="http://www.openoffice.org/" />OpenOffice.org</a> office suite.</div>
 				<div>
-					<? if(file_exists(ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . $course['id'] . '.odt')): ?>
-						<a href="<?= $groupAndCoursePath ?>/export/download_odt" class="gclms-download">Download</a>
+					<?
+					$odt_file = ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . $course['id'] . '.odt';
+					
+					if(file_exists($odt_file)): ?>
+						<a href="<?= $groupAndCoursePath ?>/export/download_odt" class="gclms-download">
+							Download
+							(updated <?= date('F j, Y', filemtime($odt_file)) ?>)</a>
 					<? endif; ?>
 					<a href="<?= $groupAndCoursePath ?>/export/generate_odt" class="gclms-generate">Generate</a>
 				</div>

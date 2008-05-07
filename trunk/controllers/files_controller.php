@@ -1,4 +1,4 @@
-<?php
+<?
 class FilesController extends AppController {
     var $uses = array('User','Group','Course');
 	var $components = array('Notifications');
@@ -254,11 +254,7 @@ class FilesController extends AppController {
 	}
 	
 	function css() {
-		if(empty($this->viewVars['course'])) {
-			$this->group_css();
-		} else {
-			$this->course_css();
-		}
+		$this->course_css();
 	}
 
 	function group_css() {

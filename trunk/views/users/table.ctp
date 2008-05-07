@@ -22,4 +22,3 @@ echo $this->renderElement('recordset',array(
 	'heading' => 'Users',
 	'data' => $data
 ));
-?>

@@ -337,8 +337,10 @@ div.gclms-notifications div {
 		font-size: .85em;
 	}
 
-.gclms-error-message {
-	color: red;	
+form .error-message {
+	color: red;
+	margin-top: 2px;
+	font-size: .98em;	
 }
 
 a.gclms-group-web-address {
@@ -412,12 +414,12 @@ a.gclms-group-web-address {
 		background-image: url(/img/profile-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-class-discussion a {
-		background-image: url(/img/permanent/icons/2007-09-13/discussion-32.png);
+	.gclms-left-column-menu .gclms-forums a {
+		background-image: url(/img/icons/oxygen_refit/32x32/actions/stock_contact-list.png);
 	}
 
-	.gclms-left-column-menu .gclms-live-chat a {
-		background-image: url(/img/permanent/icons/2007-09-13/chat-32.png);
+	.gclms-left-column-menu .gclms-chat a {
+		background-image: url(/img/icons/oxygen_refit/32x32/apps/package_games_sports.png);
 	}
 
 	.gclms-left-column-menu .gclms-grades a {

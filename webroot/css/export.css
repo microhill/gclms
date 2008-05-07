@@ -7,17 +7,20 @@ ul.gclms-export-menu {
 
 	ul.gclms-export-menu li {
 		margin-top: 3px;
-		margin-bottom: 8px;		
+		margin-bottom: 14px;		
 		min-height: 32px;
 		background-repeat: no-repeat;
 		padding-left: 36px;
-		font-size: 1.3em;
 		white-space: nowrap;
 		background-position: top left;
 	}
 	
-		ul.gclms-export-menu li span {
-			font-size: .8em;
+		ul.gclms-export-menu li .gclms-export-title {
+			font-size: 1.3em;
+		}
+	
+		ul.gclms-export-menu li div {
+			margin-bottom: 3px;
 		}
 		
 		ul.gclms-export-menu li a {
@@ -28,6 +31,27 @@ ul.gclms-export-menu {
 		background-image: url(/img/icons/oxygen/32x32/mimetypes/x-office-document.png);
 	}
 	
+	ul.gclms-export-menu li.gclms-archive {
+		background-image: url(/img/icons/oxygen_refit/32x32/apps/file-roller.png);
+	}
+	
 	ul.gclms-export-menu li.gclms-pdf {
 		background-image: url(/img/icons/oxygen/32x32/mimetypes/application-pdf.png);
 	}
+	
+	ul.gclms-export-menu a.gclms-download,
+	ul.gclms-export-menu a.gclms-generate {
+		padding-left: 20px;
+		background-repeat: no-repeat;
+		background-position: center left;
+		margin-right: 8px;
+	}
+	
+	ul.gclms-export-menu a.gclms-download {
+		background-image: url(/img/icons/oxygen_refit/16x16/apps/gwget.png);
+	}
+	
+	ul.gclms-export-menu a.gclms-generate {
+		background-image: url(/img/icons/oxygen_refit/16x16/actions/view-refresh.png);
+	}
+	

@@ -48,7 +48,7 @@ class OpenDocument {
      * @var bool
      * @access private
      */
-    private $create = false;
+    var $create = false;
 
     /**
      * DOMDocument for content file
@@ -226,44 +226,45 @@ class OpenDocument {
      *               to create new document pass nothing or empty string
      * @throws OpenDocument_Exception
      */
-    public function __construct($filename = '') {
-        if (!strlen($filename)) {
-            $filename = dirname(__FILE__) . DS . 'template.odt';
-            $this->create = true;
+    public function __construct($filename = null) {
+        if (!empty($filename)) {
+			$this->template = $filename;
+        } else {
+        	$this->create = true;
+			$this->template = dirname(__FILE__) . DS . 'template.odt';  
         }
 
-        if (!is_readable($filename)) {
+        if (!is_readable($this->template)) {
             die('File not readable');
         }
-        $this->path = $filename;
 
         //get mimetype
-        if (!$this->mimetype = $this->ZipRead($filename, self::FILE_MIMETYPE))
+        if (!$this->mimetype = $this->ZipRead($this->template, self::FILE_MIMETYPE))
 			die('Different mimetype');
 
         //get content
         $this->contentDOM = new DOMDocument;
-        $this->contentDOM->loadXML($this->ZipRead($filename, self::FILE_CONTENT));
+        $this->contentDOM->loadXML($this->ZipRead($this->template, self::FILE_CONTENT));
         $this->contentXPath = new DOMXPath($this->contentDOM);
 
         //get meta data
         $this->metaDOM = new DOMDocument();
-        $this->metaDOM->loadXML($this->ZipRead($filename, self::FILE_META));
+        $this->metaDOM->loadXML($this->ZipRead($this->template, self::FILE_META));
         $this->metaXPath = new DOMXPath($this->metaDOM);
 
         //get settings
         $this->settingsDOM = new DOMDocument();
-        $this->settingsDOM->loadXML($this->ZipRead($filename, self::FILE_SETTINGS));
+        $this->settingsDOM->loadXML($this->ZipRead($this->template, self::FILE_SETTINGS));
         $this->settingsXPath = new DOMXPath($this->settingsDOM);
 
         //get styles
         $this->stylesDOM = new DOMDocument();
-        $this->stylesDOM->loadXML($this->ZipRead($filename, self::FILE_STYLES));
+        $this->stylesDOM->loadXML($this->ZipRead($this->template, self::FILE_STYLES));
         $this->stylesXPath = new DOMXPath($this->stylesDOM);
 
         //get manifest information
         $this->manifestDOM = new DOMDocument();
-        $this->manifestDOM->loadXML($this->ZipRead($filename, self::FILE_MANIFEST));
+        $this->manifestDOM->loadXML($this->ZipRead($this->template, self::FILE_MANIFEST));
         $this->manifestXPath = new DOMXPath($this->manifestDOM);
         
         //set cursor
@@ -274,7 +275,8 @@ class OpenDocument {
 
     	$this->contentXPath->registerNamespace('text', self::NS_TEXT);
 
-		$this->addToManifest('Pictures/','');
+		//if($this->create)
+			$this->addToManifest('Pictures/','');
     }
 	
 	function addToManifest($fullPath,$mediaType = '') {
@@ -708,28 +710,26 @@ class OpenDocument {
 	}
 	
     public function save($filename = '') {
-		if (strlen($filename)) {
-            //$this->path = $filename;
-        }
+		if($this->create) {
+	        //write mimetype
+	        if (!$this->zipWrite($filename, self::FILE_MIMETYPE, $this->mimetype)) {
+	            die('Error mimetype');
+				throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_MIMETYPE_ERR);
+	        }			
 
-        //write mimetype
-        if (!$this->zipWrite($filename, self::FILE_MIMETYPE, $this->mimetype)) {
-            die('Error mimetype');
-			throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_MIMETYPE_ERR);
-        }
+	        //write meta
+	        $xml = str_replace("'", '&apos;', $this->metaDOM->saveXML());
+	        if (!$this->zipWrite($filename, self::FILE_META, $xml)) {
+	            die('Error');
+	            throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_META_ERR);
+	        }
+		}
 		
 		//write content
         $xml = str_replace("'", '&apos;', $this->contentDOM->saveXML());
         if (!$this->zipWrite($filename, self::FILE_CONTENT, $xml)) {
             die('Error content');
             throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_CONTENT_ERR);
-        }
-
-        //write meta
-        $xml = str_replace("'", '&apos;', $this->metaDOM->saveXML());
-        if (!$this->zipWrite($filename, self::FILE_META, $xml)) {
-            die('Error');
-            throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_META_ERR);
         }
 
         //write settings
@@ -759,8 +759,10 @@ class OpenDocument {
 			'Basic/Standard/ToC.xml'
 		);
 		
-		foreach($filesToCopyFromTemplate as $file) {
-			$this->zipWrite($filename, $file, $this->ZipRead($this->path, $file));			
+		if($this->create) {
+			foreach($filesToCopyFromTemplate as $file) {
+				$this->zipWrite($filename, $file, $this->ZipRead($this->template, $file));			
+			}
 		}
     }
 	

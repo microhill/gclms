@@ -9,11 +9,22 @@ echo $this->renderElement('left_column'); ?>
         </h1>
         <ul class="gclms-export-menu">
             <li class="gclms-odt">
-                <a href="<?= $groupAndCoursePath ?>/export/odt">
-                    <? __('OpenDocument Text (.odt)') ?>
-                </a>
-                <br/>
-                <span>This can be opened using the free <a href="http://www.openoffice.org/" />OpenOffice.org</a> office suite or a free <a href="http://downloads.sourceforge.net/odf-converter/OdfAddInForWordSetup-en-1.1.exe?modtime=1196683557&big_mirror=0">plugin</a> for Microsoft Office.</span>
+                <div class="gclms-export-title"><? __('OpenDocument Text (.odt)') ?></div>
+                <div>This can be opened using the free <a href="http://www.openoffice.org/" />OpenOffice.org</a> office suite.</div>
+				<div>
+					<? if(file_exists(ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . $course['id'] . '.odt')): ?>
+						<a href="<?= $groupAndCoursePath ?>/export/download_odt" class="gclms-download">Download</a>
+					<? endif; ?>
+					<a href="<?= $groupAndCoursePath ?>/export/generate_odt" class="gclms-generate">Generate</a>
+				</div>
+            </li>
+            <li class="gclms-archive">
+                <div class="gclms-export-title"><? __('Archive (.zip)') ?></div>
+                <div>Useful for backup or for distributing the course on a CD or flash drive.</div>
+				<div>
+					<a href="<?= $groupAndCoursePath ?>/export/archive" class="gclms-download">Download</a>
+					<a href="<?= $groupAndCoursePath ?>/export/generate_archive" class="gclms-generate">Generate</a>
+				</div>
             </li>
             <!-- li class="gclms-pdf">
                 <a href="<?= $groupAndCoursePath ?>/export/odt">

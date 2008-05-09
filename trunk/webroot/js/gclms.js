@@ -292,7 +292,7 @@ GCLMS.tinyMCEConfig = {
 	skin: 'gclms',
 	width: '100%',
 	height: '250px',
-	relative_urls : false,
+	relative_urls : true,
     editor_selector : 'wysiwyg',
 	theme_advanced_buttons1 : 'bold,italic,underline,separator,strikethrough,outdent,indent,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,forecolor,backcolor,formatselect,styleselect,link,unlink,image,media,cleanup,removeformat,pastetext,pasteword,code,notebook', //,notebook,sidebartext
 	theme_advanced_buttons2 : '',

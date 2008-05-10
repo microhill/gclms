@@ -3,7 +3,7 @@ echo $this->renderElement('no_column_background');
 ?>
 <div class="gclms-content">
 	<?= $this->renderElement('notifications'); ?>
-	<h1><?= __('Your Profile') ?></h1>    
+	<h1><? __('Your Profile') ?></h1>    
 	<?
 	echo $form->create('User', array('url' => '/profile'));
 

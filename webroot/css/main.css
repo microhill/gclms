@@ -154,11 +154,11 @@ legend {
 	}
 	
 		.gclms-userbar a.gclms-user-logout {
-			background-image: url(/img/icons/oxygen_refit/16x16/apps/gnome-shutdown.png);
+			background-image: url(../img/icons/oxygen_refit/16x16/apps/gnome-shutdown.png);
 		}
 		
 		.gclms-userbar a.gclms-user-alias {
-			background-image: url(/img/icons/oxygen/16x16/apps/users.png);
+			background-image: url(../img/icons/oxygen/16x16/apps/users.png);
 		}
 
 	.gclms-userbar a:hover {

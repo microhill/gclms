@@ -170,7 +170,7 @@ legend {
 	font-size: 1.15em;
 	color: white;
 	/* border-bottom: 1px solid #ddd; */
-	background-image: url(/img/permanent/header_background2007-09-13.png);
+	background-image: url(../img/permanent/header_background2007-09-13.png);
 }
 
 	.gclms-breadcrumbs a {
@@ -272,26 +272,26 @@ div.gclms-notifications div {
 	div.gclms-notifications div.gclms-success {
 		background-color: #E6FFE6;
 		border: 1px solid #006600;
-		background-image: url(/img/icons/oxygen/16x16/actions/dialog-ok.png);
+		background-image: url(../img/icons/oxygen/16x16/actions/dialog-ok.png);
 
 	}
 
 	div.gclms-notifications div.gclms-error {
 		background-color: #FFD9D9;
 		border: 1px solid #FF0000;
-		background-image: url(/img/icons/oxygen/16x16/actions/dialog-error.png);
+		background-image: url(../img/icons/oxygen/16x16/actions/dialog-error.png);
 	}
 	
 	div.gclms-notifications div.gclms-warning {
 		background-color: #FFD9D9;
 		border: 1px solid #FF0000;
-		background-image: url(/img/icons/oxygen/16x16/actions/dialog-warning.png);
+		background-image: url(../img/icons/oxygen/16x16/actions/dialog-warning.png);
 	}
 	
 	div.gclms-notifications div.gclms-information {
 		background-color: #FFD9D9;
 		border: 1px solid #FF0000;
-		background-image: url(/img/icons/oxygen/16x16/actions/dialog-infromation.png);
+		background-image: url(../img/icons/oxygen/16x16/actions/dialog-infromation.png);
 	}
 
 .gclms-login {}
@@ -328,7 +328,7 @@ div.gclms-notifications div {
 
 	.gclms-login input.gclms-openid {
 		background-repeat: no-repeat;
-		background-image: url(/img/openid-22.png);
+		background-image: url(../img/openid-22.png);
 		padding-left: 30px;
 		background-position: 3px 50%;
 	}
@@ -346,14 +346,14 @@ form .error-message {
 a.gclms-group-web-address {
 	padding-left: 18px;	
 	background-repeat: no-repeat;
-	background-image: url(/img/icons/oxygen/16x16/emblems/emblem-web.png);
+	background-image: url(../img/icons/oxygen/16x16/emblems/emblem-web.png);
 	background-position: center left;
 }
 
 .gclms-screencast-link {
 	font-size: 1.12em;
 	background-repeat: no-repeat;
-	background-image: url(/img/icons/oxygen/16x16/devices/video-display.png);
+	background-image: url(../img/icons/oxygen/16x16/devices/video-display.png);
 	background-position: 0 .235em;
 	padding-left: 20px;
 	display: block;
@@ -376,7 +376,7 @@ a.gclms-group-web-address {
 		.gclms-left-column-menu li.gclms-active,
 		.gclms-left-column-menu li:hover {
 			background-color: #D3EDFA;
-			background-image: url(/img/permanent/tabular_row_background2007-09-14.png);
+			background-image: url(../img/permanent/tabular_row_background2007-09-14.png);
 			border: 1px solid #B2CED9;
 			background-repeat: repeat-x;
 		}
@@ -395,12 +395,12 @@ a.gclms-group-web-address {
 		}
 
 	.gclms-left-column-menu .gclms-home a {
-		background-image: url(/img/icons/oxygen_refit/32x32/actions/go-home.png);
+		background-image: url(../img/icons/oxygen_refit/32x32/actions/go-home.png);
 	}
 	
 	.gclms-left-column-menu .gclms-course-content a,
 	.gclms-left-column-menu .course-content-courses a {
-		background-image: url(/img/lessons-32.png);
+		background-image: url(../img/lessons-32.png);
 	}
 
 /*
@@ -411,152 +411,152 @@ a.gclms-group-web-address {
 */
 
 	.gclms-left-column-menu .gclms-profile a {
-		background-image: url(/img/profile-32.png);
+		background-image: url(../img/profile-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-forums a {
-		background-image: url(/img/icons/oxygen_refit/32x32/actions/stock_contact-list.png);
+		background-image: url(../img/icons/oxygen_refit/32x32/actions/stock_contact-list.png);
 	}
 
 	.gclms-left-column-menu .gclms-chat a {
-		background-image: url(/img/icons/oxygen_refit/32x32/apps/package_games_sports.png);
+		background-image: url(../img/icons/oxygen_refit/32x32/apps/package_games_sports.png);
 	}
 
 	.gclms-left-column-menu .gclms-grades a {
-		background-image: url(/img/permanent/icons/2007-09-13/grades-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/grades-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-nodes a,
 	.gclms-left-column-menu .gclms-courses a {
-		background-image: url(/img/lessons-32.png);
+		background-image: url(../img/lessons-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-notebook a {
-		background-image: url(/img/notebook-32.png);
+		background-image: url(../img/notebook-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-users a {
-		background-image: url(/img/permanent/icons/2007-09-13/users-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/users-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-groups a {
-		background-image: url(/img/permanent/icons/2007-09-13/groups-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/groups-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-study-programs a {
-		background-image: url(/img/permanent/icons/2007-09-13/programs-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/programs-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-configuration a {
-		background-image: url(/img/preferences-32.png);
+		background-image: url(../img/preferences-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-administration a {
-		background-image: url(/img/permanent/icons/2007-09-13/administration-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/administration-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-profile a {
-		background-image: url(/img/profile-32.png);
+		background-image: url(../img/profile-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-group-administrators a {
-		background-image: url(/img/permanent/icons/2007-09-13/group_administrators-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/group_administrators-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-database a {
-		background-image: url(/img/permanent/icons/2007-09-13/database-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/database-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-tables a {
-		background-image: url(/img/permanent/icons/2007-09-13/tables-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/tables-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-first-user a {
-		background-image: url(/img/permanent/icons/2007-09-13/profile-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/profile-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-facilitators a {
-		background-image: url(/img/permanent/icons/2007-09-13/users-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/users-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-courses a {
-		background-image: url(/img/lessons-32.png);
+		background-image: url(../img/lessons-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-grading a {
-		background-image: url(/img/permanent/icons/2007-09-13/grades-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/grades-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-files a {
-		background-image: url(/img/folder-32.png);
+		background-image: url(../img/folder-32.png);
 	}
 	
 	.gclms-left-column-menu .gclms-add a {
-		background-image: url(/img/add-32.png);
+		background-image: url(../img/add-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-certificates a {
-		background-image: url(/img/permanent/icons/2007-09-13/certificates-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/certificates-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-glossary a {
-		background-image: url(/img/glossary-32.png);
+		background-image: url(../img/glossary-32.png);
 	}
 	
 	.gclms-left-column-menu .gclms-export a {
-		background-image: url(/img/icons/oxygen/32x32/actions/file-export.png);
+		background-image: url(../img/icons/oxygen/32x32/actions/file-export.png);
 	}
 
 	.gclms-left-column-menu .gclms-books a {
-		background-image: url(/img/book-32.png);
+		background-image: url(../img/book-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-news a {
-		background-image: url(/img/permanent/icons/2007-09-13/news-32.png);
+		background-image: url(../img/permanent/icons/2007-09-13/news-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-register a {
-		background-image: url(/img/register-32.png);
+		background-image: url(../img/register-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-register a {
-		background-image: url(/img/register-32.png);
+		background-image: url(../img/register-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-articles a {
-		background-image: url(/img/articles-32.png);
+		background-image: url(../img/articles-32.png);
 	}
 
 	.gclms-left-column-menu .gclms-plugins a {
-		background-image: url(/img/icons/oxygen/32x32/emblems/emblem-system.png);
+		background-image: url(../img/icons/oxygen/32x32/emblems/emblem-system.png);
 	}
 
 	.x-panel img.gclms-notebook {
-		background-image: url(/img/notebook-22.png);
+		background-image: url(../img/notebook-22.png);
 	}
 
 	.x-panel img.gclms-chat {
-		background-image: url(/img/chat-22.png);
+		background-image: url(../img/chat-22.png);
 	}
 
 	.x-panel img.gclms-navigation {
-		background-image: url(/img/navigation-22.png);
+		background-image: url(../img/navigation-22.png);
 	}
 
 	.x-panel img.gclms-glossary {
-		background-image: url(/img/glossary-22.png);
+		background-image: url(../img/glossary-22.png);
 	}
 
 	.x-panel img.gclms-books {
-		background-image: url(/img/books-22.png);
+		background-image: url(../img/books-22.png);
 	}
 
 	.x-panel img.gclms-bible {
-		background-image: url(/img/bible-22.png);
+		background-image: url(../img/bible-22.png);
 	}
 
 	.x-panel img.gclms-articles {
-		background-image: url(/img/articles-22.png);
+		background-image: url(../img/articles-22.png);
 	}
 	
 .gclms-popup-overlay {
@@ -567,7 +567,7 @@ a.gclms-group-web-address {
      height: 100%;
      text-align: center;
      z-index: 1000;
-     background-image: url(/img/popup-overlay.png);
+     background-image: url(../img/popup-overlay.png);
 }
 
 	.gclms-popup-dialog {
@@ -601,7 +601,7 @@ a.gclms-group-web-address {
 			color: white;
 			border: 1px solid #006633;
 			margin-right: 4px;
-			background-image: url(/img/popup-dialog-ok-background.png);
+			background-image: url(../img/popup-dialog-ok-background.png);
 			cursor: pointer;
 		}
 
@@ -610,7 +610,7 @@ a.gclms-group-web-address {
 			color: white;
 			border: 1px solid #9D0000;
 			margin-left: 4px;
-			background-image: url(/img/popup-dialog-cancel-background.png);
+			background-image: url(../img/popup-dialog-cancel-background.png);
 			cursor: pointer;
 		}
 
@@ -639,7 +639,7 @@ a.gclms-group-web-address {
 		background-color: #EFEFDE;
 		font-weight: normal;
 		margin: 0;
-		background-image: url(/img/permanent/tabular_header_background2007-09-14.png);
+		background-image: url(../img/permanent/tabular_header_background2007-09-14.png);
 	}
 
 		.gclms-tabular th a {
@@ -648,7 +648,7 @@ a.gclms-group-web-address {
 		}
 	
 .gclms-records .gclms-tabular th:hover {
-	background-image: url(/img/permanent/tabular_header_background-hover2007-09-14.png);
+	background-image: url(../img/permanent/tabular_header_background-hover2007-09-14.png);
 	/* border-bottom: 1px solid red; */
 	cursor: pointer;
 }
@@ -683,7 +683,7 @@ a.gclms-group-web-address {
 
 .gclms-records .gclms-recordset tr:hover,
 .gclms-tabular .gclms-hover {
-	background-image: url(/img/permanent/tabular_row_background2007-09-14.png);
+	background-image: url(../img/permanent/tabular_row_background2007-09-14.png);
 	cursor: pointer;
 }
 
@@ -729,14 +729,14 @@ td.gclms-az {
 }
 
 .gclms-tabular .gclms-headers .gclms-sort-asc {
-	background-image: url(/img/arrow-down.gif);
+	background-image: url(../img/arrow-down.gif);
 	background-position: center right;
 	background-repeat: no-repeat;
 	padding-right: 12px;
 }
 
 .gclms-tabular .gclms-headers .gclms-sort-desc {
-	background-image: url(/img/arrow-up.gif);
+	background-image: url(../img/arrow-up.gif);
 	background-position: center right;
 	background-repeat: no-repeat;
 	padding-right: 12px;
@@ -772,7 +772,7 @@ td.gclms-az {
 	}
 
 .gclms-pagination .gclms-right a {
-	background-image: url(/img/permanent/icons/2007-09-13/forward-16.png);
+	background-image: url(../img/permanent/icons/2007-09-13/forward-16.png);
 	background-position: center right;
 	background-repeat: no-repeat;
 	padding-right: 22px;
@@ -781,7 +781,7 @@ td.gclms-az {
 }
 
 .gclms-pagination .gclms-left a {
-	background-image: url(/img/permanent/icons/2007-09-13/back-16.png);
+	background-image: url(../img/permanent/icons/2007-09-13/back-16.png);
 	background-position: center left;
 	background-repeat: no-repeat;
 	padding-left: 22px;
@@ -804,7 +804,7 @@ td.gclms-az {
 		text-align: right;
 		vertical-align: top;
 		margin: 0;
-		background-image: url(/img/tabular_form_background.png);
+		background-image: url(../img/tabular_form_background.png);
 		background-repeat: repeat-x;
 	}
 	
@@ -856,7 +856,7 @@ img.gclms-tooltip-button {
 	border: 1px solid #F2F200;
 	background-color: #FFFFB9;
 	padding: 8px;
-	background-image: url(/img/originals/popup-gradient.png);
+	background-image: url(../img/originals/popup-gradient.png);
 	margin: 1px;
 }
 
@@ -900,12 +900,12 @@ img.gclms-tooltip-button {
 
 	.gclms-panel .gclms-top {
 		background-repeat: repeat-x;
-		background-image: url(/img/panel-top.png);
+		background-image: url(../img/panel-top.png);
 	}
 
 	.gclms-panel .gclms-top-left {
 		background-repeat: no-repeat;
-		background-image: url(/img/panel-top-left.png);
+		background-image: url(../img/panel-top-left.png);
 		cursor: pointer;
 		background-position: top left;		
 	}
@@ -913,7 +913,7 @@ img.gclms-tooltip-button {
 	.gclms-panel .gclms-top-right {
 		background-position: top right;	
 		background-repeat: no-repeat;
-		background-image: url(/img/panel-top-right.png);
+		background-image: url(../img/panel-top-right.png);
 		padding-left: 8px;
 		padding-right: 8px;
 		padding-top: 6px;
@@ -930,19 +930,19 @@ img.gclms-tooltip-button {
 	}
 
 	.gclms-panel .gclms-up {
-		background-image: url(/img/panel-button-up.png);
+		background-image: url(../img/panel-button-up.png);
 	}
 
 	.gclms-top-right:hover .gclms-up {
-		background-image: url(/img/panel-button-up-hover.png);
+		background-image: url(../img/panel-button-up-hover.png);
 	}
 
 	.gclms-panel .gclms-down {
-		background-image: url(/img/panel-button-down.png);
+		background-image: url(../img/panel-button-down.png);
 	}
 
 	.gclms-top-right:hover .gclms-down {
-		background-image: url(/img/panel-button-down-hover.png);
+		background-image: url(../img/panel-button-down-hover.png);
 	}
 
 	.gclms-panel .gclms-panel-content {
@@ -977,11 +977,11 @@ img.gclms-tooltip-button {
 				padding: 8px;
 				margin: 0;
 				background-repeat: no-repeat;
-				background-image: url(/img/panel-arrow.png);
+				background-image: url(../img/panel-arrow.png);
 			}
 
 			.gclms-panel .gclms-unbulleted-list li:hover {
-				background-image: url(/img/permanent/tabular_row_background2007-09-14.png);
+				background-image: url(../img/permanent/tabular_row_background2007-09-14.png);
 				background-color: #eaf5fb;
 				border: 1px solid #B2CED9;
 			}
@@ -992,7 +992,7 @@ img.gclms-tooltip-button {
 
 			.gclms-panel .gclms-unbulleted-list li:hover a {
 				text-decoration: none;
-				background-image: url(/img/panel-arrow-hover.png);
+				background-image: url(../img/panel-arrow-hover.png);
 			}
 
 /*
@@ -1012,11 +1012,11 @@ img.gclms-tooltip-button {
 }
 
 .gclms-panel .gclms-iconified li.itunes a {
-	background-image: url(/img/itunes-16.png);	
+	background-image: url(../img/itunes-16.png);	
 }
 
 .gclms-panel .gclms-iconified li.rss a {
-	background-image: url(/img/feed-16.png);	
+	background-image: url(../img/feed-16.png);	
 }
 */
 
@@ -1035,19 +1035,19 @@ img.gclms-tooltip-button {
 	}
 	
 	.gclms-expandable-list li.gclms-collapsed > img.gclms-expand-button {
-		background-image: url(/img/tree/collapsed.png);
+		background-image: url(../img/tree/collapsed.png);
 	}
 		
 	.gclms-expandable-list li.gclms-collapsed > img.gclms-expand-button:hover {
-		background-image: url(/img/tree/collapsed-hover.png);
+		background-image: url(../img/tree/collapsed-hover.png);
 	}
 	
 	.gclms-expandable-list li.gclms-expanded > img.gclms-expand-button {
-		background-image: url(/img/tree/expanded.png);
+		background-image: url(../img/tree/expanded.png);
 	}
 	
 	.gclms-expandable-list li.gclms-expanded > img.gclms-expand-button:hover {
-		background-image: url(/img/tree/expanded-hover.png);
+		background-image: url(../img/tree/expanded-hover.png);
 	}
 	
 		.gclms-expandable-list li.gclms-expanded > ul > li {
@@ -1090,7 +1090,7 @@ img.gclms-tooltip-button {
 
 	#gclms-menubars-floater.gclms-floating {
 		/*
-		background-image: url(/img/menubars-background.png);
+		background-image: url(../img/menubars-background.png);
 		background-position-y: bottom;
 		padding-bottom: 14px;
 		*/
@@ -1137,35 +1137,35 @@ img.gclms-tooltip-button {
 	}
 	
 	.gclms-menubar button.gclms-add {
-		background-image: url(/img/icons/add-16.png);
+		background-image: url(../img/icons/add-16.png);
 	}
 
 	.gclms-menubar button.gclms-delete {
-		background-image: url(/img/icons/oxygen/16x16/actions/edit-delete.png);
+		background-image: url(../img/icons/oxygen/16x16/actions/edit-delete.png);
 	}
 	
 	.gclms-menubar button.gclms-increase-indent {
-		background-image: url(/img/icons/oxygen/16x16/actions/format-indent-more.png);
+		background-image: url(../img/icons/oxygen/16x16/actions/format-indent-more.png);
 	}
 	
 	.gclms-menubar button.gclms-decrease-indent {
-		background-image: url(/img/icons/oxygen/16x16/actions/format-indent-less.png);
+		background-image: url(../img/icons/oxygen/16x16/actions/format-indent-less.png);
 	}
 	
 	.gclms-menubar button.gclms-label {
-		background-image: url(/img/icons/oxygen/16x16/mimetypes/application-x-font-otf-modified.png);
+		background-image: url(../img/icons/oxygen/16x16/mimetypes/application-x-font-otf-modified.png);
 	}
 	
 	.gclms-menubar button.gclms-page {
-		background-image: url(/img/icons/oxygen/16x16/mimetypes/application-text.png);
+		background-image: url(../img/icons/oxygen/16x16/mimetypes/application-text.png);
 	}
 	
 	.gclms-menubar button.gclms-edit {
-		background-image: url(/img/icons/oxygen/16x16/apps/kate.png);
+		background-image: url(../img/icons/oxygen/16x16/apps/kate.png);
 	}
 	
 	.gclms-menubar button.gclms-rename {
-		background-image: url(/img/icons/crystal_clear/16x16/actions/editclear.png);
+		background-image: url(../img/icons/crystal_clear/16x16/actions/editclear.png);
 	}
 	
 /* Option buttons */
@@ -1183,13 +1183,13 @@ img.gclms-tooltip-button {
 	}
 	
 	.gclms-option-buttons a.gclms-edit-page {
-		background-image: url(/img/icons/oxygen/16x16/apps/kate.png);
+		background-image: url(../img/icons/oxygen/16x16/apps/kate.png);
 	}
 	
 	.gclms-option-buttons a.gclms-edit {
-		background-image: url(/img/icons/oxygen/16x16/apps/kate.png);
+		background-image: url(../img/icons/oxygen/16x16/apps/kate.png);
 	}
 	
 	.gclms-option-buttons a.gclms-view-with-frames {
-		background-image: url(/img/icons/oxygen/16x16/actions/view-left-right-modified.png);		
+		background-image: url(../img/icons/oxygen/16x16/actions/view-left-right-modified.png);		
 	}

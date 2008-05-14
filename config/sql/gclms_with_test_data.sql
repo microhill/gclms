@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: gclms
 Target Host: localhost
 Target Database: gclms
-Date: 3/18/2008 5:32:59 PM
+Date: 5/10/2008 5:19:07 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -14,14 +14,14 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `announcements`;
 CREATE TABLE `announcements` (
   `id` char(36) NOT NULL,
-  `facilitated_class_id` char(36) NOT NULL,
+  `virtual_class_id` char(36) NOT NULL,
   `title` varchar(255) default NULL,
   `post_date` date NOT NULL,
   `content` text,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `unique` (`facilitated_class_id`,`title`,`post_date`)
+  UNIQUE KEY `unique` (`virtual_class_id`,`title`,`post_date`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -89,7 +89,7 @@ CREATE TABLE `chapters` (
 DROP TABLE IF EXISTS `chat_messages`;
 CREATE TABLE `chat_messages` (
   `id` char(36) NOT NULL,
-  `facilitated_class_id` char(36) NOT NULL,
+  `virtual_class_id` char(36) NOT NULL,
   `user_id` char(36) NOT NULL,
   `content` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
@@ -103,7 +103,7 @@ DROP TABLE IF EXISTS `chat_participants`;
 CREATE TABLE `chat_participants` (
   `id` char(36) NOT NULL,
   `user_id` char(36) NOT NULL,
-  `facilitated_class_id` char(36) NOT NULL,
+  `virtual_class_id` char(36) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
@@ -114,13 +114,15 @@ CREATE TABLE `chat_participants` (
 -- ----------------------------
 DROP TABLE IF EXISTS `class_completions`;
 CREATE TABLE `class_completions` (
-  `facilitated_class_id` char(36) NOT NULL default '0',
+  `id` char(36) NOT NULL,
   `user_id` char(36) NOT NULL default '0',
+  `course_id` char(36) NOT NULL,
+  `virtual_class_id` char(36) NOT NULL default '0',
   `date` date NOT NULL,
   `grade` int(5) unsigned default NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
-  PRIMARY KEY  (`facilitated_class_id`,`user_id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -129,11 +131,12 @@ CREATE TABLE `class_completions` (
 DROP TABLE IF EXISTS `class_enrollees`;
 CREATE TABLE `class_enrollees` (
   `id` char(36) NOT NULL,
-  `facilitated_class_id` char(36) NOT NULL default '0',
+  `virtual_class_id` char(36) NOT NULL default '0',
   `user_id` char(36) NOT NULL default '0',
+  `completion_deadline` date default NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `unique` (`facilitated_class_id`,`user_id`)
+  UNIQUE KEY `unique` (`virtual_class_id`,`user_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -142,7 +145,7 @@ CREATE TABLE `class_enrollees` (
 DROP TABLE IF EXISTS `class_facilitators`;
 CREATE TABLE `class_facilitators` (
   `id` char(36) NOT NULL,
-  `facilitated_class_id` char(36) NOT NULL,
+  `virtual_class_id` char(36) NOT NULL,
   `user_id` char(36) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
@@ -164,6 +167,8 @@ CREATE TABLE `courses` (
   `redistribution_allowed` tinyint(1) NOT NULL default '0',
   `commercial_use_allowed` tinyint(1) NOT NULL default '0',
   `derivative_works_allowed` tinyint(1) NOT NULL default '0',
+  `independent_study_allowed` tinyint(1) NOT NULL,
+  `active` tinyint(1) NOT NULL default '0',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `deprecated` tinyint(1) unsigned NOT NULL default '0',
@@ -172,32 +177,16 @@ CREATE TABLE `courses` (
 ) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for dictionary_terms
--- ----------------------------
-DROP TABLE IF EXISTS `dictionary_terms`;
-CREATE TABLE `dictionary_terms` (
-  `id` char(36) NOT NULL,
-  `course_id` char(36) NOT NULL,
-  `term` varchar(255) NOT NULL,
-  `description` text,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
-
--- ----------------------------
 -- Table structure for facilitated_classes
 -- ----------------------------
 DROP TABLE IF EXISTS `facilitated_classes`;
 CREATE TABLE `facilitated_classes` (
   `id` char(36) NOT NULL,
-  `course_id` char(36) NOT NULL,
+  `virtual_class_id` char(36) NOT NULL,
   `type` int(1) unsigned NOT NULL default '1',
-  `alias` varchar(255) NOT NULL,
   `enrollment_deadline` date default NULL,
   `beginning` date default NULL,
   `end` date default NULL,
-  `capacity` int(11) unsigned default NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `deprecated` tinyint(1) unsigned NOT NULL default '0',
@@ -228,7 +217,7 @@ CREATE TABLE `forum_posts` (
 DROP TABLE IF EXISTS `forums`;
 CREATE TABLE `forums` (
   `id` char(36) NOT NULL,
-  `facilitated_class_id` char(36) NOT NULL,
+  `virtual_class_id` char(36) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) default NULL,
   `order` int(3) NOT NULL default '0',
@@ -236,6 +225,20 @@ CREATE TABLE `forums` (
   `modified` datetime NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for glossary_terms
+-- ----------------------------
+DROP TABLE IF EXISTS `glossary_terms`;
+CREATE TABLE `glossary_terms` (
+  `id` char(36) NOT NULL,
+  `course_id` char(36) NOT NULL,
+  `term` varchar(255) NOT NULL,
+  `description` text,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for group_administrators
@@ -274,7 +277,6 @@ CREATE TABLE `groups` (
   `id` char(36) NOT NULL,
   `name` varchar(255) NOT NULL,
   `web_path` varchar(255) NOT NULL,
-  `css` text,
   `logo` varchar(255) default NULL,
   `logo_updated` datetime default NULL,
   `external_web_address` varchar(255) default NULL,
@@ -313,13 +315,14 @@ CREATE TABLE `nodes` (
 ) ENGINE=MyISAM AUTO_INCREMENT=256 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for notebooks
+-- Table structure for notebook_entries
 -- ----------------------------
-DROP TABLE IF EXISTS `notebooks`;
-CREATE TABLE `notebooks` (
+DROP TABLE IF EXISTS `notebook_entries`;
+CREATE TABLE `notebook_entries` (
   `id` char(36) NOT NULL,
   `course_id` char(36) NOT NULL,
   `user_id` char(36) NOT NULL,
+  `title` varchar(255) default NULL,
   `content` text,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
@@ -334,7 +337,7 @@ DROP TABLE IF EXISTS `questions`;
 CREATE TABLE `questions` (
   `id` char(36) NOT NULL,
   `node_id` char(36) NOT NULL default '0',
-  `title` varchar(255) default NULL,
+  `title` text,
   `type` int(2) unsigned NOT NULL default '1',
   `order` int(3) unsigned NOT NULL default '1',
   `text_answer` varchar(255) default NULL,
@@ -402,27 +405,47 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COMMENT='utf8_general_ci';
 
 -- ----------------------------
+-- Table structure for virtual_classes
+-- ----------------------------
+DROP TABLE IF EXISTS `virtual_classes`;
+CREATE TABLE `virtual_classes` (
+  `id` char(36) NOT NULL,
+  `group_id` char(36) default NULL,
+  `course_id` char(36) NOT NULL,
+  `alias` varchar(255) default NULL,
+  `facilitated` tinyint(4) NOT NULL default '1',
+  `enrollment_deadline` date default NULL,
+  `start` date default NULL,
+  `end` date default NULL,
+  `time_limit_years` int(2) default NULL,
+  `time_limit_months` int(11) default NULL,
+  `time_limit_days` int(11) default NULL,
+  `capacity` int(11) NOT NULL default '0',
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `books` VALUES ('47d71bd0-a17c-4bf3-af88-08f8ab4a69cb', '47d5ac4d-ea3c-4973-b9d7-0814ab4a69cb', '<em>Basic Theology</em>, by Charlies Ryrie', '2008-03-11 17:54:56', '2008-03-12 01:07:12');
-INSERT INTO `books` VALUES ('47d77f95-3b4c-40f2-a525-08f8ab4a69cb', null, 'Basic Theology', '2008-03-12 01:00:37', '2008-03-12 01:00:37');
-INSERT INTO `books` VALUES ('47d77fd9-9268-46cc-a231-08f8ab4a69cb', null, 'asdf', '2008-03-12 01:01:45', '2008-03-12 01:01:45');
-INSERT INTO `chapters` VALUES ('47d71be2-5c0c-40d9-976a-08f8ab4a69cb', '47d71bd0-a17c-4bf3-af88-08f8ab4a69cb', 'Test Chapter 1', null, '1', '2008-03-11 17:55:14', '2008-03-12 12:50:39');
-INSERT INTO `chapters` VALUES ('47d7a355-a240-4169-a881-01a4ab4a69cb', null, 'asefse', null, '1', '2008-03-12 03:33:09', '2008-03-12 03:33:09');
-INSERT INTO `chapters` VALUES ('47d7a390-091c-4da7-aa6f-01a4ab4a69cb', '47d71bd0-a17c-4bf3-af88-08f8ab4a69cb', 'Chapter 2: Some Presuppositions', '<h3>I. The Basic One</h3>\r\n<p>Consciously or unconsciously everyone operates on the basis of some\r\npresuppositions. The atheist who says there is no God has to believe\r\nthat basic presupposition. And believing it, he then views the world,\r\nmankind, and the future in entirely different ways than the theist. The\r\nagnostic not only affirms we cannot know God, but he must believe that\r\nas basic to his entire outlook on the world and life. If we can know\r\nabout the true God then his whole system is smashed. The theist\r\nbelieves there is a God. He mounts confirmatory evidence to support\r\nthat belief, but basically he believes.</p>\r\n<p>The trinitarian believes God is Triunity. That is a belief gleaned\r\nfrom the Bible. Therefore, he also believes the Bible to be true.</p>\r\n<p>This stands as the watershed presupposition. If the Bible is not\r\ntrue, then trinitarianism is untrue and Jesus Christ is not who He\r\nclaimed to be. We learn nothing about the Trinity or Christ from nature\r\nor from the human mind. And we cannot be certain that what we learn\r\nfrom the Bible about the Triune God is accurate unless we believe that\r\nour source itself is accurate. Thus the belief in the truthfulness of\r\nthe Bible is the basic presupposition. This will be fully discussed\r\nunder inspiration and inerrancy.</p>\r\n<p></p>\r\n<h3>II. The Interpretive Ones</h3>\r\n<p>If our source material is so crucial, then we must be concerned how\r\nwe approach and use it. Accurate theology rests on sound exegesis.\r\nExegetical studies must be made before theological systematization,\r\njust as bricks have to be made before a building can be built.</p>\r\n<p></p>\r\n<h4>A. The Necessity of Normal, Plain Interpretation</h4>\r\n<p>Though a more thorough discussion of hermeneutics will appear in\r\nsection III, we need to state here the importance of normal\r\ninterpretation as the basis for proper exegesis. In giving us the\r\nrevelation of Himself, God desired to communicate, not obscure, the\r\ntruth. So we approach the interpretation of the Bible presupposing the\r\nuse of normal canons of interpretation. Remember that when symbols,\r\nparables, types, etc. are used they depend on an underlying literal\r\nsense for their very existence, and their interpretation must always be\r\ncontrolled by the concept that God communicates in a normal, plain, or\r\nliteral manner. Ignoring this will result in the same kind of confused\r\nexegesis that characterized the patristic and medieval interpreters.</p>\r\n<p></p>\r\n<h4>B. The Priority of the New Testament</h4>\r\n<p>All Scripture is inspired and profitable, but the New Testament has\r\ngreater priority as the source of doctrine. Old Testament revelation\r\nwas preparatory and partial, but New Testament revelation is climactic\r\nand complete. The doctrine of the Trinity, for instance, while allowed\r\nfor in the Old Testament, was not revealed until the New Testament. Or,\r\nthink how much difference exists between what is taught in the Old and\r\nNew Testaments concerning atonement, justification, and resurrection.\r\nTo say this is not to minimize what is taught in the Old Testament or\r\nto imply that it is any less inspired, but it is to say that in the\r\nprogressive unfolding of God\'s revelation the Old Testament occupies a\r\nprior place chronologically and thus a preparatory and incomplete place\r\ntheologically. Old Testament theology has its place, but it is\r\nincomplete without the contribution of New Testament truth.</p>\r\n<p></p>\r\n<h4>C. The Legitimacy of Proof Texts</h4>\r\n<p>Liberals and Barthians have often criticized conservatives for\r\nusing proof texts to substantiate their conclusions. Why do they\r\ncomplain? Simply because citing proof texts will lead to conservative,\r\nnot liberal, conclusions. They charge it with being an illegitimate,\r\nunscholarly methodology, but it is no more illegitimate than footnotes\r\nare in a scholarly work!</p>\r\n<p>To be sure, proof texts must be used properly, just as footnotes\r\nmust be. They must actually be used to mean what they say; they must\r\nnot be used out of context; they must not be used in part when the\r\nwhole might change the meaning; and Old Testament proof texts\r\nparticularly must not be forced to include truth that was only revealed\r\nlater in the New Testament.</p>\r\n<p></p>\r\n<p></p>\r\n<p></p>\r\n<h3>III. The Systematizing Ones</h3>\r\n<p></p>\r\n<h4>A. The Necessity of a System</h4>\r\n<p>The difference between exegesis and theology is the system used.\r\nExegesis analyzes; theology correlates those analyses. Exegesis relates\r\nthe meanings of texts; theology interrelates those meanings. The\r\nexegete strives to present the meaning of truth; the theologian, the\r\nsystem of truth. Theology\'s goal, whether biblical or systematic\r\ntheology, is the systematization of the teachings under consideration.</p>\r\n<p></p>\r\n<h4>B. The Limitations of a Theological System</h4>\r\n<p>In a word, the limitations of a theological system must coincide\r\nwith the limitations of biblical revelation. In an effort to present a\r\ncomplete system, theologians are often tempted to fill in the gaps in\r\nthe biblical evidence with logic or implications that may not be\r\nwarranted.</p>\r\n<p>Logic and implications do have their appropriate place. God\'s\r\nrevelation is orderly and rational, so logic has a proper place in the\r\nscientific investigation of that revelation. When words are put\r\ntogether in sentences, those sentences take on implications that the\r\ntheologian must try to understand.</p>\r\n<p>However, when logic is used to create truth, as it were, then the\r\ntheologian will be guilty of pushing his system beyond the limitations\r\nof biblical truth. Sometimes this is motivated by the desire to answer\r\nquestions that the Scripture does not answer. In such cases (and there\r\nare a number of crucial ones in the Bible) the best answer is silence,\r\nnot clever logic, or almost invisible implications, or wishful\r\nsentimentality. Examples of particularly tempting areas include\r\nsovereignty and responsibility, the extent of the Atonement, and the\r\nsalvation of infants who die.</p>\r\n<p></p>\r\n<h3>Iv. The Personal Ones</h3>\r\n<p>One should also be able to presuppose certain matters about the student of theology.</p>\r\n<p></p>\r\n<h4>A. He Must Believe</h4>\r\n<p>Of course unbelievers can write and study theology, but a believer\r\nhas a dimension and perspective on the truth of God that no unbeliever\r\ncan have. The deep things of God are taught by the Spirit, whom an\r\nunbeliever does not have (1 Cor. 2:10-16).</p>\r\n<p>Believers need to have faith also, for some areas of God\'s revelation will not be fully understood by our finite minds.</p>\r\n<p></p>\r\n<h4>B. He Must Think</h4>\r\n<p>Ultimately the believer must try to think theologically. This\r\ninvolves thinking exegetically (to understand the precise meaning),\r\nthinking systematically (in order to correlate facts thoroughly),\r\nthinking critically (to evaluate the priority of the related evidence),\r\nand thinking synthetically (to combine and present the teaching as a\r\nwhole).</p>\r\n<p>Theology and exegesis should always interact. Exegesis does not\r\nprovide all the answers; when there can legitimately be more than one\r\nexegetical option, theology will decide which to prefer. Some passages,\r\nfor example, could seem to teach eternal security or not; one\'s\r\ntheological system will make the decision. On the other hand, no\r\ntheological system should be so hardened that it is not open to change\r\nor refinement from the insights of exegesis.</p>\r\n<p></p>\r\n<h4>C. He Must Depend</h4>\r\n<p>Intellect alone does not make a theologian. If we believe in the\r\nreality of the teaching ministry of the Holy Spirit, then certainly\r\nthis must be a factor in studying theology (John 16:12-15).\r\nThe content of the Spirit\'s curriculum encompasses all the truth,\r\nfocusing especially on the revelation of Christ Himself which is, of\r\ncourse, found in the Scriptures. To experience this will require a\r\nconscious attitude of dependence on the Spirit, which will be reflected\r\nin humility of mind and a diligent study of what the Spirit has taught\r\nothers throughout history. Inductive Bible study is a beneficial way to\r\nstudy, but to do it only is to ignore the results of the work of\r\nothers, and to do it always can be an inefficient repetition of what\r\nothers have already done.</p>\r\n<p></p>\r\n<h4>D. He Must Worship</h4>\r\n<p>Studying theology is no mere academic exercise, though it is that.\r\nIt is an experience that changes, convicts, broadens, challenges, and\r\nultimately leads to a deep reverence for God. Worship means to\r\nrecognize the worth of the object worshiped. How can any mortal put his\r\nmind to the study of God and fail to increase his recognition of His\r\nworth?</p>', '2', '2008-03-12 03:34:08', '2008-03-12 12:51:25');
-INSERT INTO `chapters` VALUES ('47d841e7-048c-44c5-80a2-01a4ab4a69cb', '47d71bd0-a17c-4bf3-af88-08f8ab4a69cb', 'Chapter 4: The Knowledge of God', '<h3>I. The Possibility of the Knowledge of God</h3>\r\n<p>Unquestionably the knowledge of God is desirable; the religious yearnings of mankind testify to that. But is it possible?</p>\r\n<p>The Scriptures attest to two facts: the incomprehensibility of God\r\nand the knowability of God. To say that He is incomprehensible is to\r\nassert that the mind cannot grasp the knowledge of Him. To say that He\r\nis knowable is to claim that He can be known. Both are true, though\r\nneither in an absolute sense. To say that God is incomprehensible is to\r\nassert that man cannot know everything about Him. To say that He is\r\nknowable is not to assert that man can know everything about Him.</p>\r\n<p>Both truths are affirmed in the Scriptures: His incomprehensibility in verses like Job 11:7 and Isaiah 40:18, and His knowability in verses like John 14:7; John 17:3; and 1 John 5:20.</p>\r\n<p></p>\r\n<h3>II. Characteristics of the Knowledge of God</h3>\r\n<p>The knowledge of God may be characterized in relation to its source, its content, its progressiveness, and its purposes.</p>\r\n<p></p>\r\n<h4>A. Its Source</h4>\r\n<p>God Himself is the Source of our knowledge of Him. To be sure, all\r\ntruth is God\'s truth. But that clich&eacute; should be more carefully stated\r\nand used than it generally is. Only true truth comes from God, for\r\nsince sin entered the stream of history man has created that which he\r\ncalls truth but which is not. Furthermore, he has perverted, blunted,\r\ndiluted, and corrupted that which was originally true truth that did\r\ncome from God. For us today the only infallible canon for determining\r\ntrue truth is the written Word of God. Nature, though it does reveal\r\nsome things about God, is limited and can be misread by mankind. The\r\nhuman mind, though often brilliant in what it can achieve, suffers\r\nlimitations and darkening. Human experiences, even religious ones, lack\r\nreliability as sources of the true knowledge of God unless they conform\r\nto the Word of God.</p>\r\n<p>Certainly the knowledge of what is true religion must come from\r\nGod. In a past dispensation Judaism was revealed as God\'s true\r\nreligion. Today Judaism is not the true religion; only Christianity is.\r\nAnd the true knowledge of Christianity has been revealed through Christ\r\nand the apostles. One of the purposes of our Lord\'s incarnation was to\r\nreveal God (John 1:18; John 14:7).\r\nThe promise of the coming of the Spirit after the ascension of Christ\r\nincluded further revelation concerning Him and the Father (John 16:13-15; Acts 1:8). The Holy Spirit opens the Scriptures for the believer so that he can know God more fully.</p>\r\n<p></p>\r\n<h4>B. Its Content</h4>\r\n<p>A full knowledge of God is both factual and personal. To know facts\r\nabout a person without knowing the person is limiting; to know a person\r\nwithout knowing facts about that one is shallow. God has revealed many\r\nfacts about Himself, all of which are important in making our personal\r\nrelationship with Him close, intelligent, and useful. Had He only\r\nrevealed facts without making it possible to know Him personally, such\r\nfactual knowledge would have little, certainly not eternal, usefulness.\r\nJust as with human relationships, a divine-human relationship cannot\r\nbegin without knowledge of some minimal truths about the Person; then\r\nthe personal relationship generates the desire to know more facts,\r\nwhich in turn deepens the relationship, and so on. This kind of cycle\r\nought to be the experience of every student of theology; a knowledge\r\nabout God should deepen our relationship with Him, which in turn\r\nincreases our desire to know more about Him.</p>\r\n<p></p>\r\n<h4>C. Its Progressiveness</h4>\r\n<p>The knowledge of God and His works was revealed progressively\r\nthroughout history. The most obvious proof is to compare incomplete\r\nJewish theology with the fuller revelation of Christian theology in\r\nrespect, for example, to such doctrines as the Trinity, Christology,\r\nthe Holy Spirit, Resurrection, and eschatology. To trace that\r\nprogressiveness is the task of biblical theology.</p>\r\n<p></p>\r\n<h4>D. Its Purposes</h4>\r\n<p>1. To lead people to the possession of eternal life (John 17:3; 1 Tim. 2:4).</p>\r\n<p>2. To foster Christian growth (2 Pet. 3:18), with doctrinal knowledge (John 7:17; Rom. 6:9, 16; Eph. 1:18) and with a discerning lifestyle (Phil. 1:9-10; 2 Pet. 1:5).</p>\r\n<p>3. To warn of judgment to come (Hos. 4:6; Heb. 10:26-27).</p>\r\n<p>4. To generate true worship of God (Rom. 11:33-36).</p>\r\n<p></p>\r\n<h3>III. Prerequisites to the Knowledge of God</h3>\r\n<h4>A. God Initiated His Self-Revelation</h4>\r\n<p>The knowledge of God differs from all other knowledge in that man\r\ncan have this knowledge only as far as God reveals it. If God did not\r\ninitiate the revelation of Himself, there would be no way for man to\r\nknow Him. Therefore, a human being must put himself under God who is\r\nthe object of his knowledge. In other scholarly endeavors, the human\r\nbeing often places himself above the object of his investigation, but\r\nnot so in the study of God.</p>\r\n<p></p>\r\n<h4>B. God Gave Language for Communication</h4>\r\n<p>Certainly an essential part of God\'s revelation is a provision of\r\nmeans for communicating that revelation. Also the record of the\r\npersonal revelation of God in Christ necessitates some means of\r\nrecording and communicating that revelation. For this purpose God gave\r\nlanguage. He devised it and gave it to the first man and woman in order\r\nthat He might communicate His instructions to them (Gen. 1:28-30) and that they might communicate with Him (John 3:8-13).\r\nIt also seemed to have a part in their subduing the unfallen creation\r\nand giving names to the animals. Even after the division of the one\r\noriginal language into many at Babel, languages served as the means of\r\ncommunication on all levels. We can certainly believe that the\r\nomniscient God made provision for languages that were sufficient to\r\ncommunicate His self-revelation to man.</p>\r\n<p></p>\r\n<h4>C. He Created Man in His Image</h4>\r\n<p>When God created man in His image and likeness He made him, like\r\nHimself, a rational being with intelligence. To be sure, human\r\nintelligence is not the same as divine intelligence, but it is a real\r\nintelligence, not fictitious. Therefore, humans have the ability to\r\nunderstand the meaning of words and the logic of sentences and\r\nparagraphs. Sin has removed the guarantee that human understanding is\r\nalways reliable, but it does not eradicate a human being\'s ability to\r\nunderstand.</p>\r\n<p></p>\r\n<h4>D. He Gave the Holy Spirit</h4>\r\n<p>To believers God has given His Holy Spirit to reveal the things of God (John 16:13-15; 1 Cor. 2:10). This does not make the believer infallible, but it can give him the ability to distinguish truth from error (1 John 2:27).</p>\r\n<p>These works of God make it possible for us to know and obey the many commands in Scripture to know Him (Rom. 6:16; 1 Cor. 3:16; \r\n5:6; \r\n6:19; James 4:4).</p>', '3', '2008-03-12 14:49:43', '2008-03-12 14:50:20');
-INSERT INTO `courses` VALUES ('47d5ac4d-ea3c-4973-b9d7-0814ab4a69cb', '103', 'Doctrine 1', 'doctrine-1', '<p>This course offers an overview of the major teachings of the Bible\r\nconcerning the person and work of God, the Word of God, history,\r\nangels, man, sin, and other subjects. Even though this is not a course\r\non the evidences for the Christian faith, it will at times refer to\r\nhistorical and scientific evidence that supports the biblical view of\r\nthe world and the truthfulness of the Scriptures. This course will also\r\nbe giving special attention to some of the objections that have been\r\nraised against the central teachings of Christianity.</p>\r\n<p>The study of theology requires clear thinking, intellectual\r\napplication, and a great deal of time and study. It is not an\r\nunimportant part of the Christian life. It is true that it can become\r\npurely intellectual and impractical, but this is essentially and\r\npractically not so.</p>\r\n<p>Doctrine is ultimately the most practical of all disciplines in the\r\nChristian life, for it is the basis for everything we do. Whenever a\r\nChristian prays, makes a righteous decision, goes to church, or does\r\nsomething loving or kind, he/she is making practical application of\r\ndoctrine.</p>', '', 'en', '0', '0', '0', '2008-03-10 15:46:53', '2008-03-11 13:42:00', '0');
-INSERT INTO `dictionary_terms` VALUES ('47d71d6b-3044-4576-b73e-08f8ab4a69cb', '47d5ac4d-ea3c-4973-b9d7-0814ab4a69cb', 'TestTerm', '<p>yadda yadda yadda</p>', '2008-03-11 18:01:47', '2008-03-11 18:01:47');
-INSERT INTO `dictionary_terms` VALUES ('47d74467-cd80-49dc-9dc3-08f8ab4a69cb', '47d5ac4d-ea3c-4973-b9d7-0814ab4a69cb', 'asdf', '<p>asdfasd</p>', '2008-03-11 20:48:07', '2008-03-11 20:48:07');
-INSERT INTO `group_administrators` VALUES ('40', '103', '52', '2008-02-26 13:11:47', '2008-02-26 13:11:47');
-INSERT INTO `groups` VALUES ('103', 'BEE World', 'bee-world', '.TestClass {\r\nbackground-color: red;\r\n}', null, null, 'http://www.beeworld.org/', '', '', '', '', '', '', null, '<p>Some very descriptive text here.</p>', '1', '2008-02-19 20:35:24', '2008-03-17 11:12:17', '0');
-INSERT INTO `groups` VALUES ('104', 'Covenant Theological Seminary', 'covenant-theological-seminary', '', null, null, 'http://www.letu.edu/', '8675309', '9 Westlake Ave', 'APO 320', 'St. Louis', 'MO', '80132', null, 'Some very descriptive text here.', '1', '2008-02-19 20:35:37', '2008-02-19 20:35:37', '0');
-INSERT INTO `nodes` VALUES ('a7e4777c-588a-4703-871c-a181910ab9bf', '47d5ac4d-ea3c-4973-b9d7-0814ab4a69cb', '0', '0', '1', '0', null, '0', '2008-03-18 15:11:59', '2008-03-18 15:11:59');
-INSERT INTO `nodes` VALUES ('a613b3fc-bdfe-46a5-bdba-8281997829ae', '47d5ac4d-ea3c-4973-b9d7-0814ab4a69cb', 'a7e4777c-588a-4703-871c-a181910ab9bf', '0', '2', '0', null, '0', '2008-03-18 15:12:00', '2008-03-18 15:12:05');
-INSERT INTO `nodes` VALUES ('00d12c68-b9e8-4dcf-a57d-4edc3b4a32f9', '47d5ac4d-ea3c-4973-b9d7-0814ab4a69cb', 'a613b3fc-bdfe-46a5-bdba-8281997829ae', '0', '3', '0', null, '0', '2008-03-18 15:12:01', '2008-03-18 15:21:42');
-INSERT INTO `textareas` VALUES ('47e02b18-df7c-4464-86a7-0ac0ab4a69cb', '51966c0d-2865-43c2-951b-dd92f034cb33', '<p>jkljlk</p>', '1', '2008-03-18 14:50:32', '2008-03-18 14:50:32');
-INSERT INTO `users` VALUES ('52', 'aaronshaf@gmail.com', '3a00070e691147f18e69201fc1431b0d39248af9', 'Aaron Shafovaloff', 'Aaron', 'Shafovaloff', 'abc', 'abc', 'Midvale', 'UT', '90210', '1', '0', null, '0', '1', '0000-00-00 00:00:00', '2008-02-19 20:39:50');
-INSERT INTO `users` VALUES ('53', 'patty.thompson@fake_domain_name.org', null, 'patty.thompson', 'Patty', 'Thompson', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', '1', '0', null, '0', '0', '2008-02-19 20:36:38', '2008-02-19 20:36:38');
-INSERT INTO `users` VALUES ('54', 'paul.walgren@fake_domain_name.org', null, 'paul.walgren', 'Paul', 'Walgren', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', '1', '0', null, '0', '0', '2008-02-19 20:36:52', '2008-02-19 20:36:52');
-INSERT INTO `users` VALUES ('57', 'spamthisallyouwant@pysquared.com', 'f51917152d00e8f50f3bdde3674397b1e4825ffc', 'TestUserODD', 'John', 'Doe', '32325 CR 323', 'some 32 houses down', 'Killgore', 'TX', '75603', '1', '0', '47bba0d0-a538-4ba9-9cf1-08ccab4a69cb', '0', '0', '2008-02-19 20:38:56', '2008-02-19 20:38:56');
-INSERT INTO `users` VALUES ('56', 'linus.torvalds@fake_domain_name.org', null, 'linus.torvalds', 'Linus', 'Torvalds', '21 Lakeside Drive', 'Apt #11', 'Beverly Hills', 'CA', '90210', '1', '0', null, '0', '0', '2008-02-19 20:37:21', '2008-02-19 20:37:21');
+INSERT INTO `answers` VALUES ('47fda809-3de8-450f-ae81-0b68ab4a69cb', '47fda809-a928-4a66-bce0-0b68ab4a69cb', 'asetaset', 'asetasetas', null, null, '0', '2008-04-09 23:39:21', '2008-04-09 23:39:21');
+INSERT INTO `answers` VALUES ('47fda809-3f44-4a6d-9db5-0b68ab4a69cb', '47fda809-a928-4a66-bce0-0b68ab4a69cb', 'asetaet', 'asetataset', null, null, '0', '2008-04-09 23:39:21', '2008-04-09 23:39:21');
+INSERT INTO `answers` VALUES ('47fda809-06f4-42f8-842f-0b68ab4a69cb', '47fda809-a928-4a66-bce0-0b68ab4a69cb', 'gregerger', 'gergergregegerger', null, null, '0', '2008-04-09 23:39:21', '2008-04-09 23:39:21');
+INSERT INTO `answers` VALUES ('47fdbb15-06cc-4c8f-ad03-0b68ab4a69cb', '47fdbb15-f698-48a2-887e-0b68ab4a69cb', 'Blue', null, null, null, '1', '2008-04-10 01:00:37', '2008-04-10 01:00:37');
+INSERT INTO `answers` VALUES ('47fdbb15-26f0-4a5f-845c-0b68ab4a69cb', '47fdbb15-f698-48a2-887e-0b68ab4a69cb', 'Green', null, null, null, '0', '2008-04-10 01:00:37', '2008-04-10 01:00:37');
+INSERT INTO `answers` VALUES ('47fdbb15-2450-4f84-b621-0b68ab4a69cb', '47fdbb15-f698-48a2-887e-0b68ab4a69cb', 'Red', null, null, null, '0', '2008-04-10 01:00:37', '2008-04-10 01:00:37');
+INSERT INTO `answers` VALUES ('47fdbb15-2c6c-4d9b-a28b-0b68ab4a69cb', '47fdbb15-4924-443a-8ecd-0b68ab4a69cb', 'awefawefawefawefawef', 'awefawefawefawef', null, null, '0', '2008-04-10 01:00:37', '2008-04-10 01:00:37');
+INSERT INTO `answers` VALUES ('47fdbb15-5460-4b02-8ca3-0b68ab4a69cb', '47fdbb15-4924-443a-8ecd-0b68ab4a69cb', 'awefawefawefawe', 'aewfawef', null, null, '0', '2008-04-10 01:00:37', '2008-04-10 01:00:37');
+INSERT INTO `answers` VALUES ('47fdbb4d-75b8-4189-b17a-15e0ab4a69cb', '47fdbb4d-1890-4499-8d79-15e0ab4a69cb', 'Blue', null, null, null, '1', '2008-04-10 01:01:33', '2008-04-10 01:01:33');
+INSERT INTO `answers` VALUES ('47fdbb4d-8da8-47c5-823b-15e0ab4a69cb', '47fdbb4d-1890-4499-8d79-15e0ab4a69cb', 'Green', null, null, null, '0', '2008-04-10 01:01:33', '2008-04-10 01:01:33');
+INSERT INTO `answers` VALUES ('47fdbb4d-7e88-4c8d-98ff-15e0ab4a69cb', '47fdbb4d-1890-4499-8d79-15e0ab4a69cb', 'Red', null, null, null, '0', '2008-04-10 01:01:33', '2008-04-10 01:01:33');
+INSERT INTO `answers` VALUES ('47fdbb4d-8514-4450-ab3a-15e0ab4a69cb', '47fdbb4d-954c-4150-aa21-15e0ab4a69cb', 'awefawefawefawefawef', 'awefawefawefawef', null, null, '0', '2008-04-10 01:01:33', '2008-04-10 01:01:33'), ('47fdbb4d-97f0-434c-99bf-15e0ab4a69cb', '47fdbb4d-954c-4150-aa21-15e0ab4a69cb', 'awefawefawefawe', 'aewfawef', null, null, '0', '2008-04-10 01:01:33', '2008-04-10 01:01:33');
+INSERT INTO `courses` VALUES ('48175357-c2e0-4bb8-9b14-1804ab4a69cb', '47fb6906-c718-46c9-bc5d-1650ab4a69cb', 'Ù…Ù‚Ø¯Ù‘ÙŽÙ…Ø© Ù„Ù„Ù…Ø³Ø§Ù‚: Ø¯Ø±Ø§Ø³Ø© Ø§Ù„ÙƒØªØ§Ø¨ Ø§Ù„Ù…Ù‚Ø¯Ø³', 'Ù…Ù‚Ø¯Ù‘ÙŽÙ…Ø©-Ù„Ù„Ù…Ø³Ø§Ù‚-Ø¯Ø±Ø§Ø³Ø©-Ø§Ù„ÙƒØªØ§Ø¨-Ø§Ù„Ù…Ù‚Ø¯Ø³', '<p>Ù…Ù‚Ø¯Ù‘ÙŽÙ…Ø© Ù„Ù„Ù…Ø³Ø§Ù‚: Ø¯Ø±Ø§Ø³Ø© Ø§Ù„ÙƒØªØ§Ø¨ Ø§Ù„Ù…Ù‚Ø¯Ø³</p>', '', 'ar', '0', '0', '0', '0', '0', '2008-04-29 10:56:55', '2008-04-29 10:56:55', '0'), ('481771d6-d2f0-4900-8c07-1804ab4a69cb', '47fb6906-c718-46c9-bc5d-1650ab4a69cb', 'test2', 'test2', '<p>test</p>', 'blockquote {\r\n    FONT-WEIGHT: normal;\r\n    FONT-SIZE: 14px;\r\n    FONT-STYLE: normal;\r\n    FONT-VARIANT: normal;\r\n}\r\n\r\nh1 {\r\n    FONT: bold 18px Verdana, Arial, Helvetica, sans-serif;\r\n    COLOR: #006699;\r\n}\r\n\r\nh2 {\r\n    FONT-WEIGHT: bold;\r\n    FONT-SIZE: 16px;\r\n    COLOR: #006699;\r\n    FONT-STYLE: normal;\r\n    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;\r\n    FONT-VARIANT: normal;\r\n}\r\n\r\nh3 {\r\n    FONT-WEIGHT: bold;\r\n    FONT-SIZE: 14px;\r\n    COLOR: #006699;\r\n    FONT-STYLE: normal;\r\n    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;\r\n    FONT-VARIANT: normal;\r\n}\r\n\r\nh4 {\r\n    FONT-WEIGHT: normal;\r\n    FONT-SIZE: 14px;\r\n    COLOR: #006699;\r\n    FONT-STYLE: normal;\r\n    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;\r\n    FONT-VARIANT: normal;\r\n}\r\n\r\nh5 {\r\n    FONT-WEIGHT: bold;\r\n    FONT-SIZE: 14px;\r\n    COLOR: #006699;\r\n    FONT-STYLE: normal;\r\n    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;\r\n    FONT-VARIANT: normal;\r\n}\r\n\r\nh1 a { FONT-WEIGHT: bold; FONT-SIZE: 14px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-VARIANT: normal ; text-align: center; }\r\nh2 a { FONT-WEIGHT: normal; FONT-SIZE: 14px; FONT-STYLE: italic; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-VARIANT: normal ; text-align: center; }\r\nh3 a { FONT-WEIGHT: bold; FONT-SIZE: 12px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-VARIANT: normal ; text-align: left; }\r\n\r\np.leftmargin1 {\r\n    MARGIN-TOP: 0px;\r\n    MARGIN-BOTTOM: 0px;\r\n    MARGIN-LEFT: 5%;\r\n}\r\n\r\np.leftmargin2\r\n{\r\n    MARGIN-TOP: 0px;\r\n    MARGIN-BOTTOM: 0px;\r\n    MARGIN-LEFT: 10%;\r\n}\r\n\r\np.leftmargin3\r\n{\r\n    MARGIN-TOP: 0px;\r\n    MARGIN-BOTTOM: 0px;\r\n    MARGIN-LEFT: 15%;\r\n}\r\n\r\n.objective {\r\n    padding: 6px;\r\n    margin-left: 0;\r\n    border: 1px solid #C1C1C1;\r\n    padding-left: 32px;\r\n    background-repeat: no-repeat;\r\n    background-position: 6px 6px;\r\n    background-image: url(/bee-world/life-of-christ/files/objective-icon.png);\r\n    background-color: #EEEEEE;\r\n}', 'en', '0', '0', '0', '0', '0', '2008-04-29 13:07:02', '2008-05-05 12:53:35', '0');
+INSERT INTO `group_administrators` VALUES ('47fb690d-21f4-4c38-b855-1650ab4a69cb', '47fb6906-c718-46c9-bc5d-1650ab4a69cb', '47fb68f7-8f60-4750-a0f7-1650ab4a69cb', '2008-04-08 06:46:05', '2008-04-08 06:46:05');
+INSERT INTO `groups` VALUES ('47fb6906-c718-46c9-bc5d-1650ab4a69cb', 'test', 'test', null, null, '', '', '', '', '', '', '', null, 'test', '1', '2008-04-08 06:45:58', '2008-04-08 06:45:58', '0');
+INSERT INTO `nodes` VALUES ('dbebbbc8-9b77-41ee-8c80-d716bebeabc4', '47fb6fea-cd2c-4976-b67a-1650ab4a69cb', '0', '0', 'Course Introduction', '0', null, '1', '2008-04-10 00:56:59', '2008-04-10 01:05:44'), ('40261a05-99c3-4bd8-8d81-7edcb711d772', '47fb6fea-cd2c-4976-b67a-1650ab4a69cb', '0', '0', 'Unit 1', '0', null, '2', '2008-04-10 00:57:02', '2008-04-10 01:02:56'), ('879cab90-a971-441d-8111-74d4543f76ee', '47fb6fea-cd2c-4976-b67a-1650ab4a69cb', '0', '0', 'Unit 2', '0', null, '3', '2008-04-10 00:57:04', '2008-04-10 01:02:56'), ('feef76b7-4d16-4599-894a-a2951e97f156', '47fb6fea-cd2c-4976-b67a-1650ab4a69cb', '0', '0', 'Unit 3', '0', null, '3', '2008-04-10 00:57:06', '2008-04-30 17:31:06'), ('d43e350a-0b88-4e67-9231-3e00a4716739', '47fb6fea-cd2c-4976-b67a-1650ab4a69cb', '0', '0', 'Unit 4', '0', null, '4', '2008-04-10 00:57:10', '2008-04-30 17:31:06'), ('f8bfe367-3b14-4e58-ae8f-70799563f906', '47fb6fea-cd2c-4976-b67a-1650ab4a69cb', '40261a05-99c3-4bd8-8d81-7edcb711d772', '0', 'Lesson 1', '0', null, '0', '2008-04-10 00:57:16', '2008-04-10 00:57:16'), ('3a1cc308-dc07-4ee9-ae5b-b6e69bd3ec0a', '47fb6fea-cd2c-4976-b67a-1650ab4a69cb', '40261a05-99c3-4bd8-8d81-7edcb711d772', '0', 'Lesson 2', '0', null, '1', '2008-04-10 00:57:18', '2008-04-10 00:57:18'), ('74749d59-645c-40e5-a448-02c71352081e', '47fb6fea-cd2c-4976-b67a-1650ab4a69cb', '40261a05-99c3-4bd8-8d81-7edcb711d772', '0', 'Lesson 3', '0', null, '2', '2008-04-10 00:57:21', '2008-04-10 00:57:21'), ('7f91525a-a390-4590-a3cf-d5881039a10e', '47fb6fea-cd2c-4976-b67a-1650ab4a69cb', 'f8bfe367-3b14-4e58-ae8f-70799563f906', '0', 'Topic A', '0', null, '0', '2008-04-10 00:57:25', '2008-04-10 00:57:25'), ('9b880161-54c5-4e9b-b406-9fbc5ed07e80', '47fb6fea-cd2c-4976-b67a-1650ab4a69cb', '7f91525a-a390-4590-a3cf-d5881039a10e', '0', 'Creation in the Book of Genesis', '0', null, '0', '2008-04-10 00:57:39', '2008-04-10 01:01:33'), ('13ad0c98-0c1b-4500-aeb5-9c1e3c29d16b', '47ffa5e3-8f54-451c-937e-15e0ab4a69cb', '0', '0', 'å’Œéµå®ˆçŒ¶å¤ªæ•™', '0', null, '0', '2008-04-11 11:59:35', '2008-04-11 12:00:09'), ('9cc1936a-7835-46bf-a591-15774755b856', '47ffa5e3-8f54-451c-937e-15e0ab4a69cb', '0', '0', 'å’Œéµå®ˆçŒ¶å¤ªæ•™', '0', null, '1', '2008-04-11 11:59:41', '2008-04-11 11:59:41'), ('15980449-f720-485c-96e0-51639358b79a', '47ffa5e3-8f54-451c-937e-15e0ab4a69cb', '0', '0', 'å’Œéµå®ˆçŒ¶å¤ªæ•™', '0', null, '2', '2008-04-11 11:59:43', '2008-04-11 11:59:43'), ('fc2bb236-c08a-4e0e-8c4c-5aa0a5290994', '48003e32-2668-436d-890d-111cab4a69cb', '0', '0', 'test', '0', null, '0', '2008-04-22 17:00:12', '2008-04-22 17:00:12'), ('167f2de6-b6b1-485d-9710-0c607c74abcd', '481771d6-d2f0-4900-8c07-1804ab4a69cb', 'b649d6bf-3839-420b-af72-d8b52653c74c', '0', 'test', '0', '', '1', '2008-04-30 17:17:54', '2008-05-09 13:10:30'), ('62187c82-8e90-401f-aee9-96c82e4e0515', '481771d6-d2f0-4900-8c07-1804ab4a69cb', '0', '0', 'test', '0', null, '2', '2008-04-30 11:23:29', '2008-04-30 17:30:57'), ('b649d6bf-3839-420b-af72-d8b52653c74c', '481771d6-d2f0-4900-8c07-1804ab4a69cb', '0', '0', 'awfwef', '0', '', '1', '2008-04-29 13:45:24', '2008-05-02 15:17:34'), ('f710d610-75f6-4808-abdc-e0f17c43fd09', '481771d6-d2f0-4900-8c07-1804ab4a69cb', 'b649d6bf-3839-420b-af72-d8b52653c74c', '0', 'awefawef', '0', null, '2', '2008-04-29 13:45:29', '2008-04-30 17:17:59'), ('48177dcf-2188-46c8-9150-1804ab4a69cb', '', '0', '0', '', '0', null, '0', '2008-04-29 13:58:07', '2008-04-29 13:58:07'), ('48177e63-8be4-4391-a405-1804ab4a69cb', '', '0', '0', 'test', '0', '', '0', '2008-04-29 14:00:35', '2008-04-29 14:00:35'), ('8d663469-66d2-4988-b7a6-e7c2f037f495', '481771d6-d2f0-4900-8c07-1804ab4a69cb', '62187c82-8e90-401f-aee9-96c82e4e0515', '0', 'test', '0', null, '0', '2008-04-30 17:31:03', '2008-04-30 17:31:06'), ('4f03742f-80f0-4932-a056-2a5e12830fe5', '481771d6-d2f0-4900-8c07-1804ab4a69cb', '0', '0', 'awefawefawefawe', '0', null, '3', '2008-05-06 10:57:52', '2008-05-06 10:57:52'), ('51836037-33a6-429b-b0dc-f312aa0999de', '481771d6-d2f0-4900-8c07-1804ab4a69cb', '4f03742f-80f0-4932-a056-2a5e12830fe5', '0', 'awefawefawefawefawef', '0', null, '1', '2008-05-06 10:57:55', '2008-05-06 10:57:55'), ('34c68700-1294-4008-b086-20f07450006d', '481771d6-d2f0-4900-8c07-1804ab4a69cb', '0', '0', 'awefawefawefawefawef', '0', null, '4', '2008-05-06 10:57:59', '2008-05-06 10:57:59'), ('c1eaa643-758b-473b-b36e-10283ec1f728', '481771d6-d2f0-4900-8c07-1804ab4a69cb', '34c68700-1294-4008-b086-20f07450006d', '0', 'awegwaegawegaweg', '0', null, '1', '2008-05-06 10:58:04', '2008-05-06 10:58:04');
+INSERT INTO `questions` VALUES ('47fda809-a928-4a66-bce0-0b68ab4a69cb', 'b2d3b287-3054-41b0-95a0-1ef8fc0b082c', 'test', '2', '2', '', '1', 'atsetasets', 'asetasetaset', null, '2008-04-09 23:39:21', '2008-04-09 23:39:21'), ('47fdbb4d-ab94-4fb7-8f7f-15e0ab4a69cb', '9b880161-54c5-4e9b-b406-9fbc5ed07e80', 'Jody loves Ryrie', '1', '4', '', '1', '', '', '<p>Jody is from DTS.</p>', '2008-04-10 01:01:33', '2008-04-10 01:01:33'), ('47fdbb4d-954c-4150-aa21-15e0ab4a69cb', '9b880161-54c5-4e9b-b406-9fbc5ed07e80', 'awefaw efawefawe faewf aw', '2', '3', '', '1', 'awefawef', 'eafwwefawef', '', '2008-04-10 01:01:33', '2008-04-10 01:01:33'), ('47fdbb4d-1890-4499-8d79-15e0ab4a69cb', '9b880161-54c5-4e9b-b406-9fbc5ed07e80', 'What color is the sky?', '0', '2', '', '1', '', '', null, '2008-04-10 01:01:33', '2008-04-10 01:01:33'), ('47fdbb4d-0970-4117-a5d7-15e0ab4a69cb', '9b880161-54c5-4e9b-b406-9fbc5ed07e80', null, '1', '6', null, null, null, null, null, '2008-04-10 01:01:33', '2008-04-10 01:01:33');
+INSERT INTO `textareas` VALUES ('47fda809-4f28-48c1-b7cb-0b68ab4a69cb', 'b2d3b287-3054-41b0-95a0-1ef8fc0b082c', '<p>aesfasefwefawefawefwef</p>', '1', '2008-04-09 23:39:21', '2008-04-09 23:39:21'), ('47fdbb4d-2fe4-44f5-b84c-15e0ab4a69cb', '9b880161-54c5-4e9b-b406-9fbc5ed07e80', '<p>veaewfwefawefawefawef</p>', '5', '2008-04-10 01:01:33', '2008-04-10 01:01:33'), ('47fdbb4d-1470-4810-a578-15e0ab4a69cb', '9b880161-54c5-4e9b-b406-9fbc5ed07e80', '', '1', '2008-04-10 01:01:33', '2008-04-10 01:01:33'), ('47fdbc48-d904-4c1f-85fb-15e0ab4a69cb', 'dbebbbc8-9b77-41ee-8c80-d716bebeabc4', '<p>I love John 1:1-3</p>', '1', '2008-04-10 01:05:44', '2008-04-10 01:05:44'), ('47ffa729-1ca4-4d3f-b4dd-15e0ab4a69cb', '13ad0c98-0c1b-4500-aeb5-9c1e3c29d16b', '<p>æ’’æ‹‰é è¡¨æ©å…¸ï¼›å¤ç”²é è¡¨å¾‹æ³•ã€‚åªæœ‰ä»¥æ’’ï¼Œæ†‘è‘—æ‡‰è¨±è€Œç”Ÿçš„æ‰æ˜¯äºžä¼¯æ‹‰ç½•çš„å¾Œè£”ï¼Œå¾—è’™æ‡‰è¨±çš„ç¦å’Œæ‰¿å—ç”¢æ¥­ã€‚(4:21-31)</p>\r\n<p>æ•…æ­¤ï¼Œäººæ˜¯é è‘—è–éˆè€Œå¾—å¾Œå—£çš„èº«ä»½(3:3, 14; 4:6, 29; 5:5, 25; 6:8)ï¼Œæ—¢é è‘—è–éˆå¾—ç”Ÿï¼Œå°±è¦é è‘—è–éˆè¡Œäº‹(5:25)ã€‚ä¸Ÿæ£„é‚£äº›é æƒ…æ…¾è€Œç”Ÿçš„ç½ª(5:19-21)ï¼Œçµå‡ºè–éˆçš„æžœå­(5:22-23)</p>', '1', '2008-04-11 12:00:09', '2008-04-11 12:00:09'), ('48177e63-4520-40e9-b526-1804ab4a69cb', '48177e63-8be4-4391-a405-1804ab4a69cb', '', '1', '2008-04-29 14:00:35', '2008-04-29 14:00:35'), ('48177e6c-21a0-41fd-ae91-1804ab4a69cb', 'b5e4f0aa-e1ba-4160-b492-669e57b29c44', '<p>test</p>', '1', '2008-04-29 14:04:19', '2008-04-29 14:04:19'), ('481b84ee-c490-4876-ad97-1804ab4a69cb', 'b649d6bf-3839-420b-af72-d8b52653c74c', '<p>Genesis 1:1</p>\r\n<p>Gen 1:1</p>\r\n<p>Ge 1:1</p>\r\n<p>Gn 1:1</p>', '1', '2008-05-02 15:17:34', '2008-05-02 15:17:34'), ('4824a181-365c-4471-8158-08b8ab4a69cb', '167f2de6-b6b1-485d-9710-0c607c74abcd', '<p><a href=\"../view/167f2de6-b6b1-485d-9710-0c607c74abcd\">awefawefawef</a></p>\r\n<p>aw</p>\r\n<p>ef</p>\r\n<p>awe</p>\r\n<p><img src=\"../../files/2463393936_b903659a74.jpg\" border=\"0\" width=\"500\" height=\"375\" /></p>\r\n<p>fwe</p>', '1', '2008-05-09 13:10:30', '2008-05-09 13:10:30');
+INSERT INTO `users` VALUES ('47fb68f7-8f60-4750-a0f7-1650ab4a69cb', 'aaronshaf@gmail.com', '3a00070e691147f18e69201fc1431b0d39248af9', 'Aaron Shafovaloff', 'Aaron', 'Shafovaloff', null, null, null, null, null, '1', '0', null, '0', '1', '2008-04-08 06:45:43', '2008-04-08 06:45:43');
+INSERT INTO `virtual_classes` VALUES ('481a1abb-f5c0-4d0b-a233-1804ab4a69cb', '47fb6906-c718-46c9-bc5d-1650ab4a69cb', '481771d6-d2f0-4900-8c07-1804ab4a69cb', 'test2', '1', '2008-04-04', '2008-01-01', '2008-12-10', null, null, null, '0', '2008-05-01 13:32:11', '2008-05-01 21:27:25'), ('481a1f9a-9308-47d8-93e7-1804ab4a69cb', '47fb6906-c718-46c9-bc5d-1650ab4a69cb', '48175357-c2e0-4bb8-9b14-1804ab4a69cb', 'waefawefw', '0', '2008-01-01', '2008-01-01', '2008-01-01', null, null, null, '0', '2008-05-01 13:52:58', '2008-05-01 14:38:32');

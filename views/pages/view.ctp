@@ -26,10 +26,12 @@ echo $this->renderElement('no_column_background');
 		}
 		?>
 	
+		<? if(!$offline): ?>
 		<div class="gclms-option-buttons">
 			<a class="gclms-edit-page" href="<?= $groupAndCoursePath ?>/pages/edit/<?= $node['Node']['id'] ?>">Edit</a>
 			<a class="gclms-view-with-frames" href="<?= $groupAndCoursePath ?>/classroom/page/<?= $node['Node']['id'] ?>">View with frames</a>
 		</div>
+		<? endif; ?>
 		
 		<h1><?= $node['Node']['title'] ?></h1>
 		<?

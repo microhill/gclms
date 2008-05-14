@@ -20,12 +20,11 @@ echo $this->renderElement('no_column_background'); ?>
 		'stage' => $this->data['stage']
 	));
 	
-	//$progressPercentage = ($progress['stage'] + 1) / ($progress['totalStages'] + 1);
-	$progressPercentage = 1;
+	$progressPercentage = ($progress['stage'] + 1) / ($progress['totalStages'] + 1);
 	
-	//if($progress['stage'] < $progress['totalStages'])
-		//$nextHref = $groupAndCoursePath . '/export/generate_archive/' . ($progress['stage'] + 1);
-	//else
+	if($progress['stage'] < $progress['totalStages'])
+		$nextHref = $groupAndCoursePath . '/export/generate_archive/' . ($progress['stage'] + 1);
+	else
 		$nextHref = $groupAndCoursePath . '/export';
 	?>
 	<div style="width: 200px; height: 30px;background-color: red;">

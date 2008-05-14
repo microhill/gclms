@@ -7,8 +7,8 @@
 	
 	if(!isset($level))
 		$level = 1;
-	
-	function display_nodes($nodes,$level = 1,$groupAndCoursePath) {
+
+	function display_nodes($nodes,$level = 1,$groupAndCoursePath,$here) {
 		echo '<ul>';
 		
 		foreach($nodes as $node) {
@@ -22,19 +22,23 @@
 			} else
 				echo ' gclms-empty';
 			echo '">';
-			echo '<img class="gclms-expand-button" src="/img/blank-1.png" alt="Icon" /> ';
+			$imgUrl = relativize_url($here,'/img/blank-1.png');
+			echo '<img class="gclms-expand-button" src="' . $imgUrl . '" alt="Icon" /> ';
 			if($node['type'] == 0)
-				echo '<a href="' . $groupAndCoursePath . '/pages/view/' . $node['id'] . '">' . $node['title'] . '</a>';
+				echo '<a href="' . 'pages/view/' . $node['id'] . '">' . $node['title'] . '</a>';
 			else
 				echo $node['title'];
 			if(!empty($node['ChildNode']))
-				display_nodes($node['ChildNode'],$level + 1,$groupAndCoursePath);
+				display_nodes($node['ChildNode'],$level + 1,$groupAndCoursePath,$here);
 			echo '</li>';	
 		}
 		
 		echo '</ul>';
 	}
-	
-	display_nodes($nodes,1,$groupAndCoursePath);
+
+	if(!isset($here))
+		$here = $this->here;
+		
+	display_nodes($nodes,1,$groupAndCoursePath,$here);
 	?>
 </div>

@@ -1,8 +1,9 @@
 <?
 class ExportController extends AppController {
     var $uses = array('Node','Textarea');
-	var $helpers = array('OpenDocument');
+	var $helpers = array('OpenDocument','CourseArchive');
 
+	/*
 	function beforeFilter() {
 		set_time_limit(180);
 		ob_start();
@@ -10,6 +11,7 @@ class ExportController extends AppController {
 		header ("Content-Type:text/html");
 		parent::beforeFilter();
 	}
+	*/
 
     function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
@@ -22,6 +24,44 @@ class ExportController extends AppController {
 	}
 	
 	function generate_odt($stage = 0) {
+		$this->prepare_course_data($stage);
+		$this->data['stage'] = $stage;
+	}
+	
+	function odt() {
+		$file = TMP . 'export' . DS . $this->viewVars['course']['id'] . '.odt';
+		if(!file_exists($file))
+			die('File does not exist. Generate it.');
+		
+		header('Content-type: application/vnd.oasis.opendocument.text');
+		header('Content-Disposition: attachment; filename="' . $this->viewVars['course']['title'] . '.odt"');
+		header("Content-Length: " .  filesize($file));
+		header("Content-Transfer-Encoding: binary\n");
+	
+		readfile($file);
+		exit;
+	}
+	
+	function generate_archive($stage = 0) {
+		$this->prepare_course_data($stage);
+		$this->data['stage'] = $stage;		
+	}
+	
+	function archive() {
+		$file = TMP . 'export' . DS . $this->viewVars['course']['id'] . '.zip';
+		if(!file_exists($file))
+			die('File does not exist. Generate it.');
+			
+		header("Content-type: application/zip");
+		header('Content-Disposition: attachment; filename="' . $this->viewVars['course']['title'] . '.zip"');
+		header("Content-Length: " .  filesize($file));
+		header("Content-Transfer-Encoding: binary\n");
+	
+		readfile($file);
+		exit;
+	}
+	
+	private function prepare_course_data($stage) {
 		$file = new File(TMP.'export' . DS . $this->viewVars['course']['id'] . '.tmp', true);
 		
 		if($stage) {
@@ -43,22 +83,6 @@ class ExportController extends AppController {
 			$this->data['glossary_terms'] = $this->GlossaryTerm->findAll(array('GlossaryTerm.course_id' => $this->viewVars['course']['id']),null,'GlossaryTerm.term ASC');	
 		
 			$file->write(serialize($this->data));
-		}
-		
-		$this->data['stage'] = $stage;
-	}
-	
-	function download_odt() {
-		$file = ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . $this->viewVars['course']['id'] . '.odt';
-		if(!file_exists($file))
-			die('File does not exist. Generate it.');
-		
-		header('Content-type: application/vnd.oasis.opendocument.text');
-		header('Content-Disposition: attachment; filename="' . $this->viewVars['course']['title'] . '.odt"');
-		header("Content-Length: " .  filesize($file));
-		header("Content-Transfer-Encoding: binary\n");
-	
-		readfile($file);
-		exit;
+		}		
 	}
 }

@@ -9,19 +9,8 @@
 		gclms:action="<?= $this->action ?>"
 		gclms:direction="<? __('TEXT DIRECTION'); ?>"
 		gclms:language="<?= Configure::read('Config.language') ?>">
-	<div style="min-height: 100%;">
-		<?= $this->renderElement('banner') ?>
-		
-		<?
-		if(!$offline)
-			echo $this->renderElement('user_bar');
-			
-		echo $this->renderElement('breadcrumbs');
-		?>
-		
-		<div id="gclms-page">
-			<?= $content_for_layout; ?>
-		</div>
+	<div id="gclms-page">
+		<?= $content_for_layout; ?>
 	</div>
 
 	<?= $asset->js_for_layout(); ?>

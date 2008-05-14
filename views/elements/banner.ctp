@@ -17,7 +17,12 @@
 	} else {
 		$file = ROOT . DS . APP_DIR . DS . 'webroot' . DS . 'img' . DS . 'temporary-logo-2007-11-16.png';
 		$imageInfo = getimagesize($file);
-		echo '<img src="/img/temporary-logo-2007-11-16.png" ' . $imageInfo[3] . ' />';
+		
+		if(!isset($here))
+			$here = $this->here;
+		
+		$img = relativize_url($here,'/img/temporary-logo-2007-11-16.png');
+		echo '<img src="' . $img . '" ' . $imageInfo[3] . ' />';
 	}
 	?></a>
 </div>

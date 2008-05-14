@@ -13,10 +13,10 @@ echo $this->renderElement('left_column'); ?>
                 <div>This can be opened using the free <a href="http://www.openoffice.org/" />OpenOffice.org</a> office suite.</div>
 				<div>
 					<?
-					$odt_file = ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . $course['id'] . '.odt';
+					$odt_file = TMP . 'export' . DS . $course['id'] . '.odt';
 					
 					if(file_exists($odt_file)): ?>
-						<a href="<?= $groupAndCoursePath ?>/export/download_odt" class="gclms-download">
+						<a href="<?= $groupAndCoursePath ?>/export/odt" class="gclms-download">
 							Download
 							(updated <?= date('F j, Y', filemtime($odt_file)) ?>)</a>
 					<? endif; ?>
@@ -27,7 +27,14 @@ echo $this->renderElement('left_column'); ?>
                 <div class="gclms-export-title"><? __('Archive (.zip)') ?></div>
                 <div>Useful for backup or for distributing the course on a CD or flash drive.</div>
 				<div>
-					<a href="<?= $groupAndCoursePath ?>/export/archive" class="gclms-download">Download</a>
+					<?
+					$archive_file = TMP . 'export' . DS . $course['id'] . '.zip';
+					
+					if(file_exists($archive_file)): ?>
+						<a href="<?= $groupAndCoursePath ?>/export/archive" class="gclms-download">
+							Download
+							(updated <?= date('F j, Y', filemtime($archive_file)) ?>)</a>
+					<? endif; ?>
 					<a href="<?= $groupAndCoursePath ?>/export/generate_archive" class="gclms-generate">Generate</a>
 				</div>
             </li>

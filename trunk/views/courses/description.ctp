@@ -12,6 +12,7 @@ echo $this->renderElement('left_column'); ?>
 	<div class="gclms-content">
 		<?= $this->renderElement('notifications'); ?>
 		<h1><?= $course['title'] ?></h1>
+
 		<? if($course['language'] != Configure::read('Config.language')): ?>
 			<!-- p><?= implode(order(array(__('Language:',true), ' ', $languages[$course['language']]))) ?></p -->
 		<? endif;
@@ -26,7 +27,8 @@ echo $this->renderElement('left_column'); ?>
 
 		if(!empty($nodes))
 			echo $this->renderElement('nodes_tree',array(
-				'nodes' => $nodes
+				'nodes' => $nodes,
+				'here' => $this->here
 			));
 		
 		if(!empty($course['redistribution_allowed'])): ?>

@@ -7,7 +7,7 @@
 	$html->css('main', null, null, false);
 	$html->css(__('TEXT DIRECTION',true), null, null, false);
 	
-	echo $asset->css_for_layout();
+	echo $asset->css_for_layout($offline);
 	?>
 	<!--[if lte IE 6]><?= $html->css('ie6_or_less') ?><![endif]-->
 	<!--[if lte IE 7]><?= $html->css('ie7_or_less') ?><![endif]-->

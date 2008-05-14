@@ -3,8 +3,7 @@ uses('L10n');
 
 App::import('Vendor', 'browserdetection'.DS.'browserdetection');
 class AppController extends Controller {
-    var $components = array('Breadcrumbs','Languages','RequestHandler','Notifications');
-    //var $uses = array(); //,
+    var $components = array('Common','Breadcrumbs','Languages','RequestHandler','Notifications');
 	var $uses = array('Group','GroupAdministrator','Course','User');
 	var $paginateDefaults = array('limit' => 12);
 	var $helpers = array('Html','Form','Ajax','Asset');
@@ -49,10 +48,12 @@ class AppController extends Controller {
 	
 			$this->set('breadcrumbs',$this->Breadcrumbs->getTrail());
 			$this->set('notifications',$this->Notifications->getAll());
-	
-	    	//$this->set('pageId',isset($this->viewVars['page']['order']) ? $this->viewVars['page']['order'] : null);
-			//$this->set('groupId', isset($this->viewVars['group']['id']) ? $this->viewVars['group']['id'] : null);
+			
 	       	$this->set('css_for_layout', $this->css_for_layout);	
+		}
+
+		if(isset($this->params['url']['framed'])) {
+			$this->layout = 'framed';
 		}
     }
 
@@ -63,15 +64,16 @@ class AppController extends Controller {
 			$group = $this->Group->find(array('Group.web_path' => $this->params['group']),array('id','name','web_path','external_web_address','logo','logo_updated','description','web_path'));
 			$this->set('group',$group['Group']);
        	}
-
+    	$this->set('groupWebPath', isset($this->viewVars['group']['web_path']) ? '/' . $this->viewVars['group']['web_path'] : null);
+		
 		// Course
-
        	if(!empty($this->params['course'])) {
 			$this->Course->contain('id','group_id','title','web_path','description','language','redistribution_allowed','commercial_use_allowed','derivative_works_allowed','css');
 			$course = $this->Course->find(array("Course.web_path" => $this->params['course']));
 			$this->set('course',$course['Course']);
        	}
-		
+    	$this->set('courseWebPath', isset($this->viewVars['course']['web_path']) ? '/' . $this->viewVars['course']['web_path'] : null);
+						
 		// Class
        	if(!empty($this->params['class'])) {
        		$this->VirtualClass->contain();
@@ -81,11 +83,12 @@ class AppController extends Controller {
        	if(isset($this->params['class'])) { // && $this->Session->check('VirtualClass.' . $this->params['class'])
 			$this->set('facilitated_class', $this->Session->read('VirtualClass.' . $this->params['class']));
        	}
-
-    	$this->set('groupWebPath', isset($this->viewVars['group']['web_path']) ? '/' . $this->viewVars['group']['web_path'] : null);
-    	$this->set('courseWebPath', isset($this->viewVars['course']['web_path']) ? '/' . $this->viewVars['course']['web_path'] : null);
     	$this->set('classWebPath', isset($this->viewVars['facilitated_class']['id']) ? '/' . $this->viewVars['facilitated_class']['id'] : null);
+				
     	$this->set('groupAndCoursePath', $this->viewVars['groupWebPath'] . $this->viewVars['courseWebPath'] . $this->viewVars['classWebPath']);
+				
+		// Offline
+		$this->set('offline',isset($this->params['url']['offline']));
     }
 
     function defaultBreadcrumbsAndLogo() {
@@ -106,97 +109,22 @@ class AppController extends Controller {
 		}
     }
 
-    /*
-    function administration_save($id = null) {
-		$this->edit($id);
-    }
-    */
-
-    function administration_add($model = null) {
-    	$this->add($model);
-    }
-    function add($model = null) {
-		if(empty($model))
-			$model = $this->modelNames[0];
-
-		if(!empty($this->data)) {
-			if($this->{$model}->save($this->data)) {
-				if(!empty($this->itemName))
-					$this->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully added.',true));
-				$this->data[$model]['id'] = $this->{$model}->id;
-				$this->afterSave();
-			} else {
-				if(!empty($this->itemName))
-					$this->Notifications->add(__('There was an error when attempting to add the ' . low($this->itemName) . '.',true),'error');
-			}
-		}
-    }
+    function administration_add($model = null) { $this->add($model); }
+    function add($model = null) { $this->Common->add($model); }
 	
-    function administration_index() {
-    	$this->index();
-    }
-	function index() {
-	    $this->table();
-	   
-	    if($this->RequestHandler->isAjax())
-	    	$this->render('table','ajax');
-	}
-	
-	function table() {
-		$data = $this->paginate();
-		$this->set(compact('data'));
-	}
+    function administration_index() {$this->index();}
+	function index() { $this->Common->index(); }
+	function table() { $this->Common->table(); }
 
-    function administration_edit($model = null) {
-    	$this->edit($model);
-    }
-    function edit($id = null, $model = null) {
-		if(empty($model))
-			$model = $this->modelNames[0];
+    function administration_edit($id = null, $model = null) { $this->Common->edit($id,$model); }	
+    function edit($id = null, $model = null) { $this->Common->edit($id,$model); }
 
-		if(!empty($this->data)) {
-			$this->{$model}->id = $id;
-			$this->data[$model]['id'] = $id; // For accessibility outside of this method
-			if($this->{$model}->save($this->data)) {
-				if(!empty($this->itemName))
-					$this->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully saved.',true));
-				$this->afterSave();
-			} else {
-				if($id)
-					$this->data[$model]['id'] = $id;
-				if(!empty($this->itemName))
-					$this->Notifications->add(__('There was an error when attempting to edit the ' . low($this->itemName) . '.',true),'error');
-			}
-		} else {
-			$this->data = $this->{$model}->findById($id);
-		}
-    }
+	function afterSave() { $this->Common->afterSave(); }
 
-	function afterSave() {
-		if(empty($this->redirect)) {
-			if(!empty($this->params['administration']))
-				$this->params['administration'] = '/' . $this->params['administration'];
-			$this->redirect(@$this->params['administration'] . $this->viewVars['groupAndCoursePath'] . '/' . Inflector::underscore($this->name));
-		} else
-			$this->redirect($this->redirect);
-		exit;
-	}
+    function administration_delete($id) { $this->Common->delete($id); }
+    function delete($id) { $this->Common->delete($id); }
 
-    function administration_delete($id) {
-    	$this->delete($id);
-    }
-
-    function delete($id) {
-        if($this->{$this->uses[0]}->delete($id) && !empty($this->itemName))
-			$this->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully deleted.',true));
-		else if(!empty($this->itemName))
-			$this->Notifications->add(__('There was an error when attempting to delete the ' . low($this->itemName) . '.',true),'error');
-		$this->afterDelete();
-    }
-
-    function afterDelete() {
-    	$this->afterSave();
-    }
+    function afterDelete() { $this->afterSave(); }
 
 	function isAuthorized() {
  		$user = $this->viewVars['user'];

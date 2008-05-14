@@ -1,6 +1,6 @@
 <?
 class AppModel extends Model {
-	var $validate = array(''=>'');
+	//var $validate = array(''=>'');
 	//var $useDbConfig = 'test';
 	var $actsAs = array('Containable');
 

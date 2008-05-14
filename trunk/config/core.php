@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: core.php 5818 2007-10-20 12:01:30Z phpnut $ */
+/* SVN FILE: $Id: core.php 6296 2008-01-01 22:18:17Z phpnut $ */
 /**
  * This is core configuration file.
  *
@@ -8,7 +8,7 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) :  Rapid Development Framework <http://www.cakephp.org/>
- * Copyright 2005-2007, Cake Software Foundation, Inc.
+ * Copyright 2005-2008, Cake Software Foundation, Inc.
  *								1785 E. Sahara Avenue, Suite 490-204
  *								Las Vegas, Nevada 89104
  *
@@ -16,14 +16,14 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @filesource
- * @copyright		Copyright 2005-2007, Cake Software Foundation, Inc.
+ * @copyright		Copyright 2005-2008, Cake Software Foundation, Inc.
  * @link				http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
  * @package			cake
  * @subpackage		cake.app.config
  * @since			CakePHP(tm) v 0.2.9
- * @version			$Revision: 5818 $
+ * @version			$Revision: 6296 $
  * @modifiedby		$LastChangedBy: phpnut $
- * @lastmodified	$Date: 2007-10-20 07:01:30 -0500 (Sat, 20 Oct 2007) $
+ * @lastmodified	$Date: 2008-01-01 15:18:17 -0700 (Tue, 01 Jan 2008) $
  * @license			http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 /**
@@ -45,13 +45,10 @@
 	if(file_exists('options.php')) {
 		include('options.php');
 	}
-
 /**
  * Application wide charset encoding
  */
 	Configure::write('App.encoding', 'UTF-8');
-
-
 /**
  * To configure CakePHP *not* to use mod_rewrite and to
  * use CakePHP pretty URLs, remove these .htaccess
@@ -73,7 +70,7 @@
  * 'admin' 		-> admin_index() and /admin/controller/index
  * 'superuser' -> superuser_index() and /superuser/controller/index
  */
-	Configure::write('Routing.admin', 'administration');
+	Configure::write('Routing.admin', 'admin');
 
 /**
  * Turn off all caching application-wide.
@@ -153,7 +150,7 @@
  * CakePHP session IDs are also regenerated between requests if
  * 'Security.level' is set to 'high'.
  */
-	Configure::write('Security.level', 'low');
+	Configure::write('Security.level', 'medium');
 /**
  * A random string used in security hashing methods.
  */
@@ -161,16 +158,25 @@
 /**
  * Compress CSS output by removing comments, whitespace, repeating tags, etc.
  * This requires a/var/cache directory to be writable by the web server for caching.
+ * and /vendors/csspp/csspp.php
  *
- * To use, prefix the CSS link URL with '/ccss/' instead of '/css/' or use Controller::cssTag().
+ * To use, prefix the CSS link URL with '/ccss/' instead of '/css/' or use HtmlHelper::css().
  */
-	define('COMPRESS_CSS', false);
+	//Configure::write('Asset.timestamp', true);
+	//Configure::write('Asset.filter.css', 'css.php');
+/**
+ * Plug in your own custom JavaScript compressor by dropping a script in your webroot to handle the
+ * output, and setting the config below to the name of the script.
+ *
+ * To use, prefix your JavaScript link URLs with '/cjs/' instead of '/js/' or use JavaScriptHelper::link().
+ */
+	//Configure::write('Asset.filter.js', 'custom_javascript_output_filter.php');/
 /**
  * The classname and database used in CakePHP's
  * access control lists.
  */
-//	Configure::write('Acl.classname', 'DB_ACL');
-//	Configure::write('Acl.database', 'default');
+	//Configure::write('Acl.classname', 'DB_ACL');
+	//Configure::write('Acl.database', 'default');
 /**
  * Cache Engine Configuration
  *
@@ -219,13 +225,9 @@
  *									'duration'=> 3600, //[optional]
  *									'probability'=> 100, //[optional]
  * 									'className' => 'Cache', //[optional]
- * 									'fields' => array('data' => 'data', 'expires => 'expires'), //[optional]
+ * 									'fields' => array('data' => 'data', 'expires' => 'expires'), //[optional]
  * 									'serialize' => true, [optional]
  *								)
  * 					);
  */
 	Cache::config('default', array('engine' => 'File'));
-	
-	define('MAX_MD5SIZE', (5 * 1024) * 1024);
-	
-	define('DEFAULT_LANGUAGE', 'eng');

@@ -3,7 +3,7 @@ class OpenDocumentHelper extends AppHelper {
 	function export($data) {
 		$this->data = $data;
 		App::import('Vendor', 'open_document'. DS . 'open_document');
-		$destinationFile = ROOT . DS . APP_DIR . DS . 'tmp' . DS . 'export' . DS . $this->data['course']['id'] . '.odt';
+		$destinationFile = TMP . 'export' . DS . $this->data['course']['id'] . '.odt';
 		
 		if($data['stage'] > 0) {
 			$this->openDocument = new OpenDocument($destinationFile);
@@ -58,6 +58,9 @@ class OpenDocumentHelper extends AppHelper {
 						$glossary_term['GlossaryTerm']['description'] = $this->prepareTextForODT($glossary_term['GlossaryTerm']['description']);
 						$this->openDocument->importHTML($glossary_term['GlossaryTerm']['description']);
 					}
+					
+					//unlink(TMP.'export' . DS . $data['course']['id'] . '.tmp');
+					
 					break;
 				case 3:
 					//Books

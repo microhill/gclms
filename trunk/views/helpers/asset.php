@@ -33,7 +33,7 @@ class AssetHelper extends Helper {
         $this->viewScriptCount = count($view->__scripts);
     }
 
-	function css_for_layout() {
+	function css_for_layout($offline = false) {
         $view =& ClassRegistry::getObject('view');
 
         //nothing to do
@@ -48,12 +48,27 @@ class AssetHelper extends Helper {
                            );
 
 
+		// Relative links when offline
+		if($offline) {
+			$path = parse_url($view->here);
+			$depth = substr_count($path['path'],'/');
+			$relative_path = str_repeat('../',$depth - 1);
+
+			foreach($view->__scripts as &$script) {
+				if(strstr($script,'.css') && !strstr($script,'/files')) {
+					$script = str_replace('href="/css','href="' . $relative_path . 'css',$script);
+				}
+				//$script
+			}
+		}
+
         if(Configure::read('debug')) {
             $css = array();
 			foreach($view->__scripts as $script) {
 				if(strstr($script,'.css'))
 					$css[] = $script;
 			}
+
 			return join("\n\t", $css);
         }
 

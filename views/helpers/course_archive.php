@@ -63,7 +63,8 @@ class CourseArchiveHelper extends AppHelper {
 		if($node['type'] == '0') {
 			$this->archive->write($this->data['group']['web_path'] . '/' . $this->data['course']['web_path'] . '/pages/view/' . $node['id'] . '.html',$this->view->renderElement('offline_page',array(
 				'node' => $node,
-				'title_for_layout' => 'test'
+				'title_for_layout' => 'test',
+				'offline' => true
 			)));
 		}
 		

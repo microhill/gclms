@@ -73,6 +73,7 @@ class ExportController extends AppController {
 			$this->Node = new Node;
 			$this->data['nodes'] = $this->Node->findAllInCourse($this->viewVars['course']['id'],array('Textarea','Question'=>'Answer'));
 			$this->data['node_count'] = $this->Node->find('count',array('conditions' => array('Node.course_id' => $this->viewVars['course']['id'])));
+			$this->Node->setNextAndPreviousInNodeTree(&$this->data['nodes']);
 	
 			App::import('Model','Article');
 			$this->Article = new Article;

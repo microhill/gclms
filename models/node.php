@@ -238,8 +238,13 @@ class Node extends AppModel {
 	}
 	
 	function setNextAndPreviousInNodeTree(&$nodes){
-		foreach($nodes as $node) {
+		foreach($nodes as &$node) {
+			$node['previous_page_id'] = $this->findPreviousPageId(array('Node' => $node));
+			$node['next_page_id'] = $this->findNextPageId(array('Node' => $node));
 			
+			if(!empty($node['ChildNode'])) {
+				$this->setNextAndPreviousInNodeTree(&$node['ChildNode']);
+			}
 		}
 	}
 	

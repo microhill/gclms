@@ -69,6 +69,19 @@
 				</div>
 			</div>
 		</div>
+		<div id="gclms-page-navigation">
+			<? if(!empty($node['Node']['previous_page_id'])): ?>
+				<a class="gclms-back" href="<?= $groupAndCoursePath ?>/pages/view/<?= $node['previous_page_id'] ?>.html">
+					<img src="/img/icons/oxygen_refit/32x32/actions/go-previous-blue.png" alt="<? __('Previous page') ?>" />
+				</a>
+			<? endif; ?>
+		
+			<? if(!empty($node['Node']['next_page_id'])): ?>
+				<a class="gclms-next" href="<?= $groupAndCoursePath ?>/pages/view/<?= $node['next_page_id'] ?>.html">
+					<img src="/img/icons/oxygen_refit/32x32/actions/go-next-blue.png" alt="<? __('Next page') ?>" />
+				</a>
+			<? endif; ?>
+		</div>
 	</div>
 
 	<script type="text/javascript" src="../../js/vendors/prototype.js"></script>
@@ -77,4 +90,3 @@
 	<script type="text/javascript" src="../../js/course.js"></script>
 </body>
 </html>
-

@@ -30,7 +30,7 @@
 				$extension = '';
 				
 			if($node['type'] == 0)
-				echo '<a href="' . 'pages/view/' . $node['id'] . '">' . $node['title'] . $offline . '</a>';
+				echo '<a href="' . 'pages/view/' . $node['id'] . '">' . $node['title'] . $extension . '</a>';
 			else
 				echo $node['title'];
 			if(!empty($node['ChildNode']))

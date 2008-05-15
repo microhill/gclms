@@ -39,6 +39,9 @@ class AppController extends Controller {
        	$this->set('user', $this->Session->read('Auth.User'));
 		$this->set('languages', $this->Languages->generateList());
 		$this->set('showDefaultAddButton',true);
+		
+		// Offline
+		$this->set('offline',isset($this->params['url']['offline']));
     }
 
     function beforeRender() {
@@ -49,7 +52,7 @@ class AppController extends Controller {
 			$this->set('breadcrumbs',$this->Breadcrumbs->getTrail());
 			$this->set('notifications',$this->Notifications->getAll());
 			
-	       	$this->set('css_for_layout', $this->css_for_layout);	
+	       	$this->set('css_for_layout', $this->css_for_layout);
 		}
 
 		if(isset($this->params['url']['framed'])) {
@@ -86,9 +89,6 @@ class AppController extends Controller {
     	$this->set('classWebPath', isset($this->viewVars['facilitated_class']['id']) ? '/' . $this->viewVars['facilitated_class']['id'] : null);
 				
     	$this->set('groupAndCoursePath', $this->viewVars['groupWebPath'] . $this->viewVars['courseWebPath'] . $this->viewVars['classWebPath']);
-				
-		// Offline
-		$this->set('offline',isset($this->params['url']['offline']));
     }
 
     function defaultBreadcrumbsAndLogo() {

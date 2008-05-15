@@ -113,9 +113,14 @@ function replaceFirst($search, $replace, $subject){
 
 function relativize_url($here,$absolute_url) {
 	$here = parse_url($here);
+	
+	if(strpos($absolute_url,$here['path']) === 0) {
+		return str_replace($here['path'] . '/','',$absolute_url);
+	}
+	
 	$depth = substr_count($here['path'],'/');
-	if($depth > 1)
-		$relative_path = str_repeat('../',$depth - 1);
+	
+	$relative_path = $depth > 1 ? str_repeat('../',$depth - 1) : '/';
 	
 	if($absolute_url[0] != '/') {
 		throw new Exception('relativize function expects absolute URL.');

@@ -24,13 +24,16 @@
 			echo '">';
 			$imgUrl = relativize_url($here,'/img/blank-1.png');
 			echo '<img class="gclms-expand-button" src="' . $imgUrl . '" alt="Icon" /> ';
+			
 			if($offline)
 				$extension = '.html';
 			else
 				$extension = '';
+
+			$url = relativize_url($here,$groupAndCoursePath . '/pages/view/' . $node['id'] . $extension);
 				
 			if($node['type'] == 0)
-				echo '<a href="' . 'pages/view/' . $node['id'] . '">' . $node['title'] . $extension . '</a>';
+				echo '<a href="' . $url . '">' . $node['title'] . $extension . '</a>';
 			else
 				echo $node['title'];
 			if(!empty($node['ChildNode']))

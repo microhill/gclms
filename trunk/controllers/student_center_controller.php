@@ -1,6 +1,6 @@
-<?php
+<?
 class StudentCenterController extends AppController {
-    var $uses = array('Group','ClassEnrollee','GroupFacilitator');
+	var $uses = array('ClassEnrollee','GroupFacilitator');
     var $components = array('RequestHandler','Breadcrumbs');
     
 	function beforeFilter() {
@@ -9,7 +9,8 @@ class StudentCenterController extends AppController {
 			$groups = $this->User->findAllGroups($user['id']);
 			$this->set('groups', $groups);
 
-			$this->ClassEnrollee->contain(array('FacilitatedClass' => array('Course'=>array('Group'))));
+			$this->ClassEnrollee->contain(array('VirtualClass' => array('Course'=>array('Group'))));
+
 			$enrollees = $this->ClassEnrollee->findAllByUserId($user['id']);
 			$this->set('enrollees', $enrollees);
 
@@ -21,7 +22,7 @@ class StudentCenterController extends AppController {
 			$course = $this->Course->find(array("Course.web_path" => $this->passedArgs['course']));
 			$this->set('course', $course['Course']);
        	}
-		
+
 		parent::beforeFilter();	
 	}
 	
@@ -32,8 +33,8 @@ class StudentCenterController extends AppController {
     }
 
     function index(){
-        $this->Group->contain();
-        $this->set('participating_groups',$this->Group->findall(null,null,'Group.created DESC',5));
+		$this->Group->contain();
+		$this->set('participating_groups',$this->Group->findall(null,null,'Group.created DESC',5));
 		
         $this->Course->contain(array('Group' => array('web_path')));
         $this->set('new_courses',$this->Course->findall(null,null,'Course.created DESC',5));

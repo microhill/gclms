@@ -1,5 +1,4 @@
-<?php
-
+<?
 /**
  * Created: Sun May 13 11:38:53 CEST 2007
  * 

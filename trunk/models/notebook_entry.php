@@ -1,4 +1,4 @@
 <?php
-class Notebook extends AppModel {
+class NotebookEntry extends AppModel {
 	var $belongsTo = array('Course','User');
 }

@@ -1,4 +1,4 @@
-<?php
+<?
 class ClassEnrollee extends AppModel {
-	var $belongsTo = array('FacilitatedClass','User');
+	var $belongsTo = array('VirtualClass','User');
 }

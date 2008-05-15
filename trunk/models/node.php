@@ -237,6 +237,12 @@ class Node extends AppModel {
 		return $this->__sort();
 	}
 	
+	function setNextAndPreviousInNodeTree(&$nodes){
+		foreach($nodes as $node) {
+			
+		}
+	}
+	
 	function __sort($parentNodeId = 0) {
 		$resultArray = array();
 		
@@ -250,7 +256,7 @@ class Node extends AppModel {
 		return $resultArray;
 	}
 	
-	function getSortedNodeItems($node) {
+	function getSortedNodeItems($node) { // Since it was ported to a helper, this might not be needed
 		$nodeItems = array();
 		foreach($node['Textarea'] as $textarea) {
 			$nodeItems[$textarea['order']] = $textarea;

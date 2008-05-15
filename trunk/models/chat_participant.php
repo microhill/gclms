@@ -1,4 +1,4 @@
 <?php
 class ChatParticipant extends AppModel {
-    var $belongsTo = array('FacilitatedClass','User');
+    var $belongsTo = array('VirtualClass','User');
 }

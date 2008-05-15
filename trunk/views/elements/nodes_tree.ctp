@@ -8,7 +8,7 @@
 	if(!isset($level))
 		$level = 1;
 
-	function display_nodes($nodes,$level = 1,$groupAndCoursePath,$here) {
+	function display_nodes($nodes,$level = 1,$groupAndCoursePath,$here,$offline) {
 		echo '<ul>';
 		
 		foreach($nodes as $node) {
@@ -24,12 +24,17 @@
 			echo '">';
 			$imgUrl = relativize_url($here,'/img/blank-1.png');
 			echo '<img class="gclms-expand-button" src="' . $imgUrl . '" alt="Icon" /> ';
+			if($offline)
+				$extension = '.html';
+			else
+				$extension = '';
+				
 			if($node['type'] == 0)
-				echo '<a href="' . 'pages/view/' . $node['id'] . '">' . $node['title'] . '</a>';
+				echo '<a href="' . 'pages/view/' . $node['id'] . '">' . $node['title'] . $offline . '</a>';
 			else
 				echo $node['title'];
 			if(!empty($node['ChildNode']))
-				display_nodes($node['ChildNode'],$level + 1,$groupAndCoursePath,$here);
+				display_nodes($node['ChildNode'],$level + 1,$groupAndCoursePath,$here,$offline);
 			echo '</li>';	
 		}
 		
@@ -39,6 +44,6 @@
 	if(!isset($here))
 		$here = $this->here;
 		
-	display_nodes($nodes,1,$groupAndCoursePath,$here);
+	display_nodes($nodes,1,$groupAndCoursePath,$here,$offline);
 	?>
 </div>

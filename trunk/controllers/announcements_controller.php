@@ -1,6 +1,6 @@
 <?
 class AnnouncementsController extends AppController {
-    var $uses = array('Announcement');
+    var $uses = array('Announcement','VirtualClass');
 	var $helpers = array('Paginator','MyPaginator','Form','MyForm','Time','MyTime');
 	var $itemName = 'News Term';
 	var $paginate = array('order' => 'title');
@@ -33,12 +33,12 @@ class AnnouncementsController extends AppController {
 		$this->cleanUpFields();
 		
 		if(empty($id)) {
-			$this->data['Announcement']['facilitated_class_id'] = $this->viewVars['facilitated_class']['id'];
+			$this->data['Announcement']['virtual_class_id'] = $this->viewVars['class']['id'];
 		}
 		parent::save($id);
 	}
 	
 	function afterSave() {
-		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/news/section:' . $this->viewVars['facilitated_class']['id']);
+		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/news/section:' . $this->viewVars['class']['id']);
 	}
 }

@@ -1,11 +1,4 @@
 <?
-$javascript->link(array(
-	'vendors/prototype',
-	'prototype_extensions',
-	'gclms',
-	'generate_archive'
-), false);
-
 echo $this->renderElement('no_column_background'); ?>
 <div class="gclms-content">
 	<h1>Generating Archive</h1>
@@ -36,3 +29,11 @@ echo $this->renderElement('no_column_background'); ?>
 		<?= round(100 * $progressPercentage) ?>% 
 	</div>
 </div>
+<?
+echo $javascript->link(array(
+	'vendors/prototype',
+	'prototype_extensions',
+	'gclms',
+	'generate_archive'
+));
+?>

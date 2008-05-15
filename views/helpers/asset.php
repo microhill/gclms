@@ -61,7 +61,7 @@ class AssetHelper extends Helper {
 				//$script
 			}
 		}
-
+		
         if(Configure::read('debug')) {
             $css = array();
 			foreach($view->__scripts as $script) {
@@ -95,7 +95,7 @@ class AssetHelper extends Helper {
 	}
 	
 	function js_for_layout() {
-        $view =& ClassRegistry::getObject('view');
+		$view =& ClassRegistry::getObject('view');
 
         //nothing to do
         if (!$view->__scripts) {

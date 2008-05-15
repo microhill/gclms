@@ -5,6 +5,7 @@
 
 	<?= $html->charset('UTF-8'); ?>
 	<link rel="stylesheet" type="text/css" href="../../css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/page.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/<?= __('TEXT DIRECTION') ?>.css" />
 	<?
 	echo $asset->css_for_layout($offline);

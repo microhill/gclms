@@ -33,7 +33,7 @@ class GradesController extends AppController {
 			die();
 			
 		$this->Grade->save(array(
-			'facilitated_class_id' => $this->passedArgs['section'],
+			'virtual_class_id' => $this->passedArgs['section'],
 			'user_id' => $this->viewVars['user']['id'],
 			'grade' => $this->passedArgs['grade'],
 			'maximum_possible' => $this->passedArgs['maximum_possible'],

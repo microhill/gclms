@@ -1,7 +1,7 @@
 <?
 class ClassroomController extends AppController {
     var $uses = array('Course','Group','Lesson','Unit','FacilitatedClass','Page','ClassEnrollee','Announcement','GlossaryTerm','Article','GlossaryTerm','Book');
-	var $helpers = array('Scripturizer','Glossary','Notebook','License');
+	var $helpers = array('Scripturizer','Glossary','License');
 	var $components = array('MyAuth');
 
 	function beforeRender() {

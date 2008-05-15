@@ -1,7 +1,7 @@
 <?
 class CoursesController extends AppController {
     var $uses = array('Course','Group','FacilitatedClass','Node','ClassEnrollee','Announcement','GlossaryTerm','Article','GlossaryTerm','Book','Node');
-	var $helpers = array('Time','MyTime','Scripturizer','Glossary','Notebook','License');
+	var $helpers = array('Time','MyTime','Scripturizer','Glossary','License');
 	var $itemName = 'Course';
 
 	function beforeRender() {
@@ -131,7 +131,7 @@ class CoursesController extends AppController {
 	}
 
 	function enroll($id) {
-		$data = array('ClassEnrollee' => array('facilitated_class_id' => (int) $id,'user_id' => (int) $this->viewVars['user']['id']));
+		$data = array('ClassEnrollee' => array('virtual_class_id' => (int) $id,'user_id' => (int) $this->viewVars['user']['id']));
 		
 		if(!$this->ClassEnrollee->find($data))
 			$this->ClassEnrollee->save($data);
@@ -179,7 +179,7 @@ class CoursesController extends AppController {
 		$this->set(compact('data'));
 	}
 
-	function show() {
+	function show() {		
 		$this->Node->contain();
 		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		$this->set(compact('nodes'));

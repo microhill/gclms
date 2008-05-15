@@ -11,7 +11,7 @@ class GroupsController extends AppController {
 		if($this->Session->check('Auth.User')) {
 			$user = $this->Session->read('Auth.User');
 			
-			$this->ClassEnrollee->contain(array('FacilitatedClass' => array('Course'=>array('Group'))));
+			$this->ClassEnrollee->contain(array('VirtualClass' => array('Course'=>array('Group'))));
 			$enrollees = $this->ClassEnrollee->findAllByUserId($user['id']);
 			$this->set('enrollees', $enrollees);
 			

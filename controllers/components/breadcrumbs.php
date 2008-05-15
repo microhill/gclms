@@ -4,7 +4,6 @@ class BreadcrumbsComponent extends Object {
     
     function startup(&$controller){
 		$this->controller = &$controller;
-
     }
     
 	function addCrumb($title, $link) {

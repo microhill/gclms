@@ -1,6 +1,6 @@
 <?
 class User extends AppModel {   
-    var $recursive = 1;
+	var $recursive = 1;
     
 	var $hasAndBelongsToMany = array(
 		'GroupsAdministrating' => array(
@@ -20,18 +20,18 @@ class User extends AppModel {
 				'fields' 		=> array('id','web_path','name')
 			),
 		'ClassesTaking' => array(
-				'className'    => 'FacilitatedClass',
+				'className'    => 'VirtualClass',
 				'joinTable'    => 'class_enrollees',
 				'foreignKey'   => 'user_id',
-				'associationForeignKey'=> 'facilitated_class_id',
+				'associationForeignKey'=> 'virtual_class_id',
 				'unique'       => true,
 				'fields' 		=> array('id','alias')
 			),
 		'ClassesFacilitating'	=> array(
-				'className'   	=> 'FacilitatedClass',
+				'className'   	=> 'VirtualClass',
 				'joinTable'   	=> 'class_facilitators',
 				'foreignKey' 	=> 'user_id',
-				'associationForeignKey'=> 'facilitated_class_id',
+				'associationForeignKey'=> 'virtual_class_id',
 				'unique'      	=> true,
 				'fields'		=> array('id','alias')
 			)

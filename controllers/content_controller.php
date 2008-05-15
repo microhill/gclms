@@ -89,6 +89,10 @@ class ContentController extends AppController {
 		
 		$this->afterSave();
 	}
+	
+	function fix_order() {
+		
+	}
     
     function view($id) {
 		$this->Node->contain();

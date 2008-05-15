@@ -47,7 +47,8 @@ class CourseArchiveHelper extends AppHelper {
 				case 2:
 					$this->archive->write($data['group']['web_path'] . '/' . $data['course']['web_path'] . '/index.html',$this->view->renderElement('offline_course',array(
 						'nodes' => $data['nodes'],
-						'title_for_layout' => 'test'
+						'title_for_layout' => 'test',
+						'offline' => true
 					)));
 					break;
 			}	

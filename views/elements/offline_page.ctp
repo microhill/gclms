@@ -22,7 +22,7 @@
 		gclms:direction="<? __('TEXT DIRECTION'); ?>"
 		gclms:language="<?= Configure::read('Config.language') ?>">
 	<div style="min-height: 100%;">
-		<?= $this->renderElement('banner',array('here'=>$groupAndCoursePath . '/')) ?>
+		<?= $this->renderElement('banner',array('here'=>$groupAndCoursePath . '/view/pages/')) ?>
 		
 		<?	
 		echo $this->renderElement('breadcrumbs');

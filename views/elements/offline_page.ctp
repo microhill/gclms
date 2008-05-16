@@ -23,7 +23,7 @@
 		gclms:language="<?= Configure::read('Config.language') ?>">
 	<div style="min-height: 100%;">
 		<?= $this->renderElement('banner',array('here'=>$groupAndCoursePath . '/view/pages/')) ?>
-		<?= $this->renderElement('breadcrumbs',array('here'=>$groupAndCoursePath . '/view/pages/')); ?
+		<?= $this->renderElement('breadcrumbs',array('here'=>$groupAndCoursePath . '/view/pages/')); ?>
 		
 		<div class="gclms-content">
 			<div class="gclms-page gclms-noframes">

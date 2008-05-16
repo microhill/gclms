@@ -50,7 +50,8 @@
 					if(!empty($nodes))
 						echo $this->renderElement('nodes_tree',array(
 							'nodes' => $nodes,
-							'here' => $groupAndCoursePath . '/'
+							'here' => $groupAndCoursePath . '/index.html',
+							'offline' => true
 						));
 					
 					if(!empty($course['redistribution_allowed'])): ?>

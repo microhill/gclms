@@ -115,7 +115,13 @@ function relativize_url($here,$absolute_url) {
 	$here = parse_url($here);
 	
 	if(strpos($absolute_url,$here['path']) === 0) {
-		return str_replace($here['path'] . '/','',$absolute_url);
+		if(strrpos($absolute_url,'/') == strlen($absolute_url) - 1)
+			return str_replace($here['path'],'',$absolute_url);		
+		else {
+			$parts = explode('/',$here['path']);
+			$lastPart = end($parts);
+			return $lastPart . str_replace($here['path'],'',$absolute_url);			
+		}
 	}
 	
 	$depth = substr_count($here['path'],'/');

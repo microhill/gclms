@@ -23,10 +23,7 @@
 		gclms:language="<?= Configure::read('Config.language') ?>">
 	<div style="min-height: 100%;">
 		<?= $this->renderElement('banner',array('here'=>$groupAndCoursePath . '/view/pages/')) ?>
-		
-		<?	
-		echo $this->renderElement('breadcrumbs');
-		?>
+		<?= $this->renderElement('breadcrumbs',array('here'=>$groupAndCoursePath . '/view/pages/')); ?
 		
 		<div class="gclms-content">
 			<div class="gclms-page gclms-noframes">
@@ -83,9 +80,9 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="../../js/vendors/prototype.js"></script>
-	<script type="text/javascript" src="../../js/prototype_extensions.js"></script>
-	<script type="text/javascript" src="../../js/gclms.js"></script>
-	<script type="text/javascript" src="../../js/course.js"></script>
+	<script type="text/javascript" src="../../../../js/vendors/prototype.js"></script>
+	<script type="text/javascript" src="../../../../js/prototype_extensions.js"></script>
+	<script type="text/javascript" src="../../../../js/gclms.js"></script>
+	<script type="text/javascript" src="../../../../js/course.js"></script>
 </body>
 </html>

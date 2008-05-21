@@ -51,7 +51,7 @@ class CommonComponent extends Object {
 					$this->controller->Notifications->add(__('There was an error when attempting to edit the ' . low($this->controller->itemName) . '.',true),'error');
 			}
 		} else {
-			$this->data = $this->controller->{$model}->findById($id);
+			$this->controller->data = $this->controller->{$model}->findById($id);
 		}
     }
 	

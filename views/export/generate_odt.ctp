@@ -6,7 +6,7 @@ $javascript->link(array(
 	'generate_odt'
 ), false);
 
-echo $this->renderElement('no_column_background'); ?>
+echo $this->element('no_column_background'); ?>
 <div class="gclms-content">
 	<h1>Generating ODT</h1>
 	<?

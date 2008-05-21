@@ -21,11 +21,8 @@
 		gclms:direction="<? __('TEXT DIRECTION'); ?>"
 		gclms:language="<?= Configure::read('Config.language') ?>">
 	<div style="min-height: 100%;">
-		<?= $this->renderElement('banner',array('here'=>$groupAndCoursePath . '/')) ?>
-		
-		<?	
-		echo $this->renderElement('breadcrumbs');
-		?>
+		<?= $this->element('banner',array('here'=>$groupAndCoursePath . '/')) ?>
+		<?= $this->element('breadcrumbs',array('here'=>$groupAndCoursePath . '/')); ?>
 		
 		<div id="gclms-page">
 			<?
@@ -36,19 +33,19 @@
 				'course'
 			));
 			
-			echo $this->renderElement('no_column_background'); ?>
+			echo $this->element('no_column_background'); ?>
 			<div class="gclms-center-column">
 				<div class="gclms-content">
-					<?= $this->renderElement('notifications'); ?>
+					<?= $this->element('notifications'); ?>
 					<h1><?= $course['title'] ?></h1>
 					<?
 					
 					if(!empty($news_items)){
-						echo $this->renderElement('news_items');
+						echo $this->element('news_items');
 					}
 			
 					if(!empty($nodes))
-						echo $this->renderElement('nodes_tree',array(
+						echo $this->element('nodes_tree',array(
 							'nodes' => $nodes,
 							'here' => $groupAndCoursePath . '/index.html',
 							'offline' => true

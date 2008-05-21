@@ -14,7 +14,7 @@ function customizeRowURL($row,$defaultUrl) {
 	return $_SERVER["REQUEST_URI"] . '/edit/' . $row['User']['id'];
 }
 
-echo $this->renderElement('recordset',array(
+echo $this->element('recordset',array(
 	'headers' => $headers,
 	'fields' => $fields,
 	'heading' => __('Facilitators', true),

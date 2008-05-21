@@ -35,7 +35,7 @@ if(@$showDefaultAddButton) {
 
 <? if(@$showDefaultAddButton) {
 
-	echo $this->renderElement('menubar',array('buttons' => array(
+	echo $this->element('menubar',array('buttons' => array(
 		array(
 			'id' => 'gclms-add',
 			'class' => 'gclms-add',

@@ -5,12 +5,12 @@ $javascript->link(array(
 	'gclms'
 ), false);
 
-echo $this->renderElement('left_column');
+echo $this->element('left_column');
 ?>
 
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<?= $this->renderElement('notifications'); ?>
+		<?= $this->element('notifications'); ?>
 		<h1><?
 		__('Welcome');
 		
@@ -56,4 +56,4 @@ echo $this->renderElement('left_column');
 	</div>
 </div>
 
-<? echo $this->renderElement('right_column'); ?>
+<? echo $this->element('right_column'); ?>

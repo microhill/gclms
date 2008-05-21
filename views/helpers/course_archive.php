@@ -24,28 +24,32 @@ class CourseArchiveHelper extends AppHelper {
 					foreach($files as $file) {
 						$this->archive->addFile(str_replace(WWW_ROOT,'',$file),$file);
 					}
-					
+					break;
+				case 1:
 					$folder = new Folder(WWW_ROOT . 'img');
 					$files = $folder->findRecursive('.*(jpg|gif|png)');
 					foreach($files as $file) {
 						$this->archive->addFile(str_replace(WWW_ROOT,'',$file),$file);
 					}
-					
+					break;
+				case 2:
 					$folder = new Folder(WWW_ROOT . 'css');
 					$files = $folder->find('.*css');
 					foreach($files as $file) {
 						$this->archive->addFile('css/' . $file,WWW_ROOT . 'css' . DS . $file);
 					}
+					
+					$this->archive->write($data['group']['web_path'] . '/' . $data['course']['web_path'] . '/index.html');
 					break;
-				case 1:
+				case 3:
 					$folder = new Folder(ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $data['course']['id']);
 					$files = $folder->find('.*');
 					foreach($files as $file) {
 						$this->archive->addFile($data['group']['web_path'] . '/' . $data['course']['web_path'] . '/files/' . $file,ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $data['course']['id'] . DS . $file);
 					}	
 					break;
-				case 2:
-					$this->archive->write($data['group']['web_path'] . '/' . $data['course']['web_path'] . '/index.html',$this->view->renderElement('offline_course',array(
+				case 4:
+					$this->archive->write($data['group']['web_path'] . '/' . $data['course']['web_path'] . '/index.html',$this->view->element('offline_course',array(
 						'nodes' => $data['nodes'],
 						'title_for_layout' => 'test',
 						'offline' => true
@@ -56,13 +60,13 @@ class CourseArchiveHelper extends AppHelper {
 		
 		return array(
 			'stage' => $data['stage'],
-			'totalStages' => count($data['nodes']) + 2
+			'totalStages' => count($data['nodes']) + 4
 		);
 	}
 	
 	function export_page($node) {
 		if($node['type'] == '0') {
-			$this->archive->write($this->data['group']['web_path'] . '/' . $this->data['course']['web_path'] . '/pages/view/' . $node['id'] . '.html',$this->view->renderElement('offline_page',array(
+			$this->archive->write($this->data['group']['web_path'] . '/' . $this->data['course']['web_path'] . '/pages/view/' . $node['id'] . '.html',$this->view->element('offline_page',array(
 				'node' => $node,
 				'title_for_layout' => 'test',
 				'offline' => true

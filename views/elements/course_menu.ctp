@@ -13,4 +13,4 @@ $menu = array(
 	array('label' => __('Export Course', true), 'class' => 'gclms-export', 'active' => $this->name == 'Export', 'url' => $groupAndCoursePath . '/export')
 );
 
-echo $this->renderElement('menu', array("items" => $menu));
+echo $this->element('menu', array("items" => $menu));

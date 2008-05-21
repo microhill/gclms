@@ -6,7 +6,7 @@ $javascript->link(array(
 	'tinymce_popup'
 ), false);
 
-echo $this->renderElement('no_column_background'); ?>
+echo $this->element('no_column_background'); ?>
 
 <div class="gclms-content">	
 	<div class="gclms-images">

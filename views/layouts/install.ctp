@@ -4,7 +4,7 @@
 
 <body class="gclms-install">
 	<?= implode(order(array(
-		$this->renderElement('breadcrumbs')
+		$this->element('breadcrumbs')
 	))); ?>
 	
 	<div id="gclms-page">

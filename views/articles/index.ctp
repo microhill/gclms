@@ -8,14 +8,14 @@ $javascript->link(array(
 	'articles'
 ), false);
 
-echo $this->renderElement('left_column'); ?>
+echo $this->element('left_column'); ?>
 	
 <div class="gclms-center-column">
 	<div class="gclms-content articles">	
-		<?= $this->renderElement('notifications'); ?>
+		<?= $this->element('notifications'); ?>
 		<h1><? __('Articles') ?></h1>
 		<div id="gclms-menubars">
-			<? echo $this->renderElement('menubar',array('buttons' => array(
+			<? echo $this->element('menubar',array('buttons' => array(
 				array(
 					'id' => 'addArticle',
 					'class' => 'gclms-add',
@@ -35,4 +35,4 @@ echo $this->renderElement('left_column'); ?>
 	</div>
 </div>
 
-<?= $this->renderElement('right_column'); ?>
+<?= $this->element('right_column'); ?>

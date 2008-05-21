@@ -75,7 +75,7 @@ if(empty($question_id))
 						<?
 						if(isset($question['Answer'])) {
 							foreach($question['Answer'] as $answer) {
-								echo $this->renderElement('answer_multiple_choice',array(
+								echo $this->element('answer_multiple_choice',array(
 									'answer' => $answer,
 									'answer_id' => $answer['id'],
 									'question_id' => $question_id
@@ -114,7 +114,7 @@ if(empty($question_id))
 						<?
 						if(isset($question['Answer'])) {
 							foreach($question['Answer'] as $answer) {
-								echo $this->renderElement('answer_order',array(
+								echo $this->element('answer_order',array(
 									'answer' => $answer,
 									'answer_id' => $answer['id'],
 									'question_id' => $question_id
@@ -200,7 +200,7 @@ if(empty($question_id))
 						<?
 						if(isset($question['Answer'])) {
 							foreach($question['Answer'] as $answer) {
-								echo $this->renderElement('answer_matching',array(
+								echo $this->element('answer_matching',array(
 									'answer' => $answer,
 									'answer_id' => $answer['id'],
 									'question_id' => $question_id
@@ -224,7 +224,7 @@ if(empty($question_id))
 						<img src="/img/icons/oxygen/22x22/apps/kate.png" class="gclms-add-tinymce-box" />
 					<?
 					else:
-						echo $this->renderElement('question_explanation',array(
+						echo $this->element('question_explanation',array(
 							'question_id' => $question_id,
 							'question' => @$question
 						));					

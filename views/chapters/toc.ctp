@@ -11,16 +11,16 @@ $javascript->link(array(
 	'edit_chapters'
 ), false);
 
-echo $this->renderElement('left_column'); ?>
+echo $this->element('left_column'); ?>
 
 <div class="gclms-center-column">
 	<div class="gclms-content">
 		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
-		<?= $this->renderElement('notifications'); ?>
+		<?= $this->element('notifications'); ?>
 		<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/books"><? __('Back to Books') ?></a></div>
 		<h1><?= $book['Book']['title'] ?> </h1>
 		<div id="gclms-menubar">
-			<? echo $this->renderElement('menubar',array('buttons' => array(
+			<? echo $this->element('menubar',array('buttons' => array(
 				array(
 					'id' => 'addChapter',
 					'class' => 'gclms-add',
@@ -73,4 +73,4 @@ echo $this->renderElement('left_column'); ?>
 	</div>
 </div>
 
-<?= $this->renderElement('right_column'); ?>
+<?= $this->element('right_column'); ?>

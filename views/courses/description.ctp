@@ -6,11 +6,11 @@ $javascript->link(array(
 	'course'
 ), false);
 
-echo $this->renderElement('left_column'); ?>
+echo $this->element('left_column'); ?>
 
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<?= $this->renderElement('notifications'); ?>
+		<?= $this->element('notifications'); ?>
 		<h1><?= $course['title'] ?></h1>
 
 		<? if($course['language'] != Configure::read('Config.language')): ?>
@@ -22,11 +22,11 @@ echo $this->renderElement('left_column'); ?>
 			$course['description'] = scripturize($course['description'],'NET');
 			echo $course['description'];
 		} else if(!empty($news_items)){
-			echo $this->renderElement('news_items');
+			echo $this->element('news_items');
 		}
 
 		if(!empty($nodes))
-			echo $this->renderElement('nodes_tree',array(
+			echo $this->element('nodes_tree',array(
 				'nodes' => $nodes,
 				'here' => $this->here
 			));
@@ -39,4 +39,4 @@ echo $this->renderElement('left_column'); ?>
 	</div>
 </div>
 
-<?= $this->renderElement('right_column'); ?>
+<?= $this->element('right_column'); ?>

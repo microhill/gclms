@@ -12,7 +12,7 @@ $javascript->link(array(
 	'page'
 ), false);
 
-echo $this->renderElement('no_column_background');
+echo $this->element('no_column_background');
 ?>
 
 <div class="gclms-content">
@@ -58,7 +58,7 @@ echo $this->renderElement('no_column_background');
 				$nodeItem['content'] = $glossary->linkify($nodeItem['content'],$groupAndCoursePath . '/glossary',$glossary_terms);
 				echo $nodeItem['content'];
 			} else
-				echo $this->renderElement('page_question',array('question' => $nodeItem));
+				echo $this->element('page_question',array('question' => $nodeItem));
 		}
 	
 		if(0 && $node['Node']['grade_recorded']): ?>

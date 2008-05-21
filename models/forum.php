@@ -1,6 +1,6 @@
 <?php
 class Forum extends AppModel {
-    var $belongsTo = array('FacilitatedClass');
+    var $belongsTo = array('VirtualClass');
 	
 	var $validate = array(
 		'title' => array(

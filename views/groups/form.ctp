@@ -76,7 +76,7 @@ if($this->action != 'register') {
 	echo '<div>';
 	if(!empty($data['GroupAdministrators'])) {
 		echo $form->label('Group.Administrators', 'Group Administrators') . '<br/>';
-		echo $this->renderElement('mini_recordset', array('data' => $data['GroupAdministrators'],'model'=>'GroupAdministrator','dataCustomizer'=>'customizeCellData','headers'=>array(
+		echo $this->element('mini_recordset', array('data' => $data['GroupAdministrators'],'model'=>'GroupAdministrator','dataCustomizer'=>'customizeCellData','headers'=>array(
 				__('Username',true),__('Name',true),__('Email',true)
 			),'fields'=>array(
 				'username','full_name','email'

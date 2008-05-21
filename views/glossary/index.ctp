@@ -9,13 +9,13 @@ $javascript->link(array(
 	'glossary'
 ), false);
 
-echo $this->renderElement('left_column'); ?>
+echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<?= $this->renderElement('notifications'); ?>
+		<?= $this->element('notifications'); ?>
 		<h1><? __('Glossary') ?></h1>
 		<div id="gclms-menubars">
-			<? echo $this->renderElement('menubar',array('buttons' => array(
+			<? echo $this->element('menubar',array('buttons' => array(
 				array(
 					'id' => 'addGlossaryTerm',
 					'class' => 'gclms-add',
@@ -35,4 +35,4 @@ echo $this->renderElement('left_column'); ?>
 	</div>
 </div>
 
-<?= $this->renderElement('right_column'); ?>
+<?= $this->element('right_column'); ?>

@@ -36,15 +36,15 @@
 	gclms:controller="<?= $this->name ?>"
 	gclms:action="<?= $this->action ?>">
 
-	<?= $this->renderElement('no_column_background'); ?>
+	<?= $this->element('no_column_background'); ?>
 	
 	<div id="header">
-		<?= $this->renderElement('classroom_header') ?>
+		<?= $this->element('classroom_header') ?>
 	</div>
 
 	<div class="x-hide-display">		
 		<div id="navigationViewportContent" class="gclms-viewport-content">
-			<?= $this->renderElement('lesson_navigation') ?>
+			<?= $this->element('lesson_navigation') ?>
 		</div>
 		
 		<iframe id="bibleViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>

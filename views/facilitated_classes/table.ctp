@@ -21,7 +21,7 @@ function customizeRowURL($row,$defaultUrl) {
 	return '/' . $defaultUrl['group']['web_path'] . '/facilitated_classes/edit/' . $defaultUrl['id'];
 }
 
-echo $this->renderElement('recordset',array(
+echo $this->element('recordset',array(
 	'headers' => $headers,
 	'fields' => $fields,
 	'heading' => __('Facilitated Classes', true),

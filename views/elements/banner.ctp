@@ -20,7 +20,7 @@
 		
 		if(!isset($here))
 			$here = $this->here;
-		
+
 		$img = relativize_url($here,'/img/temporary-logo-2007-11-16.png');
 		echo '<img src="' . $img . '" ' . $imageInfo[3] . ' />';
 	}

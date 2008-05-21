@@ -21,7 +21,7 @@ function customizeRowURL($row,$url) {
 	return Router::url($url);
 }
 
-echo $this->renderElement('recordset',array(
+echo $this->element('recordset',array(
 	'headers' => $headers,
 	'heading' => __('Course Catalogue', true),
 	'showDefaultAddButton' => false,

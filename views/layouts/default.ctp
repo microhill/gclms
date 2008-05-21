@@ -10,13 +10,13 @@
 		gclms:direction="<? __('TEXT DIRECTION'); ?>"
 		gclms:language="<?= Configure::read('Config.language') ?>">
 	<div style="min-height: 100%;">
-		<?= $this->renderElement('banner') ?>
+		<?= $this->element('banner') ?>
 		
 		<?
 		if(!$offline)
-			echo $this->renderElement('user_bar');
+			echo $this->element('user_bar');
 			
-		echo $this->renderElement('breadcrumbs');
+		echo $this->element('breadcrumbs');
 		?>
 		
 		<div id="gclms-page">

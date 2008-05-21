@@ -7,13 +7,13 @@ $javascript->link(array(
 	'course'
 ), false);
 
-echo $this->renderElement('no_column_background'); ?>
+echo $this->element('no_column_background'); ?>
 
 <div class="gclms-content gclms-links">
 	<?
 	if(!empty($nodes)) {
 		echo '<h2>Pages</h2>';
-	 	echo $this->renderElement('nodes_tree',array(
+	 	echo $this->element('nodes_tree',array(
 			'nodes' => $nodes
 		));
 	}

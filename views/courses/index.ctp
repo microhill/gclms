@@ -5,11 +5,11 @@ $javascript->link(array(
 	'gclms'
 ), false);
 
-echo $this->renderElement('left_column'); ?>
+echo $this->element('left_column'); ?>
 		
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<?= $this->renderElement('notifications'); ?>	
+		<?= $this->element('notifications'); ?>	
 		<h1><? __('Course Catalogue') ?></h1>
 		<?
 //		pr($groups);
@@ -28,4 +28,4 @@ echo $this->renderElement('left_column'); ?>
 	</div>
 </div>
 
-<?= $this->renderElement('right_column'); ?>
+<?= $this->element('right_column'); ?>

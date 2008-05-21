@@ -6,7 +6,7 @@ $javascript->link(array(
 	'edit_group_administrator'
 ), false);
 
-echo $this->renderElement('no_column_background'); ?>
+echo $this->element('no_column_background'); ?>
 
 <div class="gclms-content">
 	<div class="gclms-step-back"><a href="/administration/group_administrators"><? __('Cancel and go back') ?></a></div>

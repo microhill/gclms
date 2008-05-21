@@ -16,7 +16,7 @@ function customizeCellData($row,$helpers) {
 	return $row;
 }
 
-echo $this->renderElement('recordset',array(
+echo $this->element('recordset',array(
 	'headers' => $headers,
 	'fields' => $fields,
 	'heading' => 'Users',

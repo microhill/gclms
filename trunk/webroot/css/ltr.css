@@ -144,3 +144,11 @@ ul.gclms-export-menu li {
 	padding-left: 36px;
 	background-position: top left;
 }
+
+	ul.gclms-export-menu a.gclms-download,
+	ul.gclms-export-menu a.gclms-generate {
+		padding-left: 20px;
+		background-repeat: no-repeat;
+		background-position: center left;
+		margin-right: 8px;
+	}

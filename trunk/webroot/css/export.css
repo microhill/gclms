@@ -37,14 +37,6 @@ ul.gclms-export-menu {
 		background-image: url(/img/icons/oxygen/32x32/mimetypes/application-pdf.png);
 	}
 	
-	ul.gclms-export-menu a.gclms-download,
-	ul.gclms-export-menu a.gclms-generate {
-		padding-left: 20px;
-		background-repeat: no-repeat;
-		background-position: center left;
-		margin-right: 8px;
-	}
-	
 	ul.gclms-export-menu a.gclms-download {
 		background-image: url(/img/icons/oxygen_refit/16x16/apps/gwget.png);
 	}

@@ -6,7 +6,7 @@ $javascript->link(array(
 	'edit_group_administrator'
 ), false);
 
-echo $this->renderElement('no_column_background'); ?>
+echo $this->element('no_column_background'); ?>
 <div class="gclms-content">
 	<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
 	<h1><?= __('Add Group Administrator') ?></h1>    

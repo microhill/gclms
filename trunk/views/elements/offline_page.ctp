@@ -22,8 +22,8 @@
 		gclms:direction="<? __('TEXT DIRECTION'); ?>"
 		gclms:language="<?= Configure::read('Config.language') ?>">
 	<div style="min-height: 100%;">
-		<?= $this->renderElement('banner',array('here'=>$groupAndCoursePath . '/view/pages/')) ?>
-		<?= $this->renderElement('breadcrumbs',array('here'=>$groupAndCoursePath . '/view/pages/')); ?>
+		<?= $this->element('banner',array('here'=>$groupAndCoursePath . '/view/pages/')) ?>
+		<?= $this->element('breadcrumbs',array('here'=>$groupAndCoursePath . '/view/pages/')); ?>
 		
 		<div class="gclms-content">
 			<div class="gclms-page gclms-noframes">
@@ -37,7 +37,7 @@
 					'page'
 				));
 				
-				echo $this->renderElement('no_column_background'); ?>
+				echo $this->element('no_column_background'); ?>
 				<h1><?= $node['title'] ?></h1>
 				<?
 				$classUri = null;
@@ -60,7 +60,7 @@
 						//$nodeItem['content'] = $glossary->linkify($nodeItem['content'],$groupAndCoursePath . '/glossary',$glossary_terms);
 						echo $nodeItem['content'];
 					} else
-						echo $this->renderElement('page_question',array('question' => $nodeItem));
+						echo $this->element('page_question',array('question' => $nodeItem));
 				}
 				?>
 				<div id="gclms-page-navigation">

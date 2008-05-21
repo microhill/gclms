@@ -20,7 +20,7 @@ function customizeRowURL($row,$defaultUrl) {
 	return '/administration/plugins/toggle/' . $row['Plugin']['folder'];
 }
 
-echo $this->renderElement('recordset',array(
+echo $this->element('recordset',array(
 	'headers' => $headers,
 	'fields' => $fields,
 	'heading' => 'Plugins',

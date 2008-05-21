@@ -1,4 +1,4 @@
-<?= $this->renderElement('no_column_background'); ?>
+<?= $this->element('no_column_background'); ?>
 <div class="gclms-content">
 	<h1><?= __('Edit Facilitated Class') ?></h1>    
 		<?

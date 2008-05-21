@@ -17,7 +17,7 @@ function customizeRowURL($row,$defaultUrl) {
 	return '/administration/group_administrators/edit/' . $row['GroupAdministrator']['id'] . '/';
 }
 
-echo $this->renderElement('recordset',array(
+echo $this->element('recordset',array(
 	'headers' => $headers,
 	'fields' => $fields,
 	'heading' => 'Group Administrators',

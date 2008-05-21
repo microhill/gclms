@@ -5,7 +5,7 @@ $javascript->link(array(
 	'gclms'
 ), false);
 
-echo $this->renderElement('left_column');
+echo $this->element('left_column');
 ?>
 
 <div class="gclms-center-column">
@@ -13,7 +13,7 @@ echo $this->renderElement('left_column');
 		<h1><? __('Classes') ?></h1>
 		<?
 		
-		echo $this->renderElement('menubar',array('buttons' => array(
+		echo $this->element('menubar',array('buttons' => array(
 			array(
 				'id' => 'gclms-add',
 				'class' => 'gclms-add',
@@ -45,4 +45,4 @@ echo $this->renderElement('left_column');
 </div>
 
 <?
-echo $this->renderElement('right_column');
+echo $this->element('right_column');

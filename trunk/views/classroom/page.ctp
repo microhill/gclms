@@ -1,1 +1,1 @@
-<?= $this->renderElement('page');
+<?= $this->element('page');

@@ -5,7 +5,7 @@ $javascript->link(array(
 	'gclms'
 ), false);
 
-echo $this->renderElement('left_column'); ?>
+echo $this->element('left_column'); ?>
 
 <div class="gclms-center-column gclms-plugins">
 	<div class="gclms-content">
@@ -13,4 +13,4 @@ echo $this->renderElement('left_column'); ?>
 	</div>
 </div>
 
-<?= $this->renderElement('right_column'); ?>
+<?= $this->element('right_column'); ?>

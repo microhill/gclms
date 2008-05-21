@@ -1,6 +1,6 @@
-GCLMS.GenerateArchiveController = {
+  GCLMS.GenerateArchiveController = {
 	progress: function() {
-		self.location = $('gclms-progress').getAttribute('gclms:next-href');
+		location.replace($('gclms-progress').getAttribute('gclms:next-href')); 
 	}
 }
 

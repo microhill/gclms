@@ -21,7 +21,7 @@ if(empty($page_section)) {
 		<?
 		if(isset($this->data['Question'])) {
 			foreach($this->data['Question'] as $question) {
-				echo $this->renderElement('question',array(
+				echo $this->element('question',array(
 					'question' => $question,
 					'page_section_id' => $page_section_id
 				));

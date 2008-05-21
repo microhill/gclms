@@ -1,4 +1,4 @@
-<?= $this->renderElement('no_column_background'); ?>
+<?= $this->element('no_column_background'); ?>
 <div class="gclms-content">
 	<div class="gclms-center-column">
 		<h1><? __('Congratulations!') ?></h1>

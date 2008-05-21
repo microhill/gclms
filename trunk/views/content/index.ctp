@@ -11,7 +11,7 @@ $javascript->link(array(
 	'edit_content'
 ), false);
 
-echo $this->renderElement('left_column');
+echo $this->element('left_column');
 ?>
 		
 <div class="gclms-center-column">
@@ -21,7 +21,7 @@ echo $this->renderElement('left_column');
 		<div id="gclms-menubars">
 			<div id="gclms-menubars-floater">
 				<?
-				echo $this->renderElement('menubar',array('buttons' => array(
+				echo $this->element('menubar',array('buttons' => array(
 					array(
 						'id' => 'addPage',
 						'class' => 'gclms-add',
@@ -56,7 +56,7 @@ echo $this->renderElement('left_column');
 					)
 				)));
 				
-				echo $this->renderElement('menubar',array('id' => 'secondaryMenubar','buttons' => array(
+				echo $this->element('menubar',array('id' => 'secondaryMenubar','buttons' => array(
 					array(
 						'id' => 'decreaseIndent',
 						'class' => 'gclms-decrease-indent',
@@ -165,4 +165,4 @@ echo $this->renderElement('left_column');
 	</div>
 </div>
 
-<?= $this->renderElement('right_column'); ?>
+<?= $this->element('right_column'); ?>

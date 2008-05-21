@@ -9,15 +9,15 @@ $javascript->link(array(
 	'edit_books'
 ), false);
 
-echo $this->renderElement('left_column'); ?>
+echo $this->element('left_column'); ?>
 
 <div class="gclms-center-column">
 	<div class="gclms-content articles">	
-		<?= $this->renderElement('notifications'); ?>
+		<?= $this->element('notifications'); ?>
 		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
 		<h1><? __('Books') ?></h1>
 		<div id="gclms-menubar">
-			<? echo $this->renderElement('menubar',array('buttons' => array(
+			<? echo $this->element('menubar',array('buttons' => array(
 				array(
 					'id' => 'addBook',
 					'class' => 'gclms-add',
@@ -70,4 +70,4 @@ echo $this->renderElement('left_column'); ?>
 	</div>
 </div>
 
-<?= $this->renderElement('right_column'); ?>
+<?= $this->element('right_column'); ?>

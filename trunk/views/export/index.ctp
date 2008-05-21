@@ -1,7 +1,7 @@
 <?
 $html->css('export', null, null, false);
 
-echo $this->renderElement('left_column'); ?>
+echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
     <div class="gclms-content">
         <h1>
@@ -48,4 +48,4 @@ echo $this->renderElement('left_column'); ?>
         </ul>
     </div>
 </div>
-<?= $this->renderElement('right_column'); ?>
+<?= $this->element('right_column'); ?>

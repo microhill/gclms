@@ -1,6 +1,6 @@
-<?= $this->renderElement('no_column_background'); ?>
+<?= $this->element('no_column_background'); ?>
 <div class="gclms-content">
-	<?= $this->renderElement('notifications'); ?>
+	<?= $this->element('notifications'); ?>
 	<div class="gclms-step-back"><a href="<?= $groupAndCoursePath . '/glossary' ?>"><? __('Cancel and go back') ?></a></div>
 	<h1><?= __('Add Glossary Term') ?></h1>    
 		<?

@@ -1,8 +1,8 @@
 <?
-echo $this->renderElement('no_column_background');
+echo $this->element('no_column_background');
 ?>
 <div class="gclms-content">
-	<?= $this->renderElement('notifications'); ?>
+	<?= $this->element('notifications'); ?>
 	<h1><? __('Your Profile') ?></h1>    
 	<?
 	echo $form->create('User', array('url' => '/profile'));

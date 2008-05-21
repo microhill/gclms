@@ -1,4 +1,4 @@
-<?= $this->renderElement('left_column'); ?>
+<?= $this->element('left_column'); ?>
 		
 <div class="gclms-center-column">
 	<div class="gclms-content">
@@ -22,4 +22,4 @@
 	</div>
 </div>
 
-<?= $this->renderElement('right_column'); ?>
+<?= $this->element('right_column'); ?>

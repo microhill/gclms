@@ -1,8 +1,8 @@
-<?= $this->renderElement('no_column_background'); ?>
+<?= $this->element('no_column_background'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
 		<?
-		echo $this->renderElement('notifications');
+		echo $this->element('notifications');
 		?>
 		<div class="gclms-login">
 			<h2><?= __('Reset Your Password') ?></h2>    

@@ -36,7 +36,7 @@ foreach($units as $unit) {
 		echo '</a>';
 
 		if($lesson['id'] == $current_lesson['id']) {
-			echo $this->renderElement('lesson_navigation_lesson',array(
+			echo $this->element('lesson_navigation_lesson',array(
 				'topics' => $topics,
 				'lesson' => $lesson
 			));

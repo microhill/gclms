@@ -1,2 +1,2 @@
 <?
-echo $this->renderElement('lesson_navigation_lesson');
+echo $this->element('lesson_navigation_lesson');

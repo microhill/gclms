@@ -1,9 +1,9 @@
-<?= $this->renderElement('no_column_background'); ?>
+<?= $this->element('no_column_background'); ?>
 <div class="gclms-content">
 	<h1><?= __('Debug') ?></h1> 
 		<?
 		if(!empty($nodes))
-			echo $this->renderElement('nodes_tree_debug',array(
+			echo $this->element('nodes_tree_debug',array(
 				'nodes' => $nodes
 			));
 		?>

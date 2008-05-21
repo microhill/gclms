@@ -14,7 +14,7 @@ function customizeRowURL($row,$url) {
 	return '/' . $url['group'] . '/chapters/book:' . $row['Book']['id'] . '/course:' . $row['Course']['web_path'];
 }
 
-echo $this->renderElement('recordset',array(
+echo $this->element('recordset',array(
 	'headers' => $headers,
 	'fields' => $fields,
 	'heading' => 'Books',

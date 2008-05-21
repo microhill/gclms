@@ -1,4 +1,4 @@
-<?= $this->renderElement('left_column'); ?>
+<?= $this->element('left_column'); ?>
 
 <div class="gclms-center-column">
 	<div class="gclms-content">
@@ -25,7 +25,7 @@
 			return $url;
 		}
 		
-		echo $this->renderElement('recordset',array(
+		echo $this->element('recordset',array(
 			'headers' => $headers,
 			'fields' => $fields,
 			'showDefaultAddButton' => false,
@@ -35,4 +35,4 @@
 	</div>
 </div>
 
-<?= $this->renderElement('right_column'); ?>
+<?= $this->element('right_column'); ?>

@@ -1,4 +1,4 @@
-<? echo $this->renderElement('left_column'); ?>
+<? echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
     <div class="gclms-content gclms-glossary-term">
         <div class="gclms-option-buttons">

@@ -10,6 +10,6 @@
 
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<?= $this->renderElement('login'); ?>
+		<?= $this->element('login'); ?>
 	</div>
 </div>

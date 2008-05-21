@@ -5,7 +5,7 @@ $javascript->link(array(
 	'gclms'
 ), false);
 
-echo $this->renderElement('no_column_background'); ?>
+echo $this->element('no_column_background'); ?>
 <div class="gclms-content">
 	<h1><?= __('Register Your Group') ?></h1>    
 	<p>

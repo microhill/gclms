@@ -1,6 +1,6 @@
 <?
 class CoursesController extends AppController {
-    var $uses = array('Course','Group','FacilitatedClass','Node','ClassEnrollee','Announcement','GlossaryTerm','Article','GlossaryTerm','Book','Node');
+    var $uses = array('Course','Group','Node','ClassEnrollee','Announcement','GlossaryTerm','Article','GlossaryTerm','Book','Node');
 	var $helpers = array('Time','MyTime','Scripturizer','Glossary','License');
 	var $itemName = 'Course';
 
@@ -185,9 +185,11 @@ class CoursesController extends AppController {
 		$this->set(compact('nodes'));
 		
 		if(empty($this->viewVars['facilitated_class']['id'])) {
+			/*
 			$this->FacilitatedClass->contain();
 			$facilitated_classes = $this->FacilitatedClass->findAllByCourseId($this->viewVars['course']['id']);
 			$this->set('facilitated_classes',$facilitated_classes);
+			*/
 		} else {
 			$this->Announcement->contain();
 			$news_items = $this->Announcement->findAllByFacilitatedClassId($this->viewVars['facilitated_class']['id']);

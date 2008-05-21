@@ -1,4 +1,4 @@
 <?= implode(order(array(
-	$this->renderElement('user_bar'),
-	$this->renderElement('breadcrumbs')
+	$this->element('user_bar'),
+	$this->element('breadcrumbs')
 ))); ?>

@@ -1,5 +1,5 @@
 <?
-echo $this->renderElement('menu', array("items" => array(
+echo $this->element('menu', array("items" => array(
 	array('label' => __('Groups', true), 'url' => '/administration/groups', 'class' => 'gclms-groups',
 		'active' => $this->name == 'Groups'),
 	array('label' => __('Group Administrators', true), 'url' => '/administration/group_administrators', 'class' => 'gclms-group-administrators',

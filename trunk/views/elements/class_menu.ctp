@@ -13,4 +13,4 @@ $menu = array(
 	//array('controller' => 'Grades', 'label' => __('Grades', true), 'url' => $groupAndCoursePath . '/mail'),
 );
 
-echo $this->renderElement('menu', array("items" => $menu));
+echo $this->element('menu', array("items" => $menu));

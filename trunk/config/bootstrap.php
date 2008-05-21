@@ -113,6 +113,9 @@ function replaceFirst($search, $replace, $subject){
 
 function relativize_url($here,$absolute_url) {
 	$here = parse_url($here);
+
+	if($here['path'] == '/')
+		return $absolute_url;
 	
 	if(strpos($absolute_url,$here['path']) === 0) {
 		if(strrpos($absolute_url,'/') == strlen($absolute_url) - 1)

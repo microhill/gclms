@@ -5,7 +5,7 @@ $javascript->link(array(
 	'gclms'
 ), false);
 
-echo $this->renderElement('left_column');
+echo $this->element('left_column');
 ?>
 
 <div class="gclms-center-column">
@@ -19,8 +19,8 @@ echo $this->renderElement('left_column');
 		if(!empty($group['external_web_address'])): ?>
 		<p><a href="<?= $group['external_web_address'] ?>" class="gclms-group-web-address"><?= $web_address ?></a></p>
 		<? endif; ?>
-		<?= !empty($group['description']) ? $text->flay($group['description'], true) : ''; ?> 
+		<?= $group['description'] ?> 
 	</div>
 </div>
 
-<?= $this->renderElement('right_column'); ?>
+<?= $this->element('right_column') ?>

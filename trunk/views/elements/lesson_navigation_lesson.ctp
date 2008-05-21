@@ -22,7 +22,7 @@ foreach($topics as $topic) {
 	echo sprintf('<a target="courseContent" href="%s" class="topic %s">%s</a>',$url,$firstPage,$topic['title']);
 	$firstPage = '';
 
-	echo $this->renderElement('lesson_navigation_pages',array(
+	echo $this->element('lesson_navigation_pages',array(
 		'pages' => $categorized_pages[$topic['id']],
 		'lesson' => &$lesson,
 		'firstPage' => $firstPage
@@ -35,7 +35,7 @@ if(empty($topics) && !empty($uncategorized_pages)) {
 	//echo '<li><img src="/img/page-16.png" class="gclms-page-icon" />';
 	//echo sprintf('<a target="courseContent" href="#">%s</a>',__('Uncategorized Lesson Items',true));
 
-	echo $this->renderElement('lesson_navigation_pages',array(
+	echo $this->element('lesson_navigation_pages',array(
 		'pages' => $uncategorized_pages,
 		'lesson' => &$lesson,
 		'firstPage' => $firstPage,

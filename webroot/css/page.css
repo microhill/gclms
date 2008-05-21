@@ -40,14 +40,6 @@ body.mceContentBody blockquote {
 #gclms-page-navigation {
 	overflow: hidden;
 }
-
-	#gclms-page-navigation .gclms-back {
-		float: left;
-	}
-	
-	#gclms-page-navigation .gclms-next {
-		float: right;	
-	}
 	
 .gclms-multiple-choice table,
 .gclms-matchingHeaders table,

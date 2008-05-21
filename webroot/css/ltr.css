@@ -45,6 +45,14 @@ body {
 			padding-bottom: 6px;
 		}
 
+	#gclms-page-navigation .gclms-back {
+		float: left;
+	}
+	
+	#gclms-page-navigation .gclms-next {
+		float: right;	
+	}
+
 .gclms-menu li a {
 	padding-left: 8px;
 }

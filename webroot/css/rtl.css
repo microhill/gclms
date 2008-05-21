@@ -42,6 +42,14 @@ body {
 		width: 25%;
 	}
 
+	#gclms-page-navigation .gclms-back {
+		float: left;
+	}
+	
+	#gclms-page-navigation .gclms-next {
+		float: right;	
+	}
+
 .gclms-menu li a {
 	padding-right: 8px;
 }

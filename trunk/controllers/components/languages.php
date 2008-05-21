@@ -10,7 +10,7 @@ class LanguagesComponent extends Object {
 		array(
 			'code' => 'ar',
 			'englishName' => 'Arabic',
-			'internationalName' => "عربي",
+			'internationalName' => "العربية",
 			'active' => true
 		),
 		array(

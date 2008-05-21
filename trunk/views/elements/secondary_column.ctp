@@ -40,7 +40,7 @@
 		));
 	}
 
-	if(!$offline && ($this->name == 'StudentCenter' || $this->name == 'Groups' || $this->name == 'Courses'))
+	if(!$offline && ($this->name == 'StudentCenter' || $this->name == 'Groups'))
 		echo $this->element('choose_language');
 
 	if($this->name == 'Lessons' && $this->action == 'index')

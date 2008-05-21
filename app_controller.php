@@ -10,17 +10,13 @@ class AppController extends Controller {
 	var $css_for_layout = array();
 
     function beforeFilter() {
-		$this->L10n = new L10n();
-
-		if(!$this->Session->check('Config.language')) {
-			$this->Session->write('Config.language','en');
-       	}
-
-		$this->L10n->get($this->Session->read('Config.language'));
-		
 		if(Configure::read('Configuration.database_set') && $this->name == 'Update') {
 			return false;
 		}
+
+		$this->loadSessionVariables();
+		
+		$this->loadLocale();
 
     	$this->paginate = am($this->paginateDefaults,$this->paginate);
        	$this->set('itemName', @$this->itemName);
@@ -30,8 +26,6 @@ class AppController extends Controller {
        	$this->MyAuth->logoutAction = array('controller'=>'users','action'=>'logout');
        	$this->MyAuth->loginAction = array('controller'=>'users','action'=>'login');
        	$this->MyAuth->authorize = 'controller';
-
-		$this->loadSessionVariables();
 
        	$group = !empty($group['Group']['web_path']) ? $group['Group']['web_path'] : null;
 		$cakeAdmin = isset($this->params[Configure::read('Routing.admin')]) ? Configure::read('Routing.admin') : null;
@@ -58,6 +52,12 @@ class AppController extends Controller {
     }
 
     function loadSessionVariables() {
+		if($this->Session->check('Language.default')) {
+			$this->set('default_language',$this->Session->read('Language.default'));
+		} else {
+			$this->set('default_language','en');
+		}
+
        	// Group
        	if(isset($this->params['group'])) {
 			$this->Group->contain();
@@ -90,6 +90,23 @@ class AppController extends Controller {
 		// Offline
 		$this->set('offline',isset($this->params['url']['offline']));
     }
+	
+	function loadLocale() {
+		if(!empty($this->viewVars['course']['language'])) {
+			$this->Session->write('Config.language',$this->viewVars['course']['language']);
+		} else if($this->Session->check('Language.default')) {
+			$this->Session->write('Config.language',$this->Session->read('Language.default'));
+       	} else {
+       		$this->Session->write('Config.language','en');
+       	}
+
+		$this->L10n = new L10n();		
+		if(!empty($this->viewVars['course']['language'])) {
+			$this->L10n->get($this->viewVars['course']['language']);
+		} else {
+			$this->L10n->get($this->Session->read('Config.language'));	
+		}
+	}
 
     function defaultBreadcrumbsAndLogo() {
 		$this->Breadcrumbs->addHomeCrumb();

@@ -57,7 +57,7 @@ class UsersController extends AppController {
 	}
 	
 	function choose_language() {
-		$this->Session->write('Config.language',Sanitize::paranoid($this->data['User']['language']));
+		$this->Session->write('Language.default',Sanitize::paranoid($this->data['User']['language']));
 		$this->redirect('/', null, true);
 	}
 

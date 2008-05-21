@@ -37,11 +37,11 @@ class CommonComponent extends Object {
 		if(empty($model))
 			$model = $this->controller->modelNames[0];
 
-		if(!empty($this->data)) {
+		if(!empty($this->controller->data)) {
 			$this->controller->{$model}->id = $id;
 			$this->controller->data[$model]['id'] = $id; // For accessibility outside of this method
 			if($this->controller->{$model}->save($this->controller->data)) {
-				if(!empty($this->itemName))
+				if(!empty($this->controller->itemName))
 					$this->controller->Notifications->add(__(ucfirst(low($this->controller->itemName)) . ' successfully saved.',true));
 				$this->afterSave();
 			} else {

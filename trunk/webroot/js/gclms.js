@@ -321,7 +321,15 @@ GCLMS.tinyMCEConfig = {
         if (className.indexOf('gclms-') === 0) {
 			return false;
 		}
-			
+		
+        if (className.indexOf('firebug') === 0) {
+			return false;
+		}
+		
+		if (className == 'error-message' || className == 'cake-sql-log') {
+			return false
+		}
+		
 		return className;
     }
 };

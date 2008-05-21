@@ -139,3 +139,8 @@ body {
 			padding-left: 40px;
 			background-position: center left;	
 		}
+		
+ul.gclms-export-menu li {
+	padding-left: 36px;
+	background-position: top left;
+}

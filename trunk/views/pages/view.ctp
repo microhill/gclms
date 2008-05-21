@@ -71,15 +71,19 @@ echo $this->element('no_column_background');
 			$sectionUriComponent = '';
 		?>
 		<div id="gclms-page-navigation">
+			<?
+			$previousImage = __('TEXT DIRECTION',true) == 'rtl' ? 'next' : 'previous';
+			$nextImage = __('TEXT DIRECTION',true) == 'rtl' ? 'previous' : 'next';
+			?>
 			<? if(!empty($node['Node']['previous_page_id'])): ?>
 				<a class="gclms-back" href="<?= $groupAndCoursePath ?>/pages/view/<?= $node['Node']['previous_page_id'] ?>">
-					<img src="/img/icons/oxygen_refit/32x32/actions/go-previous-blue.png" alt="<? __('Previous page') ?>" />
+					<img src="/img/icons/oxygen_refit/32x32/actions/go-<?= $previousImage ?>-blue.png" alt="<? __('Previous page') ?>" />
 				</a>
 			<? endif; ?>
 		
 			<? if(!empty($node['Node']['next_page_id'])): ?>
 				<a class="gclms-next" href="<?= $groupAndCoursePath ?>/pages/view/<?= $node['Node']['next_page_id'] ?>">
-					<img src="/img/icons/oxygen_refit/32x32/actions/go-next-blue.png" alt="<? __('Next page') ?>" />
+					<img src="/img/icons/oxygen_refit/32x32/actions/go-<?= $nextImage ?>-blue.png" alt="<? __('Next page') ?>" />
 				</a>
 			<? endif; ?>
 		</div>

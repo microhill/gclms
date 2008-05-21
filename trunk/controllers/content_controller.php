@@ -1,6 +1,6 @@
 <?
 class ContentController extends AppController {
-    var $uses = array('Node','Group','FacilitatedClass','User','Course');
+    var $uses = array('Node','Group','User','Course');
 	var $itemName = 'Node';
 	
 	function beforeRender() {

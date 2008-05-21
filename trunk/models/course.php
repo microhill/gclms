@@ -1,17 +1,22 @@
-<?php
+<?
 class Course extends AppModel {
     var $belongsTo = array('Group');
 	
 	var $validate = array(
 		'title' => array(
-			'rule' => VALID_NOT_EMPTY
+			'rule' => VALID_NOT_EMPTY,
+			'message' => 'Title is required'
 		),
 		'web_path' => array(
 			'titleAndPathEmpty' => 'checkWebPath',
-			'duplicateWebPath' => array('rule' => 'checkDuplicateWebPath','on' => 'create')
+			'duplicateWebPath' => array(
+				'rule' => 'checkDuplicateWebPath',
+				'on' => 'create',
+				'message' => 'Path already used in group by another course')
 		),
 		'description' => array(
-			'rule' => VALID_NOT_EMPTY
+			'rule' => VALID_NOT_EMPTY,
+			'Description is required'
 		)
 	);
 	

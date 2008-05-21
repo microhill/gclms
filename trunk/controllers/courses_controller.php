@@ -72,7 +72,7 @@ class CoursesController extends AppController {
 	}
 
 	function edit() {
-		parent::edit($this->viewVars['course']['id']);
+		$this->Common->edit($this->viewVars['course']['id']);
 	}
 
 	function lessonHeader() {

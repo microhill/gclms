@@ -1,4 +1,4 @@
-	<?
+<?
 class CommonComponent extends Object {
     function startup(&$controller){
 		$this->controller = &$controller;

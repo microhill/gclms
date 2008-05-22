@@ -48,6 +48,7 @@ msgstr ""
 #: \views\elements\class_menu.ctp:6
 #: \views\elements\course_menu.ctp:10
 #: \views\helpers\open_document.php:43
+#, fuzzy
 msgid "Articles"
 msgstr ""
 

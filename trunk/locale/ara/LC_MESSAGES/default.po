@@ -1,0 +1,1282 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2008-05-21 20:54-0600\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Arabic\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: d:\\workspace\\gclms\n"
+
+#: \app_controller.php:41
+msgid "This application was not designed to work with older browsers like yours. Please download the latest version of <a href=\"http://www.microsoft.com/windows/downloads/ie/getitnow.mspx\">Internet Explorer</a>, <a href=\"http://www.firefox.com/\">Firefox</a>, <a href=\"http://www.apple.com/safari/download/\">Safari</a>, or <a href=\"http://www.opera.com/\">Opera</a>."
+msgstr ""
+
+#: \app_controller.php:152
+msgid "Your account has not yet been verified. Please check your e-mail."
+msgstr ""
+
+#: \config\bootstrap.php:73
+#: \views\elements\left_column.ctp:2
+#: \views\elements\offline_course.ctp:2;8;21
+#: \views\elements\offline_page.ctp:2;9;22
+#: \views\elements\right_column.ctp:2
+#: \views\layouts\classroom.ctp:2;8
+#: \views\layouts\classroom_panel.ctp:2;6
+#: \views\layouts\default.ctp:2;10
+#: \views\layouts\framed.ctp:2;10
+#: \views\layouts\head.ctp:8
+#: \views\layouts\lesson.ctp:2
+#: \views\layouts\lesson_header.ctp:2
+#: \views\layouts\page.ctp:2;6
+#: \views\layouts\tabbed_viewport.ctp:2;6
+#: \views\layouts\tinymce_popup.ctp:2;11
+#: \views\pages\view.ctp:75;76
+msgid "TEXT DIRECTION"
+msgstr ""
+
+#: \config\routes.php:102
+msgid "Great Commission LMS"
+msgstr ""
+
+#: \controllers\articles_controller.php:14
+#: \views\articles\index.ctp:16
+#: \views\elements\class_menu.ctp:6
+#: \views\elements\course_menu.ctp:10
+#: \views\helpers\open_document.php:43
+msgid "Articles"
+msgstr ""
+
+#: \controllers\books_controller.php:38
+#: \views\books\index.ctp:18
+#: \views\elements\class_menu.ctp:5
+#: \views\elements\course_menu.ctp:9
+msgid "Books"
+msgstr ""
+
+#: \controllers\classroom_controller.php:37
+#: \controllers\courses_controller.php:92;157
+msgid "Could not find first topic or page in lesson. Perhaps topics and pages haven't been created yet for this lesson?"
+msgstr ""
+
+#: \controllers\content_controller.php:64
+msgid "Course Content"
+msgstr ""
+
+#: \controllers\export_controller.php:23
+msgid "Export"
+msgstr ""
+
+#: \controllers\facilitators_controller.php:35
+#: \controllers\groups_controller.php:57
+msgid "Group Application"
+msgstr ""
+
+#: \controllers\facilitators_controller.php:37
+#: \controllers\groups_controller.php:59
+msgid "Thank you for submitting your group. We will review your submission, and you will be notified by email indicating whether your group has been accepted."
+msgstr ""
+
+#: \controllers\files_controller.php:63
+#: \views\elements\course_menu.ctp:8
+#: \views\files\index.ctp:17
+msgid "Media Files"
+msgstr ""
+
+#: \controllers\files_controller.php:211
+msgid "File not found"
+msgstr ""
+
+#: \controllers\glossary_controller.php:14;21
+#: \views\elements\class_menu.ctp:7
+#: \views\elements\course_menu.ctp:11
+#: \views\glossary\index.ctp:16
+#: \views\helpers\open_document.php:55
+msgid "Glossary"
+msgstr ""
+
+#: \controllers\install_controller.php:10;32
+msgid "Great Commission Learning Management System"
+msgstr ""
+
+#: \controllers\install_controller.php:11
+msgid "Installer"
+msgstr ""
+
+#: \controllers\pages_controller.php:77
+msgid "None"
+msgstr ""
+
+#: \controllers\pages_controller.php:77
+msgid "External URL"
+msgstr ""
+
+#: \controllers\register_controller.php:17
+msgid "The username you provided is already in use."
+msgstr ""
+
+#: \controllers\register_controller.php:21
+msgid "Passwords do not match."
+msgstr ""
+
+#: \controllers\register_controller.php:25
+msgid "The e-mail you provided is already in use by another username."
+msgstr ""
+
+#: \controllers\register_controller.php:35
+msgid "Student registration"
+msgstr ""
+
+#: \controllers\register_controller.php:36
+msgid "Thank you for registering as a student. Please check your e-mail to activate your student account."
+msgstr ""
+
+#: \controllers\update_controller.php:48
+msgid "Table insert successful."
+msgstr ""
+
+#: \controllers\update_controller.php:66
+msgid "Database is up to date."
+msgstr ""
+
+#: \controllers\update_controller.php:78
+msgid "Database updated"
+msgstr ""
+
+#: \controllers\update_controller.php:81
+msgid "Database could not be updated"
+msgstr ""
+
+#: \controllers\users_controller.php:38
+msgid "Verification code not found."
+msgstr ""
+
+#: \controllers\users_controller.php:43
+msgid "Account verified. You can now log in."
+msgstr ""
+
+#: \controllers\users_controller.php:74
+msgid "Username could not be found."
+msgstr ""
+
+#: \controllers\users_controller.php:85
+msgid "Your password has been reset"
+msgstr ""
+
+#: \controllers\users_controller.php:85
+msgid "The password for %s has been reset to %s"
+msgstr ""
+
+#: \controllers\users_controller.php:86
+msgid "Your password has been reset. Please check your e-mail."
+msgstr ""
+
+#: \plugins\bible_kjv\views\bible_kjv\books.ctp:34
+msgid "Old Testament"
+msgstr ""
+
+#: \plugins\bible_kjv\views\bible_kjv\books.ctp:53
+msgid "New Testament"
+msgstr ""
+
+#: \plugins\bible_kjv\views\bible_kjv\chapter.ctp:33
+msgid "Back to Old and New Testament books"
+msgstr ""
+
+#: \vendors\open_document\open_document.php:332;364
+msgid "Table of Contents"
+msgstr ""
+
+#: \views\announcements\add.ctp:2
+msgid "Add Announcement"
+msgstr ""
+
+#: \views\announcements\add.ctp:7
+#: \views\announcements\view.ctp:8
+#: \views\articles\add.ctp:19
+#: \views\articles\edit.ctp:19
+#: \views\chapters\edit.ctp:32
+#: \views\classes\add.ctp:19
+#: \views\classes\edit.ctp:19
+#: \views\configuration\index.ctp:23
+#: \views\courses\add.ctp:18
+#: \views\courses\edit.ctp:26
+#: \views\discussion\add_forum.ctp:17
+#: \views\discussion\add_topic.ctp:18
+#: \views\facilitated_classes\add.ctp:16
+#: \views\facilitated_classes\edit.ctp:12
+#: \views\facilitators\add.ctp:18
+#: \views\glossary\add.ctp:10
+#: \views\glossary\edit.ctp:11
+#: \views\group_administrators\administration_add.ctp:28
+#: \views\groups\administration_add.ctp:18
+#: \views\groups\administration_edit.ctp:22
+#: \views\notebook\bare.ctp:29
+#: \views\notebook\edit.ctp:36
+#: \views\notebook\index.ctp:33
+#: \views\pages\edit.ctp:93
+#: \views\profile\index.ctp:64
+#: \views\users\administration_add.ctp:17
+#: \views\users\administration_edit.ctp:19
+msgid "Save"
+msgstr ""
+
+#: \views\announcements\form.ctp:3
+#: \views\announcements\index.ctp:16
+#: \views\articles\form.ctp:3
+#: \views\books\table.ctp:5
+#: \views\chapters\edit.ctp:20
+#: \views\courses\form.ctp:3
+#: \views\discussion\forum_form.ctp:3
+#: \views\discussion\post_form.ctp:3
+#: \views\pages\edit.ctp:33
+msgid "Title"
+msgstr ""
+
+#: \views\announcements\form.ctp:8
+#: \views\announcements\index.ctp:17
+msgid "Post date"
+msgstr ""
+
+#: \views\announcements\form.ctp:12
+#: \views\articles\form.ctp:8
+#: \views\chapters\edit.ctp:25
+#: \views\discussion\post_form.ctp:8
+#: \views\elements\page_section.ctp:11
+#: \views\pages\edit.ctp:79
+msgid "Content"
+msgstr ""
+
+#: \views\announcements\view.ctp:2
+msgid "Add News Item"
+msgstr ""
+
+#: \views\announcements\view.ctp:9
+#: \views\articles\edit.ctp:20
+#: \views\chapters\edit.ctp:33
+#: \views\courses\edit.ctp:27
+#: \views\facilitated_classes\edit.ctp:13
+#: \views\glossary\edit.ctp:12
+#: \views\group_administrators\administration_edit.ctp:32
+#: \views\groups\administration_edit.ctp:23
+#: \views\pages\edit.ctp:94
+#: \views\users\administration_edit.ctp:20
+msgid "Delete"
+msgstr ""
+
+#: \views\announcements\view.ctp:9
+msgid "Are you sure you want to delete this news item?"
+msgstr ""
+
+#: \views\articles\add.ctp:13
+#: \views\articles\edit.ctp:13
+#: \views\chapters\edit.ctp:13
+#: \views\classes\add.ctp:13
+#: \views\classes\edit.ctp:13
+#: \views\configuration\index.ctp:12
+#: \views\courses\add.ctp:12
+#: \views\courses\edit.ctp:13
+#: \views\discussion\add_forum.ctp:11
+#: \views\discussion\add_topic.ctp:11
+#: \views\glossary\add.ctp:4
+#: \views\glossary\edit.ctp:5
+#: \views\group_administrators\administration_edit.ctp:12
+#: \views\groups\administration_add.ctp:12
+#: \views\groups\administration_edit.ctp:11
+#: \views\pages\edit.ctp:20
+#: \views\users\administration_add.ctp:11
+#: \views\users\administration_edit.ctp:10
+msgid "Cancel and go back"
+msgstr ""
+
+#: \views\articles\add.ctp:14
+#: \views\articles\edit.ctp:14
+msgid "Add Article"
+msgstr ""
+
+#: \views\articles\edit.ctp:20
+msgid "Are you sure you want to delete this article?"
+msgstr ""
+
+#: \views\articles\view.ctp:13
+msgid "All Articles"
+msgstr ""
+
+#: \views\books\chapter.ctp:8
+#: \views\chapters\toc.ctp:20
+msgid "Back to Books"
+msgstr ""
+
+#: \views\chapters\edit.ctp:14
+msgid "Edit Chapter"
+msgstr ""
+
+#: \views\chapters\edit.ctp:33
+msgid "Are you sure you want to delete this chapter?"
+msgstr ""
+
+#: \views\chat\bare.ctp:16
+#: \views\chat\index.ctp:19
+msgid "Send"
+msgstr ""
+
+#: \views\class\index.ctp:7
+#: \views\elements\course_menu.ctp:7
+msgid "Lessons"
+msgstr ""
+
+#: \views\classes\add.ctp:14
+msgid "Add Class"
+msgstr ""
+
+#: \views\classes\edit.ctp:14
+msgid "Edit Class"
+msgstr ""
+
+#: \views\classes\form.ctp:5
+#: \views\classes\table.ctp:5
+#: \views\facilitated_classes\table.ctp:3
+#: \views\facilitators\form.ctp:3
+#: \views\install\first_user.ctp:14
+msgid "Alias"
+msgstr ""
+
+#: \views\classes\form.ctp:10
+#: \views\classes\table.ctp:6
+#: \views\facilitated_classes\table.ctp:4
+msgid "Course"
+msgstr ""
+
+#: \views\classes\form.ctp:17
+msgid "Will the class be guided by a facilitator?"
+msgstr ""
+
+#: \views\classes\form.ctp:24
+msgid "Does the class have a definite start and end date?"
+msgstr ""
+
+#: \views\classes\form.ctp:37
+msgid "Start date"
+msgstr ""
+
+#: \views\classes\form.ctp:42
+#: \views\facilitators\form.ctp:34
+msgid "End date"
+msgstr ""
+
+#: \views\classes\form.ctp:48
+msgid "Does the class have an enrollment deadline?"
+msgstr ""
+
+#: \views\classes\form.ctp:61
+#: \views\facilitators\form.ctp:24
+msgid "Enrollment deadline"
+msgstr ""
+
+#: \views\classes\form.ctp:75
+msgid "Are students given limited time to complete the class?"
+msgstr ""
+
+#: \views\classes\form.ctp:90
+msgid "Years"
+msgstr ""
+
+#: \views\classes\form.ctp:97
+msgid "Months"
+msgstr ""
+
+#: \views\classes\form.ctp:104
+msgid "Days"
+msgstr ""
+
+#: \views\classes\form.ctp:110
+msgid "Max capacity (leave blank or set to 0 for no limit)"
+msgstr ""
+
+#: \views\classes\index.ctp:13
+#: \views\classes\table.ctp:30
+#: \views\elements\group_menu.ctp:4
+msgid "Classes"
+msgstr ""
+
+#: \views\classes\table.ctp:7
+#: \views\facilitated_classes\table.ctp:5
+msgid "Begins - Ends"
+msgstr ""
+
+#: \views\configuration\index.ctp:14
+msgid "Group Configuration"
+msgstr ""
+
+#: \views\content\debug.ctp:3
+msgid "Debug"
+msgstr ""
+
+#: \views\content\index.ctp:20
+msgid "Course Structure"
+msgstr ""
+
+#: \views\courses\add.ctp:13
+#: \views\elements\group_menu.ctp:6
+#: \views\elements\group_menu2.ctp:5
+msgid "Add Course"
+msgstr ""
+
+#: \views\courses\description.ctp:17
+msgid "Language:"
+msgstr ""
+
+#: \views\courses\edit.ctp:14
+#: \views\elements\course_menu.ctp:12
+msgid "Configure Course"
+msgstr ""
+
+#: \views\courses\edit.ctp:27
+msgid "Are you sure you want to delete this course?"
+msgstr ""
+
+#: \views\courses\form.ctp:7
+#: \views\groups\form.ctp:9
+#: \views\groups\table.ctp:6
+msgid "Web path"
+msgstr ""
+
+#: \views\courses\form.ctp:7
+msgid "This is part of what makes up the web address of your course. It can be made up of lower case letters, numbers, or hypens. The end result will be something like"
+msgstr ""
+
+#: \views\courses\form.ctp:10
+msgid "A course already exists in your group with this web path."
+msgstr ""
+
+#: \views\courses\form.ctp:15
+#: \views\courses\table.ctp:7
+msgid "Language"
+msgstr ""
+
+#: \views\courses\form.ctp:21;32;40
+msgid "No"
+msgstr ""
+
+#: \views\courses\form.ctp:21;32;40
+msgid "Yes"
+msgstr ""
+
+#: \views\courses\form.ctp:23
+msgid "Allow others to freely redistribute this course?"
+msgstr ""
+
+#: \views\courses\form.ctp:23
+msgid "If you allow your course to be freely redistributable, it will be under a Creative Commons license. This requires attribution to the author(s) of the course but provides freedoms that will make it easier for others to disseminate the content. You can learn more about Creative Commons licenses at"
+msgstr ""
+
+#: \views\courses\form.ctp:32
+msgid "Yes, as long as they share alike"
+msgstr ""
+
+#: \views\courses\form.ctp:34
+msgid "Allow others to adapt and modify redistributions of this course?"
+msgstr ""
+
+#: \views\courses\form.ctp:42
+msgid "Allow others to make commercial use of redistributions of this course?"
+msgstr ""
+
+#: \views\courses\form.ctp:51
+#: \views\discussion\forum_form.ctp:7
+#: \views\glossary\form.ctp:16
+#: \views\groups\form.ctp:58
+msgid "Description"
+msgstr ""
+
+#: \views\courses\form.ctp:59
+msgid "Custom CSS"
+msgstr ""
+
+#: \views\courses\index.ctp:13
+#: \views\courses\table.ctp:26
+#: \views\elements\primary_column.ctp:10
+#: \views\elements\user_menu.ctp:2
+#: \views\facilitated_classes\catalogue.ctp:32
+msgid "Course Catalogue"
+msgstr ""
+
+#: \views\courses\table.ctp:6
+#: \views\facilitators\table.ctp:4
+#: \views\group_administrators\table.ctp:6
+#: \views\groups\form.ctp:80
+#: \views\groups\table.ctp:5
+#: \views\plugins\table.ctp:5
+msgid "Name"
+msgstr ""
+
+#: \views\courses\tests.ctp:5
+msgid "Tests"
+msgstr ""
+
+#: \views\courses\rss\recent.ctp:3
+#: \views\layouts\head.ctp:23
+msgid "Recently Published Courses"
+msgstr ""
+
+#: \views\discussion\add_forum.ctp:13
+msgid "Add Forum"
+msgstr ""
+
+#: \views\discussion\add_topic.ctp:13
+msgid "Add Topic"
+msgstr ""
+
+#: \views\discussion\forum.ctp:8
+msgid "Back to list of forums"
+msgstr ""
+
+#: \views\discussion\topic.ctp:8
+msgid "Back to forum"
+msgstr ""
+
+#: \views\discussion\topic.ctp:63
+msgid "Reply"
+msgstr ""
+
+#: \views\discussion\topic.ctp:68
+msgid "Post"
+msgstr ""
+
+#: \views\elements\answer_matching.ctp:18
+#: \views\elements\answer_multiple_choice.ctp:13
+#: \views\elements\answer_order.ctp:17
+msgid "Are you sure you want to delete this answer?"
+msgstr ""
+
+#: \views\elements\answer_order.ctp:21
+#: \views\elements\question.ctp:25
+#: \views\elements\textarea.ctp:20
+msgid "Move up"
+msgstr ""
+
+#: \views\elements\assessment.ctp:21
+#: \views\elements\page_question.ctp:25
+#: \views\grades\index.ctp:7
+#: \views\pages\view.ctp:65
+msgid "Grade"
+msgstr ""
+
+#: \views\elements\class_menu.ctp:4
+msgid "Class Home"
+msgstr ""
+
+#: \views\elements\class_menu.ctp:8
+#: \views\notebook\index.ctp:23
+msgid "Notebook"
+msgstr ""
+
+#: \views\elements\class_menu.ctp:9
+msgid "Discussion Forums"
+msgstr ""
+
+#: \views\elements\class_menu.ctp:10
+msgid "Chat"
+msgstr ""
+
+#: \views\elements\class_menu.ctp:11
+msgid "Grades"
+msgstr ""
+
+#: \views\elements\class_menu.ctp:12
+msgid "Configure Class"
+msgstr ""
+
+#: \views\elements\course_audio.ctp:2
+msgid "Subscribe via iTunes"
+msgstr ""
+
+#: \views\elements\course_audio.ctp:3
+msgid "RSS"
+msgstr ""
+
+#: \views\elements\course_menu.ctp:3
+msgid "Course Home"
+msgstr ""
+
+#: \views\elements\course_menu.ctp:13
+msgid "Export Course"
+msgstr ""
+
+#: \views\elements\group_menu.ctp:3
+#: \views\elements\group_menu2.ctp:2
+msgid "Group Home"
+msgstr ""
+
+#: \views\elements\group_menu.ctp:7
+#: \views\elements\group_menu2.ctp:6
+msgid "Configure Group"
+msgstr ""
+
+#: \views\elements\group_menu2.ctp:3
+#: \views\facilitated_classes\table.ctp:27
+msgid "Facilitated Classes"
+msgstr ""
+
+#: \views\elements\group_menu2.ctp:4
+#: \views\facilitators\table.ctp:20
+msgid "Facilitators"
+msgstr ""
+
+#: \views\elements\lesson_navigation.ctp:23
+msgid "Uncategorized Lessons"
+msgstr ""
+
+#: \views\elements\lesson_navigation_lesson.ctp:19
+msgid "Uncategorized Lesson Items"
+msgstr ""
+
+#: \views\elements\lesson_navigation_lesson.ctp:48
+msgid "There is no content in this lesson"
+msgstr ""
+
+#: \views\elements\lessons_buttons.ctp:8
+msgid "Re-order"
+msgstr ""
+
+#: \views\elements\login.ctp:5
+msgid "E-mail, Student ID, or OpenID"
+msgstr ""
+
+#: \views\elements\login.ctp:9
+#: \views\group_administrators\login.ctp:22
+#: \views\install\database.ctp:22
+#: \views\install\first_user.ctp:18
+#: \views\register\index.ctp:12
+msgid "Password"
+msgstr ""
+
+#: \views\elements\login.ctp:17
+msgid "Forgot your login information?"
+msgstr ""
+
+#: \views\elements\login.ctp:18
+msgid "New student?"
+msgstr ""
+
+#: \views\elements\news_items.ctp:8
+msgid "Posted"
+msgstr ""
+
+#: \views\elements\offline_page.ctp:69
+#: \views\pages\view.ctp:80
+msgid "Previous page"
+msgstr ""
+
+#: \views\elements\offline_page.ctp:75
+#: \views\pages\view.ctp:86
+msgid "Next page"
+msgstr ""
+
+#: \views\elements\page_section.ctp:33
+msgid "Add Question"
+msgstr ""
+
+#: \views\elements\page_section.ctp:37
+msgid "Add Content"
+msgstr ""
+
+#: \views\elements\primary_column.ctp:11
+msgid "Register as New Student"
+msgstr ""
+
+#: \views\elements\primary_column.ctp:39
+#: \views\panel\administration_index.ctp:6
+msgid "Site Administration"
+msgstr ""
+
+#: \views\elements\question.ctp:21
+msgid "Are you sure you want to delete this question?"
+msgstr ""
+
+#: \views\elements\question.ctp:27
+#: \views\elements\textarea.ctp:21
+msgid "Move down"
+msgstr ""
+
+#: \views\elements\question.ctp:71;110;196
+#: \views\helpers\open_document.php:228
+msgid "Answers"
+msgstr ""
+
+#: \views\elements\question.ctp:151
+msgid "Headers"
+msgstr ""
+
+#: \views\elements\question.ctp:220
+msgid "Explanation"
+msgstr ""
+
+#: \views\elements\question.ctp:237
+#: \views\elements\textarea.ctp:44
+#: \views\pages\edit.ctp:40
+msgid "Insert Question"
+msgstr ""
+
+#: \views\elements\question.ctp:238
+#: \views\elements\textarea.ctp:47
+#: \views\pages\edit.ctp:43
+msgid "Insert Content"
+msgstr ""
+
+#: \views\elements\question_essay.ctp:3
+#: \views\elements\question_fill_in_the_blank.ctp:3
+#: \views\elements\question_matching.ctp:3
+#: \views\elements\question_multiple_choice.ctp:3
+#: \views\elements\question_order.ctp:3
+msgid "Incorrect. Try again."
+msgstr ""
+
+#: \views\elements\question_essay.ctp:4
+#: \views\elements\question_matching.ctp:4
+#: \views\elements\question_multiple_choice.ctp:4
+#: \views\elements\question_order.ctp:4
+msgid "You are partially correct. Try again."
+msgstr ""
+
+#: \views\elements\question_essay.ctp:5
+#: \views\elements\question_fill_in_the_blank.ctp:4
+#: \views\elements\question_matching.ctp:5
+#: \views\elements\question_multiple_choice.ctp:5
+#: \views\elements\question_order.ctp:5
+msgid "Correct!"
+msgstr ""
+
+#: \views\elements\question_essay.ctp:6
+#: \views\elements\question_fill_in_the_blank.ctp:5
+#: \views\elements\question_matching.ctp:6
+#: \views\elements\question_multiple_choice.ctp:6
+#: \views\elements\question_order.ctp:6
+msgid "You are out of tries. The correct answer is shown."
+msgstr ""
+
+#: \views\elements\question_essay.ctp:24
+#: \views\elements\question_fill_in_the_blank.ctp:12
+#: \views\elements\question_matching.ctp:63
+#: \views\elements\question_multiple_choice.ctp:43
+#: \views\elements\question_order.ctp:20
+msgid "Check answer"
+msgstr ""
+
+#: \views\elements\question_true_false.ctp:3;12
+#: \views\helpers\open_document.php:131
+msgid "False"
+msgstr ""
+
+#: \views\elements\question_true_false.ctp:3;12
+#: \views\helpers\open_document.php:131
+msgid "True"
+msgstr ""
+
+#: \views\elements\question_true_false.ctp:4
+msgid "Correct! The answer is true."
+msgstr ""
+
+#: \views\elements\question_true_false.ctp:5
+msgid "Correct! The answer is false."
+msgstr ""
+
+#: \views\elements\question_true_false.ctp:6
+msgid "Incorrect. The answer is true."
+msgstr ""
+
+#: \views\elements\question_true_false.ctp:7
+msgid "Incorrect. The answer is false."
+msgstr ""
+
+#: \views\elements\recordset.ctp:114
+msgid "Page"
+msgstr ""
+
+#: \views\elements\super_admin_menu.ctp:3
+msgid "Groups"
+msgstr ""
+
+#: \views\elements\super_admin_menu.ctp:5
+msgid "Group Administrators"
+msgstr ""
+
+#: \views\elements\super_admin_menu.ctp:7
+msgid "Users"
+msgstr ""
+
+#: \views\elements\super_admin_menu.ctp:9
+msgid "Plugins"
+msgstr ""
+
+#: \views\elements\textarea.ctp:17
+msgid "Are you sure you want to delete this content?"
+msgstr ""
+
+#: \views\elements\topics_and_pages_tutorial.ctp:3
+msgid "Here you can manage the topics and pages that belong to a lesson. To reorder a topic or page, simply drag and drop it. To edit a topic or page, either double-click it or click \"edit\" after selecting it."
+msgstr ""
+
+#: \views\elements\units_and_lessons_tutorial.ctp:3
+msgid "Here you can edit the units and lessons that belong to a course. To reorder a unit or lesson, simply drag and drop it. To edit a lesson, either double-click it or click \"edit\" after selecting it."
+msgstr ""
+
+#: \views\elements\units_and_lessons_tutorial.ctp:6
+msgid "Screencast Tutorial"
+msgstr ""
+
+#: \views\elements\user_bar.ctp:5
+msgid "Logout"
+msgstr ""
+
+#: \views\elements\user_menu.ctp:3
+msgid "My Profile"
+msgstr ""
+
+#: \views\elements\user_menu.ctp:4
+#: \views\groups\register.ctp:10
+msgid "Register Your Group"
+msgstr ""
+
+#: \views\export\index.ctp:8
+msgid "Choose an Export Format"
+msgstr ""
+
+#: \views\export\index.ctp:12
+msgid "OpenDocument Text (.odt)"
+msgstr ""
+
+#: \views\export\index.ctp:27
+msgid "Archive (.zip)"
+msgstr ""
+
+#: \views\export\index.ctp:43
+msgid "Portable Document Format (.pdf)"
+msgstr ""
+
+#: \views\facilitated_classes\add.ctp:12
+msgid "Add Facilitated Class"
+msgstr ""
+
+#: \views\facilitated_classes\catalogue.ctp:8
+#: \views\group_administrators\administration_add.ctp:22
+#: \views\group_administrators\administration_edit.ctp:24
+#: \views\group_administrators\table.ctp:4
+msgid "Group"
+msgstr ""
+
+#: \views\facilitated_classes\catalogue.ctp:9
+#: \views\facilitators\form.ctp:8;19
+msgid "Courses"
+msgstr ""
+
+#: \views\facilitated_classes\catalogue.ctp:10
+msgid "Facilitation"
+msgstr ""
+
+#: \views\facilitated_classes\edit.ctp:3
+msgid "Edit Facilitated Class"
+msgstr ""
+
+#: \views\facilitated_classes\edit.ctp:13
+#: \views\group_administrators\administration_edit.ctp:32
+msgid "Are you sure you want to delete this?"
+msgstr ""
+
+#: \views\facilitators\add.ctp:4
+msgid "Add Facilitator"
+msgstr ""
+
+#: \views\facilitators\add.ctp:14
+#: \views\facilitators\table.ctp:3
+#: \views\group_administrators\administration_edit.ctp:18
+#: \views\group_administrators\login.ctp:18
+#: \views\groups\form.ctp:80
+#: \views\install\database.ctp:18
+#: \views\register\index.ctp:8
+#: \views\users\form.ctp:3
+#: \views\users\reset_password.ctp:12
+msgid "Username"
+msgstr ""
+
+#: \views\facilitators\add.ctp:20
+msgid "You must first select a valid username."
+msgstr ""
+
+#: \views\facilitators\form.ctp:16
+msgid "How is this class facilitated?"
+msgstr ""
+
+#: \views\facilitators\form.ctp:29
+msgid "Begin date"
+msgstr ""
+
+#: \views\facilitators\form.ctp:39
+msgid "Max capacity (leave blank for no limit)"
+msgstr ""
+
+#: \views\facilitators\register.ctp:8
+msgid "Facilitator Application"
+msgstr ""
+
+#: \views\facilitators\register.ctp:10
+msgid "You can apply here to become a facilitator for "
+msgstr ""
+
+#: \views\facilitators\register.ctp:11
+msgid "You will later receive an e-mail indicating whether the group administrator approved you."
+msgstr ""
+
+#: \views\facilitators\register.ctp:17
+msgid "Apply"
+msgstr ""
+
+#: \views\files\index.ctp:45
+msgid "Add File(s)"
+msgstr ""
+
+#: \views\files\index.ctp:48
+msgid "Cancel File Upload(s)"
+msgstr ""
+
+#: \views\glossary\add.ctp:5
+#: \views\glossary\edit.ctp:6
+msgid "Add Glossary Term"
+msgstr ""
+
+#: \views\glossary\edit.ctp:12
+msgid "Are you sure you want to delete this glossary term?"
+msgstr ""
+
+#: \views\glossary\form.ctp:11
+msgid "Term"
+msgstr ""
+
+#: \views\glossary\view.ctp:10
+msgid "All Glossary Terms"
+msgstr ""
+
+#: \views\grades\index.ctp:7
+msgid "Item"
+msgstr ""
+
+#: \views\grades\index.ctp:20
+msgid "Your Grades"
+msgstr ""
+
+#: \views\grading\index.ctp:5
+msgid "Grading"
+msgstr ""
+
+#: \views\group_administrators\administration_add.ctp:12
+msgid "Add Group Administrator"
+msgstr ""
+
+#: \views\group_administrators\administration_add.ctp:16
+#: \views\group_administrators\table.ctp:5
+#: \views\groups\form.ctp:80
+#: \views\register\index.ctp:20
+#: \views\users\form.ctp:7
+#: \views\users\table.ctp:7
+msgid "Email"
+msgstr ""
+
+#: \views\group_administrators\administration_edit.ctp:13
+msgid "Edit Group Administrator"
+msgstr ""
+
+#: \views\group_administrators\login.ctp:14
+msgid "Login"
+msgstr ""
+
+#: \views\groups\administration_add.ctp:14
+msgid "Add Group"
+msgstr ""
+
+#: \views\groups\administration_edit.ctp:13
+msgid "Edit Group"
+msgstr ""
+
+#: \views\groups\administration_edit.ctp:23
+msgid "Are you sure you sure you want to delete this?"
+msgstr ""
+
+#: \views\groups\form.ctp:3
+msgid "Group name"
+msgstr ""
+
+#: \views\groups\form.ctp:9
+msgid "This is part of what makes up the web address of a group on"
+msgstr ""
+
+#: \views\groups\form.ctp:9
+msgid "It can be made up of lower case letters, numbers, or hypens. The end result will be something like"
+msgstr ""
+
+#: \views\groups\form.ctp:14
+msgid "Phone"
+msgstr ""
+
+#: \views\groups\form.ctp:18
+#: \views\profile\index.ctp:39
+#: \views\register\index.ctp:32
+#: \views\users\form.ctp:19
+msgid "Address 1"
+msgstr ""
+
+#: \views\groups\form.ctp:22
+#: \views\profile\index.ctp:43
+#: \views\register\index.ctp:36
+#: \views\users\form.ctp:23
+msgid "Address 2"
+msgstr ""
+
+#: \views\groups\form.ctp:26
+#: \views\profile\index.ctp:47
+#: \views\register\index.ctp:40
+#: \views\users\form.ctp:27
+msgid "City"
+msgstr ""
+
+#: \views\groups\form.ctp:30
+#: \views\profile\index.ctp:51
+#: \views\register\index.ctp:44
+#: \views\users\form.ctp:31
+msgid "State"
+msgstr ""
+
+#: \views\groups\form.ctp:34
+#: \views\profile\index.ctp:55
+msgid "Postal code"
+msgstr ""
+
+#: \views\groups\form.ctp:38
+msgid "Logo"
+msgstr ""
+
+#: \views\groups\form.ctp:51
+msgid "External web address"
+msgstr ""
+
+#: \views\groups\form.ctp:51
+msgid "This should be the organization's official web site. If a group is named 'My Organization', its external web address might be"
+msgstr ""
+
+#: \views\groups\form.ctp:65
+msgid "Final Grade Display"
+msgstr ""
+
+#: \views\groups\register.ctp:12
+msgid "We're glad you have considered using Internet Biblical Seminary's learning platform for your ministry."
+msgstr ""
+
+#: \views\groups\register.ctp:13
+msgid "We will review your submission, and you will be notified by email indicating whether your group has been accepted."
+msgstr ""
+
+#: \views\groups\register.ctp:20
+msgid "Submit"
+msgstr ""
+
+#: \views\helpers\open_document.php:39
+msgid "Appendix"
+msgstr ""
+
+#: \views\install\configuration.ctp:6
+msgid "Site Configuration"
+msgstr ""
+
+#: \views\install\configuration.ctp:10
+msgid "Site Name"
+msgstr ""
+
+#: \views\install\configuration.ctp:15
+msgid "Domain"
+msgstr ""
+
+#: \views\install\configuration.ctp:19
+#: \views\install\database.ctp:31
+#: \views\install\first_user.ctp:30
+msgid "Next"
+msgstr ""
+
+#: \views\install\congratulations.ctp:4
+msgid "Congratulations!"
+msgstr ""
+
+#: \views\install\congratulations.ctp:5
+msgid "You are ready to begin using Great Commission LMS. You will now be redirected to the front page."
+msgstr ""
+
+#: \views\install\database.ctp:10
+msgid "Database Configuration"
+msgstr ""
+
+#: \views\install\database.ctp:14
+msgid "Host"
+msgstr ""
+
+#: \views\install\database.ctp:27
+msgid "Database (must exist)"
+msgstr ""
+
+#: \views\install\first_user.ctp:6
+msgid "First User"
+msgstr ""
+
+#: \views\install\first_user.ctp:10
+msgid "E-mail"
+msgstr ""
+
+#: \views\install\first_user.ctp:23
+#: \views\register\index.ctp:24
+#: \views\users\form.ctp:11
+#: \views\users\table.ctp:5
+msgid "First Name"
+msgstr ""
+
+#: \views\install\first_user.ctp:27
+#: \views\register\index.ctp:28
+#: \views\users\form.ctp:15
+#: \views\users\table.ctp:6
+msgid "Last Name"
+msgstr ""
+
+#: \views\install\left_column.ctp:4
+msgid "1. Database"
+msgstr ""
+
+#: \views\install\left_column.ctp:5
+msgid "2. Site Configuration"
+msgstr ""
+
+#: \views\install\left_column.ctp:6
+msgid "3. First User"
+msgstr ""
+
+#: \views\pages\edit.ctp:24
+msgid "Edit Page"
+msgstr ""
+
+#: \views\pages\edit.ctp:29
+msgid "Every question must have a title."
+msgstr ""
+
+#: \views\pages\edit.ctp:94
+msgid "Are you sure you want to delete this page?"
+msgstr ""
+
+#: \views\plugins\table.ctp:6
+msgid "Version"
+msgstr ""
+
+#: \views\plugins\table.ctp:7
+msgid "Activated"
+msgstr ""
+
+#: \views\profile\index.ctp:6
+msgid "Your Profile"
+msgstr ""
+
+#: \views\profile\index.ctp:20
+msgid "First name"
+msgstr ""
+
+#: \views\profile\index.ctp:25
+msgid "Last name"
+msgstr ""
+
+#: \views\profile\index.ctp:29
+msgid "New password"
+msgstr ""
+
+#: \views\profile\index.ctp:34
+msgid "Repeat new password"
+msgstr ""
+
+#: \views\profile\index.ctp:61
+#: \views\register\index.ctp:54
+msgid "Add me to the InternetSeminary.org mailing list."
+msgstr ""
+
+#: \views\register\index.ctp:4;57
+msgid "Register"
+msgstr ""
+
+#: \views\register\index.ctp:16
+msgid "Repeat Password"
+msgstr ""
+
+#: \views\register\index.ctp:48
+#: \views\users\form.ctp:35
+msgid "Postal Code"
+msgstr ""
+
+#: \views\selenium\results.ctp:1
+msgid "Results posted to GCLMS.com/selenium"
+msgstr ""
+
+#: \views\student_center\index.ctp:15
+msgid "Welcome"
+msgstr ""
+
+#: \views\student_center\index.ctp:23
+msgid "The Internet Biblical Seminary is"
+msgstr ""
+
+#: \views\student_center\index.ctp:25
+msgid "A place for you to learn and grow as a Christian"
+msgstr ""
+
+#: \views\student_center\index.ctp:26
+msgid "A hub for evangelical Christian e-learning"
+msgstr ""
+
+#: \views\student_center\index.ctp:27
+msgid "An area for your church, school, or mission agency to host courses and train your own people"
+msgstr ""
+
+#: \views\student_center\index.ctp:29
+msgid "To read our statement of faith, view the classroom environment, or learn how your group can freely participate, please see our"
+msgstr ""
+
+#: \views\student_center\index.ctp:29
+msgid "introductory course"
+msgstr ""
+
+#: \views\student_center\index.ctp:33
+msgid "New Courses"
+msgstr ""
+
+#: \views\student_center\index.ctp:46
+msgid "Participating Groups"
+msgstr ""
+
+#: \views\users\administration_add.ctp:13
+msgid "Add User"
+msgstr ""
+
+#: \views\users\administration_edit.ctp:12
+msgid "Edit User"
+msgstr ""
+
+#: \views\users\administration_edit.ctp:20
+msgid "Are you sure you sure you want to delete this user?"
+msgstr ""
+
+#: \views\users\reset_password.ctp:8
+msgid "Reset Your Password"
+msgstr ""
+
+#: \views\users\reset_password.ctp:15
+msgid "A new password will be sent to your e-mail address."
+msgstr ""
+
+#: \webroot\test.php:75
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+

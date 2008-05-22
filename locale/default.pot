@@ -1,12 +1,12 @@
 # LANGUAGE translation of CakePHP Application
 # Copyright YEAR NAME <EMAIL@ADDRESS>
-# Generated from file: Revision: 4407 \config\routes.php
+# Generated from file: Revision: 4407 \gclms\config\routes.php
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2008-05-21 23:18-0600\n"
+"POT-Creation-Date: 2008-05-22 14:25-0600\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -24,7 +24,8 @@ msgid "Your account has not yet been verified. Please check your e-mail."
 msgstr ""
 
 #: \config\routes.php:102
-msgid "Great Commission LMS"
+#: \controllers\install_controller.php:10;32
+msgid "Great Commission Learning Management System"
 msgstr ""
 
 #: \controllers\articles_controller.php:14
@@ -81,10 +82,6 @@ msgstr ""
 #: \views\glossary\index.ctp:16
 #: \views\helpers\open_document.php:55
 msgid "Glossary"
-msgstr ""
-
-#: \controllers\install_controller.php:10;32
-msgid "Great Commission Learning Management System"
 msgstr ""
 
 #: \controllers\install_controller.php:11
@@ -171,7 +168,7 @@ msgstr ""
 msgid "Back to Old and New Testament books"
 msgstr ""
 
-#: \vendors\open_document\open_document.php:332;364
+#: \vendors\open_document\open_document.php:319;322;338;370
 msgid "Table of Contents"
 msgstr ""
 
@@ -550,6 +547,10 @@ msgstr ""
 msgid "Grade"
 msgstr ""
 
+#: \views\elements\breadcrumbs.ctp:13
+msgid "Home"
+msgstr ""
+
 #: \views\elements\class_menu.ctp:4
 msgid "Class Home"
 msgstr ""
@@ -637,6 +638,11 @@ msgstr ""
 #: \views\install\first_user.ctp:18
 #: \views\register\index.ctp:12
 msgid "Password"
+msgstr ""
+
+#: \views\elements\login.ctp:15
+#: \views\group_administrators\login.ctp:14
+msgid "Login"
 msgstr ""
 
 #: \views\elements\login.ctp:17
@@ -971,10 +977,6 @@ msgstr ""
 
 #: \views\group_administrators\administration_edit.ctp:13
 msgid "Edit Group Administrator"
-msgstr ""
-
-#: \views\group_administrators\login.ctp:14
-msgid "Login"
 msgstr ""
 
 #: \views\groups\administration_add.ctp:14

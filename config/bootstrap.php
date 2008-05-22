@@ -73,10 +73,12 @@ function order($items, $text_direction) {
 	return $text_direction ? array_reverse($items) : $items;
 }
 
-function text_direction() {
+/*
+function text_direction($text_direction) {
 	$arguments = func_get_args();
 	return implode(order($arguments));
 }
+*/
 
 // See https://trac.cakephp.org/ticket/3603
 function stringToSlug($string) {

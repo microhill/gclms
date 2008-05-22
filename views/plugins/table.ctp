@@ -9,7 +9,7 @@ $headers = array(
 $fields = array('Plugin.name','Plugin.version','Plugin.activated');
 
 function customizeCellData($row,$helpers) {
-	$row['Plugin']['name'] = text_direction($row['Plugin']['name'],' ','(',$row['Plugin']['type'],')');
+	$row['Plugin']['name'] = array($row['Plugin']['name'],' ','(',$row['Plugin']['type'],')');
 	$row['Plugin']['version'] = '<div class="gclms-plugin-version">' . $row['Plugin']['version'] . '</div>';
 	if(!empty($row['Plugin']['activated']))
 		$row['Plugin']['activated'] = '<div class="gclms-plugin-activated"><img src="/img/icons/oxygen/16x16/actions/dialog-ok.png" /></div>';

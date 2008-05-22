@@ -5,7 +5,7 @@
 <body class="gclms-install">
 	<?= implode(order(array(
 		$this->element('breadcrumbs')
-	))); ?>
+	)),$text_direction); ?>
 	
 	<div id="gclms-page">
 		<?= $content_for_layout ?>

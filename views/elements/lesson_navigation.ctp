@@ -32,7 +32,7 @@ foreach($units as $unit) {
 		else
 			echo 'gclms-collapsed';
 		echo '" /><img src="/img/folder-22.png" class="gclms-folder-icon" /><a href="' . $groupAndCoursePath . '/classroom/lesson/' . $lesson['id'] . '" class="lesson">';
-		echo text_direction($lessonNumber, '.', ' ', $lesson['title']);
+		echo $lessonNumber, '.', ' ', $lesson['title'];
 		echo '</a>';
 
 		if($lesson['id'] == $current_lesson['id']) {

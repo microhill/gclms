@@ -152,3 +152,7 @@ ul.gclms-export-menu li {
 		background-position: center left;
 		margin-right: 8px;
 	}
+	
+.gclms-new-courses {
+	float: left;
+}

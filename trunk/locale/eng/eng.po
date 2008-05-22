@@ -1,8 +1,0 @@
-msgid "TEXT DIRECTION"
-msgstr "ltr"
-
-msgid "Articles"
-msgstr "Articles"
-
-msgid "Password"
-msgstr "P@ssword"

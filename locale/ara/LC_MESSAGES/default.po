@@ -77,7 +77,7 @@ msgstr ""
 #: \views\glossary\index.ctp:16
 #: \views\helpers\open_document.php:55
 msgid "Glossary"
-msgstr ""
+msgstr "المصطلحات"
 
 #: \controllers\install_controller.php:10;32
 msgid "Great Commission Learning Management System"
@@ -1064,7 +1064,7 @@ msgstr "تسليم"
 
 #: \views\helpers\open_document.php:39
 msgid "Appendix"
-msgstr ""
+msgstr "الملحقات"
 
 #: \views\install\configuration.ctp:6
 msgid "Site Configuration"

@@ -1,14 +1,12 @@
 # LANGUAGE translation of CakePHP Application
 # Copyright YEAR NAME <EMAIL@ADDRESS>
-# Generated from files:
-#  Revision: 2951 \gclms\config\bootstrap.php
-#  Revision: 4407 \gclms\config\routes.php
+# Generated from file: Revision: 4407 \config\routes.php
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2008-05-21 20:54-0600\n"
+"POT-Creation-Date: 2008-05-21 23:18-0600\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -21,27 +19,8 @@ msgstr ""
 msgid "This application was not designed to work with older browsers like yours. Please download the latest version of <a href=\"http://www.microsoft.com/windows/downloads/ie/getitnow.mspx\">Internet Explorer</a>, <a href=\"http://www.firefox.com/\">Firefox</a>, <a href=\"http://www.apple.com/safari/download/\">Safari</a>, or <a href=\"http://www.opera.com/\">Opera</a>."
 msgstr ""
 
-#: \app_controller.php:152
+#: \app_controller.php:155
 msgid "Your account has not yet been verified. Please check your e-mail."
-msgstr ""
-
-#: \config\bootstrap.php:73
-#: \views\elements\left_column.ctp:2
-#: \views\elements\offline_course.ctp:2;8;21
-#: \views\elements\offline_page.ctp:2;9;22
-#: \views\elements\right_column.ctp:2
-#: \views\layouts\classroom.ctp:2;8
-#: \views\layouts\classroom_panel.ctp:2;6
-#: \views\layouts\default.ctp:2;10
-#: \views\layouts\framed.ctp:2;10
-#: \views\layouts\head.ctp:8
-#: \views\layouts\lesson.ctp:2
-#: \views\layouts\lesson_header.ctp:2
-#: \views\layouts\page.ctp:2;6
-#: \views\layouts\tabbed_viewport.ctp:2;6
-#: \views\layouts\tinymce_popup.ctp:2;11
-#: \views\pages\view.ctp:75;76
-msgid "TEXT DIRECTION"
 msgstr ""
 
 #: \config\routes.php:102

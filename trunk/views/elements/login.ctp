@@ -12,7 +12,7 @@
 			'div' => array('id' => 'UserPasswordDiv')
         ));?>
         <?
-        echo $form->submit('Login');
+        echo $form->submit(__('Login',true));
         ?>
 	    <div class="gclms-forgot-login"><a href="/users/reset_password"><? __('Forgot your login information?') ?></a></div>
 	    <div class="gclms-forgot-login"><a href="/register"><? __('New student?') ?></a></div>

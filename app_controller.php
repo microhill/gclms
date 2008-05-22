@@ -102,10 +102,13 @@ class AppController extends Controller {
 
 		$this->L10n = new L10n();		
 		if(!empty($this->viewVars['course']['language'])) {
-			$this->L10n->get($this->viewVars['course']['language']);
+			$language = $this->viewVars['course']['language'];
 		} else {
-			$this->L10n->get($this->Session->read('Config.language'));	
+			$language = $this->Session->read('Config.language');	
 		}
+		$this->L10n->get($language);
+		
+		$this->set('text_direction',$this->Languages->getDirection($language));
 	}
 
     function defaultBreadcrumbsAndLogo() {

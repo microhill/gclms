@@ -69,8 +69,8 @@ function array_invert($arr) {
    return $flipped;
 }
 
-function order($items) {
-	return __('TEXT DIRECTION',true) == 'rtl' ? array_reverse($items) : $items;
+function order($items, $text_direction) {
+	return $text_direction ? array_reverse($items) : $items;
 }
 
 function text_direction() {

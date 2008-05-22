@@ -1,11 +1,11 @@
 <?=$html->docType('xhtml-strict'); ?>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $language ?>" dir="<? __('TEXT DIRECTION'); ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $language ?>" dir="<? echo $text_direction; ?>">
 <head>
 <title><?= $course['title'] ?> - <?= $group['name'] ?></title>
 	<link rel="stylesheet" type="text/css" href="/js/vendors/ext-2.0/resources/css/ext-all.css" />
 	<link rel="stylesheet" type="text/css" href="/js/vendors/ext-2.0/resources/css/xtheme-gray.css" />
 
-    <?= $html->css(am($css_for_layout,__('TEXT DIRECTION',true))) ?>
+    <?= $html->css(am($css_for_layout,$text_direction;)) ?>
 	<?
 	$html->css('tags', null, null, false);
 	

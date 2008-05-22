@@ -1,12 +1,12 @@
 <?=$html->docType('xhtml-strict'); ?>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= Configure::read('Config.language') ?>" dir="<? __('TEXT DIRECTION'); ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= Configure::read('Config.language') ?>" dir="<?= $text_direction ?>">
 <head>
 	<title><?= $title_for_layout ?></title>
 
 	<?= $html->charset('UTF-8'); ?>
 	<link rel="stylesheet" type="text/css" href="../../../../css/main.css" />
 	<link rel="stylesheet" type="text/css" href="../../../../css/page.css" />
-	<link rel="stylesheet" type="text/css" href="../../../../css/<?= __('TEXT DIRECTION') ?>.css" />
+	<link rel="stylesheet" type="text/css" href="../../../../css/<?= $text_direction ?>.css" />
 	<?
 	echo $asset->css_for_layout($offline);
 	?>
@@ -19,7 +19,7 @@
 		gclms:course="<?= @$course['web_path'] ?>"
 		gclms:controller="<?= $this->name ?>"
 		gclms:action="<?= $this->action ?>"
-		gclms:direction="<? __('TEXT DIRECTION'); ?>"
+		gclms:direction="<?= $text_direction ?>"
 		gclms:language="<?= Configure::read('Config.language') ?>">
 	<div style="min-height: 100%;">
 		<?= $this->element('banner',array('here'=>$groupAndCoursePath . '/view/pages/')) ?>

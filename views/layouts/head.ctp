@@ -5,7 +5,7 @@
 	<?= $html->charset('UTF-8'); ?>
 	<?
 	$html->css('main', null, null, false);
-	$html->css(__('TEXT DIRECTION',true), null, null, false);
+	$html->css($text_direction, null, null, false);
 	
 	echo $asset->css_for_layout(@$offline);
 	?>

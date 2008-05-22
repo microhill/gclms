@@ -72,8 +72,8 @@ echo $this->element('no_column_background');
 		?>
 		<div id="gclms-page-navigation">
 			<?
-			$previousImage = __('TEXT DIRECTION',true) == 'rtl' ? 'next' : 'previous';
-			$nextImage = __('TEXT DIRECTION',true) == 'rtl' ? 'previous' : 'next';
+			$previousImage = $text_direction == 'rtl' ? 'next' : 'previous';
+			$nextImage = $text_direction == 'rtl' ? 'previous' : 'next';
 			?>
 			<? if(!empty($node['Node']['previous_page_id'])): ?>
 				<a class="gclms-back" href="<?= $groupAndCoursePath ?>/pages/view/<?= $node['Node']['previous_page_id'] ?>">

@@ -1,5 +1,5 @@
 <?=$html->docType('xhtml-strict'); ?>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= Configure::read('Config.language') ?>" dir="<? __('TEXT DIRECTION'); ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= Configure::read('Config.language') ?>" dir="<? echo $text_direction; ?>">
 
 <head>
 	<title><?= $title_for_layout ?></title>
@@ -8,7 +8,7 @@
 	<?
 	//echo $html->css('reset', null, null, false);
 	echo $html->css('main', null, null, false);
-	echo $html->css(__('TEXT DIRECTION',true), null, null, false); 
+	echo $html->css($text_direction;, null, null, false); 
 	echo $html->css('tinymce_popup', null, null, false);
 	
 	echo $asset->css_for_layout();

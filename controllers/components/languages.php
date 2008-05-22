@@ -1,77 +1,77 @@
 <?
 class LanguagesComponent extends Object {
 	var $_languages = array(
-		array(
-			'code' => 'en',
+		'en' => array(
 			'englishName' => 'English',
 			'internationalName' => 'English',
-			'active' => true
+			'active' => true,
+			'direction' => 'ltr'
 		),
-		array(
-			'code' => 'ar',
+		'ar' => array(
 			'englishName' => 'Arabic',
 			'internationalName' => "العربية",
-			'active' => true
+			'active' => true,
+			'direction' => 'ltr'
 		),
-		array(
-			'code' => 'ko',
+		'ko' => array(
 			'englishName' => 'Korean',
 			'internationalName' => '&#54620;&#44397;&#50612;',
-			'active' => true
+			'active' => true,
+			'direction' => 'ltr'
 		),
-		array(
-			'code' => 'zh',
+		'zh' => array(
 			'englishName' => 'Chinese',
 			'internationalName' => '&#31616;&#20307;&#20013;&#25991;',
-			'active' => true
+			'active' => true,
+			'direction' => 'ltr'
 		),
-		array(
-			'code' => 'vi',
+		'vi' => array(
 			'englishName' => 'Vietnamese',
 			'internationalName' => 'Vi&#7879;t Ng&#432;&#771;',
-			'active' => true
+			'active' => true,
+			'direction' => 'ltr'
 		),
-		array(
-			'code' => 'ru',
+		'ru' => array(
 			'englishName' => 'Russian',
 			'internationalName' => 'Py&#1089;&#1089;&#1082;&#1080;&#1081;',
-			'active' => true
+			'active' => true,
+			'direction' => 'ltr'
 		),
-		array(
-			'code' => 'sw',
+		'sw' => array(
 			'englishName' => 'Swahili',
 			'internationalName' => 'Kiswahili',
-			'active' => true
+			'active' => true,
+			'direction' => 'ltr'
 		),
-		array(
-			'code' => 'es',
+		'es' => array(
 			'englishName' => 'Spanish',
 			'internationalName' => 'Espa&#241;ol',
-			'active' => true
+			'active' => true,
+			'direction' => 'ltr'
 		),
-		array(
-			'code' => 'de',
+		'de' => array(
 			'englishName' => 'German',
 			'internationalName' => 'Deutsch',
-			'active' => true
+			'active' => true,
+			'direction' => 'ltr'
 		),
-		array(
-			'code' => 'th',
+		'th' => array(
 			'englishName' => 'Thai',
 			'internationalName' => '&#3616;&#3634;&#3625;&#3634;&#3652;&#3607;&#3618;',
-			'active' => true
+			'active' => true,
+			'direction' => 'ltr'
 		),
-		array(
-			'code' => 'fr',
+		'fr' => array(
 			'englishName' => 'French',
 			'internationalName' => 'Français',
-			'active' => true
+			'active' => true,
+			'direction' => 'ltr'
 		),
-		array(
-			'code' => 'pt',
+		'pt' => array(
 			'englishName' => 'Portuguese',
 			'internationalName' => "Português",
-			'active' => true
+			'active' => true,
+			'direction' => 'ltr'
 		)/*,
 		'ja' => array(
 			'englishName' => 'Japanese',
@@ -86,6 +86,14 @@ class LanguagesComponent extends Object {
 	);
 	
 	function generateList() {
-		return array_combine(Set::extract($this->_languages, '{n}.code'), Set::extract($this->_languages, '{n}.internationalName'));
+		$list = array();
+		foreach($this->_languages as $code => $language) {
+			$list[$code] = $language['internationalName'];
+		}
+		return $list;
+	}
+	
+	function getDirection($language_code) {
+		return $this->_languages[$language_code]['direction'];
 	}
 }

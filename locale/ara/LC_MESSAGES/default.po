@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2008-05-21 23:18-0600\n"
+"POT-Creation-Date: 2008-05-22 14:25-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Eihab Alnemri <eihabee@gmail.com>\n"
 "Language-Team: \n"
@@ -20,7 +20,8 @@ msgid "Your account has not yet been verified. Please check your e-mail."
 msgstr ""
 
 #: \config\routes.php:102
-msgid "Great Commission LMS"
+#: \controllers\install_controller.php:10;32
+msgid "Great Commission Learning Management System"
 msgstr ""
 
 #: \controllers\articles_controller.php:14
@@ -78,10 +79,6 @@ msgstr ""
 #: \views\helpers\open_document.php:55
 msgid "Glossary"
 msgstr "المصطلحات"
-
-#: \controllers\install_controller.php:10;32
-msgid "Great Commission Learning Management System"
-msgstr ""
 
 #: \controllers\install_controller.php:11
 msgid "Installer"
@@ -167,7 +164,7 @@ msgstr "العهد الجديد"
 msgid "Back to Old and New Testament books"
 msgstr ""
 
-#: \vendors\open_document\open_document.php:332;364
+#: \vendors\open_document\open_document.php:319;322;338;370
 msgid "Table of Contents"
 msgstr "قائمة المحتويات"
 
@@ -546,6 +543,10 @@ msgstr ""
 msgid "Grade"
 msgstr ""
 
+#: \views\elements\breadcrumbs.ctp:13
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
 #: \views\elements\class_menu.ctp:4
 msgid "Class Home"
 msgstr "الصفحة الرئيسية للصف"
@@ -634,6 +635,11 @@ msgstr "البريد الإلكتروني، رقم الطالب أو OpenID"
 #: \views\register\index.ctp:12
 msgid "Password"
 msgstr "كلمة السر"
+
+#: \views\elements\login.ctp:15
+#: \views\group_administrators\login.ctp:14
+msgid "Login"
+msgstr "تسجيل الدخول"
 
 #: \views\elements\login.ctp:17
 msgid "Forgot your login information?"
@@ -968,10 +974,6 @@ msgstr "البريد الالكتروني"
 #: \views\group_administrators\administration_edit.ctp:13
 msgid "Edit Group Administrator"
 msgstr ""
-
-#: \views\group_administrators\login.ctp:14
-msgid "Login"
-msgstr "تسجيل الدخول"
 
 #: \views\groups\administration_add.ctp:14
 msgid "Add Group"

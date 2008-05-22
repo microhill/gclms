@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Great Commission Learning Management System\n"
 "POT-Creation-Date: 2008-05-21 20:54-0600\n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: Aaron Shafovaloff <aaronshaf@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +36,7 @@ msgstr ""
 #: \views\layouts\tinymce_popup.ctp:2;11
 #: \views\pages\view.ctp:75;76
 msgid "TEXT DIRECTION"
-msgstr ""
+msgstr "ltr"
 
 #: \config\routes.php:102
 msgid "Great Commission LMS"

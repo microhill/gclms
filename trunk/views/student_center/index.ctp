@@ -29,7 +29,7 @@ echo $this->element('left_column');
 		<p><? __('To read our statement of faith, view the classroom environment, or learn how your group can freely participate, please see our') ?> <a href=""><? __('introductory course') ?></a>.</p>
 
 		<? if(!empty($new_courses)): ?>
-			<div class="gclms-new-courses" style="float: left; width: 50%;clear: both;">
+			<div class="gclms-new-courses">
 				<h2 style="border-bottom: 1px solid #ccc; margin-right: 12px; padding-bottom: 1px;"><? __('New Courses') ?></h2>
 				<ul>
 					<?

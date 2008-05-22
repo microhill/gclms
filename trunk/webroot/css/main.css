@@ -1193,3 +1193,7 @@ img.gclms-tooltip-button {
 	.gclms-option-buttons a.gclms-view-with-frames {
 		background-image: url(../img/icons/oxygen/16x16/actions/view-left-right-modified.png);		
 	}
+	
+.gclms-new-courses {
+	float: right;
+}

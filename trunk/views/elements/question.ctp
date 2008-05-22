@@ -57,11 +57,11 @@ if(empty($question_id))
 					array(
 						'options' => array(
 							'0' => __('Multiple choice',true),
-							'1' => __('True/false'),
-							'2' => __('Matching'),
-							'3' => __('Ordered List'),
-							'4' => __('Fill in the blank'),
-							'5' => __('Essay')),
+							'1' => __('True/false',true),
+							'2' => __('Matching',true),
+							'3' => __('Ordered List',true),
+							'4' => __('Fill in the blank',true),
+							'5' => __('Essay',true)),
 						'type' => 'radio',
 						'div' => false,
 						'class' => 'gclms-question-type',

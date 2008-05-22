@@ -1,9 +1,9 @@
 <?=$html->docType('xhtml-strict'); ?>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $language ?>" dir="<? __('TEXT DIRECTION'); ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $language ?>" dir="<?= $text_direction ?>">
 	<head>
 		<title><?= $page['Page']['title'] ?> - <?= $group['name'] ?></title>
 	
-	    <?= $html->css(am('page',$css_for_layout,__('TEXT DIRECTION',true))) ?>
+	    <?= $html->css(am('page',$css_for_layout,$text_direction;)) ?>
 		<?	
 		//$cssLastUpdated = empty($group['css_updated']) ? '' : '/' . $group['css_updated'] . '.css';
 		echo '<link rel="stylesheet" type="text/css" href="' . $groupAndCoursePath . '/files/css/1' . '" />';

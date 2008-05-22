@@ -1,5 +1,5 @@
 <?=$html->docType('xhtml-strict'); ?>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= Configure::read('Config.language') ?>" dir="<? __('TEXT DIRECTION'); ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= Configure::read('Config.language') ?>" dir="<? echo $text_direction; ?>">
 <? include 'views/layouts/head.ctp'; ?>
 
 <body
@@ -7,7 +7,7 @@
 		gclms:course="<?= @$course['web_path'] ?>"
 		gclms:controller="<?= $this->name ?>"
 		gclms:action="<?= $this->action ?>"
-		gclms:direction="<? __('TEXT DIRECTION'); ?>"
+		gclms:direction="<? echo $text_direction; ?>"
 		gclms:language="<?= Configure::read('Config.language') ?>">
 	<div id="gclms-page">
 		<?= $content_for_layout; ?>

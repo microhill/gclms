@@ -1,9 +1,9 @@
 <?=$html->docType('xhtml-strict'); ?>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $language ?>" dir="<? __('TEXT DIRECTION'); ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $language ?>" dir="<? echo $text_direction; ?>">
 	<head>
 		<title>Forum - <?= $group['name'] ?></title>
 	
-	    <?= $html->css(am('recordset','forum',$css_for_layout,__('TEXT DIRECTION',true))) ?>
+	    <?= $html->css(am('recordset','forum',$css_for_layout,$text_direction;)) ?>
 	</head>
 	
 	<body

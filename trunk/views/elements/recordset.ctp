@@ -69,7 +69,7 @@ if(@$showDefaultAddButton) {
 		<td  colspan="3">
 			<? if(!empty($data)): ?>
 			<table class="gclms-tabular" cellspacing="0">
-				<?= $html->tableHeaders(order($headers), array('class'=>'Headers')) ?>
+				<?= $html->tableHeaders(order($headers,$text_direction), array('class'=>'Headers')) ?>
 			    <tbody class="gclms-recordset">
 				    <?
 				    foreach ($data as $row) {

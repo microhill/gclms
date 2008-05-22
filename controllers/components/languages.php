@@ -11,7 +11,7 @@ class LanguagesComponent extends Object {
 			'englishName' => 'Arabic',
 			'internationalName' => "العربية",
 			'active' => true,
-			'direction' => 'ltr'
+			'direction' => 'rtl'
 		),
 		'ko' => array(
 			'englishName' => 'Korean',

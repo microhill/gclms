@@ -6,6 +6,7 @@
 	<?
 	$html->css('main', null, null, false);
 	$html->css($text_direction, null, null, false);
+	$html->css('languages/' . Configure::read('Config.language'), null, null, false);
 	
 	echo $asset->css_for_layout(@$offline);
 	?>

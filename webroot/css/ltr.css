@@ -4,6 +4,10 @@ body {
 	background-position: 25% 0;
 }
 
+ul, ol {
+	margin-left: 24px;
+}
+
 .gclms-choose-language {
 	position: absolute;
 	top: 0;

@@ -315,6 +315,12 @@ class OpenDocument {
 	}
 	
 	public function appendTableOfContents() {
+		$temp = &$this->contentXPath->query('/office:document-content/office:body/office:text/text:table-of-content/text:table-of-content-source/text:index-title-template/text()')->item(0);
+		$temp->nodeValue = __('Table of Contents',true);
+		
+		$temp2 = &$this->contentXPath->query('/office:document-content/office:body/office:text/text:table-of-content/text:index-body/text:index-title/text:p/text()')->item(0);
+		$temp2->nodeValue = __('Table of Contents',true);
+		
 		return true; // This function is being phased out...
 		
 		$node = &$this->cursor;

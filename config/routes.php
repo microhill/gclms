@@ -99,7 +99,7 @@ if (file_exists(CONFIGS.'installed.txt')) {
 if (file_exists(CONFIGS.'options.php'))
 	include(CONFIGS.'options.php');
 else
-	Configure::write('Site.name',__('Great Commission LMS', true));
+	Configure::write('Site.name',__('Great Commission Learning Management System', true));
 
 Configure::write('Database.configuration_file_exists', file_exists(CONFIGS.'database.php') ? false : true);
 

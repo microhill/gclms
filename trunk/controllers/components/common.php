@@ -21,7 +21,7 @@ class CommonComponent extends Object {
 			$model = $this->controller->modelNames[0];
 
 		if(!empty($this->controller->data)) {
-			if($this->controller->{$model}->save($this->data)) {
+			if($this->controller->{$model}->save($this->controller->data)) {
 				if(!empty($this->itemName))
 					$this->controller->Notifications->add(__(ucfirst(low($this->controller->itemName)) . ' successfully added.',true));
 				$this->controller->data[$model]['id'] = $this->controller->{$model}->id;

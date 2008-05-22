@@ -29,7 +29,7 @@ msgstr ""
 #: \views\elements\course_menu.ctp:10
 #: \views\helpers\open_document.php:43
 msgid "Articles"
-msgstr ""
+msgstr "المقالات"
 
 #: \controllers\books_controller.php:38
 #: \views\books\index.ctp:18
@@ -45,7 +45,7 @@ msgstr ""
 
 #: \controllers\content_controller.php:64
 msgid "Course Content"
-msgstr ""
+msgstr "محتويات المساق"
 
 #: \controllers\export_controller.php:23
 msgid "Export"
@@ -157,11 +157,11 @@ msgstr ""
 
 #: \plugins\bible_kjv\views\bible_kjv\books.ctp:34
 msgid "Old Testament"
-msgstr ""
+msgstr "العهد القديم"
 
 #: \plugins\bible_kjv\views\bible_kjv\books.ctp:53
 msgid "New Testament"
-msgstr ""
+msgstr "العهد الجديد"
 
 #: \plugins\bible_kjv\views\bible_kjv\chapter.ctp:33
 msgid "Back to Old and New Testament books"
@@ -169,7 +169,7 @@ msgstr ""
 
 #: \vendors\open_document\open_document.php:332;364
 msgid "Table of Contents"
-msgstr ""
+msgstr "قائمة المحتويات"
 
 #: \views\announcements\add.ctp:2
 msgid "Add Announcement"
@@ -203,7 +203,7 @@ msgstr ""
 #: \views\users\administration_add.ctp:17
 #: \views\users\administration_edit.ctp:19
 msgid "Save"
-msgstr ""
+msgstr "حفظ"
 
 #: \views\announcements\form.ctp:3
 #: \views\announcements\index.ctp:16
@@ -215,12 +215,12 @@ msgstr ""
 #: \views\discussion\post_form.ctp:3
 #: \views\pages\edit.ctp:33
 msgid "Title"
-msgstr ""
+msgstr "العنوان"
 
 #: \views\announcements\form.ctp:8
 #: \views\announcements\index.ctp:17
 msgid "Post date"
-msgstr ""
+msgstr "تاريخ التسليم"
 
 #: \views\announcements\form.ctp:12
 #: \views\articles\form.ctp:8
@@ -229,7 +229,7 @@ msgstr ""
 #: \views\elements\page_section.ctp:11
 #: \views\pages\edit.ctp:79
 msgid "Content"
-msgstr ""
+msgstr "مادة دراسية"
 
 #: \views\announcements\view.ctp:2
 msgid "Add News Item"
@@ -246,11 +246,11 @@ msgstr ""
 #: \views\pages\edit.ctp:94
 #: \views\users\administration_edit.ctp:20
 msgid "Delete"
-msgstr ""
+msgstr "حذف"
 
 #: \views\announcements\view.ctp:9
 msgid "Are you sure you want to delete this news item?"
-msgstr ""
+msgstr "هل تريد بالتأكيد حذف هذا الخبر؟"
 
 #: \views\articles\add.ctp:13
 #: \views\articles\edit.ctp:13
@@ -271,20 +271,20 @@ msgstr ""
 #: \views\users\administration_add.ctp:11
 #: \views\users\administration_edit.ctp:10
 msgid "Cancel and go back"
-msgstr ""
+msgstr "إلغاء الأمر والعودة"
 
 #: \views\articles\add.ctp:14
 #: \views\articles\edit.ctp:14
 msgid "Add Article"
-msgstr ""
+msgstr "إضافة مقال"
 
 #: \views\articles\edit.ctp:20
 msgid "Are you sure you want to delete this article?"
-msgstr ""
+msgstr "هل تريد بالتأكيد حذف هذا المقال؟"
 
 #: \views\articles\view.ctp:13
 msgid "All Articles"
-msgstr ""
+msgstr "جميع المقالات"
 
 #: \views\books\chapter.ctp:8
 #: \views\chapters\toc.ctp:20
@@ -297,12 +297,12 @@ msgstr ""
 
 #: \views\chapters\edit.ctp:33
 msgid "Are you sure you want to delete this chapter?"
-msgstr ""
+msgstr "هل تريد بالتأكيد حذف هذا الفصل؟"
 
 #: \views\chat\bare.ctp:16
 #: \views\chat\index.ctp:19
 msgid "Send"
-msgstr ""
+msgstr "أرسل"
 
 #: \views\class\index.ctp:7
 #: \views\elements\course_menu.ctp:7
@@ -363,15 +363,15 @@ msgstr ""
 
 #: \views\classes\form.ctp:90
 msgid "Years"
-msgstr ""
+msgstr "السنوات"
 
 #: \views\classes\form.ctp:97
 msgid "Months"
-msgstr ""
+msgstr "الأشهر"
 
 #: \views\classes\form.ctp:104
 msgid "Days"
-msgstr ""
+msgstr "الأيام"
 
 #: \views\classes\form.ctp:110
 msgid "Max capacity (leave blank or set to 0 for no limit)"
@@ -390,7 +390,7 @@ msgstr ""
 
 #: \views\configuration\index.ctp:14
 msgid "Group Configuration"
-msgstr ""
+msgstr "تعديل المجموعة"
 
 #: \views\content\debug.ctp:3
 msgid "Debug"
@@ -404,20 +404,20 @@ msgstr ""
 #: \views\elements\group_menu.ctp:6
 #: \views\elements\group_menu2.ctp:5
 msgid "Add Course"
-msgstr ""
+msgstr "إضافة مساق"
 
 #: \views\courses\description.ctp:17
 msgid "Language:"
-msgstr ""
+msgstr "اللغة"
 
 #: \views\courses\edit.ctp:14
 #: \views\elements\course_menu.ctp:12
 msgid "Configure Course"
-msgstr ""
+msgstr "تعديل المساق"
 
 #: \views\courses\edit.ctp:27
 msgid "Are you sure you want to delete this course?"
-msgstr ""
+msgstr "هل تريد بالتأكيد حذف هذا المساق؟"
 
 #: \views\courses\form.ctp:7
 #: \views\groups\form.ctp:9
@@ -436,15 +436,15 @@ msgstr ""
 #: \views\courses\form.ctp:15
 #: \views\courses\table.ctp:7
 msgid "Language"
-msgstr ""
+msgstr "اللغة"
 
 #: \views\courses\form.ctp:21;32;40
 msgid "No"
-msgstr ""
+msgstr "كلا"
 
 #: \views\courses\form.ctp:21;32;40
 msgid "Yes"
-msgstr ""
+msgstr "نعم"
 
 #: \views\courses\form.ctp:23
 msgid "Allow others to freely redistribute this course?"
@@ -483,7 +483,7 @@ msgstr ""
 #: \views\elements\user_menu.ctp:2
 #: \views\facilitated_classes\catalogue.ctp:32
 msgid "Course Catalogue"
-msgstr ""
+msgstr "المنهاج الدراسي"
 
 #: \views\courses\table.ctp:6
 #: \views\facilitators\table.ctp:4
@@ -492,7 +492,7 @@ msgstr ""
 #: \views\groups\table.ctp:5
 #: \views\plugins\table.ctp:5
 msgid "Name"
-msgstr ""
+msgstr "الإسم"
 
 #: \views\courses\tests.ctp:5
 msgid "Tests"
@@ -531,7 +531,7 @@ msgstr ""
 #: \views\elements\answer_multiple_choice.ctp:13
 #: \views\elements\answer_order.ctp:17
 msgid "Are you sure you want to delete this answer?"
-msgstr ""
+msgstr "هل تريد بالتأكيد حذف هذه الإجابة؟"
 
 #: \views\elements\answer_order.ctp:21
 #: \views\elements\question.ctp:25
@@ -548,7 +548,7 @@ msgstr ""
 
 #: \views\elements\class_menu.ctp:4
 msgid "Class Home"
-msgstr ""
+msgstr "الصفحة الرئيسية للصف"
 
 #: \views\elements\class_menu.ctp:8
 #: \views\notebook\index.ctp:23
@@ -569,7 +569,7 @@ msgstr ""
 
 #: \views\elements\class_menu.ctp:12
 msgid "Configure Class"
-msgstr ""
+msgstr "تعديل الصف"
 
 #: \views\elements\course_audio.ctp:2
 msgid "Subscribe via iTunes"
@@ -581,31 +581,31 @@ msgstr ""
 
 #: \views\elements\course_menu.ctp:3
 msgid "Course Home"
-msgstr ""
+msgstr "الصفحة الرئيسية للمساق"
 
 #: \views\elements\course_menu.ctp:13
 msgid "Export Course"
-msgstr ""
+msgstr "تصدير المساق"
 
 #: \views\elements\group_menu.ctp:3
 #: \views\elements\group_menu2.ctp:2
 msgid "Group Home"
-msgstr ""
+msgstr "الصفحة الرئيسية للمجموعة"
 
 #: \views\elements\group_menu.ctp:7
 #: \views\elements\group_menu2.ctp:6
 msgid "Configure Group"
-msgstr ""
+msgstr "تعديل المجموعة"
 
 #: \views\elements\group_menu2.ctp:3
 #: \views\facilitated_classes\table.ctp:27
 msgid "Facilitated Classes"
-msgstr ""
+msgstr "صفوف المرشدين"
 
 #: \views\elements\group_menu2.ctp:4
 #: \views\facilitators\table.ctp:20
 msgid "Facilitators"
-msgstr ""
+msgstr "المرشدين"
 
 #: \views\elements\lesson_navigation.ctp:23
 msgid "Uncategorized Lessons"
@@ -625,7 +625,7 @@ msgstr ""
 
 #: \views\elements\login.ctp:5
 msgid "E-mail, Student ID, or OpenID"
-msgstr ""
+msgstr "البريد الإلكتروني، رقم الطالب أو OpenID"
 
 #: \views\elements\login.ctp:9
 #: \views\group_administrators\login.ctp:22
@@ -633,11 +633,11 @@ msgstr ""
 #: \views\install\first_user.ctp:18
 #: \views\register\index.ctp:12
 msgid "Password"
-msgstr ""
+msgstr "كلمة السر"
 
 #: \views\elements\login.ctp:17
 msgid "Forgot your login information?"
-msgstr ""
+msgstr "هل فقدت معلومات الدخول للموقع؟"
 
 #: \views\elements\login.ctp:18
 msgid "New student?"
@@ -676,7 +676,7 @@ msgstr "إدارة الموقع"
 
 #: \views\elements\question.ctp:21
 msgid "Are you sure you want to delete this question?"
-msgstr ""
+msgstr "هل تريد بالتأكيد حذف هذا السؤال؟"
 
 #: \views\elements\question.ctp:27
 #: \views\elements\textarea.ctp:21
@@ -721,7 +721,7 @@ msgstr "أخطأت. حاول مرة أخرى."
 #: \views\elements\question_multiple_choice.ctp:4
 #: \views\elements\question_order.ctp:4
 msgid "You are partially correct. Try again."
-msgstr ""
+msgstr "إجابتك صحيحة جزئيا. حاول مرة أخرى."
 
 #: \views\elements\question_essay.ctp:5
 #: \views\elements\question_fill_in_the_blank.ctp:4
@@ -795,7 +795,7 @@ msgstr "الإضافات"
 
 #: \views\elements\textarea.ctp:17
 msgid "Are you sure you want to delete this content?"
-msgstr ""
+msgstr "هل تريد بالتأكيد حذف هذه المادة الدراسية؟"
 
 #: \views\elements\topics_and_pages_tutorial.ctp:3
 msgid "Here you can manage the topics and pages that belong to a lesson. To reorder a topic or page, simply drag and drop it. To edit a topic or page, either double-click it or click \"edit\" after selecting it."
@@ -811,7 +811,7 @@ msgstr ""
 
 #: \views\elements\user_bar.ctp:5
 msgid "Logout"
-msgstr ""
+msgstr "تسجيل الخروج"
 
 #: \views\elements\user_menu.ctp:3
 msgid "My Profile"
@@ -820,7 +820,7 @@ msgstr "الملف الشخصي"
 #: \views\elements\user_menu.ctp:4
 #: \views\groups\register.ctp:10
 msgid "Register Your Group"
-msgstr ""
+msgstr "سجل مجموعتك"
 
 #: \views\export\index.ctp:8
 msgid "Choose an Export Format"
@@ -840,32 +840,32 @@ msgstr ""
 
 #: \views\facilitated_classes\add.ctp:12
 msgid "Add Facilitated Class"
-msgstr ""
+msgstr "إضافة صف مُرشد"
 
 #: \views\facilitated_classes\catalogue.ctp:8
 #: \views\group_administrators\administration_add.ctp:22
 #: \views\group_administrators\administration_edit.ctp:24
 #: \views\group_administrators\table.ctp:4
 msgid "Group"
-msgstr ""
+msgstr "المجموعة"
 
 #: \views\facilitated_classes\catalogue.ctp:9
 #: \views\facilitators\form.ctp:8;19
 msgid "Courses"
-msgstr ""
+msgstr "المساقات"
 
 #: \views\facilitated_classes\catalogue.ctp:10
 msgid "Facilitation"
-msgstr ""
+msgstr "الإرشاد"
 
 #: \views\facilitated_classes\edit.ctp:3
 msgid "Edit Facilitated Class"
-msgstr ""
+msgstr "تعديل صف مُرشد"
 
 #: \views\facilitated_classes\edit.ctp:13
 #: \views\group_administrators\administration_edit.ctp:32
 msgid "Are you sure you want to delete this?"
-msgstr ""
+msgstr "هل تريد بالتأكيد حذف هذا؟"
 
 #: \views\facilitators\add.ctp:4
 msgid "Add Facilitator"
@@ -881,7 +881,7 @@ msgstr ""
 #: \views\users\form.ctp:3
 #: \views\users\reset_password.ctp:12
 msgid "Username"
-msgstr ""
+msgstr "إسم المستخدم"
 
 #: \views\facilitators\add.ctp:20
 msgid "You must first select a valid username."
@@ -901,7 +901,7 @@ msgstr ""
 
 #: \views\facilitators\register.ctp:8
 msgid "Facilitator Application"
-msgstr ""
+msgstr "طلب تسجيل المرشد"
 
 #: \views\facilitators\register.ctp:10
 msgid "You can apply here to become a facilitator for "
@@ -930,7 +930,7 @@ msgstr ""
 
 #: \views\glossary\edit.ctp:12
 msgid "Are you sure you want to delete this glossary term?"
-msgstr ""
+msgstr "هل تريد بالتأكيد حذف هذا المصطلح؟"
 
 #: \views\glossary\form.ctp:11
 msgid "Term"
@@ -963,7 +963,7 @@ msgstr ""
 #: \views\users\form.ctp:7
 #: \views\users\table.ctp:7
 msgid "Email"
-msgstr ""
+msgstr "البريد الالكتروني"
 
 #: \views\group_administrators\administration_edit.ctp:13
 msgid "Edit Group Administrator"
@@ -971,23 +971,23 @@ msgstr ""
 
 #: \views\group_administrators\login.ctp:14
 msgid "Login"
-msgstr ""
+msgstr "تسجيل الدخول"
 
 #: \views\groups\administration_add.ctp:14
 msgid "Add Group"
-msgstr ""
+msgstr "إضافة مجموعة"
 
 #: \views\groups\administration_edit.ctp:13
 msgid "Edit Group"
-msgstr ""
+msgstr "تعديل المجموعة"
 
 #: \views\groups\administration_edit.ctp:23
 msgid "Are you sure you sure you want to delete this?"
-msgstr ""
+msgstr "هل تريد بالتأكيد حذف هذا؟"
 
 #: \views\groups\form.ctp:3
 msgid "Group name"
-msgstr ""
+msgstr "إسم المجموعة"
 
 #: \views\groups\form.ctp:9
 msgid "This is part of what makes up the web address of a group on"
@@ -999,48 +999,48 @@ msgstr ""
 
 #: \views\groups\form.ctp:14
 msgid "Phone"
-msgstr ""
+msgstr "الهاتف"
 
 #: \views\groups\form.ctp:18
 #: \views\profile\index.ctp:39
 #: \views\register\index.ctp:32
 #: \views\users\form.ctp:19
 msgid "Address 1"
-msgstr ""
+msgstr "العنوان 1"
 
 #: \views\groups\form.ctp:22
 #: \views\profile\index.ctp:43
 #: \views\register\index.ctp:36
 #: \views\users\form.ctp:23
 msgid "Address 2"
-msgstr ""
+msgstr "العنوان 2"
 
 #: \views\groups\form.ctp:26
 #: \views\profile\index.ctp:47
 #: \views\register\index.ctp:40
 #: \views\users\form.ctp:27
 msgid "City"
-msgstr ""
+msgstr "المدينة"
 
 #: \views\groups\form.ctp:30
 #: \views\profile\index.ctp:51
 #: \views\register\index.ctp:44
 #: \views\users\form.ctp:31
 msgid "State"
-msgstr ""
+msgstr "الولاية"
 
 #: \views\groups\form.ctp:34
 #: \views\profile\index.ctp:55
 msgid "Postal code"
-msgstr ""
+msgstr "الرمز البريدي"
 
 #: \views\groups\form.ctp:38
 msgid "Logo"
-msgstr ""
+msgstr "الشعار"
 
 #: \views\groups\form.ctp:51
 msgid "External web address"
-msgstr ""
+msgstr "العنوان عالإنترنت"
 
 #: \views\groups\form.ctp:51
 msgid "This should be the organization's official web site. If a group is named 'My Organization', its external web address might be"
@@ -1060,7 +1060,7 @@ msgstr ""
 
 #: \views\groups\register.ctp:20
 msgid "Submit"
-msgstr ""
+msgstr "تسليم"
 
 #: \views\helpers\open_document.php:39
 msgid "Appendix"
@@ -1082,11 +1082,11 @@ msgstr ""
 #: \views\install\database.ctp:31
 #: \views\install\first_user.ctp:30
 msgid "Next"
-msgstr ""
+msgstr "اللاحق"
 
 #: \views\install\congratulations.ctp:4
 msgid "Congratulations!"
-msgstr ""
+msgstr "مبروك!"
 
 #: \views\install\congratulations.ctp:5
 msgid "You are ready to begin using Great Commission LMS. You will now be redirected to the front page."
@@ -1117,14 +1117,14 @@ msgstr ""
 #: \views\users\form.ctp:11
 #: \views\users\table.ctp:5
 msgid "First Name"
-msgstr ""
+msgstr "الإسم الأول"
 
 #: \views\install\first_user.ctp:27
 #: \views\register\index.ctp:28
 #: \views\users\form.ctp:15
 #: \views\users\table.ctp:6
 msgid "Last Name"
-msgstr ""
+msgstr "إسم العائلة"
 
 #: \views\install\left_column.ctp:4
 msgid "1. Database"
@@ -1140,7 +1140,7 @@ msgstr ""
 
 #: \views\pages\edit.ctp:24
 msgid "Edit Page"
-msgstr ""
+msgstr "تعديل الصفحة"
 
 #: \views\pages\edit.ctp:29
 msgid "Every question must have a title."
@@ -1148,11 +1148,11 @@ msgstr ""
 
 #: \views\pages\edit.ctp:94
 msgid "Are you sure you want to delete this page?"
-msgstr ""
+msgstr "هل تريد بالتأكيد حذف هذه الصفحة؟"
 
 #: \views\plugins\table.ctp:6
 msgid "Version"
-msgstr ""
+msgstr "النسخة"
 
 #: \views\plugins\table.ctp:7
 msgid "Activated"
@@ -1164,19 +1164,19 @@ msgstr "الملف الشخصي"
 
 #: \views\profile\index.ctp:20
 msgid "First name"
-msgstr ""
+msgstr "الإسم الأول"
 
 #: \views\profile\index.ctp:25
 msgid "Last name"
-msgstr ""
+msgstr "إسم العائلة"
 
 #: \views\profile\index.ctp:29
 msgid "New password"
-msgstr ""
+msgstr "كلمة السر الجديدة"
 
 #: \views\profile\index.ctp:34
 msgid "Repeat new password"
-msgstr ""
+msgstr "تأكيد كلمة السر الجديدة"
 
 #: \views\profile\index.ctp:61
 #: \views\register\index.ctp:54
@@ -1185,16 +1185,16 @@ msgstr ""
 
 #: \views\register\index.ctp:4;57
 msgid "Register"
-msgstr ""
+msgstr "التسجيل"
 
 #: \views\register\index.ctp:16
 msgid "Repeat Password"
-msgstr ""
+msgstr "تأكيد كلمة السر"
 
 #: \views\register\index.ctp:48
 #: \views\users\form.ctp:35
 msgid "Postal Code"
-msgstr ""
+msgstr "الرمز البريدي"
 
 #: \views\selenium\results.ctp:1
 msgid "Results posted to GCLMS.com/selenium"
@@ -1206,31 +1206,31 @@ msgstr "نرحب بك"
 
 #: \views\student_center\index.ctp:23
 msgid "The Internet Biblical Seminary is"
-msgstr ""
+msgstr "كلية اللاهوت عالإنترنت هي"
 
 #: \views\student_center\index.ctp:25
 msgid "A place for you to learn and grow as a Christian"
-msgstr ""
+msgstr "مكان فيه يمكنك التعلم والنمو كمسيحي مؤمن"
 
 #: \views\student_center\index.ctp:26
 msgid "A hub for evangelical Christian e-learning"
-msgstr ""
+msgstr "تجمّع للمؤسسات التبشيرية المسيحية التي تستخدم التعليم الإلكتروني"
 
 #: \views\student_center\index.ctp:27
 msgid "An area for your church, school, or mission agency to host courses and train your own people"
-msgstr ""
+msgstr "مكان يمكن لكنيستك أو مدرستك أو مؤسستك أن توفر مساقات لتدريب أفراد مجموعتك"
 
 #: \views\student_center\index.ctp:29
 msgid "To read our statement of faith, view the classroom environment, or learn how your group can freely participate, please see our"
-msgstr ""
+msgstr "للإطلاع على إقرارنا الإيماني، معاينة البيئة الصفية أو لمعرفة الوسيلة المجانية لمشاركة مجموعتك يرجى زيارة"
 
 #: \views\student_center\index.ctp:29
 msgid "introductory course"
-msgstr ""
+msgstr "المساق التجريبي"
 
 #: \views\student_center\index.ctp:33
 msgid "New Courses"
-msgstr ""
+msgstr "المساقات الجديدة"
 
 #: \views\student_center\index.ctp:46
 msgid "Participating Groups"
@@ -1238,19 +1238,19 @@ msgstr ""
 
 #: \views\users\administration_add.ctp:13
 msgid "Add User"
-msgstr ""
+msgstr "إضافة مستخدم"
 
 #: \views\users\administration_edit.ctp:12
 msgid "Edit User"
-msgstr ""
+msgstr "تعديل مستخدم"
 
 #: \views\users\administration_edit.ctp:20
 msgid "Are you sure you sure you want to delete this user?"
-msgstr ""
+msgstr "هل تريد بالتأكيد حذف هذا المستخدم؟"
 
 #: \views\users\reset_password.ctp:8
 msgid "Reset Your Password"
-msgstr ""
+msgstr "تعديل كلمة السر"
 
 #: \views\users\reset_password.ctp:15
 msgid "A new password will be sent to your e-mail address."

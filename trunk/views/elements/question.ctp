@@ -55,7 +55,13 @@ if(empty($question_id))
 				<td>
 				<?= $myForm->input('Question' . $question_id . 'Type',
 					array(
-						'options' => array('0' => 'Multiple choice','1' => 'True/false','2' => 'Matching','3' => 'Ordered List','4' => 'Fill in the blank','5' => 'Essay'),
+						'options' => array(
+							'0' => __('Multiple choice',true),
+							'1' => __('True/false'),
+							'2' => __('Matching'),
+							'3' => __('Ordered List'),
+							'4' => __('Fill in the blank'),
+							'5' => __('Essay')),
 						'type' => 'radio',
 						'div' => false,
 						'class' => 'gclms-question-type',

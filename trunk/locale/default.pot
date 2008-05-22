@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2008-05-22 14:25-0600\n"
+"POT-Creation-Date: 2008-05-22 16:32-0600\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "Could not find first topic or page in lesson. Perhaps topics and pages haven't been created yet for this lesson?"
 msgstr ""
 
-#: \controllers\content_controller.php:64
+#: \controllers\content_controller.php:65
 msgid "Course Content"
 msgstr ""
 
@@ -693,26 +693,50 @@ msgstr ""
 msgid "Move down"
 msgstr ""
 
-#: \views\elements\question.ctp:71;110;196
+#: \views\elements\question.ctp:59
+msgid "Multiple choice"
+msgstr ""
+
+#: \views\elements\question.ctp:60
+msgid "True/false"
+msgstr ""
+
+#: \views\elements\question.ctp:61
+msgid "Matching"
+msgstr ""
+
+#: \views\elements\question.ctp:62
+msgid "Ordered List"
+msgstr ""
+
+#: \views\elements\question.ctp:63
+msgid "Fill in the blank"
+msgstr ""
+
+#: \views\elements\question.ctp:64
+msgid "Essay"
+msgstr ""
+
+#: \views\elements\question.ctp:77;116;202
 #: \views\helpers\open_document.php:228
 msgid "Answers"
 msgstr ""
 
-#: \views\elements\question.ctp:151
+#: \views\elements\question.ctp:157
 msgid "Headers"
 msgstr ""
 
-#: \views\elements\question.ctp:220
+#: \views\elements\question.ctp:226
 msgid "Explanation"
 msgstr ""
 
-#: \views\elements\question.ctp:237
+#: \views\elements\question.ctp:243
 #: \views\elements\textarea.ctp:44
 #: \views\pages\edit.ctp:40
 msgid "Insert Question"
 msgstr ""
 
-#: \views\elements\question.ctp:238
+#: \views\elements\question.ctp:244
 #: \views\elements\textarea.ctp:47
 #: \views\pages\edit.ctp:43
 msgid "Insert Content"

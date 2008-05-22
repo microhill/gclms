@@ -44,7 +44,7 @@ class ContentController extends AppController {
 		$parentNodeId = $this->data['Node']['id'];
 		$nodes = explode(',',$this->data['Node']['children_nodes']);
 
-    	$order = 1;
+    	$order = 0;
     	foreach($nodes as $nodeId) {
     		$this->Node->id = $nodeId;
     		$this->Node->save(array('Node' => array(
@@ -61,6 +61,7 @@ class ContentController extends AppController {
 		$this->Node->contain();
 		$this->data =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		
+		
 		$this->set('title',__('Course Content',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
     }
     
@@ -69,8 +70,33 @@ class ContentController extends AppController {
 		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		$this->set(compact('nodes'));
 		
-		$this->set('title','Nodes Debug');		
+		$this->set('title','Nodes Debug');
     }
+	
+	function clean_up(){
+		$this->Node->contain();
+		$nodes =  $this->Node->find('all',array(
+			'conditions' => array('Node.course_id' => $this->viewVars['course']['id'],'Node.course_id' => $this->viewVars['course']['id'])
+		));
+		$parent_node_ids = array_unique(Set::extract($nodes,'{n}.Node.parent_node_id'));
+		
+		foreach($parent_node_ids as $parent_node_id) {
+			$this->Node->contain();
+			$nodes = $this->Node->find('all',array(
+				'conditions' => array('Node.parent_node_id' => $parent_node_id,'Node.course_id' => $this->viewVars['course']['id']),
+				'sort' => 'Node.parent_node_id ASC'
+			));
+
+			$order = 0;
+			foreach($nodes as $node) {
+				$this->Node->id = $node['Node']['id'];
+				$this->Node->save(array('Node' => array('order' => $order)));
+				$order++;
+			}
+		}
+		
+		$this->redirect($this->viewVars['groupAndCoursePath'] . '/content/debug');
+	}
 	
 	function fix_orphans() {
 		$this->Node->contain();

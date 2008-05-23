@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2008-05-22 17:45-0600\n"
+"POT-Creation-Date: 2008-05-22 23:55-0600\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -168,7 +168,7 @@ msgstr ""
 msgid "Back to Old and New Testament books"
 msgstr ""
 
-#: \vendors\open_document\open_document.php:319;322;338;370
+#: \vendors\open_document\open_document.php:319;322;341;373
 msgid "Table of Contents"
 msgstr ""
 
@@ -730,7 +730,7 @@ msgid "Essay"
 msgstr ""
 
 #: \views\elements\question.ctp:77;116;202
-#: \views\helpers\open_document.php:228
+#: \views\helpers\open_document.php:227
 msgid "Answers"
 msgstr ""
 
@@ -794,12 +794,12 @@ msgid "Check answer"
 msgstr ""
 
 #: \views\elements\question_true_false.ctp:3;12
-#: \views\helpers\open_document.php:131
+#: \views\helpers\open_document.php:130
 msgid "False"
 msgstr ""
 
 #: \views\elements\question_true_false.ctp:3;12
-#: \views\helpers\open_document.php:131
+#: \views\helpers\open_document.php:130
 msgid "True"
 msgstr ""
 
@@ -866,6 +866,14 @@ msgstr ""
 #: \views\elements\user_menu.ctp:4
 #: \views\groups\register.ctp:10
 msgid "Register Your Group"
+msgstr ""
+
+#: \views\export\generate_archive.ctp:4
+msgid "Generating Archive"
+msgstr ""
+
+#: \views\export\generate_odt.ctp:11
+msgid "Generating ODT"
 msgstr ""
 
 #: \views\export\index.ctp:8

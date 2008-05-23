@@ -9,6 +9,14 @@ class OpenDocument {
      * @access private
      */
     private $path;
+	
+	/**
+     * Text direction
+     *
+     * @var string
+     * @access public
+     */
+    public $text_direction = 'lr-tb';
     
     /**
      * DOMNode of current node
@@ -312,6 +320,27 @@ class OpenDocument {
 		
 		//echo '<pre>';
 
+	}
+	
+	function setTextDirectionality() {
+		if($this->text_direction == 'lr-tb') {
+			return false;
+		}
+
+		$temp3 = &$this->stylesXPath->query('/office:document-styles/office:automatic-styles/style:page-layout/style:page-layout-properties')->item(0);
+		$temp3->setAttribute('style:writing-mode','rl-tb');
+		
+		$tags = &$this->stylesXPath->query('//style:paragraph-properties');
+		foreach($tags as $tag) {
+			$tag->setAttribute('style:writing-mode','rl-tb');
+			$tag->setAttribute('fo:text-align','end');
+		}
+		
+		$tags = &$this->contentXPath->query('//style:paragraph-properties');
+		foreach($tags as $tag) {
+			$tag->setAttribute('style:writing-mode','rl-tb');
+			$tag->setAttribute('fo:text-align','end');
+		}
 	}
 	
 	public function appendTableOfContents() {

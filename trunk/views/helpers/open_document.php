@@ -14,6 +14,7 @@ class OpenDocumentHelper extends AppHelper {
 		$this->openDocument->mediaDirectory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->data['course']['id'];
 		$this->openDocument->imagePrefix = '/' . $this->data['group']['web_path'] . '/' . $this->data['course']['web_path'] . '/files/';
 		$this->openDocument->destinationFile = 	$destinationFile;
+		$this->openDocument->text_direction = $data['text_direction'] == 'rtl' ? 'rl-tb' : 'lr-tb';
 
 		if($data['stage'] <= count($data['nodes'])) {
 			if($data['stage'] == 0) {

@@ -19,7 +19,7 @@ echo $this->element('left_column'); ?>
 				array(
 					'id' => 'addArticle',
 					'class' => 'gclms-add',
-					'label' => '<u>A</u>dd Article',
+					'label' => __('Add Article',true),
 					'accesskey' => 'a'
 				)
 			)));

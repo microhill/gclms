@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2008-05-22 16:32-0600\n"
+"POT-Creation-Date: 2008-05-22 17:45-0600\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -283,6 +283,18 @@ msgstr ""
 msgid "Are you sure you want to delete this article?"
 msgstr ""
 
+#: \views\articles\view.ctp:8
+#: \views\glossary\view.ctp:5
+#: \views\pages\view.ctp:31
+msgid "Edit"
+msgstr ""
+
+#: \views\articles\view.ctp:9
+#: \views\glossary\view.ctp:6
+#: \views\pages\view.ctp:32
+msgid "View with frames"
+msgstr ""
+
 #: \views\articles\view.ctp:13
 msgid "All Articles"
 msgstr ""
@@ -500,7 +512,7 @@ msgid "Tests"
 msgstr ""
 
 #: \views\courses\rss\recent.ctp:3
-#: \views\layouts\head.ctp:23
+#: \views\layouts\head.ctp:24
 msgid "Recently Published Courses"
 msgstr ""
 

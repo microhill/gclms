@@ -1,7 +1,7 @@
 <?
 echo $this->element('no_column_background'); ?>
 <div class="gclms-content">
-	<h1>Generating Archive</h1>
+	<h1><? __('Generating Archive') ?></h1>
 	<?
 	$progress = $courseArchive->export(array(
 		'nodes' => $this->data['nodes'],

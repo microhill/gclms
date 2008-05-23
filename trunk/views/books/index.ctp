@@ -21,39 +21,39 @@ echo $this->element('left_column'); ?>
 				array(
 					'id' => 'addBook',
 					'class' => 'gclms-add',
-					'label' => '<u>A</u>dd Book',
+					'label' => __('Add Book',true),
 					'accesskey' => 'a',
 					'strings' => array(
-						'gclms:prompt-text' => 'Enter the name of the book:'
+						'gclms:prompt-text' => __('Enter the name of the book:',true)
 					)
 				),
 				array(
 					'id' => 'renameBook',
 					'class' => 'gclms-rename',
-					'label' => '<u>R</u>ename Book',
+					'label' => __('Rename Book',true),
 					'accesskey' => 'r',
 					'strings' => array(
-						'gclms:prompt-text' => 'Enter the new name of the book:'
+						'gclms:prompt-text' => __('Enter the new name of the book:',true)
 					),
 					'disabled' => 'disabled'
 				),
 				array(
 					'id' => 'deleteBook',
 					'class' => 'gclms-delete',
-					'label' => '<u>D</u>elete Book',
+					'label' => __('Delete Book',true),
 					'accesskey' => 'd',
 					'strings' => array(
-						'gclms:confirm-text' => 'Are you sure you want to delete this book?'
+						'gclms:confirm-text' => __('Are you sure you want to delete this book?',true)
 					),
 					'disabled' => 'disabled'
 				),
 				array(
 					'id' => 'editBook',
 					'class' => 'gclms-edit',
-					'label' => '<u>E</u>dit Book',
+					'label' => __('Edit Book',true),
 					'accesskey' => 'e',
 					'strings' => array(
-						'gclms:confirm-text' => 'Are you sure you want to delete this book?'
+						'gclms:confirm-text' => __('Are you sure you want to delete this book?',true)
 					),
 					'disabled' => 'disabled'
 				)

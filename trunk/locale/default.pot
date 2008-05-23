@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2008-05-23 13:16-0600\n"
+"POT-Creation-Date: 2008-05-23 13:19-0600\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -277,6 +277,7 @@ msgstr ""
 
 #: \views\articles\add.ctp:14
 #: \views\articles\edit.ctp:14
+#: \views\articles\index.ctp:22
 msgid "Add Article"
 msgstr ""
 
@@ -1085,6 +1086,10 @@ msgstr ""
 
 #: \views\glossary\form.ctp:11
 msgid "Term"
+msgstr ""
+
+#: \views\glossary\index.ctp:22
+msgid "Add Term"
 msgstr ""
 
 #: \views\glossary\view.ctp:10

@@ -19,7 +19,7 @@ echo $this->element('left_column'); ?>
 				array(
 					'id' => 'addGlossaryTerm',
 					'class' => 'gclms-add',
-					'label' => '<u>A</u>dd Term',
+					'label' => __('Add Term',true),
 					'accesskey' => 'a'
 				)
 			)));

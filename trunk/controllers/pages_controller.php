@@ -65,7 +65,7 @@ class PagesController extends AppController {
 		        if(is_dir($directory . DS . $file))
 		        	continue;
 		        $path_parts = pathinfo($file);
-		        if ($path_parts['extension'] == 'mp3') {
+		        if (@$path_parts['extension'] == 'mp3') {
 		            $files[$file] = $file;
 		        }
 		    }

@@ -95,7 +95,7 @@ if(@$showDefaultAddButton) {
 							$firstValue = false;
 					    }
 				    	echo $html->tableCells(
-				    		order($cellData)
+				    		order($cellData,$text_direction)
 				    	);
 				    }
 				    ?>

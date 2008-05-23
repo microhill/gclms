@@ -19,12 +19,12 @@
 			
 			if(!empty($button['strings'])) {
 				foreach($button['strings'] as $name => $value) {
-					echo $name . '="' . __($value,true) . '" ';
+					echo $name . '="' . $value . '" ';
 				}
 			}
 			?>
 			>
-				<? __($button['label']) ?>
+				<?= $button['label'] ?>
 			</button>
 		</td>
 	<? endforeach; ?>

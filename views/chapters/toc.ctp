@@ -24,39 +24,39 @@ echo $this->element('left_column'); ?>
 				array(
 					'id' => 'addChapter',
 					'class' => 'gclms-add',
-					'label' => '<u>A</u>dd Chapter',
+					'label' => __('Add Chapter',true),
 					'accesskey' => 'a',
 					'strings' => array(
-						'gclms:prompt-text' => 'Enter the name of the chapter:'
+						'gclms:prompt-text' => __('Enter the name of the chapter:',true)
 					)
 				),
 				array(
 					'id' => 'renameChapter',
 					'class' => 'gclms-rename',
-					'label' => '<u>R</u>ename Chapter',
+					'label' => __('Rename Chapter',true),
 					'accesskey' => 'r',
 					'strings' => array(
-						'gclms:prompt-text' => 'Enter the new name of the chapter:'
+						'gclms:prompt-text' => __('Enter the new name of the chapter:',true)
 					),
 					'disabled' => 'disabled'
 				),
 				array(
 					'id' => 'deleteChapter',
 					'class' => 'gclms-delete',
-					'label' => '<u>D</u>elete Chapter',
+					'label' => __('Delete Chapter',true),
 					'accesskey' => 'd',
 					'strings' => array(
-						'gclms:confirm-text' => 'Are you sure you want to delete this chapter?'
+						'gclms:confirm-text' => __('Are you sure you want to delete this chapter?',true)
 					),
 					'disabled' => 'disabled'
 				),
 				array(
 					'id' => 'editChapter',
 					'class' => 'gclms-edit',
-					'label' => '<u>E</u>dit Chapter',
+					'label' => __('Edit Chapter',true),
 					'accesskey' => 'e',
 					'strings' => array(
-						'gclms:confirm-text' => 'Are you sure you want to delete this chapter?'
+						'gclms:confirm-text' => __('Are you sure you want to delete this chapter?',true)
 					),
 					'disabled' => 'disabled'
 				)

@@ -59,6 +59,8 @@ class OpenDocumentHelper extends AppHelper {
 						$this->openDocument->importHTML($glossary_term['GlossaryTerm']['description']);
 					}
 					
+					$this->openDocument->setTextDirectionality();
+					
 					//unlink(TMP.'export' . DS . $data['course']['id'] . '.tmp');
 					
 					break;
@@ -67,7 +69,6 @@ class OpenDocumentHelper extends AppHelper {
 
 			}
 		}
-		
 		
 		$this->openDocument->save($this->openDocument->destinationFile);
 		return array(

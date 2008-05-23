@@ -25,32 +25,32 @@ echo $this->element('left_column');
 					array(
 						'id' => 'addPage',
 						'class' => 'gclms-add',
-						'label' => '<u>A</u>dd Page',
+						'label' => __('Add Page',true),
 						'strings' => array(
-							'gclms:prompt-text' => 'Enter the name of the page:'
+							'gclms:prompt-text' => __('Enter the name of the page:',true)
 						),
 						'accesskey' => 'a'
 					),
 					array(
 						'id' => 'addLabel',
 						'class' => 'gclms-add',
-						'label' => 'A<u>d</u>d Label',
+						'label' => __('Add Label',true),
 						'strings' => array(
-							'gclms:prompt-text' => 'Enter the name of the label:'
+							'gclms:prompt-text' => __('Enter the name of the label:',true)
 						),
 						'accesskey' => 'd'
 					),
 					array(
 						'id' => 'convertPageToLabel',
 						'class' => 'gclms-label',
-						'label' => 'Convert to <u>L</u>abel',
+						'label' => __('Convert to Label',true),
 						'accesskey' => 'l',
 						'disabled' => 'disabled'
 					),
 					array(
 						'id' => 'convertLabelToPage',
 						'class' => 'gclms-page',
-						'label' => 'Convert to <u>P</u>age',
+						'label' => __('Convert to Page',true),
 						'accesskey' => 'p',
 						'disabled' => 'disabled'
 					)
@@ -60,21 +60,21 @@ echo $this->element('left_column');
 					array(
 						'id' => 'decreaseIndent',
 						'class' => 'gclms-decrease-indent',
-						'label' => 'Decrease Indent',
+						'label' => __('Decrease Indent',true),
 						'disabled' => 'disabled'
 					),
 					array(
 						'id' => 'increaseIndent',
 						'class' => 'gclms-increase-indent',
-						'label' => 'Increase Indent',
+						'label' => __('Increase Indent',true),
 						'disabled' => 'disabled'
 					),
 					array(
 						'id' => 'renameNode',
 						'class' => 'gclms-rename',
-						'label' => '<u>R</u>ename',
+						'label' => __('Rename'),
 						'strings' => array(
-							'gclms:prompt-text' => 'Enter the new name:'
+							'gclms:prompt-text' => __('Enter the new name:',true)
 						),
 						'accesskey' => 'r',
 						'disabled' => 'disabled'
@@ -82,10 +82,10 @@ echo $this->element('left_column');
 					array(
 						'id' => 'deleteNode',
 						'class' => 'gclms-delete',
-						'label' => 'Dele<u>t</u>e',
+						'label' => __('Delete',true),
 						'strings' => array(
-							'gclms:notempty-text' => 'Must be empty before deletion.',
-							'gclms:confirm-text' => 'Are you sure you want to delete this?'
+							'gclms:notempty-text' => __('Must be empty before deletion.',true),
+							'gclms:confirm-text' => __('Are you sure you want to delete this?',true)
 						),
 						'accesskey' => 't',
 						'disabled' => 'disabled'
@@ -93,7 +93,7 @@ echo $this->element('left_column');
 					array(
 						'id' => 'editPage',
 						'class' => 'gclms-edit',
-						'label' => '<u>E</u>dit',
+						'label' => __('Edit',true),
 						'accesskey' => 'e',
 						'disabled' => 'disabled'
 					))

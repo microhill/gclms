@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2008-05-23 11:02-0600\n"
+"POT-Creation-Date: 2008-05-23 13:19-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Eihab Alnemri <eihabee@gmail.com>\n"
 "Language-Team: \n"
@@ -22,7 +22,7 @@ msgstr "حسابك لم يتم التحقق منه بعد. الرجاء تحقق
 #: \config\routes.php:102
 #: \controllers\install_controller.php:10;32
 msgid "Great Commission Learning Management System"
-msgstr ""
+msgstr "نظام الإرسالية العظمى لإدارة التعليم"
 
 #: \controllers\articles_controller.php:14
 #: \views\articles\index.ctp:16
@@ -142,11 +142,11 @@ msgstr ""
 
 #: \controllers\users_controller.php:85
 msgid "Your password has been reset"
-msgstr ""
+msgstr "تم تغيير كلمة السر"
 
 #: \controllers\users_controller.php:85
 msgid "The password for %s has been reset to %s"
-msgstr ""
+msgstr "كلمة السر للمستخدم %s قد تم تغييرها لتصبح %s"
 
 #: \controllers\users_controller.php:86
 msgid "Your password has been reset. Please check your e-mail."
@@ -162,7 +162,7 @@ msgstr "العهد الجديد"
 
 #: \plugins\bible_kjv\views\bible_kjv\chapter.ctp:33
 msgid "Back to Old and New Testament books"
-msgstr ""
+msgstr "العودة لصفحة العهدين القديم والجديد"
 
 #: \vendors\open_document\open_document.php:333;336;352;384
 msgid "Table of Contents"
@@ -273,6 +273,7 @@ msgstr "إلغاء الأمر والعودة"
 
 #: \views\articles\add.ctp:14
 #: \views\articles\edit.ctp:14
+#: \views\articles\index.ctp:22
 msgid "Add Article"
 msgstr "إضافة مقال"
 
@@ -301,6 +302,34 @@ msgstr "جميع المقالات"
 #: \views\chapters\toc.ctp:20
 msgid "Back to Books"
 msgstr "عودة للكتب"
+
+#: \views\books\index.ctp:24
+msgid "Add Book"
+msgstr "إضافة كتاب"
+
+#: \views\books\index.ctp:27
+msgid "Enter the name of the book:"
+msgstr "أدخل إسم الكتاب"
+
+#: \views\books\index.ctp:33
+msgid "Rename Book"
+msgstr "تغيير إسم الكتاب"
+
+#: \views\books\index.ctp:36
+msgid "Enter the new name of the book:"
+msgstr "أدخل العنوان الجديد للكتاب:"
+
+#: \views\books\index.ctp:43
+msgid "Delete Book"
+msgstr "حذف الكتاب"
+
+#: \views\books\index.ctp:46;56
+msgid "Are you sure you want to delete this book?"
+msgstr "هل تريد بالتأكيد حذف هذا الكتاب؟"
+
+#: \views\books\index.ctp:53
+msgid "Edit Book"
+msgstr "تعديل الكتاب"
 
 #: \views\chapters\edit.ctp:14
 #: \views\chapters\toc.ctp:56
@@ -475,7 +504,7 @@ msgstr "أدخل الإسم الجديد:"
 
 #: \views\content\index.ctp:87
 msgid "Must be empty before deletion."
-msgstr ""
+msgstr "ينبغي أن يكون حذف محتوى النص أولا."
 
 #: \views\content\index.ctp:88
 #: \views\facilitated_classes\edit.ctp:13
@@ -1055,6 +1084,10 @@ msgstr "هل تريد بالتأكيد حذف هذا المصطلح؟"
 msgid "Term"
 msgstr "المصطلح"
 
+#: \views\glossary\index.ctp:22
+msgid "Add Term"
+msgstr "إضافة مصطلح"
+
 #: \views\glossary\view.ctp:10
 msgid "All Glossary Terms"
 msgstr "جميع المصطلحات"
@@ -1205,7 +1238,7 @@ msgstr "مبروك!"
 
 #: \views\install\congratulations.ctp:5
 msgid "You are ready to begin using Great Commission LMS. You will now be redirected to the front page."
-msgstr ""
+msgstr "أنت جاهز الآن لستخدام نظام الإرسالية العظمى لإدارة التعليم. سيتم تحويلك للصفحة الرئيسية الآن."
 
 #: \views\install\database.ctp:10
 msgid "Database Configuration"

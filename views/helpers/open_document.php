@@ -29,6 +29,7 @@ class OpenDocumentHelper extends AppHelper {
 					die('Could not find ' . $this->openDocument->destinationFile);
 
 				$nodeNum = $data['stage'] - 1;
+				set_time_limit(120);
 				$this->export_node_to_odt($this->data['nodes'][$nodeNum]);
 			}
 		} else {

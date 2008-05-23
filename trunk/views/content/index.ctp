@@ -72,7 +72,7 @@ echo $this->element('left_column');
 					array(
 						'id' => 'renameNode',
 						'class' => 'gclms-rename',
-						'label' => __('Rename'),
+						'label' => __('Rename',true),
 						'strings' => array(
 							'gclms:prompt-text' => __('Enter the new name:',true)
 						),

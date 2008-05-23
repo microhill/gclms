@@ -15,13 +15,13 @@
 		$lastModified = date('YmdHis', strtotime($group['logo_updated']));
 		echo '<img src="/' . $group['web_path'] . '/files/logo/' . $lastModified . '.' . $extension . '" ' . $imageInfo[3] . ' />';
 	} else {
-		$file = ROOT . DS . APP_DIR . DS . 'webroot' . DS . 'img' . DS . 'temporary-logo-2007-11-16.png';
+		$file = ROOT . DS . APP_DIR . DS . 'webroot' . DS . 'img' . DS . 'logo.png';
 		$imageInfo = getimagesize($file);
 		
 		if(!isset($here))
 			$here = $this->here;
 
-		$img = relativize_url($here,'/img/temporary-logo-2007-11-16.png');
+		$img = relativize_url($here,'/img/logo.png');
 		echo '<img src="' . $img . '" ' . $imageInfo[3] . ' />';
 	}
 	?></a>

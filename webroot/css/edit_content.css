@@ -2,11 +2,8 @@
 	#gclms-nodes ul {
 		min-height: 2px;
 		margin: 0;
-		padding-right: 0;
 		padding-top: 2px;
 		padding-bottom: 2px;
-		margin-left: 15px;
-		padding-left: 15px;
 		list-style: none;
 		font-size: .1em; /* Part 1 of 2 of IE fix */
 	}
@@ -16,11 +13,6 @@
 			padding-bottom: 1px;
 			font-size: 10em; /* Part 2 of 2 of IE fix */
 		}
-		
-	#gclms-nodes > ul {
-		margin-left: 0px;
-		padding-left: 0px;
-	}
 
 	#gclms-nodes a {
 		color: black;

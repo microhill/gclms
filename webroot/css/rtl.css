@@ -159,3 +159,29 @@ ul.gclms-export-menu li {
 .gclms-new-courses {
 	float: right;
 }
+
+#gclms-spinner {
+	float: left;
+}
+
+.gclms-option-buttons {
+	float: left;
+}
+
+	.gclms-option-buttons a {
+		padding-right: 20px;
+		margin-right: 10px;
+		background-position: right center;	
+	}
+	
+#gclms-nodes {}
+	#gclms-nodes ul {
+		padding-left: 0;
+		margin-right: 15px;
+		padding-right: 15px;
+	}
+	
+	#gclms-nodes > ul {
+		margin-right: 0px;
+		padding-right: 0px;
+	}

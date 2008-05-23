@@ -82,7 +82,6 @@ ul, ol {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	padding: 0;
-	list-style-type: disc;
 	list-style-position: outside;
 	list-style-image:none;
 }
@@ -233,7 +232,6 @@ form {}
 }
 
 #gclms-spinner {
-	float: right;
 	display: none;
 }
 
@@ -1170,14 +1168,10 @@ img.gclms-tooltip-button {
 /* Option buttons */
 
 .gclms-option-buttons {
-	float: right;
 	font-size: 1.1em;
 }
 
 	.gclms-option-buttons a {
-		padding-left: 20px;
-		margin-left: 10px;
-		background-position: left center;
 		background-repeat: no-repeat;		
 	}
 	

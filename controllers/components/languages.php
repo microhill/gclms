@@ -13,15 +13,16 @@ class LanguagesComponent extends Object {
 			'active' => true,
 			'direction' => 'rtl'
 		),
-		'ko' => array(
-			'englishName' => 'Korean',
-			'internationalName' => '&#54620;&#44397;&#50612;',
-			'active' => true,
-			'direction' => 'ltr'
-		),
 		'zh' => array(
 			'englishName' => 'Chinese',
 			'internationalName' => '&#31616;&#20307;&#20013;&#25991;',
+			'active' => true,
+			'direction' => 'ltr'
+		),
+		/*
+		'ko' => array(
+			'englishName' => 'Korean',
+			'internationalName' => '&#54620;&#44397;&#50612;',
 			'active' => true,
 			'direction' => 'ltr'
 		),
@@ -72,7 +73,10 @@ class LanguagesComponent extends Object {
 			'internationalName' => "Português",
 			'active' => true,
 			'direction' => 'ltr'
-		)/*,
+		)
+		*/
+		
+		/*,
 		'ja' => array(
 			'englishName' => 'Japanese',
 			'internationalName' => 'æ—¥æœ¬èªž',

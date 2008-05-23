@@ -60,7 +60,7 @@ class OpenDocumentHelper extends AppHelper {
 						$this->openDocument->importHTML($glossary_term['GlossaryTerm']['description']);
 					}
 					
-					$this->openDocument->setTextDirectionality();
+					$this->openDocument->setTextDirection();
 					
 					//unlink(TMP.'export' . DS . $data['course']['id'] . '.tmp');
 					

@@ -322,7 +322,7 @@ class OpenDocument {
 
 	}
 	
-	function setTextDirectionality() {
+	function setTextDirection() {
 		if($this->text_direction == 'lr-tb') {
 			return false;
 		}

@@ -1,3 +1,16 @@
+GCLMS.UploadFilesController = {
+	test: function() {
+		alert(1);
+	}
+}
+
+GCLMS.Triggers.update({});
+
+Event.observe(window,'load',function() {
+	//GCLMS.UploadFilesController.test();
+});
+
+/*
 var swfu;
 
 Event.observe(window,'load',function() {
@@ -85,6 +98,8 @@ function uploadQueueComplete(file) {
 }
 
 SWFUpload.prototype.loadUI = function() {
+	alert(1);
+	
 	var instance = this;
 
 	Event.observe('browseButton', 'click', function() { instance.browse(); return false; });
@@ -97,3 +112,4 @@ SWFUpload.prototype.loadUI = function() {
 
 	resizeWrapper();
 };
+*/

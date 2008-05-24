@@ -66,7 +66,7 @@ msgstr ""
 #: \views\elements\course_menu.ctp:8
 #: \views\files\index.ctp:17
 msgid "Media Files"
-msgstr "ملفات وشائل التوضيح"
+msgstr "ملفات وسائل التوضيح"
 
 #: \controllers\files_controller.php:211
 msgid "File not found"

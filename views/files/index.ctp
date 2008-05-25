@@ -5,7 +5,8 @@ $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
 	'gclms',
-	'vendors/swfupload/SWFUpload',
+	'vendors/swfobject2.0/swfobject',
+	'vendors/swfupload2.1.0/swfupload',
 	'upload_files'
 ), false);
 
@@ -40,7 +41,6 @@ echo $this->element('left_column'); ?>
 		?>
 		</ul>
 		<div id="SWFUploadTarget" swfupload:uploadScript="/<?= $group['web_path'] ?>/<?= $course['web_path'] ?>/files/upload/file">
-			<div id="loadingSWFTarget">Loading...</div>
 			<button id="browseButton" class="browseButton">
 				<? __('Add File(s)') ?>
 			</button>
@@ -48,6 +48,10 @@ echo $this->element('left_column'); ?>
 				<img src="/img/permanent/icons/2007-09-13/cancel-12.png"/> <? __('Cancel File Upload(s)') ?>
 			</button>
 		</div>
+
+		<button id="gclms-upload-files" class="gclms-upload-files">
+			<? __('Upload') ?>
+		</button>
 
 		<div id="SWFUploadFileListingFiles">
 		</div>

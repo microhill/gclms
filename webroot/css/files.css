@@ -16,7 +16,7 @@
 	.browseButton,
 	.uploadButton,
 	.cancelButton {
-		display: none;
+		ddisplay: none;
 	}
 	
 div.gclms-files {
@@ -93,17 +93,14 @@ div.gclms-files {
 	margin-bottom: 4px;
 }
 
-.fileUploading {
-	/* background: #fee727; */
-}
-.uploadCompleted { background: #d2fa7c; }
+.gclms-upload-completed { background: #d2fa7c; }
 .uploadCancelled { background: #f77c7c; }
 
-.uploadCompleted .cancelbtn, .uploadCancelled .cancelbtn {
+.gclms-upload-completed .cancelbtn, .uploadCancelled .cancelbtn {
 	display: none;
 }
 
-span.progressBar {
+span.gclms-progress-bar {
 	display: block;
 	padding: 4px;
 	background-color: #00B521;

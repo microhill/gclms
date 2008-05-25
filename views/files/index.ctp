@@ -44,7 +44,7 @@ echo $this->element('left_column'); ?>
 			<button id="browseButton" class="browseButton">
 				<? __('Add File(s)') ?>
 			</button>
-			<button id="cancelQueueButton" class="cancelButton">
+			<button id="gclms-cancel-queue-button" class="cancelButton">
 				<img src="/img/permanent/icons/2007-09-13/cancel-12.png"/> <? __('Cancel File Upload(s)') ?>
 			</button>
 		</div>

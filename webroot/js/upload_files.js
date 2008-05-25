@@ -1,4 +1,26 @@
 GCLMS.UploadFilesController = {
+	loadSwfObject: function() {
+			if(swfobject.getFlashPlayerVersion().major < 9) {
+				$$('.gclms-upgrade-flash').first().removeClassName('gclms-hidden');
+				return false;
+			}
+
+		GCLMS.swfu = new SWFUpload({
+			upload_url : $('SWFUploadTarget').getAttribute('swfupload:uploadScript'),
+			flash_url: '/js/vendors/swfupload2.1.0/swfupload_f9.swf',
+			file_queued_handler: GCLMS.UploadFilesController.fileQueued,
+			upload_complete_handler: GCLMS.UploadFilesController.uploadFileComplete,
+			file_dialog_complete_handler: GCLMS.UploadFilesController.startUpload,
+			upload_complete_handler: GCLMS.UploadFilesController.uploadComplete,
+			upload_progress_handler: GCLMS.UploadFilesController.uploadProgress,
+			swfupload_loaded_handler: GCLMS.UploadFilesController.showAddButton
+		});		
+	},
+	
+	showAddButton: function() {
+		$('browseButton').displayAsInline();
+	},
+	
 	selectFiles: function() {
 		GCLMS.swfu.selectFiles();
 	},
@@ -21,7 +43,7 @@ GCLMS.UploadFilesController = {
 		li = listingfiles.appendChild(li);
 		li.observeRules(GCLMS.Triggers.get('li'));
 		
-		$("cancelQueueButton").style.display = "inline";
+		$("gclms-cancel-queue-button").style.display = "inline";
 	},
 	
 	cancelFile: function() {
@@ -32,19 +54,20 @@ GCLMS.UploadFilesController = {
 		li.className = "SWFUploadFileItem uploadCancelled";
 	},
 
-	startUpload: function() {
+	startUpload: function() { // This looks weird, I know...
+		$('gclms-cancel-queue-button').displayAsInline();
 		this.startUpload();
 	},
 	
 	uploadComplete: function(file) {
 		var li = $(file.id);
-		li.className = "SWFUploadFileItem gclms-upload-completed";
+		li.className = 'SWFUploadFileItem gclms-upload-completed';
 		
 		if ($$('#SWFUploadFileListingFiles li.gclms-queued').length) {
 			this.startUpload();
 		} else {
-			$("SWFUploadFileListingFiles").innerHTML = '';
-			$("cancelQueueButton").hide();
+			$('SWFUploadFileListingFiles').innerHTML = '';
+			$("gclms-cancel-queue-button").hide();
 			window.location.reload();
 		} 
 	},
@@ -53,32 +76,24 @@ GCLMS.UploadFilesController = {
 		var progress = $(file.id + "progress");
 		var percent = Math.ceil((bytesLoaded / file.size) * progress.getWidth());
 		progress.style.backgroundPosition = percent + "px 0";
+	},
+	
+	cancelUpload: function () {
+		$$('#SWFUploadFileListingFiles li.gclms-queued').each(function(li){
+			li.className = "SWFUploadFileItem uploadCancelled";
+			GCLMS.swfu.stopUpload();			
+		});
+		$('gclms-cancel-queue-button').hide();
 	}
 }
 
 GCLMS.Triggers.update({
+	'#SWFUploadFileListingFiles': GCLMS.UploadFilesController.loadSwfObject,
 	'#browseButton:click': GCLMS.UploadFilesController.selectFiles,
+	'#gclms-cancel-queue-button:click': GCLMS.UploadFilesController.cancelUpload,
 	'li': {
 		'span.gclms-progress-bar a:click': GCLMS.UploadFilesController.cancelFile		
 	}
-});
-
-if(swfobject.getFlashPlayerVersion().major < 9) {
-	$$('.gclms-upgrade-flash').first().removeClassName('gclms-hidden');
-}
-
-Event.observe(window,'load',function() {	
-	var settings = {
-		upload_url : $('SWFUploadTarget').getAttribute('swfupload:uploadScript'),
-		flash_url: '/js/vendors/swfupload2.1.0/swfupload_f9.swf',
-		file_queued_handler: GCLMS.UploadFilesController.fileQueued,
-		upload_complete_handler: GCLMS.UploadFilesController.uploadFileComplete,
-		file_dialog_complete_handler: GCLMS.UploadFilesController.startUpload,
-		upload_complete_handler: GCLMS.UploadFilesController.uploadComplete,
-		upload_progress_handler: GCLMS.UploadFilesController.uploadProgress
-	};
-	
-	GCLMS.swfu = new SWFUpload(settings);
 });
 
 /*
@@ -110,13 +125,7 @@ Event.observe(window,'load',function() {
 
 function uploadFileStart(file, position, queuelength) {
 	var li = $(file.id);
-	$("cancelQueueButton").style.display = 'inline';
-}
-
-function cancelQueue() {
-	swfu.cancelQueue();
-	$(swfu.movieName + "UploadBtn").style.display = "none";
-	$("cancelQueueButton").style.display = "none";
+	$("gclms-cancel-queue-button").style.display = 'inline';
 }
 
 SWFUpload.prototype.loadUI = function() {
@@ -128,7 +137,7 @@ SWFUpload.prototype.loadUI = function() {
 	$('browseButton').style.display = 'inline';
 	$('browseButton').id = this.movieName + "BrowseBtn";
 
-	Event.observe('cancelQueueButton', 'click', function() { cancelQueue(); return false; });
+	Event.observe('gclms-cancel-queue-button', 'click', function() { cancelQueue(); return false; });
 
 	resizeWrapper();
 };

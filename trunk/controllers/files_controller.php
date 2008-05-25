@@ -4,8 +4,10 @@ class FilesController extends AppController {
 	var $components = array('Notifications');
 
     function upload() {
+
+		
 		if(empty($this->viewVars['course']['id']))
-			return false;
+			exit(0);
 
 		if(!empty($this->params['form']['Filedata']['tmp_name'])) {
 			$newFile = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'] . DS . str_replace(' ','',low($this->params['form']['Filedata']['name']));
@@ -14,10 +16,11 @@ class FilesController extends AppController {
 			if(file_exists($newFile))
 				unlink($newFile);
 			rename($this->params['form']['Filedata']['tmp_name'], $newFile);
+			echo "File successfully uploaded";
 			//$this->Notifications->add(__('File successfully uploaded.',true));
 		}
 			
-		exit;
+		exit(0);
     }
 
     function beforeRender() {
@@ -61,6 +64,11 @@ class FilesController extends AppController {
 		$this->set(compact('files'));
 		
 		$this->set('title',__('Media Files',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
+		$this->Notifications->add(
+			__('You need to install the latest version of <a href="http://www.adobe.com/products/flashplayer/">Adobe Flash Player</a>.',true),
+			'error',
+			'gclms-hidden gclms-upgrade-flash'
+			);
 	}
 
 	function afterSave() {

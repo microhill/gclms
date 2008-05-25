@@ -6,10 +6,11 @@ class NotificationsComponent extends Object {
     	$this->controller = &$controller;
     }
     
-	function add($text,$type = 'success') {
+	function add($text,$type = 'success',$class = '') {
 		$this->notifications[] = array(
 			'text' => $text,
-			'type' => $type
+			'type' => $type,
+			'class' => $class
 		);
 		$this->controller->Session->write('Notifications.all',$this->notifications);
 		

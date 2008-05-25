@@ -1,13 +1,90 @@
 GCLMS.UploadFilesController = {
-	test: function() {
-		alert(1);
+	selectFiles: function() {
+		GCLMS.swfu.selectFiles();
+	},
+	
+	fileQueued: function (file, queuelength) {
+		var listingfiles = $('SWFUploadFileListingFiles');
+		
+		if(!listingfiles.getElementsByTagName("ul")[0]) {
+			var ul = document.createElement("ul");
+			listingfiles.appendChild(ul);
+		}
+		
+		listingfiles = listingfiles.getElementsByTagName("ul")[0];
+		
+		var li = document.createElement("li");
+		li.id = file.id;
+		li.className = "SWFUploadFileItem gclms-queued";
+		li.innerHTML = "<span class='gclms-progress-bar' id='" + file.id + "progress'><a id='" + file.id + "deletebtn' class='cancelbtn' gclms:file-id='" + file.id + "'><!-- IE --></a>" + file.name + "</span>";
+		
+		li = listingfiles.appendChild(li);
+		li.observeRules(GCLMS.Triggers.get('li'));
+		
+		$("cancelQueueButton").style.display = "inline";
+	},
+	
+	uploadFiles: function () {		
+		this.startUpload();
+	},
+	
+	cancelFile: function() {
+		var fileId = this.getAttribute('gclms:file-id');
+		GCLMS.swfu.cancelUpload(fileId);
+		var li = this.up('li');
+		li.insert({bottom: ' - cancelled'})
+		li.className = "SWFUploadFileItem uploadCancelled";
+	},
+
+	startUpload: function() {
+		this.startUpload();
+	},
+	
+	uploadComplete: function(file) {
+		var li = $(file.id);
+		li.className = "SWFUploadFileItem gclms-upload-completed";
+		
+		if ($$('#SWFUploadFileListingFiles li.gclms-queued').length) {
+			this.startUpload();
+		} else {
+			$("SWFUploadFileListingFiles").innerHTML = '';
+			$("cancelQueueButton").hide();
+			window.location.reload();
+		} 
+	},
+	
+	uploadProgress: function(file, bytesLoaded) {
+		var progress = $(file.id + "progress");
+		var percent = Math.ceil((bytesLoaded / file.size) * progress.getWidth());
+		progress.style.backgroundPosition = percent + "px 0";
 	}
 }
 
-GCLMS.Triggers.update({});
+GCLMS.Triggers.update({
+	'#browseButton:click': GCLMS.UploadFilesController.selectFiles,
+	'#gclms-upload-files:click': GCLMS.UploadFilesController.uploadFiles,
+	'li': {
+		'span.gclms-progress-bar a:click': GCLMS.UploadFilesController.cancelFile		
+	}
+});
 
-Event.observe(window,'load',function() {
-	//GCLMS.UploadFilesController.test();
+if(swfobject.getFlashPlayerVersion().major < 9) {
+	$$('.gclms-upgrade-flash').first().removeClassName('gclms-hidden');
+}
+
+Event.observe(window,'load',function() {	
+	var settings = {
+		upload_url : $('SWFUploadTarget').getAttribute('swfupload:uploadScript'),
+		flash_url: '/js/vendors/swfupload2.1.0/swfupload_f9.swf',
+		debug: true,
+		file_queued_handler: GCLMS.UploadFilesController.fileQueued,
+		upload_complete_handler: GCLMS.UploadFilesController.uploadFileComplete,
+		file_dialog_complete_handler: GCLMS.UploadFilesController.startUpload,
+		upload_complete_handler: GCLMS.UploadFilesController.uploadComplete,
+		upload_progress_handler: GCLMS.UploadFilesController.uploadProgress
+	};
+	
+	GCLMS.swfu = new SWFUpload(settings);
 });
 
 /*
@@ -33,68 +110,19 @@ Event.observe(window,'load',function() {
 		upload_file_cancel_callback : 'uploadFileCancelled',
 		upload_queue_complete_callback : 'uploadQueueComplete',
 		upload_error_callback : 'uploadError',
-		upload_cancel_callback : 'uploadCancel',
-		auto_upload : true
+		upload_cancel_callback : 'uploadCancel'
 	});
 });
 
-function fileQueued(file, queuelength) {
-	var listingfiles = $("SWFUploadFileListingFiles");
-
-	if(!listingfiles.getElementsByTagName("ul")[0]) {
-		var ul = document.createElement("ul");
-		listingfiles.appendChild(ul);
-	}
-
-	listingfiles = listingfiles.getElementsByTagName("ul")[0];
-
-	var li = document.createElement("li");
-	li.id = file.id;
-	li.className = "SWFUploadFileItem";
-	li.innerHTML = "<span class='progressBar' id='" + file.id + "progress'><a id='" + file.id + "deletebtn' class='cancelbtn' href='javascript:swfu.cancelFile(\"" + file.id + "\");'><!-- IE --></a>" + file.name + "</span>";
-
-	listingfiles.appendChild(li);
-
-	$("cancelQueueButton").style.display = "inline";
-}
-
-function uploadFileCancelled(file, queuelength) {
-	var li = $(file.id);
-	li.innerHTML = file.name + " - cancelled";
-	li.className = "SWFUploadFileItem uploadCancelled";
-}
-
 function uploadFileStart(file, position, queuelength) {
 	var li = $(file.id);
-	li.className += " fileUploading";
 	$("cancelQueueButton").style.display = 'inline';
-}
-
-function uploadProgress(file, bytesLoaded) {
-	var progress = $(file.id + "progress");
-	var percent = Math.ceil((bytesLoaded / file.size) * progress.getWidth());
-	progress.style.backgroundPosition = percent + "px 0";
-}
-
-function uploadError(errno) {
-	SWFUpload.debug(errno);
-}
-
-function uploadFileComplete(file) {
-	var li = $(file.id);
-	li.className = "SWFUploadFileItem uploadCompleted";
 }
 
 function cancelQueue() {
 	swfu.cancelQueue();
 	$(swfu.movieName + "UploadBtn").style.display = "none";
 	$("cancelQueueButton").style.display = "none";
-}
-
-function uploadQueueComplete(file) {
-	$("SWFUploadFileListingFiles").innerHTML = "";
-	$("cancelQueueButton").style.display = "none";
-	window.location.reload();
 }
 
 SWFUpload.prototype.loadUI = function() {
@@ -107,8 +135,6 @@ SWFUpload.prototype.loadUI = function() {
 	$('browseButton').id = this.movieName + "BrowseBtn";
 
 	Event.observe('cancelQueueButton', 'click', function() { cancelQueue(); return false; });
-
-	$('loadingSWFTarget').style.display = 'none';
 
 	resizeWrapper();
 };

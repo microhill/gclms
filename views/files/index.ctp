@@ -49,10 +49,6 @@ echo $this->element('left_column'); ?>
 			</button>
 		</div>
 
-		<button id="gclms-upload-files" class="gclms-upload-files">
-			<? __('Upload') ?>
-		</button>
-
 		<div id="SWFUploadFileListingFiles">
 		</div>
 

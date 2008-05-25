@@ -24,10 +24,6 @@ GCLMS.UploadFilesController = {
 		$("cancelQueueButton").style.display = "inline";
 	},
 	
-	uploadFiles: function () {		
-		this.startUpload();
-	},
-	
 	cancelFile: function() {
 		var fileId = this.getAttribute('gclms:file-id');
 		GCLMS.swfu.cancelUpload(fileId);
@@ -62,7 +58,6 @@ GCLMS.UploadFilesController = {
 
 GCLMS.Triggers.update({
 	'#browseButton:click': GCLMS.UploadFilesController.selectFiles,
-	'#gclms-upload-files:click': GCLMS.UploadFilesController.uploadFiles,
 	'li': {
 		'span.gclms-progress-bar a:click': GCLMS.UploadFilesController.cancelFile		
 	}
@@ -76,7 +71,6 @@ Event.observe(window,'load',function() {
 	var settings = {
 		upload_url : $('SWFUploadTarget').getAttribute('swfupload:uploadScript'),
 		flash_url: '/js/vendors/swfupload2.1.0/swfupload_f9.swf',
-		debug: true,
 		file_queued_handler: GCLMS.UploadFilesController.fileQueued,
 		upload_complete_handler: GCLMS.UploadFilesController.uploadFileComplete,
 		file_dialog_complete_handler: GCLMS.UploadFilesController.startUpload,

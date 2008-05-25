@@ -16,7 +16,7 @@
 	.browseButton,
 	.uploadButton,
 	.cancelButton {
-		ddisplay: none;
+		display: none;
 	}
 	
 div.gclms-files {

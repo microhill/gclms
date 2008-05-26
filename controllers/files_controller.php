@@ -83,6 +83,10 @@ class FilesController extends AppController {
 			'gclms-hidden gclms-upgrade-flash'
 			);
 	}
+	
+	function delete() {
+		
+	}
 
 	function afterSave() {
 		$this->redirect = array('group'=>$this->viewVars['group']['web_path'],'action'=>'','controller' => null,'course'=>$this->viewVars['course']['web_path'],'lesson'=>$this->viewVars['lesson']['order']);

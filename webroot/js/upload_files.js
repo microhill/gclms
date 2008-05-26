@@ -86,6 +86,38 @@ GCLMS.UploadFilesController = {
 			GCLMS.swfu.stopUpload();			
 		});
 		$('gclms-cancel-queue-button').hide();
+	},
+	
+	deleteFiles: function () {
+		
+	},
+	
+	selectAll: function () {
+		if(this.checked) {
+			$$('input.gclms-file-select').each(function(input) {
+				input.checked = true;
+			});		
+		} else {
+			$$('input.gclms-file-select').each(function(input) {
+				input.checked = false;				
+			});		
+		}
+		
+		/*
+		if($$('input.gclms-file-select:not([checked])').length) {
+
+		} else {
+			
+		}
+		*/
+	},
+	
+	updateSelectAllCheckbox: function () {
+		if ($$('input.gclms-file-select:not(:checked)').length) {
+			$('gclms-select-all').checked = false;
+		} else {
+			$('gclms-select-all').checked = true;			
+		}
 	}
 }
 
@@ -93,6 +125,9 @@ GCLMS.Triggers.update({
 	'#SWFUploadFileListingFiles': GCLMS.UploadFilesController.loadSwfObject,
 	'#gclms-upload-files:click': GCLMS.UploadFilesController.selectFiles,
 	'#gclms-cancel-queue-button:click': GCLMS.UploadFilesController.cancelUpload,
+	'#gclms-delete:click': GCLMS.UploadFilesController.deleteFiles,
+	'#gclms-select-all:click': GCLMS.UploadFilesController.selectAll,
+	'input.gclms-file-select:change': GCLMS.UploadFilesController.updateSelectAllCheckbox,
 	'li': {
 		'span.gclms-progress-bar a:click': GCLMS.UploadFilesController.cancelFile		
 	}

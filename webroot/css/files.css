@@ -108,3 +108,8 @@ span.gclms-progress-bar {
 	background-repeat: no-repeat;
 	background-position: 0 0;
 }
+
+table#gclms-files a:hover {
+	color: blue;
+	text-decoration: underline;
+}

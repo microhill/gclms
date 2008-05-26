@@ -16,34 +16,74 @@ echo $this->element('left_column'); ?>
 	<div class="gclms-content">
 		<?= $this->element('notifications'); ?>
 		<h1><? __('Media Files') ?></h1>	
-		<ul class="gclms-files">
-		<?
-		
-		foreach($files as $file) {
-			if(eregi('application/pdf',$file['type'])) {
-				$type = 'pdf';
-			} else if(eregi('video',$file['type'])) {
-				$type = 'video';
-			} else if(eregi('audio',$file['type'])) {
-				$type = 'audio';
-			} else if(eregi('application/msword',$file['type'])) {
-				$type = 'word';
-			} else if(eregi('image',$file['type'])) {
-				$type = 'image';
-			} else if(eregi('text',$file['type'])) {
-				$type = 'document';
-			} else {
-				$type = 'mime';
-			}
-
-			echo "<li class='" . $type . "'><a href='" . $file['uri'] . "'>" . $file['basename'] . "</a>" . '</li>';		
-		}
-		?>
-		</ul>
+				<?
+				echo $this->element('menubar',array('buttons' => array(
+					array(
+						'id' => 'gclms-upload-files',
+						'class' => 'gclms-upload-files',
+						'label' => __('Upload Files',true)
+					),
+					array(
+						'id' => 'gclms-delete',
+						'class' => 'gclms-delete',
+						'label' => __('Delete',true)
+					),
+					array(
+						'id' => 'gclms-rename',
+						'class' => 'gclms-rename',
+						'label' => __('Rename',true)
+					)
+				)));
+				?>
+		<? if(!empty($files)): ?>
+			<table class="gclms-tabular" cellspacing="0">
+				<tr>
+					<th style="width: 1px;">
+						<input type="checkbox" name="test" />
+					</th>
+					<th>
+						<? __('Name') ?>
+					</th>
+					<th style="width: 1px;">
+						<? __('Size') ?>
+					</th>
+				</tr>
+			<?
+			
+			foreach($files as $file):
+				if(eregi('application/pdf',$file['type'])) {
+					$type = 'pdf';
+				} else if(eregi('video',$file['type'])) {
+					$type = 'video';
+				} else if(eregi('audio',$file['type'])) {
+					$type = 'audio';
+				} else if(eregi('application/msword',$file['type'])) {
+					$type = 'word';
+				} else if(eregi('image',$file['type'])) {
+					$type = 'image';
+				} else if(eregi('text',$file['type'])) {
+					$type = 'document';
+				} else {
+					$type = 'mime';
+				}
+	
+				//echo "<li class='" . $type . "'><a href='" . $file['uri'] . "'>" . $file['basename'] . "</a>" . '</li>';		
+				?>
+				<tr>
+					<td>
+						<input type="checkbox" name="test" />
+					</td>
+					<td>
+						<a href="<?= $file['uri'] ?>"><?= $file['basename'] ?></a>			
+					</td>
+					<td style="white-space: nowrap;">
+						<?= $file['size'] ?>
+					</td>
+				</tr>
+			<? endforeach; ?>
+			</table>
+		<? endif; ?>
 		<div id="SWFUploadTarget" swfupload:uploadScript="/<?= $group['web_path'] ?>/<?= $course['web_path'] ?>/files/upload/file">
-			<button id="browseButton" class="browseButton">
-				<? __('Add File(s)') ?>
-			</button>
 			<button id="gclms-cancel-queue-button" class="cancelButton">
 				<img src="/img/permanent/icons/2007-09-13/cancel-12.png"/> <? __('Cancel File Upload(s)') ?>
 			</button>

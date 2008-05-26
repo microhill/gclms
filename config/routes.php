@@ -37,7 +37,7 @@ Router::connectNamed(array('group','course','file','class'));
 
 //Router::parseExtensions('json');
 //Router::parseExtensions('css');
-Router::parseExtensions('rss');
+Router::parseExtensions(array('rss'));
 
 Router::connect('/selenium/results', array('controller' => 'selenium', 'action' => 'results'));
 Router::connect('/selenium/*', array('controller' => 'selenium', 'action' => 'display'));
@@ -82,7 +82,7 @@ if (file_exists(CONFIGS.'installed.txt')) {
 	Router::connect('/:group/:course/:class/:controller/*',array(),array('class' => $UUID));
 			
 	Router::connect('/:group/:course/:controller');
-	Router::connect('/:group/:course/files/:action',array('controller'=>'files'),array('action' => 'media|images|thumbnail'));
+	Router::connect('/:group/:course/files/:action',array('controller'=>'files'),array('action' => 'media|images|thumbnail|delete'));
 	
 	Router::connect('/:group/:course/files/:file',array('controller'=>'files','action'=>'file'));
 

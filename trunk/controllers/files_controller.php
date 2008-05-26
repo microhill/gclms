@@ -1,7 +1,7 @@
 <?
 class FilesController extends AppController {
     var $uses = array('User','Group','Course');
-	var $components = array('Notifications');
+	var $components = array('Notifications','RequestHandler');
 
     function upload() {
 
@@ -85,7 +85,14 @@ class FilesController extends AppController {
 	}
 	
 	function delete() {
-		
+		$this->RequestHandler->setContent('json', 'text/x-json');
+		$directory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
+		$files = explode(',',$this->data['files']);
+		foreach($files as $file) {
+			unlink($directory . DS . basename($file));
+		}
+		$this->RequestHandler->setContent('json', 'text/x-json');
+		$this->data = $files;
 	}
 
 	function afterSave() {

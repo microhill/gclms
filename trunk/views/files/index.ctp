@@ -71,7 +71,7 @@ echo $this->element('left_column'); ?>
 				?>
 				<tr>
 					<td>
-						<input type="checkbox" class="gclms-file-select" name="data[File][]" value="<?= $file['basename'] ?>" />
+						<input type="checkbox" class="gclms-file-select" name="data[files][]" value="<?= $file['basename'] ?>" />
 					</td>
 					<td>
 						<a href="<?= $file['uri'] ?>"><?= $file['basename'] ?></a>			

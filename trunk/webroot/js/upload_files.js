@@ -89,27 +89,31 @@ GCLMS.UploadFilesController = {
 	},
 	
 	deleteFiles: function () {
-		
+		var files = [];
+		$$('input.gclms-file-select:checked').each(function(input){
+			files.push(input.value);
+		});
+		GCLMS.File.remove({
+			files: files.join(),
+			callback: function(transport) {
+				var files = transport.responseText.evalJSON();
+				files.each(function(file){
+					$$('td > input[value="' + file + '"]').first().up('tr').remove();
+				});
+			}
+		});	
 	},
 	
 	selectAll: function () {
 		if(this.checked) {
-			$$('input.gclms-file-select').each(function(input) {
+			$$('input.gclms-file-select:not(:checked)').each(function(input) {
 				input.checked = true;
 			});		
 		} else {
-			$$('input.gclms-file-select').each(function(input) {
+			$$('input.gclms-file-select:checked').each(function(input) {
 				input.checked = false;				
 			});		
 		}
-		
-		/*
-		if($$('input.gclms-file-select:not([checked])').length) {
-
-		} else {
-			
-		}
-		*/
 	},
 	
 	updateSelectAllCheckbox: function () {
@@ -119,7 +123,20 @@ GCLMS.UploadFilesController = {
 			$('gclms-select-all').checked = true;			
 		}
 	}
-}
+};
+
+GCLMS.File = {
+	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/files/',
+	remove: function(options){
+		var request = new Ajax.Request(this.ajaxUrl + 'delete', {
+			method: 'post',
+			parameters: {
+				'data[files]': options.files
+			},
+			onComplete: options.callback
+		});
+	}
+};
 
 GCLMS.Triggers.update({
 	'#SWFUploadFileListingFiles': GCLMS.UploadFilesController.loadSwfObject,

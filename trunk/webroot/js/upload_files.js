@@ -100,6 +100,7 @@ GCLMS.UploadFilesController = {
 				files.each(function(file){
 					$$('td > input[value="' + file + '"]').first().up('tr').remove();
 				});
+				GCLMS.UploadFilesController.updateSelectAllCheckbox();
 			}
 		});	
 	},
@@ -117,7 +118,10 @@ GCLMS.UploadFilesController = {
 	},
 	
 	updateSelectAllCheckbox: function () {
-		if ($$('input.gclms-file-select:not(:checked)').length) {
+		if(!$$('input.gclms-file-select').length) {
+			$('gclms-files').hide();
+			$('gclms-select-all').checked = false;
+		} else if ($$('input.gclms-file-select:not(:checked)').length) {
 			$('gclms-select-all').checked = false;
 		} else {
 			$('gclms-select-all').checked = true;			

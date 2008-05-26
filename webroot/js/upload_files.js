@@ -18,7 +18,7 @@ GCLMS.UploadFilesController = {
 	},
 	
 	showAddButton: function() {
-		$('browseButton').displayAsInline();
+		//$('gclms-upload-files').displayAsInline();
 	},
 	
 	selectFiles: function() {
@@ -55,8 +55,10 @@ GCLMS.UploadFilesController = {
 	},
 
 	startUpload: function() { // This looks weird, I know...
-		$('gclms-cancel-queue-button').displayAsInline();
-		this.startUpload();
+		if ($$('#SWFUploadFileListingFiles li.gclms-queued').length) {
+			$('gclms-cancel-queue-button').displayAsInline();
+			this.startUpload();
+		}
 	},
 	
 	uploadComplete: function(file) {
@@ -89,7 +91,7 @@ GCLMS.UploadFilesController = {
 
 GCLMS.Triggers.update({
 	'#SWFUploadFileListingFiles': GCLMS.UploadFilesController.loadSwfObject,
-	'#browseButton:click': GCLMS.UploadFilesController.selectFiles,
+	'#gclms-upload-files:click': GCLMS.UploadFilesController.selectFiles,
 	'#gclms-cancel-queue-button:click': GCLMS.UploadFilesController.cancelUpload,
 	'li': {
 		'span.gclms-progress-bar a:click': GCLMS.UploadFilesController.cancelFile		

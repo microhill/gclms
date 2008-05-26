@@ -29,6 +29,18 @@ class FilesController extends AppController {
 
     	parent::beforeRender();
     }
+	
+	private function get_file_size($size) {
+		$bytes = array('B','KB','MB','GB','TB');
+		foreach($bytes as $val) {
+			if($size > 1024){
+				$size = $size / 1024;
+			} else {
+				break;
+			}
+		}
+		return round($size) . ' ' . $val;
+	}
 
 	function index() {
 		if(!empty($this->params['file'])) {
@@ -53,7 +65,8 @@ class FilesController extends AppController {
 		            $files[strtolower($file)] = array(
 		            	'basename' => $file,
 		            	'type' => $mime->getMimetype($directory . DS . $file),
-		            	'uri' => '/' . $this->viewVars['group']['web_path'] . '/' .$this->viewVars['course']['web_path'] . '/files/' . $file
+		            	'uri' => '/' . $this->viewVars['group']['web_path'] . '/' .$this->viewVars['course']['web_path'] . '/files/' . $file,
+						'size' => $this->get_file_size(filesize($directory . DS . $file))
 		            );
 		        }
 		    }

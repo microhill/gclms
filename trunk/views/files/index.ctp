@@ -20,8 +20,8 @@ echo $this->element('left_column'); ?>
 				echo $this->element('menubar',array('buttons' => array(
 					array(
 						'id' => 'gclms-upload-files',
-						'class' => 'gclms-upload-files',
-						'label' => __('Upload Files',true)
+						'class' => 'gclms-add',
+						'label' => __('Add Files',true)
 					),
 					array(
 						'id' => 'gclms-delete',
@@ -39,7 +39,7 @@ echo $this->element('left_column'); ?>
 			<table class="gclms-tabular" cellspacing="0">
 				<tr>
 					<th style="width: 1px;">
-						<input type="checkbox" name="test" />
+						<input type="checkbox" id="gclms-select-all" />
 					</th>
 					<th>
 						<? __('Name') ?>
@@ -71,7 +71,7 @@ echo $this->element('left_column'); ?>
 				?>
 				<tr>
 					<td>
-						<input type="checkbox" name="test" />
+						<input type="checkbox" class="gclms-file-select" name="data[File][]" value="<?= $file['basename'] ?>" />
 					</td>
 					<td>
 						<a href="<?= $file['uri'] ?>"><?= $file['basename'] ?></a>			
@@ -94,8 +94,6 @@ echo $this->element('left_column'); ?>
 
 		<br class="clr" />
 
-
-		
 		<div id="downloadProgress"></div>
 	</div>
 </div>

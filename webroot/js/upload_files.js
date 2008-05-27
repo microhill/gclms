@@ -118,14 +118,14 @@ GCLMS.UploadFilesController = {
 	
 	selectAll: function () {
 		if(this.checked) {
-			$$('input.gclms-file-select:not(:checked)').each(function(input) {
+			$$('input.gclms-file-select').each(function(input) { //:not(:checked)
 				input.checked = true;
-				GCLMS.UploadFilesController.updateFileRowClass.bind(input)();
+				input.up('tr').addClassName('gclms-selected');
 			});		
 		} else {
 			$$('input.gclms-file-select:checked').each(function(input) {
 				input.checked = false;				
-				GCLMS.UploadFilesController.updateFileRowClass.bind(input)();
+				input.up('tr').removeClassName('gclms-selected');
 			});		
 		}
 

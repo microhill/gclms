@@ -678,13 +678,13 @@ a.gclms-group-web-address {
     padding-bottom: 4px;
 }
 
-.gclms-tabular.gclms-hover-rows tr:hover {
+.gclms-tabular.gclms-hover-rows tr:hover,
+.gclms-tabular tr.gclms-selected {
 	background-image: url(../img/permanent/tabular_row_background2007-09-14.png);
-	cursor: pointer;
 }
 
-.gclms-tabular tr.gclms-selected {
-	background-image: url(../img/permanent/tabular_row_background2007-09-14.png);	
+.gclms-tabular.gclms-hover-rows tr:hover {
+	cursor: pointer;
 }
 
 .gclms-descriptive-recordset tr:hover {

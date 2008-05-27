@@ -8,7 +8,7 @@
 	<?
 	//echo $html->css('reset', null, null, false);
 	echo $html->css('main', null, null, false);
-	echo $html->css($text_direction;, null, null, false); 
+	echo $html->css($text_direction, null, null, false); 
 	echo $html->css('tinymce_popup', null, null, false);
 	
 	echo $asset->css_for_layout();

@@ -53,6 +53,8 @@ class FilesController extends AppController {
 		App::import('Vendor', 'mimetypehandler'.DS.'mimetypehandler');
 		$mime = new MimetypeHandler();
 
+		$total_size = 0;
+
 		$files = array();
 		if ($handle = opendir($directory)) {
 		    while (false !== ($file = readdir($handle))) {
@@ -60,12 +62,15 @@ class FilesController extends AppController {
 		        	continue;
 
 		        if ($file != "." && $file != "..") {
-		            $files[strtolower($file)] = array(
+		            $size = filesize($directory . DS . $file);
+					
+					$files[strtolower($file)] = array(
 		            	'basename' => $file,
 		            	'type' => $mime->getMimetype($directory . DS . $file),
 		            	'uri' => '/' . $this->viewVars['group']['web_path'] . '/' .$this->viewVars['course']['web_path'] . '/files/' . $file,
-						'size' => $this->get_file_size(filesize($directory . DS . $file))
+						'size' => $this->get_file_size($size)
 		            );
+					$total_size += $size;
 		        }
 		    }
 		    closedir($handle);
@@ -73,6 +78,7 @@ class FilesController extends AppController {
 		ksort($files);
 
 		$this->set(compact('files'));
+		$this->set('total_size',$this->get_file_size($total_size));
 		
 		$this->set('title',__('Media Files',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
 		$this->Notifications->add(

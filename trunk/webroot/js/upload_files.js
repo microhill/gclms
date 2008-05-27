@@ -120,12 +120,12 @@ GCLMS.UploadFilesController = {
 		if(this.checked) {
 			$$('input.gclms-file-select:not(:checked)').each(function(input) {
 				input.checked = true;
-				GCLMS.UploadFilesController.updateFileRowClass(input);
+				GCLMS.UploadFilesController.updateFileRowClass.bind(input)();
 			});		
 		} else {
 			$$('input.gclms-file-select:checked').each(function(input) {
 				input.checked = false;				
-				GCLMS.UploadFilesController.updateFileRowClass(input);
+				GCLMS.UploadFilesController.updateFileRowClass.bind(input)();
 			});		
 		}
 
@@ -142,23 +142,25 @@ GCLMS.UploadFilesController = {
 		}
 	},
 	
-	updateFileSelection: function() {
+	updateFileSelection: function(event) {
+		//if(event)
+		//	event.stop();
 		GCLMS.UploadFilesController.updateSelectAllCheckbox();
-		GCLMS.UploadFilesController.updateFileRowClass(this);
+		GCLMS.UploadFilesController.updateFileRowClass.bind(this)();
 	},
 	
-	updateFileRowClass: function(input) {
-		if(input.checked) {
-			input.up('tr').addClassName('gclms-selected');
+	updateFileRowClass: function(event) {
+		if(this.checked) {
+			this.up('tr').addClassName('gclms-selected');
 		} else {
-			input.up('tr').removeClassName('gclms-selected');			
+			this.up('tr').removeClassName('gclms-selected');			
 		}
 	},
 	
 	selectRow: function() {
 		var input = this.down('input.gclms-file-select');
 		input.checked = !input.checked;
-		GCLMS.UploadFilesController.updateFileSelection.bind(input)();
+		//GCLMS.UploadFilesController.updateFileSelection.bind(input)();
 	}
 };
 
@@ -181,8 +183,12 @@ GCLMS.Triggers.update({
 	'#gclms-cancel-queue-button:click': GCLMS.UploadFilesController.cancelUpload,
 	'#gclms-delete:click': GCLMS.UploadFilesController.confirmDeleteFiles,
 	'#gclms-select-all:click': GCLMS.UploadFilesController.selectAll,
-	'input.gclms-file-select:change': GCLMS.UploadFilesController.updateFileSelection,
-	'#gclms-files tr.gclms-file:click': GCLMS.UploadFilesController.selectRow,
+	'input.gclms-file-select': {
+		':loaded': GCLMS.UploadFilesController.updateFileRowClass,
+		':click': GCLMS.UploadFilesController.updateFileSelection,
+		//':change': GCLMS.UploadFilesController.updateFileSelection
+	},
+	//'#gclms-files tr.gclms-file:click': GCLMS.UploadFilesController.selectRow,
 	'li': {
 		'span.gclms-progress-bar a:click': GCLMS.UploadFilesController.cancelFile		
 	}

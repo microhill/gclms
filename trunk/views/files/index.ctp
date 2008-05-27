@@ -44,8 +44,8 @@ echo $this->element('left_column'); ?>
 					<th>
 						<? __('Name') ?>
 					</th>
-					<th style="width: 1px;">
-						<? __('Size') ?>
+					<th style="width: 1px;white-space:nowrap;">
+						<? __('Size') ?> (<?= $total_size ?>)
 					</th>
 				</tr>
 			<?

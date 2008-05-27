@@ -679,7 +679,7 @@ a.gclms-group-web-address {
 }
 
 .gclms-tabular.gclms-hover-rows tr:hover,
-.gclms-tabular.gclms-hover-rows tr.gclms-selected {
+.gclms-tabular tr.gclms-selected {
 	background-image: url(../img/permanent/tabular_row_background2007-09-14.png);
 	cursor: pointer;
 }
@@ -693,7 +693,7 @@ a.gclms-group-web-address {
 .gclms-descriptive-recordset tr:hover td,
 .gclms-records .gclms-recordset tr:hover td,
 .gclms-tabular.gclms-hover-rows tr:hover td,
-.gclms-tabular.gclms-hover-rows tr.gclms-selected td,
+.gclms-tabular tr.gclms-selected td,
 .gclms-tabular .gclms-hover td {
 	background-color: transparent;
 	border-bottom: 1px solid #b2ced9;
@@ -707,7 +707,7 @@ a.gclms-group-web-address {
 .gclms-descriptive-recordset tr:hover td:first-child,
 .gclms-records .gclms-recordset tr:hover td:first-child,
 .gclms-tabular.gclms-hover-rows tr:hover td:first-child,
-.gclms-tabular.gclms-hover-rows tr.gclms-selected td:first-child,
+.gclms-tabular tr.gclms-selected td:first-child,
 .gclms-tabular .Hover td:first-child {
 	border-left: 1px solid #b2ced9;
     padding-left: 5px;
@@ -723,7 +723,7 @@ td.gclms-az {
 .gclms-descriptive-recordset tr:hover td:last-child,
 .gclms-tabular.gclms-hover-rows tr:hover td:last-child,
 .gclms-records .gclms-recordset tr:hover td:last-child,
-.gclms-tabular.gclms-hover-rows tr.gclms-selected td:last-child,
+.gclms-tabular tr.gclms-selected td:last-child,
 .gclms-tabular .Hover td:last-child {
 	border-right: 1px solid #b2ced9;
     padding-right: 6px;

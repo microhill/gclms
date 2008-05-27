@@ -28,11 +28,11 @@ echo $this->element('left_column'); ?>
 						'class' => 'gclms-delete',
 						'label' => __('Delete',true)
 					),
-					array(
-						'id' => 'gclms-rename',
-						'class' => 'gclms-rename',
-						'label' => __('Rename',true)
-					)
+					//array(
+					//	'id' => 'gclms-rename',
+					//	'class' => 'gclms-rename',
+					//	'label' => __('Rename',true)
+					//)
 				)));
 				?>
 		<? if(!empty($files)): ?>

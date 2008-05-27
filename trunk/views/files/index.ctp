@@ -36,7 +36,7 @@ echo $this->element('left_column'); ?>
 				)));
 				?>
 		<? if(!empty($files)): ?>
-			<table class="gclms-tabular" cellspacing="0" id="gclms-files">
+			<table class="gclms-tabular gclms-hover-rows" cellspacing="0" id="gclms-files">
 				<tr>
 					<th style="width: 1px;">
 						<input type="checkbox" id="gclms-select-all" />
@@ -69,7 +69,7 @@ echo $this->element('left_column'); ?>
 	
 				//echo "<li class='" . $type . "'><a href='" . $file['uri'] . "'>" . $file['basename'] . "</a>" . '</li>';		
 				?>
-				<tr>
+				<tr class="gclms-file">
 					<td>
 						<input type="checkbox" class="gclms-file-select" name="data[files][]" value="<?= $file['basename'] ?>" />
 					</td>

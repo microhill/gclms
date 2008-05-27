@@ -112,4 +112,9 @@ span.gclms-progress-bar {
 table#gclms-files a:hover {
 	color: blue;
 	text-decoration: underline;
+	cursor: pointer;
+}
+
+.gclms-tabular.gclms-hover-rows tr:hover td {
+	cursor: default;
 }

@@ -143,6 +143,7 @@ GCLMS.UploadFilesController = {
 	},
 	
 	updateFileSelection: function(event) {
+		//
 		//if(event)
 		//	event.stop();
 		GCLMS.UploadFilesController.updateSelectAllCheckbox();

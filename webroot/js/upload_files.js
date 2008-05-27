@@ -117,7 +117,6 @@ GCLMS.UploadFilesController = {
 	},
 	
 	selectAll: function () {
-		//console.log('selectAll');
 		if(this.checked) {
 			$$('input.gclms-file-select:not(:checked)').each(function(input) {
 				input.checked = true;
@@ -133,8 +132,6 @@ GCLMS.UploadFilesController = {
 	},
 	
 	updateSelectAllCheckbox: function () {
-		//console.log('updateSelectAllCheckbox');
-		
 		if(!$$('input.gclms-file-select').length) {
 			$('gclms-files').hide();
 			$('gclms-select-all').checked = false;
@@ -146,30 +143,16 @@ GCLMS.UploadFilesController = {
 	},
 	
 	updateFileSelection: function(event) {
-		//console.log('updateFileSelection');
-
-		//this.checked = !this.checked;
-		//event.stop();
 		GCLMS.UploadFilesController.updateSelectAllCheckbox();
 		GCLMS.UploadFilesController.updateFileRowClass.bind(this)();
 	},
 	
 	updateFileRowClass: function(event) {
-		//console.log('updateFileRowClass');
-
 		if(this.checked) {
 			this.up('tr').addClassName('gclms-selected');
 		} else {
 			this.up('tr').removeClassName('gclms-selected');			
 		}
-	},
-	
-	selectRow: function(event) {
-		//console.log('selectRow');
-		
-		input.checked = !input.checked;
-		var input = this.down('input.gclms-file-select');
-		GCLMS.UploadFilesController.updateFileSelection.bind(input)();
 	}
 };
 
@@ -191,11 +174,11 @@ GCLMS.Triggers.update({
 	'#gclms-upload-files:click': GCLMS.UploadFilesController.selectFiles,
 	'#gclms-cancel-queue-button:click': GCLMS.UploadFilesController.cancelUpload,
 	'#gclms-delete:click': GCLMS.UploadFilesController.confirmDeleteFiles,
-	'#gclms-select-all:click': GCLMS.UploadFilesController.selectAll,
+	'#gclms-select-all:change': GCLMS.UploadFilesController.selectAll,
 	'input.gclms-file-select': {
 		':loaded': GCLMS.UploadFilesController.updateFileRowClass,
-		':click': GCLMS.UploadFilesController.updateFileSelection,
-		//':change': GCLMS.UploadFilesController.updateFileSelection
+		//':click': GCLMS.UploadFilesController.updateFileSelection,
+		':change': GCLMS.UploadFilesController.updateFileSelection
 	},
 	//'#gclms-files tr.gclms-file:click': GCLMS.UploadFilesController.selectRow,
 	'li': {

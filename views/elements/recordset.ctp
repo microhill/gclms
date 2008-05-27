@@ -68,7 +68,7 @@ if(@$showDefaultAddButton) {
 	<tr>
 		<td  colspan="3">
 			<? if(!empty($data)): ?>
-			<table class="gclms-tabular" cellspacing="0">
+			<table class="gclms-tabular gclms-hover-rows" cellspacing="0">
 				<?= $html->tableHeaders(order($headers,$text_direction), array('class'=>'Headers')) ?>
 			    <tbody class="gclms-recordset">
 				    <?

@@ -4,8 +4,6 @@ class FilesController extends AppController {
 	var $components = array('Notifications','RequestHandler');
 
     function upload() {
-
-		
 		if(empty($this->viewVars['course']['id']))
 			exit(0);
 

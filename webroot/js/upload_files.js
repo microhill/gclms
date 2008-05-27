@@ -117,6 +117,7 @@ GCLMS.UploadFilesController = {
 	},
 	
 	selectAll: function () {
+		//console.log('selectAll');
 		if(this.checked) {
 			$$('input.gclms-file-select:not(:checked)').each(function(input) {
 				input.checked = true;
@@ -132,6 +133,8 @@ GCLMS.UploadFilesController = {
 	},
 	
 	updateSelectAllCheckbox: function () {
+		//console.log('updateSelectAllCheckbox');
+		
 		if(!$$('input.gclms-file-select').length) {
 			$('gclms-files').hide();
 			$('gclms-select-all').checked = false;
@@ -143,14 +146,17 @@ GCLMS.UploadFilesController = {
 	},
 	
 	updateFileSelection: function(event) {
-		//
-		//if(event)
-		//	event.stop();
+		//console.log('updateFileSelection');
+
+		//this.checked = !this.checked;
+		//event.stop();
 		GCLMS.UploadFilesController.updateSelectAllCheckbox();
 		GCLMS.UploadFilesController.updateFileRowClass.bind(this)();
 	},
 	
 	updateFileRowClass: function(event) {
+		//console.log('updateFileRowClass');
+
 		if(this.checked) {
 			this.up('tr').addClassName('gclms-selected');
 		} else {
@@ -158,10 +164,12 @@ GCLMS.UploadFilesController = {
 		}
 	},
 	
-	selectRow: function() {
-		var input = this.down('input.gclms-file-select');
+	selectRow: function(event) {
+		//console.log('selectRow');
+		
 		input.checked = !input.checked;
-		//GCLMS.UploadFilesController.updateFileSelection.bind(input)();
+		var input = this.down('input.gclms-file-select');
+		GCLMS.UploadFilesController.updateFileSelection.bind(input)();
 	}
 };
 

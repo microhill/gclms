@@ -1,4 +1,4 @@
-tinyMCE.init(GCLMS.tinyMCEConfig);
+tinyMCE.init(GCLMS.advancedTinyMCEConfig);
 
 GCLMS.CourseController = {
 	loadLanguageDetector: function() {

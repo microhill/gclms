@@ -1,6 +1,6 @@
 /*global $, $$, $F, Ajax, Element, GCLMS, Sortable, document, window, tinyMCE, self, UUID, __, tmpTextareaView, tmpQuestionView, tmpQuestionExplanationView, tmpMultipleChoiceAnswerView, tmpMultipleChoiceAnswerExplanationView, tmpMatchingAnswerView, tmpOrderAnswerView */
 
-tinyMCE.init(GCLMS.tinyMCEConfig);
+//tinyMCE.init(GCLMS.advancedTinyMCEConfig);
 
 GCLMS.PagesController = {
 	addExplanationToQuestion: function() {
@@ -21,14 +21,22 @@ GCLMS.PagesController = {
 		var answerId = div.getAttribute('gclms:answer-id');
 		this.replace(GCLMS.Views.get('multipleChoiceAnswerExplanation').interpolate({answer_id: answerId,question_id: questionId}));
 		
-		GCLMS.tinyMCEConfig.height = '75px';
+		GCLMS.advancedTinyMCEConfig.height = '75px';
 		GCLMS.PagesController.enableTinyMCE.bind(div.down('textarea.gclms-answer-explanation'))();
 		div.down('tr.gclms-answer-explanation td').addClassName('gclms-filled');
 	},
 
 	enableTinyMCE: function() {
+		tinyMCE.settings = GCLMS.advancedTinyMCEConfig;
 		tinyMCE.execCommand('mceAddControl', true, this.id);
-		GCLMS.tinyMCEConfig.height = '250px';
+		//GCLMS.advancedTinyMCEConfig.height = '250px';
+	},
+	
+	enableSimpleTinyMCE: function() {
+		tinyMCE.settings = GCLMS.simpleTinyMCEConfig;
+		tinyMCE.execCommand('mceAddControl', true, this.id);
+
+		//execCommand('mceAddControl', true, this.id);
 	},
 
 	configureMoveUpAndMoveDownButtons: function() {
@@ -402,6 +410,7 @@ GCLMS.Triggers.update({
 		'.gclms-page-item' : {
 			':loaded': 	GCLMS.PagesController.configureMoveUpAndMoveDownButtons,
 			'textarea.gclms-tinymce-enabled': GCLMS.PagesController.enableTinyMCE,
+			'textarea.gclms-simple-tinymce-enabled': GCLMS.PagesController.enableSimpleTinyMCE,
 			'.gclms-move-down:click,.gclms-move-up:click': GCLMS.PagesController.moveItem,
 			'.gclms-insert-textarea:click': GCLMS.PagesController.insertTextareaBelowPageItem,
 			'.gclms-insert-question:click': GCLMS.PagesController.insertQuestionBelowPageItem,

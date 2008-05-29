@@ -1201,10 +1201,14 @@ img.gclms-tooltip-button {
 }
 
 .gclms-button {
-	font-size: 1.34em;
 	cursor: pointer;
 }
 
+	.gclms-button.gclms-submit,
+	.gclms-button.gclms-delete {
+		font-size: 1.34em;		
+	}
+	
 	.gclms-button div {
 		margin: 0;
 	}

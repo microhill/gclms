@@ -60,9 +60,9 @@ $javascript->link(array(
 	} else {
 		foreach($nodeItems as $pageItem) {
 			if(isset($pageItem['content']))
-				echo $this->element('textarea',array('textarea' => $pageItem));
+				echo $this->element('../pages/textarea',array('textarea' => $pageItem));
 			else
-				echo $this->element('question',array('question' => $pageItem));
+				echo $this->element('../pages/question',array('question' => $pageItem));
 		}
 	}
 
@@ -97,28 +97,28 @@ $javascript->link(array(
 	?>
 </div>
 <script>
-    var tmpTextareaView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('textarea',array('textarea_id' => '#{id}')))); ?>;
+    var tmpTextareaView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('../pages/textarea',array('textarea_id' => '#{id}')))); ?>;
     
-    var tmpQuestionView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('question',array('question_id' => '#{id}')))); ?>;
+    var tmpQuestionView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('../pages/question',array('question_id' => '#{id}')))); ?>;
     
-    var tmpQuestionExplanationView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('question_explanation',array('question_id' => '#{id}')))); ?>;
+    var tmpQuestionExplanationView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('../pages/question_explanation',array('question_id' => '#{id}')))); ?>;
     
-    var tmpMultipleChoiceAnswerExplanationView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('answer_multiple_choice_explanation',array(
+    var tmpMultipleChoiceAnswerExplanationView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('../pages/answer_multiple_choice_explanation',array(
     	'question_id' => '#{question_id}',
     	'answer_id' => '#{answer_id}'
     )))); ?>;
     
-    var tmpMultipleChoiceAnswerView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('answer_multiple_choice',array(
+    var tmpMultipleChoiceAnswerView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('../pages/answer_multiple_choice',array(
     	'question_id' => '#{question_id}',
     	'answer_id' => '#{answer_id}'
     )))); ?>;
     
-    var tmpMatchingAnswerView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('answer_matching',array(
+    var tmpMatchingAnswerView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('../pages/answer_matching',array(
     	'question_id' => '#{question_id}',
     	'answer_id' => '#{answer_id}'
     )))); ?>;
     
-    var tmpOrderAnswerView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('answer_order',array(
+    var tmpOrderAnswerView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('../pages/answer_order',array(
     	'question_id' => '#{question_id}',
     	'answer_id' => '#{answer_id}'
     )))); ?>;

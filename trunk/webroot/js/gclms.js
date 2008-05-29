@@ -287,10 +287,27 @@ document.observe("dom:loaded", function() {
 });
 
 GCLMS.simpleTinyMCEConfig = {
-	theme : 'simple'
+	theme : 'advanced',
+	extended_valid_elements : 'a[name|href|target|title],em',
+	theme_advanced_buttons1 : '',
+	relative_urls : true,
+	tab_focus : ':next',
+	cleanup_serializer: 'xml',
+	gecko_spellcheck: true,
+	mode: "none",
+	theme_advanced_toolbar_location : 'top',
+	theme_advanced_toolbar_align : 'left',
+	theme_advanced_buttons1 : 'bold,link',
+	theme_advanced_buttons2 : '',
+	file_browser_callback : 'GCLMS.fileBrowser',
+	height: '75px',
+    language: document.body.getAttribute('gclms:language'),
+	cleanup_serializer: 'xml',
+	button_tile_map: true,
+	theme_advanced_blockformats : ''
 }
 
-GCLMS.tinyMCEConfig = {
+GCLMS.advancedTinyMCEConfig = {
     theme : 'advanced',
     plugins : 'media,inlinepopups,style,safari,paste', // sidebartext,notebook,safari
     language: document.body.getAttribute('gclms:language'),
@@ -302,7 +319,6 @@ GCLMS.tinyMCEConfig = {
 	width: '100%',
 	height: '250px',
 	relative_urls : true,
-    editor_selector : 'wysiwyg',
 	theme_advanced_buttons1 : 'bold,italic,underline,separator,strikethrough,outdent,indent,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,forecolor,backcolor,formatselect,styleselect,link,unlink,image,media,cleanup,removeformat,pastetext,pasteword,code,notebook', //,notebook,sidebartext
 	theme_advanced_buttons2 : '',
 	theme_advanced_buttons3_add : 'styleprops',
@@ -314,7 +330,7 @@ GCLMS.tinyMCEConfig = {
 	gecko_spellcheck: true,
 	theme : 'advanced',
 	tab_focus : ':next',
-	theme_advanced_resize_horizontal: false,
+	//theme_advanced_resize_horizontal: false,
 	extended_valid_elements : 'a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]',
 	file_browser_callback : 'GCLMS.fileBrowser',
     setup : function(editor) {
@@ -345,7 +361,8 @@ GCLMS.tinyMCEConfig = {
 
 if(document.body.getAttribute('gclms:group') && !document.body.getAttribute('gclms:group').empty() &&
 		document.body.getAttribute('gclms:course') && !document.body.getAttribute('gclms:course').empty()) { // && !document.body.getAttribute('gclms:course').empty()
-	GCLMS.tinyMCEConfig.content_css = '/'+ document.body.getAttribute('gclms:group') + '/'+ document.body.getAttribute('gclms:course') + '/files/css/' + new Date().getTime() + ',/css/' + document.body.getAttribute('gclms:direction') + '.css';
+	GCLMS.simpleTinyMCEConfig.content_css = '/'+ document.body.getAttribute('gclms:group') + '/'+ document.body.getAttribute('gclms:course') + '/files/css/' + new Date().getTime() + ',/css/' + document.body.getAttribute('gclms:direction') + '.css';
+	GCLMS.advancedTinyMCEConfig.content_css = '/'+ document.body.getAttribute('gclms:group') + '/'+ document.body.getAttribute('gclms:course') + '/files/css/' + new Date().getTime() + ',/css/' + document.body.getAttribute('gclms:direction') + '.css';
 }
 
 GCLMS.fileBrowser = function(field_name, url, type, win) {

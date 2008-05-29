@@ -35,6 +35,16 @@ if(@$showDefaultAddButton) {
 
 <? if(@$showDefaultAddButton) {
 
+	echo $this->element('buttons',array('buttons' => array(
+		array(
+			'id' => 'gclms-add',
+			'class' => 'gclms-add',
+			'text' => __('Add',true),
+			'phrases' => array(
+				'link:href' => $defaultAddButtonUri
+			)
+	))));
+	
 	echo $this->element('menubar',array('buttons' => array(
 		array(
 			'id' => 'gclms-add',

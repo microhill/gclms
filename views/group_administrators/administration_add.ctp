@@ -25,9 +25,8 @@ echo $this->element('no_column_background'); ?>
 			'empty' => true,
 			'selected' => @$data['GroupAdministrator']['group_id']
 		));
-		echo $form->submit(__('Save',true),array(
-			'class' => 'Save'
-		));
+		
+		echo $this->element('save_button');
 		echo $form->end();
 		?>
 	</div>

@@ -16,8 +16,9 @@ echo $this->element('no_column_background'); ?>
 		echo $form->create('Article',array('id' => null,'url'=> $groupAndCoursePath . '/articles/add'));
 		echo $form->hidden('course_id',array('value'=>$course['id']));
 		include('form.ctp');
-		echo $form->submit(__('Save',true),array('class'=>'gclms-save'));
-		echo $form->end();
-		?>
+		
+		echo $this->element('save_button');
+
+		echo $form->end(); ?>
 	</div>
 </div>

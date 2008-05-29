@@ -7,7 +7,8 @@
 		echo $form->create('GlossaryTerm',array('id' => null,'url'=> $groupAndCoursePath . '/glossary/add'));
 		echo $form->hidden('course_id',array('value'=>$course['id']));
 		include('form.ctp');
-		echo $form->submit(__('Save',true),array('class'=>'gclms-save'));
+
+		echo $this->element('save_button');
 		echo $form->end();
 		?>
 	</div>

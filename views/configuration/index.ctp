@@ -20,7 +20,7 @@ echo $this->element('no_column_background'); ?>
 	
 	include(ROOT . DS . APP_DIR . DS . 'views' . DS . 'groups' . DS . 'form.ctp');
 	
-	echo $form->submit(__('Save',true),array('class'=>'gclms-save','div'=>false));
+	echo $this->element('save_button');
 	echo $form->end();
 	?>
 </div>

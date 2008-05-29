@@ -1199,3 +1199,69 @@ img.gclms-tooltip-button {
 .gclms-new-courses {
 	float: right;
 }
+
+.gclms-button {
+	font-size: 1.34em;
+	cursor: pointer;
+}
+
+	.gclms-button div {
+		margin: 0;
+	}
+
+	.gclms-button .gclms-row{margin: 0 1px}
+
+	.gclms-button.gclms-hover-green:hover .gclms-contain {
+		background: #006633;
+		background-image: url(../img/popup-dialog-ok-background.png);
+		color: white;
+	}
+	
+		.gclms-button.gclms-hover-green:hover .gclms-row {
+			background: #006633;
+		}
+		
+		.gclms-button.gclms-hover-green:hover .gclms-contain {
+			border-color: #006633;
+		}
+
+	.gclms-button.gclms-hover-red:hover .gclms-contain {
+		background: #CE0000;
+		background-image: url(../img/popup-dialog-cancel-background.png);
+		color: white;
+	}
+	
+		.gclms-button.gclms-hover-red:hover .gclms-row {
+			background: #CE0000;
+		}
+		
+		.gclms-button.gclms-hover-red:hover .gclms-contain {
+			border-color: #CE0000;
+		}
+	
+	.gclms-button .gclms-top *, .gclms-button .gclms-bottom * {
+		display: block;
+		height: 1px;
+		overflow: hidden;
+		background-color:#aaa;
+	}
+
+	.gclms-button .gclms-contain {
+		background-color: #ddd;
+		background-image: url(http://www.google.com/images/button-bg.gif);
+		color: black;
+		border-left: 1px solid #aaa;
+		border-right: 1px solid #aaa;
+		margin: 0;
+		padding-left: 10px;
+		padding-right: 10px;
+		line-height: 1.55em;
+	}
+	
+.gclms-buttons {
+	overflow: hidden;
+}
+
+	.gclms-buttons .gclms-button {
+		float: left;
+	}

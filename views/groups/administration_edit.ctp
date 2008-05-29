@@ -18,10 +18,9 @@ echo $this->element('no_column_background'); ?>
 		'type' => 'file'
 	));
 	include('form.ctp');
-	echo '<div>';
-	echo $form->submit(__('Save',true),array('class'=>'save','div'=>false,'id' => 'GroupSave'));
-	echo $form->submit(__('Delete',true),array('class'=>'gclms-delete','div'=>false,'id' => 'GroupDelete','gclms:confirm-text'=>__('Are you sure you sure you want to delete this?',true)));
-	echo '</div>';
+	echo $this->element('save_and_delete_buttons',array(
+		'confirm_delete_text' => __('Are you sure you want to delete this article?',true)
+	));
 	echo $form->end();
 	?>
 </div>

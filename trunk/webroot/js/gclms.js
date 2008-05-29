@@ -194,6 +194,10 @@ GCLMS.AppController = {
 				$('UserEmail').removeClassName('gclms-openid');				
 			}
 		}
+	},
+	
+	submitForm: function() {
+		this.up('form').submit();
 	}
 };
 
@@ -234,7 +238,8 @@ GCLMS.Triggers = $H({
 			self.location.href = this.getAttribute('link:href');
 		}
 	},
-	'.gclms-content input.gclms-delete:click' : GCLMS.AppController.confirmRemove,
+	'.gclms-content .gclms-button.gclms-submit:click' : GCLMS.AppController.submitForm,
+	'.gclms-content .gclms-button.gclms-delete:click' : GCLMS.AppController.confirmRemove,
 	'body.gclms-install ul.gclms-menu a:click' : function(event) {
 		event.stop();
 	},
@@ -280,6 +285,10 @@ document.observe("dom:loaded", function() {
 		firstTextInput[0].select();
 	}
 });
+
+GCLMS.simpleTinyMCEConfig = {
+	theme : 'simple'
+}
 
 GCLMS.tinyMCEConfig = {
     theme : 'advanced',

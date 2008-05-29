@@ -14,7 +14,7 @@ echo $this->element('no_column_background'); ?>
 	<?
 	echo $form->create('User', array('url'=>'/administration/users/add'));
 	include('form.ctp');
-	echo $form->submit(__('Save',true),array('class'=>'gclms-save'));
+	echo $this->element('save_button');
 	echo $form->end();
 	?>
 </div>

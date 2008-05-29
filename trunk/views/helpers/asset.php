@@ -113,8 +113,12 @@ class AssetHelper extends Helper {
         if(1 || Configure::read('debug')) {
             $js = array();
 			foreach($view->__scripts as $script) {
-				if(strstr($script,'.js'))
+				if(strstr($script,'.js')) {
+					if(strpos($script,'prototype.js') !== false) {
+						$script = '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>';
+					}	
 					$js[] = $script;
+				}
 			}
 			return join("\n\t", $js);
         }
@@ -122,7 +126,8 @@ class AssetHelper extends Helper {
         //only js scripts
         foreach ($view->__scripts as $i => $script) {
             if (preg_match('/js\/(.*).js/', $script, $match)) {
-                $temp = array();
+                pr($match);die;
+				$temp = array();
                 $temp['script'] = $match[1];
                 $temp['name'] = basename($match[1]);
                 $js[] = $temp;

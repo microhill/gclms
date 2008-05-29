@@ -139,3 +139,8 @@ function relativize_url($here,$absolute_url) {
 		return substr_replace($absolute_url,$relative_path,0,1);
 	}
 }
+
+function prd($var) {
+	pr($var);
+	die;
+}

@@ -56,7 +56,7 @@ $javascript->link(array(
 	ksort($nodeItems);
 
 	if(empty($nodeItems)) {
-		echo $this->element('textarea');
+		echo $this->element('../pages/textarea');
 	} else {
 		foreach($nodeItems as $pageItem) {
 			if(isset($pageItem['content']))

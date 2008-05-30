@@ -300,6 +300,7 @@ GCLMS.simpleTinyMCEConfig = {
 	theme_advanced_buttons1 : 'bold,link',
 	theme_advanced_buttons2 : '',
 	file_browser_callback : 'GCLMS.fileBrowser',
+	width: '100%',
 	height: '75px',
     language: document.body.getAttribute('gclms:language'),
 	cleanup_serializer: 'xml',
@@ -361,8 +362,9 @@ GCLMS.advancedTinyMCEConfig = {
 
 if(document.body.getAttribute('gclms:group') && !document.body.getAttribute('gclms:group').empty() &&
 		document.body.getAttribute('gclms:course') && !document.body.getAttribute('gclms:course').empty()) { // && !document.body.getAttribute('gclms:course').empty()
-	GCLMS.simpleTinyMCEConfig.content_css = '/'+ document.body.getAttribute('gclms:group') + '/'+ document.body.getAttribute('gclms:course') + '/files/css/' + new Date().getTime() + ',/css/' + document.body.getAttribute('gclms:direction') + '.css';
-	GCLMS.advancedTinyMCEConfig.content_css = '/'+ document.body.getAttribute('gclms:group') + '/'+ document.body.getAttribute('gclms:course') + '/files/css/' + new Date().getTime() + ',/css/' + document.body.getAttribute('gclms:direction') + '.css';
+	var cssTmp = '/'+ document.body.getAttribute('gclms:group') + '/'+ document.body.getAttribute('gclms:course') + '/files/css/' + new Date().getTime() + ',/css/' + document.body.getAttribute('gclms:direction') + '.css';
+	GCLMS.simpleTinyMCEConfig.content_css = cssTmp;
+	GCLMS.advancedTinyMCEConfig.content_css = cssTmp;
 }
 
 GCLMS.fileBrowser = function(field_name, url, type, win) {

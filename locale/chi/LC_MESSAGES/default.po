@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2008-05-23 13:19-0600\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Aaron Shafovaloff <aaronshaf@gmail.com>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,16 +11,16 @@ msgstr ""
 
 #: \app_controller.php:41
 msgid "This application was not designed to work with older browsers like yours. Please download the latest version of <a href=\"http://www.microsoft.com/windows/downloads/ie/getitnow.mspx\">Internet Explorer</a>, <a href=\"http://www.firefox.com/\">Firefox</a>, <a href=\"http://www.apple.com/safari/download/\">Safari</a>, or <a href=\"http://www.opera.com/\">Opera</a>."
-msgstr ""
+msgstr "此应用程序不能在您这样的浏览器上使用。请下载最新版本的<a href=\"http://www.microsoft.com/windows/downloads/ie/getitnow.mspx\">Internet Explorer</a>, <a href=\"http://www.firefox.com/\">Firefox</a>, <a href=\"http://www.apple.com/safari/download/\">Safari</a>, 或者<a href=\"http://www.opera.com/\">Opera</a>。"
 
 #: \app_controller.php:155
 msgid "Your account has not yet been verified. Please check your e-mail."
-msgstr ""
+msgstr "您的帐户尚未经验证。请查看您的电子邮件。"
 
 #: \config\routes.php:102
 #: \controllers\install_controller.php:10;32
 msgid "Great Commission Learning Management System"
-msgstr ""
+msgstr "大使命学习管理系统（Great Commission LMSystem）"
 
 #: \controllers\articles_controller.php:14
 #: \views\articles\index.ctp:16
@@ -40,27 +40,25 @@ msgstr "书籍"
 #: \controllers\classroom_controller.php:37
 #: \controllers\courses_controller.php:92;157
 msgid "Could not find first topic or page in lesson. Perhaps topics and pages haven't been created yet for this lesson?"
-msgstr ""
+msgstr "请输入新的名称"
 
 #: \controllers\content_controller.php:65
-#, fuzzy
 msgid "Course Content"
-msgstr "当然首页"
+msgstr "课程内容"
 
 #: \controllers\export_controller.php:23
-#, fuzzy
 msgid "Export"
-msgstr "出口课程"
+msgstr "输出课程"
 
 #: \controllers\facilitators_controller.php:35
 #: \controllers\groups_controller.php:57
 msgid "Group Application"
-msgstr ""
+msgstr "团体申请"
 
 #: \controllers\facilitators_controller.php:37
 #: \controllers\groups_controller.php:59
 msgid "Thank you for submitting your group. We will review your submission, and you will be notified by email indicating whether your group has been accepted."
-msgstr ""
+msgstr "感谢您提交的团体真情。我们将审核您提交的材料，并用电子邮件通知您的团体是否被接受。"
 
 #: \controllers\files_controller.php:63
 #: \views\elements\course_menu.ctp:8
@@ -70,7 +68,7 @@ msgstr "媒体档案"
 
 #: \controllers\files_controller.php:211
 msgid "File not found"
-msgstr ""
+msgstr "找不到文档"
 
 #: \controllers\glossary_controller.php:14;21
 #: \views\elements\class_menu.ctp:7
@@ -82,68 +80,67 @@ msgstr "词汇"
 
 #: \controllers\install_controller.php:11
 msgid "Installer"
-msgstr ""
+msgstr "安装程序"
 
 #: \controllers\pages_controller.php:77
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: \controllers\pages_controller.php:77
 msgid "External URL"
-msgstr ""
+msgstr "外部网址"
 
 #: \controllers\register_controller.php:17
 msgid "The username you provided is already in use."
-msgstr ""
+msgstr "您提交的用户名已经被另外的用户使用"
 
 #: \controllers\register_controller.php:21
 msgid "Passwords do not match."
-msgstr ""
+msgstr "密码不对"
 
 #: \controllers\register_controller.php:25
 msgid "The e-mail you provided is already in use by another username."
-msgstr ""
+msgstr "您提交的电邮地址已经被另一位用户使用"
 
 #: \controllers\register_controller.php:35
-#, fuzzy
 msgid "Student registration"
-msgstr "网站管理"
+msgstr "学生注册"
 
 #: \controllers\register_controller.php:36
 msgid "Thank you for registering as a student. Please check your e-mail to activate your student account."
-msgstr ""
+msgstr "感谢您的注册成为学员。请查看您的电子邮件来激活您的学员帐户。"
 
 #: \controllers\update_controller.php:48
 msgid "Table insert successful."
-msgstr ""
+msgstr "表单插入成功"
 
 #: \controllers\update_controller.php:66
 msgid "Database is up to date."
-msgstr ""
+msgstr "数据库为最新数据"
 
 #: \controllers\update_controller.php:78
 msgid "Database updated"
-msgstr ""
+msgstr "数据库已更新"
 
 #: \controllers\update_controller.php:81
 msgid "Database could not be updated"
-msgstr ""
+msgstr "无法更新数据库"
 
 #: \controllers\users_controller.php:38
 msgid "Verification code not found."
-msgstr ""
+msgstr "无法找到验证码"
 
 #: \controllers\users_controller.php:43
 msgid "Account verified. You can now log in."
-msgstr ""
+msgstr "帐户已经验证。您现在可以登录了。"
 
 #: \controllers\users_controller.php:74
 msgid "Username could not be found."
-msgstr ""
+msgstr "无法找到用户名"
 
 #: \controllers\users_controller.php:85
 msgid "Your password has been reset"
-msgstr ""
+msgstr "您的密码"
 
 #: \controllers\users_controller.php:85
 msgid "The password for %s has been reset to %s"
@@ -151,28 +148,27 @@ msgstr ""
 
 #: \controllers\users_controller.php:86
 msgid "Your password has been reset. Please check your e-mail."
-msgstr ""
+msgstr "您的密码已重置，请查看您的电子邮件。"
 
 #: \plugins\bible_kjv\views\bible_kjv\books.ctp:34
 msgid "Old Testament"
-msgstr ""
+msgstr "旧约"
 
 #: \plugins\bible_kjv\views\bible_kjv\books.ctp:53
-#, fuzzy
 msgid "New Testament"
-msgstr "新的学生吗？"
+msgstr "新约"
 
 #: \plugins\bible_kjv\views\bible_kjv\chapter.ctp:33
 msgid "Back to Old and New Testament books"
-msgstr ""
+msgstr "返回到旧约和新约书籍"
 
 #: \vendors\open_document\open_document.php:333;336;352;384
 msgid "Table of Contents"
-msgstr ""
+msgstr "目录"
 
 #: \views\announcements\add.ctp:2
 msgid "Add Announcement"
-msgstr ""
+msgstr "添加告示"
 
 #: \views\announcements\add.ctp:7
 #: \views\announcements\view.ctp:8
@@ -202,7 +198,7 @@ msgstr ""
 #: \views\users\administration_add.ctp:17
 #: \views\users\administration_edit.ctp:19
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: \views\announcements\form.ctp:3
 #: \views\announcements\index.ctp:16
@@ -214,12 +210,12 @@ msgstr ""
 #: \views\discussion\post_form.ctp:3
 #: \views\pages\edit.ctp:33
 msgid "Title"
-msgstr ""
+msgstr "标题"
 
 #: \views\announcements\form.ctp:8
 #: \views\announcements\index.ctp:17
 msgid "Post date"
-msgstr ""
+msgstr "发布数据"
 
 #: \views\announcements\form.ctp:12
 #: \views\articles\form.ctp:8
@@ -228,11 +224,11 @@ msgstr ""
 #: \views\elements\page_section.ctp:11
 #: \views\pages\edit.ctp:79
 msgid "Content"
-msgstr ""
+msgstr "内容"
 
 #: \views\announcements\view.ctp:2
 msgid "Add News Item"
-msgstr ""
+msgstr "添加新闻条目"
 
 #: \views\announcements\view.ctp:9
 #: \views\articles\edit.ctp:20
@@ -246,11 +242,11 @@ msgstr ""
 #: \views\pages\edit.ctp:94
 #: \views\users\administration_edit.ctp:20
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 #: \views\announcements\view.ctp:9
 msgid "Are you sure you want to delete this news item?"
-msgstr ""
+msgstr "您是否确定要删除此新闻条目"
 
 #: \views\articles\add.ctp:13
 #: \views\articles\edit.ctp:13
@@ -271,120 +267,115 @@ msgstr ""
 #: \views\users\administration_add.ctp:11
 #: \views\users\administration_edit.ctp:10
 msgid "Cancel and go back"
-msgstr ""
+msgstr "取消并返回"
 
 #: \views\articles\add.ctp:14
 #: \views\articles\edit.ctp:14
 #: \views\articles\index.ctp:22
-#, fuzzy
 msgid "Add Article"
-msgstr "文章"
+msgstr "添加文章"
 
 #: \views\articles\edit.ctp:20
 msgid "Are you sure you want to delete this article?"
-msgstr ""
+msgstr "您是否确定要删除此文章？"
 
 #: \views\articles\view.ctp:8
 #: \views\content\index.ctp:96
 #: \views\glossary\view.ctp:5
 #: \views\pages\view.ctp:31
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
 #: \views\articles\view.ctp:9
 #: \views\glossary\view.ctp:6
 #: \views\pages\view.ctp:32
 msgid "View with frames"
-msgstr ""
+msgstr "在图框中阅览"
 
 #: \views\articles\view.ctp:13
-#, fuzzy
 msgid "All Articles"
-msgstr "文章"
+msgstr "所有文章"
 
 #: \views\books\chapter.ctp:8
 #: \views\chapters\toc.ctp:20
 msgid "Back to Books"
-msgstr ""
+msgstr "返回书籍"
 
 #: \views\books\index.ctp:24
-#, fuzzy
 msgid "Add Book"
-msgstr "书籍"
+msgstr "添加书籍"
 
 #: \views\books\index.ctp:27
 msgid "Enter the name of the book:"
-msgstr ""
+msgstr "请输入书籍名称"
 
 #: \views\books\index.ctp:33
 msgid "Rename Book"
-msgstr ""
+msgstr "修改书名"
 
 #: \views\books\index.ctp:36
 msgid "Enter the new name of the book:"
-msgstr ""
+msgstr "核对答案"
 
 #: \views\books\index.ctp:43
 msgid "Delete Book"
-msgstr ""
+msgstr "删除书籍"
 
 #: \views\books\index.ctp:46;56
 msgid "Are you sure you want to delete this book?"
-msgstr ""
+msgstr "您是否确定由删除本书？"
 
 #: \views\books\index.ctp:53
-#, fuzzy
 msgid "Edit Book"
-msgstr "我的社群"
+msgstr "修改书籍？？？？？？？？？"
 
 #: \views\chapters\edit.ctp:14
 #: \views\chapters\toc.ctp:56
 msgid "Edit Chapter"
-msgstr ""
+msgstr "修改章节"
 
 #: \views\chapters\edit.ctp:33
 #: \views\chapters\toc.ctp:49;59
 msgid "Are you sure you want to delete this chapter?"
-msgstr ""
+msgstr "您是否确定由删除本章？"
 
 #: \views\chapters\toc.ctp:27
-#, fuzzy
 msgid "Add Chapter"
-msgstr "用户"
+msgstr "添加新的一章"
 
 #: \views\chapters\toc.ctp:30
 msgid "Enter the name of the chapter:"
-msgstr ""
+msgstr "请输入章节的名称"
 
 #: \views\chapters\toc.ctp:36
 msgid "Rename Chapter"
-msgstr ""
+msgstr "更改章节名称"
 
 #: \views\chapters\toc.ctp:39
 msgid "Enter the new name of the chapter:"
-msgstr ""
+msgstr "请输入"
 
 #: \views\chapters\toc.ctp:46
 msgid "Delete Chapter"
-msgstr ""
+msgstr "删除章节"
 
 #: \views\chat\bare.ctp:16
 #: \views\chat\index.ctp:19
 msgid "Send"
-msgstr ""
+msgstr "发送"
 
 #: \views\class\index.ctp:7
 #: \views\elements\course_menu.ctp:7
 msgid "Lessons"
-msgstr ""
+msgstr "课程"
 
 #: \views\classes\add.ctp:14
 msgid "Add Class"
-msgstr ""
+msgstr "添加班级"
 
 #: \views\classes\edit.ctp:14
 msgid "Edit Class"
-msgstr ""
+msgstr "修改班级"
 
 #: \views\classes\form.ctp:5
 #: \views\classes\table.ctp:5
@@ -392,189 +383,182 @@ msgstr ""
 #: \views\facilitators\form.ctp:3
 #: \views\install\first_user.ctp:14
 msgid "Alias"
-msgstr ""
+msgstr "别名"
 
 #: \views\classes\form.ctp:10
 #: \views\classes\table.ctp:6
 #: \views\facilitated_classes\table.ctp:4
-#, fuzzy
 msgid "Course"
-msgstr "当然首页"
+msgstr "课程"
 
 #: \views\classes\form.ctp:17
 msgid "Will the class be guided by a facilitator?"
-msgstr ""
+msgstr "此班级是否有辅导员？"
 
 #: \views\classes\form.ctp:24
 msgid "Does the class have a definite start and end date?"
-msgstr ""
+msgstr "此班级是否有确定的开始及结束日期？"
 
 #: \views\classes\form.ctp:37
 msgid "Start date"
-msgstr ""
+msgstr "开始日期"
 
 #: \views\classes\form.ctp:42
 #: \views\facilitators\form.ctp:34
 msgid "End date"
-msgstr ""
+msgstr "结束日期"
 
 #: \views\classes\form.ctp:48
 msgid "Does the class have an enrollment deadline?"
-msgstr ""
+msgstr "此班级是否有入学的截止日期？"
 
 #: \views\classes\form.ctp:61
 #: \views\facilitators\form.ctp:24
 msgid "Enrollment deadline"
-msgstr ""
+msgstr "入学截止日期"
 
 #: \views\classes\form.ctp:75
 msgid "Are students given limited time to complete the class?"
-msgstr ""
+msgstr "学员是否准予有限的时间来完成一个个斑级的课程？"
 
 #: \views\classes\form.ctp:90
-#, fuzzy
 msgid "Years"
-msgstr "用户"
+msgstr "年"
 
 #: \views\classes\form.ctp:97
 msgid "Months"
-msgstr ""
+msgstr "月"
 
 #: \views\classes\form.ctp:104
 msgid "Days"
-msgstr ""
+msgstr "日"
 
 #: \views\classes\form.ctp:110
 msgid "Max capacity (leave blank or set to 0 for no limit)"
-msgstr ""
+msgstr "最大容量（若无限制，请不输入或输入0）"
 
 #: \views\classes\index.ctp:13
 #: \views\classes\table.ctp:30
 #: \views\elements\group_menu.ctp:4
 msgid "Classes"
-msgstr ""
+msgstr "班级"
 
 #: \views\classes\table.ctp:7
 #: \views\facilitated_classes\table.ctp:5
 msgid "Begins - Ends"
-msgstr ""
+msgstr "开始-结束"
 
 #: \views\configuration\index.ctp:14
-#, fuzzy
 msgid "Group Configuration"
-msgstr "组管理员"
+msgstr "团体设置"
 
 #: \views\content\debug.ctp:3
 msgid "Debug"
-msgstr ""
+msgstr "纠错"
 
 #: \views\content\index.ctp:20
 msgid "Course Structure"
 msgstr "课程结构"
 
 #: \views\content\index.ctp:28
-#, fuzzy
 msgid "Add Page"
-msgstr "用户"
+msgstr "添加新页"
 
 #: \views\content\index.ctp:30
 msgid "Enter the name of the page:"
-msgstr ""
+msgstr "请输入页的名称"
 
 #: \views\content\index.ctp:37
 msgid "Add Label"
-msgstr ""
+msgstr "添加标签"
 
 #: \views\content\index.ctp:39
 msgid "Enter the name of the label:"
-msgstr ""
+msgstr "请输入标签的名称"
 
 #: \views\content\index.ctp:46
 msgid "Convert to Label"
-msgstr ""
+msgstr "转成标签"
 
 #: \views\content\index.ctp:53
 msgid "Convert to Page"
-msgstr ""
+msgstr "转成页"
 
 #: \views\content\index.ctp:63
 msgid "Decrease Indent"
-msgstr ""
+msgstr "减小缩进"
 
 #: \views\content\index.ctp:69
 msgid "Increase Indent"
-msgstr ""
+msgstr "加大缩进"
 
 #: \views\content\index.ctp:75
-#, fuzzy
 msgid "Rename"
-msgstr "用户"
+msgstr "重新命名"
 
 #: \views\content\index.ctp:77
 msgid "Enter the new name:"
-msgstr ""
+msgstr "请输入新的名称"
 
 #: \views\content\index.ctp:87
 msgid "Must be empty before deletion."
-msgstr ""
+msgstr "删除前必须为空"
 
 #: \views\content\index.ctp:88
 #: \views\facilitated_classes\edit.ctp:13
 #: \views\group_administrators\administration_edit.ctp:32
 msgid "Are you sure you want to delete this?"
-msgstr ""
+msgstr "您是否确定要删除此项"
 
 #: \views\courses\add.ctp:13
 #: \views\elements\group_menu.ctp:6
 #: \views\elements\group_menu2.ctp:5
-#, fuzzy
 msgid "Add Course"
-msgstr "新课程"
+msgstr "添加课程"
 
 #: \views\courses\description.ctp:17
-#, fuzzy
 msgid "Language:"
-msgstr "语文"
+msgstr "语言"
 
 #: \views\courses\edit.ctp:14
 #: \views\elements\course_menu.ctp:12
 msgid "Configure Course"
-msgstr "配置过程"
+msgstr "配置课程"
 
 #: \views\courses\edit.ctp:27
 msgid "Are you sure you want to delete this course?"
-msgstr ""
+msgstr "您是否确定要删除此课程？"
 
 #: \views\courses\form.ctp:7
 #: \views\groups\form.ctp:9
 #: \views\groups\table.ctp:6
 msgid "Web path"
-msgstr ""
+msgstr "网页路径"
 
 #: \views\courses\form.ctp:7
 msgid "This is part of what makes up the web address of your course. It can be made up of lower case letters, numbers, or hypens. The end result will be something like"
-msgstr ""
+msgstr "是否允许把恶人免费重新发布此课程？"
 
 #: \views\courses\form.ctp:10
 msgid "A course already exists in your group with this web path."
-msgstr ""
+msgstr "您的团体中占用此路径的课程已存在"
 
 #: \views\courses\form.ctp:15
 #: \views\courses\table.ctp:7
 msgid "Language"
-msgstr "语文"
+msgstr "语言"
 
 #: \views\courses\form.ctp:21;32;40
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: \views\courses\form.ctp:21;32;40
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: \views\courses\form.ctp:23
 msgid "Allow others to freely redistribute this course?"
-msgstr ""
+msgstr "是否允许他人免费发布此课程"
 
 #: \views\courses\form.ctp:23
 msgid "If you allow your course to be freely redistributable, it will be under a Creative Commons license. This requires attribution to the author(s) of the course but provides freedoms that will make it easier for others to disseminate the content. You can learn more about Creative Commons licenses at"
@@ -582,7 +566,7 @@ msgstr ""
 
 #: \views\courses\form.ctp:32
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "是的，只要他们平均分摊"
 
 #: \views\courses\form.ctp:34
 msgid "Allow others to adapt and modify redistributions of this course?"
@@ -590,18 +574,18 @@ msgstr ""
 
 #: \views\courses\form.ctp:42
 msgid "Allow others to make commercial use of redistributions of this course?"
-msgstr ""
+msgstr "是否允许他人"
 
 #: \views\courses\form.ctp:51
 #: \views\discussion\forum_form.ctp:7
 #: \views\glossary\form.ctp:16
 #: \views\groups\form.ctp:58
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: \views\courses\form.ctp:59
 msgid "Custom CSS"
-msgstr ""
+msgstr "定制CSS"
 
 #: \views\courses\index.ctp:13
 #: \views\courses\table.ctp:26
@@ -609,7 +593,7 @@ msgstr ""
 #: \views\elements\user_menu.ctp:2
 #: \views\facilitated_classes\catalogue.ctp:32
 msgid "Course Catalogue"
-msgstr "当然目录"
+msgstr "课程目录"
 
 #: \views\courses\table.ctp:6
 #: \views\facilitators\table.ctp:4
@@ -618,20 +602,20 @@ msgstr "当然目录"
 #: \views\groups\table.ctp:5
 #: \views\plugins\table.ctp:5
 msgid "Name"
-msgstr ""
+msgstr "姓名"
 
 #: \views\courses\tests.ctp:5
 msgid "Tests"
-msgstr ""
+msgstr "测试"
 
 #: \views\courses\rss\recent.ctp:3
 #: \views\layouts\head.ctp:24
 msgid "Recently Published Courses"
-msgstr ""
+msgstr "最近发布的课程"
 
 #: \views\discussion\add_forum.ctp:13
 msgid "Add Forum"
-msgstr ""
+msgstr "添加论坛"
 
 #: \views\discussion\add_topic.ctp:13
 msgid "Add Topic"
@@ -639,81 +623,79 @@ msgstr ""
 
 #: \views\discussion\forum.ctp:8
 msgid "Back to list of forums"
-msgstr ""
+msgstr "返回论坛列表"
 
 #: \views\discussion\topic.ctp:8
 msgid "Back to forum"
-msgstr ""
+msgstr "返回论坛"
 
 #: \views\discussion\topic.ctp:63
 msgid "Reply"
-msgstr ""
+msgstr "答复"
 
 #: \views\discussion\topic.ctp:68
 msgid "Post"
-msgstr ""
+msgstr "发布"
 
 #: \views\elements\answer_matching.ctp:18
 #: \views\elements\answer_multiple_choice.ctp:13
 #: \views\elements\answer_order.ctp:17
 msgid "Are you sure you want to delete this answer?"
-msgstr ""
+msgstr "您是否确定要删除此答案？"
 
 #: \views\elements\answer_order.ctp:21
 #: \views\elements\question.ctp:25
 #: \views\elements\textarea.ctp:20
 msgid "Move up"
-msgstr ""
+msgstr "上移"
 
 #: \views\elements\assessment.ctp:21
 #: \views\elements\page_question.ctp:25
 #: \views\grades\index.ctp:7
 #: \views\pages\view.ctp:65
 msgid "Grade"
-msgstr ""
+msgstr "得分"
 
 #: \views\elements\breadcrumbs.ctp:13
 msgid "Home"
 msgstr "首页"
 
 #: \views\elements\class_menu.ctp:4
-#, fuzzy
 msgid "Class Home"
-msgstr "当然首页"
+msgstr "课堂首页"
 
 #: \views\elements\class_menu.ctp:8
 #: \views\notebook\index.ctp:23
 msgid "Notebook"
-msgstr ""
+msgstr "记事本"
 
 #: \views\elements\class_menu.ctp:9
 msgid "Discussion Forums"
-msgstr ""
+msgstr "论坛"
 
 #: \views\elements\class_menu.ctp:10
 msgid "Chat"
-msgstr ""
+msgstr "聊天"
 
 #: \views\elements\class_menu.ctp:11
 msgid "Grades"
-msgstr ""
+msgstr "成绩"
 
 #: \views\elements\class_menu.ctp:12
-#, fuzzy
 msgid "Configure Class"
-msgstr "配置过程"
+msgstr "配置课堂"
 
 #: \views\elements\course_audio.ctp:2
 msgid "Subscribe via iTunes"
-msgstr ""
+msgstr "从 iTunes 预定"
 
 #: \views\elements\course_audio.ctp:3
 msgid "RSS"
-msgstr ""
+msgstr "RSS阅读器"
 
 #: \views\elements\course_menu.ctp:3
 msgid "Course Home"
-msgstr "当然首页"
+msgstr "课程首页"
 
 #: \views\elements\course_menu.ctp:13
 msgid "Export Course"
@@ -721,37 +703,35 @@ msgstr "出口课程"
 
 #: \views\elements\group_menu.ctp:3
 #: \views\elements\group_menu2.ctp:2
-#, fuzzy
 msgid "Group Home"
-msgstr "当然首页"
+msgstr "团体首页"
 
 #: \views\elements\group_menu.ctp:7
 #: \views\elements\group_menu2.ctp:6
-#, fuzzy
 msgid "Configure Group"
-msgstr "配置过程"
+msgstr "团体设置"
 
 #: \views\elements\group_menu2.ctp:3
 #: \views\facilitated_classes\table.ctp:27
 msgid "Facilitated Classes"
-msgstr ""
+msgstr "有辅导员的课程"
 
 #: \views\elements\group_menu2.ctp:4
 #: \views\facilitators\table.ctp:20
 msgid "Facilitators"
-msgstr ""
+msgstr "辅导员"
 
 #: \views\elements\lesson_navigation.ctp:23
 msgid "Uncategorized Lessons"
-msgstr ""
+msgstr "未分类课程"
 
 #: \views\elements\lesson_navigation_lesson.ctp:19
 msgid "Uncategorized Lesson Items"
-msgstr ""
+msgstr "未分类的课项"
 
 #: \views\elements\lesson_navigation_lesson.ctp:48
 msgid "There is no content in this lesson"
-msgstr ""
+msgstr "此课中内容为空"
 
 #: \views\elements\lessons_buttons.ctp:8
 msgid "Re-order"
@@ -767,46 +747,46 @@ msgstr "电子邮箱，学生证，或公开身分"
 #: \views\install\first_user.ctp:18
 #: \views\register\index.ctp:12
 msgid "Password"
-msgstr ""
+msgstr "密码"
 
 #: \views\elements\login.ctp:15
 #: \views\group_administrators\login.ctp:14
 msgid "Login"
-msgstr ""
+msgstr "登录"
 
 #: \views\elements\login.ctp:17
 msgid "Forgot your login information?"
-msgstr ""
+msgstr "忘记了您的登录信息？"
 
 #: \views\elements\login.ctp:18
 msgid "New student?"
-msgstr "新的学生吗？"
+msgstr "新学员吗？"
 
 #: \views\elements\news_items.ctp:8
 msgid "Posted"
-msgstr ""
+msgstr "已发布"
 
 #: \views\elements\offline_page.ctp:69
 #: \views\pages\view.ctp:80
 msgid "Previous page"
-msgstr ""
+msgstr "上一页"
 
 #: \views\elements\offline_page.ctp:75
 #: \views\pages\view.ctp:86
 msgid "Next page"
-msgstr ""
+msgstr "下一页"
 
 #: \views\elements\page_section.ctp:33
 msgid "Add Question"
-msgstr ""
+msgstr "添加问题"
 
 #: \views\elements\page_section.ctp:37
 msgid "Add Content"
-msgstr ""
+msgstr "添加内容"
 
 #: \views\elements\primary_column.ctp:11
 msgid "Register as New Student"
-msgstr "注册成为新的学生"
+msgstr "注册成为新学员"
 
 #: \views\elements\primary_column.ctp:39
 #: \views\panel\administration_index.ctp:6
@@ -815,24 +795,24 @@ msgstr "网站管理"
 
 #: \views\elements\question.ctp:21
 msgid "Are you sure you want to delete this question?"
-msgstr ""
+msgstr "您是否确定快要删除此问题？"
 
 #: \views\elements\question.ctp:27
 #: \views\elements\textarea.ctp:21
 msgid "Move down"
-msgstr ""
+msgstr "下移"
 
 #: \views\elements\question.ctp:59
 msgid "Multiple choice"
-msgstr ""
+msgstr "综合选择"
 
 #: \views\elements\question.ctp:60
 msgid "True/false"
-msgstr ""
+msgstr "正确/错误"
 
 #: \views\elements\question.ctp:61
 msgid "Matching"
-msgstr ""
+msgstr "搭配"
 
 #: \views\elements\question.ctp:62
 msgid "Ordered List"
@@ -840,38 +820,36 @@ msgstr ""
 
 #: \views\elements\question.ctp:63
 msgid "Fill in the blank"
-msgstr ""
+msgstr "填空"
 
 #: \views\elements\question.ctp:64
-#, fuzzy
 msgid "Essay"
-msgstr "词汇"
+msgstr "短文？？？？？？？？？？？"
 
 #: \views\elements\question.ctp:77;116;202
 #: \views\helpers\open_document.php:229
-#, fuzzy
 msgid "Answers"
-msgstr "用户"
+msgstr "答案"
 
 #: \views\elements\question.ctp:157
 msgid "Headers"
-msgstr ""
+msgstr "标题"
 
 #: \views\elements\question.ctp:226
 msgid "Explanation"
-msgstr ""
+msgstr "解释"
 
 #: \views\elements\question.ctp:243
 #: \views\elements\textarea.ctp:44
 #: \views\pages\edit.ctp:40
 msgid "Insert Question"
-msgstr ""
+msgstr "插入问题"
 
 #: \views\elements\question.ctp:244
 #: \views\elements\textarea.ctp:47
 #: \views\pages\edit.ctp:43
 msgid "Insert Content"
-msgstr ""
+msgstr "插入内容"
 
 #: \views\elements\question_essay.ctp:3
 #: \views\elements\question_fill_in_the_blank.ctp:3
@@ -879,14 +857,14 @@ msgstr ""
 #: \views\elements\question_multiple_choice.ctp:3
 #: \views\elements\question_order.ctp:3
 msgid "Incorrect. Try again."
-msgstr ""
+msgstr "不正确！请重试。"
 
 #: \views\elements\question_essay.ctp:4
 #: \views\elements\question_matching.ctp:4
 #: \views\elements\question_multiple_choice.ctp:4
 #: \views\elements\question_order.ctp:4
 msgid "You are partially correct. Try again."
-msgstr ""
+msgstr "部分正确！请重试。"
 
 #: \views\elements\question_essay.ctp:5
 #: \views\elements\question_fill_in_the_blank.ctp:4
@@ -894,7 +872,7 @@ msgstr ""
 #: \views\elements\question_multiple_choice.ctp:5
 #: \views\elements\question_order.ctp:5
 msgid "Correct!"
-msgstr ""
+msgstr "正确！"
 
 #: \views\elements\question_essay.ctp:6
 #: \views\elements\question_fill_in_the_blank.ctp:5
@@ -902,7 +880,7 @@ msgstr ""
 #: \views\elements\question_multiple_choice.ctp:6
 #: \views\elements\question_order.ctp:6
 msgid "You are out of tries. The correct answer is shown."
-msgstr ""
+msgstr "全部输入答案为错。请看正确答案。"
 
 #: \views\elements\question_essay.ctp:24
 #: \views\elements\question_fill_in_the_blank.ctp:12
@@ -910,37 +888,37 @@ msgstr ""
 #: \views\elements\question_multiple_choice.ctp:43
 #: \views\elements\question_order.ctp:20
 msgid "Check answer"
-msgstr ""
+msgstr "核对答案"
 
 #: \views\elements\question_true_false.ctp:3;12
 #: \views\helpers\open_document.php:132
 msgid "False"
-msgstr ""
+msgstr "错误"
 
 #: \views\elements\question_true_false.ctp:3;12
 #: \views\helpers\open_document.php:132
 msgid "True"
-msgstr ""
+msgstr "正确"
 
 #: \views\elements\question_true_false.ctp:4
 msgid "Correct! The answer is true."
-msgstr ""
+msgstr "正确！答案是“正确”。"
 
 #: \views\elements\question_true_false.ctp:5
 msgid "Correct! The answer is false."
-msgstr ""
+msgstr "正确！答案是“错误”。"
 
 #: \views\elements\question_true_false.ctp:6
 msgid "Incorrect. The answer is true."
-msgstr ""
+msgstr "不正确！请看正确答案。"
 
 #: \views\elements\question_true_false.ctp:7
 msgid "Incorrect. The answer is false."
-msgstr ""
+msgstr "回答不正确。正确的答案是“错”"
 
 #: \views\elements\recordset.ctp:114
 msgid "Page"
-msgstr ""
+msgstr "页"
 
 #: \views\elements\super_admin_menu.ctp:3
 msgid "Groups"
@@ -948,7 +926,7 @@ msgstr "团体"
 
 #: \views\elements\super_admin_menu.ctp:5
 msgid "Group Administrators"
-msgstr "组管理员"
+msgstr "团体管理员"
 
 #: \views\elements\super_admin_menu.ctp:7
 msgid "Users"
@@ -960,15 +938,15 @@ msgstr "插件"
 
 #: \views\elements\textarea.ctp:17
 msgid "Are you sure you want to delete this content?"
-msgstr ""
+msgstr "您是否确定要删除此内容？"
 
 #: \views\elements\topics_and_pages_tutorial.ctp:3
 msgid "Here you can manage the topics and pages that belong to a lesson. To reorder a topic or page, simply drag and drop it. To edit a topic or page, either double-click it or click \"edit\" after selecting it."
-msgstr ""
+msgstr "您在这里可以编辑"
 
 #: \views\elements\units_and_lessons_tutorial.ctp:3
 msgid "Here you can edit the units and lessons that belong to a course. To reorder a unit or lesson, simply drag and drop it. To edit a lesson, either double-click it or click \"edit\" after selecting it."
-msgstr ""
+msgstr "您在这里可以编辑一个课程中的单元（unit）和每节课（lesson）"
 
 #: \views\elements\units_and_lessons_tutorial.ctp:6
 msgid "Screencast Tutorial"
@@ -976,7 +954,7 @@ msgstr ""
 
 #: \views\elements\user_bar.ctp:5
 msgid "Logout"
-msgstr "登出"
+msgstr "退出登录"
 
 #: \views\elements\user_menu.ctp:3
 msgid "My Profile"
@@ -985,35 +963,35 @@ msgstr "我的档案"
 #: \views\elements\user_menu.ctp:4
 #: \views\groups\register.ctp:10
 msgid "Register Your Group"
-msgstr "注册你的集团"
+msgstr "注册您的团体"
 
 #: \views\export\generate_archive.ctp:4
 msgid "Generating Archive"
-msgstr ""
+msgstr "生成档案文件"
 
 #: \views\export\generate_odt.ctp:11
 msgid "Generating ODT"
-msgstr ""
+msgstr "生成 ODT 文档"
 
 #: \views\export\index.ctp:8
 msgid "Choose an Export Format"
-msgstr ""
+msgstr "选择文档输出格式"
 
 #: \views\export\index.ctp:12
 msgid "OpenDocument Text (.odt)"
-msgstr ""
+msgstr "ODT 文档"
 
 #: \views\export\index.ctp:27
 msgid "Archive (.zip)"
-msgstr ""
+msgstr "压缩的档案文件 (.zip)"
 
 #: \views\export\index.ctp:43
 msgid "Portable Document Format (.pdf)"
-msgstr ""
+msgstr "（.PDF）格式"
 
 #: \views\facilitated_classes\add.ctp:12
 msgid "Add Facilitated Class"
-msgstr ""
+msgstr "添加有辅导员的课程"
 
 #: \views\facilitated_classes\catalogue.ctp:8
 #: \views\group_administrators\administration_add.ctp:22
@@ -1025,21 +1003,20 @@ msgstr "团体"
 
 #: \views\facilitated_classes\catalogue.ctp:9
 #: \views\facilitators\form.ctp:8;19
-#, fuzzy
 msgid "Courses"
-msgstr "新课程"
+msgstr "课程"
 
 #: \views\facilitated_classes\catalogue.ctp:10
 msgid "Facilitation"
-msgstr ""
+msgstr "课程辅导"
 
 #: \views\facilitated_classes\edit.ctp:3
 msgid "Edit Facilitated Class"
-msgstr ""
+msgstr "修改辅导班级"
 
 #: \views\facilitators\add.ctp:4
 msgid "Add Facilitator"
-msgstr ""
+msgstr "添加辅导员"
 
 #: \views\facilitators\add.ctp:14
 #: \views\facilitators\table.ctp:3
@@ -1050,21 +1027,20 @@ msgstr ""
 #: \views\register\index.ctp:8
 #: \views\users\form.ctp:3
 #: \views\users\reset_password.ctp:12
-#, fuzzy
 msgid "Username"
-msgstr "用户"
+msgstr "用户名"
 
 #: \views\facilitators\add.ctp:20
 msgid "You must first select a valid username."
-msgstr ""
+msgstr "您必须首先选择一个用户名"
 
 #: \views\facilitators\form.ctp:16
 msgid "How is this class facilitated?"
-msgstr ""
+msgstr "这个班级的辅导方式"
 
 #: \views\facilitators\form.ctp:29
 msgid "Begin date"
-msgstr ""
+msgstr "开始日期"
 
 #: \views\facilitators\form.ctp:39
 msgid "Max capacity (leave blank for no limit)"
@@ -1072,34 +1048,32 @@ msgstr ""
 
 #: \views\facilitators\register.ctp:8
 msgid "Facilitator Application"
-msgstr ""
+msgstr "申请成为辅导员"
 
 #: \views\facilitators\register.ctp:10
 msgid "You can apply here to become a facilitator for "
-msgstr ""
+msgstr "您可在此申请成为一名辅导员，辅导的课程为："
 
 #: \views\facilitators\register.ctp:11
 msgid "You will later receive an e-mail indicating whether the group administrator approved you."
-msgstr ""
+msgstr "您稍后会收到一封电子邮件，说明团体管理员是否批准了您的申请。"
 
 #: \views\facilitators\register.ctp:17
 msgid "Apply"
-msgstr ""
+msgstr "申请"
 
 #: \views\files\index.ctp:45
-#, fuzzy
 msgid "Add File(s)"
-msgstr "媒体档案"
+msgstr "添加媒体档案"
 
 #: \views\files\index.ctp:48
 msgid "Cancel File Upload(s)"
-msgstr ""
+msgstr "取消文"
 
 #: \views\glossary\add.ctp:5
 #: \views\glossary\edit.ctp:6
-#, fuzzy
 msgid "Add Glossary Term"
-msgstr "词汇"
+msgstr "词汇？？？？？？？？？？？？？"
 
 #: \views\glossary\edit.ctp:12
 msgid "Are you sure you want to delete this glossary term?"
@@ -1110,14 +1084,12 @@ msgid "Term"
 msgstr ""
 
 #: \views\glossary\index.ctp:22
-#, fuzzy
 msgid "Add Term"
-msgstr "用户"
+msgstr "用户？？？？？？？？？？？？？？？？？"
 
 #: \views\glossary\view.ctp:10
-#, fuzzy
 msgid "All Glossary Terms"
-msgstr "词汇"
+msgstr "所有词汇"
 
 #: \views\grades\index.ctp:7
 msgid "Item"
@@ -1125,16 +1097,15 @@ msgstr ""
 
 #: \views\grades\index.ctp:20
 msgid "Your Grades"
-msgstr ""
+msgstr "您的成绩"
 
 #: \views\grading\index.ctp:5
 msgid "Grading"
-msgstr ""
+msgstr "评分"
 
 #: \views\group_administrators\administration_add.ctp:12
-#, fuzzy
 msgid "Add Group Administrator"
-msgstr "组管理员"
+msgstr "添加团体管理员"
 
 #: \views\group_administrators\administration_add.ctp:16
 #: \views\group_administrators\table.ctp:5
@@ -1143,31 +1114,27 @@ msgstr "组管理员"
 #: \views\users\form.ctp:7
 #: \views\users\table.ctp:7
 msgid "Email"
-msgstr ""
+msgstr "电子邮件"
 
 #: \views\group_administrators\administration_edit.ctp:13
-#, fuzzy
 msgid "Edit Group Administrator"
-msgstr "组管理员"
+msgstr "更改团体管理员"
 
 #: \views\groups\administration_add.ctp:14
-#, fuzzy
 msgid "Add Group"
-msgstr "团体"
+msgstr "添加团体"
 
 #: \views\groups\administration_edit.ctp:13
-#, fuzzy
 msgid "Edit Group"
-msgstr "我的社群"
+msgstr "修改团体资料"
 
 #: \views\groups\administration_edit.ctp:23
 msgid "Are you sure you sure you want to delete this?"
-msgstr ""
+msgstr "您是否确定要删除此项？"
 
 #: \views\groups\form.ctp:3
-#, fuzzy
 msgid "Group name"
-msgstr "团体"
+msgstr "团体名称"
 
 #: \views\groups\form.ctp:9
 msgid "This is part of what makes up the web address of a group on"
@@ -1179,104 +1146,102 @@ msgstr ""
 
 #: \views\groups\form.ctp:14
 msgid "Phone"
-msgstr ""
+msgstr "电话"
 
 #: \views\groups\form.ctp:18
 #: \views\profile\index.ctp:39
 #: \views\register\index.ctp:32
 #: \views\users\form.ctp:19
 msgid "Address 1"
-msgstr ""
+msgstr "地址1"
 
 #: \views\groups\form.ctp:22
 #: \views\profile\index.ctp:43
 #: \views\register\index.ctp:36
 #: \views\users\form.ctp:23
 msgid "Address 2"
-msgstr ""
+msgstr "地址2"
 
 #: \views\groups\form.ctp:26
 #: \views\profile\index.ctp:47
 #: \views\register\index.ctp:40
 #: \views\users\form.ctp:27
 msgid "City"
-msgstr ""
+msgstr "城市"
 
 #: \views\groups\form.ctp:30
 #: \views\profile\index.ctp:51
 #: \views\register\index.ctp:44
 #: \views\users\form.ctp:31
 msgid "State"
-msgstr ""
+msgstr "州（省）"
 
 #: \views\groups\form.ctp:34
 #: \views\profile\index.ctp:55
 msgid "Postal code"
-msgstr ""
+msgstr "邮编"
 
 #: \views\groups\form.ctp:38
-#, fuzzy
 msgid "Logo"
-msgstr "登出"
+msgstr "标识"
 
 #: \views\groups\form.ctp:51
 msgid "External web address"
-msgstr ""
+msgstr "外部网址"
 
 #: \views\groups\form.ctp:51
 msgid "This should be the organization's official web site. If a group is named 'My Organization', its external web address might be"
-msgstr ""
+msgstr "此项应该是这个组织的正式网站。如果一个团体被命名为“我的组织”，其外部网址可能为"
 
 #: \views\groups\form.ctp:65
 msgid "Final Grade Display"
-msgstr ""
+msgstr "最终成绩显示"
 
 #: \views\groups\register.ctp:12
 msgid "We're glad you have considered using Internet Biblical Seminary's learning platform for your ministry."
-msgstr ""
+msgstr "我们很高兴您考虑使用“网络圣经学院”的学习平台为您的事工服务。"
 
 #: \views\groups\register.ctp:13
 msgid "We will review your submission, and you will be notified by email indicating whether your group has been accepted."
-msgstr ""
+msgstr "我们将会审核您提交的资料。您的团体是否被接受，请查看电子邮件的通知。"
 
 #: \views\groups\register.ctp:20
 msgid "Submit"
-msgstr ""
+msgstr "提交"
 
 #: \views\helpers\open_document.php:39
 msgid "Appendix"
-msgstr ""
+msgstr "附录"
 
 #: \views\install\configuration.ctp:6
-#, fuzzy
 msgid "Site Configuration"
-msgstr "网站管理"
+msgstr "网站设置"
 
 #: \views\install\configuration.ctp:10
 msgid "Site Name"
-msgstr ""
+msgstr "网站名称"
 
 #: \views\install\configuration.ctp:15
 msgid "Domain"
-msgstr ""
+msgstr "所属领域"
 
 #: \views\install\configuration.ctp:19
 #: \views\install\database.ctp:31
 #: \views\install\first_user.ctp:30
 msgid "Next"
-msgstr ""
+msgstr "下一步"
 
 #: \views\install\congratulations.ctp:4
 msgid "Congratulations!"
-msgstr ""
+msgstr "祝贺您！"
 
 #: \views\install\congratulations.ctp:5
 msgid "You are ready to begin using Great Commission LMS. You will now be redirected to the front page."
-msgstr ""
+msgstr "您可以开始使用“大使命学习管理系统（Great Commission LMS）”。现在把您转到首页。"
 
 #: \views\install\database.ctp:10
 msgid "Database Configuration"
-msgstr ""
+msgstr "数据库设置"
 
 #: \views\install\database.ctp:14
 msgid "Host"
@@ -1284,125 +1249,123 @@ msgstr ""
 
 #: \views\install\database.ctp:27
 msgid "Database (must exist)"
-msgstr ""
+msgstr "数据库（必须已经存在"
 
 #: \views\install\first_user.ctp:6
 msgid "First User"
-msgstr ""
+msgstr "初次的用户"
 
 #: \views\install\first_user.ctp:10
 msgid "E-mail"
-msgstr ""
+msgstr "电子邮件"
 
 #: \views\install\first_user.ctp:23
 #: \views\register\index.ctp:24
 #: \views\users\form.ctp:11
 #: \views\users\table.ctp:5
 msgid "First Name"
-msgstr ""
+msgstr "名字"
 
 #: \views\install\first_user.ctp:27
 #: \views\register\index.ctp:28
 #: \views\users\form.ctp:15
 #: \views\users\table.ctp:6
 msgid "Last Name"
-msgstr ""
+msgstr "姓氏"
 
 #: \views\install\left_column.ctp:4
 msgid "1. Database"
-msgstr ""
+msgstr "1.数据库"
 
 #: \views\install\left_column.ctp:5
-#, fuzzy
 msgid "2. Site Configuration"
-msgstr "网站管理"
+msgstr "2. 网站管理"
 
 #: \views\install\left_column.ctp:6
 msgid "3. First User"
-msgstr ""
+msgstr "3. 初次的用户"
 
 #: \views\pages\edit.ctp:24
 msgid "Edit Page"
-msgstr ""
+msgstr "修改页"
 
 #: \views\pages\edit.ctp:29
 msgid "Every question must have a title."
-msgstr ""
+msgstr "每个问题都必须有一个标题"
 
 #: \views\pages\edit.ctp:94
 msgid "Are you sure you want to delete this page?"
-msgstr ""
+msgstr "您是否确定要删除此项？"
 
 #: \views\plugins\table.ctp:6
 msgid "Version"
-msgstr ""
+msgstr "版本"
 
 #: \views\plugins\table.ctp:7
 msgid "Activated"
-msgstr ""
+msgstr "激活"
 
 #: \views\profile\index.ctp:6
-#, fuzzy
 msgid "Your Profile"
-msgstr "我的档案"
+msgstr "您的个人信息"
 
 #: \views\profile\index.ctp:20
 msgid "First name"
-msgstr ""
+msgstr "名字"
 
 #: \views\profile\index.ctp:25
 msgid "Last name"
-msgstr ""
+msgstr "姓氏"
 
 #: \views\profile\index.ctp:29
 msgid "New password"
-msgstr ""
+msgstr "新密码"
 
 #: \views\profile\index.ctp:34
 msgid "Repeat new password"
-msgstr ""
+msgstr "重输密码"
 
 #: \views\profile\index.ctp:61
 #: \views\register\index.ctp:54
 msgid "Add me to the InternetSeminary.org mailing list."
-msgstr ""
+msgstr "请把我加入到“网络圣经学院——InternetSeminary.org”的通讯录中。"
 
 #: \views\register\index.ctp:4;57
 msgid "Register"
-msgstr ""
+msgstr "注册"
 
 #: \views\register\index.ctp:16
 msgid "Repeat Password"
-msgstr ""
+msgstr "重输密码"
 
 #: \views\register\index.ctp:48
 #: \views\users\form.ctp:35
 msgid "Postal Code"
-msgstr ""
+msgstr "邮政编码"
 
 #: \views\selenium\results.ctp:1
 msgid "Results posted to GCLMS.com/selenium"
-msgstr ""
+msgstr "结果发布到GCLMS.com/selenium"
 
 #: \views\student_center\index.ctp:15
 msgid "Welcome"
-msgstr ""
+msgstr "欢迎"
 
 #: \views\student_center\index.ctp:23
 msgid "The Internet Biblical Seminary is"
-msgstr ""
+msgstr "网络圣经学院（The Internet Biblical Seminary）"
 
 #: \views\student_center\index.ctp:25
 msgid "A place for you to learn and grow as a Christian"
-msgstr ""
+msgstr "是您作为一个基督徒学习和成长的地方"
 
 #: \views\student_center\index.ctp:26
 msgid "A hub for evangelical Christian e-learning"
-msgstr ""
+msgstr "是传福音的基督徒的网络学习中心"
 
 #: \views\student_center\index.ctp:27
 msgid "An area for your church, school, or mission agency to host courses and train your own people"
-msgstr ""
+msgstr "也是一片领域，您的教会或组织可以在这里举办课程，训练自己的工人。"
 
 #: \views\student_center\index.ctp:29
 msgid "To read our statement of faith, view the classroom environment, or learn how your group can freely participate, please see our"
@@ -1410,7 +1373,7 @@ msgstr ""
 
 #: \views\student_center\index.ctp:29
 msgid "introductory course"
-msgstr ""
+msgstr "入门课程"
 
 #: \views\student_center\index.ctp:33
 msgid "New Courses"
@@ -1418,29 +1381,29 @@ msgstr "新课程"
 
 #: \views\student_center\index.ctp:46
 msgid "Participating Groups"
-msgstr ""
+msgstr "参与的团体"
 
 #: \views\users\administration_add.ctp:13
-#, fuzzy
 msgid "Add User"
-msgstr "用户"
+msgstr "添加用户"
 
 #: \views\users\administration_edit.ctp:12
 msgid "Edit User"
-msgstr ""
+msgstr "修改用户"
 
 #: \views\users\administration_edit.ctp:20
 msgid "Are you sure you sure you want to delete this user?"
-msgstr ""
+msgstr "您是否确定要删除此用户？"
 
 #: \views\users\reset_password.ctp:8
 msgid "Reset Your Password"
-msgstr ""
+msgstr "重置您的密码"
 
 #: \views\users\reset_password.ctp:15
 msgid "A new password will be sent to your e-mail address."
-msgstr ""
+msgstr "新密码将被送到您的电子邮箱中"
 
 #: \webroot\test.php:75
 msgid "Debug setting does not allow access to this url."
-msgstr ""
+msgstr "纠错设置不允许进入此网址"
+

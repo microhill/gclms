@@ -297,7 +297,7 @@ GCLMS.simpleTinyMCEConfig = {
 	mode: "none",
 	theme_advanced_toolbar_location : 'top',
 	theme_advanced_toolbar_align : 'left',
-	theme_advanced_buttons1 : 'bold,link',
+	theme_advanced_buttons1 : 'italic,link',
 	theme_advanced_buttons2 : '',
 	file_browser_callback : 'GCLMS.fileBrowser',
 	width: '100%',
@@ -305,7 +305,8 @@ GCLMS.simpleTinyMCEConfig = {
     language: document.body.getAttribute('gclms:language'),
 	cleanup_serializer: 'xml',
 	button_tile_map: true,
-	theme_advanced_blockformats : ''
+	theme_advanced_blockformats : '',
+	skin: 'gclms'
 }
 
 GCLMS.advancedTinyMCEConfig = {

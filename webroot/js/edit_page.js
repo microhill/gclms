@@ -186,51 +186,6 @@ GCLMS.PagesController = {
 			}
 		});
 
-		//tinyMCE.execCommand('mceAddControl', false, adjacentPageItem.down('textarea').id);
-
-		/*
-		if(pageItem.hasClassName('gclms-textarea') && adjacentPageItem.hasClassName('gclms-question')) {
-			alert(pageItem.className);
-			if (pageItem.hasClassName('gclms-question')) {
-				alert('test');
-				tinyMCE.execCommand('mceRemoveControl', false, pageItem.down('textarea').id);
-			}
-
-			if (this.hasClassName('gclms-move-down')) {
-				pageItem.insert({
-					before: adjacentPageItem
-				});
-			} else {
-				pageItem.insert({
-					after: adjacentPageItem
-				});
-			}
-			
-			if (pageItem.hasClassName('gclms-question')) {
-				tinyMCE.execCommand('mceAddControl', false, pageItem.down('textarea').id);
-			}
-		} else {
-			//alert(2);
-			if (pageItem.hasClassName('gclms-textarea')) {
-				tinyMCE.execCommand('mceRemoveControl', false, pageItem.down('textarea').id);
-			}
-
-			if (this.hasClassName('gclms-move-down')) {
-				adjacentPageItem.insert({
-					after: pageItem
-				});
-			} else {
-				adjacentPageItem.insert({
-					before: pageItem
-				});
-			}
-
-			if (pageItem.hasClassName('gclms-textarea')) {
-				tinyMCE.execCommand('mceAddControl', false, pageItem.down('textarea').id);
-			}
-		}
-		*/
-
 		GCLMS.PagesController.configureMoveUpAndMoveDownButtons();
 	},
 	

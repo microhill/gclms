@@ -164,7 +164,9 @@ GCLMS.PagesController = {
 			return false;
 		}
 		
-		tinyMCE.execCommand('mceRemoveControl', false, adjacentPageItem.down('textarea').id);
+		adjacentPageItem.select('textarea').each(function(textarea) {
+			tinyMCE.execCommand('mceRemoveControl', false, textarea.id);
+		});
 
 		if (this.hasClassName('gclms-move-down')) {
 			pageItem.insert({
@@ -175,12 +177,14 @@ GCLMS.PagesController = {
 				after: adjacentPageItem
 			});
 		}
-
-		if(adjacentPageItem.hasClassName('gclms-textarea')) {
-			GCLMS.PagesController.enableAdvancedTinyMCE.bind(adjacentPageItem.down('textarea'))();
-		} else {
-			GCLMS.PagesController.enableSimpleTinyMCE.bind(adjacentPageItem.down('textarea'))();
-		}
+		
+		adjacentPageItem.select('textarea').each(function(textarea) {
+			if(adjacentPageItem.hasClassName('gclms-textarea')) {
+				GCLMS.PagesController.enableAdvancedTinyMCE.bind(textarea)();
+			} else {
+				GCLMS.PagesController.enableSimpleTinyMCE.bind(textarea)();
+			}
+		});
 
 		//tinyMCE.execCommand('mceAddControl', false, adjacentPageItem.down('textarea').id);
 

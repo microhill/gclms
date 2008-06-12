@@ -179,10 +179,10 @@ GCLMS.PagesController = {
 		}
 		
 		adjacentPageItem.select('textarea').each(function(textarea) {
-			if(adjacentPageItem.hasClassName('gclms-textarea')) {
-				GCLMS.PagesController.enableAdvancedTinyMCE.bind(textarea)();
-			} else {
+			if(textarea.hasClassName('gclms-simple-tinymce-enabled')) {
 				GCLMS.PagesController.enableSimpleTinyMCE.bind(textarea)();
+			} else {
+				GCLMS.PagesController.enableAdvancedTinyMCE.bind(textarea)();
 			}
 		});
 

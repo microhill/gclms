@@ -87,7 +87,8 @@
 	background-color: inherit;
 }
 
-.gclms-textarea td {
+.gclms-textarea td,
+.gclms-question td.gclms-question-title {
 	padding: 0;
 }
 

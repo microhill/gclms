@@ -9,7 +9,7 @@ GCLMS.PagesController = {
 		
 		this.replace(GCLMS.Views.get('questionExplanation').interpolate({id: questionId}));
 		
-		GCLMS.PagesController.enableTinyMCE.bind(div.down('textarea.gclms-question-explanation'))();
+		GCLMS.PagesController.enableAdvancedTinyMCE.bind(div.down('textarea.gclms-question-explanation'))();
 		div.down('tr.gclms-question-explanation td').addClassName('gclms-filled');
 	},
 	
@@ -22,11 +22,11 @@ GCLMS.PagesController = {
 		this.replace(GCLMS.Views.get('multipleChoiceAnswerExplanation').interpolate({answer_id: answerId,question_id: questionId}));
 		
 		GCLMS.advancedTinyMCEConfig.height = '75px';
-		GCLMS.PagesController.enableTinyMCE.bind(div.down('textarea.gclms-answer-explanation'))();
+		GCLMS.PagesController.enableAdvancedTinyMCE.bind(div.down('textarea.gclms-answer-explanation'))();
 		div.down('tr.gclms-answer-explanation td').addClassName('gclms-filled');
 	},
 
-	enableTinyMCE: function() {
+	enableAdvancedTinyMCE: function() {
 		tinyMCE.settings = GCLMS.advancedTinyMCEConfig;
 		tinyMCE.execCommand('mceAddControl', true, this.id);
 		//GCLMS.advancedTinyMCEConfig.height = '250px';
@@ -156,27 +156,57 @@ GCLMS.PagesController = {
 	
 	moveItem: function(event) {
 		event.stop();
-		pageItem = this.up('div.gclms-page-item');
+		var pageItem = this.up('div.gclms-page-item');
 
 		if (this.hasClassName('gclms-move-down') && !(adjacentPageItem = pageItem.next('div.gclms-page-item'))) {
 			return false;
 		} else if (this.hasClassName('gclms-move-up') && !(adjacentPageItem = pageItem.previous('div.gclms-page-item'))) {
 			return false;
 		}
+		
+		tinyMCE.execCommand('mceRemoveControl', false, adjacentPageItem.down('textarea').id);
 
-		if(pageItem.hasClassName('textarea') && adjacentPageItem.hasClassName('gclms-question')) {
-			// A trick to avoid reloading the TinyMCE component if possible
-			if (this.hasClassName('moveDown')) {
+		if (this.hasClassName('gclms-move-down')) {
+			pageItem.insert({
+				before: adjacentPageItem
+			});
+		} else {
+			pageItem.insert({
+				after: adjacentPageItem
+			});
+		}
+
+		if(adjacentPageItem.hasClassName('gclms-textarea')) {
+			GCLMS.PagesController.enableAdvancedTinyMCE.bind(adjacentPageItem.down('textarea'))();
+		} else {
+			GCLMS.PagesController.enableSimpleTinyMCE.bind(adjacentPageItem.down('textarea'))();
+		}
+
+		//tinyMCE.execCommand('mceAddControl', false, adjacentPageItem.down('textarea').id);
+
+		/*
+		if(pageItem.hasClassName('gclms-textarea') && adjacentPageItem.hasClassName('gclms-question')) {
+			alert(pageItem.className);
+			if (pageItem.hasClassName('gclms-question')) {
+				alert('test');
+				tinyMCE.execCommand('mceRemoveControl', false, pageItem.down('textarea').id);
+			}
+
+			if (this.hasClassName('gclms-move-down')) {
 				pageItem.insert({
 					before: adjacentPageItem
 				});
-			}
-			else {
+			} else {
 				pageItem.insert({
 					after: adjacentPageItem
 				});
 			}
+			
+			if (pageItem.hasClassName('gclms-question')) {
+				tinyMCE.execCommand('mceAddControl', false, pageItem.down('textarea').id);
+			}
 		} else {
+			//alert(2);
 			if (pageItem.hasClassName('gclms-textarea')) {
 				tinyMCE.execCommand('mceRemoveControl', false, pageItem.down('textarea').id);
 			}
@@ -185,8 +215,7 @@ GCLMS.PagesController = {
 				adjacentPageItem.insert({
 					after: pageItem
 				});
-			}
-			else {
+			} else {
 				adjacentPageItem.insert({
 					before: pageItem
 				});
@@ -196,6 +225,7 @@ GCLMS.PagesController = {
 				tinyMCE.execCommand('mceAddControl', false, pageItem.down('textarea').id);
 			}
 		}
+		*/
 
 		GCLMS.PagesController.configureMoveUpAndMoveDownButtons();
 	},
@@ -409,7 +439,7 @@ GCLMS.Triggers.update({
 
 		'.gclms-page-item' : {
 			':loaded': 	GCLMS.PagesController.configureMoveUpAndMoveDownButtons,
-			'textarea.gclms-tinymce-enabled': GCLMS.PagesController.enableTinyMCE,
+			'textarea.gclms-tinymce-enabled': GCLMS.PagesController.enableAdvancedTinyMCE,
 			'textarea.gclms-simple-tinymce-enabled': GCLMS.PagesController.enableSimpleTinyMCE,
 			'.gclms-move-down:click,.gclms-move-up:click': GCLMS.PagesController.moveItem,
 			'.gclms-insert-textarea:click': GCLMS.PagesController.insertTextareaBelowPageItem,

@@ -88,8 +88,13 @@
 }
 
 .gclms-textarea td,
-.gclms-question td.gclms-question-title {
+.gclms-question td.gclms-question-title,
+.gclms-question td.gclms-answer-title {
 	padding: 0;
+}
+
+.gclms-question .gclmsSkin table.mceLayout tr.mceLast td {
+	border-bottom: 0;
 }
 
 .gclms-textarea table.mceEditor {

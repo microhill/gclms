@@ -306,7 +306,8 @@ GCLMS.simpleTinyMCEConfig = {
 	cleanup_serializer: 'xml',
 	button_tile_map: true,
 	theme_advanced_blockformats : '',
-	skin: 'gclms'
+	skin: 'gclms',
+	extended_valid_elements : 'a[name|href|target|title],em,i',
 }
 
 GCLMS.advancedTinyMCEConfig = {

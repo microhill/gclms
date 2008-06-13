@@ -18,12 +18,14 @@ if(empty($question_id) || empty($answer_id))
 			<th>
 				<?= $form->label('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text','Text'); ?>
 			</th>
-			<td>
-				<?= $form->text('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text',array(
+			<td class="gclms-answer-title">
+				<?= $form->input('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text',array(
 					'label' => false,
+					'rows' => 2,
 					'value' => @$answer['text1'],
 					'div' => false,
-					'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][text1]"
+					'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][text1]",
+					'class' => 'gclms-answer-title gclms-tinymce-disabled gclms-simple-tinymce-enabled'
 				)); ?>
 
 			</td>

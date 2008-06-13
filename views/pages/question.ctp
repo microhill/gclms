@@ -34,7 +34,7 @@ if(empty($question_id))
 					echo $form->label('Question.' . $question_id . '.title','Question');
 					?>
 				</th>
-				<td>
+				<td class="gclms-question-title">
 				<?
 				echo $form->input('Question.' . $question_id . '.title',array(
 					'label' => false,
@@ -160,38 +160,30 @@ if(empty($question_id))
 					<table class="gclms-tabular-form" cellspacing="0">
 						<tr>
 							<th>
-								<?
-								echo $form->label('Question.' . $question_id . '.left_column_header','Left Column');
-								?>
+								<?= $form->label('Question.' . $question_id . '.left_column_header','Left Column'); ?>
 							</th>
 							<th>
-								<?
-								echo $form->label('Question.' . $question_id . '.right_column_header','Right Column');
-								?>
+								<?= $form->label('Question.' . $question_id . '.right_column_header','Right Column'); ?>
 							</th>
 						</tr>
 						<tr>
 							<td class="gclms-column">
-								<?
-								echo $form->input('Question.' . $question_id . '.left_column_header',array(
+								<?= $form->input('Question.' . $question_id . '.left_column_header',array(
 									'label' =>  false,
 									'size' => 30,
 									'div' => false,
 									'value' => @$question['left_column_header'],
 									'name' => "data[Question][$question_id][left_column_header]"
-								));
-								?>
+								)); ?>
 							</td>
 							<td class="gclms-column">
-								<?
-								echo $form->input('Question.' . $question_id . '.right_column_header',array(
+								<?= $form->input('Question.' . $question_id . '.right_column_header',array(
 									'label' =>  false,
 									'size' => 30,
 									'div' => false,
 									'value' => @$question['right_column_header'],
 									'name' => "data[Question][$question_id][right_column_header]"
-								));
-								?>
+								)); ?>
 							</td>
 						</tr>
 					</table>
@@ -240,7 +232,16 @@ if(empty($question_id))
 		</tbody>
 	</table>
 	<p>
-		<button class="gclms-insert-question gclms-add"><? __('Insert Question') ?></button>
-		<button class="gclms-insert-textarea gclms-add"><? __('Insert Content') ?></button>
+		<?= $this->element('buttons', array('buttons' => array(
+			array(
+				'text' => 'Insert Question',
+				'class' => 'gclms-insert-question'
+			),
+			array(
+				'text' => 'Insert Content',
+				'class' => 'gclms-insert-textarea'
+			)
+		)));
+		?>
 	</p>
 </div>

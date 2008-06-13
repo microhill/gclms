@@ -40,11 +40,16 @@ if(empty($textarea_id) && !empty($textarea['id']))
         </tbody>
     </table>
     <p>
-        <button class="gclms-insert-question gclms-add">
-            <? __('Insert Question') ?>
-        </button>
-        <button class="gclms-insert-textarea gclms-add">
-            <? __('Insert Content') ?>
-        </button>
+		<?= $this->element('buttons', array('buttons' => array(
+			array(
+				'text' => 'Insert Question',
+				'class' => 'gclms-insert-question'
+			),
+			array(
+				'text' => 'Insert Content',
+				'class' => 'gclms-insert-textarea'
+			)
+		)));
+		?>
     </p>
 </div>

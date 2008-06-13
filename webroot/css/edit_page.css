@@ -46,7 +46,7 @@
 			padding: 0;
 		}
 	
-		.gclms-page-item table,
+		.gclms-page-item table.gclms-tabular-form,
 		.gclms-page-item textarea {
 			width: 100%;
 		}

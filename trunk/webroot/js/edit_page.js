@@ -356,7 +356,7 @@ GCLMS.PagesController = {
 		answersDiv.insert(GCLMS.Views.get('matchingAnswer').interpolate({answer_id: UUID.generate(),question_id: div.getAttribute('question:id')}));
 		answersDiv.displayAsBlock();
 		lastTable = answersDiv.select('table').last();
-		lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-page-item']['tr.gclms-matching']);
+		lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-question']['tr.gclms-matching']);
 		lastTable.parentNode.displayAsBlock();
 		event.stop();
 		

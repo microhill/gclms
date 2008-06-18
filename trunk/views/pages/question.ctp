@@ -133,21 +133,24 @@ if(empty($question_id))
 				</td>
 			</tr>
 			<tr class="gclms-fill-in-the-blank<?= @$question['type'] != '4' ? ' gclms-hidden' : '' ?>">
-				<th>
-				<?
-				echo $form->label('Question.' . $question_id . '.text_answer','Answer');
-				?>
+				<th>				
+				<? __('Answers'); ?>
 				</th>
 				<td>
-				<?
-				echo $form->input('Question.' . $question_id . '.text_answer',array(
-					'label' =>  false,
-					'size' => 40,
-					'div' => false,
-					'value' => @$question['text_answer'],
-					'name' => "data[Question][$question_id][text_answer]"
-				));
-				?>
+					<div class="gclms-answers<?= empty($question['Answer']) ? ' gclms-hidden' : '' ?>" id="<?= String::uuid() ?>">
+						<?
+						if(isset($question['Answer'])) {
+							foreach($question['Answer'] as $answer) {
+								echo $this->element('../pages/answer_fill_in_the_blank',array(
+									'answer' => $answer,
+									'answer_id' => $answer['id'],
+									'question_id' => $question_id
+								));
+							}
+						}
+						?>
+					</div>
+					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="gclms-add" />
 				</td>
 			</tr>
 		</tbody>

@@ -115,7 +115,7 @@ class AssetHelper extends Helper {
 			foreach($view->__scripts as $script) {
 				if(strstr($script,'.js')) {
 					if(strpos($script,'prototype.js') !== false) {
-						$script = '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>';
+						//$script = '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>';
 					}	
 					$js[] = $script;
 				}

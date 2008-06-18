@@ -3,7 +3,7 @@ if(empty($question_id) || empty($answer_id))
 	die();
 ?>
 
-<div class="gclms-order" <?= empty($answer['id']) ? 'style="display: none;"' : '' ?>>
+<div id="gclms-short-text-answers" class="gclms-order" <?= empty($answer['id']) ? 'style="display: none;"' : '' ?>>
 	<?
 	echo $form->hidden('Question.' . $question_id . '.OrderAnswer.' . $answer_id . '.id',array(
 		'value' => @$answer['id'],

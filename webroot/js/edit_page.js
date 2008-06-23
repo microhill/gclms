@@ -300,12 +300,8 @@ GCLMS.PagesController = {
 			div.down('.gclms-matching-headers').hide();
 		}
 
-		if(this.value != '3') {
+		if(this.value != '3' && this.value != '4') {
 			div.down('.gclms-order').hide();
-		}
-		
-		if(this.value != '4') {
-			div.down('.gclms-fill-in-the-blank').hide();
 		}
 
 		switch(this.value) {
@@ -327,8 +323,8 @@ GCLMS.PagesController = {
 				try{div.down('.gclms-order input[type="text"]').focus();}catch(e){}
 				break;
 			case '4':
-				div.down('.gclms-fill-in-the-blank').displayAsTableRow();
-				div.down('.gclms-fill-in-the-blank').down('input').focus();
+				div.down('.gclms-order').displayAsTableRow();
+				try{div.down('.gclms-order input[type="text"]').focus();}catch(e){}
 				break;
 			case '5':
 				break;

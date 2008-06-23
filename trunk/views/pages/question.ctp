@@ -111,7 +111,7 @@ if(empty($question_id))
 					?>
 				</td>
 			</tr>
-			<tr class="gclms-order<?= @$question['type'] != '3' ? ' gclms-hidden' : '' ?>">
+			<tr class="gclms-order<?= @$question['type'] != '3' && @$question['type'] != '4' ? ' gclms-hidden' : '' ?>">
 				<th>
 					<? __('Answers'); ?>
 				</th>
@@ -121,27 +121,6 @@ if(empty($question_id))
 						if(isset($question['Answer'])) {
 							foreach($question['Answer'] as $answer) {
 								echo $this->element('../pages/answer_order',array(
-									'answer' => $answer,
-									'answer_id' => $answer['id'],
-									'question_id' => $question_id
-								));
-							}
-						}
-						?>
-					</div>
-					<img src="/img/icons/oxygen_refit/22x22/actions/insert-object.png" class="gclms-add" />
-				</td>
-			</tr>
-			<tr class="gclms-fill-in-the-blank<?= @$question['type'] != '4' ? ' gclms-hidden' : '' ?>">
-				<th>				
-				<? __('Answers'); ?>
-				</th>
-				<td>
-					<div class="gclms-answers<?= empty($question['Answer']) ? ' gclms-hidden' : '' ?>" id="<?= String::uuid() ?>">
-						<?
-						if(isset($question['Answer'])) {
-							foreach($question['Answer'] as $answer) {
-								echo $this->element('../pages/answer_fill_in_the_blank',array(
 									'answer' => $answer,
 									'answer_id' => $answer['id'],
 									'question_id' => $question_id

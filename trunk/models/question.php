@@ -24,7 +24,7 @@ class Question extends AppModel {
 				$this->Answer->id = null;
 			}
 		} else if(isset($questionData['OrderAnswer']) && ($questionData['type'] == '3' || $questionData['type'] == '4')) {
-			foreach($question['OrderAnswer'] as $answer) {
+			foreach($questionData['OrderAnswer'] as $answer) {
 				$answer['question_id'] = $this->id;
 				$this->Answer->save($answer);
 				$this->Answer->id = null;

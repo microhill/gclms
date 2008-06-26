@@ -109,7 +109,6 @@ GCLMS.PagesController = {
 	
 	submitForm: function(event) {
 		var order = 0;
-
 		var noQuestionTitlesEmpty = true;
 		$$('input.gclms-question-title').each(function(node){
 			if ($F(node).empty()) {
@@ -128,17 +127,21 @@ GCLMS.PagesController = {
 		$$('div.gclms-page-item').each(function(node){
 			if(node.hasClassName('gclms-textarea')) {
 				id = node.getAttribute('textarea:id');
-				type = 'Textarea';
+				var type = 'Textarea';
 			} else {
 				id = node.getAttribute('question:id');
-				type = 'Question';
+				var type = 'Question';
 			}
 
-			$(this).insert(new Element('input', {
-				name: 'data[' + type + '][' + id + '][order]',
-				value: ++order,
-				type: 'hidden'
-			}));
+			try {
+				this.insert(new Element('input', {
+					name: 'data[' + type + '][' + id + '][order]',
+					value: ++order,
+					type: 'hidden'
+				}));
+			} catch(error) {
+				alert(error);
+			}
 		}.bind(this));
 	},
 	
@@ -387,7 +390,10 @@ GCLMS.PagesController = {
 GCLMS.Triggers.update({
 	'.gclms-edit-page' : {
 		':loaded': GCLMS.PagesController.loadTextareas,
-		'.gclms-button.gclms-submit:click': GCLMS.PagesController.submitForm,
+		'form': function() {
+			this.observe('gclms:submit',GCLMS.PagesController.submitForm);
+		},		
+		//GCLMS.PagesController.submitForm,
 		'#PageAudioFile,#PageAudioFile:change': GCLMS.PagesController.changePageAudio,
 		'.gclms-top-buttons' : {
 			'.gclms-insert-textarea:click': GCLMS.PagesController.insertTextareaOnTopOfPage,

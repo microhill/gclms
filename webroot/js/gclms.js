@@ -197,6 +197,7 @@ GCLMS.AppController = {
 	},
 	
 	submitForm: function() {
+		alert(1);
 		this.up('form').submit();
 	}
 };

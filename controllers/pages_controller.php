@@ -87,7 +87,6 @@ class PagesController extends AppController {
     }
 
 	function save($id) {
-		prd($this->data);
 		$order = 1;
 		
 		$this->Node->id = $id;

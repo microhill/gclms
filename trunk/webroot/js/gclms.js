@@ -197,8 +197,12 @@ GCLMS.AppController = {
 	},
 	
 	submitForm: function() {
-		alert(1);
-		this.up('form').submit();
+		var form = this.up('form');
+		
+		form.fire('gclms:submit');
+		form.submit();
+
+		return true;
 	}
 };
 

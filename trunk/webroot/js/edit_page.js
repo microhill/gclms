@@ -109,7 +109,7 @@ GCLMS.PagesController = {
 	
 	submitForm: function(event) {
 		var order = 0;
-		
+
 		var noQuestionTitlesEmpty = true;
 		$$('input.gclms-question-title').each(function(node){
 			if ($F(node).empty()) {
@@ -387,7 +387,7 @@ GCLMS.PagesController = {
 GCLMS.Triggers.update({
 	'.gclms-edit-page' : {
 		':loaded': GCLMS.PagesController.loadTextareas,
-		'form:submit': GCLMS.PagesController.submitForm,
+		'.gclms-button.gclms-submit:click': GCLMS.PagesController.submitForm,
 		'#PageAudioFile,#PageAudioFile:change': GCLMS.PagesController.changePageAudio,
 		'.gclms-top-buttons' : {
 			'.gclms-insert-textarea:click': GCLMS.PagesController.insertTextareaOnTopOfPage,

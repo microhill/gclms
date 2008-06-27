@@ -237,7 +237,7 @@ GCLMS.PagesController = {
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
-			callback: GCLMS.PagesController.deleteQuestion.bind(this),
+			callback: GCLMS.PagesController.deletePageItem.bind(this),
 			cancelCallback: function(){
 				this.style.color = '';
 			}.bind(this)
@@ -245,8 +245,12 @@ GCLMS.PagesController = {
 		return false;
 	},
 	
-	deleteQuestion: function() {
-		this.up('div.gclms-page-item').remove();
+	deletePageItem: function() {
+		div = this.up('div.gclms-page-item');
+		div.select('textarea').each(function(node){
+			tinyMCE.execCommand('mceRemoveControl', false, node.id);
+		});
+		div.remove();
 		GCLMS.PagesController.configureMoveUpAndMoveDownButtons();
 	},
 	
@@ -259,7 +263,7 @@ GCLMS.PagesController = {
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
-			callback: GCLMS.PagesController.deleteTextarea.bind(this),
+			callback: GCLMS.PagesController.deletePageItem.bind(this),
 			cancelCallback: function(){
 				this.style.color = '';
 			}.bind(this)
@@ -267,6 +271,7 @@ GCLMS.PagesController = {
 		return false;
 	},
 	
+	/*
 	deleteTextarea: function() {
 		div = this.up('div.gclms-page-item');
 		div.select('textarea').each(function(node){
@@ -276,6 +281,7 @@ GCLMS.PagesController = {
 		div.remove();
 		GCLMS.PagesController.configureMoveUpAndMoveDownButtons();
 	},
+	*/
 	
 	selectQuestionType: function(event) {
 		div = this.up('div');

@@ -351,7 +351,7 @@ GCLMS.PagesController = {
 		lastTable.parentNode.displayAsBlock();		
 		event.stop();
 
-		lastTable.select('input[type="text"]').first().focus();
+		//lastTable.select('input[type="text"]').first().focus();
 	},
 	
 	addMatchingAnswer: function(event) {

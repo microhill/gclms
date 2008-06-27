@@ -341,7 +341,7 @@ GCLMS.PagesController = {
 	},
 	
 	addMultipleChoiceAnswer: function(event) {
-		div = this.up('div.gclms-question');
+		var div = this.up('div.gclms-question');
 
 		answersDiv = div.select('tr.gclms-multiple-choice .gclms-answers').first();
 		answersDiv.insert(GCLMS.Views.get('multipleChoiceAnswer').interpolate({answer_id: UUID.generate(),question_id: div.getAttribute('question:id')}));		
@@ -351,7 +351,7 @@ GCLMS.PagesController = {
 		lastTable.parentNode.displayAsBlock();		
 		event.stop();
 
-		//lastTable.select('input[type="text"]').first().focus();
+		tinyMCE.execCommand('mceFocus',false,lastTable.select('textarea').first().id); 
 	},
 	
 	addMatchingAnswer: function(event) {

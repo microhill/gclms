@@ -22,17 +22,18 @@
 			$text = $answer['text1'];
 			$correct = $answer['correct'] ? 'true' : 'false';
 			$id = String::uuid();
-			echo "<li><input type='checkbox' answer:correct='$correct' id='$id'/><label for='$id'> $text</label></li>";
+			echo "<li><p><input type='checkbox' answer:correct='$correct' id='$id'/><label for='$id'> " . strip_tags($text,'<a><em><b>')  . "</label></p></li>";
 			if($answer['correct'])
 				$correctAnswers++;
 		}
 	} else {
 		foreach($question['Answer'] as $answer) {
 			$uniqueAnswerName = String::uuid();
-			echo '<li>'
+			$text = $answer['text1'];
+			echo '<li><p>'
 				. '<input type="radio" name="' . $uniqueQuestionName . '"  id="' . $uniqueAnswerName . '"'
 				. 'answer:correct="' . ($answer['correct'] ? 'true' : 'false') . '" />'
-				. '<label for="' . $uniqueAnswerName . '">' . $answer['text1'] . '</label></li>';
+				. '<label for="' . $uniqueAnswerName . '"> ' . strip_tags($text,'<a><em><b>') . '</label></p></li>';
 			if($answer['correct'])
 				$correctAnswers++;
 		}

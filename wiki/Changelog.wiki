@@ -1,0 +1,5 @@
+#summary Record of changes made to GCLMS
+
+=Version 0.3=
+
+===July 6-12, 2008==

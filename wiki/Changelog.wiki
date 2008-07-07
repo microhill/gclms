@@ -5,3 +5,4 @@
 ===July 6-12, 2008==
 
  * Fixed bug (issue 113): HTML carries over to multiple fill-in-the-blank answers
+ * Enhancement: Edit functionality added to classes management.

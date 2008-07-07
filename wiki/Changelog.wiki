@@ -3,3 +3,5 @@
 =Version 0.3=
 
 ===July 6-12, 2008==
+
+* Fixed bug #113 (HTML carries over to multiple fill-in-the-blank answers)

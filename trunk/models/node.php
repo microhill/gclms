@@ -180,8 +180,11 @@ class Node extends AppModel {
 	// Update the node orders to the right of provided node
 	function updateOrdersWithOldNodeData($node) {
 		$order = $node['Node']['order'];
-		$nodes = $this->findAll(array('Node.parent_node_id' => $node['Node']['parent_node_id'],'Node.order' => '> ' . $order));
+		$nodes = $this->find('all',array(
+			'conditions' => array('Node.course_id' => $node['Node']['course_id'],'Node.parent_node_id' => $node['Node']['parent_node_id'],'Node.order' => '> ' . $order)
+		));
 		
+		//$nodes = $this->findAll(array());
 		foreach($nodes as $node) {
 			$this->id = $node['Node']['id'];
 			$this->saveField('order',$order++);

@@ -102,7 +102,6 @@ class Node extends AppModel {
 		
 		$tmpNode = $node;
 		while(!empty($tmpNode['Node']['id'])) {
-			pr($tmpNode);
 			// Is there a node immediately to the right of this node's parent?
 			$this->contain();
 			$parentNode = $this->findById($tmpNode['Node']['parent_node_id'],array('id','course_id','order','parent_node_id'));

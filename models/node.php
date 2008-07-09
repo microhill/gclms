@@ -99,20 +99,28 @@ class Node extends AppModel {
 		// Is it at the very end of the root?
 		if(empty($node['Node']['parent_node_id']))
 			return 0;
-				
-		// Is there a node immediately to the right of this node's parent?
-		$this->contain();
-		$parentNode = $this->findById($node['Node']['parent_node_id'],array('id','order','parent_node_id'));
-		$this->contain();		
-		$uncleNode = $this->find(array('Node.course_id' => $node['Node']['course_id'],'Node.parent_node_id' => $parentNode['Node']['parent_node_id'],'Node.order' => $parentNode['Node']['order'] + 1),array('id','course_id','parent_node_id','type'));
+		
+		$tmpNode = $node;
+		while(!empty($node['Node']['parent_node_id'])) {
+			// Is there a node immediately to the right of this node's parent?
+			$this->contain();
+			$parentNode = $this->findById($tmpNode['Node']['parent_node_id'],array('id','order','parent_node_id'));
+			$this->contain();		
+			$uncleNode = $this->find(array('Node.course_id' => $tmpNode['Node']['course_id'],'Node.parent_node_id' => $parentNode['Node']['parent_node_id'],'Node.order' => $parentNode['Node']['order'] + 1),array('id','course_id','parent_node_id','type'));
 
-		if(!empty($uncleNode)) {
-			if($uncleNode['Node']['type'] == 0) {
-				return $uncleNode['Node']['id'];
-			} else {
-				return $this->findNextPageId($uncleNode);
+			if(!empty($uncleNode)) {
+				if($uncleNode['Node']['type'] == 0) {
+					return $uncleNode['Node']['id'];
+				} else {
+					return $this->findNextPageId($uncleNode);
+				}
 			}
-		}	
+			
+			if(empty($parentNode['Node']['parent_node_id']))
+				return 0;
+			
+			$tmpNode = $parentNode;
+		}
 		
 		return 0;
 	}

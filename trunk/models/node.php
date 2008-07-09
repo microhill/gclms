@@ -101,10 +101,11 @@ class Node extends AppModel {
 			return 0;
 		
 		$tmpNode = $node;
-		while(!empty($node['Node']['parent_node_id'])) {
+		while(!empty($tmpNode['Node']['id'])) {
+			pr($tmpNode);
 			// Is there a node immediately to the right of this node's parent?
 			$this->contain();
-			$parentNode = $this->findById($tmpNode['Node']['parent_node_id'],array('id','order','parent_node_id'));
+			$parentNode = $this->findById($tmpNode['Node']['parent_node_id'],array('id','course_id','order','parent_node_id'));
 			$this->contain();		
 			$uncleNode = $this->find(array('Node.course_id' => $tmpNode['Node']['course_id'],'Node.parent_node_id' => $parentNode['Node']['parent_node_id'],'Node.order' => $parentNode['Node']['order'] + 1),array('id','course_id','parent_node_id','type'));
 
@@ -115,9 +116,6 @@ class Node extends AppModel {
 					return $this->findNextPageId($uncleNode);
 				}
 			}
-			
-			if(empty($parentNode['Node']['parent_node_id']))
-				return 0;
 			
 			$tmpNode = $parentNode;
 		}

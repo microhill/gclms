@@ -6,3 +6,4 @@
 
  * Fixed bug (issue 113): HTML carries over to multiple fill-in-the-blank answers
  * Enhancement: Edit functionality added to classes management.
+ * Fixed bug (issue 113): Various navigation issues

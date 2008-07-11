@@ -25,8 +25,7 @@ class PagesController extends AppController {
 		
 		//$this->GlossaryTerm = ClassRegistry::getInstance('Model', 'GlossaryTerm');
 		$this->GlossaryTerm =& ClassRegistry::init('GlossaryTerm'); 
-		$glossary_terms = $this->GlossaryTerm->findAll(array('course_id'=>$this->viewVars['course']['id']),array('term'));
-		$glossary_terms = Set::extract($glossary_terms, '{n}.GlossaryTerm.term');
+		$glossary_terms = $this->GlossaryTerm->findAll(array('course_id'=>$this->viewVars['course']['id']),array('id','term'));
 		$this->set('glossary_terms',$glossary_terms);
 		
 		//$this->Breadcrumbs->addCrumb($node['Node']['title'], $this->viewVars['groupAndCoursePath'] . '/pages/view/' . $this->data['Node']['id']);

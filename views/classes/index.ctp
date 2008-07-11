@@ -27,9 +27,11 @@ echo $this->element('left_column');
 		foreach($this->data as $course_id => $classes) {
 			?><p><strong><?= $courses[$course_id]['title'] ?></strong></p><ul><?
 			foreach($classes as $class) {
+				$groupAndCoursePath = $groupWebPath . '/' . $courses[$course_id]['web_path'];
+				
 				?>
 				<li>
-					<a href="<?= $groupWebPath ?>/<?= $courses[$course_id]['web_path'] ?>/<?= $class['id'] ?>"><?= $class['alias'] ?></a><br/>
+					<a href="<?= $groupAndCoursePath ?>/<?= $class['id'] ?>"><?= $class['alias'] ?></a> (<a href="<?= $groupWebPath ?>/classes/edit/<?= $class['id'] ?>">edit</a>)<br/>
 					<?
 					if(!empty($class['start'])) {
 						echo $myTime->niceShortDate($class['start']) . ' - ' . $myTime->niceShortDate($class['end']);

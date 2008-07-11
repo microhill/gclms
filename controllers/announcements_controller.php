@@ -18,10 +18,10 @@ class AnnouncementsController extends AppController {
 	}
 
 	function index() {
-	    $this->table();
+	    //$this->table();
 	   
-	    if($this->RequestHandler->isAjax())
-	    	$this->render('table','ajax');
+	    //if($this->RequestHandler->isAjax())
+	    	//$this->render('table','ajax');
 	}
 
 	function table() {

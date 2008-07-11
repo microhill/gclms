@@ -94,7 +94,7 @@ class PagesController extends AppController {
 		if(empty($this->data['Textarea']))
 			$this->data['Textarea'] = array();
 
-		$this->Textarea->contain();		
+		$this->Textarea->contain();
 		$existingTextareaIds = Set::extract($this->Textarea->findAll(array('node_id' => $id),array('id')), '{n}.Textarea.id');
 
 		$newTextareaIds = array_keys($this->data['Textarea']);

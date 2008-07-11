@@ -73,6 +73,7 @@ class ContentController extends AppController {
 		$this->set('title','Nodes Debug');
     }
 	
+	// Fixes the order of nodes; this helps fix navigation button problems
 	function clean_up(){
 		$this->Node->contain();
 		$nodes =  $this->Node->find('all',array(
@@ -114,10 +115,6 @@ class ContentController extends AppController {
 		}
 		
 		$this->afterSave();
-	}
-	
-	function fix_order() {
-		
 	}
     
     function view($id) {

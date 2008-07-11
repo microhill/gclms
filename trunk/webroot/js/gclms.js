@@ -312,7 +312,7 @@ GCLMS.simpleTinyMCEConfig = {
 	button_tile_map: true,
 	theme_advanced_blockformats : '',
 	skin: 'gclms',
-	extended_valid_elements : 'a[name|href|target|title],em,i',
+	extended_valid_elements : 'a[name|href|target|title],em,i'
 }
 
 GCLMS.advancedTinyMCEConfig = {

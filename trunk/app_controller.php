@@ -77,7 +77,9 @@ class AppController extends Controller {
 		// Class
        	if(!empty($this->params['class'])) {
        		$this->VirtualClass->contain();
-       		$facilitated_class = $this->VirtualClass->find($this->params['class']);
+       		$facilitated_class = $this->VirtualClass->find('first',array(
+				'conditions' => array('id' => $this->params['class'])
+			));
 			$this->Session->write('VirtualClass.' . $this->params['class'],$facilitated_class['VirtualClass']);
        	}
        	if(isset($this->params['class'])) { // && $this->Session->check('VirtualClass.' . $this->params['class'])

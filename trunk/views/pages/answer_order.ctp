@@ -33,7 +33,7 @@ if(empty($question_id) || empty($answer_id))
 				<?
 				echo $form->text('Question' . $question_id . 'OrderAnswer' . $answer_id . 'text',array(
 					'label' => false,
-					'value' => @$answer['text1'],
+					'value' => strip_tags(@$answer['text1']),
 					'div' => false,
 					'name' => "data[Question][$question_id][OrderAnswer][$answer_id][text1]"
 				));

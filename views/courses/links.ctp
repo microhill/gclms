@@ -55,7 +55,7 @@ echo $this->element('no_column_background'); ?>
 		<ul>
 		<?
 		foreach($terms as $glossary_term) {
-			echo '<li><a href="/' . $group['web_path'] . '/' . $course['web_path'] . '/glossary/show#' . Inflector::variable($glossary_term['GlossaryTerm']['term'])
+			echo '<li><a href="/' . $group['web_path'] . '/' . $course['web_path'] . '/glossary/view/' . Inflector::variable($glossary_term['GlossaryTerm']['id'])
 					. '">' . $glossary_term['GlossaryTerm']['term'] . '</a></li>';
 		}
 		?>

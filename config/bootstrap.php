@@ -91,6 +91,7 @@ function stringToSlug($string) {
 	$string = preg_replace('/\s+/u', '-', $string);
 	$string = str_replace(':', '-', $string);
 	$string = str_replace('--', '-', $string);
+	$string = str_replace('\'', '', $string);
 	$string = trim($string, ' -');
 
 	//$string = low(trim(str_replace(':','',$string)));

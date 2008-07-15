@@ -302,7 +302,7 @@ GCLMS.simpleTinyMCEConfig = {
 	mode: "none",
 	theme_advanced_toolbar_location : 'top',
 	theme_advanced_toolbar_align : 'left',
-	theme_advanced_buttons1 : 'italic,link',
+	theme_advanced_buttons1 : 'italic,link,unlink',
 	theme_advanced_buttons2 : '',
 	file_browser_callback : 'GCLMS.fileBrowser',
 	width: '100%',
@@ -384,7 +384,7 @@ GCLMS.fileBrowser = function(field_name, url, type, win) {
 	if(type == 'images' || type == 'media') {
 	   	cmsURL = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/files/' + type;
 	} else {
-		cmsURL = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/courses/links';
+		cmsURL = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/courses/links/all';
 	}
 
    tinyMCE.activeEditor.windowManager.open({

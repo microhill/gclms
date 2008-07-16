@@ -1,10 +1,11 @@
 <?
 if(empty($question_id) || empty($answer_id))
 	die();
-?><div class="gclms-multiple-choice" gclms:answer-id="<?= $answer_id ?>">
+?><div class="gclms-multiple-choice gclms-answer" gclms:answer-id="<?= $answer_id ?>">
 	<?= $form->hidden('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'id',array(
 		'value' => @$answer['id'],
-		'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][id]"
+		'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][id]",
+		
 	)); ?>
 	<table class="gclms-tabular-form" cellspacing="0">
 		<tr>
@@ -16,7 +17,7 @@ if(empty($question_id) || empty($answer_id))
 		</tr>
 		<tr>
 			<th>
-				<?= $form->label('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text','Text'); ?>
+				<?= $form->label('MultipleChoiceAnswer' . $answer_id . 'text','Text'); ?>
 			</th>
 			<td class="gclms-answer-title">
 				<?= $form->input('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text',array(
@@ -25,7 +26,9 @@ if(empty($question_id) || empty($answer_id))
 					'value' => @$answer['text1'],
 					'div' => false,
 					'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][text1]",
-					'class' => 'gclms-answer-title gclms-tinymce-disabled gclms-simple-tinymce-enabled'
+					'class' => 'gclms-answer-title gclms-tinymce-disabled gclms-simple-tinymce-enabled',
+					'id' => 'MultipleChoiceAnswer' . $answer_id . 'text'
+					
 				)); ?>
 
 			</td>

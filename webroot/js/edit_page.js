@@ -32,9 +32,7 @@ GCLMS.PagesController = {
 		//GCLMS.advancedTinyMCEConfig.height = '250px';
 	},
 	
-	enableSimpleTinyMCE: function() {
-		alert(this.id);
-		
+	enableSimpleTinyMCE: function() {		
 		tinyMCE.settings = GCLMS.simpleTinyMCEConfig;
 		tinyMCE.execCommand('mceAddControl', true, this.id);
 

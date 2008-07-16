@@ -13,3 +13,4 @@
 ===July 13-19, 2008==
 
  * Fixed bug (issue 116): Unable to modify answer titles
+ * Fixed bug (issue 118): Save button doesn't work after creating then deleting answer to multiple choice

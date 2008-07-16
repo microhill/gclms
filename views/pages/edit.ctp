@@ -2,7 +2,7 @@
 $html->css('edit_page', null, null, false);
 
 $javascript->link(array(
-	'vendors/tinymce3.0.8/tiny_mce',
+	'vendors/tinymce3.1.0.1/tiny_mce',
 	'vendors/prototype',
 	'vendors/client_detection',
 	'prototype_extensions',

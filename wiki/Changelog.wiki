@@ -9,3 +9,7 @@
  * Fixed bug (issue 113): Various navigation issues
  * Fixed bug (issue 115): Glossary terms not linking correctly within pages
  * Fixed bug (issue 116): Course URL's shouldn't retain single quote
+
+===July 13-19, 2008==
+
+ * Fixed bug (issue 116): Unable to modify answer titles

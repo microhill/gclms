@@ -115,30 +115,41 @@ function replaceFirst($search, $replace, $subject){
     }
 }
 
-function relativize_url($here,$absolute_url) {
+function relativize_url($here,$there) {
+	//pr($here);pr($there);
+	
 	$here = parse_url($here);
 
 	if($here['path'] == '/')
-		return $absolute_url;
+		return $there;
 	
-	if(strpos($absolute_url,$here['path']) === 0) {
-		if(strrpos($absolute_url,'/') == strlen($absolute_url) - 1)
-			return str_replace($here['path'],'',$absolute_url);		
+	if(strpos($there,$here['path']) === 0) {
+		if(strrpos($there,'/') == strlen($there) - 1)
+			return str_replace($here['path'],'',$there);		
 		else {
 			$parts = explode('/',$here['path']);
 			$lastPart = end($parts);
-			return $lastPart . str_replace($here['path'],'',$absolute_url);			
+			return $lastPart . str_replace($here['path'],'',$there);			
 		}
+	} else {
+		/*
+		$tmpHere = explode($here);
+		$tmpThere = explode($there);
+		
+		for($x = 0;$x < size($here) && $x < size($there);$x += 2) {
+			//if()
+		}
+		*/
 	}
 	
 	$depth = substr_count($here['path'],'/');
 	
 	$relative_path = $depth > 1 ? str_repeat('../',$depth - 1) : '/';
 	
-	if($absolute_url[0] != '/') {
+	if($there[0] != '/') {
 		throw new Exception('relativize function expects absolute URL.');
 	} else {
-		return substr_replace($absolute_url,$relative_path,0,1);
+		return substr_replace($there,$relative_path,0,1);
 	}
 }
 

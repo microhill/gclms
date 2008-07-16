@@ -347,7 +347,7 @@ GCLMS.PagesController = {
 		answersDiv.insert(GCLMS.Views.get('multipleChoiceAnswer').interpolate({answer_id: UUID.generate(),question_id: div.getAttribute('question:id')}));		
 		answersDiv.displayAsBlock();
 		lastTable = answersDiv.select('table').last();
-		lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-question']['.gclms-multiple-choice']);
+		lastTable.observeRules(GCLMS.Triggers.get('.gclms-edit-page')['.gclms-question']['.gclms-multiple-choice']['.gclms-answer']);
 		lastTable.parentNode.displayAsBlock();		
 		event.stop();
 

@@ -33,6 +33,8 @@ GCLMS.PagesController = {
 	},
 	
 	enableSimpleTinyMCE: function() {
+		alert(this.id);
+		
 		tinyMCE.settings = GCLMS.simpleTinyMCEConfig;
 		tinyMCE.execCommand('mceAddControl', true, this.id);
 
@@ -420,10 +422,12 @@ GCLMS.Triggers.update({
 			'textarea.gclms-simple-tinymce-enabled.gclms-question-title': GCLMS.PagesController.enableSimpleTinyMCE,
 			'img.gclms-delete-question:click':GCLMS.PagesController.confirmDeleteQuestion,
 			'.gclms-multiple-choice': {
-				'tr.gclms-answer-explanation img.gclms-add-tinymce-box:click' : GCLMS.PagesController.addExplanationToMultipleChoiceAnswer,
-				'img.gclms-delete-answer:click': GCLMS.PagesController.confirmDeleteAnswer,
-				'img.gclms-add:click': GCLMS.PagesController.addMultipleChoiceAnswer,
-				'textarea.gclms-simple-tinymce-enabled': GCLMS.PagesController.enableSimpleTinyMCE
+				'.gclms-answer': {
+					'tr.gclms-answer-explanation img.gclms-add-tinymce-box:click' : GCLMS.PagesController.addExplanationToMultipleChoiceAnswer,
+					'img.gclms-delete-answer:click': GCLMS.PagesController.confirmDeleteAnswer,
+					'textarea.gclms-simple-tinymce-enabled': GCLMS.PagesController.enableSimpleTinyMCE	
+				},
+				'img.gclms-add:click': GCLMS.PagesController.addMultipleChoiceAnswer
 			},
 			'.gclms-matching': {
 				'img.gclms-delete-answer:click': GCLMS.PagesController.confirmDeleteAnswer,

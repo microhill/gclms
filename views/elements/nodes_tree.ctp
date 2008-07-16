@@ -28,9 +28,14 @@
 			if($offline)
 				$extension = '.html';
 			else
-				$extension = '';
+				$extension = '';	
 
-			$url = relativize_url($here,$groupAndCoursePath . '/pages/view/' . $node['id'] . $extension);
+			//$url = relativize_url($here,$groupAndCoursePath . '/pages/view/' . $node['id'] . $extension);
+			$url = $groupAndCoursePath . '/pages/view/' . $node['id'] . $extension;
+
+			//pr($here);
+			//pr($groupAndCoursePath . '/pages/view/' . $node['id'] . $extension);
+			//pr($url);die;
 
 			if($node['type'] == 0)
 				echo '<a href="' . $url . '">' . $node['title'] . '</a>';

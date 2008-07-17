@@ -77,16 +77,15 @@ class AppController extends Controller {
 		// Class
        	if(!empty($this->params['class'])) {
        		$this->VirtualClass->contain();
-       		$facilitated_class = $this->VirtualClass->find('first',array(
+       		$class = $this->VirtualClass->find('first',array(
 				'conditions' => array('id' => $this->params['class'])
 			));
-			$this->Session->write('VirtualClass.' . $this->params['class'],$facilitated_class['VirtualClass']);
+			$this->Session->write('VirtualClass.' . $this->params['class'],$class['VirtualClass']);
        	}
        	if(isset($this->params['class'])) { // && $this->Session->check('VirtualClass.' . $this->params['class'])
-			$this->set('facilitated_class', $this->Session->read('VirtualClass.' . $this->params['class']));
+			$this->set('class', $this->Session->read('VirtualClass.' . $this->params['class']));
        	}
     	$this->set('classWebPath', isset($this->viewVars['facilitated_class']['id']) ? '/' . $this->viewVars['facilitated_class']['id'] : null);
-				
     	$this->set('groupAndCoursePath', $this->viewVars['groupWebPath'] . $this->viewVars['courseWebPath'] . $this->viewVars['classWebPath']);
 		
 		// Offline

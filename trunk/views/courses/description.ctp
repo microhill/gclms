@@ -28,7 +28,8 @@ echo $this->element('left_column'); ?>
 		if(!empty($nodes))
 			echo $this->element('nodes_tree',array(
 				'nodes' => $nodes,
-				'here' => $this->here
+				'here' => $this->here,
+				'sibling_links' => false
 			));
 		
 		if(!empty($course['redistribution_allowed'])): ?>

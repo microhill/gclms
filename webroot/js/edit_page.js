@@ -202,13 +202,17 @@ GCLMS.PagesController = {
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
-			callback: GCLMS.PagesController.deleteMatchingAnswer.bind(this)
+			callback: GCLMS.PagesController.deleteAnswer.bind(this)
 		});
 		return false;
 	},
 	
-	deleteMatchingAnswer: function() {
-		this.up('div').up('div').remove();
+	deleteAnswer: function() {
+		div = this.up('div').up('div');
+		div.select('textarea').each(function(node){
+			tinyMCE.execCommand('mceRemoveControl', false, node.id);
+		});
+		div.remove();
 	},
 	
 	confirmDeleteOrderAnswer: function(event) {

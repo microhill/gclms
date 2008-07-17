@@ -73,6 +73,10 @@
 			'content' => $this->element('course_audio')
 		));
 	}
+	
+	if($this->name == 'Announcements') {
+		echo $this->element('../class/secondary_column');
+	}
 
 	?>
 	<div><!-- This empty tag fixes an IE bug --></div>

@@ -9,8 +9,16 @@ echo $this->element('left_column'); ?>
 	
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<h1>Temp</h1>
+		<h1><?= $course['title'] ?></h1>
+		<?
+		//pr($announcments);
 		
+		if(!empty($nodes))
+			echo $this->element('nodes_tree',array(
+				'nodes' => $nodes,
+				'here' => $this->here
+			));
+		?>
 		
 	</div>
 </div>

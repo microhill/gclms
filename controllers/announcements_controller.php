@@ -1,6 +1,6 @@
 <?
 class AnnouncementsController extends AppController {
-    var $uses = array('Announcement','VirtualClass');
+    var $uses = array('Announcement','VirtualClass','Node');
 	var $helpers = array('Paginator','MyPaginator','Form','MyForm','Time','MyTime');
 	var $itemName = 'News Term';
 	var $paginate = array('order' => 'title');
@@ -18,10 +18,9 @@ class AnnouncementsController extends AppController {
 	}
 
 	function index() {
-	    //$this->table();
-	   
-	    //if($this->RequestHandler->isAjax())
-	    	//$this->render('table','ajax');
+		$this->Node->contain();
+		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
+		$this->set(compact('nodes'));
 	}
 
 	function table() {

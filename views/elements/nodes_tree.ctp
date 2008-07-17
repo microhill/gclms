@@ -8,7 +8,7 @@
 	if(!isset($level))
 		$level = 1;
 
-	function display_nodes($nodes,$level = 1,$groupAndCoursePath,$here,$offline) {
+	function display_nodes($nodes,$level = 1,$sibling_links = true,$here,$offline) {
 		echo '<ul>';
 		
 		foreach($nodes as $node) {
@@ -29,20 +29,20 @@
 				$extension = '.html';
 			else
 				$extension = '';	
-
-			//$url = relativize_url($here,$groupAndCoursePath . '/pages/view/' . $node['id'] . $extension);
-			$url = $groupAndCoursePath . '/pages/view/' . $node['id'] . $extension;
-
-			//pr($here);
-			//pr($groupAndCoursePath . '/pages/view/' . $node['id'] . $extension);
-			//pr($url);die;
+			
+			$pathinfo = pathinfo($here);			
+			
+			if($sibling_links)
+				$url =  $node['id'] . $extension;
+			else
+				$url =  $pathinfo['basename'] . '/pages/view/' . $node['id'] . $extension;
 
 			if($node['type'] == 0)
 				echo '<a href="' . $url . '">' . $node['title'] . '</a>';
 			else
 				echo $node['title'];
 			if(!empty($node['ChildNode']))
-				display_nodes($node['ChildNode'],$level + 1,$groupAndCoursePath,$here,$offline);
+				display_nodes($node['ChildNode'],$level + 1,$sibling_links,$here,$offline);
 			echo '</li>';	
 		}
 		
@@ -52,6 +52,6 @@
 	if(!isset($here))
 		$here = $this->here;
 		
-	display_nodes($nodes,1,$groupAndCoursePath,$here,$offline);
+	display_nodes($nodes,1,$sibling_links,$here,$offline);
 	?>
 </div>

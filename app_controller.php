@@ -76,6 +76,11 @@ class AppController extends Controller {
 						
 		// Class
        	if(!empty($this->params['class'])) {
+			if(empty($this->VirtualClass)) {
+				App::import('Model','VirtualClass');
+				$this->VirtualClass = new Answer;
+			}
+			
        		$this->VirtualClass->contain();
        		$class = $this->VirtualClass->find('first',array(
 				'conditions' => array('id' => $this->params['class'])

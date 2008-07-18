@@ -1,11 +1,12 @@
 <?=$html->docType('xhtml-strict'); ?>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $language ?>" dir="<? echo $text_direction; ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= Configure::read('Config.language') ?>" dir="<? echo $text_direction; ?>">
 <head>
 <title><?= $course['title'] ?> - <?= $group['name'] ?></title>
 	<link rel="stylesheet" type="text/css" href="/js/vendors/ext-2.0/resources/css/ext-all.css" />
 	<link rel="stylesheet" type="text/css" href="/js/vendors/ext-2.0/resources/css/xtheme-gray.css" />
 
-    <?= $html->css(am($css_for_layout,$text_direction;)) ?>
+    <? // $html->css(am($css_for_layout,$text_direction))
+    ?>
 	<?
 	$html->css('tags', null, null, false);
 	
@@ -39,27 +40,27 @@
 	<?= $this->element('no_column_background'); ?>
 	
 	<div id="header">
-		<?= $this->element('classroom_header') ?>
+		<?= $this->element('../classroom/header') ?>
 	</div>
 
 	<div class="x-hide-display">		
 		<div id="navigationViewportContent" class="gclms-viewport-content">
-			<?= $this->element('lesson_navigation') ?>
+			<? //$this->element('lesson_navigation') ?>
 		</div>
 		
 		<iframe id="bibleViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		
-		<iframe id="lessonViewportContent" name="courseContent" src="<?= $groupAndCoursePath . '/classroom/page/' . $page['Page']['id'] ?>" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
+		<iframe id="lessonViewportContent" name="courseContent" src="<?= $groupAndCoursePath . '/classroom/page/' . 123 ?>" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 			
-		<? if($book_count): ?>
+		<? if(@$book_count): ?>
 			<iframe id="booksViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif; ?>
 	
-		<? if($article_count): ?>
+		<? if(@$article_count): ?>
 			<iframe id="articlesViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif; ?>
 		
-		<? if($glossary_term_count): ?>
+		<? if(@$glossary_term_count): ?>
 			<iframe id="glossaryViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif; ?>
 
@@ -67,7 +68,7 @@
 			<iframe id="notebookViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif?>
 
-		<? if($facilitated_class): ?>
+		<? if(@$facilitated_class): ?>
 			<iframe id="chatViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 			<iframe id="discussionViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif; ?>
@@ -167,7 +168,7 @@
                         //listeners: {activate: GCLMS.Triggers.get('#lessonTab:activate')}
                     }
                     
-					<? if($facilitated_class): ?>
+					<? if(@$facilitated_class): ?>
                     ,{
                         id: 'chatTab',
                         title: 'Chat',

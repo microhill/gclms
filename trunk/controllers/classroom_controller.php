@@ -1,6 +1,6 @@
 <?
 class ClassroomController extends AppController {
-    var $uses = array('Course','Group','Lesson','Unit','FacilitatedClass','Page','ClassEnrollee','Announcement','GlossaryTerm','Article','GlossaryTerm','Book');
+    var $uses = array('Course','Group','VirtualClass','ClassEnrollee');
 	var $helpers = array('Scripturizer','Glossary','License');
 	var $components = array('MyAuth');
 
@@ -13,6 +13,10 @@ class ClassroomController extends AppController {
 		}
 
 		parent::beforeRender();
+	}
+	
+	function framed() {
+		$this->render('framed','classroom');
 	}
 
 	function lesson($lessonId) {

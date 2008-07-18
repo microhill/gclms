@@ -54,7 +54,7 @@
 			'content' => $this->element('topics_and_pages_tutorial')
 		));
 
-	if(!isset($facilitated_class) && isset($facilitated_classes) && isset($group) && isset($course)) {
+	if(!isset($course) && isset($facilitated_classes) && isset($group) && isset($course)) {
 		echo $this->element('panel',array(
 			'title' => 'Open Classes',
 			'content' => $this->element('open_classes')
@@ -62,12 +62,6 @@
 	}
 
 	if(isset($lessons) && $this->name != 'Lessons' && !empty($course['web_path'])) {
-		if(strlen($course['description']) > 1500) {
-			echo $this->element('panel',array(
-				'title' => 'Lessons',
-				'content' => $this->element('lesson_listing')
-			));
-		}
 		echo $this->element('panel',array(
 			'title' => 'Course Audio',
 			'content' => $this->element('course_audio')

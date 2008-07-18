@@ -50,7 +50,11 @@
 		
 		<iframe id="bibleViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		
-		<iframe id="lessonViewportContent" name="courseContent" src="<?= $groupAndCoursePath . '/classroom/page/' . 123 ?>" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
+		<iframe id="lessonViewportContent" name="courseContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
+		
+		<!-- iframe id="lessonViewportContent"
+			
+			src="<?= $groupAndCoursePath . '/classroom/page/' . 123 ?>" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe -->
 			
 		<? if(@$book_count): ?>
 			<iframe id="booksViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>

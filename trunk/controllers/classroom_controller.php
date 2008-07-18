@@ -1,6 +1,6 @@
 <?
 class ClassroomController extends AppController {
-    var $uses = array('Course','Group','VirtualClass','ClassEnrollee');
+    var $uses = array('Course','Group','VirtualClass','ClassEnrollee','Node');
 	var $helpers = array('Scripturizer','Glossary','License');
 	var $components = array('MyAuth');
 
@@ -16,6 +16,10 @@ class ClassroomController extends AppController {
 	}
 	
 	function framed() {
+		$this->Node->contain();
+		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
+		$this->set(compact('nodes'));
+		
 		$this->render('framed','classroom');
 	}
 

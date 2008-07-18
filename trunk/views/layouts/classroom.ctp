@@ -46,6 +46,16 @@
 	<div class="x-hide-display">		
 		<div id="navigationViewportContent" class="gclms-viewport-content">
 			<? //$this->element('lesson_navigation') ?>
+			<?
+			//pr($announcments);
+			
+			if(!empty($nodes))
+				echo $this->element('nodes_tree',array(
+					'nodes' => $nodes,
+					'here' => $this->here,
+					'sibling_links' => false
+				));
+			?>
 		</div>
 		
 		<iframe id="bibleViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>

@@ -1,4 +1,12 @@
-<?= $this->element('left_column'); ?>
+<?
+$column_elements = array(
+	'primary' => 'course_description',
+	'secondary' => 'course_description'
+);
+
+echo $this->element('left_column',array(
+	'column_elements' => $column_elements
+)); ?>
 		
 <div class="gclms-center-column">
 	<div class="content">	
@@ -6,4 +14,6 @@
 	</div>
 </div>
 
-<?= $this->element('right_column'); ?>
+<?= $this->element('right_column',array(
+	'column_elements' => $column_elements
+)); ?>

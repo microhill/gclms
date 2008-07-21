@@ -21,7 +21,7 @@ function customizeCellData($row,$helpers) {
 }
 
 function customizeRowURL($row,$defaultUrl) {
-	return '/' . $defaultUrl['group']['web_path'] . '/facilitated_classes/edit/' . $defaultUrl['id'];
+	return '/' . $defaultUrl['group']['web_path'] . '/virtual_classes/edit/' . $defaultUrl['id'];
 }
 
 echo $this->element('recordset',array(

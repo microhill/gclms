@@ -21,7 +21,7 @@ class ChatController extends AppController {
     
     function index() {
     	$this->ChatMessage->contain(array('User'=>array('first_name','last_name')));
-    	$chat_messages = $this->ChatMessage->findAll(array('virtual_class_id' => $this->viewVars['facilitated_class']['id']),null,'ChatMessage.created DESC',30);
+    	$chat_messages = $this->ChatMessage->findAll(array('virtual_class_id' => $this->viewVars['virtual_class']['id']),null,'ChatMessage.created DESC',30);
     	$this->set('chat_messages',array_reverse($chat_messages));
     	
     	$chat_participants = $this->updateChatParticipants();
@@ -32,7 +32,7 @@ class ChatController extends AppController {
     }
     
     function leave() {
-    	$this->ChatParticipant->query('delete from chat_participants where user_id = ' . $this->viewVars['user']['id'] . ' AND virtual_class_id = ' . $this->viewVars['facilitated_class']['id'] . ';');
+    	$this->ChatParticipant->query('delete from chat_participants where user_id = ' . $this->viewVars['user']['id'] . ' AND virtual_class_id = ' . $this->viewVars['virtual_class']['id'] . ';');
     	exit;
     }
     
@@ -46,7 +46,7 @@ class ChatController extends AppController {
     	
     	$data = array('ChatMessage' => array(
     		'user_id' => $this->viewVars['user']['id'],
-    		'virtual_class_id' => $this->viewVars['facilitated_class']['id'], 
+    		'virtual_class_id' => $this->viewVars['virtual_class']['id'], 
 			'content' => $this->data['content']
 		));
     	$this->ChatMessage->save($data);
@@ -61,7 +61,7 @@ class ChatController extends AppController {
     	$this->ChatMessage->contain(array('User'=>array('first_name','last_name')));
     	$chat_messages = $this->ChatMessage->findAll(
     		array(
-				'ChatMessage.virtual_class_id' => $this->viewVars['facilitated_class']['id'],
+				'ChatMessage.virtual_class_id' => $this->viewVars['virtual_class']['id'],
 				'ChatMessage.created' => '> ' . $datetime,
 				'ChatMessage.user_id' => '<> ' . $this->viewVars['user']['id']
 			), null,'ChatMessage.created DESC');
@@ -82,17 +82,17 @@ class ChatController extends AppController {
     
     function updateChatParticipants() {
 		$this->ChatParticipant->contain();
-		$chat_participant = $this->ChatParticipant->find(array('user_id'=>$this->viewVars['user']['id'],'virtual_class_id'=>$this->viewVars['facilitated_class']['id']),array('id'));
+		$chat_participant = $this->ChatParticipant->find(array('user_id'=>$this->viewVars['user']['id'],'virtual_class_id'=>$this->viewVars['virtual_class']['id']),array('id'));
 		if(isset($chat_participant['ChatParticipant']['id'])) {
 			$this->ChatParticipant->id = $chat_participant['ChatParticipant']['id'];
 			$this->ChatParticipant->saveField('modified',date('Y-m-d H:i:s'));
 		} else {
-			$chat_participant = array('ChatParticipant' => array('user_id'=>$this->viewVars['user']['id'],'virtual_class_id'=>$this->viewVars['facilitated_class']['id'],'modified'=>date('Y-m-d H:i:s')));
+			$chat_participant = array('ChatParticipant' => array('user_id'=>$this->viewVars['user']['id'],'virtual_class_id'=>$this->viewVars['virtual_class']['id'],'modified'=>date('Y-m-d H:i:s')));
 			$this->ChatParticipant->save($chat_participant);
 		}
 
 		$this->ChatParticipant->contain(array('User.fields' => array('first_name','last_name')));
-		$chat_participants = $this->ChatParticipant->findAll(array('virtual_class_id'=>$this->viewVars['facilitated_class']['id']));
+		$chat_participants = $this->ChatParticipant->findAll(array('virtual_class_id'=>$this->viewVars['virtual_class']['id']));
 
 		foreach($chat_participants as &$chat_participant) { 			
 			if(strtotime('-1 minute') > strtotime($chat_participant['ChatParticipant']['modified'])) {

@@ -8,7 +8,7 @@ class FacilitatedClassesController extends AppController {
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
 		
-		$this->Breadcrumbs->addCrumb('Facilitated Classes','/' . $this->viewVars['group']['web_path'] . '/facilitated_classes');
+		$this->Breadcrumbs->addCrumb('Facilitated Classes','/' . $this->viewVars['group']['web_path'] . '/virtual_classes');
 		
 		if($this->action == 'add' || $this->action == 'edit') {
 			$this->set('courses',
@@ -32,7 +32,7 @@ class FacilitatedClassesController extends AppController {
 	}
 	
 	function afterSave() {
-		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/facilitated_classes');
+		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/virtual_classes');
 	}
 
 	function index() {

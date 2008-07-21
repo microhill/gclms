@@ -35,8 +35,8 @@ echo $this->element('no_column_background');
 		
 		<h1><?= $node['Node']['title'] ?></h1>
 		<?
-		if(!empty($facilitated_class))
-			$classUri = $groupAndCoursePath . 'notebook/' . '/section:' . $facilitated_class['id'];
+		if(!empty($virtual_class))
+			$classUri = $groupAndCoursePath . 'notebook/' . '/section:' . $virtual_class['id'];
 		else
 			$classUri = null;
 	
@@ -65,8 +65,8 @@ echo $this->element('no_column_background');
 			<p id="gradeResults"><button id="gradeQuestions"><? __('Grade') ?></button></p>
 		<? endif;
 		
-		if(!empty($facilitated_class))
-			$sectionUriComponent = '/section:' . $facilitated_class['id'];
+		if(!empty($virtual_class))
+			$sectionUriComponent = '/section:' . $virtual_class['id'];
 		else
 			$sectionUriComponent = '';
 		?>

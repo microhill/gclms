@@ -1,5 +1,12 @@
 GCLMS.ClassroomController = {
 	loadViewport: function() {
+		if(location.href.indexOf('#') != -1) {
+			var href = location.href.split('#');
+			Ext.get('lessonViewportContent').dom.src = GCLMS.urlPrefix + 'pages/view/' + href[1] + '?framed';
+		}
+		
+		//url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('gclms:virtual-class')
+
 		Ext.BLANK_IMAGE_URL = '/img/blank-1.png';
 		
 		Ext.onReady(function(){
@@ -96,7 +103,7 @@ GCLMS.ClassroomController = {
 			var viewport = new Ext.Viewport({
 		        layout:'border',
 		        items:[
-		            new Ext.BoxComponent({ // raw
+		            new Ext.BoxComponent({
 		                region:'north',
 		                el: 'header',
 		                height:32
@@ -158,7 +165,7 @@ GCLMS.ClassroomController = {
 	},
 	
 	activateDiscussionTab: function() {
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('gclms:virtual_class') + '/discussion/forums';
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('gclms:virtual-class') + '/discussion/forums';
 		currentSrc = Ext.get('discussionViewportContent').dom.src;
 		if(currentSrc.indexOf(url) == -1) {
 			Ext.get('discussionViewportContent').dom.src = url;
@@ -168,7 +175,7 @@ GCLMS.ClassroomController = {
 	},
 	
 	activateNotebookTab: function() {
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('gclms:virtual_class') + '/notebook/edit';
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('gclms:virtual-class') + '/notebook/edit';
 		currentSrc = Ext.get('notebookViewportContent').dom.src;
 		if(currentSrc.indexOf(url) == -1) {
 			Ext.get('notebookViewportContent').dom.src = url;

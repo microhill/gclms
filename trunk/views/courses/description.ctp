@@ -17,7 +17,7 @@ echo $this->element('left_column'); ?>
 			<!-- p><?= implode(order(array(__('Language:',true), ' ', $languages[$course['language']]))) ?></p -->
 		<? endif;
 		
-		if(empty($facilitated_class)) {
+		if(empty($virtual_class)) {
 			App::import('Vendor','scripturizer'.DS.'scripturizer');
 			$course['description'] = scripturize($course['description'],'NET');
 			echo $course['description'];

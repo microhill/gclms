@@ -6,6 +6,8 @@ class ClassroomController extends AppController {
 
 	function beforeRender() {
 		$this->Breadcrumbs->addHomeCrumb();
+		$this->Breadcrumbs->addGroupCrumb();
+		$this->Breadcrumbs->addCourseCrumb();
 		parent::beforeRender();
 	}
 	

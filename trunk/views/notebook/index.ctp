@@ -22,7 +22,7 @@
 		
 		<h1><?= __('Notebook') ?></h1>
 		<?
-		echo $form->create('Notebook',array('id' => null,'url'=> '/' . $groupWebPath . '/' . $courseWebPath . 'notebook/save/section:' . $facilitated_class['id']));
+		echo $form->create('Notebook',array('id' => null,'url'=> '/' . $groupWebPath . '/' . $courseWebPath . 'notebook/save/section:' . $virtual_class['id']));
 		echo $form->hidden('id');
 		echo $form->input('content',array(
 			'label' =>'',

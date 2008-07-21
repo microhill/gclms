@@ -54,7 +54,7 @@
 			'content' => $this->element('topics_and_pages_tutorial')
 		));
 
-	if(!isset($course) && isset($facilitated_classes) && isset($group) && isset($course)) {
+	if(!isset($course) && isset($virtual_classes) && isset($group) && isset($course)) {
 		echo $this->element('panel',array(
 			'title' => 'Open Classes',
 			'content' => $this->element('open_classes')

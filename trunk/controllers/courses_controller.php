@@ -103,33 +103,6 @@ class CoursesController extends AppController {
 		$this->render('classroom','classroom');
 	}
 
-	function lessonNavigation() {
-		$this->Unit->contain();
-		$units = $this->Unit->findAll(array("Unit.course_id" => $this->viewVars['course']['id']),null,'Unit.order ASC');
-		$this->set(compact('units'));
-
-		$this->Lesson->contain();
-		$lessons = $this->Lesson->findAll(array("Lesson.course_id" => $this->viewVars['course']['id']),null,'Lesson.order ASC');
-		$this->set(compact('lessons'));
-
-		$lesson = $this->Lesson->findByOrderInCourse($this->viewVars['course']['id'],$this->passedArgs['lesson']);
-		$this->set('current_lesson',$lesson['Lesson']);
-
-		$this->Page->contain();
-		$topics = $this->Page->findAll(array('Page.lesson_id' => $lesson['Lesson']['id'],'Page.topic_head' => 1),null,'Page.order ASC');
-		$this->set(compact('topics'));
-
-		if(!empty($topics)){
-			foreach($topics as $topic) {
-				$categorizedPages[$topic['Page']['id']] = $this->Page->findAllByLessonAndTopic($lesson['Lesson']['id'],$topic['Page']['id']);
-			}
-		}
-		$uncategorizedPages = $this->Page->findAllByLessonAndTopic($lesson['Lesson']['id'],0);
-
-		$this->set('categorized_pages',@$categorizedPages);
-		$this->set('uncategorized_pages',$uncategorizedPages);
-	}
-
 	function enroll($id) {
 		$data = array('ClassEnrollee' => array('virtual_class_id' => (int) $id,'user_id' => (int) $this->viewVars['user']['id']));
 		
@@ -184,15 +157,15 @@ class CoursesController extends AppController {
 		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		$this->set(compact('nodes'));
 		
-		if(empty($this->viewVars['facilitated_class']['id'])) {
+		if(empty($this->viewVars['virtual_class']['id'])) {
 			/*
 			$this->FacilitatedClass->contain();
-			$facilitated_classes = $this->FacilitatedClass->findAllByCourseId($this->viewVars['course']['id']);
-			$this->set('facilitated_classes',$facilitated_classes);
+			$virtual_classes = $this->FacilitatedClass->findAllByCourseId($this->viewVars['course']['id']);
+			$this->set('virtual_classes',$virtual_classes);
 			*/
 		} else {
 			$this->Announcement->contain();
-			$news_items = $this->Announcement->findAllByFacilitatedClassId($this->viewVars['facilitated_class']['id']);
+			$news_items = $this->Announcement->findAllByFacilitatedClassId($this->viewVars['virtual_class']['id']);
 			$this->set('news_items',$news_items);
 		}
 

@@ -56,6 +56,42 @@ GCLMS.ClassroomController = {
 		            iconCls:'glossary',
 		            listeners: {beforeexpand: GCLMS.Triggers.get('#glossaryViewport:expand')}
 				});
+				
+			var tabItems = [{
+	                title: 'Lesson',
+		            contentEl: 'lessonViewportContent',
+		            border:false,
+		            autoScroll: false,
+	                id: 'lessonTab'
+	                //listeners: {activate: GCLMS.Triggers.get('#lessonTab:activate')}
+	            }];
+				
+		     if($('chatViewportContent'))
+		         tabItems.push({
+	                id: 'chatTab',
+	                title: 'Chat',
+	                autoScroll:true,
+	                listeners: {activate: GCLMS.Triggers.get('#chatTab:activate')}
+	            });
+				
+		     if($('notebookViewportContent'))
+		         tabItems.push({
+					id: 'notebookTab',
+	                title: 'Notebook',
+	                contentEl: 'notebookViewportContent',
+	                autoScroll:true,
+	                listeners: {activate: GCLMS.Triggers.get('#notebookTab:activate')}
+	            });
+				
+		     if($('discussionViewportContent'))
+		         tabItems.push({
+					id: 'discussionTab',
+	                title: 'Discussion',
+	                contentEl: 'discussionViewportContent',
+	                autoScroll: false,
+	                //border:false,
+	                listeners: {activate: GCLMS.Triggers.get('#discussionTab:activate')}
+	            });
 		
 			var viewport = new Ext.Viewport({
 		        layout:'border',
@@ -82,43 +118,7 @@ GCLMS.ClassroomController = {
 		                id: 'classroomTabs',
 		                deferredRender:false,
 		                activeTab:0,
-		                items:[{
-		                    title: 'Lesson',
-				            contentEl: 'lessonViewportContent',
-				            border:false,
-				            autoScroll: false,
-		                    id: 'lessonTab'
-		                    //listeners: {activate: GCLMS.Triggers.get('#lessonTab:activate')}
-		                }
-		                
-						/*
-						<? if(@$facilitated_class): ?>
-		                ,{
-		                    id: 'chatTab',
-		                    title: 'Chat',
-		                    autoScroll:true,
-		                    listeners: {activate: GCLMS.Triggers.get('#chatTab:activate')}
-		                },{
-							id: 'discussionTab',
-		                    title: 'Discussion',
-		                    contentEl: 'discussionViewportContent',
-		                    autoScroll: false,
-		                    border:false,
-		                    listeners: {activate: GCLMS.Triggers.get('#discussionTab:activate')}
-		                }
-		                <? endif; ?>   
-		                  
-						<? if(!empty($user)): ?>
-		                ,{
-							id: 'notebookTab',
-		                    title: 'Notebook',
-		                    contentEl: 'notebookViewportContent',
-		                    autoScroll:true,
-		                    listeners: {activate: GCLMS.Triggers.get('#notebookTab:activate')}
-		                }                    
-		                <? endif; ?> 
-						*/                  
-					]
+		                items: tabItems
 		            })
 		         ]
 		    });

@@ -1,4 +1,7 @@
-<?= implode(order(array(
+<!-- ?= implode(order(array(
 	$this->element('user_bar'),
 	$this->element('breadcrumbs')
-),$text_direction)); ?>
+),$text_direction)); ? -->
+
+<?= $this->element('user_bar') ?>
+<?= $this->element('breadcrumbs') ?>

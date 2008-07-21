@@ -5,13 +5,7 @@ class ClassroomController extends AppController {
 	var $components = array('MyAuth');
 
 	function beforeRender() {
-		if($this->action == 'lesson') {
-			$this->Breadcrumbs->addHomeCrumb();
-			$this->Breadcrumbs->addGroupCrumb();
-			$this->Breadcrumbs->addCourseCrumb();
-			$this->Breadcrumbs->addLessonCrumb();
-		}
-
+		$this->Breadcrumbs->addHomeCrumb();
 		parent::beforeRender();
 	}
 	

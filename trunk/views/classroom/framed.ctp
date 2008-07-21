@@ -5,5 +5,5 @@ $javascript->link(array(
 	'vendors/ext-2.0/adapter/prototype/ext-prototype-adapter',
 	'vendors/ext-2.0/ext-all',
 	'gclms',
-	'classroom.js'
+	'classroom'
 ), false);

@@ -68,7 +68,7 @@
 			<iframe id="notebookViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif?>
 
-		<? if(@$facilitated_class): ?>
+		<? if(1 || @$facilitated_class): ?>
 			<iframe id="chatViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 			<iframe id="discussionViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif; ?>

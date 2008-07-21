@@ -95,6 +95,9 @@ class AppController extends Controller {
 		
 		// Offline
 		$this->set('offline',isset($this->params['url']['offline']));
+		
+		// Framed
+		$this->set('framed',isset($this->params['url']['framed']));
     }
 	
 	function loadLocale() {

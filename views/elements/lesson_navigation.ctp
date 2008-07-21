@@ -1,7 +1,7 @@
 <div class="gclms-lesson-navigation">
 <?
-if(!empty($facilitated_class))
-	$sectionUriComponent = '/section:' . $facilitated_class['id'];
+if(!empty($virtual_class))
+	$sectionUriComponent = '/section:' . $virtual_class['id'];
 else
 	$sectionUriComponent = '';
 

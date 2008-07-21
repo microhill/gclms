@@ -11,8 +11,8 @@
 	if(!empty($page['Page']['id']))
 		echo 'page:id="' . $page['Page']['id'] . '" ';
 
-	if(!empty($facilitated_class['id']))
-		echo 'section:id="' . $facilitated_class['id'] . '"';
+	if(!empty($virtual_class['id']))
+		echo 'section:id="' . $virtual_class['id'] . '"';
 	?>
 	>
 

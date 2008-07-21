@@ -18,13 +18,13 @@ function customizeCellData($row,$helpers) {
 }
 
 function customizeRowURL($row,$defaultUrl) {
-	return '/' . $defaultUrl['group']['web_path'] . '/facilitated_classes/edit/' . $defaultUrl['id'];
+	return '/' . $defaultUrl['group']['web_path'] . '/virtual_classes/edit/' . $defaultUrl['id'];
 }
 
 echo $this->element('recordset',array(
 	'headers' => $headers,
 	'fields' => $fields,
 	'heading' => __('Facilitated Classes', true),
-	'addButtonUrl' => '/' . $group['web_path'] . '/facilitated_classes/add'
+	'addButtonUrl' => '/' . $group['web_path'] . '/virtual_classes/add'
 ));
 ?>

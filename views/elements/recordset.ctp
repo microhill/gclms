@@ -91,7 +91,7 @@ if(@$showDefaultAddButton) {
 							'lesson'=>@$lessonOrder,
 							'action'=>'view',
 							'id'=>$row[$modelName]['id'],
-							'section'=>@$facilitated_class['id']);
+							'section'=>@$virtual_class['id']);
 					    if(function_exists('customizeRowURL'))
 							$link = customizeRowURL($row,$defaultUrl);
 					    else

@@ -282,6 +282,16 @@ GCLMS.popup = {
 };
 
 document.observe("dom:loaded", function() {
+	GCLMS.group = document.body.getAttribute('gclms:group');
+	GCLMS.course = document.body.getAttribute('gclms:course');
+	GCLMS.virtualClass = document.body.getAttribute('gclms:virtual-class');
+	
+	if(GCLMS.group && GCLMS.course && GCLMS.virtualClass) {
+		GCLMS.urlPrefix = '/' + GCLMS.group + '/' + GCLMS.course + '/' + GCLMS.virtualClass + '/';
+	} else if(GCLMS.group && GCLMS.course) {
+		GCLMS.urlPrefix = '/' + GCLMS.group + '/' + GCLMS.course + '/';
+	}
+
 	$(document.body).observeRules(GCLMS.Triggers);
 	
 	firstTextInput = $$('input[type="text"]:first');
@@ -313,7 +323,7 @@ GCLMS.simpleTinyMCEConfig = {
 	theme_advanced_blockformats : '',
 	skin: 'gclms',
 	extended_valid_elements : 'a[name|href|target|title],em,i'
-}
+};
 
 GCLMS.advancedTinyMCEConfig = {
     theme : 'advanced',
@@ -360,7 +370,7 @@ GCLMS.advancedTinyMCEConfig = {
 		}
 		
 		if (className == 'error-message' || className == 'cake-sql-log') {
-			return false
+			return false;
 		}
 		
 		return className;

@@ -90,7 +90,7 @@ class AppController extends Controller {
        	if(isset($this->params['class'])) { // && $this->Session->check('VirtualClass.' . $this->params['class'])
 			$this->set('class', $this->Session->read('VirtualClass.' . $this->params['class']));
        	}
-    	$this->set('classWebPath', isset($this->viewVars['facilitated_class']['id']) ? '/' . $this->viewVars['facilitated_class']['id'] : null);
+    	$this->set('classWebPath', isset($this->viewVars['virtual_class']['id']) ? '/' . $this->viewVars['virtual_class']['id'] : null);
     	$this->set('groupAndCoursePath', $this->viewVars['groupWebPath'] . $this->viewVars['courseWebPath'] . $this->viewVars['classWebPath']);
 		
 		// Offline

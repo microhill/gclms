@@ -73,14 +73,6 @@ GCLMS.ClassroomController = {
 	                //listeners: {activate: GCLMS.Triggers.get('#lessonTab:activate')}
 	            }];
 				
-		     if($('chatViewportContent'))
-		         tabItems.push({
-	                id: 'chatTab',
-	                title: 'Chat',
-	                autoScroll:true,
-	                listeners: {activate: GCLMS.Triggers.get('#chatTab:activate')}
-	            });
-				
 		     if($('notebookViewportContent'))
 		         tabItems.push({
 					id: 'notebookTab',
@@ -98,6 +90,14 @@ GCLMS.ClassroomController = {
 	                autoScroll: false,
 	                //border:false,
 	                listeners: {activate: GCLMS.Triggers.get('#discussionTab:activate')}
+	            });
+				
+		     if($('chatViewportContent'))
+		         tabItems.push({
+	                id: 'chatTab',
+	                title: 'Chat',
+	                autoScroll:true,
+	                listeners: {activate: GCLMS.Triggers.get('#chatTab:activate')}
 	            });
 		
 			var viewport = new Ext.Viewport({
@@ -155,9 +155,9 @@ GCLMS.ClassroomController = {
 	
 	expandDictionaryViewport: function(){
 		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/dictionary/panel';
-		if(!Ext.get('dictionaryViewportContent').loaded)
-			Ext.get('dictionaryViewportContent').dom.src = url;
-		Ext.get('dictionaryViewportContent').loaded = true;
+		if(!Ext.get('glossaryViewportContent').loaded)
+			Ext.get('glossaryViewportContent').dom.src = url;
+		Ext.get('glossaryViewportContent').loaded = true;
 	},
 	
 	activateChatTab: function() {
@@ -405,7 +405,7 @@ GCLMS.Triggers.update({
 	'#bibleViewport:expand': GCLMS.ClassroomController.expandBibleViewport,
 	'#booksViewport:expand': GCLMS.ClassroomController.expandBooksViewport,
 	'#articlesViewport:expand': GCLMS.ClassroomController.expandArticlesViewport,
-	'#dictionaryViewport:expand' : GCLMS.ClassroomController.expandDictionaryViewport,
+	'#glossaryViewport:expand' : GCLMS.ClassroomController.expandDictionaryViewport,
 	'.gclms-viewport-content' : {
 		':updated' : function () {
 			elm = this.dom;

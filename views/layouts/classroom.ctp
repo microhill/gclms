@@ -34,7 +34,6 @@
 			<? //$this->element('lesson_navigation') ?>
 			<?
 			//pr($announcments);
-			
 			if(!empty($nodes))
 				echo $this->element('nodes_tree',array(
 					'nodes' => $nodes,

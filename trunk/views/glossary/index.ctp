@@ -9,7 +9,10 @@ $javascript->link(array(
 	'glossary'
 ), false);
 
-echo $this->element('left_column'); ?>
+if($framed)
+	echo $this->element('no_column_background'); 
+else
+	echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
 		<?= $this->element('notifications'); ?>
@@ -35,4 +38,7 @@ echo $this->element('left_column'); ?>
 	</div>
 </div>
 
-<?= $this->element('right_column'); ?>
+<?
+if(!$framed)
+	echo $this->element('right_column');
+?>

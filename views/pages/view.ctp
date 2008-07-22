@@ -29,7 +29,12 @@ echo $this->element('no_column_background');
 		<? if(!$offline): ?>
 		<div class="gclms-option-buttons">
 			<a class="gclms-edit-page" href="<?= $groupAndCoursePath ?>/pages/edit/<?= $node['Node']['id'] ?>"><? __('Edit') ?></a>
-			<a class="gclms-view-with-frames" href="<?= $groupAndCoursePath ?>/classroom/framed#<?= $node['Node']['id'] ?>"><? __('View with frames') ?></a>
+			<? if($framed): ?>
+				<a class="gclms-view-with-frames" href="<?= $groupAndCoursePath ?>/pages/view/<?= $node['Node']['id'] ?>" target="_top"><? __('View without frames') ?></a>						
+			<? else: ?>
+				<a class="gclms-view-with-frames" href="<?= $groupAndCoursePath ?>/classroom/framed#<?= $node['Node']['id'] ?>"><? __('View with frames') ?></a>			
+			<? endif ?>
+
 		</div>
 		<? endif; ?>
 		

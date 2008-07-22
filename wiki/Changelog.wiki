@@ -15,3 +15,8 @@
  * Fixed bug (issue 116): Unable to modify answer titles
  * Fixed bug (issue 118): Save button doesn't work after creating then deleting answer to multiple choice
  * Enhancement: smarter generation of links to account for extended classroom URLs
+
+===July 20-26, 2008==
+
+ * Framed classroom re-enabled and made visible
+ * Fixed bug (issue 119): Lesson navigation collapse/expand buttons not working (in framed classroom)

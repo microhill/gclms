@@ -329,11 +329,21 @@ GCLMS.PageController = {
 		location.href = this.getAttribute('href') + '?framed';		
 		event.stop();
 		return false;
+	},
+	
+	test: function() {
+		top.GCLMS.ClassroomController.highlightCurrentPage(location.href);
+		/*
+		if (!top.$('bibleViewportContent').contentDocument.body.innerHTML) {
+			top.$('bibleViewportContent').src = this.getAttribute('href');
+		}
+		*/
 	}
 }
 
 GCLMS.Triggers.update({
 	'div.gclms-page': GCLMS.PageController.loadPageAudio,
+	'div.gclms-page': GCLMS.PageController.test,
 	'img.gclms-notebook:click': GCLMS.PageController.loadNotebook,
 	'#gradeQuestions:click': GCLMS.PageController.gradeQuestions,
 	'.gclms-multiple-choice button.gclms-check-answer-button:click': GCLMS.PageController.checkMultipleChoiceQuestion,

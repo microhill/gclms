@@ -19,7 +19,7 @@
 		echo $this->element('breadcrumbs');
 		?>
 		
-		<div id="gclms-page">
+		<div id="gclms-page" class="<?= $framed ? 'gclms-framed' : 'gclms-noframes' ?>">
 			<?= $content_for_layout; ?>
 		</div>
 	</div>

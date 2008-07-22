@@ -13,18 +13,20 @@ echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content articles">	
 		<?= $this->element('notifications'); ?>
-		<h1><? __('Articles') ?></h1>
-		<div id="gclms-menubars">
-			<? echo $this->element('menubar',array('buttons' => array(
-				array(
-					'id' => 'addArticle',
-					'class' => 'gclms-add',
-					'label' => __('Add Article',true),
-					'accesskey' => 'a'
-				)
-			)));
-			?>
-		</div>		
+		<? if(!$framed): ?>
+			<h1><? __('Articles') ?></h1>
+			<div id="gclms-menubars">
+				<? echo $this->element('menubar',array('buttons' => array(
+					array(
+						'id' => 'addArticle',
+						'class' => 'gclms-add',
+						'label' => __('Add Article',true),
+						'accesskey' => 'a'
+					)
+				)));
+				?>
+			</div>
+		<? endif; ?>
 		<ul class="articles">
 			<? foreach($this->data as $article): ?>
 				<li>

@@ -16,43 +16,16 @@ class ClassroomController extends AppController {
 		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		$this->set(compact('nodes'));
 		
-		$this->render('framed','classroom');
-	}
-
-	function lesson($lessonId) {
-		$lesson = $this->Lesson->findById($lessonId);
-		
-		$this->set('lesson', $lesson['Lesson']);
-
-		if($this->params['isAjax']) {
-			if(!empty($this->passedArgs['page']))
-				$this->page($this->passedArgs['page']);	
-			
-			$this->lessonNavigationPages($lessonId);
-		}
-
-		$this->lessonNavigation($lessonId);
-
-		if(isset($this->passedArgs['page'])) {
-			$page = array('Page' => array('id' => $this->passedArgs['page']));
-		} else {
-			$page = $this->Page->findFirstInLesson($this->viewVars['lesson']['id']);
-			if(empty($page['Page']['id']))
-				die(__('Could not find first topic or page in lesson. Perhaps topics and pages haven\'t been created yet for this lesson?',true));
-		}
-		$this->set(compact('page'));
-		
-		$book_count = $this->Book->findCount(array('course_id'=>$this->viewVars['course']['id']),0);
+		$book_count = ClassRegistry::init('Book','Model')->findCount(array('course_id'=>$this->viewVars['course']['id']),0);
 		$this->set('book_count',$book_count);
 		
-		$article_count = $this->Article->findCount(array('course_id'=>$this->viewVars['course']['id']),0);
+		$article_count = ClassRegistry::init('Article','Model')->findCount(array('course_id'=>$this->viewVars['course']['id']),0);
 		$this->set('article_count',$article_count);
 		
-		$glossary_term_count = $this->GlossaryTerm->findCount(array('course_id'=>$this->viewVars['course']['id']),0);
+		$glossary_term_count = ClassRegistry::init('GlossaryTerm','Model')->findCount(array('course_id'=>$this->viewVars['course']['id']),0);
 		$this->set('glossary_term_count',$glossary_term_count);
-
-		//$this->set('lesson_order_in_course',$lessonNumber);
-		$this->render('lesson','classroom');
+		
+		$this->render('framed','classroom');
 	}
 	
 	function lessonNavigation($lessonId) {

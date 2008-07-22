@@ -38,7 +38,7 @@
 				echo $this->element('nodes_tree',array(
 					'nodes' => $nodes,
 					'here' => $this->here,
-					'sibling_links' => false
+					'url_prefix' => $groupAndCoursePath . '/pages/view/'
 				));
 			?>
 		</div>

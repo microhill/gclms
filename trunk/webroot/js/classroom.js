@@ -204,7 +204,11 @@ GCLMS.ClassroomController = {
 		});		
 	},
 	
-	gotoPage: function() {
+	gotoPageLink: function(event) {
+		Ext.get('lessonViewportContent').dom.src = this.getAttribute('href') + '?framed';
+		event.stop();
+		return false;
+		
 		if(this.hasClassName('lesson')) {
 			li = this.up('li');
 			
@@ -388,13 +392,6 @@ GCLMS.Triggers.update({
 	'#chatTab:activate' : GCLMS.ClassroomController.activateChatTab,
 	'#discussionTab:activate' : GCLMS.ClassroomController.activateDiscussionTab,
 	'#notebookTab:activate' : GCLMS.ClassroomController.activateNotebookTab,
-	'.gclms-lesson-navigation' : {
-		'img.gclms-expanded:click,img.gclms-collapsed:click' : function(event) {
-			event.stop();
-			GCLMS.Triggers.get('.gclms-lesson-navigation')['a:click'].bind($(this.next('a')))(event);
-		},
-		'a:click' : GCLMS.ClassroomController.gotoPage
-	},
 	'.page': {
 		'a[href*="/articles/"]:click': GCLMS.ClassroomController.gotoArticleLink,
 		'a[href*="/chapters/"]:click': GCLMS.ClassroomController.gotoBookLink,
@@ -413,7 +410,10 @@ GCLMS.Triggers.update({
 			return false;
 		}
 	},
-	'#gclms-nodes-tree li img.gclms-expand-button:click': GCLMS.ClassroomController.toggleNodeExpansion
+	'#gclms-nodes-tree li': {
+		'img.gclms-expand-button:click' : GCLMS.ClassroomController.toggleNodeExpansion,
+		'a:click' : GCLMS.ClassroomController.gotoPageLink
+	}
 });
 
 /*

@@ -140,21 +140,21 @@ GCLMS.ClassroomController = {
 	},
 	
 	expandBooksViewport: function(){
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/books/panel';
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/books?framed';
 		if(!Ext.get('booksViewportContent').loaded)
 			Ext.get('booksViewportContent').dom.src = url;
 		Ext.get('booksViewportContent').loaded = true;	
 	},
 	
 	expandArticlesViewport: function(){
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/articles/panel';
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/articles?framed';
 		if(!Ext.get('articlesViewportContent').loaded)
 			Ext.get('articlesViewportContent').dom.src = url;
 		Ext.get('articlesViewportContent').loaded = true;
 	},
 	
-	expandDictionaryViewport: function(){
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/dictionary/panel';
+	expandGlossaryViewport: function(){
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/glossary?framed';
 		if(!Ext.get('glossaryViewportContent').loaded)
 			Ext.get('glossaryViewportContent').dom.src = url;
 		Ext.get('glossaryViewportContent').loaded = true;
@@ -165,7 +165,7 @@ GCLMS.ClassroomController = {
 	},
 	
 	activateDiscussionTab: function() {
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('gclms:virtual-class') + '/discussion/forums';
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('gclms:virtual-class') + '/discussion/forums?framed';
 		currentSrc = Ext.get('discussionViewportContent').dom.src;
 		if(currentSrc.indexOf(url) == -1) {
 			Ext.get('discussionViewportContent').dom.src = url;
@@ -405,7 +405,7 @@ GCLMS.Triggers.update({
 	'#bibleViewport:expand': GCLMS.ClassroomController.expandBibleViewport,
 	'#booksViewport:expand': GCLMS.ClassroomController.expandBooksViewport,
 	'#articlesViewport:expand': GCLMS.ClassroomController.expandArticlesViewport,
-	'#glossaryViewport:expand' : GCLMS.ClassroomController.expandDictionaryViewport,
+	'#glossaryViewport:expand' : GCLMS.ClassroomController.expandGlossaryViewport,
 	'.gclms-viewport-content' : {
 		':updated' : function () {
 			elm = this.dom;

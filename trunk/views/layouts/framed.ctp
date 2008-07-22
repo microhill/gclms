@@ -9,7 +9,7 @@
 		gclms:action="<?= $this->action ?>"
 		gclms:direction="<? echo $text_direction; ?>"
 		gclms:language="<?= Configure::read('Config.language') ?>">
-	<div id="gclms-page">
+	<div id="gclms-page" class="gclms-framed">
 		<?= $content_for_layout; ?>
 	</div>
 

@@ -122,21 +122,25 @@ legend {
 	clear: both;
 }
 	
-		.gclms-center-column p {
-			line-height: 1.45em;
-			margin-top: .75em;
-			margin-bottom: .75em;
-		}
-		
-		.gclms-center-column ul,
-		.gclms-center-column ol {
-			margin: 0;
-			padding-top: 12px;
-			padding-bottom: 12px;
-		}
+	.gclms-noframes .gclms-center-column p {
+		line-height: 1.45em;
+		margin-top: .75em;
+		margin-bottom: .75em;
+	}
+	
+	.gclms-noframes .gclms-center-column ul,
+	.gclms-noframes .gclms-center-column ol {
+		margin: 0;
+		padding-top: 12px;
+		padding-bottom: 12px;
+	}
 
-	.gclms-content {
+	.gclms-noframes .gclms-content {
 		padding: 12px;
+	}
+
+	.gclms-framed .gclms-content {
+		padding: 6px;
 	}
 
 .gclms-userbar {

@@ -27,7 +27,7 @@ ul, ol {
 		width: 25%;
 	}
 	
-	#gclms-page > .gclms-center-column {
+	#gclms-page.gclms-no-frames > .gclms-center-column {
 		float: left;
 		width: 50%;
 	}

@@ -212,7 +212,17 @@ GCLMS.ClassroomController = {
 			node.removeClassName('gclms-selected');
 		})
 
-		$$('a[href*="' + url[0] + '"]').first().addClassName('gclms-selected');
+		var a = $$('a[href*="' + url[0] + '"]').first();
+		
+		a.addClassName('gclms-selected');
+		li = a.up('li');
+		
+		do {
+			if(!li.hasClassName('gclms-empty')) {
+				li.removeClassName('gclms-collapsed');
+				li.addClassName('gclms-expanded');
+			}			
+		} while (li = li.up('li'));
 	},
 	
 	gotoPageLink: function(event) {

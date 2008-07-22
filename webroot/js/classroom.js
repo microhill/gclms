@@ -204,6 +204,17 @@ GCLMS.ClassroomController = {
 		});		
 	},
 	
+	highlightCurrentPage: function(url) {
+		url = url.split('pages/view/');
+		url = url[1].split('?');
+
+		$$('a.gclms-selected').each(function(node){
+			node.removeClassName('gclms-selected');
+		})
+
+		$$('a[href*="' + url[0] + '"]').first().addClassName('gclms-selected');
+	},
+	
 	gotoPageLink: function(event) {
 		event.stop();
 		Ext.get('lessonViewportContent').dom.src = this.getAttribute('href') + '?framed';

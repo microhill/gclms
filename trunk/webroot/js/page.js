@@ -332,14 +332,13 @@ GCLMS.PageController = {
 	},
 	
 	highlightCurrentPage: function() {
-		if(top)
-			top.GCLMS.ClassroomController.highlightCurrentPage(location.href);
+		top.GCLMS.ClassroomController.highlightCurrentPage(location.href);
 	}
 }
 
 GCLMS.Triggers.update({
 	'div.gclms-page': GCLMS.PageController.loadPageAudio,
-	'div.gclms-page': GCLMS.PageController.test,
+	'div.gclms-page': GCLMS.PageController.highlightCurrentPage,
 	'img.gclms-notebook:click': GCLMS.PageController.loadNotebook,
 	'#gradeQuestions:click': GCLMS.PageController.gradeQuestions,
 	'.gclms-multiple-choice button.gclms-check-answer-button:click': GCLMS.PageController.checkMultipleChoiceQuestion,

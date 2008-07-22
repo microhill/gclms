@@ -331,13 +331,9 @@ GCLMS.PageController = {
 		return false;
 	},
 	
-	test: function() {
-		top.GCLMS.ClassroomController.highlightCurrentPage(location.href);
-		/*
-		if (!top.$('bibleViewportContent').contentDocument.body.innerHTML) {
-			top.$('bibleViewportContent').src = this.getAttribute('href');
-		}
-		*/
+	highlightCurrentPage: function() {
+		if(top)
+			top.GCLMS.ClassroomController.highlightCurrentPage(location.href);
 	}
 }
 

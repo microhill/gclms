@@ -323,6 +323,12 @@ GCLMS.PageController = {
 				});
 			};
 		}
+	},
+	
+	gotoPageLink: function(event) {
+		location.href = this.getAttribute('href') + '?framed';		
+		event.stop();
+		return false;
 	}
 }
 
@@ -349,5 +355,6 @@ GCLMS.Triggers.update({
 		'a[href*="/chapters/"]:click': GCLMS.PageController.loadChapter,
 		'a[href*="/articles/"]:click': GCLMS.PageController.loadArticle,
 		'a[href*="/dictionary/"]:click': GCLMS.PageController.loadDictionaryTerm	
-	}
+	},
+	'div#gclms-page-navigation a:click': GCLMS.PageController.gotoPageLink
 });

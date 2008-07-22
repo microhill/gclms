@@ -205,8 +205,17 @@ GCLMS.ClassroomController = {
 	},
 	
 	gotoPageLink: function(event) {
-		Ext.get('lessonViewportContent').dom.src = this.getAttribute('href') + '?framed';
 		event.stop();
+		Ext.get('lessonViewportContent').dom.src = this.getAttribute('href') + '?framed';
+		
+		$$('a.gclms-selected').each(function(node){
+			node.removeClassName('gclms-selected');
+		})
+		if(this.addClassName)
+			this.addClassName('gclms-selected');
+				
+		Ext.getCmp('classroomTabs').activate('lessonTab');
+		
 		return false;
 		
 		if(this.hasClassName('lesson')) {
@@ -240,13 +249,7 @@ GCLMS.ClassroomController = {
 			event.stop();
 			return false;
 		}
-		$$('a.selected').each(function(node){
-			node.removeClassName('selected');
-		})
-		if(this.addClassName)
-			this.addClassName('selected');
-				
-		Ext.getCmp('classroomTabs').activate('lessonTab');
+
 	},
 	
 	gotoArticleLink: function() {

@@ -56,3 +56,8 @@
 		margin-bottom: 6px;
 	}
 
+.gclms-nodes-tree .gclms-selected {
+	background-color: #203F77;
+	color: white;
+	text-decoration: none;
+}

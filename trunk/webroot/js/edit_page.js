@@ -422,6 +422,7 @@ GCLMS.Triggers.update({
 		'.gclms-question': {
 			'input[type="radio"].gclms-question-type:click': GCLMS.PagesController.selectQuestionType,
 			'textarea.gclms-simple-tinymce-enabled.gclms-question-title': GCLMS.PagesController.enableSimpleTinyMCE,
+			'.gclms-question-explanation': GCLMS.PagesController.enableAdvancedTinyMCE,
 			'img.gclms-delete-question:click':GCLMS.PagesController.confirmDeleteQuestion,
 			'.gclms-multiple-choice': {
 				'.gclms-answer': {

@@ -1,6 +1,6 @@
 GCLMS.ArticleController = {
 	addArticle: function() {
-		self.location = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/articles/add';
+		self.location = 'articles/add';
 	},
 	
 	gotoFramedArticle: function() {
@@ -10,5 +10,5 @@ GCLMS.ArticleController = {
 
 GCLMS.Triggers.update({
 	'#addArticle:click': GCLMS.ArticleController.addArticle,
-	'.gclms-framed ul.glossary a:click': GCLMS.GlossaryController.gotoFramedGlossaryTerm
+	'.gclms-framed ul.articles a:click': GCLMS.ArticleController.gotoFramedArticle
 });

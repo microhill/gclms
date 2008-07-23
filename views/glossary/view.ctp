@@ -1,4 +1,12 @@
-<?= $this->element('left_column'); ?>
+<?
+$javascript->link(array(
+	'vendors/prototype',
+	'prototype_extensions',
+	'gclms',
+	'glossary'
+), false);
+
+echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
     <div class="gclms-content gclms-glossary-term">
         <div class="gclms-option-buttons">
@@ -8,7 +16,7 @@
 			<? endif; ?>
         </div>
         <div class="gclms-step-back">
-            <a href="/<?= $group['web_path'] ?>/<?= $course['web_path'] ?>/glossary">
+            <a href="../../glossary">
                 <? __('All Glossary Terms') ?>
             </a>
         </div>

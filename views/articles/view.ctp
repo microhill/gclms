@@ -1,6 +1,13 @@
 <?
 $html->css('/' . $group['web_path'] . '/files/css', null, null, false);
 
+$javascript->link(array(
+	'vendors/prototype',
+	'prototype_extensions',
+	'gclms',
+	'articles'
+), false);
+
 echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
     <div class="gclms-content gclms-article">
@@ -11,7 +18,7 @@ echo $this->element('left_column'); ?>
 			<? endif; ?>
         </div>
         <div class="gclms-step-back">
-            <a href="/<?= $group['web_path'] ?>/<?= $course['web_path'] ?>/articles">
+            <a href="../../articles">
                 <? __('All Articles') ?>
             </a>
         </div>

@@ -131,8 +131,8 @@ legend {
 	.gclms-noframes .gclms-center-column ul,
 	.gclms-noframes .gclms-center-column ol {
 		margin: 0;
-		padding-top: 12px;
-		padding-bottom: 12px;
+		/* padding-top: 12px;
+		padding-bottom: 12px; */
 	}
 
 	.gclms-noframes .gclms-content {

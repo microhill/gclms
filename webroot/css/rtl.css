@@ -30,7 +30,7 @@ ul, ol {
 			padding-bottom: 6px;
 		}
 	
-	#gclms-page.gclms-no-frames > .gclms-center-column {
+	#gclms-page.gclms-noframes > .gclms-center-column {
 		float: left;
 		width: 50%;
 	}

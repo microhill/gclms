@@ -1,4 +1,4 @@
-<?php
+<?
 class ArticlesController extends AppController {
     var $uses = array('Article');
 	var $itemName = 'Article';
@@ -21,12 +21,12 @@ class ArticlesController extends AppController {
 		$this->set('title',$this->data['Article']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
 	}
 	
-	function afterSave() {
-		if(empty($this->data['Article']['id']) && $this->action != 'delete') {
-			$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/articles/view/' . $this->data['Article']['id'];
+	function afterSave() {		
+		if(!empty($this->data['Article']['id']) && $this->action != 'delete') {
+			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/articles/view/' . $this->data['Article']['id']);
 		} else {
-			$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/articles';
+			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/articles');
 		}
-		parent::afterSave();
+		exit;
 	}
 }

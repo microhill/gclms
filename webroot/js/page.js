@@ -288,12 +288,15 @@ GCLMS.PageController = {
 	},
 	
 	loadGlossaryTerm: function(event) {
+		var url = this.getAttribute('href').split('glossary/view/');
+		var id = url[1];
+		alert(id);
 		top.Ext.getCmp('glossaryViewport').expand();
 		if (!top.$('glossaryViewportContent').contentDocument.body.innerHTML) {
-			top.$('glossaryViewportContent').src = this.getAttribute('href');
+			top.$('glossaryViewportContent').src = GCLMS.urlPrefix + 'glossary/view/' + id + '?framed';
 		}
 		event.stop();
-		return true;
+		return false;
 	},
 	
 	loadNotebook: function() {
@@ -331,14 +334,13 @@ GCLMS.PageController = {
 	},
 	
 	highlightCurrentPage: function() {
-		if(top)
-			top.GCLMS.ClassroomController.highlightCurrentPage(location.href);
+		top.GCLMS.ClassroomController.highlightCurrentPage(location.href);
 	}
 }
 
 GCLMS.Triggers.update({
 	//'div.gclms-page': GCLMS.PageController.loadPageAudio,
-	'div.gclms-page': GCLMS.PageController.highlightCurrentPage,
+	'.gclms-framed': GCLMS.PageController.highlightCurrentPage,
 	'img.gclms-notebook:click': GCLMS.PageController.loadNotebook,
 	'#gradeQuestions:click': GCLMS.PageController.gradeQuestions,
 	'.gclms-multiple-choice button.gclms-check-answer-button:click': GCLMS.PageController.checkMultipleChoiceQuestion,
@@ -359,7 +361,7 @@ GCLMS.Triggers.update({
 		'a[href*="/bible_kjv/"]:click': GCLMS.PageController.loadBibleVerse,
 		'a[href*="/chapters/"]:click': GCLMS.PageController.loadChapter,
 		'a[href*="/articles/"]:click': GCLMS.PageController.loadArticle,
-		'a[href*="/glossary/"]:click': GCLMS.PageController.loadGlossaryTerm	
+		'a[href*="/glossary/"]:click': GCLMS.PageController.loadGlossaryTerm
 	},
 	'div#gclms-page-navigation a:click': GCLMS.PageController.gotoPageLink
 });

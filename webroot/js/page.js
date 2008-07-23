@@ -361,5 +361,5 @@ GCLMS.Triggers.update({
 		'a[href*="/articles/"]:click': GCLMS.PageController.loadArticle,
 		'a[href*="/glossary/"]:click': GCLMS.PageController.loadGlossaryTerm
 	},
-	'div#gclms-page-navigation a:click': GCLMS.PageController.gotoPageLink
+	'#gclms-page.gclms-framed div#gclms-page-navigation a:click': GCLMS.PageController.gotoPageLink
 });

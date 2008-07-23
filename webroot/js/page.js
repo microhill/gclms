@@ -280,23 +280,21 @@ GCLMS.PageController = {
 	},
 	
 	loadArticle: function(event) {
+		var url = this.getAttribute('href').split('articles/view/');
+
 		top.Ext.getCmp('articlesViewport').expand();
-		if (!top.$('articlesViewportContent').contentDocument.body.innerHTML) {
-			top.$('articlesViewportContent').src = this.getAttribute('href');
-		}
+		//if (!top.$('articlesViewportContent').contentDocument.body.innerHTML) {
+		top.$('articlesViewportContent').src = GCLMS.urlPrefix + 'articles/view/' + url[1] + '?framed';
 		event.stop();
 	},
 	
 	loadGlossaryTerm: function(event) {
 		var url = this.getAttribute('href').split('glossary/view/');
-		var id = url[1];
-		alert(id);
+
 		top.Ext.getCmp('glossaryViewport').expand();
-		if (!top.$('glossaryViewportContent').contentDocument.body.innerHTML) {
-			top.$('glossaryViewportContent').src = GCLMS.urlPrefix + 'glossary/view/' + id + '?framed';
-		}
+		//if (!top.$('glossaryViewportContent').contentDocument.body.innerHTML) {
+		top.$('glossaryViewportContent').src = GCLMS.urlPrefix + 'glossary/view/' + url[1] + '?framed';
 		event.stop();
-		return false;
 	},
 	
 	loadNotebook: function() {

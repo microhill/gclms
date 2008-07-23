@@ -312,7 +312,7 @@ GCLMS.simpleTinyMCEConfig = {
 	mode: "none",
 	theme_advanced_toolbar_location : 'top',
 	theme_advanced_toolbar_align : 'left',
-	theme_advanced_buttons1 : 'italic,link,unlink,removeformat,pastetext',
+	theme_advanced_buttons1 : 'italic,link,unlink,removeformat,pastetext,pasteword',
 	theme_advanced_buttons2 : '',
 	file_browser_callback : 'GCLMS.fileBrowser',
 	width: '100%',

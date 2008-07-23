@@ -11,5 +11,5 @@ GCLMS.GlossaryController = {
 
 GCLMS.Triggers.update({
 	'#addGlossaryTerm:click': GCLMS.GlossaryController.addGlossaryTerm,
-	'.gclms-framed ul.glossary a:click': GCLMS.GlossaryController.gotoFramedGlossaryTerm
+	'.gclms-framed ul.glossary a:click,.gclms-framed .gclms-step-back a:click': GCLMS.GlossaryController.gotoFramedGlossaryTerm
 });

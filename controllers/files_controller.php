@@ -164,7 +164,7 @@ class FilesController extends AppController {
 		            $files[strtolower($file)] = array(
 		            	'basename' => $file,
 		            	'type' => $mime->getMimetype($directory . DS . $file),
-		            	'uri' => '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files/' . $file,
+		            	'uri' => '../../files/' . $file,
 						'width' => $imageSize[0],
 						'height' => $imageSize[1]
 		            );

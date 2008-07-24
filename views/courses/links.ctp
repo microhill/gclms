@@ -15,7 +15,7 @@ echo $this->element('no_column_background'); ?>
 		echo '<h2>Pages</h2>';
 	 	echo $this->element('nodes_tree',array(
 			'nodes' => $nodes,
-			'sibling_links' => true
+			'url_prefix' => '../../pages/view/'
 		));
 	}
 	?>

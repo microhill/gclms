@@ -17,7 +17,7 @@ echo $this->element('no_column_background');
 
 <div class="gclms-content">
 	<div>
-		<?	
+		<?
 		if(!empty($node['Node']['audio_file'])) {
 			$node['Node']['audio_file'] = $groupAndCoursePath  . 'files/' . $node['Node']['audio_file'];
 		?>

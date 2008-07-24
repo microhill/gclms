@@ -23,10 +23,7 @@ class ArticlesController extends AppController {
 	
 	function afterSave() {		
 		if(!empty($this->data['Article']['id']) && $this->action != 'delete') {
-			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/articles/view/' . $this->data['Article']['id']);
-		} else {
-			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/articles');
+			$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/articles/view/' . $this->data['Article']['id'];
 		}
-		exit;
 	}
 }

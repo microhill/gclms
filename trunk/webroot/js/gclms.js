@@ -243,8 +243,21 @@ GCLMS.Triggers = $H({
 			self.location.href = this.getAttribute('link:href');
 		}
 	},
-	'.gclms-content .gclms-button.gclms-submit:click' : GCLMS.AppController.submitForm,
-	'.gclms-content .gclms-button.gclms-delete:click' : GCLMS.AppController.confirmRemove,
+	'.gclms-content': {
+		'.gclms-button.gclms-submit:click': GCLMS.AppController.submitForm,
+		'.gclms-button.gclms-delete:click': GCLMS.AppController.confirmRemove,
+		'.gclms-button:mousedown': function() {
+			this.down('td').setStyle({
+				padding: '2px 0 0 2px'
+			});
+		},
+		'.gclms-button:mouseup,.gclms-button:mouseout': function() {
+			this.down('td').setStyle({
+				padding: '1px'
+			});
+		}
+	},
+
 	'body.gclms-install ul.gclms-menu a:click' : function(event) {
 		event.stop();
 	},

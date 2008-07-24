@@ -247,14 +247,10 @@ GCLMS.Triggers = $H({
 		'.gclms-button.gclms-submit:click': GCLMS.AppController.submitForm,
 		'.gclms-button.gclms-delete:click': GCLMS.AppController.confirmRemove,
 		'.gclms-button:mousedown': function() {
-			this.down('td').setStyle({
-				padding: '2px 0 0 2px'
-			});
+			this.down('td').addClassName('gclms-pressed');
 		},
 		'.gclms-button:mouseup,.gclms-button:mouseout': function() {
-			this.down('td').setStyle({
-				padding: '1px'
-			});
+			this.down('td').removeClassName('gclms-pressed');
 		}
 	},
 

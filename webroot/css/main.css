@@ -938,10 +938,6 @@ img.gclms-tooltip-button {
 		height: 15px;
 		margin-top: 3px;
 	}
-	
-		.gclms-panel .gclms-button td {
-			padding: 1px;
-		}
 
 	.gclms-panel .gclms-up {
 		background-image: url(../img/panel-button-up.png);
@@ -1215,6 +1211,14 @@ img.gclms-tooltip-button {
 	.gclms-button.gclms-submit,
 	.gclms-button.gclms-delete {
 		font-size: 1.34em;		
+	}
+	
+	.gclms-button td {
+		padding: 1px;
+	}
+	
+	.gclms-button td.gclms-pressed {
+		padding: 2px 0 0 2px;
 	}
 	
 	.gclms-button div {

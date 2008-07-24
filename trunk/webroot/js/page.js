@@ -328,17 +328,12 @@ GCLMS.PageController = {
 	gotoPageLink: function(event) {
 		location.href = this.getAttribute('href') + '?framed';		
 		event.stop();
-		return false;
 	},
 	
 	highlightCurrentPage: function() {
 		try {
 			top.GCLMS.ClassroomController.highlightCurrentPage(location.href);
 		} catch(e){};
-	},
-	
-	test: function() {
-		alert('test2');
 	}
 }
 
@@ -361,11 +356,11 @@ GCLMS.Triggers.update({
 	},	
 	'.gclms-true-false button:click': GCLMS.PageController.checkTrueFalseQuestion,
 	'div.gclms-framed' : {
-		'a:not([href*=/]):click': GCLMS.PageController.gotoPageLink,
 		':loaded': GCLMS.PageController.highlightCurrentPage,
-		'a[href*="/bible_kjv/"]:click': GCLMS.PageController.loadBibleVerse,
-		'a[href*="/chapters/"]:click': GCLMS.PageController.loadChapter,
-		'a[href*="/articles/"]:click': GCLMS.PageController.loadArticle,
-		'a[href*="/glossary/"]:click': GCLMS.PageController.loadGlossaryTerm
+		'a[href*="/pages/view"]:click': GCLMS.PageController.gotoPageLink,
+		'a[href*="/bible_kjv"]:click': GCLMS.PageController.loadBibleVerse,
+		'a[href*="/chapters/view"]:click': GCLMS.PageController.loadChapter,
+		'a[href*="/articles/view"]:click': GCLMS.PageController.loadArticle,
+		'a[href*="/glossary/view"]:click': GCLMS.PageController.loadGlossaryTerm
 	}
 });

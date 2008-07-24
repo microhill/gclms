@@ -66,7 +66,6 @@ class CommonComponent extends Object {
 	function afterSave() {
 		if(method_exists($this->controller,'afterSave')) {
 			$this->controller->afterSave();
-			exit;
 		}
 
 		if(empty($this->controller->redirect)) {

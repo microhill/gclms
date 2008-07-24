@@ -14,7 +14,8 @@ Element.addMethods({
 
 		return element;
 	},
-
+	
+	// Behold, the magic method
 	observeRules: function(element, rules) {
 		rules = $H(rules);
 
@@ -23,6 +24,12 @@ Element.addMethods({
 				var selectors = $A(rule.key.split(','));
 				selectors.each(function(selector) {
 					var pair = selector.split(':');
+					if(pair.length > 2) {
+						pair = new Array(pair.slice(0,pair.length - 1).join(':'),pair[pair.length - 1]);
+					} else if(pair.length == 2 && (pair[1].indexOf('(') != -1 || [('empty','enabled','disabled','checked')].in_array(pair[1]))){
+						pair = new Array(pair.slice(0,2).join(':'),'');						
+					}
+					
 					if(pair[0] && pair[1] && pair[1] != 'loaded') {
 						$(element).select(pair[0]).each(function(element) {
 							element.observe(pair[1], rule.value);
@@ -105,6 +112,14 @@ String.prototype.interpolate = function(hash) { // Is this even necessary in Pro
     template = new Template(this);
     return template.evaluate(hash);
 };
+
+Array.prototype.in_array = function (obj) {
+	var length = this.length;
+	for(var x = 0 ;x <= this.length; x++) {
+		if(this[x] == obj) return true;
+	}
+	return false;
+}
 
 Ajax.Responders.register({
 	onCreate: function() {

@@ -332,13 +332,18 @@ GCLMS.PageController = {
 	},
 	
 	highlightCurrentPage: function() {
-		top.GCLMS.ClassroomController.highlightCurrentPage(location.href);
+		try {
+			top.GCLMS.ClassroomController.highlightCurrentPage(location.href);
+		} catch(e){};
+	},
+	
+	test: function() {
+		alert('test2');
 	}
 }
 
 GCLMS.Triggers.update({
 	//'div.gclms-page': GCLMS.PageController.loadPageAudio,
-	'.gclms-framed': GCLMS.PageController.highlightCurrentPage,
 	'img.gclms-notebook:click': GCLMS.PageController.loadNotebook,
 	'#gradeQuestions:click': GCLMS.PageController.gradeQuestions,
 	'.gclms-multiple-choice button.gclms-check-answer-button:click': GCLMS.PageController.checkMultipleChoiceQuestion,
@@ -356,10 +361,11 @@ GCLMS.Triggers.update({
 	},	
 	'.gclms-true-false button:click': GCLMS.PageController.checkTrueFalseQuestion,
 	'div.gclms-framed' : {
+		'a:not([href*=/]):click': GCLMS.PageController.gotoPageLink,
+		':loaded': GCLMS.PageController.highlightCurrentPage,
 		'a[href*="/bible_kjv/"]:click': GCLMS.PageController.loadBibleVerse,
 		'a[href*="/chapters/"]:click': GCLMS.PageController.loadChapter,
 		'a[href*="/articles/"]:click': GCLMS.PageController.loadArticle,
 		'a[href*="/glossary/"]:click': GCLMS.PageController.loadGlossaryTerm
-	},
-	'#gclms-page.gclms-framed div#gclms-page-navigation a:click': GCLMS.PageController.gotoPageLink
+	}
 });

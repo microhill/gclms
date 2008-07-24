@@ -27,11 +27,8 @@ class GlossaryController extends AppController {
 	}
 	
 	function afterSave() {
-		if(empty($this->data['GlossaryTerm']['id']) && $this->action != 'delete') {
+		if(!empty($this->data['GlossaryTerm']['id']) && $this->action != 'delete') {
 			$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/glossary/view/' . $this->data['GlossaryTerm']['id'];
-		} else {
-			$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/glossary';
 		}
-		parent::afterSave();
 	}
 }

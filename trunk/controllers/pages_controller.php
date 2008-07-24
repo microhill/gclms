@@ -120,7 +120,6 @@ class PagesController extends AppController {
 
 		$this->saveQuestions($id);
 
-		$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/pages/view/' . $id;
 		parent::afterSave();
 	}
 
@@ -151,8 +150,7 @@ class PagesController extends AppController {
 	}
 
 	function afterSave() {
-		$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/content';
-		parent::afterSave();
+		$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/pages/view/' . $this->Node->id;
 	}
 
     function delete($id) {

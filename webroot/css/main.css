@@ -938,6 +938,10 @@ img.gclms-tooltip-button {
 		height: 15px;
 		margin-top: 3px;
 	}
+	
+		.gclms-panel .gclms-button td {
+			padding: 1px;
+		}
 
 	.gclms-panel .gclms-up {
 		background-image: url(../img/panel-button-up.png);

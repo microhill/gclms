@@ -5,7 +5,7 @@
 ?>>
 	<tr>
 	<? foreach($buttons as $button): ?>
-		<td id="<?= $button['id'] ?>">
+		<td <?= empty($button['id']) ? '' : 'id="' . $button['id'] . '"'?>>
 			<button class="<?= $button['class'] ?>"
 			<?
 			

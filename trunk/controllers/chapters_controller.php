@@ -9,6 +9,13 @@ class ChaptersController extends AppController {
 		$this->Breadcrumbs->addCrumb('Books',$this->viewVars['groupAndCoursePath'] . '/books');
 		parent::beforeRender();
 	}
+	
+	function view($id) {
+		$this->Chapter->contain();
+		$this->data = $this->Chapter->findById($id);
+		
+		$this->set('title',$this->data['Chapter']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
+	}
 
 	function add() {
 		if(empty($this->data['Chapter']['title']))

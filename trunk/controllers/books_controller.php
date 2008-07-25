@@ -16,13 +16,6 @@ class BooksController extends AppController {
 		echo $this->Book->getLastInsertId();
 		exit;
 	}
-	
-	function panel(){
-		$this->Book->contain('Chapter');
-		$books = $this->Book->findAllByCourseId($this->viewVars['course']['id']);
-		$this->set(compact('books'));
-		$this->render('show','classroom_panel');
-	}
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
@@ -31,7 +24,7 @@ class BooksController extends AppController {
 	}
 	
 	function index() {
-		$this->Book->contain();
+		$this->Book->contain('Chapter');
 		$books = $this->Book->findAll(array("Book.course_id" => $this->viewVars['course']['id']),null,'Book.title ASC');
 		$this->set(compact('books'));
 		

@@ -25,7 +25,7 @@ class CommonComponent extends Object {
 				if(!empty($this->itemName))
 					$this->controller->Notifications->add(__(ucfirst(low($this->controller->itemName)) . ' successfully added.',true));
 				$this->controller->data[$model]['id'] = $this->controller->{$model}->id;
-				$this->controller->afterSave();
+				$this->afterSave();
 			} else {
 				if(!empty($this->controller->itemName))
 					$this->controller->Notifications->add(__('There was an error when attempting to add the ' . low($this->controller->itemName) . '.',true),'error');
@@ -36,7 +36,7 @@ class CommonComponent extends Object {
     function edit($id = null, $model = null) {
 		if(empty($model))
 			$model = $this->controller->modelNames[0];
-
+		
 		if(!empty($this->controller->data)) {
 			$this->controller->{$model}->id = $id;
 			$this->controller->data[$model]['id'] = $id; // For accessibility outside of this method

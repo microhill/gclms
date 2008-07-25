@@ -401,7 +401,7 @@ GCLMS.fileBrowser = function(field_name, url, type, win) {
 	}
 
 	if(type == 'images' || type == 'media') {
-	   	cmsURL = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/files/' + type;
+	   	cmsURL = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/files/' + type + '/all';
 	} else {
 		cmsURL = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/courses/links/all';
 	}

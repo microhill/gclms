@@ -60,7 +60,7 @@ class CommonComponent extends Object {
 			$this->controller->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully deleted.',true));
 		else if(!empty($this->itemName))
 			$this->controller->Notifications->add(__('There was an error when attempting to delete the ' . low($this->itemName) . '.',true),'error');
-		$this->controller->afterDelete();
+		$this->afterSave();
     }
 	
 	function afterSave() {

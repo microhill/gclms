@@ -230,7 +230,7 @@ class FilesController extends AppController {
             if(is_file($phpThumb->cache_filename)){ // If thumb was already generated we want to use cached version
 				$cachedImage = getimagesize($phpThumb->cache_filename);
 				header('Content-Type: '.$cachedImage['mime']);
-				header('Content-Type: '.$cachedImage['mime']);
+				header('Last-Modified: ' .gmdate('D, d M Y H:i:s',filemtime($phpThumb->cache_filename)));
 				
 				readfile($phpThumb->cache_filename);
 				exit;

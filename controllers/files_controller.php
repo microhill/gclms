@@ -219,16 +219,19 @@ class FilesController extends AppController {
 
 			//Thanks to Kim Biesbjerg for his fix about cached thumbnails being regeneratd
 			if(!is_file($phpThumb->cache_filename)){ // Check if image is already cached.
+				die("test");
 				if ($phpThumb->GenerateThumbnail()) {
 			        $phpThumb->RenderToFile($phpThumb->cache_filename);
 			    } else {
 			        die('Failed: '.$phpThumb->error);
 			    }
 			}
-            
+			
             if(is_file($phpThumb->cache_filename)){ // If thumb was already generated we want to use cached version
 				$cachedImage = getimagesize($phpThumb->cache_filename);
 				header('Content-Type: '.$cachedImage['mime']);
+				header('Content-Type: '.$cachedImage['mime']);
+				
 				readfile($phpThumb->cache_filename);
 				exit;
 			}

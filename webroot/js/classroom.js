@@ -15,7 +15,7 @@ GCLMS.ClassroomController = {
 			sidebarItems = [{
 		        contentEl: 'navigationViewportContent',
 		        id: 'navigationViewport',
-		        title: 'Lesson Navigation',
+		        title: 'Lessons',
 		        border:false,
 		        autoScroll:true,
 		        iconCls:'navigation'

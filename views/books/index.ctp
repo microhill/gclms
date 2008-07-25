@@ -14,7 +14,6 @@ echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content articles">	
 		<?= $this->element('notifications'); ?>
-		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
 		<? if(!$framed): ?>
 			<h1><? __('Books') ?></h1>
 			<div id="gclms-menubar">
@@ -62,13 +61,26 @@ echo $this->element('left_column'); ?>
 				?>
 			</div>
 		<? endif; ?>
-		<ul id="books" class="books">
-		<?
-		foreach($books as $book) {
-			echo '<li id="book_' . $book['Book']['id'] . '" book:id="' . $book['Book']['id'] . '"><a href="#">' . $book['Book']['title'] . '</a></li>';
-		}
-		?>
-		</ul>
+
+		<div class="books">
+			<?
+			foreach($books as $book) {
+				echo '<h2>' . $book['Book']['title'] . '</h2>';
+				echo $this->element('menubar',array('buttons' => array(
+					array(
+						'id' => 'editBook',
+						'class' => 'gclms-edit',
+						'label' => __('Edit Book',true)
+					)
+				)));
+				echo '<ul>';
+				foreach($book['Chapter'] as $chapter) {
+					echo '<li><a href="/' . $group['web_path'] . '/' . $course['web_path'] . '/chapters/view/' . $chapter['id'] . '">' . $chapter['title'] . '</a></li>';
+				}
+				echo '</ul>';
+			}
+			?>
+		</div>
 	</div>
 </div>
 

@@ -18,5 +18,7 @@
 
 ===July 20-26, 2008==
 
- * Framed classroom re-enabled and made visible
+ * Framed classroom re-enabled and made it visible
  * Fixed bug (issue 119): Lesson navigation collapse/expand buttons not working (in framed classroom)
+ * Lots and lots of more bug fixes...
+ * Improved image thumbnail caching; improved image pop-up display

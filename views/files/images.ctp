@@ -15,8 +15,8 @@ echo $this->element('no_column_background'); ?>
 	<? endif; ?>
 	<?
 	foreach($files as $file) { ?>
-		<a href="<?= $file['uri'] ?>" image:width="<?= $file['width'] ?>" image:height="<?= $file['height'] ?>" title="<?= $file['basename'] . ' (' . $file['width'] . 'x' . $file['height'] . ')' ?>">
-			<div style="background-image: url('<?= $groupAndCoursePath . '/files/thumbnail/' . $file['basename'] ?>')"></div> <?= $file['basename'] ?>
+		<a href="<?= $file['uri'] ?>" image:width="<?= $file['width'] ?>" image:height="<?= $file['height'] ?>">
+			<div style="background-image: url('<?= $groupAndCoursePath . '/files/thumbnail/' . $file['basename'] ?>')"></div> <?= $file['basename'] . ' (' . $file['width'] . 'x' . $file['height'] . ')' ?>
 		</a>
 	<? } ?>
 	</div>

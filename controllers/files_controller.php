@@ -190,7 +190,7 @@ class FilesController extends AppController {
 
 		$width = (!isset($_GET['w'])) ? 100 : $_GET['w'];
 		$height = (!isset($_GET['h'])) ? 100 : $_GET['h'];
-		$quality = (!isset($_GET['q'])) ? 85 : $_GET['q'];
+		$quality = (!isset($_GET['q'])) ? 80 : $_GET['q'];
 		
 		$sourceFilename = $file;
 
@@ -210,23 +210,25 @@ class FilesController extends AppController {
 			$phpThumb->config_allow_src_above_phpthumb = true;
 			$phpThumb->config_document_root = '';
 			$phpThumb->config_temp_directory = APP . 'tmp';
-			$phpThumb->config_cache_directory = CACHE.'thumbs'.DS;
+			//$phpThumb->config_cache_directory = CACHE.'thumbs'.DS;
+			$phpThumb->config_cache_directory = ROOT . DS . APP_DIR . DS . WEBROOT_DIR.DS.'img'.DS.'cache'.DS;
 			$phpThumb->config_cache_disable_warning = true;
 
 			$cacheFilename = md5($_SERVER['REQUEST_URI']);
 			
-			$phpThumb->cache_filename = $phpThumb->config_cache_directory.$cacheFilename;
+			$phpThumb->cache_filename = $phpThumb->config_cache_directory.$cacheFilename . '.jpg';
 
 			//Thanks to Kim Biesbjerg for his fix about cached thumbnails being regeneratd
 			if(!is_file($phpThumb->cache_filename)){ // Check if image is already cached.
-				die("test");
-				if ($phpThumb->GenerateThumbnail()) {
-			        $phpThumb->RenderToFile($phpThumb->cache_filename);
+				if($phpThumb->GenerateThumbnail()) {
+					$phpThumb->RenderToFile($phpThumb->cache_filename);
 			    } else {
 			        die('Failed: '.$phpThumb->error);
 			    }
 			}
 			
+			header('Location: /img/cache/' . $cacheFilename . '.jpg');
+
             if(is_file($phpThumb->cache_filename)){ // If thumb was already generated we want to use cached version
 				$cachedImage = getimagesize($phpThumb->cache_filename);
 				header('Content-Type: '.$cachedImage['mime']);
@@ -234,6 +236,8 @@ class FilesController extends AppController {
 				
 				readfile($phpThumb->cache_filename);
 				exit;
+			} else {
+				die("Couldn't read thumbnail image image ". $phpThumb->cache_filename);				
 			}
 		} else { // Can't read source
 			die("Couldn't read source image ".$sourceFilename);

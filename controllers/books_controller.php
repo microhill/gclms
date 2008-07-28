@@ -1,20 +1,16 @@
 <?
 class BooksController extends AppController {
     var $uses = array('Book');
-	var $itemName = 'Book ';
-	var $components = array('MyAuth');
+	var $itemName = 'Book';
 
 	function add() {
-		if(empty($this->data['Book']['title']))
-			return false;
-
-		$this->Book->save(array('Book'=>array(
-			'course_id' => $this->viewVars['course']['id'],
-			'title' => $this->data['Book']['title']
-		)));
-
-		echo $this->Book->getLastInsertId();
-		exit;
+		if(!empty($this->data)) {
+			if($this->Book->save(array('Book'=>array(
+				'course_id' => $this->viewVars['course']['id'],
+				'title' => $this->data['Book']['title']
+			))))			
+				$this->afterSave();
+		}
 	}
 
 	function beforeRender() {
@@ -54,6 +50,6 @@ class BooksController extends AppController {
 	}
 
 	function afterSave() {
-		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path']) . '/books';
+		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/books');
 	}
 }

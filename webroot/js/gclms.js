@@ -14,6 +14,7 @@ function __(text) {
 }
 
 GCLMS.AppController = {
+	/*
 	confirmRemove: function(event) {
 		event.stop();
 		GCLMS.popup.create({
@@ -33,6 +34,7 @@ GCLMS.AppController = {
 			self.location.href = action[0] + 'delete' + action[1];
 		}
 	},
+	*/
 	showTooltip: function() {
 		if(!GCLMS.tooltip) {
 			GCLMS.tooltip = new Element('div', {
@@ -245,7 +247,7 @@ GCLMS.Triggers = $H({
 	},
 	'.gclms-content': {
 		'.gclms-button.gclms-submit:click': GCLMS.AppController.submitForm,
-		'.gclms-button.gclms-delete:click': GCLMS.AppController.confirmRemove,
+		//'.gclms-button.gclms-delete:click': GCLMS.AppController.confirmRemove,
 		'.gclms-button:mousedown': function() {
 			this.down('td').addClassName('gclms-pressed');
 		},

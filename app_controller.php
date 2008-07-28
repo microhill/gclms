@@ -44,6 +44,9 @@ class AppController extends Controller {
 			$this->set('notifications',$this->Notifications->getAll());
 			
 	       	$this->set('css_for_layout', $this->css_for_layout);
+		} else {
+			$this->set('text_direction','ltr');
+			$this->set('offline',isset($this->params['url']['offline']));
 		}
 
 		if(isset($this->params['url']['framed'])) {

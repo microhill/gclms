@@ -1,74 +1,6 @@
 GCLMS.BooksController = {
-	getBookTitleForAddition: function() {
-		GCLMS.popup.create({
-			text: this.down('button').getAttribute('gclms:prompt-text'),
-			callback: GCLMS.BooksController.addBook
-		});
-		return false;
-	},
-	addBook: function(title) {
-		if(!title) {
-			return false;			
-		}
-		tmpBookId = UUID.generate();
-
-		$('books').insert(GCLMS.Views.get('book').interpolate({
-			id: tmpBookId,
-			title: title
-		}));
-
-		GCLMS.Book.add({
-			title: title,
-			callback: function(request) {
-				$('book_' + tmpBookId).setAttribute('book:id',request.responseText);
-				$('book_' + tmpBookId).observeRules(GCLMS.Triggers.get('#books'));
-			}
-		});
-	},
 	editBook: function() {
 		self.location = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/chapters/toc/' + $$('#books a.selected').first().up('li').getAttribute('book:id');		
-	},
-	confirmDeleteBook: function() {
-		GCLMS.popup.create({
-			text: this.down('button').getAttribute('gclms:confirm-text'),
-			confirmButtonText: __('Yes'),
-			cancelButtonText: __('No'),
-			type: 'confirm',
-			callback: GCLMS.BooksController.deleteBook
-		});
-		return false;
-	},
-	deleteBook: function() {
-		li = $$('#books a.selected').first().up('li');
-
-		GCLMS.Book.remove({id: li.getAttribute('book:id')});
-
-		li.remove();
-
-		$$('#renameBook > button').first().disable();
-		$$('#deleteBook > button').first().disable();
-		$$('#editBook > button').first().disable();
-	},
-	getBookTitleForRename: function() {
-		GCLMS.popup.create({
-			text: this.down('button').getAttribute('gclms:prompt-text'),
-			value: $$('#books a.selected').first().innerHTML,
-			callback: GCLMS.BooksController.renameBook
-		});
-	},
-	renameBook: function(title) {
-		a = $$('#books a.selected').first();
-
-		if(!title || a.innerHTML == title) {
-			return false;
-		}
-
-		a.innerHTML = title;
-
-		GCLMS.Book.rename({
-			id: a.up('li').getAttribute('book:id'),
-			title: title
-		});
 	},
 	selectBook: function(event) {
 		event.stop();
@@ -85,7 +17,82 @@ GCLMS.BooksController = {
 		$$('#gclms-menubar button').each(function(button){
 			button.enable();
 		});
+	},
+	
+	// New functions
+		
+	getChapterTitleForAddition: function() {
+		GCLMS.popup.create({
+			text: this.getAttribute('gclms:prompt-text'),
+			callback: GCLMS.BooksController.addChapter.bind(this)
+		});
+		return false;
+	},
+
+	addChapter: function(title) {
+		if(!title)
+			return false;	
+	
+		var div = this.up('.gclms-book');
+				
+		var tmpChapterId = UUID.generate();
+	
+		div.down('ul').insert(GCLMS.Views.get('chapter').interpolate({
+			id: tmpChapterId,
+			title: title
+		}));
+
+		GCLMS.Chapter.add({
+			bookId: div.getAttribute('gclms:id'),
+			title: title,
+			callback: function(request) {
+				$('chapter_' + tmpChapterId).setAttribute('gclms:id',request.responseText);
+				$('chapter_' + tmpChapterId).down('a').setAttribute('href',GCLMS.urlPrefix + 'chapters/view/' + request.responseText);
+				//$('chapter_' + tmpChapterId).observeRules(GCLMS.Triggers.get('#chapters'));
+			}
+		});	
+	},
+	
+	getBookTitleForRename: function() {
+		GCLMS.popup.create({
+			text: this.getAttribute('gclms:prompt-text'),
+			value: this.up('.gclms-book').down('h2').innerHTML,
+			callback: GCLMS.BooksController.renameBook.bind(this)
+		});
+	},
+	
+	renameBook: function(title) {
+		var h2 = this.up('.gclms-book').down('h2');
+
+		if(!title || h2.innerHTML == title) {
+			return false;
+		}
+
+		h2.innerHTML = title;
+
+		GCLMS.Book.rename({
+			id: this.up('.gclms-book').getAttribute('gclms:id'),
+			title: title
+		});
+	},
+	
+	confirmDeleteBook: function() {
+		GCLMS.popup.create({
+			text: this.getAttribute('gclms:confirm-text'),
+			confirmButtonText: __('Yes'),
+			cancelButtonText: __('No'),
+			type: 'confirm',
+			callback: GCLMS.BooksController.deleteBook.bind(this)
+		});
+		return false;
+	},
+
+	deleteBook: function() {
+		var div = this.up('.gclms-book');
+		GCLMS.Book.remove({id: div.getAttribute('gclms:id')});
+		div.remove();
 	}
+
 };
 
 GCLMS.Book = {
@@ -112,22 +119,39 @@ GCLMS.Book = {
 	}
 };
 
+GCLMS.Chapter = {
+	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/chapters/',
+	add: function(options) {
+		new Ajax.Request(this.ajaxUrl + 'add',{
+			method: 'post',
+			parameters: {
+				'data[Chapter][title]': options.title,
+				'data[Chapter][book_id]': options.bookId
+			},
+			onComplete: options.callback
+		});	
+	},
+	reorder: function(options) {
+		new Ajax.Request(this.ajaxUrl + 'reorder',{
+			method: 'post',
+			parameters: {
+				'data[Book][id]': options.bookId,
+				'data[Book][chapters]': options.chapterIds.toString()
+			}
+		});
+	}
+}
+
 GCLMS.Views.update({
-	book: '<li id="book_#{id}"><a href="#">#{title}</a></li>'
+	chapter: '<li id="chapter_#{id}"><a>#{title}</a></li>'
 });
 
 GCLMS.Triggers.update({
-	'#gclms-menubar' : {
-		'#editBook:click':		GCLMS.BooksController.editBook,
-		'#deleteBook:click':	GCLMS.BooksController.confirmDeleteBook,
-		'#addBook:click':		GCLMS.BooksController.getBookTitleForAddition,
-		'#renameBook:click': 	GCLMS.BooksController.getBookTitleForRename
-	},
-
-	'#books' : {
-		'a' : {
-			':click': 				GCLMS.BooksController.selectBook,
-			':dblclick': 			GCLMS.BooksController.editBook
+	'#gclms-books' : {
+		'.gclms-book' : {
+			'.gclms-add:click': GCLMS.BooksController.getChapterTitleForAddition,
+			'.gclms-rename:click': GCLMS.BooksController.getBookTitleForRename,
+			'.gclms-delete:click': GCLMS.BooksController.confirmDeleteBook
 		}
 	}
 });

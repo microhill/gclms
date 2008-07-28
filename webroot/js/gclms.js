@@ -14,6 +14,11 @@ function __(text) {
 }
 
 GCLMS.AppController = {
+	gotoFramedLink: function(event) {
+		event.stop();
+		location.href = this.getAttribute('href') + '?framed';
+	},
+
 	/*
 	confirmRemove: function(event) {
 		event.stop();

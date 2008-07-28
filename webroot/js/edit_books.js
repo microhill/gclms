@@ -1,4 +1,9 @@
 GCLMS.BooksController = {
+	gotoFramedChapter: function(event) {
+		event.stop();
+		location.href = this.getAttribute('href') + '?framed';
+	},
+	
 	editBook: function() {
 		self.location = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/chapters/toc/' + $$('#books a.selected').first().up('li').getAttribute('book:id');		
 	},
@@ -153,5 +158,7 @@ GCLMS.Triggers.update({
 			'.gclms-rename:click': GCLMS.BooksController.getBookTitleForRename,
 			'.gclms-delete:click': GCLMS.BooksController.confirmDeleteBook
 		}
-	}
+	},
+	
+	'.gclms-framed .gclms-book li a:click,.gclms-framed .gclms-step-back a:click': GCLMS.BooksController.gotoFramedChapter
 });

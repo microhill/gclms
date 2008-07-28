@@ -13,7 +13,7 @@ body {
     font-family: Segoe UI, Tahoma, Arial, Helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
-    -moz-outline: 0px none;
+    /* -moz-outline: 0px none; */
 }
 
 textarea,
@@ -206,7 +206,7 @@ legend {
 form {}
 
 	form input.gclms-save,
-	form input.gclms-cancel,
+	form input.gclms-cancel
 	form input.gclms-delete {
 		font-size: 1.3em;
 	}
@@ -1208,8 +1208,16 @@ img.gclms-tooltip-button {
 	cursor: pointer;
 }
 
-	.gclms-button.gclms-submit,
-	.gclms-button.gclms-delete {
+	.gclms-button a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	.gclms-button:hover a {
+		text-decoration: underline;
+	}
+
+	.gclms-button.gclms-submit {
 		font-size: 1.34em;		
 	}
 	
@@ -1230,8 +1238,12 @@ img.gclms-tooltip-button {
 	.gclms-button.gclms-hover-green:hover .gclms-contain {
 		background: #006633;
 		background-image: url(../img/popup-dialog-ok-background.png);
-		color: white;
 	}
+	
+		.gclms-button.gclms-hover-green:hover a,
+		.gclms-button.gclms-hover-red:hover a {
+			color: white;
+		}
 	
 		.gclms-button.gclms-hover-green:hover .gclms-row {
 			background: #006633;

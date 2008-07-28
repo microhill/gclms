@@ -81,7 +81,7 @@ class ChaptersController extends AppController {
 	}
 
 	function afterSave() {
-		$this->redirect($this->viewVars['groupAndCoursePath'] . '/chapters/toc/' . $this->data['Chapter']['book_id']);
+		$this->redirect($this->viewVars['groupAndCoursePath'] . '/chapters/view/' . $this->data['Chapter']['id']);
 		exit;
 	}
 }

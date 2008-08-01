@@ -10,13 +10,13 @@ echo $this->element('no_column_background'); ?>
 
 <div class="gclms-content">	
 	<div class="gclms-images">
-	<? if(empty($files)): ?>
+	<? if(empty($images)): ?>
 		Empty.
 	<? endif; ?>
 	<?
-	foreach($files as $file) { ?>
-		<a href="<?= $file['uri'] ?>" image:width="<?= $file['width'] ?>" image:height="<?= $file['height'] ?>">
-			<div style="background-image: url('<?= $groupAndCoursePath . '/files/thumbnail/' . $file['basename'] ?>')"></div> <?= $file['basename'] . ' (' . $file['width'] . 'x' . $file['height'] . ')' ?>
+	foreach($images as $image) { ?>
+		<a href="<?= $image['uri'] ?>" image:width="<?= @$image['width'] ?>" image:height="<?= @$image['height'] ?>">
+			<div style="background-image: url('<?= $groupAndCoursePath . '/files/thumbnail/' . $image['basename'] ?>')"></div> <?= $image['basename'] ?>
 		</a>
 	<? } ?>
 	</div>

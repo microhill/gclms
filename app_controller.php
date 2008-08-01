@@ -71,7 +71,7 @@ class AppController extends Controller {
 		
 		// Course
        	if(!empty($this->params['course'])) {
-			$this->Course->contain('id','group_id','title','web_path','description','language','redistribution_allowed','commercial_use_allowed','derivative_works_allowed','css');
+			$this->Course->contain('id','group_id','title','web_path','description','language','open','redistribution_allowed','commercial_use_allowed','derivative_works_allowed','css');
 			$course = $this->Course->find(array("Course.web_path" => $this->params['course']));
 			$this->set('course',$course['Course']);
        	}

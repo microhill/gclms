@@ -17,6 +17,14 @@ echo $form->input('language',array(
 	'escape' => false
 ));
 
+echo $form->radio('open',
+	array(0 => __('No', true),1 => __('Yes', true)),
+	array(
+		'legend' =>  __('Allow non-enrollees to view course content?', true),
+		'separator' => '<br />'
+	)
+);
+
 echo $form->radio('redistribution_allowed',
 	array(0 => __('No', true),1 => __('Yes', true)),
 	array(

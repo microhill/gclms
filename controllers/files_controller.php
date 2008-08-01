@@ -1,7 +1,19 @@
 <?
+
+App::import('Vendor','s3');
+
 class FilesController extends AppController {
     var $uses = array('User','Group','Course');
 	var $components = array('Notifications','RequestHandler');
+
+	function beforeFilter() {
+		Configure::load('S3');
+		$this->set('bucket',Configure::read('S3.bucket'));
+		$this->set('accessKey',Configure::read('S3.accessKey'));
+		$this->set('secretKey',Configure::read('S3.secretKey'));
+
+		parent::beforeFilter();
+	}
 
     function upload() {
 		if(empty($this->viewVars['course']['id']))
@@ -39,12 +51,91 @@ class FilesController extends AppController {
 		}
 		return round($size) . ' ' . $val;
 	}
+	
+	private function create_thumbnail($key) {
+		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);
+		//$s3->getObject($this->viewVars['bucket'], $key, fopen(TMP . 'thumbs' . DS . 'originals', 'a+'));
+
+		$width = 100; //(!isset($_GET['w'])) ? 100 : $_GET['w'];
+		$height = 100; //(!isset($_GET['h'])) ? 100 : $_GET['h'];
+		$quality = 80; //(!isset($_GET['q'])) ? 80 : $_GET['q'];
+		
+		$sourceFilename = 'http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/' . $key;
+
+		App::import('Vendor','phpthumb' . DS . 'phpthumbclass');
+		$phpThumb = new phpThumb();
+
+		$phpThumb->src = $sourceFilename;
+		$phpThumb->w = $width;
+		$phpThumb->h = $height;
+		$phpThumb->q = $quality;
+		//$phpThumb->config_imagemagick_path = 'C:\Program Files\ImageMagick-6.3.6-Q16';
+		$phpThumb->config_prefer_imagemagick = false;
+		$phpThumb->config_output_format = 'jpg';
+		$phpThumb->config_error_die_on_error = true;
+		//$phpThumb->config_allow_src_above_docroot = true;
+		//$phpThumb->config_allow_src_above_phpthumb = true;
+		//$phpThumb->config_document_root = '';
+		$phpThumb->config_temp_directory = TMP;
+		$phpThumb->config_cache_directory = CACHE.'thumbs'.DS;
+		//$phpThumb->config_cache_directory = ROOT . DS . APP_DIR . DS . WEBROOT_DIR.DS.'img'.DS.'cache'.DS;
+		$phpThumb->config_cache_disable_warning = true;
+
+		$cacheFilename = md5($key);
+		
+		$phpThumb->cache_filename = $phpThumb->config_cache_directory . $cacheFilename . '.jpg';
+
+		//Thanks to Kim Biesbjerg for his fix about cached thumbnails being regeneratd
+		if(!is_file($phpThumb->cache_filename)){ // Check if image is already cached.
+			if($phpThumb->GenerateThumbnail()) {
+				$phpThumb->RenderToFile($phpThumb->cache_filename);
+		    } else {
+		        die('Failed: '.$phpThumb->error);
+		    }
+		}
+		
+		$s3->putObjectFile($phpThumb->cache_filename, $this->viewVars['bucket'], 'courses/' . $this->viewVars['course']['id'] . '/thumbs/' . $cacheFilename . '.jpg', S3::ACL_PUBLIC_READ);
+		unlink($phpThumb->cache_filename);
+		$this->redirect($this->viewVars['groupAndCoursePath'] . '/files');
+	}
+	
+	function getS3Redirect($objectName) {
+		$objectName = '/' . $objectName;
+		$S3_URL = "http://s3.amazonaws.com";
+		$expires = time() + 3600;
+		$bucketName = '/' . $this->viewVars['bucket'];
+		
+		$stringToSign = "GET\n\n\n$expires\n$bucketName$objectName";
+
+		$signature = urlencode(base64_encode(hash_hmac('sha1', $stringToSign, $this->viewVars['secretKey'], TRUE)));
+		
+		return "$S3_URL$bucketName$objectName?AWSAccessKeyId=" . $this->viewVars['accessKey'] . "&Expires=$expires&Signature=$signature";
+	}
 
 	function index() {
-		if(!empty($this->params['file'])) {
+		if(!empty($this->params['url']['bucket']) && !empty($this->params['url']['key'])) {
+			$this->create_thumbnail($this->params['url']['key']);
+			exit;
+		} else if(!empty($this->params['file'])) {
 			$this->file($this->params['file']);
-			die;
+			exit;
 		}
+		
+		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);
+		$files = $s3->getBucket($this->viewVars['bucket'],'courses/' . $this->viewVars['course']['id'] . '/',null,null,'/'); //, $prefix = null, $marker = null, $maxKeys = null
+		
+		$total_size = 0;
+		foreach($files as &$file) {
+			$total_size += $file['size'];
+			$file['uri'] = '/' . $this->viewVars['group']['web_path'] . '/' .$this->viewVars['course']['web_path'] . '/files/' . basename($file['name']);
+			$file['size'] = $this->get_file_size($file['size']);
+		}
+		
+		$this->set(compact('files'));
+		$this->set('total_size',$this->get_file_size($total_size));
+		/*
+		die;
+
 		
 		$directory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
 		if(!file_exists($directory))
@@ -79,6 +170,7 @@ class FilesController extends AppController {
 
 		$this->set(compact('files'));
 		$this->set('total_size',$this->get_file_size($total_size));
+		*/
 		
 		$this->set('title',__('Media Files',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
 		$this->Notifications->add(
@@ -143,6 +235,31 @@ class FilesController extends AppController {
 	}
 
 	function images() {
+		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);
+		$files = $s3->getBucket($this->viewVars['bucket'],'courses/' . $this->viewVars['course']['id'] . '/',null,null,'/'); //, $prefix = null, $marker = null, $maxKeys = null
+		
+		$images = array();
+		foreach($files as &$file) {
+	        $fileinfo = pathinfo($file['name']);
+			if(in_array($fileinfo['extension'],array('png','gif','jpg'))) {
+				$basename = basename($file['name']);
+				//prd(getimagesize('http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/courses/' . $this->viewVars['course']['id'] . '/' . $basename));
+				$images[$basename] = array(
+					'basename' => $basename,
+					'uri' => '../../files/' . $basename
+				);
+			}
+			$file['uri'] = '/' . $this->viewVars['group']['web_path'] . '/' .$this->viewVars['course']['web_path'] . '/files/' . basename($file['name']);
+			$file['size'] = $this->get_file_size($file['size']);
+		}
+		
+		ksort($files);
+
+		$this->set(compact('images'));
+
+		$this->render('images','tinymce_popup');
+		
+		/*
 		if(isset($this->passedArgs[1])) {
 			$this->file($this->passedArgs[1]);
 			die();
@@ -172,79 +289,22 @@ class FilesController extends AppController {
 		    }
 		    closedir($handle);
 		}
-		ksort($files);
-
-		$this->set(compact('files'));
-
-		$this->render('images','tinymce_popup');
+		*/
 	}
 	
 	function thumbnail($image) {
-		$file = $image;
-		
-		$file = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'] . DS . $file;
-
-		if (!file_exists($file)) {
-			exit;
-		}
-
-		$width = (!isset($_GET['w'])) ? 100 : $_GET['w'];
-		$height = (!isset($_GET['h'])) ? 100 : $_GET['h'];
-		$quality = (!isset($_GET['q'])) ? 80 : $_GET['q'];
-		
-		$sourceFilename = $file;
-
-		if(is_readable($sourceFilename)){
-			App::import('Vendor','phpthumb' . DS . 'phpthumbclass');
-			$phpThumb = new phpThumb();
-
-			$phpThumb->src = $sourceFilename;
-			$phpThumb->w = $width;
-			$phpThumb->h = $height;
-			$phpThumb->q = $quality;
-			//$phpThumb->config_imagemagick_path = 'C:\Program Files\ImageMagick-6.3.6-Q16';
-			$phpThumb->config_prefer_imagemagick = false;
-			$phpThumb->config_output_format = 'jpg';
-			$phpThumb->config_error_die_on_error = true;
-			$phpThumb->config_allow_src_above_docroot = true;
-			$phpThumb->config_allow_src_above_phpthumb = true;
-			$phpThumb->config_document_root = '';
-			$phpThumb->config_temp_directory = APP . 'tmp';
-			//$phpThumb->config_cache_directory = CACHE.'thumbs'.DS;
-			$phpThumb->config_cache_directory = ROOT . DS . APP_DIR . DS . WEBROOT_DIR.DS.'img'.DS.'cache'.DS;
-			$phpThumb->config_cache_disable_warning = true;
-
-			$cacheFilename = md5($_SERVER['REQUEST_URI']);
-			
-			$phpThumb->cache_filename = $phpThumb->config_cache_directory.$cacheFilename . '.jpg';
-
-			//Thanks to Kim Biesbjerg for his fix about cached thumbnails being regeneratd
-			if(!is_file($phpThumb->cache_filename)){ // Check if image is already cached.
-				if($phpThumb->GenerateThumbnail()) {
-					$phpThumb->RenderToFile($phpThumb->cache_filename);
-			    } else {
-			        die('Failed: '.$phpThumb->error);
-			    }
-			}
-			
-			header('Location: /img/cache/' . $cacheFilename . '.jpg');
-
-            if(is_file($phpThumb->cache_filename)){ // If thumb was already generated we want to use cached version
-				$cachedImage = getimagesize($phpThumb->cache_filename);
-				header('Content-Type: '.$cachedImage['mime']);
-				header('Last-Modified: ' .gmdate('D, d M Y H:i:s',filemtime($phpThumb->cache_filename)));
-				
-				readfile($phpThumb->cache_filename);
-				exit;
-			} else {
-				die("Couldn't read thumbnail image image ". $phpThumb->cache_filename);				
-			}
-		} else { // Can't read source
-			die("Couldn't read source image ".$sourceFilename);
-		}
+		$file = 'courses/' . $this->viewVars['course']['id'] . '/' . $image;
+		$this->redirect('http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/courses/' . $this->viewVars['course']['id'] . '/thumbs/' . md5($file) . '.jpg');
 	}
 
 	function file() {
+		if($this->viewVars['course']['open'])
+			$file = 'http://s3.amazonaws.com/' . $this->viewVars['bucket'] . '/courses/' . $this->viewVars['course']['id'] . '/' . basename($this->params['url']['url']);
+		else 
+			$file = $this->getS3Redirect('courses/' . $this->viewVars['course']['id'] . '/' . basename($this->params['url']['url']));
+		$this->redirect($file);
+		exit;
+		/*
 		$path_parts = pathinfo($this->params['url']['url']);
 		$file = low($path_parts['basename']);
 		
@@ -275,6 +335,7 @@ class FilesController extends AppController {
 		header('Content-length: ' . filesize($file));
 		readfile($file);
 		exit;
+		*/
 	}
 
 	function logo() {

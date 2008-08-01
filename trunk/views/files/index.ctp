@@ -17,6 +17,7 @@ echo $this->element('left_column'); ?>
 		<?= $this->element('notifications'); ?>
 		<h1><? __('Media Files') ?></h1>	
 				<?
+				if(0)
 				echo $this->element('menubar',array('buttons' => array(
 					array(
 						'id' => 'gclms-upload-files',
@@ -45,12 +46,13 @@ echo $this->element('left_column'); ?>
 						<? __('Name') ?>
 					</th>
 					<th style="width: 1px;white-space:nowrap;">
-						<? __('Size') ?> (<?= $total_size ?>)
+						<? __('Size') ?> (<?= @$total_size ?>)
 					</th>
 				</tr>
 			<?
 			
 			foreach($files as $file):
+				/*
 				if(eregi('application/pdf',$file['type'])) {
 					$type = 'pdf';
 				} else if(eregi('video',$file['type'])) {
@@ -66,15 +68,16 @@ echo $this->element('left_column'); ?>
 				} else {
 					$type = 'mime';
 				}
+				*/
 	
 				//echo "<li class='" . $type . "'><a href='" . $file['uri'] . "'>" . $file['basename'] . "</a>" . '</li>';		
 				?>
 				<tr class="gclms-file">
 					<td>
-						<input type="checkbox" class="gclms-file-select" name="data[files][]" value="<?= $file['basename'] ?>" />
+						<input type="checkbox" class="gclms-file-select" name="data[files][]" value="<?= basename($file['name']) ?>" />
 					</td>
 					<td>
-						<a href="<?= $file['uri'] ?>"><?= $file['basename'] ?></a>			
+						<a href="<?= $file['uri'] ?>"><?= basename($file['name']) ?></a>			
 					</td>
 					<td style="white-space: nowrap;">
 						<?= $file['size'] ?>
@@ -89,12 +92,49 @@ echo $this->element('left_column'); ?>
 			</button>
 		</div>
 
-		<div id="SWFUploadFileListingFiles">
-		</div>
+		<!--div id="SWFUploadFileListingFiles"></div -->
 
 		<br class="clr" />
 
 		<div id="downloadProgress"></div>
+		
+		<?
+		$form_action = 'https://' . Configure::read('S3.bucket') . '.s3.amazonaws.com/';
+
+		$acl = empty($course['open']) ? 'private' : 'public-read';
+
+		$policy = array(
+			'expiration' => '2009-01-01T00:00:00Z',
+			'conditions' => array(
+				array('bucket' => Configure::read('S3.bucket')),
+				array('success_action_redirect' => Configure::read('Site.domain') . $this->here),
+				array('starts-with','$key','courses/' . $course['id'] . '/'),
+				array('starts-with','$Content-Type',''),
+				array('content-length-range',10,31457280),
+				array('acl'=>$acl)
+			)
+		);
+		
+		$policy = base64_encode($javascript->object($policy));
+		
+		$signature = base64_encode(hash_hmac('sha1', $policy, Configure::read('S3.secretKey'), TRUE));
+		?>
+		
+		<form action2="http://test/upload" action="<?= $form_action ?>" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="key" value="courses/<?= $course['id'] ?>/${filename}"/>
+			<input type="hidden" name="AWSAccessKeyId" value="<?= Configure::read('S3.accessKey') ?>"/> 
+			<input type="hidden" name="acl" value="<?= $acl ?>"/>
+			<input type="hidden" name="policy" value="<?= $policy ?>"/>
+			<input type="hidden" name="signature" value="<?= $signature ?>"/>
+			<input type="hidden" name="Content-Type" value="application/octet-stream"/>
+			<!-- input type="hidden" name="acl" value="public" -->
+			<input type="hidden" name="success_action_redirect" value="<?= Configure::read('Site.domain') . $this->here ?>"/>
+			<!-- input type="hidden" name="Content-Type" value="image/jpeg" -->
+			
+			
+			<? __('Choose file to upload:') ?>
+			<input name="file" type="file"> <input type="submit" value="Upload File"> 
+		</form>
 	</div>
 </div>
 

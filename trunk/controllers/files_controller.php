@@ -110,7 +110,7 @@ class FilesController extends AppController {
 			'height' => $imageinfo[1]
 		)));
 		
-		$s3->putObjectFile($phpThumb->cache_filename, $this->viewVars['bucket'], 'courses/' . $this->viewVars['course']['id'] . '/thumbs/' . $cacheFilename . '.jpg', $this->viewVars['course']['open'] ? S3::ACL_PUBLIC_READ : ACL_PRIVATE);
+		$s3->putObjectFile($phpThumb->cache_filename, $this->viewVars['bucket'], 'courses/' . $this->viewVars['course']['id'] . '/__thumbs/' . $cacheFilename . '.jpg', $this->viewVars['course']['open'] ? S3::ACL_PUBLIC_READ : ACL_PRIVATE);
 		unlink($phpThumb->cache_filename);	
 	}
 	
@@ -301,7 +301,7 @@ class FilesController extends AppController {
 	
 	function thumbnail($image) {
 		$file = 'courses/' . $this->viewVars['course']['id'] . '/' . $image;
-		$this->redirect('http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/courses/' . $this->viewVars['course']['id'] . '/thumbs/' . md5($file) . '.jpg');
+		$this->redirect('http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/courses/' . $this->viewVars['course']['id'] . '/__thumbs/' . md5($file) . '.jpg');
 	}
 
 	function file() {

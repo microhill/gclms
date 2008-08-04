@@ -16,6 +16,7 @@ echo $this->element('no_column_background'); ?>
 	<ul>
 	<?
 	foreach($files as $file) {
+		/*
 		if(eregi('application/pdf',$file['type'])) {
 			$type = 'pdf';
 		} else if(eregi('video',$file['type'])) {
@@ -31,8 +32,9 @@ echo $this->element('no_column_background'); ?>
 		} else {
 			$type = 'mime';
 		}
+		*/
 
-		echo "<li class='" . $type . "'><a href='" . $file['uri'] . "'>" . $file['basename'] . "</a>" . '</li>';		
+		echo "<li><a href='" . $file['uri'] . "'>" . $file['basename'] . "</a>" . '</li>';		
 	}
 	?>
 	</ul>

@@ -82,7 +82,7 @@ if (file_exists(CONFIGS.'installed.txt')) {
 	Router::connect('/:group/:course/:class/:controller/*',array(),array('class' => $UUID));
 			
 	Router::connect('/:group/:course/:controller');
-	Router::connect('/:group/:course/files/:action',array('controller'=>'files'),array('action' => 'media|images|thumbnail|delete'));
+	Router::connect('/:group/:course/files/:action',array('controller'=>'files'),array('action' => 'media|images|thumbnail|delete|create_thumbnail|migrate_to_s3'));
 	
 	Router::connect('/:group/:course/files/:file',array('controller'=>'files','action'=>'file'));
 

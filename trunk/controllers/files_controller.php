@@ -1,7 +1,4 @@
 <?
-
-App::import('Vendor','s3');
-
 class FilesController extends AppController {
     var $uses = array('User','Group','Course');
 	var $components = array('Notifications','RequestHandler');
@@ -52,40 +49,42 @@ class FilesController extends AppController {
 		return round($size) . ' ' . $val;
 	}
 	
-	private function create_thumbnail($key) {
+	function create_thumbnail($file) {
+		if(!isset($this->params['url']['render'])) {
+			$this->render('creating_thumbnail');
+			return true;
+		}
+		$this->__create_thumbnail($file);
+		$this->redirect($this->viewVars['groupAndCoursePath'] . '/files');
+	}
+	
+	private function __create_thumbnail($file) {
+		App::import('Vendor','s3');
+		$key = 'courses/' . $this->viewVars['course']['id'] . '/' . $file;
+		
 		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);
 		//$s3->getObject($this->viewVars['bucket'], $key, fopen(TMP . 'thumbs' . DS . 'originals', 'a+'));
-
-		$width = 100; //(!isset($_GET['w'])) ? 100 : $_GET['w'];
-		$height = 100; //(!isset($_GET['h'])) ? 100 : $_GET['h'];
-		$quality = 80; //(!isset($_GET['q'])) ? 80 : $_GET['q'];
-		
 		$sourceFilename = 'http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/' . $key;
 
 		App::import('Vendor','phpthumb' . DS . 'phpthumbclass');
 		$phpThumb = new phpThumb();
 
 		$phpThumb->src = $sourceFilename;
-		$phpThumb->w = $width;
-		$phpThumb->h = $height;
-		$phpThumb->q = $quality;
+		$phpThumb->w = 100; //(!isset($_GET['w'])) ? 100 : $_GET['w'];;
+		$phpThumb->h = 100; //(!isset($_GET['h'])) ? 100 : $_GET['h'];;
+		$phpThumb->q = 80; //(!isset($_GET['q'])) ? 80 : $_GET['q'];;
 		//$phpThumb->config_imagemagick_path = 'C:\Program Files\ImageMagick-6.3.6-Q16';
 		$phpThumb->config_prefer_imagemagick = false;
 		$phpThumb->config_output_format = 'jpg';
 		$phpThumb->config_error_die_on_error = true;
-		//$phpThumb->config_allow_src_above_docroot = true;
-		//$phpThumb->config_allow_src_above_phpthumb = true;
-		//$phpThumb->config_document_root = '';
 		$phpThumb->config_temp_directory = TMP;
 		$phpThumb->config_cache_directory = CACHE.'thumbs'.DS;
-		//$phpThumb->config_cache_directory = ROOT . DS . APP_DIR . DS . WEBROOT_DIR.DS.'img'.DS.'cache'.DS;
 		$phpThumb->config_cache_disable_warning = true;
 
 		$cacheFilename = md5($key);
 		
 		$phpThumb->cache_filename = $phpThumb->config_cache_directory . $cacheFilename . '.jpg';
 
-		//Thanks to Kim Biesbjerg for his fix about cached thumbnails being regeneratd
 		if(!is_file($phpThumb->cache_filename)){ // Check if image is already cached.
 			if($phpThumb->GenerateThumbnail()) {
 				$phpThumb->RenderToFile($phpThumb->cache_filename);
@@ -93,10 +92,26 @@ class FilesController extends AppController {
 		        die('Failed: '.$phpThumb->error);
 		    }
 		}
+
+		$imageinfo = $phpThumb->getimagesizeinfo;
+		App::import('Model','CourseImage');
+		$this->CourseImage = new CourseImage;
 		
-		$s3->putObjectFile($phpThumb->cache_filename, $this->viewVars['bucket'], 'courses/' . $this->viewVars['course']['id'] . '/thumbs/' . $cacheFilename . '.jpg', S3::ACL_PUBLIC_READ);
-		unlink($phpThumb->cache_filename);
-		$this->redirect($this->viewVars['groupAndCoursePath'] . '/files');
+		$courseImage = $this->CourseImage->find('first',array(
+			'conditions' => array('CourseImage.course_id' => $this->viewVars['course']['id'],'CourseImage.filename' => basename($key))
+		));
+		if(!empty($courseImage)) {
+			$this->CourseImage->id = $courseImage['CourseImage']['id'];
+		}
+		$this->CourseImage->save(array('CourseImage' => array(
+			'course_id' => $this->viewVars['course']['id'],
+			'filename' => basename($key),
+			'width' => $imageinfo[0],
+			'height' => $imageinfo[1]
+		)));
+		
+		$s3->putObjectFile($phpThumb->cache_filename, $this->viewVars['bucket'], 'courses/' . $this->viewVars['course']['id'] . '/thumbs/' . $cacheFilename . '.jpg', $this->viewVars['course']['open'] ? S3::ACL_PUBLIC_READ : ACL_PRIVATE);
+		unlink($phpThumb->cache_filename);	
 	}
 	
 	function getS3Redirect($objectName) {
@@ -113,9 +128,15 @@ class FilesController extends AppController {
 	}
 
 	function index() {
+		App::import('Vendor','s3');
+		
 		if(!empty($this->params['url']['bucket']) && !empty($this->params['url']['key'])) {
-			$this->create_thumbnail($this->params['url']['key']);
-			exit;
+			$path_parts = pathinfo($this->params['url']['key']);
+			
+			if($path_parts['extension'] == 'jpg' || $path_parts['extension'] == 'gif' || $path_parts['extension'] == 'png' || $path_parts['extension'] == 'jpeg') {
+				$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files/create_thumbnail/' . basename($this->params['url']['key']));
+				exit;				
+			}
 		} else if(!empty($this->params['file'])) {
 			$this->file($this->params['file']);
 			exit;
@@ -180,6 +201,33 @@ class FilesController extends AppController {
 			);
 	}
 	
+	function migrate_to_s3() {
+		App::import('Vendor','s3');
+		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);
+		
+		$directory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
+		
+		if(!file_exists($directory))
+			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files');
+			
+		$files = scandir_excluding_dirs($directory);
+		
+		if(empty($files)){
+			unlink($directory);
+			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files');				
+		}
+		
+		$file = $files[0];
+		
+		set_time_limit(180);			
+        $s3->putObjectFile($directory . DS . $file, $this->viewVars['bucket'], 'courses/' . $this->viewVars['course']['id'] . '/' . $file, $this->viewVars['course']['open'] ? S3::ACL_PUBLIC_READ : ACL_PRIVATE);
+		set_time_limit(60);
+		unlink($directory . DS . $file);
+		$this->__create_thumbnail($file);
+		
+		$this->set(compact('file'));
+	}
+	
 	function delete() {
 		$this->RequestHandler->setContent('json', 'text/x-json');
 		$directory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
@@ -197,44 +245,33 @@ class FilesController extends AppController {
 	}
 
 	function media() {
-		if(isset($this->passedArgs[1])) {
-			$this->file($this->passedArgs[1]);
-			die();
+		App::import('Vendor','s3');
+		
+		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);
+		$files = $s3->getBucket($this->viewVars['bucket'],'courses/' . $this->viewVars['course']['id'] . '/',null,null,'/'); //, $prefix = null, $marker = null, $maxKeys = null
+		
+		$media_files = array();
+		foreach($files as &$file) {
+	        $fileinfo = pathinfo($file['name']);
+			if(in_array($fileinfo['extension'],array('swf','mp4','mov'))) {
+				$basename = basename($file['name']);
+				$media_files[$basename] = array(
+					'basename' => $basename,
+					'uri' => '../../files/' . $basename,
+					'size' => $this->get_file_size($file['size'])
+				);
+			}
 		}
+		
+		ksort($media_files);
 
-		$directory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
-		if(!file_exists($directory))
-			mkdir($directory);
-
-		App::import('Vendor', 'mimetypehandler'.DS.'mimetypehandler');
-		$mime = new MimetypeHandler();
-
-		$files = array();
-		if ($handle = opendir($directory)) {
-		    while (false !== ($file = readdir($handle))) {
-		        if(is_dir($directory . DS . $file))
-		        	continue;
-
-		        $fileinfo = pathinfo($file);
-
-		        if ($file != "." && $file != ".." && in_array($fileinfo['extension'],array('swf','mp4','mov'))) {
-		            $files[strtolower($file)] = array(
-		            	'basename' => $file,
-		            	'type' => $mime->getMimetype($directory . DS . $file),
-		            	'uri' => '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files/' . $file
-		            );
-		        }
-		    }
-		    closedir($handle);
-		}
-		ksort($files);
-
-		$this->set(compact('files'));
-
+		$this->set('files',$media_files);
 		$this->render('media','tinymce_popup');
 	}
 
 	function images() {
+		App::import('Vendor','s3');
+		
 		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);
 		$files = $s3->getBucket($this->viewVars['bucket'],'courses/' . $this->viewVars['course']['id'] . '/',null,null,'/'); //, $prefix = null, $marker = null, $maxKeys = null
 		
@@ -246,50 +283,16 @@ class FilesController extends AppController {
 				//prd(getimagesize('http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/courses/' . $this->viewVars['course']['id'] . '/' . $basename));
 				$images[$basename] = array(
 					'basename' => $basename,
-					'uri' => '../../files/' . $basename
+					'uri' => '../../files/' . $basename,
+					'size' => $this->get_file_size($file['size'])
 				);
 			}
-			$file['uri'] = '/' . $this->viewVars['group']['web_path'] . '/' .$this->viewVars['course']['web_path'] . '/files/' . basename($file['name']);
-			$file['size'] = $this->get_file_size($file['size']);
 		}
 		
-		ksort($files);
+		ksort($images);
 
 		$this->set(compact('images'));
-
 		$this->render('images','tinymce_popup');
-		
-		/*
-		if(isset($this->passedArgs[1])) {
-			$this->file($this->passedArgs[1]);
-			die();
-		}
-
-		$directory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
-		if(!file_exists($directory))
-			mkdir($directory);
-
-		App::import('Vendor', 'mimetypehandler'.DS.'mimetypehandler');
-		$mime = new MimetypeHandler();
-
-		$files = array();
-		if ($handle = opendir($directory)) {
-		    while (false !== ($file = readdir($handle))) {
-		        $fileinfo = pathinfo($file);
-		        if ($file != "." && $file != ".." && in_array($fileinfo['extension'],array('png','gif','jpg'))) {
-					$imageSize = getimagesize($directory . DS . $file);
-		            $files[strtolower($file)] = array(
-		            	'basename' => $file,
-		            	'type' => $mime->getMimetype($directory . DS . $file),
-		            	'uri' => '../../files/' . $file,
-						'width' => $imageSize[0],
-						'height' => $imageSize[1]
-		            );
-		        }
-		    }
-		    closedir($handle);
-		}
-		*/
 	}
 	
 	function thumbnail($image) {

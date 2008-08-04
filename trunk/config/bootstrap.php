@@ -157,3 +157,22 @@ function prd($var) {
 	pr($var);
 	die;
 }
+
+function scandir_excluding_dirs($dir) {
+	if(!file_exists($dir))
+		return false;
+
+	$files = scandir($dir);
+	
+	if(sizeof($files) < 3)
+		return false;
+		
+	$files2 = array();
+	foreach($files as $file) {
+	    if(is_dir($dir . DS . $file) || $file == "." || $file == "..")
+	    	continue;
+		$files2[] = $file;
+	}
+	
+	return $files2;
+}

@@ -223,7 +223,11 @@ class FilesController extends AppController {
         $s3->putObjectFile($directory . DS . $file, $this->viewVars['bucket'], 'courses/' . $this->viewVars['course']['id'] . '/' . $file, $this->viewVars['course']['open'] ? S3::ACL_PUBLIC_READ : ACL_PRIVATE);
 		set_time_limit(60);
 		unlink($directory . DS . $file);
-		$this->__create_thumbnail($file);
+
+        $fileinfo = pathinfo($file);
+		if(in_array($fileinfo['extension'],array('jpg','gif','png','jpeg'))) {
+			$this->__create_thumbnail($file);
+		}
 		
 		$this->set(compact('file'));
 	}

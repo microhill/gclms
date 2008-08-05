@@ -69,7 +69,7 @@ class FilesController extends AppController {
 		$phpThumb = new phpThumb();
 
 		if(!$source) {
-			$phpThumb->config_document_root = '';
+			$phpThumb->config_document_root = APP_PATH;
 			$phpThumb->config_allow_src_above_docroot = true;
 			$phpThumb->config_allow_src_above_phpthumb = true;
 			$phpThumb->phpThumbDebug = true;

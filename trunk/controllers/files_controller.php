@@ -313,7 +313,7 @@ class FilesController extends AppController {
 
 	function file() {
 		if($this->viewVars['course']['open'])
-			$file = 'http://s3.amazonaws.com/' . $this->viewVars['bucket'] . '/courses/' . $this->viewVars['course']['id'] . '/' . basename($this->params['url']['url']);
+			$file = 'http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/courses/' . $this->viewVars['course']['id'] . '/' . basename($this->params['url']['url']);
 		else 
 			$file = $this->getS3Redirect('courses/' . $this->viewVars['course']['id'] . '/' . basename($this->params['url']['url']));
 		$this->redirect($file);

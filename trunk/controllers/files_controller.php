@@ -69,6 +69,8 @@ class FilesController extends AppController {
 		$phpThumb = new phpThumb();
 
 		if(!$source) {
+			$phpThumb->config_document_root = '';
+			$phpThumb->config_allow_src_above_docroot = true;
 			$phpThumb->config_allow_src_above_phpthumb = true;
 			$source = 'http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/' . $key;
 		}

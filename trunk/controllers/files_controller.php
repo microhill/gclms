@@ -60,6 +60,7 @@ class FilesController extends AppController {
 	
 	private function __create_thumbnail($file, $source = null) {
 		App::import('Vendor','s3');
+		prd($source);
 		$key = 'courses/' . $this->viewVars['course']['id'] . '/' . $file;
 		
 		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);

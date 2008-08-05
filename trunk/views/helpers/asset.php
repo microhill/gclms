@@ -62,7 +62,7 @@ class AssetHelper extends Helper {
 			}
 		}
 		
-        if(Configure::read('debug')) {
+        if(1 || Configure::read('debug')) {
             $css = array();
 			foreach($view->__scripts as $script) {
 				if(strstr($script,'.css'))

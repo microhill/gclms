@@ -67,11 +67,14 @@ class FilesController extends AppController {
 
 		App::import('Vendor','phpthumb' . DS . 'phpthumbclass');
 		$phpThumb = new phpThumb();
-
+		
 		if(!$source) {
-			$source = 'http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/' . $key;
+			$path_parts = pathinfo($key);
+			$S3Source = CACHE.'thumbs'.DS . md5($key) . '_source.' . $path_parts['extension'];
+			$s3->getObject($this->viewVars['bucket'], $key, fopen($S3Source, 'wb'));
+			$source = $S3Source;
 		}
-
+	
 		$phpThumb->src = $source;
 		$phpThumb->w = 100; //(!isset($_GET['w'])) ? 100 : $_GET['w'];;
 		$phpThumb->h = 100; //(!isset($_GET['h'])) ? 100 : $_GET['h'];;
@@ -118,7 +121,9 @@ class FilesController extends AppController {
 		)));
 		
 		$s3->putObjectFile($phpThumb->cache_filename, $this->viewVars['bucket'], 'courses/' . $this->viewVars['course']['id'] . '/__thumbs/' . $cacheFilename . '.jpg', $this->viewVars['course']['open'] ? S3::ACL_PUBLIC_READ : ACL_PRIVATE);
-		unlink($phpThumb->cache_filename);	
+		unlink($phpThumb->cache_filename);
+		if(!empty($S3Source))
+			unlink($S3Source);
 	}
 
 

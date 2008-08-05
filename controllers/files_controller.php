@@ -58,18 +58,18 @@ class FilesController extends AppController {
 		$this->redirect($this->viewVars['groupAndCoursePath'] . '/files');
 	}
 	
-	private function __create_thumbnail($file) {
+	private function __create_thumbnail($file, $source = null) {
 		App::import('Vendor','s3');
 		$key = 'courses/' . $this->viewVars['course']['id'] . '/' . $file;
 		
 		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);
-		//$s3->getObject($this->viewVars['bucket'], $key, fopen(TMP . 'thumbs' . DS . 'originals', 'a+'));
-		$sourceFilename = 'http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/' . $key;
+		if(!$source)
+			$source = 'http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/' . $key;
 
 		App::import('Vendor','phpthumb' . DS . 'phpthumbclass');
 		$phpThumb = new phpThumb();
 
-		$phpThumb->src = $sourceFilename;
+		$phpThumb->src = $source;
 		$phpThumb->w = 100; //(!isset($_GET['w'])) ? 100 : $_GET['w'];;
 		$phpThumb->h = 100; //(!isset($_GET['h'])) ? 100 : $_GET['h'];;
 		$phpThumb->q = 80; //(!isset($_GET['q'])) ? 80 : $_GET['q'];;
@@ -225,7 +225,7 @@ class FilesController extends AppController {
 
         $fileinfo = pathinfo($file);
 		if(in_array($fileinfo['extension'],array('jpg','gif','png','jpeg'))) {
-			$this->__create_thumbnail($file);
+			$this->__create_thumbnail($file,$directory . DS . $file);
 		}
 		unlink($directory . DS . $file);
 		

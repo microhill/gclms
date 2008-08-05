@@ -16,7 +16,7 @@ echo $this->element('no_column_background'); ?>
 	<?
 	foreach($images as $image) { ?>
 		<a href="<?= $image['uri'] ?>" image:width="<?= @$image['width'] ?>" image:height="<?= @$image['height'] ?>">
-			<div style="background-image: url('<?= $groupAndCoursePath . '/files/thumbnail/' . $image['basename'] ?>')"></div> <?= $image['basename'] ?>
+			<div style="background-image: url('<?= $groupAndCoursePath . '/files/thumbnail/' . $image['basename'] ?>')"></div> <?= $image['basename'] ?> (<?= $image['width'] ?> x <?= $image['height'] ?>; <?= $image['size'] ?>)
 		</a>
 	<? } ?>
 	</div>

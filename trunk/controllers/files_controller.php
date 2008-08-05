@@ -120,19 +120,7 @@ class FilesController extends AppController {
 		$s3->putObjectFile($phpThumb->cache_filename, $this->viewVars['bucket'], 'courses/' . $this->viewVars['course']['id'] . '/__thumbs/' . $cacheFilename . '.jpg', $this->viewVars['course']['open'] ? S3::ACL_PUBLIC_READ : ACL_PRIVATE);
 		unlink($phpThumb->cache_filename);	
 	}
-	
-	function getS3Redirect($objectName) {
-		$objectName = '/' . $objectName;
-		$S3_URL = "http://s3.amazonaws.com";
-		$expires = time() + 3600;
-		$bucketName = '/' . $this->viewVars['bucket'];
-		
-		$stringToSign = "GET\n\n\n$expires\n$bucketName$objectName";
 
-		$signature = urlencode(base64_encode(hash_hmac('sha1', $stringToSign, $this->viewVars['secretKey'], TRUE)));
-		
-		return "$S3_URL$bucketName$objectName?AWSAccessKeyId=" . $this->viewVars['accessKey'] . "&Expires=$expires&Signature=$signature";
-	}
 
 	function index() {
 		App::import('Vendor','s3');
@@ -286,6 +274,17 @@ class FilesController extends AppController {
 		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);
 		$files = $s3->getBucket($this->viewVars['bucket'],'courses/' . $this->viewVars['course']['id'] . '/',null,null,'/'); //, $prefix = null, $marker = null, $maxKeys = null
 		
+		App::import('Model','CourseImage');
+		$this->CourseImage = new CourseImage;
+		$course_images = $this->CourseImage->find('all',array(
+			'conditions' => array('CourseImage.course_id' => $this->viewVars['course']['id']),
+			'fields' => array('filename','width','height')
+		));
+		$course_images = array_combine(
+			Set::extract($course_images, '{n}.CourseImage.filename'),
+			Set::extract($course_images, '{n}.CourseImage')
+		);
+		
 		$images = array();
 		foreach($files as &$file) {
 	        $fileinfo = pathinfo($file['name']);
@@ -295,7 +294,9 @@ class FilesController extends AppController {
 				$images[$basename] = array(
 					'basename' => $basename,
 					'uri' => '../../files/' . $basename,
-					'size' => $this->get_file_size($file['size'])
+					'size' => $this->get_file_size($file['size']),
+					'width' => $course_images[basename($file['name'])]['width'],
+					'height' => $course_images[basename($file['name'])]['height']
 				);
 			}
 		}
@@ -308,7 +309,21 @@ class FilesController extends AppController {
 	
 	function thumbnail($image) {
 		$file = 'courses/' . $this->viewVars['course']['id'] . '/' . $image;
-		$this->redirect('http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/courses/' . $this->viewVars['course']['id'] . '/__thumbs/' . md5($file) . '.jpg');
+		$this->redirect($this->getS3Redirect('courses/' . $this->viewVars['course']['id'] . '/__thumbs/' . md5($file) . '.jpg'));
+		//$this->redirect('http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/courses/' . $this->viewVars['course']['id'] . '/__thumbs/' . md5($file) . '.jpg');
+	}
+
+	function getS3Redirect($objectName) {
+		$objectName = '/' . $objectName;
+		$S3_URL = 'http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com';
+		$expires = strtotime(date('Y-m-d',strtotime('+1 day')));
+		$bucketName = '/' . $this->viewVars['bucket'];
+		
+		$stringToSign = "GET\n\n\n$expires\n$bucketName$objectName";
+
+		$signature = urlencode(base64_encode(hash_hmac('sha1', $stringToSign, $this->viewVars['secretKey'], TRUE)));
+		
+		return "$S3_URL$objectName?AWSAccessKeyId=" . $this->viewVars['accessKey'] . "&Expires=$expires&Signature=$signature";
 	}
 
 	function file() {

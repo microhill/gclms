@@ -28,7 +28,7 @@ echo $this->element('no_column_background'); ?>
 			echo '<h3>' . $book['Book']['title'] . '</h3>';
 			echo '<ul>';
 			foreach($book['Chapter'] as $chapter) {
-				echo '<li><a href="../../books/chapter/' . $chapter['id'] . '">' . $chapter['title'] . '</a></li>';
+				echo '<li><a href="../../chapters/view/' . $chapter['id'] . '">' . $chapter['title'] . '</a></li>';
 			}
 			echo '</ul>';
 

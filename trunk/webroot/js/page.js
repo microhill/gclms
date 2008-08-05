@@ -272,10 +272,10 @@ GCLMS.PageController = {
 	},
 
 	loadChapter: function(event) {
-		top.Ext.getCmp('textbooksViewport').expand();
-		if (!top.$('textbooksViewportContent').contentDocument.body.innerHTML) {
-			top.$('textbooksViewportContent').src = this.getAttribute('href');
-		}
+		var url = this.getAttribute('href').split('chapters/view/');
+
+		top.Ext.getCmp('booksViewport').expand();
+		top.$('booksViewportContent').src = GCLMS.urlPrefix + 'chapters/view/' + url[1] + '?framed';
 		event.stop();
 	},
 	
@@ -283,7 +283,6 @@ GCLMS.PageController = {
 		var url = this.getAttribute('href').split('articles/view/');
 
 		top.Ext.getCmp('articlesViewport').expand();
-		//if (!top.$('articlesViewportContent').contentDocument.body.innerHTML) {
 		top.$('articlesViewportContent').src = GCLMS.urlPrefix + 'articles/view/' + url[1] + '?framed';
 		event.stop();
 	},

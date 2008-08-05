@@ -69,10 +69,6 @@ class FilesController extends AppController {
 		$phpThumb = new phpThumb();
 
 		if(!$source) {
-			$phpThumb->config_document_root = APP_PATH;
-			$phpThumb->config_allow_src_above_docroot = true;
-			$phpThumb->config_allow_src_above_phpthumb = true;
-			$phpThumb->phpThumbDebug = true;
 			$source = 'http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/' . $key;
 		}
 
@@ -87,7 +83,11 @@ class FilesController extends AppController {
 		$phpThumb->config_temp_directory = TMP;
 		$phpThumb->config_cache_directory = CACHE.'thumbs'.DS;
 		$phpThumb->config_cache_disable_warning = true;
-
+		$phpThumb->config_document_root = APP_PATH;
+		$phpThumb->config_allow_src_above_docroot = true;
+		$phpThumb->config_allow_src_above_phpthumb = true;
+		//$phpThumb->phpThumbDebug = true;
+			
 		$cacheFilename = md5($key);
 		
 		$phpThumb->cache_filename = $phpThumb->config_cache_directory . $cacheFilename . '.jpg';

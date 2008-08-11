@@ -12,6 +12,7 @@
 	height: 22px;
 	width: 22px;
 	margin-right: 6px;
+	display: none;
 }
 
 .x-tab-strip span.x-tab-strip-text {

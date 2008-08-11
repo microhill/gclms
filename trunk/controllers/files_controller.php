@@ -259,6 +259,7 @@ class FilesController extends AppController {
 		$media_files = array();
 		foreach($files as &$file) {
 	        $fileinfo = pathinfo($file['name']);
+			$path_parts['extension'] = strtolower($path_parts['extension']);
 			if(in_array($fileinfo['extension'],array('swf','mp4','mov'))) {
 				$basename = basename($file['name']);
 				$media_files[$basename] = array(
@@ -295,6 +296,7 @@ class FilesController extends AppController {
 		$images = array();
 		foreach($files as &$file) {
 	        $fileinfo = pathinfo($file['name']);
+			$path_parts['extension'] = strtolower($path_parts['extension']);
 			if(in_array($fileinfo['extension'],array('png','gif','jpg'))) {
 				$basename = basename($file['name']);
 				//prd(getimagesize('http://' . $this->viewVars['bucket'] . '.s3.amazonaws.com/courses/' . $this->viewVars['course']['id'] . '/' . $basename));

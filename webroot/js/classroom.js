@@ -133,7 +133,7 @@ GCLMS.ClassroomController = {
 	},
 	
 	expandBibleViewport: function() {
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/bible_kjv/books';
+		url = 'http://www.bibleapi.net/en/asv';
 		if(!Ext.get('bibleViewportContent').loaded)
 			Ext.get('bibleViewportContent').dom.src = url;
 		Ext.get('bibleViewportContent').loaded = true;	

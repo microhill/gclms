@@ -63,16 +63,6 @@ class ScripturizerHelper extends AppHelper {
 	}
 	
 	function scripturizeLinkReference($reference='',$volume='',$book='',$verse='',$translation='',$user_translation='') {
-		if($volume) {
-	       $volume = str_replace('III','3',$volume);
-		   $volume = str_replace('Third','3',$volume);   
-	       $volume = str_replace('II','2',$volume);
-		   $volume = str_replace('Second','2',$volume);      
-	       $volume = str_replace('I','1',$volume);
-		   $volume = str_replace('First','1',$volume);      
-	       $volume = $volume{0}; // will remove st,nd,and rd (presupposes regex is correct)
-	    }
-		
 		//catch an obscure bug where a sentence like "The 3 of us went downtown" triggers a link to 1 Thess 3
 		if (!strcmp(strtolower($book),"the") && $volume=='' ) {
 			return $reference;
@@ -95,63 +85,8 @@ class ScripturizerHelper extends AppHelper {
 			$verse = strtok($verse,',& ');
 		}
 		
-		$chapter = trim(strtok($verse,':'));
-		$verses = trim(strtok('-,'));
-		
-		return sprintf('<a href="/%s/%s/bible_kjv/lookup/book:%s/chapter:%d#%d" link:type="bible">%s</a>',$this->params['group'],$this->params['course'],$book,$chapter,$verses,$reference);
-	
-		/*
-		switch ($translation) {
-	    	case 'ESV':
-	        // note: the ESV could actually support a mouseover reference
-	        // we could pull it directly from their site and include it in the $title text
-	        // http://www.gnpcb.org/esv/share/services/api/ for more info
-	             $link = 'http://www.gnpcb.org/esv/search/?go=Go&amp;q=';
-	             $title = 'English Standard Version Bible';
-	             $link = sprintf('<a href="%s%s" title="%s">%s</a>',$link,htmlentities(urlencode(trim("$volume $book $verse"))),$title,trim($reference));
-	        # Insert Show/Hide link and include ESV verse text
-	        if (get_option('scripturizer_xml_show_hide')) {
-	            $link .= getEsvText($volume, $book, $verse);
-	        }
-	             break;
-	        case 'NET':
-			// example URL http://www.bible.org/netbible2/index.php?book=gen&chapter=1&verse=1&submit=Lookup+Verse
-	             $link = 'http://www.bible.org/netbible2/index.php';
-	             $title = 'New English Translation';
-	             $chapter = trim(strtok($verse,':'));
-	             $verses = trim(strtok('-,'));
-	             $book = scripturizeNETBook($volume.' '.$book);
-	             $link = sprintf('<a href="%s?book=%s&amp;chapter=%s&amp;verse=%s&amp;submit=Lookup+Verse" title="%s">%s</a>',$link,htmlentities(urlencode($book)),$chapter,$verses,$title,trim($reference));
-	             break;
-	        case 'ESVmobile':
-			// example URL http://www.bible.org/netbible2/index.php?book=gen&chapter=1&verse=1&submit=Lookup+Verse
-	             $link = 'http://www.gnpcb.org/esv/mobile/';
-	             $title = 'English Standard Translation';
-	             $chapter = trim(strtok($verse,':'));
-	             $verses = trim(strtok('-,'));
-	             $book = $volume.' '.$book;
-	             $link = sprintf('<a target="sidebarContent" href="http://www.gnpcb.org/esv/mobile/?q=%s+%s:%s" title="%s">%s</a>',htmlentities(urlencode($book)),$chapter,$verses,$title,trim($reference));
-	             break;
-		case 'NRSV':
-		// example URL http://bible.oremus.org/?passage=John+1%3A1&vnum=yes&version=nrsv
-		// there is a new interface being developed at http://bible.oremus.org/bible.cgi
-	             $link = 'http://bible.oremus.org/';
-	             $title = 'New Revised Standard Version';
-				 $options ='&amp;vnum=yes&amp;version=nrsv';
-	             $link = sprintf('<a href="%s?passage=%s%s" title="%s">%s</a>',$link,htmlentities(urlencode(trim("$volume $book $verse"))),$options,$title,trim($reference));
-	             break;
-        default:
-			// Bible Gateway has a ton of translations, so just make it the default instead of checking for each one
-			// $translation_regex takes care of ensuring that only valid translations make it this far, anyway
-			// api at http://biblegateway.com/usage/linking/
-	             $link = "http://biblegateway.com/bible?version=$translation&amp;passage=";
-	             $title = 'Bible Gateway';
-	             $link = sprintf('<a href="%s%s" title="%s">%s</a>',$link,htmlentities(urlencode(trim("$volume $book $verse"))),$title,trim($reference));
-	             break;
-	    }
-	    */
-			
-		return $link;
+		//return sprintf('<a href="/%s/%s/bible_kjv/lookup/book:%s/chapter:%d#%d" link:type="bible">%s</a>',$this->params['group'],$this->params['course'],$book,$chapter,$verses,$reference);
+		return sprintf('<a href="http://www.bibleapi.net/%s/%s/%s">%s</a>','en','asv',$reference,$reference);
 	}
 	
 	function scripturizeNETBook($book='') {

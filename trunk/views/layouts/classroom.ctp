@@ -19,7 +19,7 @@
 <body
 	gclms:group="<?= @$group['web_path'] ?>"
 	gclms:course="<?= @$course['web_path'] ?>"
-	gclms:virtual-class="<?= @$virtual_class['id'] ?>"
+	gclms:virtual-class="<?= @$class['id'] ?>"
 	gclms:controller="<?= $this->name ?>"
 	gclms:action="<?= $this->action ?>">
 
@@ -67,7 +67,7 @@
 			<iframe id="notebookViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif?>
 
-		<? if(1 || @$virtual_class): ?>
+		<? if(@$class): ?>
 			<iframe id="chatViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 			<iframe id="discussionViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif; ?>

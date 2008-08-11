@@ -8,7 +8,7 @@ class DiscussionController extends AppController {
 	}
 	function index() {
 		$this->data = $this->Forum->findAll();
-		return $this->render('forums','tabbed_viewport');
+		return $this->render('forums');
 	}
 	
 	function add_forum() {
@@ -16,12 +16,12 @@ class DiscussionController extends AppController {
 			//{pr($this->data);die;}
 		
 		parent::add('Forum');
-		return $this->render('add_forum','tabbed_viewport');
+		return $this->render('add_forum');
 	}
 	
 	function edit_forum() {
 		parent::edit('Forum');
-		return $this->render('edit_forum','tabbed_viewport');
+		return $this->render('edit_forum');
 	}
 	
 	function delete_forum($id) {
@@ -36,7 +36,7 @@ class DiscussionController extends AppController {
 	function forum($id) {
 		$this->set('forum',$this->Forum->findById($id));
 		$this->data = $this->ForumPost->findAllByForumId($id);
-		return $this->render('forum','tabbed_viewport');
+		return $this->render('forum');
 	}
 	
 	function add_topic() {
@@ -47,18 +47,18 @@ class DiscussionController extends AppController {
 		}
 		
 		parent::add('ForumPost');
-		return $this->render('add_topic','tabbed_viewport');
+		return $this->render('add_topic');
 	}
 	
 	function edit_topic() {
 		parent::edit('ForumPost');
-		return $this->render('edit_topic','tabbed_viewport');
+		return $this->render('edit_topic');
 	}
 	
 	function topic($id) {
 		$this->ForumPost->contain(array('Forum','User','Reply' => 'User'));
 		$this->data = $this->ForumPost->findById($id);
-		return $this->render('topic','tabbed_viewport');
+		return $this->render('topic');
 	}
 	
 	function reply($id) {

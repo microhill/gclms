@@ -81,19 +81,16 @@ class AppController extends Controller {
        	if(!empty($this->params['class'])) {
 			if(empty($this->VirtualClass)) {
 				App::import('Model','VirtualClass');
-				$this->VirtualClass = new Answer;
+				$this->VirtualClass = new VirtualClass;
 			}
 			
        		$this->VirtualClass->contain();
        		$class = $this->VirtualClass->find('first',array(
-				'conditions' => array('id' => $this->params['class'])
+				'conditions' => array('VirtualClass.id' => $this->params['class'])
 			));
-			$this->Session->write('VirtualClass.' . $this->params['class'],$class['VirtualClass']);
+			$this->set('class', $class['VirtualClass']);
        	}
-       	if(isset($this->params['class'])) { // && $this->Session->check('VirtualClass.' . $this->params['class'])
-			$this->set('class', $this->Session->read('VirtualClass.' . $this->params['class']));
-       	}
-    	$this->set('classWebPath', isset($this->viewVars['virtual_class']['id']) ? '/' . $this->viewVars['virtual_class']['id'] : null);
+    	$this->set('classWebPath', isset($this->viewVars['class']['id']) ? '/' . $this->viewVars['class']['id'] : null);
     	$this->set('groupAndCoursePath', $this->viewVars['groupWebPath'] . $this->viewVars['courseWebPath'] . $this->viewVars['classWebPath']);
 		
 		// Offline

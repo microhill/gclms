@@ -132,6 +132,7 @@ class FilesController extends AppController {
 		
 		if(!empty($this->params['url']['bucket']) && !empty($this->params['url']['key'])) {
 			$path_parts = pathinfo($this->params['url']['key']);
+			$path_parts['extension'] = strtolower($path_parts['extension']);
 			
 			if($path_parts['extension'] == 'jpg' || $path_parts['extension'] == 'gif' || $path_parts['extension'] == 'png' || $path_parts['extension'] == 'jpeg') {
 				$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files/create_thumbnail/' . basename($this->params['url']['key']));
@@ -224,6 +225,7 @@ class FilesController extends AppController {
 		set_time_limit(60);
 
         $fileinfo = pathinfo($file);
+		$path_parts['extension'] = strtolower($path_parts['extension']);
 		if(in_array($fileinfo['extension'],array('jpg','gif','png','jpeg'))) {
 			$this->__create_thumbnail($file,$directory . DS . $file);
 		}

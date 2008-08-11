@@ -133,7 +133,9 @@ GCLMS.ClassroomController = {
 	},
 	
 	expandBibleViewport: function() {
-		url = 'http://www.bibleapi.net/en/asv';
+		var tmp = location.href.split('//');
+		var tmp = tmp[1].split('/');
+		url = 'http://www.bibleapi.net/en/asv?css=' + 'http://' + tmp[0] + '/css/bible.css';
 		if(!Ext.get('bibleViewportContent').loaded)
 			Ext.get('bibleViewportContent').dom.src = url;
 		Ext.get('bibleViewportContent').loaded = true;	

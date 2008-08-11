@@ -265,9 +265,9 @@ GCLMS.PageController = {
 	},
 	loadBibleVerse: function(event) {
 		top.Ext.getCmp('bibleViewport').expand();
-		if (!top.$('bibleViewportContent').contentDocument.body.innerHTML) {
+		//if (!top.$('bibleViewportContent').contentDocument.body.innerHTML) {
 			top.$('bibleViewportContent').src = this.getAttribute('href');
-		}
+		//}
 		event.stop();
 	},
 
@@ -357,7 +357,7 @@ GCLMS.Triggers.update({
 	'div.gclms-framed' : {
 		':loaded': GCLMS.PageController.highlightCurrentPage,
 		'a[href*="/pages/view"]:click': GCLMS.PageController.gotoPageLink,
-		'a[href*="/bible_kjv"]:click': GCLMS.PageController.loadBibleVerse,
+		'a[href*="/www.bibleapi.net"]:click': GCLMS.PageController.loadBibleVerse,
 		'a[href*="/chapters/view"]:click': GCLMS.PageController.loadChapter,
 		'a[href*="/articles/view"]:click': GCLMS.PageController.loadArticle,
 		'a[href*="/glossary/view"]:click': GCLMS.PageController.loadGlossaryTerm

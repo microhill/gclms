@@ -3,15 +3,10 @@
 var GCLMS = {};
 
 function __(text) {
-	//Just for now...
-	switch(text) {
-		case 'Yes':
-			return '<u>Y</u>es';
-		case 'No':
-			return '<u>N</u>o';
-	}
-	return text; 
+	return GCLMS.translated_phrases[text]; 
 }
+
+GCLMS.translated_phrases = [];
 
 GCLMS.AppController = {
 	gotoFramedLink: function(event) {
@@ -203,13 +198,13 @@ GCLMS.AppController = {
 		}
 	},
 	
-	submitForm: function() {
+	submitForm: function(event) {
+		event.stop();
+		
 		var form = this.up('form');
 		
 		form.fire('gclms:submit');
 		form.submit();
-
-		return true;
 	}
 };
 
@@ -252,7 +247,7 @@ GCLMS.Triggers = $H({
 	},
 	'.gclms-content': {
 		'.gclms-button.gclms-submit:click': GCLMS.AppController.submitForm,
-		//'.gclms-button.gclms-delete:click': GCLMS.AppController.confirmRemove,
+		'.gclms-button.gclms-delete:click': GCLMS.AppController.confirmRemove,
 		'.gclms-button:mousedown': function() {
 			this.down('td').addClassName('gclms-pressed');
 		},

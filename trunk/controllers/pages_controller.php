@@ -1,7 +1,7 @@
 <?
 class PagesController extends AppController {
     var $uses = array('Node','Question','Textarea');
-	var $helpers = array('Scripturizer','Glossary','License','Form','MyForm','Javascript');
+	var $helpers = array('Scripturizer','Glossary','License','Form','MyForm','Javascript','TranslatedPhrases');
     var $itemName = 'Node';
     var $components = array('Notifications','RequestHandler');
 
@@ -11,7 +11,7 @@ class PagesController extends AppController {
     	parent::beforeRender();
     }
 	
-	function view($id) {
+	function view($id) {		
 		$this->Node->contain(array('Question' => 'Answer','Textarea'));
 		$node = $this->Node->findById($id);
 		

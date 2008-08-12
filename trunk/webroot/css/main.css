@@ -1204,10 +1204,11 @@ img.gclms-tooltip-button {
 	float: right;
 }
 
-.gclms-button {
+table.gclms-button {
 	cursor: pointer;
+	border-spacing: 0;
 }
-
+	
 	.gclms-button a {
 		text-decoration: none;
 		color: black;
@@ -1217,7 +1218,8 @@ img.gclms-tooltip-button {
 		text-decoration: underline;
 	}
 
-	.gclms-button.gclms-submit {
+	.gclms-button.gclms-submit,
+	.gclms-button.gclms-delete {
 		font-size: 1.34em;		
 	}
 	
@@ -1293,3 +1295,7 @@ img.gclms-tooltip-button {
 	.gclms-buttons .gclms-button {
 		float: left;
 	}
+
+.gclms-translated-phrases {
+	display: none;
+}

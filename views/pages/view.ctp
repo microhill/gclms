@@ -63,7 +63,7 @@ echo $this->element('no_column_background');
 				$nodeItem['content'] = $glossary->linkify($nodeItem['content'],$groupAndCoursePath . '/glossary/view/',$glossary_terms);
 				echo $nodeItem['content'];
 			} else
-				echo $this->element('page_question',array('question' => $nodeItem));
+				echo $this->element('../pages/page_question',array('question' => $nodeItem));
 		}
 	
 		if(0 && $node['Node']['grade_recorded']): ?>

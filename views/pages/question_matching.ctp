@@ -60,6 +60,15 @@
 		</div>
 	</div>
 	<p>
-		<button class="gclms-check-answer-button"><? __('Check answer') ?></button>
+		<?= $this->element('buttons',array('buttons' => array(
+		array(
+			'text' => __('Check answer',true),
+			'class' => 'gclms-check-answer-button'
+		)
+	)));
+	?>
 	</p>
+	<div class="gclms-explanation">
+		<?= $question['explanation'] ?>
+	</div>
 </div>

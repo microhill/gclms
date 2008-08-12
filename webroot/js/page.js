@@ -235,33 +235,34 @@ GCLMS.PageController = {
 			}
 		}
 	},
+	
+	checkOrderQuestion: function(event) {
+		event.stop();
+		var div = this.up('div.gclms.order-question');
+
+	},
 
 	checkTrueFalseQuestion: function(event) {
-		div = event.findElement('div');
-		correctAnswerInteger = div.getAttribute('correctAnswer:integer');
+		event.stop();
+		var div = this.up('div.gclms-true-false');
+		var correctAnswer = div.getAttribute('gclms:correct-answer');
 
-		if(this.getAttribute('answer:integer') == correctAnswerInteger) {
-			$A(div.getElementsByTagName('p')).each(function(node){
-				Element.remove(node);
-			});
-			if (correctAnswerInteger == "0") {
-				var tmpInsertion1 = new Insertion.Bottom(div, '<p class="gclms-correct-answer">' + div.getAttribute('question:defaultCorrectMessageFalse') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+		if(this.getAttribute('gclms:answer-value') == correctAnswer) {
+			if (correctAnswer == "0") {
+				this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('Correct! The correct answer is false.') + '</p>');
 			}
 			else {
-				var tmpInsertion2 = new Insertion.Bottom(div, '<p class="gclms-correct-answer">' + div.getAttribute('question:defaultCorrectMessageTrue') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+				this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('Correct! The correct answer is true.') + '</p>');
 			}
 		} else {
-			$A(div.getElementsByTagName('p')).each(function(node){
-				Element.remove(node);
-			});
-			if (correctAnswerInteger == "0") {
-				var tmpInsertion3 = new Insertion.Bottom(div, '<p class="gclms-correct-answer">' + div.getAttribute('question:defaultIncorrectMessageFalse') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+			if (correctAnswer == "0") {
+				this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('Incorrect. The correct answer is false.') + '</p>');
 			}
 			else {
-				var tmpInsertion4 = new Insertion.Bottom(div, '<p class="gclms-correct-answer">' + div.getAttribute('question:defaultIncorrectMessageTrue') + ' ' + div.getAttribute('correctAnswer:explanation') + '</p>');
+				this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('Incorrect. The correct answer is true.') + '</p>');
 			}
 		}
-		event.stop();
+		div.down('.gclms-explanation').displayAsBlock();
 	},
 	loadBibleVerse: function(event) {
 		top.Ext.getCmp('bibleViewport').expand();
@@ -351,9 +352,10 @@ GCLMS.Triggers.update({
 		'button.gclms-check-answer-button:click': GCLMS.PageController.checkFillInTheBlankQuestion
 	},
 	'.gclms-order-question': {
-		'ul': GCLMS.PageController.createOrderSortable
+		'ul': GCLMS.PageController.createOrderSortable,
+		'.gclms-button:click': GCLMS.PageController.checkOrderQuestion
 	},	
-	'.gclms-true-false button:click': GCLMS.PageController.checkTrueFalseQuestion,
+	'.gclms-true-false .gclms-button:click': GCLMS.PageController.checkTrueFalseQuestion,
 	'div.gclms-framed' : {
 		':loaded': GCLMS.PageController.highlightCurrentPage,
 		'a[href*="/pages/view"]:click': GCLMS.PageController.gotoPageLink,

@@ -6,10 +6,13 @@
 				echo 'id="' . $button['id'] . '"';
 			
 			if(!empty($button['phrases']))
-				$button['strings'] = $button['phrases'];
-			
+				$button['attributes'] = $button['phrases'];
+				
 			if(!empty($button['strings']))
-				foreach($button['strings'] as $attribute => $phrase) {
+				$button['attributes'] = $button['strings'];
+			
+			if(!empty($button['attributes']))
+				foreach($button['attributes'] as $attribute => $phrase) {
 					echo $attribute . '="' . $phrase . '"';
 				}
 			?>>

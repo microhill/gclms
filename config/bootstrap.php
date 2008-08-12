@@ -176,3 +176,7 @@ function scandir_excluding_dirs($dir) {
 	
 	return $files2;
 }
+
+function to_int(&$string) {
+	return (int) $string;
+}

@@ -40,10 +40,8 @@ body.mceContentBody blockquote {
 #gclms-page-navigation {
 	overflow: hidden;
 }
-	
-.gclms-multiple-choice table,
-.gclms-matchingHeaders table,
-.gclms-matching table {
+
+.gclms-matching .gclms-answers table {
 	width: 100%;
 }
 
@@ -273,4 +271,8 @@ p.gclms-correct-answer {
 
 div.gclms-order-question li {
 	cursor: move;
+}
+
+.gclms-explanation {
+	display: none;
 }

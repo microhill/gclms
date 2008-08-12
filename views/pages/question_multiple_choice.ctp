@@ -1,9 +1,9 @@
 <div class="gclms-multiple-choice"
-	question:triesLeft="3"
-	question:defaultTryAgainMessage="<? __('Incorrect. Try again.') ?>"
-	question:defaultPartiallyCorrectMessage="<? __('You are partially correct. Try again.') ?>"
-	question:defaultCorrectMessage="<? __('Correct!') ?>"
-	question:defaultNoMoreIncorrectTriesMessage="<? __('You are out of tries. The correct answer is shown.') ?>"
+	gclms:question-triesLeft="3"
+	gclms:question-defaultTryAgainMessage="<? __('Incorrect. Try again.') ?>"
+	gclms:question-defaultPartiallyCorrectMessage="<? __('You are partially correct. Try again.') ?>"
+	gclms:question-defaultCorrectMessage="<? __('Correct!') ?>"
+	gclms:question-defaultNoMoreIncorrectTriesMessage="<? __('You are out of tries. The correct answer is shown.') ?>"
 	>
 	<h5><?= $question['title'] ?></h5>
 	<ul class="gclms-answers">
@@ -40,7 +40,12 @@
 	}
 	?>
 	</ul>
-	<p>
-		<button class="checkAnswerButton"><? __('Check answer') ?></button>
-	</p>
+	<?
+	echo $this->element('buttons',array('buttons' => array(
+		array(
+			'text' => __('Check answer',true),
+			'class' => 'gclms-check-answer-button'
+		)
+	)));
+	?>
 </div>

@@ -22,3 +22,13 @@
  * Fixed bug (issue 119): Lesson navigation collapse/expand buttons not working (in framed classroom)
  * Lots and lots of more bug fixes...
  * Improved image thumbnail caching; improved image pop-up display
+
+===July 28 - August 8, 2008==
+
+ * Media files now stored remotely on Amazon's S3 storage service
+ * Books, articles, glossary terms working in framed classroom environment
+ * Sorry, haven't been keeping up with the changelog
+
+===August 11-15, 2008==
+
+ * Bible section works again on the framed classroom; uses bibleapi.net

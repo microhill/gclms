@@ -9,6 +9,7 @@ $javascript->link(array(
 	'gclms',
 	'vendors/scriptaculous1.8.1/scriptaculous',
 	'vendors/scriptaculous1.8.1/dragdrop',
+	'vendors/scriptaculous1.8.1/effects',
 	'page'
 ), false);
 

@@ -8,6 +8,7 @@ $translatedPhrases->add('False',__('False',true));
 ?>
 <div class="gclms-true-false" gclms:correct-answer="<?= $question['true_false_answer'] ?>">
 	<h5><?= strip_tags($question['title'],'<a><em><b>') ?></h5>
+	<div class="gclms-answer-status"><span></span></div>
 	<div class="gclms-explanation">
 		<?= $question['explanation'] ?>
 	</div>

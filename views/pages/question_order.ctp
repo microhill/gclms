@@ -17,8 +17,7 @@ $answer_ids = Set::extract($question['Answer'], '{n}.id');
 	}
 	?>
 	</ul>
-	<div>
-	</div>
+	<div class="gclms-answer-status"></div>
 	<div class="gclms-explanation">
 		<?= $question['explanation'] ?>
 	</div>

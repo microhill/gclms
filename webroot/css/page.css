@@ -60,8 +60,9 @@ div.gclms-multiple-choice {
 	display: none;
 }
 
-p.gclms-correct-answer {
-	font-style: italic
+.gclms-answer-status {
+	font-style: italic;
+	display: none;
 }
 
 .gclms-multiple-choice ul {

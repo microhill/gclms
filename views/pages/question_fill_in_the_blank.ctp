@@ -10,6 +10,7 @@ $correct_answers = Set::extract($question['Answer'], '{n}.text1');
 	<p>
 		<input type="text"/>
 	</p>
+	<div class="gclms-answer-status"><span></span></div>
 	<div class="gclms-explanation">
 		<?= $question['explanation'] ?>
 	</div>

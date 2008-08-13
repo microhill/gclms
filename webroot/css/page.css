@@ -280,3 +280,8 @@ div.gclms-order-question li {
 .gclms-multiple-choice .gclms-explanation {
 	margin-left: 26px;
 }
+
+.gclms-buttons {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

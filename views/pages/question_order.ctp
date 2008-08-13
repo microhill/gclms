@@ -17,16 +17,16 @@ $answer_ids = Set::extract($question['Answer'], '{n}.id');
 	}
 	?>
 	</ul>
-	<p>
-		<?= $this->element('buttons',array('buttons' => array(
-			array(
-				'text' => __('Check answer',true),
-				'class' => 'gclms-check-answer-button'
-			)
-		)));
-		?>
-	</p>
+	<div>
+	</div>
 	<div class="gclms-explanation">
 		<?= $question['explanation'] ?>
 	</div>
+	<?= $this->element('buttons',array('buttons' => array(
+		array(
+			'text' => __('Check answer',true),
+			'class' => 'gclms-check-answer-button'
+		)
+	)));
+	?>
 </div>

@@ -285,7 +285,7 @@ GCLMS.PageController = {
 	checkEssayQuestion: function(event) {
 		event.stop();
 		var div = this.up('div.gclms-essay-question').down('.gclms-explanation').displayAsBlock();
-		this.up('div.gclms-buttons').up('p').remove();
+		this.up('div.gclms-buttons').remove();
 	},
 	
     checkFillInTheBlankQuestion: function(event){
@@ -299,7 +299,7 @@ GCLMS.PageController = {
         
         if (filteredCorrectAnswers.in_array(input.value.trim().toLowerCase())) {
             div.down('.gclms-explanation').displayAsBlock();
-            this.up('.gclms-buttons').up('p').replace('<p class="gclms-correct-answer">' + __('Correct!') + '</p>');
+            this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('Correct!') + '</p>');
         }
         else 
             if (parseInt(div.getAttribute('gclms:tries-remaining'), 10) > 0) {
@@ -312,7 +312,7 @@ GCLMS.PageController = {
             }
             else {
                 input.value = correctAnswers[0];
-                this.up('.gclms-buttons').up('p').replace('<p class="gclms-correct-answer">' + __('You are out of tries. The correct answer is shown.') + '</p>');
+                this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('You are out of tries. The correct answer is shown.') + '</p>');
             }
     },
     
@@ -344,7 +344,7 @@ GCLMS.PageController = {
             order++;
         });
         if (correct) {
-            this.up('.gclms-buttons').up('p').replace('<p class="gclms-correct-answer">' + __('Correct!') + '</p>');
+            this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('Correct!') + '</p>');
             div.down('.gclms-explanation').displayAsBlock();
         }
         else {
@@ -358,7 +358,7 @@ GCLMS.PageController = {
                 });
             }
             else {
-                this.up('.gclms-buttons').up('p').replace('<p class="gclms-correct-answer">' + __('You are out of tries. The correct answer is shown.') + '</p>');
+                this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('You are out of tries. The correct answer is shown.') + '</p>');
                 // reorder items
                 answers.each(function(answer){
                     div.down('ul.gclms-answers').insert(div.down('li[gclms:answer-id="' + answer + '"]'));
@@ -375,18 +375,18 @@ GCLMS.PageController = {
         
         if (this.getAttribute('gclms:answer-value') == correctAnswer) {
             if (correctAnswer == "0") {
-                this.up('.gclms-buttons').up('p').replace('<p class="gclms-correct-answer">' + __('Correct! The correct answer is false.') + '</p>');
+                this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('Correct! The correct answer is false.') + '</p>');
             }
             else {
-                this.up('.gclms-buttons').up('p').replace('<p class="gclms-correct-answer">' + __('Correct! The correct answer is true.') + '</p>');
+                this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('Correct! The correct answer is true.') + '</p>');
             }
         }
         else {
             if (correctAnswer == "0") {
-                this.up('.gclms-buttons').up('p').replace('<p class="gclms-correct-answer">' + __('Incorrect. The correct answer is false.') + '</p>');
+                this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('Incorrect. The correct answer is false.') + '</p>');
             }
             else {
-                this.up('.gclms-buttons').up('p').replace('<p class="gclms-correct-answer">' + __('Incorrect. The correct answer is true.') + '</p>');
+                this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('Incorrect. The correct answer is true.') + '</p>');
             }
         }
         div.down('.gclms-explanation').displayAsBlock();

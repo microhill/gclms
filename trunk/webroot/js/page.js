@@ -7,7 +7,41 @@ GCLMS.PageController = {
 			scroll: window
 		});
 	},
+	
+	checkMultipleChoiceQuestion1: function(event) {
+		li = event.findElement('li');
+		event.stop();
+		
+		if(li.getAttribute('gclms:attempted')) {
+			return false;
+		} else {
+			li.setAttribute('gclms:attempted',true);
+		}
+		
+		var div = this.up('div.gclms-multiple-choice');
+		var correct_answers = div.getAttribute('gclms:correct-answers').evalJSON();
+		
+		var explanation = li.down('.gclms-explanation');
+		explanation.displayAsBlock();
+		
+		if(correct_answers.in_array(li.getAttribute('gclms:answer-id'))) {
+			explanation.insert({top:'<p class="gclms-correct-answer">' + __('Correct!') + '</p>'});
+		} else {
+			var triesRemaining = parseInt(div.getAttribute('gclms:tries-remaining'),10);
+			if(triesRemaining > 0) {
+				div.setAttribute('gclms:tries-remaining',triesRemaining - 1);
+				explanation.insert({top:'<p class="gclms-correct-answer">' + __('Incorrect. Try again.') + '</p>'});
+			} else {
+				explanation.insert({top:'<p class="gclms-correct-answer">' + __('You are out of tries. The correct answer is shown.') + '</p>'});
+				var correctAnswer = div.down('li[gclms:answer-id="' + correct_answers[0] + '"]');
+				correctAnswer.checked = true;
+				correctAnswer.down('.gclms-explanation').displayAsBlock();
+			}
+		}
+	},
+	
 	checkMultipleChoiceQuestion: function(event) {
+		alert(1);
 		div = event.findElement('div');
 		completelyCorrect = true;
 		atLeastPartiallyCorrect = false;
@@ -240,7 +274,7 @@ GCLMS.PageController = {
 		event.stop();
 		var div = this.up('div.gclms-order-question');
 
-		var answers = div.getAttribute('gclms:answer').evalJSON();
+		var answers = div.getAttribute('gclms:correct-answer').evalJSON();
 		var order = 0;
 		var correct = true;
 		div.select('.gclms-answers > li').each(function(li) {
@@ -372,21 +406,24 @@ GCLMS.Triggers.update({
 	//'div.gclms-page': GCLMS.PageController.loadPageAudio,
 	'img.gclms-notebook:click': GCLMS.PageController.loadNotebook,
 	'#gradeQuestions:click': GCLMS.PageController.gradeQuestions,
-	'.gclms-multiple-choice button.gclms-check-answer-button:click': GCLMS.PageController.checkMultipleChoiceQuestion,
+	'.gclms-multiple-choice': {
+		'input[type="radio"]:change': GCLMS.PageController.checkMultipleChoiceQuestion1,
+		'.gclms-button.button.gclms-check-answer-button:click': GCLMS.PageController.checkMultipleChoiceQuestion
+	},
 	'.gclms-matching' : {
-		'button.gclms-check-answer-button:click': GCLMS.PageController.checkMatchingQuestion,
+		'.gclms-button.gclms-check-answer-button:click': GCLMS.PageController.checkMatchingQuestion,
 		'div.gclms-draggable': GCLMS.PageController.createMatchingDraggables,
 		'div.gclms-droppable': GCLMS.PageController.createMatchingDroppables
 	},
 	'.gclms-fill-in-the-blank':{
 		'input:keyup': GCLMS.PageController.expandFillInTheBlankField,
-		'button.gclms-check-answer-button:click': GCLMS.PageController.checkFillInTheBlankQuestion
+		'.gclms-button.gclms-check-answer-button:click': GCLMS.PageController.checkFillInTheBlankQuestion
 	},
 	'.gclms-order-question': {
 		'ul': GCLMS.PageController.createOrderSortable,
-		'.gclms-button:click': GCLMS.PageController.checkOrderQuestion
+		'.gclms-button.gclms-check-answer-button:click': GCLMS.PageController.checkOrderQuestion
 	},	
-	'.gclms-true-false .gclms-button:click': GCLMS.PageController.checkTrueFalseQuestion,
+	'.gclms-true-false .gclms-button.gclms-check-answer-button:click': GCLMS.PageController.checkTrueFalseQuestion,
 	'div.gclms-framed' : {
 		':loaded': GCLMS.PageController.highlightCurrentPage,
 		'a[href*="/pages/view"]:click': GCLMS.PageController.gotoPageLink,

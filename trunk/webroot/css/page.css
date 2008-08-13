@@ -276,3 +276,7 @@ div.gclms-order-question li {
 .gclms-explanation {
 	display: none;
 }
+
+.gclms-multiple-choice .gclms-explanation {
+	margin-left: 26px;
+}

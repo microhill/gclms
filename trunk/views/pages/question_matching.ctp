@@ -59,6 +59,10 @@
 			</table>
 		</div>
 	</div>
+	<div class="gclms-answer-status"></div>
+	<div class="gclms-explanation">
+		<?= $question['explanation'] ?>
+	</div>
     <?= $this->element('buttons',array('buttons' => array(
     	array(
     		'text' => __('Check answer',true),
@@ -66,7 +70,4 @@
     	)
     	)));
     	?>
-	<div class="gclms-explanation">
-		<?= $question['explanation'] ?>
-	</div>
 </div>

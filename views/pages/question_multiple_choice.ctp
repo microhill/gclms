@@ -11,7 +11,7 @@ foreach($question['Answer'] as $answer) {
 }
 ?>
 <div class="gclms-multiple-choice" gclms:tries-remaining="3" gclms:correct-answers="<?= str_replace('"',"'",$javascript->object($correctAnswers)); ?>">
-	<h5><?= $question['title'] ?></h5>
+	<h5><?= strip_tags($question['title'],'<a><em><b>') ?></h5>
 	<ul class="gclms-answers">
 	<?
 	$uniqueQuestionName = String::uuid();

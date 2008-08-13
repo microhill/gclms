@@ -59,15 +59,13 @@
 			</table>
 		</div>
 	</div>
-	<p>
-		<?= $this->element('buttons',array('buttons' => array(
-		array(
-			'text' => __('Check answer',true),
-			'class' => 'gclms-check-answer-button'
-		)
-	)));
-	?>
-	</p>
+    <?= $this->element('buttons',array('buttons' => array(
+    	array(
+    		'text' => __('Check answer',true),
+    		'class' => 'gclms-check-answer-button'
+    	)
+    	)));
+    	?>
 	<div class="gclms-explanation">
 		<?= $question['explanation'] ?>
 	</div>

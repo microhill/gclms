@@ -10,16 +10,14 @@ $correct_answers = Set::extract($question['Answer'], '{n}.text1');
 	<p>
 		<input type="text"/>
 	</p>
-	<p>
-		<?= $this->element('buttons',array('buttons' => array(
-			array(
-				'text' => __('Check answer',true),
-				'class' => 'gclms-check-answer-button'
-			)
-		)));
-		?>
-	</p>
 	<div class="gclms-explanation">
 		<?= $question['explanation'] ?>
 	</div>
+	<?= $this->element('buttons',array('buttons' => array(
+		array(
+			'text' => __('Check answer',true),
+			'class' => 'gclms-check-answer-button'
+		)
+	)));
+	?>
 </div>

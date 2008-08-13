@@ -41,13 +41,15 @@ foreach($question['Answer'] as $answer) {
 	}
 	?>
 	</ul>
-	<?
-	if(sizeof($correctAnswers) > 1)
-		echo $this->element('buttons',array('buttons' => array(
-			array(
-				'text' => __('Check answer',true),
-				'class' => 'gclms-check-answer-button'
-			)
-		)));
-	?>
+	<p>
+		<?
+		if(sizeof($correctAnswers) > 1)
+			echo $this->element('buttons',array('buttons' => array(
+				array(
+					'text' => __('Check answer',true),
+					'class' => 'gclms-check-answer-button'
+				)
+			)));
+		?>
+	</p>
 </div>

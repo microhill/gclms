@@ -5,7 +5,7 @@
 
 class Question extends AppModel {
     var $belongsTo = array('Node');
-    var $hasMany = array('Answer');
+    var $hasMany = array('Answer' => array('order' => 'Answer.order'));
 	
 	function saveAnswers($questionData) {
 		$this->deleteRemovedAnswers($questionData);
@@ -55,7 +55,7 @@ class Question extends AppModel {
 		App::import('Model','Answer');
 		$this->Answer = new Answer;
 		
-		$this->Answer->contain();		
+		$this->Answer->contain();
 		$existingAnswerIds = Set::extract($this->Answer->findAll(array('question_id' => $questionData['id']),array('id')), '{n}.Answer.id');
 	
 		if(empty($questionData[$type . 'Answer']))

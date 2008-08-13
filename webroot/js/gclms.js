@@ -81,11 +81,6 @@ GCLMS.AppController = {
 		}
 		GCLMS.popup.overlay.style.display = 'block';
 		
-		
-		if(GCLMS.popup.dialog) {
-			GCLMS.popup.dialog.remove();
-		}
-		
 		GCLMS.popup.dialog = new Element('div',{
 			className: 'gclms-popup-dialog'
 		});
@@ -172,6 +167,7 @@ GCLMS.AppController = {
 	},
 	closePopup: function(options) {
 		$$('div.gclms-popup-overlay').first().hide();
+		GCLMS.popup.dialog.remove();
 		document.stopObserving('keydown',GCLMS.popup.keyDownHandler);
 		if (options.executeCallback && GCLMS.popup.callback) {
 			GCLMS.popup.callback(GCLMS.popup.getCallbackValue());

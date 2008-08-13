@@ -6,7 +6,7 @@ $translatedPhrases->add('You are out of tries. The correct answer is shown.',__(
 $answer_ids = Set::extract($question['Answer'], '{n}.id');
 ?>
 <div class="gclms-order-question" gclms:tries-remaining="3" gclms:correct-answer="<?= str_replace('"',"'",$javascript->object($answer_ids)); ?>">
-	<h5><?= $question['title'] ?></h5>
+	<h5><?= strip_tags($question['title'],'<a><em><b>') ?></h5>
 	<ul class="gclms-answers" id="<?= String::uuid() ?>">
 	<?
 	shuffle($question['Answer']);

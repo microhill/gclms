@@ -1,19 +1,14 @@
-<div class="gclms-fill-in-the-blank"
-	question:triesLeft="3"
-	question:defaultTryAgainMessage="<? __('Incorrect. Try again.') ?>"
-	question:defaultCorrectMessage="<? __('Correct!') ?>"
-	question:defaultNoMoreIncorrectTriesMessage="<? __('You are out of tries. The correct answer is shown.') ?>"
-	>
-	<h5><?= $question['title'] ?></h5>
+<?
+$translatedPhrases->add('Incorrect. Try again.',__('Incorrect. Try again.',true));
+$translatedPhrases->add('Correct!',__('Correct!',true));
+$translatedPhrases->add('You are out of tries. The correct answer is shown.',__('You are out of tries. The correct answer is shown.',true));
+
+$correct_answers = Set::extract($question['Answer'], '{n}.text1');
+?>
+<div class="gclms-fill-in-the-blank" gclms:tries-remaining="3" gclms:correct-answers="<?= str_replace('"',"'",$javascript->object($correct_answers)); ?>">
+	<h5><?= strip_tags($question['title'],'<a><em><b>') ?></h5>
 	<p>
-		<input type="text" correctAnswer:text="<?= $question['text_answer'] ?>" />
-	</p>
-	<p>
-		<div id="gclms-<?= $question['id'] ?>-answers" class="gclms-hidden">
-			<? foreach($question['Answer'] as $answer): ?>
-				<span><?= $answer['text1'] ?></span>
-			<? endforeach; ?>
-		</div>
+		<input type="text"/>
 	</p>
 	<?= $this->element('buttons',array('buttons' => array(
 		array(

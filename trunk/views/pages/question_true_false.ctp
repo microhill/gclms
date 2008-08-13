@@ -7,7 +7,7 @@ $translatedPhrases->add('True',__('True',true));
 $translatedPhrases->add('False',__('False',true));
 ?>
 <div class="gclms-true-false" gclms:correct-answer="<?= $question['true_false_answer'] ?>">
-	<h5><?= $question['title'] ?></h5>
+	<h5><?= strip_tags($question['title'],'<a><em><b>') ?></h5>
 	<?= $this->element('buttons',array('buttons' => array(
 		array(
 			'text' => __('True',true),

@@ -1,4 +1,4 @@
-/* global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __ */
+/*global $, $A, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __, Draggable */
 
 GCLMS.PageController = {
 	createOrderSortable: function(event) {
@@ -239,21 +239,26 @@ GCLMS.PageController = {
 		});
 	},
 	checkFillInTheBlankQuestion: function(event) {
-		div = event.findElement('div');
-		input = div.getElementsByTagName('input').item(0);
-
-		if(input.value.trim().toLowerCase() == input.getAttribute('correctAnswer:text').trim().toLowerCase()) {
-			alert(div.getAttribute('gclms:question-defaultCorrectMessage'));
-		} else if(parseInt(div.getAttribute('gclms:question-tries-remaining'),10) > 0) {
-			div.setAttribute('gclms:question-tries-remaining',parseInt(div.getAttribute('gclms:question-tries-remaining'),10) - 1);
-			alert(div.getAttribute('gclms:question-defaultTryAgainMessage'));
-		} else {
-			correctAnswer = input.getAttribute('correctAnswer:text').trim();
-			$A(div.getElementsByTagName('p')).each(function(node){
-				Element.remove(node);
+		var div = this.up('div.gclms-fill-in-the-blank');
+		var correctAnswers = div.getAttribute('gclms:correct-answers').evalJSON();
+		var filteredCorrectAnswers = correctAnswers.walk(function(i) {
+			return i.trim().toLowerCase();		
+		});
+		var input = div.down('input');
+		
+		if(filteredCorrectAnswers.in_array(input.value.trim().toLowerCase())) {
+			div.down('.gclms-explanation').displayAsBlock();
+			this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('Correct!') + '</p>');
+		} else if(parseInt(div.getAttribute('gclms:tries-remaining'),10) > 0) {
+			GCLMS.popup.create({
+				text: __('Incorrect. Try again.'),
+				cancelButtonText: null,
+				type: 'confirm'
 			});
-			var tmpInsertion1 = new Insertion.Bottom(div,'<p class="gclms-correct-answer">' + correctAnswer + '</p>');
-			alert(div.getAttribute('gclms:question-defaultNoMoreIncorrectTriesMessage'));
+			div.setAttribute('gclms:tries-remaining',parseInt(div.getAttribute('gclms:tries-remaining'),10) - 1);
+		} else {
+			input.value = correctAnswers[0];
+			this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('You are out of tries. The correct answer is shown.') + '</p>');
 		}
 	},
 
@@ -398,9 +403,9 @@ GCLMS.PageController = {
 	highlightCurrentPage: function() {
 		try {
 			top.GCLMS.ClassroomController.highlightCurrentPage(location.href);
-		} catch(e){};
+		} catch(e){}
 	}
-}
+};
 
 GCLMS.Triggers.update({
 	//'div.gclms-page': GCLMS.PageController.loadPageAudio,

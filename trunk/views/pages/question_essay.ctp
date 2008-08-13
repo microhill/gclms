@@ -5,7 +5,7 @@
 	question:defaultCorrectMessage="<? __('Correct!') ?>"
 	question:defaultNoMoreIncorrectTriesMessage="<? __('You are out of tries. The correct answer is shown.') ?>"
 	>
-	<h5><?= $question['title'] ?></h5>
+	<h5><?= strip_tags($question['title'],'<a><em><b>') ?></h5>
 	<textarea></textarea>
 	
 	<!--
@@ -20,13 +20,15 @@
 	?>
 	</ul>
 	-->
-	<?= $this->element('buttons',array('buttons' => array(
-		array(
-			'text' => __('Check answer',true),
-			'class' => 'gclms-check-answer-button'
-		)
-	)));
-	?>
+	<p>
+		<?= $this->element('buttons',array('buttons' => array(
+			array(
+				'text' => __('Check answer',true),
+				'class' => 'gclms-check-answer-button'
+			)
+		)));
+		?>
+	</p>
 	<div class="gclms-explanation">
 		<?= $question['explanation'] ?>
 	</div>

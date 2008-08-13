@@ -8,19 +8,21 @@ $translatedPhrases->add('False',__('False',true));
 ?>
 <div class="gclms-true-false" gclms:correct-answer="<?= $question['true_false_answer'] ?>">
 	<h5><?= strip_tags($question['title'],'<a><em><b>') ?></h5>
-	<?= $this->element('buttons',array('buttons' => array(
-		array(
-			'text' => __('True',true),
-			'class' => 'gclms-check-answer-button',
-			'attributes' => array('gclms:answer-value' => 1)
-		),
-		array(
-			'text' => __('False',true),
-			'class' => 'gclms-check-answer-button',
-			'attributes' => array('gclms:answer-value' => 0)
-		)
-	)));
-	?>
+	<p>
+		<?= $this->element('buttons',array('buttons' => array(
+			array(
+				'text' => __('True',true),
+				'class' => 'gclms-check-answer-button',
+				'attributes' => array('gclms:answer-value' => 1)
+			),
+			array(
+				'text' => __('False',true),
+				'class' => 'gclms-check-answer-button',
+				'attributes' => array('gclms:answer-value' => 0)
+			)
+		)));
+		?>
+	</p>
 	<div class="gclms-explanation">
 		<?= $question['explanation'] ?>
 	</div>

@@ -265,6 +265,9 @@ GCLMS.PageController = {
 			} else {
 				this.up('.gclms-buttons').replace('<p class="gclms-correct-answer">' + __('You are out of tries. The correct answer is shown.') + '</p>');
 				// reorder items
+				answers.each(function(answer){
+					div.down('ul.gclms-answers').insert(div.down('li[gclms:answer-id="' + answer + '"]'));
+				});
 				div.down('.gclms-explanation').displayAsBlock();
 			}
 		}

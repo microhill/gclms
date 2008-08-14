@@ -10,7 +10,7 @@ foreach($question['Answer'] as $answer) {
 		$correctAnswers[] = $answer['id'];
 }
 ?>
-<div class="gclms-multiple-choice" gclms:tries-remaining="3" gclms:correct-answers="<?= str_replace('"',"'",$javascript->object($correctAnswers)); ?>">
+<div class="gclms-multiple-choice <?= sizeof($correctAnswers) > 1 ? 'gclms-multiple-selection' : 'gclms-single-selection' ?>" gclms:tries-remaining="3" gclms:correct-answers="<?= str_replace('"',"'",$javascript->object($correctAnswers)); ?>">
 	<h5><?= strip_tags($question['title'],'<a><em><b>') ?></h5>
 	<ul class="gclms-answers">
 	<?
@@ -22,7 +22,7 @@ foreach($question['Answer'] as $answer) {
 			$text = $answer['text1'];
 			$correct = $answer['correct'] ? 'true' : 'false';
 			$id = String::uuid();
-			echo "<li><p><input type='checkbox' gclms:correct-answer='$correct' id='$id'/><label for='$id'> " . strip_tags($text,'<a><em><b>')  . "</label></p></li>";
+			echo "<li><p><input type='checkbox' gclms:correct-answer='$correct' id='$id' gclms:answer-id='{$answer['id']}'/><label for='$id'> " . strip_tags($text,'<a><em><b>')  . "</label></p></li>";
 			if($answer['correct'])
 				$correctAnswers++;
 		}
@@ -41,6 +41,10 @@ foreach($question['Answer'] as $answer) {
 	}
 	?>
 	</ul>
+	<div class="gclms-answer-status"><span></span></div>
+	<div class="gclms-explanation">
+		<?= $question['explanation'] ?>
+	</div>
 	<?
 	if(sizeof($correctAnswers) > 1)
 		echo $this->element('buttons',array('buttons' => array(

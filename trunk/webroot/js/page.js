@@ -8,9 +8,9 @@ GCLMS.PageController = {
         });
     },
     
-    checkMultipleChoiceQuestion1: function(event){
-        var li = event.findElement('li');
+    checkMultipleChoiceSingleSelectionQuestion: function(event){
         event.stop();
+        var li = event.findElement('li');
         
         if (li.getAttribute('gclms:attempted')) {
             return false;
@@ -48,57 +48,64 @@ GCLMS.PageController = {
 		new Effect.Highlight(answerStatusSpan,{endcolor: '#f6f6f6',restorecolor: '#f6f6f6'});
     },
     
-    checkMultipleChoiceQuestion: function(event){
-        alert(1);
-        var div = event.findElement('div');
-        var completelyCorrect = true;
+    checkMultipleChoiceMultipleSelectionQuestion: function(event){
+		event.stop();
+		var div = this.up('div.gclms-multiple-choice');
+		var correct_answers = div.getAttribute('gclms:correct-answers').evalJSON();
+	    var completelyCorrect = true;
         var atLeastPartiallyCorrect = false;
-        
-        $A(div.select('input')).each(function(node){
-            if (node.checked) {
-                if (node.getAttribute('gclms:answer-correct') == 'true') {
-                    atLeastPartiallyCorrect = true;
+		
+		var answerStatus = div.down('.gclms-answer-status');
+		var answerStatusSpan = answerStatus.down('span');
+
+        div.select('input').each(function(input){
+			if (input.checked) {
+                if (correct_answers.in_array(input.getAttribute('gclms:answer-id'))) {
+					atLeastPartiallyCorrect = true;
                 }
                 else {
-                    completelyCorrect = false;
+					completelyCorrect = false;
                 }
             }
-            else {
-                if (node.getAttribute('gclms:answer-correct') == 'true') {
-                    completelyCorrect = false;
+            else 
+                if (correct_answers.in_array(input.getAttribute('gclms:answer-id'))) {
+					completelyCorrect = false;
                 }
-            }
         });
         
         if (completelyCorrect) {
-            alert(div.getAttribute('gclms:question-defaultCorrectMessage'));
+            div.down('.gclms-explanation').displayAsBlock();
+			answerStatusSpan.innerHTML = __('Correct!');
+			this.up('.gclms-buttons').remove();
         }
         else 
-            if (parseInt(div.getAttribute('gclms:question-tries-remaining'), 10) > 0) {
-                div.setAttribute('gclms:question-tries-remaining', parseInt(div.getAttribute('gclms:question-tries-remaining'), 10) - 1);
+            if (parseInt(div.getAttribute('gclms:tries-remaining'), 10) > 0) {
+                div.setAttribute('gclms:tries-remaining', parseInt(div.getAttribute('gclms:tries-remaining'), 10) - 1);
                 if (atLeastPartiallyCorrect) {
-                    alert(div.getAttribute('gclms:question-defaultPartiallyCorrectMessage'));
+                    answerStatusSpan.innerHTML = __('You are partially correct. Try again.');
                 }
                 else {
-                    alert(div.getAttribute('gclms:question-defaultTryAgainMessage'));
+                    answerStatusSpan.innerHTML = __('Incorrect. Try again.');
                 }
             }
             else {
                 //Set to correct answers
-                div.select('input').each(function(node){
-                    if (node.getAttribute('gclms:answer-correct') == 'true') {
-                        node.checked = true;
-                    }
-                    else 
-                        if (node.getAttribute('gclms:answer-correct') == 'false') {
+                div.select('input').each(function(input){
+	                if (correct_answers.in_array(input.getAttribute('gclms:answer-id'))) {
+	                     input.checked = true;
+	                }
+                    else  {
                             node.checked = false;
                             node.removeAttribute('checked');
                         }
                 });
-                alert(div.getAttribute('gclms:question-defaultNoMoreIncorrectTriesMessage'));
+				answerStatusSpan.innerHTML = __('You are out of tries. The correct answer is shown.');
+				div.down('.gclms-explanation').displayAsBlock();
+				this.up('.gclms-buttons').remove();
             }
-        
-        event.stop();
+			
+		answerStatus.displayAsBlock();
+		new Effect.Highlight(answerStatusSpan,{endcolor: '#f6f6f6',restorecolor: '#f6f6f6'});
     },
     checkMatchingQuestion: function(event){
         var div = $(event.findElement('div'));
@@ -492,8 +499,8 @@ GCLMS.Triggers.update({
     'img.gclms-notebook:click': GCLMS.PageController.loadNotebook,
     '#gradeQuestions:click': GCLMS.PageController.gradeQuestions,
     '.gclms-multiple-choice': {
-        'input[type="radio"]:change': GCLMS.PageController.checkMultipleChoiceQuestion1,
-        '.gclms-button.button.gclms-check-answer-button:click': GCLMS.PageController.checkMultipleChoiceQuestion
+        'input[type="radio"]:change': GCLMS.PageController.checkMultipleChoiceSingleSelectionQuestion,
+        '.gclms-button.gclms-check-answer-button:click': GCLMS.PageController.checkMultipleChoiceMultipleSelectionQuestion
     },
     '.gclms-matching': {
         '.gclms-button.gclms-check-answer-button:click': GCLMS.PageController.checkMatchingQuestion,

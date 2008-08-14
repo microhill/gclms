@@ -287,6 +287,6 @@ div.gclms-order-question li {
 	display: none;
 }
 
-div.gclms-multiple-choice .gclms-answer-status {
+div.gclms-multiple-choice.gclms-single-selection .gclms-answer-status {
 	display: block;
-}	
+}

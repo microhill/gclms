@@ -1,16 +1,14 @@
 /*global $, $$, $F, Ajax, Element, GCLMS, Sortable, document, window, tinyMCE, self, UUID, __, tmpTextareaView, tmpQuestionView, tmpQuestionExplanationView, tmpMultipleChoiceAnswerView, tmpMultipleChoiceAnswerExplanationView, tmpMatchingAnswerView, tmpOrderAnswerView */
 
-//tinyMCE.init(GCLMS.advancedTinyMCEConfig);
-
 GCLMS.PagesController = {
 	addExplanationToQuestion: function() {
-		var div = this.up('div.gclms-question');
-		var questionId = div.getAttribute('question:id');
+		var question = this.up('div.gclms-question');
+		var questionId = question.getAttribute('question:id');
 		
 		this.replace(GCLMS.Views.get('questionExplanation').interpolate({id: questionId}));
 		
-		GCLMS.PagesController.enableAdvancedTinyMCE.bind(div.down('textarea.gclms-question-explanation'))();
-		div.down('tr.gclms-question-explanation td').addClassName('gclms-filled');
+		GCLMS.PagesController.enableAdvancedTinyMCE.bind(question.down('textarea.gclms-question-explanation'))();
+		question.down('tr.gclms-question-explanation td').addClassName('gclms-filled');
 	},
 	
 	addExplanationToMultipleChoiceAnswer: function() {
@@ -28,7 +26,11 @@ GCLMS.PagesController = {
 
 	enableAdvancedTinyMCE: function() {
 		tinyMCE.settings = GCLMS.advancedTinyMCEConfig;
-		tinyMCE.execCommand('mceAddControl', true, this.id);
+		if(tinyMCE.get(this.id)) {
+			tinyMCE.execCommand('mceToggleEditor', true, this.id);			
+		} else {
+			tinyMCE.execCommand('mceAddControl', true, this.id);
+		}
 		//GCLMS.advancedTinyMCEConfig.height = '250px';
 	},
 	
@@ -394,6 +396,77 @@ GCLMS.PagesController = {
 			tag: 'div',
 			scroll: window
 		});
+	},
+	
+	// If more than answer is correct, then use general question-explanation
+	toggleMultipleChoiceCorrectAnswer: function() {
+		var question = this.up('div.gclms-question');
+		var totalCorrectAnswers = 0
+		question.select('input.gclms-multiple-choice-answer-correct').each(function(checkbox){
+			if(checkbox.checked) {
+				totalCorrectAnswers++;
+			}
+		});
+
+		var questionExplanation = question.down('.gclms-question-explanation');
+		var previousTotalCorrectAnswers = parseInt(question.getAttribute('gclms:total-correct'));
+		if(totalCorrectAnswers == 1 && (previousTotalCorrectAnswers == 2)) {
+			/*
+			GCLMS.popup.create({
+				text: 'Multiple choice questions which have only one correct answer have an explanation for each possible selection.',
+				cancelButtonText: null,
+				type: 'alert'
+			})*/
+			// Put question-explanation into first answer-explanation
+			questionExplanationTextarea = questionExplanation.down('textarea');
+			
+			question.select('tr.gclms-answer-explanation').each(function(tr) {
+				var textarea = tr.down('textarea');
+				if (textarea) {
+					GCLMS.advancedTinyMCEConfig.height = '75px';
+					tr.down('td').addClassName('gclms-filled');
+					GCLMS.PagesController.enableAdvancedTinyMCE.bind(textarea)();
+				}
+				tr.displayAsTableRow();
+			});
+
+			if(questionExplanationTextarea) {
+				var firstTextarea = question.down('tr.gclms-answer-explanation textarea');
+				if(firstTextarea) {
+					var explanation = tinyMCE.get(questionExplanationTextarea.id).getContent();
+					tinyMCE.get(firstTextarea.id).setContent(explanation);
+				}
+			}
+			questionExplanation.hide();
+		} else if(totalCorrectAnswers > 1 && previousTotalCorrectAnswers == 1) {
+			/*
+			GCLMS.popup.create({
+				text: 'Multiple choice questions which require selection of multiple answers have an accumulative explanation instead of one per answer.',
+				cancelButtonText: null,
+				type: 'alert'
+			});
+			*/
+			var newExplanation = '';
+			question.select('tr.gclms-answer-explanation').each(function(tr) {
+				var textarea;
+				if (textarea = tr.down('textarea')) {
+					newExplanation += tinyMCE.get(textarea.id).getContent();
+					tinyMCE.execCommand('mceToggleEditor', false, textarea.id);
+				}
+				tr.hide();
+			});
+			// Accumulate individual explanations into overarching one
+			questionExplanation.displayAsTableRow();
+			if(!questionExplanation.select('textarea').length) {				
+				questionExplanation.down('img').replace(GCLMS.Views.get('questionExplanation').interpolate({id: question.getAttribute('question:id')}));
+				questionExplanation.down('textarea').innerHTML = newExplanation;
+				GCLMS.PagesController.enableAdvancedTinyMCE.bind(question.down('textarea.gclms-question-explanation'))();
+				questionExplanation.down('td').addClassName('gclms-filled');
+			} else {
+				tinyMCE.get(questionExplanation.down('textarea').id).setContent(newExplanation);
+			}
+		}
+		question.setAttribute('gclms:total-correct',totalCorrectAnswers);
 	}
 };
 
@@ -422,12 +495,13 @@ GCLMS.Triggers.update({
 		'.gclms-question': {
 			'input[type="radio"].gclms-question-type:click': GCLMS.PagesController.selectQuestionType,
 			'textarea.gclms-simple-tinymce-enabled.gclms-question-title': GCLMS.PagesController.enableSimpleTinyMCE,
-			'.gclms-question-explanation': GCLMS.PagesController.enableAdvancedTinyMCE,
+			'textarea.gclms-question-explanation': GCLMS.PagesController.enableAdvancedTinyMCE,
 			'img.gclms-delete-question:click':GCLMS.PagesController.confirmDeleteQuestion,
 			'.gclms-multiple-choice': {
 				'.gclms-answer': {
 					'tr.gclms-answer-explanation img.gclms-add-tinymce-box:click' : GCLMS.PagesController.addExplanationToMultipleChoiceAnswer,
 					'img.gclms-delete-answer:click': GCLMS.PagesController.confirmDeleteAnswer,
+					'input.gclms-multiple-choice-answer-correct:change': GCLMS.PagesController.toggleMultipleChoiceCorrectAnswer,
 					'textarea.gclms-simple-tinymce-enabled': GCLMS.PagesController.enableSimpleTinyMCE	
 				},
 				'img.gclms-add:click': GCLMS.PagesController.addMultipleChoiceAnswer

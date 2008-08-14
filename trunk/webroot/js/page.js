@@ -25,28 +25,27 @@ GCLMS.PageController = {
         var explanation = li.down('.gclms-explanation');
         explanation.displayAsBlock();
         
+		var answerStatus = li.down('.gclms-answer-status');
+		var answerStatusSpan = answerStatus.down('span');
+		
         if (correct_answers.in_array(li.getAttribute('gclms:answer-id'))) {
-            explanation.insert({
-                top: '<p class="gclms-answer-status">' + __('Correct!') + '</p>'
-            });
+            answerStatusSpan.innerHTML = __('Correct!');
         }
         else {
             var triesRemaining = parseInt(div.getAttribute('gclms:tries-remaining'), 10);
             if (triesRemaining > 0) {
                 div.setAttribute('gclms:tries-remaining', triesRemaining - 1);
-                explanation.insert({
-                    top: '<p class="gclms-answer-status">' + __('Incorrect. Try again.') + '</p>'
-                });
+				answerStatusSpan.innerHTML = __('Incorrect. Try again.');
             }
             else {
-                explanation.insert({
-                    top: '<p class="gclms-answer-status">' + __('You are out of tries. The correct answer is shown.') + '</p>'
-                });
+				answerStatusSpan.innerHTML = __('You are out of tries. The correct answer is shown.');
                 var correctAnswer = div.down('li[gclms:answer-id="' + correct_answers[0] + '"]');
                 correctAnswer.checked = true;
                 correctAnswer.down('.gclms-explanation').displayAsBlock();
             }
         }
+		answerStatus.displayAsBlock();
+		new Effect.Highlight(answerStatusSpan,{endcolor: '#f6f6f6',restorecolor: '#f6f6f6'});
     },
     
     checkMultipleChoiceQuestion: function(event){
@@ -317,7 +316,7 @@ GCLMS.PageController = {
 				answerStatusSpan.innerHTML = __('You are out of tries. The correct answer is shown.');
             }
 		answerStatus.displayAsBlock();
-		new Effect.Highlight(answerStatusSpan);
+		new Effect.Highlight(answerStatusSpan,{endcolor: '#f6f6f6',restorecolor: '#f6f6f6'});
     },
     
     expandFillInTheBlankField: function(event){
@@ -340,6 +339,10 @@ GCLMS.PageController = {
         var answers = div.getAttribute('gclms:correct-answer').evalJSON();
         var order = 0;
         var correct = true;
+		
+		var answerStatus = div.down('.gclms-answer-status');
+		var answerStatusSpan = answerStatus.down('span');
+		
         div.select('.gclms-answers > li').each(function(li){
             if (li.getAttribute('gclms:answer-id') != answers[order]) {
                 correct = false;
@@ -348,28 +351,29 @@ GCLMS.PageController = {
             order++;
         });
         if (correct) {
-            this.up('.gclms-buttons').replace('<p class="gclms-answer-status">' + __('Correct!') + '</p>');
+            this.up('.gclms-buttons').remove();
+			answerStatusSpan.innerHTML = __('Correct!');
             div.down('.gclms-explanation').displayAsBlock();
         }
         else {
             var triesRemaining = parseInt(div.getAttribute('gclms:tries-remaining'), 10);
             if (triesRemaining > 0) {
                 div.setAttribute('gclms:tries-remaining', triesRemaining - 1);
-                GCLMS.popup.create({
-                    text: __('Incorrect. Try again.'),
-                    cancelButtonText: null,
-                    type: 'confirm'
-                });
+                answerStatusSpan.innerHTML = __('Incorrect. Try again.');
             }
             else {
-                this.up('.gclms-buttons').replace('<p class="gclms-answer-status">' + __('You are out of tries. The correct answer is shown.') + '</p>');
+                answerStatusSpan.innerHTML = __('You are out of tries. The correct answer is shown.');
+				this.up('.gclms-buttons').remove();
                 // reorder items
                 answers.each(function(answer){
                     div.down('ul.gclms-answers').insert(div.down('li[gclms:answer-id="' + answer + '"]'));
                 });
-                div.down('.gclms-explanation').displayAsBlock();
+				div.down('.gclms-explanation').displayAsBlock();
             }
         }
+		
+		answerStatus.displayAsBlock();
+		new Effect.Highlight(answerStatusSpan,{endcolor: '#f6f6f6',restorecolor: '#f6f6f6'});
     },
     
     checkTrueFalseQuestion: function(event){
@@ -397,8 +401,8 @@ GCLMS.PageController = {
         }
 		this.up('.gclms-buttons').remove();
 		answerStatus.displayAsBlock();
-		new Effect.Highlight(answerStatusSpan);
         div.down('.gclms-explanation').displayAsBlock();
+		new Effect.Highlight(answerStatusSpan,{endcolor: '#f6f6f6',restorecolor: '#f6f6f6'});
     },
     loadBibleVerse: function(event){
         top.Ext.getCmp('bibleViewport').expand();

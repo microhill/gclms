@@ -56,7 +56,8 @@ if(empty($question_id))
 				<?= $myForm->input('Question' . $question_id . 'Type',
 					array(
 						'options' => array(
-							'0' => __('Multiple choice',true),
+							'0' => __('Multiple choice (single selection)',true),
+							'6' => __('Multiple choice (multiple selection)',true),
 							'1' => __('True/false',true),
 							'2' => __('Matching',true),
 							'3' => __('Ordered List',true),

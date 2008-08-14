@@ -35,7 +35,7 @@ foreach($question['Answer'] as $answer) {
 					<input type="radio" id="<?= $uniqueInputId ?>" name="<?= $question['id'] ?>" />
 					<label for="<?= $uniqueInputId ?>"><?= strip_tags($text,'<a><em><b>') ?></label>
 				</p>
-				<div class="gclms-explanation"><?= $answer['text3'] ?></div>
+				<div class="gclms-explanation"><p class="gclms-answer-status"><span></span></p><?= $answer['text3'] ?></div>
 			</li><?
 		}
 	}

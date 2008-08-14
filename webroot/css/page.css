@@ -60,11 +60,6 @@ div.gclms-multiple-choice {
 	display: none;
 }
 
-.gclms-answer-status {
-	font-style: italic;
-	display: none;
-}
-
 .gclms-multiple-choice ul {
 	list-style: none;
 	padding-left: 12px;
@@ -286,3 +281,12 @@ div.gclms-order-question li {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+.gclms-answer-status {
+	font-style: italic;
+	display: none;
+}
+
+div.gclms-multiple-choice .gclms-answer-status {
+	display: block;
+}	

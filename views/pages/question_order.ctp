@@ -9,7 +9,11 @@ $answer_ids = Set::extract($question['Answer'], '{n}.id');
 	<h5><?= strip_tags($question['title'],'<a><em><b>') ?></h5>
 	<ul class="gclms-answers" id="<?= String::uuid() ?>">
 	<?
-	shuffle($question['Answer']);
+	$originalAnswersOrder = $question['Answer'];
+	do {
+		shuffle($question['Answer']);
+		$difference = array_diff_assoc(Set::extract($question['Answer'],'{n}.id'),Set::extract($originalAnswersOrder,'{n}.id'));
+	} while(empty($difference)); //Ensures that the shuffle doesn't return the same order of items
 	
 	foreach($question['Answer'] as $answer) {
 		$text = $answer['text1'];
@@ -17,7 +21,7 @@ $answer_ids = Set::extract($question['Answer'], '{n}.id');
 	}
 	?>
 	</ul>
-	<div class="gclms-answer-status"></div>
+	<div class="gclms-answer-status"><span></span></div>
 	<div class="gclms-explanation">
 		<?= $question['explanation'] ?>
 	</div>

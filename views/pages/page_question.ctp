@@ -15,7 +15,7 @@ switch($question['type']){
 	case 4: //Fill in the blank
 		echo $this->element('../pages/question_fill_in_the_blank',array('question'=>$question));
 		break;
-	case 5: //Fill in the blank
+	case 5: //Essay question
 		echo $this->element('../pages/question_essay',array('question'=>$question));
 		break;
 

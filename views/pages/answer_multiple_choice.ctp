@@ -41,19 +41,29 @@ if(empty($question_id) || empty($answer_id))
 				<?
 				echo $myForm->checkbox('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'correct',array(
 					'checked' => empty($answer['correct']) ? '' : 'checked',
-					'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][correct]"
+					'name' => "data[Question][$question_id][MultipleChoiceAnswer][$answer_id][correct]",
+					'class' => 'gclms-multiple-choice-answer-correct'
 				),array(
 					'value' => '1'
 				));
 				?>
 			</td>
 		</tr>
-		<tr class="gclms-answer-explanation">
+		<tr class="gclms-answer-explanation <?= $totalCorrectMultipleChoiceAnswers < 2 ? '' : 'gclms-hidden' ?>">
 			<th>
 				<?= $form->label('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text3','Explanation'); ?>
 			</th>
 			<td>
-				<img src="/img/icons/oxygen/16x16/apps/kate.png" class="gclms-add-tinymce-box" />
+				<? if(empty($answer['text3'])): ?>
+					<img src="/img/icons/oxygen/22x22/apps/kate.png" class="gclms-add-tinymce-box" />
+				<?
+				else:
+					echo $this->element('../pages/answer_multiple_choice_explanation',array(
+						'question_id' => $question_id,
+						'answer_id' => $answer_id,
+						'answer' => @$answer
+					));					
+				endif; ?>
 			</td>
 		</tr>
 	</table>

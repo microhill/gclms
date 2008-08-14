@@ -4,9 +4,11 @@ if(empty($question_id))
 	
 if(empty($question_id))
 	die;
+	
+$totalCorrectMultipleChoiceAnswers = array_sum(Set::extract($question['Answer'],'{n}.correct'));
 ?>
 
-<div class="gclms-page-item gclms-question" question:id="<?= $question_id ?>">
+<div class="gclms-page-item gclms-question" question:id="<?= $question_id ?>" gclms:total-correct="<?= $totalCorrectMultipleChoiceAnswers ?>">
 	<?
 	echo $form->hidden('Question.' . $question_id . '.id',array(
 		'value' => @$question['id'],
@@ -56,8 +58,7 @@ if(empty($question_id))
 				<?= $myForm->input('Question' . $question_id . 'Type',
 					array(
 						'options' => array(
-							'0' => __('Multiple choice (single selection)',true),
-							'6' => __('Multiple choice (multiple selection)',true),
+							'0' => __('Multiple choice',true),
 							'1' => __('True/false',true),
 							'2' => __('Matching',true),
 							'3' => __('Ordered List',true),
@@ -85,7 +86,8 @@ if(empty($question_id))
 								echo $this->element('../pages/answer_multiple_choice',array(
 									'answer' => $answer,
 									'answer_id' => $answer['id'],
-									'question_id' => $question_id
+									'question_id' => $question_id,
+									'totalCorrectMultipleChoiceAnswers' => $totalCorrectMultipleChoiceAnswers
 								));
 							}
 						}
@@ -196,7 +198,10 @@ if(empty($question_id))
 
 		</tbody>
 		<tbody>
-			<tr class="gclms-question-explanation<?= @$question['type'] !== '0' && isset($question) ? '' : ' gclms-hidden' ?>">
+			<?
+			
+			?>
+			<tr class="gclms-question-explanation<?= ($totalCorrectMultipleChoiceAnswers > 1 || @$question['type'] !== '0') && isset($question) ? '' : ' gclms-hidden' ?>">
 				<th>
 					<? __('Explanation'); ?>
 				</th>

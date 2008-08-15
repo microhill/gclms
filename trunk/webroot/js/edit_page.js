@@ -19,7 +19,7 @@ GCLMS.PagesController = {
 		var answerId = div.getAttribute('gclms:answer-id');
 		this.replace(GCLMS.Views.get('multipleChoiceAnswerExplanation').interpolate({answer_id: answerId,question_id: questionId}));
 		
-		GCLMS.advancedTinyMCEConfig.height = '75px';
+		//GCLMS.advancedTinyMCEConfig.height = '75px';
 		GCLMS.PagesController.enableAdvancedTinyMCE.bind(div.down('textarea.gclms-answer-explanation'))();
 		div.down('tr.gclms-answer-explanation td').addClassName('gclms-filled');
 	},
@@ -515,7 +515,10 @@ GCLMS.Triggers.update({
 			'img.gclms-delete-question:click':GCLMS.PagesController.confirmDeleteQuestion,
 			'.gclms-multiple-choice': {
 				'.gclms-answer': {
-					'tr.gclms-answer-explanation img.gclms-add-tinymce-box:click' : GCLMS.PagesController.addExplanationToMultipleChoiceAnswer,
+					'tr.gclms-answer-explanation': {
+						'img.gclms-add-tinymce-box:click' : GCLMS.PagesController.addExplanationToMultipleChoiceAnswer,
+						'textarea': GCLMS.PagesController.enableAdvancedTinyMCE
+					},
 					'img.gclms-delete-answer:click': GCLMS.PagesController.confirmDeleteAnswer,
 					'input.gclms-multiple-choice-answer-correct:change': GCLMS.PagesController.toggleMultipleChoiceCorrectAnswer,
 					'textarea.gclms-simple-tinymce-enabled': GCLMS.PagesController.enableSimpleTinyMCE	

@@ -56,7 +56,7 @@ if(!isset($totalCorrectMultipleChoiceAnswers))
 			<th>
 				<?= $form->label('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'text3','Explanation'); ?>
 			</th>
-			<td>
+			<td class="<? if(!empty($answer['text3'])) echo 'gclms-filled' ?>">
 				<? if(empty($answer['text3'])): ?>
 					<img src="/img/icons/oxygen/22x22/apps/kate.png" class="gclms-add-tinymce-box" />
 				<?

@@ -48,9 +48,11 @@ GCLMS.PagesController = {
 	
 	enableSimpleTinyMCE: function() {		
 		tinyMCE.settings = GCLMS.simpleTinyMCEConfig;
-		tinyMCE.execCommand('mceAddControl', true, this.id);
-
-		//execCommand('mceAddControl', true, this.id);
+		if(tinyMCE.get(this.id)) {
+			tinyMCE.execCommand('mceToggleEditor', true, this.id);			
+		} else {
+			tinyMCE.execCommand('mceAddControl', true, this.id);
+		}
 	},
 
 	configureMoveUpAndMoveDownButtons: function() {
@@ -182,9 +184,9 @@ GCLMS.PagesController = {
 		} else if (this.hasClassName('gclms-move-up') && !(adjacentPageItem = pageItem.previous('div.gclms-page-item'))) {
 			return false;
 		}
-		
+
 		adjacentPageItem.select('textarea').each(function(textarea) {
-			GCLMS.PagesController.toggleTinyMCE.bind(textarea)();
+			GCLMS.PagesController.removeTinyMCE.bind(textarea)();
 			//tinyMCE.execCommand('mceRemoveControl', false, textarea.id);
 		});
 

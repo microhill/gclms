@@ -23,6 +23,18 @@ GCLMS.PagesController = {
 		GCLMS.PagesController.enableAdvancedTinyMCE.bind(div.down('textarea.gclms-answer-explanation'))();
 		div.down('tr.gclms-answer-explanation td').addClassName('gclms-filled');
 	},
+	
+	toggleTinyMCE: function () {
+		if(tinyMCE.get(this.id)) {
+			tinyMCE.execCommand('mceToggleEditor', true, this.id);	
+		}
+	},
+	
+	removeTinyMCE: function () {
+		if(tinyMCE.get(this.id)) {
+			tinyMCE.execCommand('mceRemoveControl', true, this.id);			
+		}
+	},
 
 	enableAdvancedTinyMCE: function() {
 		tinyMCE.settings = GCLMS.advancedTinyMCEConfig;
@@ -172,7 +184,8 @@ GCLMS.PagesController = {
 		}
 		
 		adjacentPageItem.select('textarea').each(function(textarea) {
-			tinyMCE.execCommand('mceRemoveControl', false, textarea.id);
+			GCLMS.PagesController.toggleTinyMCE.bind(textarea)();
+			//tinyMCE.execCommand('mceRemoveControl', false, textarea.id);
 		});
 
 		if (this.hasClassName('gclms-move-down')) {
@@ -211,8 +224,9 @@ GCLMS.PagesController = {
 	
 	deleteAnswer: function() {
 		div = this.up('div').up('div');
-		div.select('textarea').each(function(node){
-			tinyMCE.execCommand('mceRemoveControl', false, node.id);
+		div.select('textarea').each(function(textarea){
+			GCLMS.PagesController.removeTinyMCE.bind(textarea)();
+			//tinyMCE.execCommand('mceRemoveControl', false, textarea.id);
 		});
 		div.remove();
 	},

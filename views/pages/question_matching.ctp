@@ -27,7 +27,7 @@ $correctAnswers = array_combine(Set::extract($question['Answer'],'{n}.text1'),Se
 				?>
 					<tr>
 						<td class="gclms-draggable-container">
-							<div class="gclms-draggable gclms-draggable-color<?= $colors[$count % 9] ?>" answer:id="<?= $answer['id'] ?>">
+							<div class="gclms-draggable gclms-draggable-color<?= $colors[$count % 9] ?>" gclms:answer-id="<?= $answer['id'] ?>">
 								<?= $count ?>
 							</div>
 						</td>

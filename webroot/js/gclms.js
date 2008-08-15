@@ -183,7 +183,7 @@ GCLMS.AppController = {
 			//$('UserPasswordDiv').hide();
 		}
 		
-		if($F('UserEmail').trim().indexOf('http:') === 0) {
+		if($F('UserEmail').strip().indexOf('http:') === 0) {
 			if(!$('UserEmail').hasClassName('gclms-openid')) {
 				$('UserEmail').addClassName('gclms-openid');
 			}

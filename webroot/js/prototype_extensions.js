@@ -116,10 +116,6 @@ Element.addMethods({
     }
 });
 
-String.prototype.trim = function(){
-    return this.replace(/^\s*/, "").replace(/\s*$/, "");
-};
-
 Array.prototype.in_array = function(obj){
     var length = this.length;
     for (var x = 0; x <= this.length; x++) {

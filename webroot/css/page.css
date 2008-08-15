@@ -292,3 +292,7 @@ div.gclms-multiple-choice.gclms-single-selection .gclms-answer-status {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+.gclms-correct-answers-json {
+	display: none;
+}

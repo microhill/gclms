@@ -245,7 +245,7 @@ GCLMS.PagesController = {
 	},
 	
 	deleteOrderAnswer: function() {
-		this.up('div.order').remove();
+		this.up('div.gclms-order').remove();
 	},
 	
 	confirmDeleteQuestion: function(event) {

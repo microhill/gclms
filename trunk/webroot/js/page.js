@@ -117,7 +117,8 @@ GCLMS.PageController = {
 		var answerStatusSpan = answerStatus.down('span');
         
         div.select('.gclms-droppable').each(function(node){
-            if (node.getAttribute('gclms:attempted-answer-id') != node.getAttribute('correctAnswer:id')) {
+            
+			if (node.getAttribute('gclms:attempted-answer-id') != node.getAttribute('correctanswer:id')) {
                 completelyCorrect = false;
             }
             else {

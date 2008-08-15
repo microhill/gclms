@@ -1,10 +1,16 @@
-<div class="gclms-matching"
-	question:triesLeft="3"
-	question:defaultTryAgainMessage="<? __('Incorrect. Try again.') ?>"
-	question:defaultPartiallyCorrectMessage="<? __('You are partially correct. Try again.') ?>"
-	question:defaultCorrectMessage="<? __('Correct!') ?>"
-	question:defaultNoMoreIncorrectTriesMessage="<? __('You are out of tries. The correct answer is shown.') ?>"
-	>
+<?
+$translatedPhrases->add('Incorrect. Try again.',__('Incorrect. Try again.',true));
+$translatedPhrases->add('You are partially correct. Try again.',__('You are partially correct. Try again.',true));
+$translatedPhrases->add('Correct!',__('Correct!',true));
+$translatedPhrases->add('You are out of tries. The correct answer is shown.',__('You are out of tries. The correct answer is shown.',true));
+
+$correctAnswers = array_combine(Set::extract($question['Answer'],'{n}.text1'),Set::extract($question['Answer'],'{n}.text2'));
+?>
+
+<div class="gclms-matching" gclms:tries-remaining="3">
+	<div class="gclms-correct-answers-json">
+		<?= $javascript->object($correctAnswers); ?>
+	</div>
 	<h5><?= strip_tags($question['title'],'<a><em><b>') ?></h5>
 	<div class="gclms-answers">
 		<div class="gclms-left-column">
@@ -59,15 +65,17 @@
 			</table>
 		</div>
 	</div>
-	<div class="gclms-answer-status"></div>
+	<div class="gclms-answer-status"><span></span></div>
 	<div class="gclms-explanation">
 		<?= $question['explanation'] ?>
 	</div>
-    <?= $this->element('buttons',array('buttons' => array(
-    	array(
-    		'text' => __('Check answer',true),
-    		'class' => 'gclms-check-answer-button'
-    	)
-    	)));
-    	?>
+	<?
+	if(sizeof($correctAnswers) > 1)
+		echo $this->element('buttons',array('buttons' => array(
+			array(
+				'text' => __('Check answer',true),
+				'class' => 'gclms-check-answer-button'
+			)
+		)));
+	?>
 </div>

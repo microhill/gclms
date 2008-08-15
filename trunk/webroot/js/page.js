@@ -54,7 +54,6 @@ GCLMS.PageController = {
 		var correct_answers = div.getAttribute('gclms:correct-answers').evalJSON();
 	    var completelyCorrect = true;
         var atLeastPartiallyCorrect = false;
-		
 		var answerStatus = div.down('.gclms-answer-status');
 		var answerStatusSpan = answerStatus.down('span');
 
@@ -108,12 +107,17 @@ GCLMS.PageController = {
 		new Effect.Highlight(answerStatusSpan,{endcolor: '#f6f6f6',restorecolor: '#f6f6f6'});
     },
     checkMatchingQuestion: function(event){
-        var div = $(event.findElement('div'));
+        event.stop();
+		var div = this.up('div.gclms-matching');
+		var correct_answers = div.down('.gclms-correct-answers-json').innerHTML.evalJSON();
         var completelyCorrect = true;
         var atLeastPartiallyCorrect = false;
+		
+		var answerStatus = div.down('.gclms-answer-status');
+		var answerStatusSpan = answerStatus.down('span');
         
         div.select('.gclms-droppable').each(function(node){
-            if (node.getAttribute('attemptedAnswer:id') != node.getAttribute('correctAnswer:id')) {
+            if (node.getAttribute('gclms:attempted-answer-id') != node.getAttribute('correctAnswer:id')) {
                 completelyCorrect = false;
             }
             else {
@@ -122,35 +126,40 @@ GCLMS.PageController = {
         });
         
         if (completelyCorrect) {
-            alert(div.getAttribute('gclms:question-defaultCorrectMessage'));
+            answerStatusSpan.innerHTML = __('Correct!');
+			div.down('.gclms-explanation').displayAsBlock();
+			this.up('.gclms-buttons').remove();
         }
         else 
-            if (parseInt(div.getAttribute('gclms:question-tries-remaining'), 10) > 0) {
-                div.setAttribute('gclms:question-tries-remaining', parseInt(div.getAttribute('gclms:question-tries-remaining'), 10) - 1);
+            if (parseInt(div.getAttribute('gclms:tries-remaining'), 10) > 0) {
+                div.setAttribute('gclms:tries-remaining', parseInt(div.getAttribute('gclms:tries-remaining'), 10) - 1);
                 if (atLeastPartiallyCorrect) {
-                    alert(div.getAttribute('gclms:question-defaultPartiallyCorrectMessage'));
+                    answerStatusSpan.innerHTML = __('You are partially correct. Try again.');
                 }
                 else {
-                    alert(div.getAttribute('gclms:question-defaultTryAgainMessage'));
+                    answerStatusSpan.innerHTML = __('Incorrect. Try again.');
                 }
             }
             else {
                 //Set to correct answers
                 
-                div.select('gclms-droppable').each(function(node){
+                div.select('.gclms-droppable').each(function(node){
                     var id = node.getAttribute('correctAnswer:id');
                     
                     var draggableElement = div.select('div.gclms-draggable[answer:id="' + id + '"]').first();
                     
                     node.className = 'gclms-droppable ' + $A(draggableElement.classNames())[1];
                     node.innerHTML = draggableElement.innerHTML;
-                    node.setAttribute('attemptedAnswer:id', draggableElement.getAttribute('gclms:answer-id'));
+                    node.setAttribute('gclms:attempted-answer-id', draggableElement.getAttribute('gclms:answer-id'));
                 });
                 
-                alert(div.getAttribute('gclms:question-defaultNoMoreIncorrectTriesMessage'));
+                answerStatusSpan.innerHTML = __('You are out of tries. The correct answer is shown.');
+				div.down('.gclms-explanation').displayAsBlock();
+				this.up('.gclms-buttons').remove();
             }
         
-        event.stop();
+		answerStatus.displayAsBlock();
+		new Effect.Highlight(answerStatusSpan,{endcolor: '#f6f6f6',restorecolor: '#f6f6f6'});
     },
     gradeQuestions: function(event){
         event.stop();
@@ -200,7 +209,7 @@ GCLMS.PageController = {
                     div = question;
                     
                     div.select('.gclms-droppable').each(function(node){
-                        if (node.getAttribute('attemptedAnswer:id') != node.getAttribute('correctAnswer:id')) {
+                        if (node.getAttribute('gclms:attempted-answer-id') != node.getAttribute('correctAnswer:id')) {
                             completelyCorrect = false;
                         }
                     });
@@ -227,7 +236,7 @@ GCLMS.PageController = {
                             div = question;
                             var input = div.getElementsByTagName('input').item(0);
                             
-                            if (input.value.trim().toLowerCase() == input.getAttribute('correctAnswer:text').trim().toLowerCase()) {
+                            if (input.value.strip().toLowerCase() == input.getAttribute('correctAnswer:text').trim().toLowerCase()) {
                                 totalCorrectAnswers++;
                                 graphic = '<img src="/img/check-22.png" /> ';
                                 question.style.backgroundColor = '#DBFFDB';
@@ -272,8 +281,8 @@ GCLMS.PageController = {
                 var tbody = droppableElement.findParent('tbody');
                 
                 tbody.select('div.gclms-droppable').each(function(node){
-                    if (node.getAttribute('attemptedAnswer:id') == this.getAttribute('gclms:answer-id')) {
-                        node.removeAttribute('attemptedAnswer:id');
+                    if (node.getAttribute('gclms:attempted-answer-id') == this.getAttribute('gclms:answer-id')) {
+                        node.removeAttribute('gclms:attempted-answer-id');
                         node.innerHTML = '';
                         node.className = 'gclms-droppable gclms-default-droppable-color';
                     }
@@ -282,7 +291,7 @@ GCLMS.PageController = {
                 // Clone answer into droppable container
                 droppableElement.className = 'gclms-droppable ' + $A(draggableElement.classNames())[1];
                 droppableElement.innerHTML = draggableElement.innerHTML;
-                droppableElement.setAttribute('attemptedAnswer:id', draggableElement.getAttribute('gclms:answer-id'));
+                droppableElement.setAttribute('gclms:attempted-answer-id', draggableElement.getAttribute('gclms:answer-id'));
                 // */
             }
         });
@@ -299,7 +308,7 @@ GCLMS.PageController = {
 		var div = this.up('div.gclms-fill-in-the-blank');
         var correctAnswers = div.getAttribute('gclms:correct-answers').evalJSON();
         var filteredCorrectAnswers = correctAnswers.walk(function(i){
-            return i.trim().toLowerCase();
+            return i.strip().toLowerCase();
         });
         var input = div.down('input');
         if($F(input).empty())
@@ -307,7 +316,7 @@ GCLMS.PageController = {
 		var answerStatus = div.down('.gclms-answer-status');
 		var answerStatusSpan = answerStatus.down('span');
 		
-        if (filteredCorrectAnswers.in_array(input.value.trim().toLowerCase())) {
+        if (filteredCorrectAnswers.in_array(input.value.strip().toLowerCase())) {
             div.down('.gclms-explanation').displayAsBlock();
             this.up('.gclms-buttons').remove();
 			answerStatusSpan.innerHTML = __('Correct!');

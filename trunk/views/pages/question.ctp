@@ -5,7 +5,10 @@ if(empty($question_id))
 if(empty($question_id))
 	die;
 	
-$totalCorrectMultipleChoiceAnswers = array_sum(Set::extract($question['Answer'],'{n}.correct'));
+if(!empty($question['Answer']))
+	$totalCorrectMultipleChoiceAnswers = array_sum(Set::extract($question['Answer'],'{n}.correct'));
+else
+	$totalCorrectMultipleChoiceAnswers = 0;
 ?>
 
 <div class="gclms-page-item gclms-question" question:id="<?= $question_id ?>" gclms:total-correct="<?= $totalCorrectMultipleChoiceAnswers ?>">

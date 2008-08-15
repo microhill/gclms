@@ -1,4 +1,7 @@
 <?
+$translatedPhrases->add('Yes',__('Yes',true));
+$translatedPhrases->add('No',__('No',true));
+
 $html->css('edit_page', null, null, false);
 
 $javascript->link(array(

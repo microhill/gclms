@@ -1,6 +1,9 @@
 <?
 if(empty($question_id) || empty($answer_id))
 	die();
+	
+if(!isset($totalCorrectMultipleChoiceAnswers))
+	$totalCorrectMultipleChoiceAnswers = 0;
 ?><div class="gclms-multiple-choice gclms-answer" gclms:answer-id="<?= $answer_id ?>">
 	<?= $form->hidden('Question' . $question_id . 'MultipleChoiceAnswer' . $answer_id . 'id',array(
 		'value' => @$answer['id'],

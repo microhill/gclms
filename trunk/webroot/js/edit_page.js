@@ -267,8 +267,8 @@ GCLMS.PagesController = {
 	
 	deletePageItem: function() {
 		div = this.up('div.gclms-page-item');
-		div.select('textarea').each(function(node){
-			tinyMCE.execCommand('mceRemoveControl', false, node.id);
+		div.select('textarea').each(function(textarea){
+			GCLMS.PagesController.removeTinyMCE.bind(textarea)();
 		});
 		div.remove();
 		GCLMS.PagesController.configureMoveUpAndMoveDownButtons();

@@ -95,8 +95,8 @@ GCLMS.PageController = {
 	                     input.checked = true;
 	                }
                     else  {
-                            node.checked = false;
-                            node.removeAttribute('checked');
+                            input.checked = false;
+                            input.removeAttribute('checked');
                         }
                 });
 				answerStatusSpan.innerHTML = __('You are out of tries. The correct answer is shown.');

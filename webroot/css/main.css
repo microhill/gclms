@@ -829,11 +829,13 @@ td.gclms-az {
 		border: 0px none;
 	}
 	
+/*
 .gclms-multiple-choice div,
 .gclms-matching div,
 .gclms-order div {
 	margin: 0;
 }
+*/
 
 .gclms-matching table th,
 th.gclms-answer-header,

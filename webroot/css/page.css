@@ -269,24 +269,26 @@ div.gclms-order-question li {
 	cursor: move;
 }
 
+.gclms-answer-status {
+	font-style: italic;
+	display: none;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 .gclms-explanation {
 	display: none;
 }
 
-.gclms-multiple-choice .gclms-explanation {
+.gclms-multiple-choice.gclms-single-selection .gclms-explanation {
 	margin-left: 26px;
+}
+
+div.gclms-multiple-choice.gclms-single-selection .gclms-answer-status {
+	display: block;
 }
 
 .gclms-buttons {
 	margin-top: 10px;
 	margin-bottom: 10px;
-}
-
-.gclms-answer-status {
-	font-style: italic;
-	display: none;
-}
-
-div.gclms-multiple-choice.gclms-single-selection .gclms-answer-status {
-	display: block;
 }

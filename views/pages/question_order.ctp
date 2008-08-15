@@ -3,6 +3,8 @@ $translatedPhrases->add('Incorrect. Try again.',__('Incorrect. Try again.',true)
 $translatedPhrases->add('Correct!',__('Correct!',true));
 $translatedPhrases->add('You are out of tries. The correct answer is shown.',__('You are out of tries. The correct answer is shown.',true));
 
+if(!empty($question['Answer'])):
+
 $answer_ids = Set::extract($question['Answer'], '{n}.id');
 ?>
 <div class="gclms-order-question" gclms:tries-remaining="3" gclms:correct-answer="<?= str_replace('"',"'",$javascript->object($answer_ids)); ?>">
@@ -33,3 +35,4 @@ $answer_ids = Set::extract($question['Answer'], '{n}.id');
 	)));
 	?>
 </div>
+<? endif; ?>

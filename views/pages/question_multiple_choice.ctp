@@ -4,6 +4,8 @@ $translatedPhrases->add('You are partially correct. Try again.',__('You are part
 $translatedPhrases->add('Correct!',__('Correct!',true));
 $translatedPhrases->add('You are out of tries. The correct answer is shown.',__('You are out of tries. The correct answer is shown.',true));
 
+if(!empty($question['Answer'])):
+
 $correctAnswers = array();
 foreach($question['Answer'] as $answer) {
 	if($answer['correct'])
@@ -55,3 +57,4 @@ foreach($question['Answer'] as $answer) {
 		)));
 	?>
 </div>
+<? endif; ?>

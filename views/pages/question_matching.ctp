@@ -4,7 +4,8 @@ $translatedPhrases->add('You are partially correct. Try again.',__('You are part
 $translatedPhrases->add('Correct!',__('Correct!',true));
 $translatedPhrases->add('You are out of tries. The correct answer is shown.',__('You are out of tries. The correct answer is shown.',true));
 
-$correctAnswers = array_combine(Set::extract($question['Answer'],'{n}.text1'),Set::extract($question['Answer'],'{n}.text2'));
+if(!empty($question['Answer'])):
+	$correctAnswers = array_combine(Set::extract($question['Answer'],'{n}.text1'),Set::extract($question['Answer'],'{n}.text2'));
 ?>
 
 <div class="gclms-matching" gclms:tries-remaining="3">
@@ -79,3 +80,4 @@ $correctAnswers = array_combine(Set::extract($question['Answer'],'{n}.text1'),Se
 		)));
 	?>
 </div>
+<? endif; ?>

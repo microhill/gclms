@@ -511,16 +511,8 @@ GCLMS.PageController = {
 	
 	loadFlashPlayer: function() {
 		var src = this.getAttribute('src');
-		if(this.getAttribute('width')) {
-			var w = this.getAttribute('width');
-		} else {
-			var w = 200;
-		}
-		if(this.getAttribute('height')) {
-			var h = this.getAttribute('height');
-		} else {
-			var h = 200;
-		}
+		var w = this.getAttribute('width');
+		var h = this.getAttribute('height');
 		var flashvars = {config: "{videoFile: '" + src + "'}"};
 		var params = {};
 		var attributes ={};

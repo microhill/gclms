@@ -35,3 +35,4 @@
  * All self-assessment questions and answers rendered on student-side now
  * Various bug fixes
  * Removed redirect-to-s3-file in favor of direct url in open courses
+ * Fixed export-to-ODT bug caused by migration of media storage to S3

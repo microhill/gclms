@@ -1,10 +1,11 @@
 #summary One-sentence summary of this page.
 
-==Server Requirements==
+==Requirements==
 
  * Apache
  * PHP 5+
  * MySQL 5+ 
+ * [http://www.amazon.com/gp/browse.html?node=16427261 Amazon S3 account] (for media storage)
 
 ==Enable mod_rewrite==
 

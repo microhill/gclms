@@ -513,7 +513,7 @@ GCLMS.PageController = {
 		var src = this.getAttribute('src');
 		var w = this.getAttribute('width');
 		var h = this.getAttribute('height');
-		var flashvars = {config: "{showFullScreenButton: false,useNativeFullScreen: false,autoBuffering: false,autoPlay: false,videoFile: '" + src + "'}"};
+		var flashvars = {config: "{showMenu: false,showFullScreenButton: false,useNativeFullScreen: false,autoBuffering: false,autoPlay: false,videoFile: '" + src + "'}"};
 		
 			//autoPlay: false,
 			//autoBuffering: false,

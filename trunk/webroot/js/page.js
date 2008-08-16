@@ -147,7 +147,7 @@ GCLMS.PageController = {
                 div.select('.gclms-droppable').each(function(node){
                     var id = node.getAttribute('correctAnswer:id');
                     
-                    var draggableElement = div.select('div.gclms-draggable[answer:id="' + id + '"]').first();
+                    var draggableElement = div.select('div.gclms-draggable[gclms:answer-id="' + id + '"]').first();
                     
                     node.className = 'gclms-droppable ' + $A(draggableElement.classNames())[1];
                     node.innerHTML = draggableElement.innerHTML;

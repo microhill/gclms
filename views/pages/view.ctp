@@ -60,6 +60,8 @@ echo $this->element('no_column_background');
 		foreach($nodeItems as $nodeItem) {
 			if(isset($nodeItem['content'])) {
 				$nodeItem['content'] = $scripturizer->linkify($nodeItem['content']);
+				if($course['open'])
+					$nodeItem['content'] = $mediaFiles->transform_to_s3_links($nodeItem['content'],$course['id']);
 				//$nodeItem['content'] = $notebook->linkify($nodeItem['content'],$classUri);
 				$nodeItem['content'] = $glossary->linkify($nodeItem['content'],$groupAndCoursePath . '/glossary/view/',$glossary_terms);
 				echo $nodeItem['content'];

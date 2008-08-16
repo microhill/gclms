@@ -24,6 +24,11 @@ class ExportController extends AppController {
 	}
 	
 	function generate_odt($stage = 0) {
+		Configure::load('S3');
+		$this->set('bucket',Configure::read('S3.bucket'));
+		$this->set('accessKey',Configure::read('S3.accessKey'));
+		$this->set('secretKey',Configure::read('S3.secretKey'));
+
 		$this->prepare_course_data($stage);
 		$this->data['stage'] = $stage;
 	}

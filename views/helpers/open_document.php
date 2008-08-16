@@ -11,8 +11,10 @@ class OpenDocumentHelper extends AppHelper {
 			$this->openDocument = new OpenDocument;
 		}
 		
-		$this->openDocument->mediaDirectory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->data['course']['id'];
-		$this->openDocument->imagePrefix = '/' . $this->data['group']['web_path'] . '/' . $this->data['course']['web_path'] . '/files/';
+		//prd(TMP);
+		$this->openDocument->s3Prefix = 'http://' . $this->data['bucket'] . '.s3.amazonaws.com/courses/' . $this->data['course']['id'] . '/';
+		$this->openDocument->mediaDirectory = TMP . 'courses' . DS . $this->data['course']['id'];
+		$this->openDocument->imagePrefix = '../../files/';
 		$this->openDocument->destinationFile = 	$destinationFile;
 		$this->openDocument->text_direction = $data['text_direction'] == 'rtl' ? 'rl-tb' : 'lr-tb';
 

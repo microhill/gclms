@@ -10,7 +10,6 @@ echo $this->element('no_column_background'); ?>
 <div class="gclms-content">
 	<h1><? __('Generating ODT') ?></h1>
 	<?
-	
 	$progress = $openDocument->export(array(
 		'nodes' => $this->data['nodes'],
 		'node_count' => $this->data['node_count'],
@@ -19,7 +18,8 @@ echo $this->element('no_column_background'); ?>
 		'group' => $group,
 		'course' => $course,
 		'stage' => $this->data['stage'],
-		'text_direction' => $text_direction
+		'text_direction' => $text_direction,
+		'bucket' => $bucket
 	));
 	
 	$progressPercentage = ($progress['stage'] + 1) / ($progress['totalStages'] + 1);

@@ -561,15 +561,28 @@ class OpenDocument {
 	}
 	
 	function appendImage(&$node,$src,$styles = null) {
+		$original_source = $src;
 		if(stripos($src,$this->imagePrefix) !== 0)
 			return false;
-			
+
 		$src = str_ireplace($this->imagePrefix,'',$src);
+		
+		$tempfile = tempnam(null,null);
+		$handle = fopen($tempfile, 'w');
+		
+		$headers = get_headers($this->s3Prefix . $src);
+		if($headers[0] != 'HTTP/1.1 200 OK')
+			return null;
+		
+		fwrite($handle, file_get_contents($this->s3Prefix . $src));
+		fclose($handle);
+
 		//write image to zip file
-        if (!$this->zipAddFile('Pictures/' . $src, $this->mediaDirectory . DS . $src)) {
+        if (!$this->zipAddFile('Pictures/' . $src, $tempfile)) {
             die('Error1');
             throw new OpenDocument_Exception(OpenDocument_Exception::WRITE_IMAGE_ERR);
         }
+
 		
 		$this->addToManifest('Pictures/' . $src,'image/jpeg');
 		
@@ -578,7 +591,8 @@ class OpenDocument {
 
 		$frame->setAttributeNS(OpenDocument::NS_TEXT,'anchor-type','as-char');
 		
-		list($width, $height, $type, $attr) = getimagesize($this->mediaDirectory . DS . $src);
+		list($width, $height, $type, $attr) = getimagesize($tempfile);
+		unlink($tempfile);
 		
 		$frame->setAttributeNS(OpenDocument::NS_SVG,'width',($width / 100) . 'in');
 		$frame->setAttributeNS(OpenDocument::NS_SVG,'height',($height / 100) . 'in');
@@ -865,7 +879,7 @@ class OpenDocument {
         return $error;
     }
     
-    public function zipAddFile($filename, $localname) {
+    public function zipAddFile($localname, $filename) {
 		$zip = new ZipArchive;
 		$archive = $this->destinationFile;
         if (file_exists($archive)) {
@@ -874,13 +888,34 @@ class OpenDocument {
 			$zip->open($archive, ZipArchive::CREATE);
         }
 
-        if ($zip->locateName($filename) !== false) {
-		    $zip->deleteName($filename);
+        if ($zip->locateName($localname) !== false) {
+		    $zip->deleteName($localname);
         }
 
-		//var_dump(file_exists($localname));
-        $error = $zip->addFile($localname, $filename) or die ("Could not add file: $localname");
+		//var_dump(file_exists($filename));
+        $error = $zip->addFile($filename, $localname) or die ("Could not add file: $localname");
 
         return $error;
     }
+}
+
+function get_file($file, $local_path, $newfilename) {
+    $out = fopen($newfilename, 'wb');
+    if ($out == FALSE){
+      print "File not opened<br>";
+      exit;
+    }
+   
+    $ch = curl_init();
+           
+    curl_setopt($ch, CURLOPT_FILE, $out);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_URL, $file);
+               
+    curl_exec($ch);
+    echo "<br>Error is : ".curl_error ( $ch);
+   
+    curl_close($ch);
+    //fclose($handle);
+
 }

@@ -32,3 +32,5 @@
 ===August 11-15, 2008==
 
  * Bible section works again on the framed classroom; uses bibleapi.net
+ * All self-assessment questions and answers rendered on student-side now
+ * Various bug fixes

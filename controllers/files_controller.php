@@ -224,9 +224,9 @@ class FilesController extends AppController {
         $s3->putObjectFile($directory . DS . $file, $this->viewVars['bucket'], 'courses/' . $this->viewVars['course']['id'] . '/' . $file, $this->viewVars['course']['open'] ? S3::ACL_PUBLIC_READ : ACL_PRIVATE);
 		set_time_limit(60);
 
-        $fileinfo = pathinfo($file);
+        $path_parts = pathinfo($file);
 		$path_parts['extension'] = strtolower($path_parts['extension']);
-		if(in_array($fileinfo['extension'],array('jpg','gif','png','jpeg'))) {
+		if(in_array($path_parts['extension'],array('jpg','gif','png','jpeg'))) {
 			$this->__create_thumbnail($file,$directory . DS . $file);
 		}
 		unlink($directory . DS . $file);
@@ -258,9 +258,9 @@ class FilesController extends AppController {
 		
 		$media_files = array();
 		foreach($files as &$file) {
-	        $fileinfo = pathinfo($file['name']);
+	        $path_parts = pathinfo($file['name']);
 			$path_parts['extension'] = strtolower($path_parts['extension']);
-			if(in_array($fileinfo['extension'],array('swf','mp4','mov'))) {
+			if(in_array($path_parts['extension'],array('swf','mp4','mov','flv'))) {
 				$basename = basename($file['name']);
 				$media_files[$basename] = array(
 					'basename' => $basename,
@@ -384,7 +384,7 @@ class FilesController extends AppController {
 			$file = ROOT . DS . APP_DIR . DS . WEBROOT_DIR . DS . 'img' . DS .'ibs' . DS . 'logo.png';
 
 		$imageInfo = getimagesize($file);
-		$fileInfo = pathinfo($file);
+		$path_parts = pathinfo($file);
 
 		header('Content-type: image/' . $imageInfo['mime']);
 		header('Content-Disposition: inline; filename="' . $this->viewVars['group']['logo'] . '"');

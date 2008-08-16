@@ -1,6 +1,44 @@
-/*global $, $A, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __, Draggable, Effect, location, Droppables, parent, top */
+/*global $, $A, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __, Draggable, Effect, location, Droppables, parent, top, swfobject */
 
 GCLMS.PageController = {
+    loadPage: function(){
+		if(swfobject.getFlashPlayerVersion().major < 9) {
+			$$('.gclms-upgrade-flash').first().removeClassName('gclms-hidden');
+			return false;
+		}
+		
+		/*mp3Player = $$('div.gclms-mp3-player')[0];
+        
+        if (window.soundManager !== undefined && mp3Player) {
+            soundManager.useConsole = false;
+            soundManager.debugMode = false;
+            
+            soundManager.createMovie('/js/vendors/sound_manager/soundmanager2.swf');
+            
+            mp3Player.insert(new Element('div', {
+                className: 'gclms-play'
+            }));
+            mp3Player.insert(new Element('div', {
+                className: 'gclms-blank-track'
+            }));
+            mp3Player.insert(new Element('div', {
+                className: 'gclms-progress-track'
+            }));
+            mp3Player.insert(new Element('div', {
+                className: 'gclms-transparent-track'
+            }).insert(new Element('div', {
+                className: 'handle'
+            })));
+            
+            soundManager.onload = function(){
+                $$('div.mp3player').each(function(node){
+                    var MP3PlayerObject = new MP3Player(node);
+                });
+            };
+        }
+        */
+    },
+
     createOrderSortable: function(event){
         Sortable.create(this.getAttribute('id'), {
             containment: this,
@@ -458,38 +496,6 @@ GCLMS.PageController = {
         parent.Ext.getCmp('classroomTabs').activate('notebookTab');
     },
     
-    loadPageAudio: function(){
-        mp3Player = $$('div.gclms-mp3-player')[0];
-        
-        if (window.soundManager !== undefined && mp3Player) {
-            soundManager.useConsole = false;
-            soundManager.debugMode = false;
-            
-            soundManager.createMovie('/js/vendors/sound_manager/soundmanager2.swf');
-            
-            mp3Player.insert(new Element('div', {
-                className: 'gclms-play'
-            }));
-            mp3Player.insert(new Element('div', {
-                className: 'gclms-blank-track'
-            }));
-            mp3Player.insert(new Element('div', {
-                className: 'gclms-progress-track'
-            }));
-            mp3Player.insert(new Element('div', {
-                className: 'gclms-transparent-track'
-            }).insert(new Element('div', {
-                className: 'handle'
-            })));
-            
-            soundManager.onload = function(){
-                $$('div.mp3player').each(function(node){
-                    var MP3PlayerObject = new MP3Player(node);
-                });
-            };
-        }
-    },
-    
     gotoPageLink: function(event){
         location.href = this.getAttribute('href') + '?framed';
         event.stop();
@@ -501,11 +507,22 @@ GCLMS.PageController = {
         } 
         catch (e) {
         }
-    }
+    },
+	
+	loadFlashPlayer: function() {
+		var src = this.getAttribute('src');
+		var w = this.getAttribute('width');
+		var h = this.getAttribute('height');
+		var flashvars = {config: "{videoFile: '" + src + "'}"};
+		var params = {};
+		var attributes ={};
+		//var fo = new swfobject(, 'FlowPlayer', w, h, '9', '#f6f6f6', true);
+		swfobject.embedSWF('/js/vendors/flowplayer2.2.2/FlowPlayerLight.swf', this.up('object').identify(), w, h, '9.0.0',null,flashvars, params, attributes);
+	}
 };
 
 GCLMS.Triggers.update({
-    //'div.gclms-page': GCLMS.PageController.loadPageAudio,
+    'div.gclms-page': GCLMS.PageController.loadPage,
     'img.gclms-notebook:click': GCLMS.PageController.loadNotebook,
     '#gradeQuestions:click': GCLMS.PageController.gradeQuestions,
     '.gclms-multiple-choice': {
@@ -534,5 +551,6 @@ GCLMS.Triggers.update({
         'a[href*="/chapters/view"]:click': GCLMS.PageController.loadChapter,
         'a[href*="/articles/view"]:click': GCLMS.PageController.loadArticle,
         'a[href*="/glossary/view"]:click': GCLMS.PageController.loadGlossaryTerm
-    }
+    },
+	'embed[src*=.flv],embed[src*=.mp4]': GCLMS.PageController.loadFlashPlayer
 });

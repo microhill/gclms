@@ -29,7 +29,7 @@
  * Books, articles, glossary terms working in framed classroom environment
  * Sorry, haven't been keeping up with the changelog
 
-===August 11-15, 2008==
+===August 11-17, 2008==
 
  * Bible section works again on the framed classroom; uses bibleapi.net
  * All self-assessment questions and answers rendered on student-side now

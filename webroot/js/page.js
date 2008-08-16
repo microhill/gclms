@@ -511,13 +511,26 @@ GCLMS.PageController = {
 	
 	loadFlashPlayer: function() {
 		var src = this.getAttribute('src');
-		var w = this.getAttribute('width');
-		var h = this.getAttribute('height');
+		if(this.getAttribute('width')) {
+			var w = this.getAttribute('width');
+		} else {
+			var w = 200;
+		}
+		if(this.getAttribute('height')) {
+			var h = this.getAttribute('height');
+		} else {
+			var h = 200;
+		}
 		var flashvars = {config: "{videoFile: '" + src + "'}"};
 		var params = {};
 		var attributes ={};
 		//var fo = new swfobject(, 'FlowPlayer', w, h, '9', '#f6f6f6', true);
-		swfobject.embedSWF('/js/vendors/flowplayer2.2.2/FlowPlayerLight.swf', this.up('object').identify(), w, h, '9.0.0',null,flashvars, params, attributes);
+		if(this.parentNode.nodeName.toLowerCase() == 'object') {
+			var targetId = this.up().identify();
+		} else {
+			var targetId = this.identify();
+		}
+		swfobject.embedSWF('/js/vendors/flowplayer2.2.2/FlowPlayerLight.swf', targetId, w, h, '9.0.0',null,flashvars, params, attributes);
 	}
 };
 

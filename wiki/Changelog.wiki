@@ -34,3 +34,4 @@
  * Bible section works again on the framed classroom; uses bibleapi.net
  * All self-assessment questions and answers rendered on student-side now
  * Various bug fixes
+ * Removed redirect-to-s3-file in favor of direct url in open courses

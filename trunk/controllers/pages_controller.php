@@ -1,7 +1,7 @@
 <?
 class PagesController extends AppController {
     var $uses = array('Node','Question','Textarea');
-	var $helpers = array('Scripturizer','Glossary','License','Form','MyForm','Javascript','TranslatedPhrases');
+	var $helpers = array('Scripturizer','Glossary','MediaFiles','License','Form','MyForm','Javascript','TranslatedPhrases');
     var $itemName = 'Node';
     var $components = array('Notifications','RequestHandler');
 

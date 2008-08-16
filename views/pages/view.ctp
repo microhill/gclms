@@ -84,14 +84,14 @@ echo $this->element('no_column_background');
 			$nextImage = $text_direction == 'rtl' ? 'previous' : 'next';
 			?>
 			<? if(!empty($node['Node']['previous_page_id'])): ?>
-				<a class="gclms-back" href="../../pages/view/<?= $node['Node']['previous_page_id'] ?>">
-					<img src="/img/icons/oxygen_refit/32x32/actions/go-<?= $previousImage ?>-blue.png" rel="Prev" accesskey="p" alt="<? __('Previous page') ?>" />
+				<a class="gclms-back" rel="Prev" accesskey="B" href="../../pages/view/<?= $node['Node']['previous_page_id'] ?>">
+					<img src="/img/icons/oxygen_refit/32x32/actions/go-<?= $previousImage ?>-blue.png" alt="<? __('Previous page') ?>" />
 				</a>
 			<? endif; ?>
 		
 			<? if(!empty($node['Node']['next_page_id'])): ?>
-				<a class="gclms-next" href="../../pages/view/<?= $node['Node']['next_page_id'] ?>">
-					<img src="/img/icons/oxygen_refit/32x32/actions/go-<?= $nextImage ?>-blue.png" rel="Next" accesskey="n" alt="<? __('Next page') ?>" />
+				<a class="gclms-next" rel="Next" accesskey="N" href="../../pages/view/<?= $node['Node']['next_page_id'] ?>">
+					<img src="/img/icons/oxygen_refit/32x32/actions/go-<?= $nextImage ?>-blue.png" alt="<? __('Next page') ?>" />
 				</a>
 			<? endif; ?>
 		</div>

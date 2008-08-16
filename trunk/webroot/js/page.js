@@ -513,7 +513,13 @@ GCLMS.PageController = {
 		var src = this.getAttribute('src');
 		var w = this.getAttribute('width');
 		var h = this.getAttribute('height');
-		var flashvars = {config: "{videoFile: '" + src + "'}"};
+		var flashvars = {config: "{showFullScreenButton: false,useNativeFullScreen: false,autoBuffering: false,autoPlay: false,videoFile: '" + src + "'}"};
+		
+			//autoPlay: false,
+			//autoBuffering: false,
+			//useNativeFullScreen: false
+
+		//{config: "{videoFile: '" + src + "'}"};
 		var params = {};
 		var attributes ={};
 		//var fo = new swfobject(, 'FlowPlayer', w, h, '9', '#f6f6f6', true);

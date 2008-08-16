@@ -1,0 +1,13 @@
+#summary One-sentence summary of this page.
+
+==Server Requirements==
+
+ * Apache
+ * PHP 5+
+ * MySQL 5+ 
+
+==Enable mod_rewrite==
+
+==Enable curl==
+
+==Set tmp directories to write-access==

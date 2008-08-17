@@ -302,11 +302,13 @@ document.observe("dom:loaded", function() {
 
 	$(document.body).observeRules(GCLMS.Triggers);
 
+	/*
 	firstTextInput = $$('input[type="text"]:first');
 	if(firstTextInput.length) {
 		firstTextInput[0].focus();
 		firstTextInput[0].select();
 	}
+	*/
 });
 
 GCLMS.simpleTinyMCEConfig = {

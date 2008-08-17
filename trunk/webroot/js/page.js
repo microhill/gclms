@@ -531,39 +531,32 @@ GCLMS.PageController = {
     
     loadFlashPlayer: function(){
 		var src = this.down('param[name="src"]').getAttribute('value');
-		src ='http://test2008-07-30.s3.amazonaws.com/courses/481771d6-d2f0-4900-8c07-1804ab4a69cb/20051210-w50s.flv';
         var w = this.getAttribute('width');
         var h = this.getAttribute('height');
         var flashvars = {
-            bgcolor: '#444',
-            config: "{loop: false,controlsOverVideo: 'ease', controlBarGloss: 'low',showMenu: false,showFullScreenButton: false,useNativeFullScreen: false,autoBuffering: false,autoPlay: false,videoFile: '" + src + "'}"
+            bgcolor: '#444'
         };
-        
-        //controlBarBackgroundColor: -1,
-        
-        //{config: "{videoFile: '" + src + "'}"};
         var params = {
             bgcolor: '#444'
         };
-        var attributes = {
-            bgcolor: '#444'
-        };
-        var targetId;
+        var attributes = {};
+		
+		if(src.endsWith('.mp4') || src.endsWith('.flv')) {
+	        var flashvars = {
+	            bgcolor: '#444',
+	            config: "{loop: false,controlsOverVideo: 'ease', controlBarGloss: 'low',showMenu: false,showFullScreenButton: false,useNativeFullScreen: false,autoBuffering: false,autoPlay: false,videoFile: '" + src + "'}"
+	        };
+			//controlBarBackgroundColor: -1,	
+			swfobject.embedSWF('/js/vendors/flowplayer2.2.2/FlowPlayerLight.swf', this.identify(), w, h, '9.0.0', null, flashvars, params, attributes);
+		} else {
+			swfobject.embedSWF(src, this.identify(), w, h, '9.0.0', null, flashvars, params, attributes);
+		}
         
-		/*
-        if (this.parentNode.nodeName.toLowerCase() == 'object') {
-            targetId = this.up().identify();
-        }
-        else {
-            targetId = this.identify();
-        }
-        */
-        swfobject.embedSWF('/js/vendors/flowplayer2.2.2/FlowPlayerLight.swf', this.identify(), w, h, '9.0.0', null, flashvars, params, attributes);
     }
 };
 
 GCLMS.Triggers.update({
-    'div.gclms-page:loaded': GCLMS.PageController.loadPage,
+    'div.gclms-page': GCLMS.PageController.loadPage,
     'img.gclms-notebook:click': GCLMS.PageController.loadNotebook,
     '#gradeQuestions:click': GCLMS.PageController.gradeQuestions,
     '.gclms-multiple-choice': {

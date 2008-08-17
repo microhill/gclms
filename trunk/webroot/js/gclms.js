@@ -289,6 +289,7 @@ GCLMS.popup = {
 };
 
 document.observe("dom:loaded", function() {
+
 	GCLMS.group = document.body.getAttribute('gclms:group');
 	GCLMS.course = document.body.getAttribute('gclms:course');
 	GCLMS.virtualClass = document.body.getAttribute('gclms:virtual-class');
@@ -300,7 +301,7 @@ document.observe("dom:loaded", function() {
 	}
 
 	$(document.body).observeRules(GCLMS.Triggers);
-	
+
 	firstTextInput = $$('input[type="text"]:first');
 	if(firstTextInput.length) {
 		firstTextInput[0].focus();

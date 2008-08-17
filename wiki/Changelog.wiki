@@ -36,3 +36,4 @@
  * Various bug fixes
  * Removed redirect-to-s3-file in favor of direct url in open courses
  * Fixed export-to-ODT bug caused by migration of media storage to S3
+ * Fixed bug: focus was automatically going to first input element, but sometimes this required auto-scrolling to the middle of the page

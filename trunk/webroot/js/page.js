@@ -536,7 +536,7 @@ GCLMS.PageController = {
         var h = this.getAttribute('height');
         var flashvars = {
             bgcolor: '#444',
-            config: "{controlsOverVideo: 'ease', controlBarGloss: 'low',showMenu: false,showFullScreenButton: false,useNativeFullScreen: false,autoBuffering: false,autoPlay: false,videoFile: '" + src + "'}"
+            config: "{loop: false,controlsOverVideo: 'ease', controlBarGloss: 'low',showMenu: false,showFullScreenButton: false,useNativeFullScreen: false,autoBuffering: false,autoPlay: false,videoFile: '" + src + "'}"
         };
         
         //controlBarBackgroundColor: -1,

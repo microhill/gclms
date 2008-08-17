@@ -530,9 +530,10 @@ GCLMS.PageController = {
     },
     
     loadFlashPlayer: function(){
-		var src = this.down('param[name="src"]').getAttribute('value');
-        var w = this.getAttribute('width');
-        var h = this.getAttribute('height');
+        var src = this.getAttribute('value');
+		var parentNode = this.parentNode;
+		var w = parentNode.getAttribute('width');
+        var h = parentNode.getAttribute('height');
         var flashvars = {
             bgcolor: '#444'
         };
@@ -541,17 +542,12 @@ GCLMS.PageController = {
         };
         var attributes = {};
 		
-		if(src.endsWith('.mp4') || src.endsWith('.flv')) {
-	        var flashvars = {
-	            bgcolor: '#444',
-	            config: "{loop: false,controlsOverVideo: 'ease', controlBarGloss: 'low',showMenu: false,showFullScreenButton: false,useNativeFullScreen: false,autoBuffering: false,autoPlay: false,videoFile: '" + src + "'}"
-	        };
-			//controlBarBackgroundColor: -1,	
-			swfobject.embedSWF('/js/vendors/flowplayer2.2.2/FlowPlayerLight.swf', this.identify(), w, h, '9.0.0', null, flashvars, params, attributes);
-		} else {
-			swfobject.embedSWF(src, this.identify(), w, h, '9.0.0', null, flashvars, params, attributes);
-		}
-        
+        flashvars = {
+            bgcolor: '#444',
+            config: "{controlBarBackgroundColor: -1,timeDisplayFontColor: -1,loop: false,controlsOverVideo: 'ease', controlBarGloss: 'low',showMenu: false,showFullScreenButton: false,useNativeFullScreen: false,autoBuffering: false,autoPlay: false,videoFile: '" + src + "'}"
+        };
+		//	
+		swfobject.embedSWF('/js/vendors/flowplayer2.2.2/FlowPlayerLight.swf', $(parentNode).identify(), w, h, '9.0.0', '/js/vendors/swfobject2.1/expressInstall.swf', flashvars, params, attributes);
     }
 };
 
@@ -587,5 +583,6 @@ GCLMS.Triggers.update({
         'a[href*="/glossary/view"]:click': GCLMS.PageController.loadGlossaryTerm
     },
     //'embed[src*=.flv]:loaded,embed[src*=.mp4]:loaded': GCLMS.PageController.loadFlashPlayer
-	'object[codebase*=swflash.cab]': GCLMS.PageController.loadFlashPlayer
+	//'object[codebase*=swflash.cab]': GCLMS.PageController.loadFlashPlayer,
+	'param[value*="flv"],param[value*="mp4"]': GCLMS.PageController.loadFlashPlayer
 });

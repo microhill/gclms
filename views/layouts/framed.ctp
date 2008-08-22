@@ -14,5 +14,6 @@
 	</div>
 
 	<?= $asset->js_for_layout(); ?>
+	<?= $this->element('all_translated_phrases'); ?>
 </body>
 </html>

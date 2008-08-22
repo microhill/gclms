@@ -25,13 +25,6 @@
 	</div>
 
 	<?= $asset->js_for_layout(); ?>
-	
-	<? if(isset($translatedPhrases)): ?>
-	<script>
-	<? foreach($translatedPhrases->getAll() as $phrase => $translation): ?>
-	GCLMS.translated_phrases['<?= $phrase ?>'] = '<?= $translation ?>';
-	<? endforeach; ?>
-	</script>
-	<? endif; ?>
+	<?= $this->element('all_translated_phrases'); ?>
 </body>
 </html>

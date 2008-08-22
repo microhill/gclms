@@ -45,6 +45,9 @@ class Question extends AppModel {
 			case '3':
 				$type = 'Order';
 				break;
+			case '4':
+				$type = 'Order';
+				break;
 			default:
 				return true;
 				break;

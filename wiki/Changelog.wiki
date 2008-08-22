@@ -2,32 +2,12 @@
 
 =Version 0.3=
 
-===July 6-12, 2008==
+===August 18-24, 2008==
 
- * Fixed bug (issue 113): HTML carries over to multiple fill-in-the-blank answers
- * Enhancement: Edit functionality added to classes management.
- * Fixed bug (issue 113): Various navigation issues
- * Fixed bug (issue 115): Glossary terms not linking correctly within pages
- * Fixed bug (issue 116): Course URL's shouldn't retain single quote
+ * Fixed bug: explanation for fill-in-the-blank wasn't working
+ * Fixed bug: couldn't delete possible answers in editor if question was fill-in-the-blank
+ * Fixed bug: "undefined" showing instead of translated phrases for questions when in frame dmode
 
-===July 13-19, 2008==
-
- * Fixed bug (issue 116): Unable to modify answer titles
- * Fixed bug (issue 118): Save button doesn't work after creating then deleting answer to multiple choice
- * Enhancement: smarter generation of links to account for extended classroom URLs
-
-===July 20-26, 2008==
-
- * Framed classroom re-enabled and made it visible
- * Fixed bug (issue 119): Lesson navigation collapse/expand buttons not working (in framed classroom)
- * Lots and lots of more bug fixes...
- * Improved image thumbnail caching; improved image pop-up display
-
-===July 28 - August 8, 2008==
-
- * Media files now stored remotely on Amazon's S3 storage service
- * Books, articles, glossary terms working in framed classroom environment
- * Sorry, haven't been keeping up with the changelog
 
 ===August 11-17, 2008==
 
@@ -38,7 +18,29 @@
  * Fixed export-to-ODT bug caused by migration of media storage to S3
  * Fixed bug: focus was automatically going to first input element, but sometimes this required auto-scrolling to the middle of the page
 
-===August 18-24, 2008==
+===July 28 - August 8, 2008==
 
- * Fixed bug: explanation for fill-in-the-blank wasn't working
- * Fixed bug: couldn't delete possible answers in editor if question was fill-in-the-blank
+ * Media files now stored remotely on Amazon's S3 storage service
+ * Books, articles, glossary terms working in framed classroom environment
+ * Sorry, haven't been keeping up with the changelog
+
+===July 20-26, 2008==
+
+ * Framed classroom re-enabled and made it visible
+ * Fixed bug (issue 119): Lesson navigation collapse/expand buttons not working (in framed classroom)
+ * Lots and lots of more bug fixes...
+ * Improved image thumbnail caching; improved image pop-up display
+
+===July 13-19, 2008==
+
+ * Fixed bug (issue 116): Unable to modify answer titles
+ * Fixed bug (issue 118): Save button doesn't work after creating then deleting answer to multiple choice
+ * Enhancement: smarter generation of links to account for extended classroom URLs
+
+===July 6-12, 2008==
+
+ * Fixed bug (issue 113): HTML carries over to multiple fill-in-the-blank answers
+ * Enhancement: Edit functionality added to classes management.
+ * Fixed bug (issue 113): Various navigation issues
+ * Fixed bug (issue 115): Glossary terms not linking correctly within pages
+ * Fixed bug (issue 116): Course URL's shouldn't retain single quote

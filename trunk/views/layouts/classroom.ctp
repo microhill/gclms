@@ -72,7 +72,6 @@
 			<iframe id="discussionViewportContent" src="#" class="gclms-viewport-content" style="border: 0px none; frameBorder: 0; width: 100%; height: 100%;"></iframe>
 		<? endif; ?>
 	</div>
-	
 	<?= $asset->js_for_layout(); ?>
 </body>
 </html>

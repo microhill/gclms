@@ -40,4 +40,4 @@
 
 ===August 18-24, 2008==
 
-* Fixed bug: explanation for fill-in-the-blank wasn't working
+ * Fixed bug: explanation for fill-in-the-blank wasn't working

@@ -334,8 +334,7 @@ GCLMS.PageController = {
                         node.innerHTML = '';
                         node.className = 'gclms-droppable gclms-default-droppable-color';
                     }
-                }
-.bind(draggableElement));
+                }.bind(draggableElement));
                 
                 // Clone answer into droppable container
                 droppableElement.className = 'gclms-droppable ' + $A(draggableElement.classNames())[1];
@@ -348,7 +347,7 @@ GCLMS.PageController = {
     
     checkEssayQuestion: function(event){
         event.stop();
-        var div = this.up('div.gclms-essay-question').down('.gclms-explanation').displayAsBlock();
+        this.up('div.gclms-essay-question').down('.gclms-explanation').displayAsBlock();
         this.up('div.gclms-buttons').remove();
     },
     
@@ -380,6 +379,7 @@ GCLMS.PageController = {
                 input.value = correctAnswers[0];
                 this.up('.gclms-buttons').remove();
                 answerStatusSpan.innerHTML = __('You are out of tries. The correct answer is shown.');
+				div.down('.gclms-explanation').displayAsBlock();
             }
         answerStatus.displayAsBlock();
         var effect = new Effect.Highlight(answerStatusSpan, {

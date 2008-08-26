@@ -176,3 +176,8 @@ function scandir_excluding_dirs($dir) {
 	
 	return $files2;
 }
+
+Configure::load('config');
+
+if (!Configure::read('App.name'))
+	Configure::write('App.name',__('Great Commission Learning Management System', true));

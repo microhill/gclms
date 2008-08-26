@@ -64,7 +64,7 @@ class ClassesController extends AppController {
 		$news_items = $this->Announcement->findAllByFacilitatedClassId($id);
 		$this->set('news_items',$news_items);
 		
-		$this->set('title',$this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('Site.name'));
+		$this->set('title',$this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('App.name'));
 	}
 	*/
 }

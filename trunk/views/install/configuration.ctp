@@ -6,12 +6,12 @@
 		<h1><? __('Site Configuration') ?></h2>
 		
 		<?
-		echo $form->input('Site.name',array(
+		echo $form->input('App.name',array(
 			'label' =>  __('Site Name', true),
 			'between' => '<br/>'
 		));
 		
-		echo $form->input('Site.domain',array(
+		echo $form->input('App.domain',array(
 			'label' =>  __('Domain', true),
 			'between' => '<br/>'
 		));

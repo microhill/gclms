@@ -132,10 +132,6 @@ class AppController extends Controller {
 		if(isset($this->params['course'])) {
 			$this->Breadcrumbs->addCourseCrumb();
 		}
-
-		if(isset($this->passedArgs['lesson'])) {
-			$this->Breadcrumbs->addLessonCrumb();
-		}
     }
 
     function administration_add($model = null) { $this->add($model); }

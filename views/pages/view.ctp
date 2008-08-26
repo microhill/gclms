@@ -10,7 +10,7 @@ $javascript->link(array(
 	'vendors/scriptaculous1.8.1/scriptaculous',
 	'vendors/scriptaculous1.8.1/dragdrop',
 	'vendors/scriptaculous1.8.1/effects',
-	'vendors/swfobject2.0/swfobject',
+	'vendors/swfobject2.1/swfobject',
 	'page'
 ), false);
 

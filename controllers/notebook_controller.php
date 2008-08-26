@@ -1,21 +1,21 @@
 <?
 class NotebookController extends AppController {
-    var $uses = array('Notebook');
+    var $uses = array('NotebookEntry');
     var $components = array('RequestHandler');
     
 	function edit() {
 		if(!empty($this->data)) {
-    		$this->Notebook->save($this->data['Notebook']);
+    		$this->NotebookEntry->save($this->data['NotebookEntry']);
     	} else {
-			$this->Notebook->contain();		
-			$notebook = $this->Notebook->find(array('Notebook.user_id' => $this->viewVars['user']['id'],'Notebook.course_id' => $this->viewVars['course']['id']));;
+			$this->NotebookEntry->contain();		
+			$notebook = $this->NotebookEntry->find(array('NotebookEntry.user_id' => $this->viewVars['user']['id'],'NotebookEntry.course_id' => $this->viewVars['course']['id']));;
 			if(empty($notebook)) {
-				$this->Notebook->id = null;
-				$this->Notebook->save(array(
+				$this->NotebookEntry->id = null;
+				$this->NotebookEntry->save(array(
 					'user_id' => $this->viewVars['user']['id'],
 					'course_id' => $this->viewVars['course']['id']
 				));
-				$notebook = $this->Notebook->find(array('Notebook.user_id' => $this->viewVars['user']['id'],'Notebook.course_id' => $this->viewVars['course']['id']));;
+				$notebook = $this->NotebookEntry->find(array('NotebookEntry.user_id' => $this->viewVars['user']['id'],'NotebookEntry.course_id' => $this->viewVars['course']['id']));;
 			}
 			$this->data = $notebook;
 		}		
@@ -24,20 +24,17 @@ class NotebookController extends AppController {
 	}
 	
     function index() {
-    	$this->Notebook->contain();
-    	$notebook = $this->Notebook->find(array('Notebook.user_id' => $this->viewVars['user']['id'],'Notebook.course_id' => $this->viewVars['course']['id']));
+    	$this->NotebookEntry->contain();
+    	$notebook = $this->NotebookEntry->find(array('NotebookEntry.user_id' => $this->viewVars['user']['id'],'NotebookEntry.course_id' => $this->viewVars['course']['id']));
 
     	$this->data = $notebook;
-    	
-    	if(@$this->passedArgs['location'] == 'sidebar')
-    		$this->render('bare','lesson');
     }
     
     function save() {
-    	//$this->data['Notebook']
-    	if(empty($this->data['Notebook']['id'])) {
-			$this->data['Notebook']['user_id'] = $this->viewVars['user']['id'];
-			$this->data['Notebook']['course_id'] = $this->viewVars['course']['id'];    		
+    	//$this->data['NotebookEntry']
+    	if(empty($this->data['NotebookEntry']['id'])) {
+			$this->data['NotebookEntry']['user_id'] = $this->viewVars['user']['id'];
+			$this->data['NotebookEntry']['course_id'] = $this->viewVars['course']['id'];    		
     	}
 		parent::save();
     }

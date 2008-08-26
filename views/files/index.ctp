@@ -107,7 +107,7 @@ echo $this->element('left_column'); ?>
 			'expiration' => '2009-01-01T00:00:00Z',
 			'conditions' => array(
 				array('bucket' => Configure::read('S3.bucket')),
-				array('success_action_redirect' => Configure::read('Site.domain') . $this->here),
+				array('success_action_redirect' => Configure::read('App.domain') . $this->here),
 				array('starts-with','$key','courses/' . $course['id'] . '/'),
 				array('starts-with','$Content-Type',''),
 				array('content-length-range',10,31457280),
@@ -128,7 +128,7 @@ echo $this->element('left_column'); ?>
 			<input type="hidden" name="signature" value="<?= $signature ?>"/>
 			<input type="hidden" name="Content-Type" value="application/octet-stream"/>
 			<!-- input type="hidden" name="acl" value="public" -->
-			<input type="hidden" name="success_action_redirect" value="<?= Configure::read('Site.domain') . $this->here ?>"/>
+			<input type="hidden" name="success_action_redirect" value="<?= Configure::read('App.domain') . $this->here ?>"/>
 			<!-- input type="hidden" name="Content-Type" value="image/jpeg" -->
 			
 			

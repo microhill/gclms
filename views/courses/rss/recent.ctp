@@ -2,7 +2,7 @@
   <channel>
     <title><? __('Recently Published Courses') ?> - <?
 if(empty($group)) {
-	 echo Configure::read('Site.name');
+	 echo Configure::read('App.name');
 } else {
 	echo $group['name'];
 }
@@ -14,11 +14,11 @@ if(empty($group)) {
     <? foreach ($this->data as $course): ?>
     <item>
       <title><?= $course['Course']['title']; ?></title>
-      <link><?= Configure::read('Site.domain') ?><?= $course['Group']['web_path']; ?>/<?= $course['Course']['web_path']; ?></link>
+      <link><?= Configure::read('App.domain') ?><?= $course['Group']['web_path']; ?>/<?= $course['Course']['web_path']; ?></link>
       <description><?= strip_tags($course['Course']['description']); ?></description>
       <?= $time->nice($course['Course']['created']) . ' GMT'; ?>
        <pubDate><?= $time->nice($time->gmt($course['Course']['created'])) . ' GMT'; ?></pubDate>
-      <guid><?= Configure::read('Site.domain') ?><?= $course['Group']['web_path']; ?>/<?= $course['Course']['web_path']; ?></guid>
+      <guid><?= Configure::read('App.domain') ?><?= $course['Group']['web_path']; ?>/<?= $course['Course']['web_path']; ?></guid>
     </item>
     <? endforeach; ?>
   </channel>

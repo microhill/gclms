@@ -6,10 +6,10 @@ class BreadcrumbsComponent extends Object {
 		$this->controller = &$controller;
     }
     
-	function addCrumb($title, $link) {
+	function addCrumb($title, $options) {
 		if(!empty($this->controller) && $this->controller->params['isAjax'])
 			return false;
-		$this->crumbs[$title] = $link;
+		$this->crumbs[$title] = $options;
 		return true;
 	}
 	
@@ -29,13 +29,6 @@ class BreadcrumbsComponent extends Object {
 		$url = $this->controller->viewVars['groupAndCoursePath'];
 		
 		$this->addCrumb($this->controller->viewVars['course']['title'],$url);
-	}
-
-	function addLessonCrumb() {
-		$url = $this->controller->viewVars['groupAndCoursePath'];
-			
-		//$this->addCrumb(__('Lesson',true) . ' ' . $this->controller->viewVars['lesson']['order'] . ': ' .  $this->controller->viewVars['lesson']['title'], $url . '/classroom/lesson/' . $this->controller->viewVars['lesson']['id']);
-		$this->addCrumb($this->controller->viewVars['lesson']['title'], $url . '/classroom/lesson/' . $this->controller->viewVars['lesson']['id']);
 	}
 
 	function getTrail() {		

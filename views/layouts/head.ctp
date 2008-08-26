@@ -1,6 +1,6 @@
 <head>
 	<title><?= $title_for_layout ?></title>
-	<!--  <? if(!empty($title_for_layout)) echo '&raquo; ' . Configure::read('Site.name'); ?> -->
+	<!--  <? if(!empty($title_for_layout)) echo '&raquo; ' . Configure::read('App.name'); ?> -->
 
 	<?= $html->charset('UTF-8'); ?>
 	<?

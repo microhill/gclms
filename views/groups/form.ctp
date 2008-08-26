@@ -6,7 +6,7 @@ echo $form->input('name',array(
 ));
 if($this->name != 'Configuration') {
 	echo $form->input('web_path',array(
-		'label' =>  __('Web path',true) . ' <img class="gclms-tooltip-button" src="/img/icons/oxygen/16x16/actions/dialog-information.png" tooltip:text="'.__('This is part of what makes up the web address of a group on', true).' ' . Configure::read('Site.name') . '. '.__('It can be made up of lower case letters, numbers, or hypens. The end result will be something like', true).': <br/><br/>' . Configure::read('Site.domain') . '<strong>web-path</strong>" /> ',
+		'label' =>  __('Web path',true) . ' <img class="gclms-tooltip-button" src="/img/icons/oxygen/16x16/actions/dialog-information.png" tooltip:text="'.__('This is part of what makes up the web address of a group on', true).' ' . Configure::read('App.name') . '. '.__('It can be made up of lower case letters, numbers, or hypens. The end result will be something like', true).': <br/><br/>' . Configure::read('App.domain') . '<strong>web-path</strong>" /> ',
 		'between' => '<br/>'
 	));
 }

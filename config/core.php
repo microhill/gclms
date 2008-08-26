@@ -41,10 +41,6 @@
  * In development mode, you need to click the flash message to continue.
  */
 	Configure::write('debug', 1);
-	
-	if(file_exists('options.php')) {
-		include('options.php');
-	}
 /**
  * Application wide charset encoding
  */

@@ -12,6 +12,14 @@ class PagesController extends AppController {
     }
 	
 	function view($id) {		
+		$this->Breadcrumbs->addHomeCrumb();
+
+		$this->Breadcrumbs->addGroupCrumb();
+		if(!empty($this->viewVars['group']['logo']) && $this->name != 'Classroom')
+			$this->set('logo',$this->viewVars['group']['logo']);
+
+		$this->Breadcrumbs->addCrumb($this->viewVars['course']['title'],array('url' => $this->viewVars['groupAndCoursePath'],'class' => 'gclms-course-menu'));
+
 		$this->Node->contain(array('Question' => 'Answer','Textarea'));
 		$node = $this->Node->findById($id);
 		
@@ -43,6 +51,8 @@ class PagesController extends AppController {
     }
 
     function edit($id) {
+		$this->defaultBreadcrumbsAndLogo();
+	
 		if(!empty($this->data)) {
 			$this->save($id);
 			exit;
@@ -82,7 +92,7 @@ class PagesController extends AppController {
 			$this->data['Node']['audio_file'] = 'External URL';
 		}
 		
-		$this->set('title',$this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('Site.name'));
+		$this->set('title',$this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('App.name'));
     }
 
 	function save($id) {

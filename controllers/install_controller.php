@@ -76,8 +76,8 @@ class InstallController extends AppController {
     function configuration() {
 		if(!empty($this->data['Site']['name']) && !empty($this->data['Site']['domain'])) {
 			$content = "<?\n" 
-					. "Configure::write('Site.name', '" . $this->data['Site']['name'] . "');\n"
-					. "Configure::write('Site.domain', '" . $this->data['Site']['domain'] . "');\n"
+					. "Configure::write('App.name', '" . $this->data['Site']['name'] . "');\n"
+					. "Configure::write('App.domain', '" . $this->data['Site']['domain'] . "');\n"
 					. "Configure::write('debug', 1);";
 			
 			file_put_contents(CONFIGS.'options.php', $content);    		

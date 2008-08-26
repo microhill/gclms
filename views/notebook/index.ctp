@@ -22,8 +22,7 @@
 		
 		<h1><?= __('Notebook') ?></h1>
 		<?
-		echo $form->create('Notebook',array('id' => null,'url'=> '/' . $groupWebPath . '/' . $courseWebPath . 'notebook/save/section:' . $virtual_class['id']));
-		echo $form->hidden('id');
+		echo $form->create('NotebookEntry',array('id' => null,'url'=> '/' . $groupWebPath . '/' . $courseWebPath . 'notebook/add'));
 		echo $form->input('content',array(
 			'label' =>'',
 			'rows' => 20,

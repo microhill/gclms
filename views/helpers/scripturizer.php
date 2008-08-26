@@ -86,7 +86,7 @@ class ScripturizerHelper extends AppHelper {
 		}
 		
 		//return sprintf('<a href="/%s/%s/bible_kjv/lookup/book:%s/chapter:%d#%d" link:type="bible">%s</a>',$this->params['group'],$this->params['course'],$book,$chapter,$verses,$reference);
-		return sprintf('<a href="http://www.bibleapi.net/%s/%s/%s?css=%s">%s</a>','en','asv',$reference,Configure::read('Site.domain') . 'css/bible.css',$reference);
+		return sprintf('<a href="http://www.bibleapi.net/%s/%s/%s?css=%s">%s</a>','en','asv',$reference,Configure::read('App.domain') . 'css/bible.css',$reference);
 	}
 	
 	function scripturizeNETBook($book='') {

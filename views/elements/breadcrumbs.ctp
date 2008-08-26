@@ -3,9 +3,17 @@
 	$trail = array();
 
 	if(!empty($breadcrumbs)){
-		foreach($breadcrumbs as $title => $url) {
+		foreach($breadcrumbs as $title => $options) {
+			if(is_string($options)) {
+				$url = $options;
+			} else {
+				$url = $options['url'];
+				if(!empty($options['class'])) {
+					$class = $options['class'];
+				}
+			}
 			//pr($url);
-			$trail[] = $html->link(__($title,true),$url,array('target'=>'_top'));
+			$trail[] = $html->link(__($title,true),$url,array('target'=>'_top','class' => @$class));
 		}
 
 		$divider = ' > ';

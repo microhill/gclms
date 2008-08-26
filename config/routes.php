@@ -96,11 +96,6 @@ if (file_exists(CONFIGS.'installed.txt')) {
 	Router::connect('/pages/*', array('controller' => 'install', 'action' => 'index'));
 }
 
-if (file_exists(CONFIGS.'options.php'))
-	include(CONFIGS.'options.php');
-else
-	Configure::write('Site.name',__('Great Commission Learning Management System', true));
-
 Configure::write('Database.configuration_file_exists', file_exists(CONFIGS.'database.php') ? false : true);
 
 //pr(Router::parse($this->here['here']));die();

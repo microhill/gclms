@@ -4,7 +4,7 @@ echo $form->input('title',array(
 	'between' => '<br/>'
 ));
 echo $form->input('web_path',array(
-	'label' =>  __('Web path',true) . ' <img class="gclms-tooltip-button" src="/img/icons/oxygen/16x16/actions/dialog-information.png" tooltip:text="'.__('This is part of what makes up the web address of your course. It can be made up of lower case letters, numbers, or hypens. The end result will be something like', true).': <br/><br/><strong>' . Configure::read('Site.domain') . $group['web_path'] . '/web-path</strong>" /> ',
+	'label' =>  __('Web path',true) . ' <img class="gclms-tooltip-button" src="/img/icons/oxygen/16x16/actions/dialog-information.png" tooltip:text="'.__('This is part of what makes up the web address of your course. It can be made up of lower case letters, numbers, or hypens. The end result will be something like', true).': <br/><br/><strong>' . Configure::read('App.domain') . $group['web_path'] . '/web-path</strong>" /> ',
 	'between' => '<br/>',
 	'error' => array(
 		'duplicateWebPath' => __('A course already exists in your group with this web path.',true)

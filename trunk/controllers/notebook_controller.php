@@ -38,7 +38,8 @@ class NotebookController extends AppController {
     function index() {
     	$this->NotebookEntry->contain();
     	$notebook = $this->NotebookEntry->find('all',array(
-			'conditions' => array('NotebookEntry.user_id' => $this->viewVars['user']['id'],'NotebookEntry.course_id' => $this->viewVars['course']['id'])
+			'conditions' => array('NotebookEntry.user_id' => $this->viewVars['user']['id'],'NotebookEntry.course_id' => $this->viewVars['course']['id']),
+			'order' => 'NotebookEntry.created DESC'
 		));
 
     	$this->data = $notebook;

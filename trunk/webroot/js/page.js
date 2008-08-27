@@ -1,4 +1,4 @@
-/*global $, $A, $F, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __, Draggable, Effect, location, Droppables, parent, top, swfobject */
+/*global $, $A, $F, $$, Ajax, Element, gclms, Sortable, document, window, self, UUID, __, Draggable, Effect, location, Droppables, parent, top, swfobject */
 
 gclms.PageController = {
     loadPage: function(){
@@ -517,8 +517,10 @@ gclms.PageController = {
     },
     
     gotoPageLink: function(event){
-        location.href = this.getAttribute('href') + '?framed';
-        event.stop();
+        if (!this.parentNode.hasClassName('gclms-option-buttons')) {
+			location.href = this.getAttribute('href') + '?framed';
+			event.stop();
+		}
     },
     
     highlightCurrentPage: function(){

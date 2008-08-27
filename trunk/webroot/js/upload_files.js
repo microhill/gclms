@@ -1,11 +1,11 @@
-GCLMS.UploadFilesController = {
+gclms.UploadFilesController = {
 	loadSwfObject: function() {
 		if(swfobject.getFlashPlayerVersion().major < 9) {
 			$$('.gclms-upgrade-flash').first().removeClassName('gclms-hidden');
 			return false;
 		}
 
-		GCLMS.swfu = new SWFUpload({
+		gclms.swfu = new SWFUpload({
 			upload_url : $$('.gclms-content form').first().getAttribute('action'),
 			flash_url: 'http://test2008-07-30.s3.amazonaws.com/swfupload_f9.swf',
 			file_size_limit: '30 MB',
@@ -16,12 +16,12 @@ GCLMS.UploadFilesController = {
 				'policy': $$('.gclms-content form input[name="policy"]').first().getValue(),
 				'signature': $$('.gclms-content form input[name="signature"]').first().getValue()
 			},
-			file_queued_handler: GCLMS.UploadFilesController.fileQueued,
-			upload_complete_handler: GCLMS.UploadFilesController.uploadFileComplete,
-			file_dialog_complete_handler: GCLMS.UploadFilesController.startUpload,
-			upload_complete_handler: GCLMS.UploadFilesController.uploadComplete,
-			upload_progress_handler: GCLMS.UploadFilesController.uploadProgress,
-			swfupload_loaded_handler: GCLMS.UploadFilesController.showAddButton
+			file_queued_handler: gclms.UploadFilesController.fileQueued,
+			upload_complete_handler: gclms.UploadFilesController.uploadFileComplete,
+			file_dialog_complete_handler: gclms.UploadFilesController.startUpload,
+			upload_complete_handler: gclms.UploadFilesController.uploadComplete,
+			upload_progress_handler: gclms.UploadFilesController.uploadProgress,
+			swfupload_loaded_handler: gclms.UploadFilesController.showAddButton
 		});		
 	},
 	
@@ -30,7 +30,7 @@ GCLMS.UploadFilesController = {
 	},
 	
 	selectFiles: function() {
-		GCLMS.swfu.selectFiles();
+		gclms.swfu.selectFiles();
 	},
 	
 	fileQueued: function (file, queuelength) {
@@ -49,14 +49,14 @@ GCLMS.UploadFilesController = {
 		li.innerHTML = "<span class='gclms-progress-bar' id='" + file.id + "progress'><a id='" + file.id + "deletebtn' class='cancelbtn' gclms:file-id='" + file.id + "'><!-- IE --></a>" + file.name + "</span>";
 		
 		li = listingfiles.appendChild(li);
-		li.observeRules(GCLMS.Triggers.get('li'));
+		li.observeRules(gclms.Triggers.get('li'));
 		
 		$("gclms-cancel-queue-button").style.display = "inline";
 	},
 	
 	cancelFile: function() {
 		var fileId = this.getAttribute('gclms:file-id');
-		GCLMS.swfu.cancelUpload(fileId);
+		gclms.swfu.cancelUpload(fileId);
 		var li = this.up('li');
 		li.insert({bottom: ' - cancelled'})
 		li.className = "SWFUploadFileItem uploadCancelled";
@@ -91,19 +91,19 @@ GCLMS.UploadFilesController = {
 	cancelUpload: function () {
 		$$('#SWFUploadFileListingFiles li.gclms-queued').each(function(li){
 			li.className = "SWFUploadFileItem uploadCancelled";
-			GCLMS.swfu.stopUpload();			
+			gclms.swfu.stopUpload();			
 		});
 		$('gclms-cancel-queue-button').hide();
 	},
 	
 	confirmDeleteFiles: function(event) {
 		event.stop();
-		GCLMS.popup.create({
+		gclms.popup.create({
 			text: 'Are you sure?',
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
-			callback: GCLMS.UploadFilesController.deleteFiles
+			callback: gclms.UploadFilesController.deleteFiles
 		});
 	},
 	
@@ -112,14 +112,14 @@ GCLMS.UploadFilesController = {
 		$$('input.gclms-file-select:checked').each(function(input){
 			files.push(input.value);
 		});
-		GCLMS.File.remove({
+		gclms.File.remove({
 			files: files.join(),
 			callback: function(transport) {
 				var files = transport.responseText.evalJSON();
 				files.each(function(file){
 					$$('td > input[value="' + file + '"]').first().up('tr').remove();
 				});
-				GCLMS.UploadFilesController.updateSelectAllCheckbox();
+				gclms.UploadFilesController.updateSelectAllCheckbox();
 			}
 		});	
 	},
@@ -151,8 +151,8 @@ GCLMS.UploadFilesController = {
 	},
 	
 	updateFileSelection: function(event) {
-		GCLMS.UploadFilesController.updateSelectAllCheckbox();
-		GCLMS.UploadFilesController.updateFileRowClass.bind(this)();
+		gclms.UploadFilesController.updateSelectAllCheckbox();
+		gclms.UploadFilesController.updateFileRowClass.bind(this)();
 	},
 	
 	updateFileRowClass: function(event) {
@@ -164,7 +164,7 @@ GCLMS.UploadFilesController = {
 	}
 };
 
-GCLMS.File = {
+gclms.File = {
 	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/files/',
 	remove: function(options){
 		var request = new Ajax.Request(this.ajaxUrl + 'delete', {
@@ -177,22 +177,22 @@ GCLMS.File = {
 	}
 };
 
-GCLMS.Triggers.update({
+gclms.Triggers.update({
 	/*
-	'#SWFUploadFileListingFiles': GCLMS.UploadFilesController.loadSwfObject,
-	'#gclms-upload-files:click': GCLMS.UploadFilesController.selectFiles,
-	'#gclms-cancel-queue-button:click': GCLMS.UploadFilesController.cancelUpload,
-	'#gclms-delete:click': GCLMS.UploadFilesController.confirmDeleteFiles,
-	'#gclms-select-all:change': GCLMS.UploadFilesController.selectAll,
+	'#SWFUploadFileListingFiles': gclms.UploadFilesController.loadSwfObject,
+	'#gclms-upload-files:click': gclms.UploadFilesController.selectFiles,
+	'#gclms-cancel-queue-button:click': gclms.UploadFilesController.cancelUpload,
+	'#gclms-delete:click': gclms.UploadFilesController.confirmDeleteFiles,
+	'#gclms-select-all:change': gclms.UploadFilesController.selectAll,
 	'input.gclms-file-select': {
-		':loaded': GCLMS.UploadFilesController.updateFileRowClass,
-		//':click': GCLMS.UploadFilesController.updateFileSelection,
-		':change': GCLMS.UploadFilesController.updateFileSelection
+		':loaded': gclms.UploadFilesController.updateFileRowClass,
+		//':click': gclms.UploadFilesController.updateFileSelection,
+		':change': gclms.UploadFilesController.updateFileSelection
 	},
 	*/
-	//'#gclms-files tr.gclms-file:click': GCLMS.UploadFilesController.selectRow,
+	//'#gclms-files tr.gclms-file:click': gclms.UploadFilesController.selectRow,
 	'li': {
-		'span.gclms-progress-bar a:click': GCLMS.UploadFilesController.cancelFile		
+		'span.gclms-progress-bar a:click': gclms.UploadFilesController.cancelFile		
 	},
 	'input[type="file"]:change': function() {
 		if($F(this).empty()) {
@@ -200,7 +200,7 @@ GCLMS.Triggers.update({
 			return false;			
 		} else {
 			var parts = $F(this).split('.');
-			var mime_type = GCLMS.mime_types[parts[parts.length - 1]];
+			var mime_type = gclms.mime_types[parts[parts.length - 1]];
 			if(mime_type == undefined) {
 				mime_type = 'application/octet-stream';
 			}			
@@ -257,7 +257,7 @@ SWFUpload.prototype.loadUI = function() {
 };
 */
 
-GCLMS.mime_types = {
+gclms.mime_types = {
 	'3dm': 'x-world/x-3dmf',
 	'3dmf': 'x-world/x-3dmf',
 	'a': 'application/octet-stream',

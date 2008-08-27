@@ -37,7 +37,7 @@ Router::connectNamed(array('group','course','file','class'));
 
 //Router::parseExtensions('json');
 //Router::parseExtensions('css');
-Router::parseExtensions('rss');
+Router::parseExtensions('rss','json');
 
 Router::connect('/selenium/results', array('controller' => 'selenium', 'action' => 'results'));
 Router::connect('/selenium/*', array('controller' => 'selenium', 'action' => 'display'));

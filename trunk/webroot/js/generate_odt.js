@@ -1,9 +1,9 @@
-GCLMS.GenerateOdtController = {
+gclms.GenerateOdtController = {
 	progress: function() {
 		location.replace($('gclms-progress').getAttribute('gclms:next-href'));
 	}
 }
 
-GCLMS.Triggers.update({
-	'#gclms-progress' : GCLMS.GenerateOdtController.progress
+gclms.Triggers.update({
+	'#gclms-progress' : gclms.GenerateOdtController.progress
 });

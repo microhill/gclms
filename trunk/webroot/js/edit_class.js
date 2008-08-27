@@ -1,4 +1,4 @@
-GCLMS.ClassController = {
+gclms.ClassController = {
 	toggleStartAndEndDate: function() {
 		if($('VirtualClassHasStartAndEndDate0').checked) {
 			$('gclms-start-date-div').hide();
@@ -32,8 +32,8 @@ GCLMS.ClassController = {
 	}
 }
 
-GCLMS.Triggers.update({
-	'#VirtualClassHasStartAndEndDate0:change,#VirtualClassHasStartAndEndDate1:change' : GCLMS.ClassController.toggleStartAndEndDate,
-	'#VirtualClassHasEnrollmentDeadline0:change,#VirtualClassHasEnrollmentDeadline1:change' : GCLMS.ClassController.toggleEnrollmentDeadline,
-	'#VirtualClassHasStudentTimeLimit0:change,#VirtualClassHasStudentTimeLimit1:change' : GCLMS.ClassController.toggleTimeLimit
+gclms.Triggers.update({
+	'#VirtualClassHasStartAndEndDate0:change,#VirtualClassHasStartAndEndDate1:change' : gclms.ClassController.toggleStartAndEndDate,
+	'#VirtualClassHasEnrollmentDeadline0:change,#VirtualClassHasEnrollmentDeadline1:change' : gclms.ClassController.toggleEnrollmentDeadline,
+	'#VirtualClassHasStudentTimeLimit0:change,#VirtualClassHasStudentTimeLimit1:change' : gclms.ClassController.toggleTimeLimit
 });

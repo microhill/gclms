@@ -1,6 +1,6 @@
-tinyMCE.init(GCLMS.advancedTinyMCEConfig);
+tinyMCE.init(gclms.advancedTinyMCEConfig);
 
-GCLMS.CourseController = {
+gclms.CourseController = {
 	loadLanguageDetector: function() {
 
 	},
@@ -14,7 +14,7 @@ GCLMS.CourseController = {
 	}
 }
 
-GCLMS.Triggers.update({
+gclms.Triggers.update({
 	'#CourseDescription' : function() {
 		tinyMCE.execCommand('mceAddControl', false, this.id);
 	},
@@ -25,6 +25,6 @@ GCLMS.Triggers.update({
 			$('extendedLicensingOptions').hide();
 		}
 	},
-	'div.gclms-add-course': GCLMS.CourseController.loadLanguageDetector,
-	'div.gclms-add-course #CourseTitle:change': GCLMS.CourseController.detectLanguage
+	'div.gclms-add-course': gclms.CourseController.loadLanguageDetector,
+	'div.gclms-add-course #CourseTitle:change': gclms.CourseController.detectLanguage
 });

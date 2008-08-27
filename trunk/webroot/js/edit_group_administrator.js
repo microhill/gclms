@@ -1,4 +1,4 @@
-GCLMS.Triggers.update({
+gclms.Triggers.update({
 	'#GroupAdministratorAddForm #GroupAdministratorEmail:keyup, #GroupAdministratorAddForm #GroupAdministratorEmail:change' : function(event) {
 		$('GroupAdministratorEmail').removeAttribute('readonly');
 		if($F(this) < 2 || event.keyCode < 32 || (event.keyCode >= 33 && event.keyCode <= 46) || (event.keyCode >= 112 && event.keyCode <= 123))

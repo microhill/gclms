@@ -1,0 +1,2 @@
+<?
+echo $javascript->object($entry);

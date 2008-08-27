@@ -1,10 +1,10 @@
-GCLMS.GlossaryController = {
+gclms.GlossaryController = {
 	addGlossaryTerm: function() {
 		self.location = 'glossary/add';
 	}
 }
 
-GCLMS.Triggers.update({
-	'#addGlossaryTerm:click': GCLMS.GlossaryController.addGlossaryTerm,
-	'.gclms-framed ul.glossary a:click,.gclms-framed .gclms-step-back a:click': GCLMS.AppController.gotoFramedLink
+gclms.Triggers.update({
+	'#addGlossaryTerm:click': gclms.GlossaryController.addGlossaryTerm,
+	'.gclms-framed ul.glossary a:click,.gclms-framed .gclms-step-back a:click': gclms.AppController.gotoFramedLink
 });

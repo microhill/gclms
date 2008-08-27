@@ -1,6 +1,6 @@
-tinyMCE.init(GCLMS.advancedTinyMCEConfig);
+tinyMCE.init(gclms.advancedTinyMCEConfig);
 
-GCLMS.Triggers.update({
+gclms.Triggers.update({
 	'textarea' : function() {
 		tinyMCE.execCommand("mceAddControl", false, this.id);
 	}

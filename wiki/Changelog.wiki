@@ -2,12 +2,16 @@
 
 =Version 0.3=
 
+===August 25-31, 2008==
+
+ * Added basic notebook entry ability
+ * Fixed bug: "View without frames" link wasn't working
+
 ===August 18-24, 2008==
 
  * Fixed bug: explanation for fill-in-the-blank wasn't working
  * Fixed bug: couldn't delete possible answers in editor if question was fill-in-the-blank
- * Fixed bug: "undefined" showing instead of translated phrases for questions when in frame dmode
-
+ * Fixed bug: "undefined" showing instead of translated phrases for questions when in framed mode
 
 ===August 11-17, 2008==
 

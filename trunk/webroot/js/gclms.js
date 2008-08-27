@@ -192,18 +192,6 @@ gclms.AppController = {
 				$('UserEmail').removeClassName('gclms-openid');				
 			}
 		}
-	},
-	
-	submitForm: function(event) {
-		event.stop();
-		
-		var form = this.up('form');
-		
-		if(!form)
-			return false;
-		
-		form.fire('gclms:submit');
-		form.submit();
 	}
 };
 
@@ -245,7 +233,6 @@ gclms.Triggers = $H({
 		}
 	},
 	'.gclms-content': {
-		'.gclms-button.gclms-submit:click': gclms.AppController.submitForm,
 		'.gclms-button.gclms-delete:click': gclms.AppController.confirmRemove,
 		'.gclms-button:mousedown': function() {
 			this.down('td').addClassName('gclms-pressed');

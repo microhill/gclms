@@ -3,6 +3,7 @@ $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
 	'gclms',
+	'vendors/uuid',
 	'notebook'
 ), false);
 
@@ -42,7 +43,8 @@ echo $this->element('left_column'); ?>
 				'label' =>'',
 				'rows' => 20,
 				'cols' => 88,
-				'id' => 'gclms-new-entry-content'
+				'id' => 'gclms-new-entry-content',
+				'label' => false
 			));
 			echo $this->element('buttons',array('buttons' => array(
 				array(
@@ -54,20 +56,22 @@ echo $this->element('left_column'); ?>
 			echo $form->end();
 			?>
 		</div>
-		<? foreach($this->data as $entry): ?>
-			<div class="gclms-notebook-entry">
-				<h2><?
-				if(!empty($entry['NotebookEntry']['title']))
-					echo $entry['NotebookEntry']['title'];
-				else
-					echo $myTime->niceShortDate($entry['NotebookEntry']['created'])
-				?></h2>
-				<? if(!empty($entry['NotebookEntry']['title'])): ?>
-					<p><em><?= $myTime->niceShortDate($entry['NotebookEntry']['created']) ?></em></p>
-				<? endif; ?>
-				<?= $entry['NotebookEntry']['content'] ?>
-			</div>
-		<? endforeach; ?>
+		<div id="gclms-notebook-entries">
+			<? foreach($this->data as $entry): ?>
+				<div class="gclms-notebook-entry">
+					<h2><?
+					if(!empty($entry['NotebookEntry']['title']))
+						echo $entry['NotebookEntry']['title'];
+					else
+						echo $myTime->niceShortDate($entry['NotebookEntry']['created'])
+					?></h2>
+					<? if(!empty($entry['NotebookEntry']['title'])): ?>
+						<p><em><?= $myTime->niceShortDate($entry['NotebookEntry']['created']) ?></em></p>
+					<? endif; ?>
+					<?= $entry['NotebookEntry']['content'] ?>
+				</div>
+			<? endforeach; ?>
+		</div>
 	</div>
 </div>
 

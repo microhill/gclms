@@ -489,9 +489,7 @@ gclms.PagesController = {
 gclms.Triggers.update({
 	'.gclms-edit-page' : {
 		':loaded': gclms.PagesController.loadTextareas,
-		'form': function() {
-			this.observe('gclms:submit',gclms.PagesController.submitForm);
-		},		
+		'form.gclms-button.gclms-submit:click': gclms.PagesController.submitForm,		
 		//gclms.PagesController.submitForm,
 		'#PageAudioFile,#PageAudioFile:change': gclms.PagesController.changePageAudio,
 		'.gclms-top-buttons' : {

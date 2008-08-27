@@ -18,6 +18,10 @@ gclms.NotebookController = {
 			title: $F('gclms-new-entry-title'),
 			content: $F('gclms-new-entry-content'),
 			callback: function(transport, json) {
+				if(json.NotebookEntry.title.empty()) {
+					json.NotebookEntry.title = json.NotebookEntry.created;
+				}
+				
 				$(id).replace(gclms.Views.get('notebook_entry').interpolate({
 					title: json.NotebookEntry.title,
 					content: json.NotebookEntry.content,

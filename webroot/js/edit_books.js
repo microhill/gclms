@@ -1,4 +1,4 @@
-GCLMS.BooksController = {
+gclms.BooksController = {
 	gotoFramedChapter: function(event) {
 		event.stop();
 		location.href = this.getAttribute('href') + '?framed';
@@ -27,9 +27,9 @@ GCLMS.BooksController = {
 	// New functions
 		
 	getChapterTitleForAddition: function() {
-		GCLMS.popup.create({
+		gclms.popup.create({
 			text: this.getAttribute('gclms:prompt-text'),
-			callback: GCLMS.BooksController.addChapter.bind(this)
+			callback: gclms.BooksController.addChapter.bind(this)
 		});
 		return false;
 	},
@@ -42,27 +42,27 @@ GCLMS.BooksController = {
 				
 		var tmpChapterId = UUID.generate();
 	
-		div.down('ul').insert(GCLMS.Views.get('chapter').interpolate({
+		div.down('ul').insert(gclms.Views.get('chapter').interpolate({
 			id: tmpChapterId,
 			title: title
 		}));
 
-		GCLMS.Chapter.add({
+		gclms.Chapter.add({
 			bookId: div.getAttribute('gclms:id'),
 			title: title,
 			callback: function(request) {
 				$('chapter_' + tmpChapterId).setAttribute('gclms:id',request.responseText);
-				$('chapter_' + tmpChapterId).down('a').setAttribute('href',GCLMS.urlPrefix + 'chapters/view/' + request.responseText);
-				//$('chapter_' + tmpChapterId).observeRules(GCLMS.Triggers.get('#chapters'));
+				$('chapter_' + tmpChapterId).down('a').setAttribute('href',gclms.urlPrefix + 'chapters/view/' + request.responseText);
+				//$('chapter_' + tmpChapterId).observeRules(gclms.Triggers.get('#chapters'));
 			}
 		});	
 	},
 	
 	getBookTitleForRename: function() {
-		GCLMS.popup.create({
+		gclms.popup.create({
 			text: this.getAttribute('gclms:prompt-text'),
 			value: this.up('.gclms-book').down('h2').innerHTML,
-			callback: GCLMS.BooksController.renameBook.bind(this)
+			callback: gclms.BooksController.renameBook.bind(this)
 		});
 	},
 	
@@ -75,32 +75,32 @@ GCLMS.BooksController = {
 
 		h2.innerHTML = title;
 
-		GCLMS.Book.rename({
+		gclms.Book.rename({
 			id: this.up('.gclms-book').getAttribute('gclms:id'),
 			title: title
 		});
 	},
 	
 	confirmDeleteBook: function() {
-		GCLMS.popup.create({
+		gclms.popup.create({
 			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
-			callback: GCLMS.BooksController.deleteBook.bind(this)
+			callback: gclms.BooksController.deleteBook.bind(this)
 		});
 		return false;
 	},
 
 	deleteBook: function() {
 		var div = this.up('.gclms-book');
-		GCLMS.Book.remove({id: div.getAttribute('gclms:id')});
+		gclms.Book.remove({id: div.getAttribute('gclms:id')});
 		div.remove();
 	}
 
 };
 
-GCLMS.Book = {
+gclms.Book = {
 	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/books/',
 	add: function(options) {		request = new Ajax.Request(this.ajaxUrl + 'add/' + options.id,{
 			method: 'post',
@@ -124,7 +124,7 @@ GCLMS.Book = {
 	}
 };
 
-GCLMS.Chapter = {
+gclms.Chapter = {
 	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/chapters/',
 	add: function(options) {
 		new Ajax.Request(this.ajaxUrl + 'add',{
@@ -147,18 +147,18 @@ GCLMS.Chapter = {
 	}
 }
 
-GCLMS.Views.update({
+gclms.Views.update({
 	chapter: '<li id="chapter_#{id}"><a>#{title}</a></li>'
 });
 
-GCLMS.Triggers.update({
+gclms.Triggers.update({
 	'#gclms-books' : {
 		'.gclms-book' : {
-			'.gclms-add:click': GCLMS.BooksController.getChapterTitleForAddition,
-			'.gclms-rename:click': GCLMS.BooksController.getBookTitleForRename,
-			'.gclms-delete:click': GCLMS.BooksController.confirmDeleteBook
+			'.gclms-add:click': gclms.BooksController.getChapterTitleForAddition,
+			'.gclms-rename:click': gclms.BooksController.getBookTitleForRename,
+			'.gclms-delete:click': gclms.BooksController.confirmDeleteBook
 		}
 	},
 	
-	'.gclms-framed .gclms-book li a:click,.gclms-framed .gclms-step-back a:click': GCLMS.BooksController.gotoFramedChapter
+	'.gclms-framed .gclms-book li a:click,.gclms-framed .gclms-step-back a:click': gclms.BooksController.gotoFramedChapter
 });

@@ -1,14 +1,14 @@
 /*global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, $F, $H, __ */
 
-var GCLMS = {};
+var gclms = {};
 
 function __(text) {
-	return GCLMS.translated_phrases[text]; 
+	return gclms.translated_phrases[text]; 
 }
 
-GCLMS.translated_phrases = [];
+gclms.translated_phrases = [];
 
-GCLMS.AppController = {
+gclms.AppController = {
 	gotoFramedLink: function(event) {
 		event.stop();
 		location.href = this.getAttribute('href') + '?framed';
@@ -17,12 +17,12 @@ GCLMS.AppController = {
 	/*
 	confirmRemove: function(event) {
 		event.stop();
-		GCLMS.popup.create({
+		gclms.popup.create({
 			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
-			callback: GCLMS.AppController.remove.bind(this)
+			callback: gclms.AppController.remove.bind(this)
 		});
 	},
 	remove: function() {
@@ -36,22 +36,22 @@ GCLMS.AppController = {
 	},
 	*/
 	showTooltip: function() {
-		if(!GCLMS.tooltip) {
-			GCLMS.tooltip = new Element('div', {
+		if(!gclms.tooltip) {
+			gclms.tooltip = new Element('div', {
 				id: 'gclms-tooltip'
 			});			
-			GCLMS.tooltip.appendChild(
+			gclms.tooltip.appendChild(
 				new Element('div',{
 					id: 'gclms-tooltip-content'
 				})
 			);
-			document.body.appendChild(GCLMS.tooltip);		
+			document.body.appendChild(gclms.tooltip);		
 		}
 		$('gclms-tooltip-content').update(this.getAttribute('tooltip:text'));	
 		$('gclms-tooltip').displayAsBlock();
 		$('gclms-tooltip').setStyle({
 			left: (this.cumulativeOffset()[0] + this.getWidth()) + 'px',
-			top: (this.cumulativeOffset()[1] - GCLMS.tooltip.getHeight()) + 'px'
+			top: (this.cumulativeOffset()[1] - gclms.tooltip.getHeight()) + 'px'
 		});
 	},
 	hideTooltip: function() {
@@ -68,52 +68,52 @@ GCLMS.AppController = {
 			cancelCallback: null
 		}).update(options);
 	
-		GCLMS.popup.callback = options.get('callback');
-		GCLMS.popup.cancelCallback = options.get('cancelCallback');
+		gclms.popup.callback = options.get('callback');
+		gclms.popup.cancelCallback = options.get('cancelCallback');
 			
-		if(!GCLMS.popup.overlay) {
-			GCLMS.popup.overlay = new Element('div',{
+		if(!gclms.popup.overlay) {
+			gclms.popup.overlay = new Element('div',{
 				className: 'gclms-popup-overlay'
 			});
-			GCLMS.popup.overlay.observe('click',function(event) {
-				GCLMS.popup.overlay.hide();
+			gclms.popup.overlay.observe('click',function(event) {
+				gclms.popup.overlay.hide();
 			});
 		}
-		GCLMS.popup.overlay.style.display = 'block';
+		gclms.popup.overlay.style.display = 'block';
 		
-		GCLMS.popup.dialog = new Element('div',{
+		gclms.popup.dialog = new Element('div',{
 			className: 'gclms-popup-dialog'
 		});
-		document.body.insert(GCLMS.popup.overlay);
+		document.body.insert(gclms.popup.overlay);
 	
-		GCLMS.popup.dialog.insert(new Element('p').insert(options.get('text')));
+		gclms.popup.dialog.insert(new Element('p').insert(options.get('text')));
 	
 		if(options.get('type') == 'prompt'){
-			GCLMS.popup.dialog.insert(new Element('p').insert(new Element('input',{
+			gclms.popup.dialog.insert(new Element('p').insert(new Element('input',{
 				type: 'text',
 				id: 'gclmsPopupDialogInputText',
 				value: options.get('value')
 			})));
-			GCLMS.popup.dialog.select('input[type="text"]').first().observe('keydown',function(event){
+			gclms.popup.dialog.select('input[type="text"]').first().observe('keydown',function(event){
 				if(event.keyCode == Event.KEY_ESC) {
 					this.up('div.gclms-popup-overlay').hide();	
-					if(GCLMS.popup.cancelCallback) {
-						GCLMS.popup.cancelCallback();
+					if(gclms.popup.cancelCallback) {
+						gclms.popup.cancelCallback();
 					}
 				}
 				if(event.keyCode == Event.KEY_RETURN) {
 					this.up('div.gclms-popup-overlay').hide();
-					if(GCLMS.popup.callback) {
-						GCLMS.popup.callback(GCLMS.popup.dialog.select('input[type="text"]').first().value);
+					if(gclms.popup.callback) {
+						gclms.popup.callback(gclms.popup.dialog.select('input[type="text"]').first().value);
 					}
 				}
 			});
 			
-			GCLMS.popup.getCallbackValue = function() {
-				return GCLMS.popup.dialog.select('input[type="text"]').first().value;
+			gclms.popup.getCallbackValue = function() {
+				return gclms.popup.dialog.select('input[type="text"]').first().value;
 			};
 		} else if(options.get('type') == 'confirm'){
-			GCLMS.popup.getCallbackValue = function() {
+			gclms.popup.getCallbackValue = function() {
 				return true;
 			};			
 		}
@@ -125,18 +125,18 @@ GCLMS.AppController = {
 		})).insert(options.get('confirmButtonText'));
 	
 		div.select('button.gclms-ok').first().observe('click',function(event){
-			GCLMS.AppController.closePopup({executeCallback: true});
+			gclms.AppController.closePopup({executeCallback: true});
 		});
 		
 		if(options.get('type') == 'confirm') {
-			GCLMS.popup.keyDownHandler = function(event) {
+			gclms.popup.keyDownHandler = function(event) {
 				if (event.keyCode == 89) {
-					GCLMS.AppController.closePopup({executeCallback: true});
+					gclms.AppController.closePopup({executeCallback: true});
 				} else if (event.keyCode == 78) {
-					GCLMS.AppController.closePopup({executeCallback: false});
+					gclms.AppController.closePopup({executeCallback: false});
 				}
 			};
-			document.observe('keydown',GCLMS.popup.keyDownHandler);
+			document.observe('keydown',gclms.popup.keyDownHandler);
 		}
 		
 		if(options.get('cancelButtonText') !== null) {
@@ -146,33 +146,33 @@ GCLMS.AppController = {
 			})).insert(options.get('cancelButtonText'));
 			
 			div.select('button.gclms-cancel').first().observe('click',function(event){
-				GCLMS.AppController.closePopup({executeCallback: false});
+				gclms.AppController.closePopup({executeCallback: false});
 			});
 		}
 	
-		GCLMS.popup.dialog.insert(div);
+		gclms.popup.dialog.insert(div);
 		
-		GCLMS.popup.dialog.observe('click',function(event){
+		gclms.popup.dialog.observe('click',function(event){
 			event.stop();
 		});
 		
-		GCLMS.popup.overlay.insert(GCLMS.popup.dialog);
-		if(GCLMS.popup.dialog.select('input[type="text"]').first()) {
-			GCLMS.popup.dialog.select('input[type="text"]').first().focus();
-			GCLMS.popup.dialog.select('input[type="text"]').first().select();
+		gclms.popup.overlay.insert(gclms.popup.dialog);
+		if(gclms.popup.dialog.select('input[type="text"]').first()) {
+			gclms.popup.dialog.select('input[type="text"]').first().focus();
+			gclms.popup.dialog.select('input[type="text"]').first().select();
 		}
 		
 		// Vertically center the dialog
-		GCLMS.popup.dialog.setStyle({marginTop: (GCLMS.popup.overlay.offsetHeight / 2) -  (GCLMS.popup.dialog.offsetHeight / 2) + 'px'});
+		gclms.popup.dialog.setStyle({marginTop: (gclms.popup.overlay.offsetHeight / 2) -  (gclms.popup.dialog.offsetHeight / 2) + 'px'});
 	},
 	closePopup: function(options) {
 		$$('div.gclms-popup-overlay').first().hide();
-		GCLMS.popup.dialog.remove();
-		document.stopObserving('keydown',GCLMS.popup.keyDownHandler);
-		if (options.executeCallback && GCLMS.popup.callback) {
-			GCLMS.popup.callback(GCLMS.popup.getCallbackValue());
-		} else if (GCLMS.popup.cancelCallback) {
-			GCLMS.popup.cancelCallback();
+		gclms.popup.dialog.remove();
+		document.stopObserving('keydown',gclms.popup.keyDownHandler);
+		if (options.executeCallback && gclms.popup.callback) {
+			gclms.popup.callback(gclms.popup.getCallbackValue());
+		} else if (gclms.popup.cancelCallback) {
+			gclms.popup.cancelCallback();
 		}
 	},
 	updateLoginPanel: function(event) {
@@ -199,17 +199,20 @@ GCLMS.AppController = {
 		
 		var form = this.up('form');
 		
+		if(!form)
+			return false;
+		
 		form.fire('gclms:submit');
 		form.submit();
 	}
 };
 
-GCLMS.Views = $H({});
+gclms.Views = $H({});
 
-GCLMS.Triggers = $H({
-	'input#UserEmail:keyup,input#UserEmail:change,input#UserEmail:click,input#UserEmail:focus,input#UserEmail' : GCLMS.AppController.updateLoginPanel,
-	'img.gclms-tooltip-button:mouseover': GCLMS.AppController.showTooltip,
-	'img.gclms-tooltip-button:mouseout': GCLMS.AppController.hideTooltip,
+gclms.Triggers = $H({
+	'input#UserEmail:keyup,input#UserEmail:change,input#UserEmail:click,input#UserEmail:focus,input#UserEmail' : gclms.AppController.updateLoginPanel,
+	'img.gclms-tooltip-button:mouseover': gclms.AppController.showTooltip,
+	'img.gclms-tooltip-button:mouseout': gclms.AppController.hideTooltip,
 	'.gclms-recordset' : {
 		'.gclms-recordset tr:click,.gclms-descriptive-recordset tr:click' : function() {
 			tr = this.nodeName.toLowerCase() == 'tr' ? this : this.up('tr');
@@ -229,7 +232,7 @@ GCLMS.Triggers = $H({
 			response = new Ajax.Updater('table',element.getAttribute('href'), {
 				requestHeaders: ['X-Update', 'table'],
 				onComplete: function() {
-					$('table').observeRules(GCLMS.Triggers.get('.gclms-records'));
+					$('table').observeRules(gclms.Triggers.get('.gclms-records'));
 				}
 			});
 			event.stop();
@@ -242,8 +245,8 @@ GCLMS.Triggers = $H({
 		}
 	},
 	'.gclms-content': {
-		'.gclms-button.gclms-submit:click': GCLMS.AppController.submitForm,
-		'.gclms-button.gclms-delete:click': GCLMS.AppController.confirmRemove,
+		'.gclms-button.gclms-submit:click': gclms.AppController.submitForm,
+		'.gclms-button.gclms-delete:click': gclms.AppController.confirmRemove,
 		'.gclms-button:mousedown': function() {
 			this.down('td').addClassName('gclms-pressed');
 		},
@@ -284,23 +287,23 @@ GCLMS.Triggers = $H({
 	}
 });
 	
-GCLMS.popup = {
-	'create' : GCLMS.AppController.createPopup
+gclms.popup = {
+	'create' : gclms.AppController.createPopup
 };
 
 document.observe("dom:loaded", function() {
 
-	GCLMS.group = document.body.getAttribute('gclms:group');
-	GCLMS.course = document.body.getAttribute('gclms:course');
-	GCLMS.virtualClass = document.body.getAttribute('gclms:virtual-class');
+	gclms.group = document.body.getAttribute('gclms:group');
+	gclms.course = document.body.getAttribute('gclms:course');
+	gclms.virtualClass = document.body.getAttribute('gclms:virtual-class');
 	
-	if(GCLMS.group && GCLMS.course && GCLMS.virtualClass) {
-		GCLMS.urlPrefix = '/' + GCLMS.group + '/' + GCLMS.course + '/' + GCLMS.virtualClass + '/';
-	} else if(GCLMS.group && GCLMS.course) {
-		GCLMS.urlPrefix = '/' + GCLMS.group + '/' + GCLMS.course + '/';
+	if(gclms.group && gclms.course && gclms.virtualClass) {
+		gclms.urlPrefix = '/' + gclms.group + '/' + gclms.course + '/' + gclms.virtualClass + '/';
+	} else if(gclms.group && gclms.course) {
+		gclms.urlPrefix = '/' + gclms.group + '/' + gclms.course + '/';
 	}
 
-	$(document.body).observeRules(GCLMS.Triggers);
+	$(document.body).observeRules(gclms.Triggers);
 
 	/*
 	firstTextInput = $$('input[type="text"]:first');
@@ -311,7 +314,7 @@ document.observe("dom:loaded", function() {
 	*/
 });
 
-GCLMS.simpleTinyMCEConfig = {
+gclms.simpleTinyMCEConfig = {
 	theme : 'advanced',
 	extended_valid_elements : 'a[name|href|target|title],em',
 	theme_advanced_buttons1 : '',
@@ -324,7 +327,7 @@ GCLMS.simpleTinyMCEConfig = {
 	theme_advanced_toolbar_align : 'left',
 	theme_advanced_buttons1 : 'italic,link,unlink,removeformat,pastetext,pasteword',
 	theme_advanced_buttons2 : '',
-	file_browser_callback : 'GCLMS.fileBrowser',
+	file_browser_callback : 'gclms.fileBrowser',
 	width: '100%',
 	height: '75px',
     language: document.body.getAttribute('gclms:language'),
@@ -335,7 +338,7 @@ GCLMS.simpleTinyMCEConfig = {
 	extended_valid_elements : 'a[name|href|target|title],em,i'
 };
 
-GCLMS.advancedTinyMCEConfig = {
+gclms.advancedTinyMCEConfig = {
     theme : 'advanced',
     plugins : 'media,inlinepopups,style,safari,paste', // sidebartext,notebook,safari
     language: document.body.getAttribute('gclms:language'),
@@ -360,7 +363,7 @@ GCLMS.advancedTinyMCEConfig = {
 	tab_focus : ':next',
 	//theme_advanced_resize_horizontal: false,
 	extended_valid_elements : 'a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]',
-	file_browser_callback : 'GCLMS.fileBrowser',
+	file_browser_callback : 'gclms.fileBrowser',
     setup : function(editor) {
         editor.addButton('notebook', {
             title : 'Add Notebook button',
@@ -390,11 +393,11 @@ GCLMS.advancedTinyMCEConfig = {
 if(document.body.getAttribute('gclms:group') && !document.body.getAttribute('gclms:group').empty() &&
 		document.body.getAttribute('gclms:course') && !document.body.getAttribute('gclms:course').empty()) { // && !document.body.getAttribute('gclms:course').empty()
 	var cssTmp = '/'+ document.body.getAttribute('gclms:group') + '/'+ document.body.getAttribute('gclms:course') + '/files/css/' + new Date().getTime() + ',/css/' + document.body.getAttribute('gclms:direction') + '.css';
-	GCLMS.simpleTinyMCEConfig.content_css = cssTmp;
-	GCLMS.advancedTinyMCEConfig.content_css = cssTmp;
+	gclms.simpleTinyMCEConfig.content_css = cssTmp;
+	gclms.advancedTinyMCEConfig.content_css = cssTmp;
 }
 
-GCLMS.fileBrowser = function(field_name, url, type, win) {
+gclms.fileBrowser = function(field_name, url, type, win) {
 	//alert("Field_Name: " + field_name + "\nURL: " + url + "\nType: " + type + "\nWin: " + win); // debug/testing
 
 	if(type == 'image') {

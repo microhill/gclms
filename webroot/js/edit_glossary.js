@@ -1,11 +1,11 @@
-tinyMCE.init(GCLMS.advancedTinyMCEConfig);
+tinyMCE.init(gclms.advancedTinyMCEConfig);
 
-GCLMS.GlossaryController = {
+gclms.GlossaryController = {
 	loadTinyMCE: function() {
 		tinyMCE.execCommand("mceAddControl", false, this.id);
 	}
 }
 
-GCLMS.Triggers.update({
-	'textarea': GCLMS.GlossaryController.loadTinyMCE
+gclms.Triggers.update({
+	'textarea': gclms.GlossaryController.loadTinyMCE
 });

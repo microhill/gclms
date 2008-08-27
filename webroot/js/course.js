@@ -1,5 +1,5 @@
 /* global $, $$, Ajax, Element, GCLMS, document, window, self, __ */
-GCLMS.CourseController = {
+gclms.CourseController = {
 	toggleNodeExpansion: function() {
 		var li = this.up('li');
 
@@ -23,10 +23,10 @@ GCLMS.CourseController = {
 	}
 }
 
-GCLMS.Triggers.update({
+gclms.Triggers.update({
 	'#gclms-nodes-tree' : {
 		'li': {
-			'img.gclms-expand-button:click': GCLMS.CourseController.toggleNodeExpansion
+			'img.gclms-expand-button:click': gclms.CourseController.toggleNodeExpansion
 		}
 	}
 });

@@ -1,5 +1,5 @@
 <?
-//App::import('Helper','Time');
+App::import('Helper','Time');
 
 class MyTimeHelper extends TimeHelper {	
 	function niceShortDate($date_string = null) {

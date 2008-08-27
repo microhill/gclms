@@ -1,6 +1,6 @@
 /*global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, Event, __ */
 
-GCLMS.ContentController = {
+gclms.ContentController = {
 	initialize: function() {
 		$$('#gclms-nodes li.gclms-hidden > ul > li').each(function(li) {
 			li.hide();
@@ -9,8 +9,8 @@ GCLMS.ContentController = {
 		$$('#gclms-nodes li.gclms-hidden').each(function(li) {
 			li.removeClassName('gclms-hidden');
 		});		
-		GCLMS.ContentController.createSortables();
-		GCLMS.ContentController.toggleMenubarButtons();
+		gclms.ContentController.createSortables();
+		gclms.ContentController.toggleMenubarButtons();
 	},
 	toggleNodeExpansion: function() {
 		var li = this.up('li');
@@ -28,7 +28,7 @@ GCLMS.ContentController = {
 			li.addClassName('gclms-collapsed');
 			li.removeClassName('gclms-expanded');
 			if(li.down('a.selected')) {
-				GCLMS.ContentController.selectNode.bind(li.down('a'))();
+				gclms.ContentController.selectNode.bind(li.down('a'))();
 			}
 		}
 	},
@@ -37,14 +37,14 @@ GCLMS.ContentController = {
 			return false;
 		}
 			
-		GCLMS.ContentController.convertNodeType(GCLMS.Node.PAGE_TYPE_INT);
+		gclms.ContentController.convertNodeType(gclms.Node.PAGE_TYPE_INT);
 	},
 	convertPageToLabel: function() {
 		if (this.down('button').getAttribute('disabled')) {
 			return false;
 		}
 
-		GCLMS.ContentController.convertNodeType(GCLMS.Node.LABEL_TYPE_INT);
+		gclms.ContentController.convertNodeType(gclms.Node.LABEL_TYPE_INT);
 	},
 	convertNodeType: function(type) {
 		var li = $$('#gclms-nodes a.selected').first().up('li');
@@ -52,9 +52,9 @@ GCLMS.ContentController = {
 		li.toggleClassName('gclms-page');
 		li.toggleClassName('gclms-label');
 		
-		GCLMS.ContentController.toggleMenubarButtons();
+		gclms.ContentController.toggleMenubarButtons();
 		
-		GCLMS.Node.convertType({
+		gclms.Node.convertType({
 			id: li.getAttribute('gclms:node-id'),
 			type: type
 		});	
@@ -74,19 +74,19 @@ GCLMS.ContentController = {
 			return false;	
 		}			
 		
-		GCLMS.popup.create({
+		gclms.popup.create({
 			text: this.down('button').getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
-			callback: GCLMS.ContentController.deleteNode
+			callback: gclms.ContentController.deleteNode
 		});
 		return false;
 	},
 	deleteNode: function() {
 		var li = $$('#gclms-nodes a.selected').first().up('li');
 
-		GCLMS.Node.remove({id: li.getAttribute('gclms:node-id')});
+		gclms.Node.remove({id: li.getAttribute('gclms:node-id')});
 		var ul = li.up('ul');
 	
 		if(previousNode = li.previous('li')) {
@@ -97,18 +97,18 @@ GCLMS.ContentController = {
 
 		li.remove();
 		
-		GCLMS.ContentController.toggleMenubarButtons();
-		GCLMS.ContentController.toggleListClass(ul);
+		gclms.ContentController.toggleMenubarButtons();
+		gclms.ContentController.toggleListClass(ul);
 	},
 	getNodeTitleForRename: function() {
 		if(this.down('button').getAttribute('disabled')) {
 			return false;
 		}			
 
-		GCLMS.popup.create({
+		gclms.popup.create({
 			text: this.down('button').getAttribute('gclms:prompt-text'),
 			value: $('gclms-nodes').down('a.selected').innerHTML,
-			callback: GCLMS.ContentController.renameNode
+			callback: gclms.ContentController.renameNode
 		});
 		return false;
 	},
@@ -121,22 +121,22 @@ GCLMS.ContentController = {
 			
 		a.innerHTML = title;
 		
-		GCLMS.Node.rename({
+		gclms.Node.rename({
 			id: a.up('li').getAttribute('gclms:node-id'),
 			title: title
 		});	
 	},
 	getLabelTitleForAddition: function() {
-		GCLMS.popup.create({
+		gclms.popup.create({
 			text: this.down('button').getAttribute('gclms:prompt-text'),
-			callback: GCLMS.ContentController.addLabel
+			callback: gclms.ContentController.addLabel
 		});
 		return false;
 	},
 	getPageTitleForAddition: function() {
-		GCLMS.popup.create({
+		gclms.popup.create({
 			text: this.down('button').getAttribute('gclms:prompt-text'),
-			callback: GCLMS.ContentController.addPage
+			callback: gclms.ContentController.addPage
 		});
 		return false;
 	},	
@@ -144,38 +144,38 @@ GCLMS.ContentController = {
 		if(!title) {
 			return false;
 		}
-		GCLMS.ContentController.addNode(title,'label');
+		gclms.ContentController.addNode(title,'label');
 	},
 	addPage: function(title) {
 		if(!title) {
 			return false;
 		}
-		GCLMS.ContentController.addNode(title,'page');
+		gclms.ContentController.addNode(title,'page');
 	},
 	addNode: function(title,type) {
 		var id = UUID.generate();
 	
-		var ul = GCLMS.ContentController.selectListForNodeAddition();
+		var ul = gclms.ContentController.selectListForNodeAddition();
 		var parentNode = ul.up('li.gclms-node');
 		var parentNodeId = parentNode ? parentNode.getAttribute('gclms:node-id') : 0;
 			
-		ul.insert(GCLMS.Views.get('node').interpolate({
+		ul.insert(gclms.Views.get('node').interpolate({
 			id: id,
 			title: title,
 			typeClass: 'gclms-' + type
 		}));
 	
-		GCLMS.Node.add({
+		gclms.Node.add({
 			parentNodeId: parentNodeId,
 			id: id,
 			title: title,
 			type: type == 'label' ? 1 : 0,
 			callback: function(request) {
-				$('node_' + id).observeRules(GCLMS.Triggers.get('#gclms-nodes').li);
-				GCLMS.ContentController.createSortables();
+				$('node_' + id).observeRules(gclms.Triggers.get('#gclms-nodes').li);
+				gclms.ContentController.createSortables();
 		}});
 		
-		GCLMS.ContentController.toggleListClass(ul);
+		gclms.ContentController.toggleListClass(ul);
 	},
 	selectListForNodeAddition: function() {
 		var selectedNode = $('gclms-nodes').down('li a.selected');
@@ -202,7 +202,7 @@ GCLMS.ContentController = {
 		var a = li.down('a');
 		a.addClassName('selected');
 		
-		GCLMS.ContentController.toggleMenubarButtons();
+		gclms.ContentController.toggleMenubarButtons();
 		
 		return false;
 	},
@@ -216,11 +216,11 @@ GCLMS.ContentController = {
 		var selectedNodeList = selectedNode.up('ul');	
 		var previousNode = selectedNode.previous('li');
 
-		if(!previousNode || GCLMS.ContentController.countAncestorLevels(selectedNode) + GCLMS.ContentController.countDescendentLevels(selectedNode) > 2) {
+		if(!previousNode || gclms.ContentController.countAncestorLevels(selectedNode) + gclms.ContentController.countDescendentLevels(selectedNode) > 2) {
 			return false;
 		}
 
-		GCLMS.Node.increaseIndent({
+		gclms.Node.increaseIndent({
 			parentNodeId: previousNode.getAttribute('gclms:node-id'),
 			id: selectedNode.getAttribute('gclms:node-id'),
 			callback: function(request) {
@@ -232,11 +232,11 @@ GCLMS.ContentController = {
 		
 		previousNodeChildList.insert(selectedNode);
 
-		GCLMS.ContentController.toggleListClass(selectedNodeList);
-		GCLMS.ContentController.toggleListClass(previousNodeChildList);		
+		gclms.ContentController.toggleListClass(selectedNodeList);
+		gclms.ContentController.toggleListClass(previousNodeChildList);		
 
-		GCLMS.ContentController.toggleMenubarButtons();
-		GCLMS.ContentController.createSortables();
+		gclms.ContentController.toggleMenubarButtons();
+		gclms.ContentController.createSortables();
 
 		return false;
 	},
@@ -250,21 +250,21 @@ GCLMS.ContentController = {
 		var parentNode = selectedNode.up('li');
 		var parentNodeList = parentNode.up('ul');
 
-		if(!parentNode || GCLMS.ContentController.countAncestorLevels(selectedNode) < 1) {
+		if(!parentNode || gclms.ContentController.countAncestorLevels(selectedNode) < 1) {
 			return false;
 		}
 		
-		GCLMS.Node.decreaseIndent({
+		gclms.Node.decreaseIndent({
 			parentNodeId: parentNodeList.up('li').getAttribute('gclms:node-id'),
 			id: selectedNode.getAttribute('gclms:node-id')
 		});	
 		
 		parentNode.insert({after: selectedNode});
-		GCLMS.ContentController.toggleListClass(selectedNodeList);
-		GCLMS.ContentController.toggleListClass(parentNodeList);
+		gclms.ContentController.toggleListClass(selectedNodeList);
+		gclms.ContentController.toggleListClass(parentNodeList);
 		
-		GCLMS.ContentController.toggleMenubarButtons();
-		GCLMS.ContentController.createSortables();
+		gclms.ContentController.toggleMenubarButtons();
+		gclms.ContentController.createSortables();
 		
 		return false;
 	},
@@ -332,8 +332,8 @@ GCLMS.ContentController = {
 			$('deleteNode').down('button').enable();
 		}
 		
-		var ancestorLevels = GCLMS.ContentController.countAncestorLevels(selectedNode);
-		var descendentLevels = GCLMS.ContentController.countDescendentLevels(selectedNode);
+		var ancestorLevels = gclms.ContentController.countAncestorLevels(selectedNode);
+		var descendentLevels = gclms.ContentController.countDescendentLevels(selectedNode);
 				
 		if(ancestorLevels >= 3) {
 			$('addLabel').down('button').disable();
@@ -371,7 +371,7 @@ GCLMS.ContentController = {
 					handle: 'gclms-handle',
 					scroll: window,
 					dropOnEmpty: true,
-					onUpdate: GCLMS.ContentController.reorderNodes
+					onUpdate: gclms.ContentController.reorderNodes
 				});					
 			});
 		});
@@ -382,13 +382,13 @@ GCLMS.ContentController = {
 			$$('#' + ul.getAttribute('id') + ' > li').each(function(node){
 				nodeIds.push(node.getAttribute('gclms:node-id'));
 			});	
-			GCLMS.Node.reorder({
+			gclms.Node.reorder({
 				nodeIds: nodeIds,
 				parentNodeId: ul.up('li').getAttribute('gclms:node-id')
 			});
 		}
 		
-		GCLMS.ContentController.toggleListClass(ul);
+		gclms.ContentController.toggleListClass(ul);
 	},
 	toggleListClass: function(ul) {
 		//If list contains any nodes
@@ -425,7 +425,7 @@ GCLMS.ContentController = {
 	}
 };
 
-GCLMS.Node = {
+gclms.Node = {
 	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/content/',
 	PAGE_TYPE_INT: 0,
 	LABEL_TYPE_INT: 1,	
@@ -487,34 +487,34 @@ GCLMS.Node = {
 	}
 };
 
-GCLMS.Views.update({
+gclms.Views.update({
 	node: '<li id="node_#{id}" gclms:node-id="#{id}" class="gclms-node #{typeClass}"> <img class="gclms-expand-button" src="/img/blank-1.png"/><span class="gclms-handle"> <img class="gclms-icon" src="/img/blank-1.png"/> <a href="#">#{title}</a></span><ul id="list_#{id}"></ul></li>'
 });
 
-Event.observe(window, 'scroll', GCLMS.ContentController.updateMenubars.bind(this));
+Event.observe(window, 'scroll', gclms.ContentController.updateMenubars.bind(this));
 
-GCLMS.Triggers.update({
+gclms.Triggers.update({
 	'#gclms-nodes' : {
-		':loaded': GCLMS.ContentController.initialize,
+		':loaded': gclms.ContentController.initialize,
 		'li': {
-			'img.gclms-expand-button:click': GCLMS.ContentController.toggleNodeExpansion,
-			'img.gclms-icon:click': GCLMS.ContentController.selectNode,
+			'img.gclms-expand-button:click': gclms.ContentController.toggleNodeExpansion,
+			'img.gclms-icon:click': gclms.ContentController.selectNode,
 			'a' : {
-				':click': GCLMS.ContentController.selectNode,
-				':dblclick': GCLMS.ContentController.editPage
+				':click': gclms.ContentController.selectNode,
+				':dblclick': gclms.ContentController.editPage
 			}
 		}
 	},
 
 	'.gclms-menubar' : {
-		'#addLabel:click': GCLMS.ContentController.getLabelTitleForAddition,
-		'#addPage:click': GCLMS.ContentController.getPageTitleForAddition,
-		'#deleteNode:click': GCLMS.ContentController.confirmDeleteNode,
-		'#renameNode:click': GCLMS.ContentController.getNodeTitleForRename,
-		'#increaseIndent:click': GCLMS.ContentController.increaseIndent,
-		'#decreaseIndent:click': GCLMS.ContentController.decreaseIndent,
-		'#convertPageToLabel:click': GCLMS.ContentController.convertPageToLabel,
-		'#convertLabelToPage:click': GCLMS.ContentController.convertLabelToPage,
-		'#editPage:click': GCLMS.ContentController.editPage
+		'#addLabel:click': gclms.ContentController.getLabelTitleForAddition,
+		'#addPage:click': gclms.ContentController.getPageTitleForAddition,
+		'#deleteNode:click': gclms.ContentController.confirmDeleteNode,
+		'#renameNode:click': gclms.ContentController.getNodeTitleForRename,
+		'#increaseIndent:click': gclms.ContentController.increaseIndent,
+		'#decreaseIndent:click': gclms.ContentController.decreaseIndent,
+		'#convertPageToLabel:click': gclms.ContentController.convertPageToLabel,
+		'#convertLabelToPage:click': gclms.ContentController.convertLabelToPage,
+		'#editPage:click': gclms.ContentController.editPage
 	}
 });

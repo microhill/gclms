@@ -1,8 +1,8 @@
-GCLMS.ClassroomController = {
+gclms.ClassroomController = {
 	loadViewport: function() {
 		if(location.href.indexOf('#') != -1) {
 			var href = location.href.split('#');
-			Ext.get('lessonViewportContent').dom.src = GCLMS.urlPrefix + 'pages/view/' + href[1] + '?framed';
+			Ext.get('lessonViewportContent').dom.src = gclms.urlPrefix + 'pages/view/' + href[1] + '?framed';
 		}
 		
 		//url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('gclms:virtual-class')
@@ -28,7 +28,7 @@ GCLMS.ClassroomController = {
 		        border:false,
 		        autoScroll: false,
 		        iconCls:'bible',
-		        listeners: {beforeexpand: GCLMS.Triggers.get('#bibleViewport:expand')}
+		        listeners: {beforeexpand: gclms.Triggers.get('#bibleViewport:expand')}
 		     });
 		     
 		     if($('booksViewportContent'))
@@ -39,7 +39,7 @@ GCLMS.ClassroomController = {
 		            border:false,
 		            autoScroll:false,
 		            iconCls:'books',
-		            listeners: {beforeexpand: GCLMS.Triggers.get('#booksViewport:expand')}
+		            listeners: {beforeexpand: gclms.Triggers.get('#booksViewport:expand')}
 				});
 				
 		     if($('articlesViewportContent'))
@@ -50,7 +50,7 @@ GCLMS.ClassroomController = {
 		            border:false,
 		            autoScroll: false,
 		            iconCls:'articles',
-		            listeners: {beforeexpand: GCLMS.Triggers.get('#articlesViewport:expand')}
+		            listeners: {beforeexpand: gclms.Triggers.get('#articlesViewport:expand')}
 				});
 				
 		     if($('glossaryViewportContent'))
@@ -61,7 +61,7 @@ GCLMS.ClassroomController = {
 		            border:false,
 		            autoScroll: false,
 		            iconCls:'glossary',
-		            listeners: {beforeexpand: GCLMS.Triggers.get('#glossaryViewport:expand')}
+		            listeners: {beforeexpand: gclms.Triggers.get('#glossaryViewport:expand')}
 				});
 				
 			var tabItems = [{
@@ -70,7 +70,7 @@ GCLMS.ClassroomController = {
 		            border:false,
 		            autoScroll: false,
 	                id: 'lessonTab'
-	                //listeners: {activate: GCLMS.Triggers.get('#lessonTab:activate')}
+	                //listeners: {activate: gclms.Triggers.get('#lessonTab:activate')}
 	            }];
 				
 		     if($('notebookViewportContent'))
@@ -79,7 +79,7 @@ GCLMS.ClassroomController = {
 	                title: 'Notebook',
 	                contentEl: 'notebookViewportContent',
 	                autoScroll:true,
-	                listeners: {activate: GCLMS.Triggers.get('#notebookTab:activate')}
+	                listeners: {activate: gclms.Triggers.get('#notebookTab:activate')}
 	            });
 				
 		     if($('discussionViewportContent'))
@@ -89,7 +89,7 @@ GCLMS.ClassroomController = {
 	                contentEl: 'discussionViewportContent',
 	                autoScroll: false,
 	                //border:false,
-	                listeners: {activate: GCLMS.Triggers.get('#discussionTab:activate')}
+	                listeners: {activate: gclms.Triggers.get('#discussionTab:activate')}
 	            });
 				
 		     if($('chatViewportContent'))
@@ -97,7 +97,7 @@ GCLMS.ClassroomController = {
 	                id: 'chatTab',
 	                title: 'Chat',
 	                autoScroll:true,
-	                listeners: {activate: GCLMS.Triggers.get('#chatTab:activate')}
+	                listeners: {activate: gclms.Triggers.get('#chatTab:activate')}
 	            });
 		
 			var viewport = new Ext.Viewport({
@@ -177,7 +177,8 @@ GCLMS.ClassroomController = {
 	},
 	
 	activateNotebookTab: function() {
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('gclms:virtual-class') + '/notebook/edit';
+		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/notebook?framed';
+		alert(url);
 		currentSrc = Ext.get('notebookViewportContent').dom.src;
 		if(currentSrc.indexOf(url) == -1) {
 			Ext.get('notebookViewportContent').dom.src = url;
@@ -202,7 +203,7 @@ GCLMS.ClassroomController = {
 		elm.load({
 			url: href,
 			text: '&nbsp;',
-			callback: GCLMS.Triggers.get('.gclms-viewport-content')[':updated'].bind(elm)
+			callback: gclms.Triggers.get('.gclms-viewport-content')[':updated'].bind(elm)
 		});		
 	},
 	
@@ -262,7 +263,7 @@ GCLMS.ClassroomController = {
 						onSuccess: function(request) {
 							li.select('ul').first().remove();
 							li.insert(request.responseText);
-							li.observeRules(GCLMS.Triggers.get('.gclms-lesson-navigation'));
+							li.observeRules(gclms.Triggers.get('.gclms-lesson-navigation'));
 						}
 					});
 				} else {
@@ -285,16 +286,16 @@ GCLMS.ClassroomController = {
 		
 		Ext.getCmp('articlesViewport').expand();
 		
-		if (GCLMS.cache.get(href)) {
-			elm.update(GCLMS.cache.get(href));
-			elm.observeRules(GCLMS.Triggers.get('.gclms-viewport-content'));
+		if (gclms.cache.get(href)) {
+			elm.update(gclms.cache.get(href));
+			elm.observeRules(gclms.Triggers.get('.gclms-viewport-content'));
 			return true;
 		}
 		
 		Ext.get('articlesViewportContent').load({
 			url: elm.dom.getAttribute('loaded:url'),
 			text: '&nbsp;',
-			callback: GCLMS.Triggers.get('.gclms-viewport-content')[':updated'].bind(elm)
+			callback: gclms.Triggers.get('.gclms-viewport-content')[':updated'].bind(elm)
 		});
 	},
 	
@@ -308,16 +309,16 @@ GCLMS.ClassroomController = {
 		
 		Ext.getCmp('booksViewport').expand();
 		
-		if (GCLMS.cache.get(href)) {
-			elm.update(GCLMS.cache.get(href));
-			elm.observeRules(GCLMS.Triggers.get('.gclms-viewport-content'));
+		if (gclms.cache.get(href)) {
+			elm.update(gclms.cache.get(href));
+			elm.observeRules(gclms.Triggers.get('.gclms-viewport-content'));
 			return true;
 		}
 		
 		Ext.get('booksViewportContent').load({
 			url: elm.dom.getAttribute('loaded:url'),
 			text: '&nbsp;',
-			callback: GCLMS.Triggers.get('.gclms-viewport-content')[':updated'].bind(elm)
+			callback: gclms.Triggers.get('.gclms-viewport-content')[':updated'].bind(elm)
 		});
 	},
 	
@@ -332,9 +333,9 @@ GCLMS.ClassroomController = {
 		
 		Ext.getCmp('bibleViewport').expand();
 		
-		if (GCLMS.cache.get(href)) {
-			elm.update(GCLMS.cache.get(href));
-			$(elm.dom).observeRules(GCLMS.Triggers.get('.gclms-viewport-content'));
+		if (gclms.cache.get(href)) {
+			elm.update(gclms.cache.get(href));
+			$(elm.dom).observeRules(gclms.Triggers.get('.gclms-viewport-content'));
 			el = $('bibleVerse' + hrefParts[1]);
 			el.addClassName('gclms-selected');
 			$('bibleViewportContent').parentNode.scrollTop = el.cumulativeOffset()[1] - $(el.parentNode).cumulativeOffset()[1];
@@ -346,8 +347,8 @@ GCLMS.ClassroomController = {
 			text: '&nbsp;',
 			hrefParts: hrefParts,
 			callback: function(elm){
-				$(elm.dom).observeRules(GCLMS.Triggers.get('.gclms-viewport-content'));
-				GCLMS.cache.set(this.hrefParts[0], $('bibleViewportContent').innerHTML)
+				$(elm.dom).observeRules(gclms.Triggers.get('.gclms-viewport-content'));
+				gclms.cache.set(this.hrefParts[0], $('bibleViewportContent').innerHTML)
 				if (this.hrefParts[1]) {
 					el = $('bibleVerse' + this.hrefParts[1]);
 					el.addClassName('gclms-selected');
@@ -402,26 +403,26 @@ GCLMS.ClassroomController = {
 	}
 };
 
-GCLMS.Triggers.update({
-	'div.gclms-classroom-viewport': GCLMS.ClassroomController.loadViewport,
-	'#bibleViewport:expand': GCLMS.ClassroomController.expandBibleViewport,
-	'#booksViewport:expand': GCLMS.ClassroomController.expandBooksViewport,
-	'#articlesViewport:expand': GCLMS.ClassroomController.expandArticlesViewport,
-	'#glossaryViewport:expand' : GCLMS.ClassroomController.expandGlossaryViewport,
+gclms.Triggers.update({
+	'div.gclms-classroom-viewport': gclms.ClassroomController.loadViewport,
+	'#bibleViewport:expand': gclms.ClassroomController.expandBibleViewport,
+	'#booksViewport:expand': gclms.ClassroomController.expandBooksViewport,
+	'#articlesViewport:expand': gclms.ClassroomController.expandArticlesViewport,
+	'#glossaryViewport:expand' : gclms.ClassroomController.expandGlossaryViewport,
 	'.gclms-viewport-content' : {
 		':updated' : function () {
 			elm = this.dom;
-			$(elm).observeRules(GCLMS.Triggers.get('.gclms-viewport-content'));
+			$(elm).observeRules(gclms.Triggers.get('.gclms-viewport-content'));
 		},
-		'a:click' : GCLMS.ClassroomController.gotoViewportLink
+		'a:click' : gclms.ClassroomController.gotoViewportLink
 	},
-	'#chatTab:activate' : GCLMS.ClassroomController.activateChatTab,
-	'#discussionTab:activate' : GCLMS.ClassroomController.activateDiscussionTab,
-	'#notebookTab:activate' : GCLMS.ClassroomController.activateNotebookTab,
+	'#chatTab:activate' : gclms.ClassroomController.activateChatTab,
+	'#discussionTab:activate' : gclms.ClassroomController.activateDiscussionTab,
+	'#notebookTab:activate' : gclms.ClassroomController.activateNotebookTab,
 	'.page': {
-		'a[href*="/articles/"]:click': GCLMS.ClassroomController.gotoArticleLink,
-		'a[href*="/chapters/"]:click': GCLMS.ClassroomController.gotoBookLink,
-		'a[href*="bible_"]:click': GCLMS.ClassroomController.gotoBibleLink,
+		'a[href*="/articles/"]:click': gclms.ClassroomController.gotoArticleLink,
+		'a[href*="/chapters/"]:click': gclms.ClassroomController.gotoBookLink,
+		'a[href*="bible_"]:click': gclms.ClassroomController.gotoBibleLink,
 		'#pageNavigation a:click': function(event){
 			event.stop();
 			
@@ -429,7 +430,7 @@ GCLMS.Triggers.update({
 				url: this.getAttribute('href'),
 				text: '&nbsp;',
 				callback: function(elm){
-					$(elm.dom).observeRules(GCLMS.Triggers.get('.page'));
+					$(elm.dom).observeRules(gclms.Triggers.get('.page'));
 				}
 			});
 			
@@ -437,8 +438,8 @@ GCLMS.Triggers.update({
 		}
 	},
 	'#gclms-nodes-tree li': {
-		'img.gclms-expand-button:click' : GCLMS.ClassroomController.toggleNodeExpansion,
-		'a:click' : GCLMS.ClassroomController.gotoPageLink
+		'img.gclms-expand-button:click' : gclms.ClassroomController.toggleNodeExpansion,
+		'a:click' : gclms.ClassroomController.gotoPageLink
 	}
 });
 

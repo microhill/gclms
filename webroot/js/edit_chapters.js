@@ -1,4 +1,4 @@
-GCLMS.ChaptersController = {
+gclms.ChaptersController = {
 	select: function(event) {
 		event.stop();
 	
@@ -15,9 +15,9 @@ GCLMS.ChaptersController = {
 		});
 	},
 	getTitleForAddition: function() {
-		GCLMS.popup.create({
+		gclms.popup.create({
 			text: this.down('button').getAttribute('gclms:prompt-text'),
-			callback: GCLMS.ChaptersController.add
+			callback: gclms.ChaptersController.add
 		});
 		return false;
 	},
@@ -26,25 +26,25 @@ GCLMS.ChaptersController = {
 			return false;
 		tmpChapterId = UUID.generate();
 	
-		$('chapters').insert(GCLMS.Views.get('chapter').interpolate({
+		$('chapters').insert(gclms.Views.get('chapter').interpolate({
 			id: tmpChapterId,
 			title: title
 		}));
 
-		GCLMS.Chapter.add({
+		gclms.Chapter.add({
 			bookId: $('chapters').getAttribute('book:id'),
 			title: title,
 			callback: function(request) {
 				$('chapter_' + tmpChapterId).setAttribute('chapter:id',request.responseText);
-				$('chapter_' + tmpChapterId).observeRules(GCLMS.Triggers.get('#chapters'));
+				$('chapter_' + tmpChapterId).observeRules(gclms.Triggers.get('#chapters'));
 			}
 		});	
 	},
 	getTitleForRename: function() {
-		GCLMS.popup.create({
+		gclms.popup.create({
 			text: this.down('button').getAttribute('gclms:prompt-text'),
 			value: $$('#chapters a.selected').first().innerHTML,
-			callback: GCLMS.ChaptersController.rename
+			callback: gclms.ChaptersController.rename
 		});
 	},
 	rename: function(title) {
@@ -55,25 +55,25 @@ GCLMS.ChaptersController = {
 
 		a.innerHTML = title;
 
-		GCLMS.Chapter.rename({
+		gclms.Chapter.rename({
 			id: a.up('li').getAttribute('chapter:id'),
 			title: title
 		});
 	},
 	confirmDelete: function() {
-		GCLMS.popup.create({
+		gclms.popup.create({
 			text: this.down('button').getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
 			type: 'confirm',
-			callback: GCLMS.ChaptersController.remove
+			callback: gclms.ChaptersController.remove
 		});
 		return false;		
 	},
 	remove: function() {	
 		li = $$('#chapters a.selected').first().up('li');
 		
-		GCLMS.Chapter.remove({id: li.getAttribute('chapter:id')});
+		gclms.Chapter.remove({id: li.getAttribute('chapter:id')});
 	
 		li.remove();
 	
@@ -87,7 +87,7 @@ GCLMS.ChaptersController = {
 	createSortables: function() {
 		Sortable.create($('chapters'),{
 			scroll: window,
-			onUpdate: GCLMS.ChaptersController.reorder
+			onUpdate: gclms.ChaptersController.reorder
 		});
 	},
 	reorder: function() {
@@ -95,14 +95,14 @@ GCLMS.ChaptersController = {
 		$('chapters').select('li').each(function(li){
 			chapterIds.push(li.getAttribute('chapter:id'));
 		});
-		GCLMS.Chapter.reorder({
+		gclms.Chapter.reorder({
 			bookId: $('chapters').getAttribute('book:id'),
 			chapterIds: chapterIds
 		});
 	}
 }
 
-GCLMS.Chapter = {
+gclms.Chapter = {
 	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/chapters/',
 	add: function(options) {
 		new Ajax.Request(this.ajaxUrl + 'add',{
@@ -136,23 +136,23 @@ GCLMS.Chapter = {
 	}
 }
 
-GCLMS.Views.update({
+gclms.Views.update({
 	chapter: '<li id="chapter_#{id}"><a href="#">#{title}</a></li>'
 });
 
-GCLMS.Triggers.update({
+gclms.Triggers.update({
 	'#gclms-menubar' : {
-		'#editChapter:click':		GCLMS.ChaptersController.edit,
-		'#deleteChapter:click':		GCLMS.ChaptersController.confirmDelete,
-		'#addChapter:click':		GCLMS.ChaptersController.getTitleForAddition,
-		'#renameChapter:click':		GCLMS.ChaptersController.getTitleForRename
+		'#editChapter:click':		gclms.ChaptersController.edit,
+		'#deleteChapter:click':		gclms.ChaptersController.confirmDelete,
+		'#addChapter:click':		gclms.ChaptersController.getTitleForAddition,
+		'#renameChapter:click':		gclms.ChaptersController.getTitleForRename
 	},
 
 	'#chapters' : {
-		':loaded':					GCLMS.ChaptersController.createSortables,
+		':loaded':					gclms.ChaptersController.createSortables,
 		'a' : {
-			':click':				GCLMS.ChaptersController.select,
-			':dblclick':			GCLMS.ChaptersController.edit
+			':click':				gclms.ChaptersController.select,
+			':dblclick':			gclms.ChaptersController.edit
 		}
 	}
 });

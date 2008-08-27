@@ -1,6 +1,6 @@
 /*global $, $A, $F, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, __, Draggable, Effect, location, Droppables, parent, top, swfobject */
 
-GCLMS.PageController = {
+gclms.PageController = {
     loadPage: function(){
         if (swfobject.getFlashPlayerVersion().major < 9) {
             $$('.gclms-upgrade-flash').first().removeClassName('gclms-hidden');
@@ -491,7 +491,7 @@ GCLMS.PageController = {
         var url = this.getAttribute('href').split('chapters/view/');
         
         top.Ext.getCmp('booksViewport').expand();
-        top.$('booksViewportContent').src = GCLMS.urlPrefix + 'chapters/view/' + url[1] + '?framed';
+        top.$('booksViewportContent').src = gclms.urlPrefix + 'chapters/view/' + url[1] + '?framed';
         event.stop();
     },
     
@@ -499,7 +499,7 @@ GCLMS.PageController = {
         var url = this.getAttribute('href').split('articles/view/');
         
         top.Ext.getCmp('articlesViewport').expand();
-        top.$('articlesViewportContent').src = GCLMS.urlPrefix + 'articles/view/' + url[1] + '?framed';
+        top.$('articlesViewportContent').src = gclms.urlPrefix + 'articles/view/' + url[1] + '?framed';
         event.stop();
     },
     
@@ -508,7 +508,7 @@ GCLMS.PageController = {
         
         top.Ext.getCmp('glossaryViewport').expand();
         //if (!top.$('glossaryViewportContent').contentDocument.body.innerHTML) {
-        top.$('glossaryViewportContent').src = GCLMS.urlPrefix + 'glossary/view/' + url[1] + '?framed';
+        top.$('glossaryViewportContent').src = gclms.urlPrefix + 'glossary/view/' + url[1] + '?framed';
         event.stop();
     },
     
@@ -523,7 +523,7 @@ GCLMS.PageController = {
     
     highlightCurrentPage: function(){
         try {
-            top.GCLMS.ClassroomController.highlightCurrentPage(location.href);
+            top.gclms.ClassroomController.highlightCurrentPage(location.href);
         } 
         catch (e) {
         }
@@ -551,38 +551,38 @@ GCLMS.PageController = {
     }
 };
 
-GCLMS.Triggers.update({
-    'div.gclms-page': GCLMS.PageController.loadPage,
-    'img.gclms-notebook:click': GCLMS.PageController.loadNotebook,
-    '#gradeQuestions:click': GCLMS.PageController.gradeQuestions,
+gclms.Triggers.update({
+    'div.gclms-page': gclms.PageController.loadPage,
+    'img.gclms-notebook:click': gclms.PageController.loadNotebook,
+    '#gradeQuestions:click': gclms.PageController.gradeQuestions,
     '.gclms-multiple-choice': {
-        'input[type="radio"]:change': GCLMS.PageController.checkMultipleChoiceSingleSelectionQuestion,
-        '.gclms-button.gclms-check-answer-button:click': GCLMS.PageController.checkMultipleChoiceMultipleSelectionQuestion
+        'input[type="radio"]:change': gclms.PageController.checkMultipleChoiceSingleSelectionQuestion,
+        '.gclms-button.gclms-check-answer-button:click': gclms.PageController.checkMultipleChoiceMultipleSelectionQuestion
     },
     '.gclms-matching': {
-        '.gclms-button.gclms-check-answer-button:click': GCLMS.PageController.checkMatchingQuestion,
-        'div.gclms-draggable': GCLMS.PageController.createMatchingDraggables,
-        'div.gclms-droppable': GCLMS.PageController.createMatchingDroppables
+        '.gclms-button.gclms-check-answer-button:click': gclms.PageController.checkMatchingQuestion,
+        'div.gclms-draggable': gclms.PageController.createMatchingDraggables,
+        'div.gclms-droppable': gclms.PageController.createMatchingDroppables
     },
     '.gclms-fill-in-the-blank': {
-        'input:keyup': GCLMS.PageController.expandFillInTheBlankField,
-        '.gclms-button.gclms-check-answer-button:click': GCLMS.PageController.checkFillInTheBlankQuestion
+        'input:keyup': gclms.PageController.expandFillInTheBlankField,
+        '.gclms-button.gclms-check-answer-button:click': gclms.PageController.checkFillInTheBlankQuestion
     },
     '.gclms-order-question': {
-        'ul': GCLMS.PageController.createOrderSortable,
-        '.gclms-button.gclms-check-answer-button:click': GCLMS.PageController.checkOrderQuestion
+        'ul': gclms.PageController.createOrderSortable,
+        '.gclms-button.gclms-check-answer-button:click': gclms.PageController.checkOrderQuestion
     },
-    '.gclms-essay-question .gclms-button.gclms-check-answer-button:click': GCLMS.PageController.checkEssayQuestion,
-    '.gclms-true-false .gclms-button.gclms-check-answer-button:click': GCLMS.PageController.checkTrueFalseQuestion,
+    '.gclms-essay-question .gclms-button.gclms-check-answer-button:click': gclms.PageController.checkEssayQuestion,
+    '.gclms-true-false .gclms-button.gclms-check-answer-button:click': gclms.PageController.checkTrueFalseQuestion,
     'div.gclms-framed': {
-        ':loaded': GCLMS.PageController.highlightCurrentPage,
-        'a[href*="/pages/view"]:click': GCLMS.PageController.gotoPageLink,
-        'a[href*="/www.bibleapi.net"]:click': GCLMS.PageController.loadBibleVerse,
-        'a[href*="/chapters/view"]:click': GCLMS.PageController.loadChapter,
-        'a[href*="/articles/view"]:click': GCLMS.PageController.loadArticle,
-        'a[href*="/glossary/view"]:click': GCLMS.PageController.loadGlossaryTerm
+        ':loaded': gclms.PageController.highlightCurrentPage,
+        'a[href*="/pages/view"]:click': gclms.PageController.gotoPageLink,
+        'a[href*="/www.bibleapi.net"]:click': gclms.PageController.loadBibleVerse,
+        'a[href*="/chapters/view"]:click': gclms.PageController.loadChapter,
+        'a[href*="/articles/view"]:click': gclms.PageController.loadArticle,
+        'a[href*="/glossary/view"]:click': gclms.PageController.loadGlossaryTerm
     },
-    //'embed[src*=.flv]:loaded,embed[src*=.mp4]:loaded': GCLMS.PageController.loadFlashPlayer
-	//'object[codebase*=swflash.cab]': GCLMS.PageController.loadFlashPlayer,
-	'param[value*="flv"],param[value*="mp4"]': GCLMS.PageController.loadFlashPlayer
+    //'embed[src*=.flv]:loaded,embed[src*=.mp4]:loaded': gclms.PageController.loadFlashPlayer
+	//'object[codebase*=swflash.cab]': gclms.PageController.loadFlashPlayer,
+	'param[value*="flv"],param[value*="mp4"]': gclms.PageController.loadFlashPlayer
 });

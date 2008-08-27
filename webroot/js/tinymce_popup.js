@@ -1,10 +1,10 @@
 var GCLMS = {};
 
-GCLMS.PopupController = {
+gclms.PopupController = {
     init : function () {
 		var allLinks = document.getElementsByTagName("link");
 		allLinks[allLinks.length-1].parentNode.removeChild(allLinks[allLinks.length-1]);
-		$(document.body).observeRules(GCLMS.Triggers);		
+		$(document.body).observeRules(gclms.Triggers);		
     },
     chooseImage: function () {
 		URL = this.getAttribute('href');
@@ -26,9 +26,9 @@ GCLMS.PopupController = {
     }
 }
 
-tinyMCEPopup.onInit.add(GCLMS.PopupController.init, GCLMS.PopupController);
+tinyMCEPopup.onInit.add(gclms.PopupController.init, gclms.PopupController);
 
-GCLMS.Triggers = $H({
-	'div.gclms-images a:click': GCLMS.PopupController.chooseImage,
-	'div.gclms-files a:click,div.gclms-links a:click': GCLMS.PopupController.chooseLink
+gclms.Triggers = $H({
+	'div.gclms-images a:click': gclms.PopupController.chooseImage,
+	'div.gclms-files a:click,div.gclms-links a:click': gclms.PopupController.chooseLink
 });

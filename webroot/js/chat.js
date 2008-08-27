@@ -27,7 +27,7 @@ ChatRules = {
 }
 
 if(document.body.getAttribute('gclms:controller') == 'Chat') {
-	GCLMS.Triggers.update(ChatRules);
+	gclms.Triggers.update(ChatRules);
 	if($('chatMessages')) {
 		new PeriodicalExecuter(updateChatRoom, 6);
 		$('chatMessages').scrollTop = $('chatMessages').scrollHeight;

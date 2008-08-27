@@ -4,7 +4,7 @@ gclms.NotebookController = {
 			title: $F('gclms-new-entry-title'),
 			content: $F('gclms-new-entry-content'),
 			callback: function(transport, json) {
-				self.reload();
+				window.location.reload();
 			}
 		});
 		event.stop();

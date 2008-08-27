@@ -54,7 +54,15 @@ echo $this->element('left_column'); ?>
 		</div>
 		<? foreach($this->data as $entry): ?>
 			<div class="gclms-notebook-entry">
-				<h2><?= $myTime->niceShortDate($entry['NotebookEntry']['created']) ?></h2>
+				<h2><?
+				if(!empty($entry['NotebookEntry']['title']))
+					echo $entry['NotebookEntry']['title'];
+				else
+					echo $myTime->niceShortDate($entry['NotebookEntry']['created'])
+				?></h2>
+				<? if(!empty($entry['NotebookEntry']['title'])): ?>
+					<p><em><?= $myTime->niceShortDate($entry['NotebookEntry']['created']) ?></em></p>
+				<? endif; ?>
 				<?= $entry['NotebookEntry']['content'] ?>
 			</div>
 		<? endforeach; ?>

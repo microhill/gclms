@@ -1,4 +1,4 @@
-/* global $, $$, Ajax, Element, GCLMS, document, window, self, __ */
+/* global $, $$, Ajax, Element, gclms, document, window, self, __ */
 gclms.CourseController = {
 	toggleNodeExpansion: function() {
 		var li = this.up('li');

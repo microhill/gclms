@@ -1,4 +1,4 @@
-var GCLMS = {};
+var gclms = {};
 
 gclms.PopupController = {
     init : function () {

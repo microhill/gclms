@@ -1,4 +1,4 @@
-/*global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, Event, __ */
+/*global $, $$, Ajax, Element, gclms, Sortable, document, window, self, UUID, Event, __ */
 
 gclms.ContentController = {
 	initialize: function() {

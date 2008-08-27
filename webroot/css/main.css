@@ -1233,7 +1233,7 @@ table.gclms-button {
 		padding: 2px 0 0 2px;
 	}
 	
-	.gclms-button div {
+	.gclms-button div,.gclms-center-column form .gclms-button div {
 		margin: 0;
 	}
 

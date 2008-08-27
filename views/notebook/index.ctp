@@ -32,6 +32,7 @@ echo $this->element('left_column'); ?>
 		<h2><? __('Add Entry') ?></h2>
 		<div class="gclms-new-notebook-entry">
 			<?
+			echo $form->create();
 			echo $form->input('title',array(
 				'label' =>'Title (optional)',
 				'between' => '<br/>',
@@ -50,6 +51,7 @@ echo $this->element('left_column'); ?>
 					'class' => 'gclms-submit'
 				)
 			)));
+			echo $form->end();
 			?>
 		</div>
 		<? foreach($this->data as $entry): ?>

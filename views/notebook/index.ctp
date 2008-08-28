@@ -1,4 +1,6 @@
 <?
+$html->css('notebook', null, null, false);
+
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
@@ -35,7 +37,7 @@ echo $this->element('left_column'); ?>
 			<?
 			echo $form->create();
 			echo $form->input('title',array(
-				'label' =>'Title (optional)',
+				'label' =>'Title',
 				'between' => '<br/>',
 				'id' => 'gclms-new-entry-title'
 			));
@@ -58,21 +60,16 @@ echo $this->element('left_column'); ?>
 		</div>
 		<div id="gclms-notebook-entries">
 			<? foreach($this->data as $entry): ?>
-				<div class="gclms-notebook-entry">
-					<h2><?
+				<div class="gclms-notebook-entry" id="<?= $entry['NotebookEntry']['id'] ?>">
+					<h2><a href="#"><?
 					if(!empty($entry['NotebookEntry']['title']))
 						echo $entry['NotebookEntry']['title'];
 					else
-						echo $myTime->niceShortDate($entry['NotebookEntry']['created'])
-					?></h2>
-					<? if(!empty($entry['NotebookEntry']['title'])): ?>
-						<p><em><?= $myTime->niceShortDate($entry['NotebookEntry']['created']) ?></em></p>
-					<? endif; ?>
-					<?= $entry['NotebookEntry']['content'] ?>
+						echo $myTime->niceShortDate($entry['NotebookEntry']['modified'])
+					?></a> <em><?= $myTime->niceShortDate($entry['NotebookEntry']['modified']) ?></em></h2>
+					<div class="gclms-notebook-entry-content"></div>
 				</div>
 			<? endforeach; ?>
 		</div>
 	</div>
-</div>
-
-<?= $this->element('right_column'); ?>
+</div><?= $this->element('right_column'); ?>

@@ -1,0 +1,27 @@
+.gclms-notebook-entry h2 em {
+	font-size: .65em;
+	font-weight: normal;
+}
+
+	.gclms-notebook-entry h2 a {
+		color: blue;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
+.gclms-notebook-entry-content {
+	display: none;
+}
+
+.gclms-notebook-entry.gclms-collapsed a {
+	
+}
+
+.gclms-notebook-entry.gclms-expanded h2 {
+	
+}
+
+#gclms-new-entry-title {
+	font-size: 1.3em;
+	width: 350px;
+}

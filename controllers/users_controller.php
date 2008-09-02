@@ -13,10 +13,9 @@ class UsersController extends AppController {
 		$this->Breadcrumbs->addHomeCrumb();
 
 		$cake_admin = isset($this->params[Configure::read('Routing.admin')]) ? Configure::read('Routing.admin') : null;
-		if($cake_admin)
-			$this->Breadcrumbs->addCrumb('Site Administration',array($cake_admin=>$cake_admin,'controller'=>'panel'));
-		if($this->action != Configure::read('Routing.admin') . '_index' && $this->action != 'login' && $this->action != 'register') {
-			$this->Breadcrumbs->addCrumb('Users',array($cake_admin=>$cake_admin,'action'=>'index'));
+		if($cake_admin) {
+			$this->Breadcrumbs->addCrumb('Site Administration','/administration/panel');
+			$this->Breadcrumbs->addCrumb('Users','/administration/users');
 		}
 		parent::beforeFilter();
 	}

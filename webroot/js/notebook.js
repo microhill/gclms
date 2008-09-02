@@ -1,40 +1,31 @@
-gclms.NotebookController = {
-	addEntry: function(event) {
-		event.stop();
-		
-		if($F('gclms-new-entry-title').empty()) {
-			alert('Title cannot be empty.');
-			return false;
-		}
-		
-		if($F('gclms-new-entry-content').empty()) {
-			alert('Entry cannot be empty.');
-			return false;
-		}
-		
-		var id = UUID.generate();
-		$('gclms-notebook-entries').insert({top: gclms.Views.get('notebook_entry').interpolate({
-			title: 'Saving...',
-			content: $F('gclms-new-entry-content'),
-			id: id 
-		})});
+gclms.notebookTinyMCEConfig = {
+	theme : 'advanced',
+	extended_valid_elements : 'a[name|href|target|title],em',
+	theme_advanced_buttons1 : '',
+	convert_urls: false,
+	tab_focus : ':next',
+	cleanup_serializer: 'xml',
+	gecko_spellcheck: true,
+	mode: "none",
+	theme_advanced_toolbar_location : 'top',
+	theme_advanced_toolbar_align : 'left',
+	theme_advanced_buttons1 : 'italic,bold,bullist,numlist,removeformat',
+	theme_advanced_buttons2 : '',
+	file_browser_callback : 'gclms.fileBrowser',
+	width: '100%',
+	height: '200px',
+    language: document.body.getAttribute('gclms:language'),
+	cleanup_serializer: 'xml',
+	button_tile_map: true,
+	theme_advanced_blockformats : '',
+	skin: 'gclms',
+	extended_valid_elements : 'a[name|href|target|title],em,i,ol,ul,li,u'
+};
 
-		gclms.NotebookEntry.add({
-			title: $F('gclms-new-entry-title'),
-			content: $F('gclms-new-entry-content'),
-			callback: function(transport, json) {
-				$(id).replace(gclms.Views.get('notebook_entry').interpolate({
-					title: json.NotebookEntry.title,
-					date: json.NotebookEntry.created,
-					content: json.NotebookEntry.content,
-					id: id
-				}));
-				$(id).observeRules(gclms.Triggers.get('.gclms-notebook-entry'))
-			}
-		});
-		
-		$('gclms-new-entry-title').value = '';
-		$('gclms-new-entry-content').value = '';
+gclms.NotebookController = {
+	enableTinyMCE: function() {
+		tinyMCE.settings = gclms.notebookTinyMCEConfig;
+		//tinyMCE.execCommand('mceAddControl', false, this.id);
 	},
 	
 	getContent: function(event) {
@@ -50,6 +41,10 @@ gclms.NotebookController = {
 				content.innerHTML = transport.responseText;
 			}
 		});
+	},
+	
+	gotoLink: function(event) {
+		this.setAttribute('href',this.getAttribute('href') + '?framed');
 	}
 }
 
@@ -77,10 +72,14 @@ gclms.NotebookEntry = {
 }
 
 gclms.Triggers.update({
-	'.gclms-new-notebook-entry .gclms-button:click': gclms.NotebookController.addEntry,
+	'div.gclms-framed': {
+		'a:click': gclms.NotebookController.gotoLink
+	},
 	'.gclms-notebook-entry': {
 		'h2 a:click': gclms.NotebookController.getContent
-	}
+	},
+	'form .gclms-button a:click': gclms.AppController.submitForm,
+	'textarea': gclms.NotebookController.enableTinyMCE
 });
 
 gclms.Views.update({

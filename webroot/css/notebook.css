@@ -1,3 +1,28 @@
+#gclms-notebook-archive {
+	float: right;
+	width: 250px;
+}
+
+.gclms-notebook-entry-modified {
+	font-style: italic;
+}
+
+.gclms-notebook-entry h1 a,.gclms-notebook-entry h2 a {
+	text-decoration: none;
+	color: black;
+}
+
+	.gclms-notebook-entry h1 a:hover,.gclms-notebook-entry h2 a:hover {
+		text-decoration: underline;
+		color: blue;
+	}
+
+#gclms-new-entry-title {
+	font-size: 1.3em;
+	width: 350px;
+}
+
+/*
 .gclms-notebook-entry h2 em {
 	font-size: .65em;
 	font-weight: normal;
@@ -21,7 +46,5 @@
 	
 }
 
-#gclms-new-entry-title {
-	font-size: 1.3em;
-	width: 350px;
-}
+
+*/

@@ -144,7 +144,7 @@ class AppController extends Controller {
     function administration_edit($id = null, $model = null) { $this->Common->edit($id,$model); }	
     function edit($id = null, $model = null) { $this->Common->edit($id,$model); }
 
-	function afterSave() { $this->Common->afterSave(); }
+	//function afterSave() { $this->Common->afterSave(); }
 
     function administration_delete($id) { $this->Common->delete($id); }
     function delete($id) { $this->Common->delete($id); }

@@ -36,7 +36,7 @@
 		'StudentCenter','Courses','Profile'
 	)) !== false && $user['super_administrator'] && empty($group))
 		echo $this->element('menu', array('items' => array(
-			array('controller'=>'administration','url' => '/administration/panel','label'=>__('Site Administration', true),'class'=>'gclms-administration')
+			array('controller'=>'administration','url' => '/administration','label'=>__('Site Administration', true),'class'=>'gclms-administration')
 		)));
 	?>
 </ul>

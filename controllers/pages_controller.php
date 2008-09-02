@@ -129,8 +129,7 @@ class PagesController extends AppController {
 		}
 
 		$this->saveQuestions($id);
-
-		parent::afterSave();
+		$this->afterSave();
 	}
 
 	function saveQuestions($id = null) {
@@ -160,16 +159,12 @@ class PagesController extends AppController {
 	}
 
 	function afterSave() {
-		$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/pages/view/' . $this->Node->id;
+		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/pages/view/' . $this->Node->id);
 	}
 
-    function delete($id) {
-    	$this->Node->delete($id);
-    	if(!$this->params['isAjax']) {
-    		$this->afterSave();
-    	}
-		exit;
-    }
+	function afterDelete() {
+		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path']);
+	}
 
     function rename($id) {
     	$title = $this->data['Node']['title'];

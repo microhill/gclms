@@ -41,40 +41,13 @@ if(@$showDefaultAddButton) {
 			'class' => 'gclms-add',
 			'text' => __('Add',true),
 			'phrases' => array(
-				'link:href' => $defaultAddButtonUri
+				'gclms:link-href' => $defaultAddButtonUri
 			)
-	))));
-	
-	echo $this->element('menubar',array('buttons' => array(
-		array(
-			'id' => 'gclms-add',
-			'class' => 'gclms-add',
-			'label' => 'Add',
-			'strings' => array(
-				'link:href' => $defaultAddButtonUri
-			),
-			'accesskey' => 'a'
 	))));
 }
 ?>
 
 <table class="gclms-records" width="100%">
-	<!-- tr class="gclms-menubar">
-		<td class="gclms-left">
-			<? if(@$showDefaultAddButton): ?>
-				<button class="gclms-add" link:href="<?= $defaultAddButtonUri ?>" id="gclmsAdd">
-					<? __(isset($defaultAddButtonTitle) ? $defaultAddButtonTitle : 'gclms-add') ?>
-				</button>
-			<? endif;
-			
-			if(isset($buttons))
-				echo $buttons;
-
-			?>
-		</td>
-		<td class="Center"></td>
-		<td class="Right Search"><!-- input type="text"/--></td>
-	</tr -->
 	<tr>
 		<td  colspan="3">
 			<? if(!empty($data)): ?>
@@ -88,7 +61,6 @@ if(@$showDefaultAddButton) {
 							'groupAndCoursePath'=>$groupAndCoursePath,
 							'group'=>@$group,
 							'course'=>@$course,
-							'lesson'=>@$lessonOrder,
 							'action'=>'view',
 							'id'=>$row[$modelName]['id'],
 							'section'=>@$virtual_class['id']);

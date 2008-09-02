@@ -8,6 +8,10 @@ ul, ol {
 	margin-right: 24px;
 }
 
+input[type="radio"] {
+	margin-left: 3px;
+}
+
 .gclms-choose-language {
 	position: absolute;
 	top: 0;

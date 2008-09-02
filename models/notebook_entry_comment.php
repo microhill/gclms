@@ -1,7 +1,6 @@
 <?php
-class NotebookEntry extends AppModel {
-	var $belongsTo = array('Course','User');
-	var $hasMany = array('NotebookEntryComment');
+class NotebookEntryComment extends AppModel {
+	var $belongsTo = array('NotebookEntry','User');
 	
 	function beforeSave() {
 		App::import('Vendor','HTMLPurifier',array('file'=>'htmlpurifier/HTMLPurifier.standalone.php'));
@@ -10,8 +9,7 @@ class NotebookEntry extends AppModel {
 			
 		$purifier = new HTMLPurifier($config);
 		
-		$this->data['NotebookEntry']['title'] = $purifier->purify($this->data['NotebookEntry']['title']);
-		$this->data['NotebookEntry']['content'] = $purifier->purify($this->data['NotebookEntry']['content']);
+		$this->data['NotebookEntryComment']['content'] = $purifier->purify($this->data['NotebookEntryComment']['content']);
 		
 		return true;
 	}

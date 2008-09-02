@@ -1,8 +1,8 @@
-tinyMCE.init(gclms.advancedTinyMCEConfig);
-
 gclms.Triggers.update({
+	'form .gclms-button.gclms-submit a:click': gclms.AppController.submitForm,
 	'textarea#GroupDescription' : function() {
-		tinyMCE.execCommand("mceAddControl", false, this.id);
+		tinyMCE.settings = gclms.simpleTinyMCEConfig;
+		tinyMCE.execCommand('mceAddControl', false, this.id);
 	},
 	'#gclms-clear-group-logo:click' : function(event) {
 		event.stop();

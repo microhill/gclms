@@ -31,7 +31,7 @@
 
 $cake_admin = Configure::read('Routing.admin');
 
-Router::connectNamed(array('group','course','file','class')); 
+Router::connectNamed(array('group','course','file','class','user')); 
 
 //Router::connect('/:group/:course/:controller/:action/*', array('group'=>null, 'courses'=>null));
 
@@ -52,6 +52,7 @@ if (file_exists(CONFIGS.'installed.txt')) {
 		array('controller'=>'Update'),
 		array('action'=> 'index', 'controller' => 'update'));
 
+	Router::connect('/administration',array($cake_admin => $cake_admin,'controller' => 'panel','action' => 'index'));
 	Router::connect('/administration/:controller/:action/*',array($cake_admin => $cake_admin));
 	Router::connect('/administration/:controller/*',array($cake_admin => $cake_admin));
 	Router::connect('/administration/*',array($cake_admin => $cake_admin,'controller'=>'panel'));
@@ -59,15 +60,21 @@ if (file_exists(CONFIGS.'installed.txt')) {
 	Router::connect('/courses/:action/', array('controller' => 'courses'));
 	Router::connect('/register/:action/*', array('controller' => 'register'));
 	Router::connect('/profile/:action/*', array('controller' => 'profile'));
+	
+	Router::connect('/notebook/:action/*', array('controller' => 'notebook'));
+	//Router::connect('/user/:user/:controller', array('controller' => 'profile'),array('user' => $UUID));
+	
 	Router::connect('/groups/:action/*', array('controller' => 'groups'));
 	
 	//[0-9]+
 	
 	Router::connect('/users/:action/*', array('controller' => 'users'));
 	
-	Configure::load('plugins');
-	$activatedPlugins = implode('|',array_keys(Configure::read('Plugins.activated')));
-	Router::connect('/:group/:course/:plugin/:action/*',array(),array('plugin'=>$activatedPlugins));
+
+	
+	//Configure::load('plugins');
+	//$activatedPlugins = implode('|',array_keys(Configure::read('Plugins.activated')));
+	//Router::connect('/:group/:course/:plugin/:action/*',array(),array('plugin'=>$activatedPlugins));
 	
 	Router::connect('/:group/', array('controller' => 'groups','action' => 'show'));
 

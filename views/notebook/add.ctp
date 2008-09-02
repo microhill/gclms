@@ -14,8 +14,8 @@ echo $this->element('left_column'); ?>
 		
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<div class="gclms-step-back"><a href="/notebook"><? __('Notebook') ?></a></div>		
-		<h1><?= __('Edit Notebook Entry') ?></h1>
+		<div class="gclms-step-back"><a href="/notebook"><? __('Notebook') ?></a></div>
+		<h1><?= __('Add Notebook Entry') ?></h1>
 		
 		<?
 		echo $form->create();

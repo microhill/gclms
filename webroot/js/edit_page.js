@@ -124,6 +124,7 @@ gclms.PagesController = {
 	},
 	
 	submitForm: function(event) {
+		event.stop();
 		var order = 0;
 		var noQuestionTitlesEmpty = true;
 		$$('input.gclms-question-title').each(function(node){
@@ -137,7 +138,6 @@ gclms.PagesController = {
 				cancelButtonText: null,
 				type: 'alert'
 			});
-			event.stop();
 		}
 		
 		$$('div.gclms-page-item').each(function(node){

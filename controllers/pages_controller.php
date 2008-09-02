@@ -62,6 +62,7 @@ class PagesController extends AppController {
 		$page = $this->Node->findById($id);
 		$this->data = $page;
 
+		/*
 		$directory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
 		if(!file_exists($directory))
 			mkdir($directory);
@@ -69,7 +70,6 @@ class PagesController extends AppController {
 		App::import('Vendor', 'mimetypehandler'.DS.'mimetypehandler');
 		$mime = new MimetypeHandler();
 
-		/*
 		if($handle = opendir($directory)) {
 		    while (false !== ($file = readdir($handle))) {
 		        if(is_dir($directory . DS . $file))

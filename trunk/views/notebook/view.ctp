@@ -15,12 +15,6 @@ echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
 		<div class="gclms-step-back"><a href="/notebook"><? __('Notebook') ?></a></div>
-		<div class="gclms-notebook-entry">
-			<h1><a href="<?= $groupAndCoursePath ?>/notebook/view/<?= $this->data['NotebookEntry']['id'] ?>"><?= $this->data['NotebookEntry']['title'];?></a></h1>
-			<p class="gclms-notebook-entry-modified"><?= $myTime->niceShortDate($this->data['NotebookEntry']['modified']) ?></p>
-			<?= $this->data['NotebookEntry']['content'] ?>
-		</div>
-
 		<? if(!empty($archive)): ?>
 			<div id="gclms-notebook-archive">
 				<h2><? __('Archive') ?></h2>
@@ -33,6 +27,11 @@ echo $this->element('left_column'); ?>
 				</ul>
 			</div>
 		<? endif; ?>
+		<div class="gclms-notebook-entry">
+			<h1><a href="<?= $groupAndCoursePath ?>/notebook/view/<?= $this->data['NotebookEntry']['id'] ?>"><?= $this->data['NotebookEntry']['title'];?></a></h1>
+			<p class="gclms-notebook-entry-modified"><?= $myTime->niceShortDate($this->data['NotebookEntry']['modified']) ?></p>
+			<?= $this->data['NotebookEntry']['content'] ?>
+		</div>
 		
 		<p>
 			<a href="/notebook/edit/<?= $this->data['NotebookEntry']['id'] ?>" class="gclms-edit-notebook-entry"><?= __('Edit') ?></a>

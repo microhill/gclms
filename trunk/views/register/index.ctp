@@ -4,8 +4,8 @@
 	<h1><?= __('Register') ?></h1>    
 	<?
 	echo $form->create('User', array('url' => '/register','autocomplete'=>'off'));
-	echo $form->input('new_username',array(
-		'label' =>  __('Username', true),
+	echo $form->input('email',array(
+		'label' =>  __('Email', true),
 		'between' => '<br/>'
 	));
 	echo $form->input('new_password',array(
@@ -16,16 +16,16 @@
 		'label' =>  __('Repeat Password', true),
 		'between' => '<br/>'
 	));
-	echo $form->input('email',array(
-		'label' =>  __('Email', true),
-		'between' => '<br/>'
-	));
 	echo $form->input('first_name',array(
 		'label' =>  __('First Name', true),
 		'between' => '<br/>'
 	));
 	echo $form->input('last_name',array(
 		'label' =>  __('Last Name', true),
+		'between' => '<br/>'
+	));
+	echo $form->input('new_alias',array(
+		'label' =>  __('Alias', true),
 		'between' => '<br/>'
 	));
 	echo $form->input('address_1',array(

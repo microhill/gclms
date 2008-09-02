@@ -274,12 +274,14 @@ gclms.Triggers = $H({
 		event.findElement('form').submit();
 	},
 	
+	/*
 	'.gclms-content .gclms-step-back a:click' : function(event){
 		if(!this.up('div').hasClassName('gclms-forceload')) {
-			history.go(-1);
+			self.history.go(-1);
 			event.stop();
 		}
 	},
+	*/
 
 	'.gclms-panel .gclms-top-right:click' : function(event) {
 		panel = $(this).up('.gclms-panel');

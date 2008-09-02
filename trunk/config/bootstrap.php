@@ -70,7 +70,7 @@ function array_invert($arr) {
 }
 
 function order($items, $text_direction) {
-	return $text_direction ? array_reverse($items) : $items;
+	return $text_direction != 'ltr' ? array_reverse($items) : $items;
 }
 
 /*

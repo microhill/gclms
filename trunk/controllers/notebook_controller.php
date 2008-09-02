@@ -1,18 +1,36 @@
 <?
 class NotebookController extends AppController {
-    var $uses = array('NotebookEntry');
+    var $uses = array('NotebookEntry','NotebookEntryComment');
     var $components = array('RequestHandler');
 	var $helpers = array('MyTime','Javascript');
-    
-	function add() {
-		$this->RequestHandler->setContent('json', 'text/x-json');
+	
+	function view($id) {
+    	$this->NotebookEntry->contain();
+    	$archive = $this->NotebookEntry->find('all',array(
+			'conditions' => array('NotebookEntry.user_id' => $this->viewVars['user']['id']), //,'NotebookEntry.course_id' => $this->viewVars['course']['id']
+			'order' => 'NotebookEntry.modified ASC',
+			'fields' => array('id','title','modified')
+		));
+    	$this->set('archive',$archive);
+
+    	$this->NotebookEntry->contain(array('NotebookEntryComment' => 'User'));
+    	$this->data = $this->NotebookEntry->findById($id);
+	}
+	
+	function add_comment() {
+		$this->data['NotebookEntryComment']['user_id'] = $this->viewVars['user']['id'];
+		$this->NotebookEntryComment->save($this->data['NotebookEntryComment']);
+		$this->redirect(Controller::referer());
+	}
+	
+	function edit($id) {
 		
-		$this->data['NotebookEntry']['course_id'] = $this->viewVars['course']['id'];
-		$this->data['NotebookEntry']['user_id'] = $this->viewVars['user']['id'];
-		$this->NotebookEntry->save($this->data['NotebookEntry']);
-		$this->NotebookEntry->contain();
-		$this->set('entry',$this->NotebookEntry->read());
-		$this->render('add','default');
+	}
+	
+	function add() {
+		if(!empty($this->data) && $this->NotebookEntry->save($this->data)) {
+			$this->redirect('/notebook');
+		}
 	}
 	
 	function content() {
@@ -20,13 +38,15 @@ class NotebookController extends AppController {
 	}
 	
     function index() {
-    	$this->NotebookEntry->contain();
-    	$notebook = $this->NotebookEntry->find('all',array(
-			'conditions' => array('NotebookEntry.user_id' => $this->viewVars['user']['id'],'NotebookEntry.course_id' => $this->viewVars['course']['id']),
-			'order' => 'NotebookEntry.created DESC',
-			'fields' => array('id','title','modified')
+
+		
+    	$entries = $this->NotebookEntry->find('all',array(
+			'conditions' => array('NotebookEntry.user_id' => $this->viewVars['user']['id']), // ,'NotebookEntry.course_id' => $this->viewVars['course']['id']
+			'order' => 'NotebookEntry.modified ASC',
+			'fields' => array('id','title','modified','content'),
+			'limit' => 5
 		));
 
-    	$this->data = $notebook;
+    	$this->set('entries',$entries);
     }
 }

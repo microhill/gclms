@@ -2,7 +2,8 @@
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
-	'gclms'
+	'gclms',
+	'edit_user'
 ), false);
 
 echo $this->element('no_column_background'); ?>

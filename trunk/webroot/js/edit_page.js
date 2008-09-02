@@ -77,8 +77,8 @@ gclms.PagesController = {
 	
 	insertTextarea: function(div) {
 		var test = div.insert({after: gclms.Views.get('textarea').interpolate({id: UUID.generate()})});
-		div.next('div.gclms-page-item').observeRules(gclms.Triggers.get('.gclms-edit-page')['.gclms-page-item']);
-		div.next('div.gclms-page-item').observeRules(gclms.Triggers.get('.gclms-edit-page')['.gclms-textarea']);
+		div.next('div.gclms-page-item').observeRules(gclms.Triggers.get('.gclms-page-item'));
+		div.next('div.gclms-page-item').observeRules(gclms.Triggers.get('.gclms-textarea'));
 		gclms.PagesController.configureMoveUpAndMoveDownButtons();
 		var windowHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight;
 		if((test.cumulativeOffset().top + test.offsetHeight + 500) > (document.body.scrollTop + windowHeight)) {
@@ -102,8 +102,8 @@ gclms.PagesController = {
 	insertQuestion: function(div) {
 		var test = div.insert({after: gclms.Views.get('question').interpolate({id: UUID.generate()})});
 		var nextDiv = div.next('div.gclms-page-item');
-		nextDiv.observeRules(gclms.Triggers.get('.gclms-edit-page')['.gclms-page-item']);
-		nextDiv.observeRules(gclms.Triggers.get('.gclms-edit-page')['.gclms-question']);
+		nextDiv.observeRules(gclms.Triggers.get('.gclms-page-item'));
+		nextDiv.observeRules(gclms.Triggers.get('.gclms-question'));
 		gclms.PagesController.configureMoveUpAndMoveDownButtons();
 		var windowHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight;
 		if((test.cumulativeOffset().top + test.offsetHeight + 150) > (document.body.scrollTop + windowHeight)) {
@@ -159,6 +159,7 @@ gclms.PagesController = {
 				alert(error);
 			}
 		}.bind(this));
+		this.up('form').submit();
 	},
 	
 	changePageAudio: function(event){
@@ -369,7 +370,7 @@ gclms.PagesController = {
 		answersDiv.insert(gclms.Views.get('multipleChoiceAnswer').interpolate({answer_id: UUID.generate(),question_id: div.getAttribute('question:id')}));		
 		answersDiv.displayAsBlock();
 		lastTable = answersDiv.select('table').last();
-		lastTable.observeRules(gclms.Triggers.get('.gclms-edit-page')['.gclms-question']['.gclms-multiple-choice']['.gclms-answer']);
+		lastTable.observeRules(gclms.Triggers.get('.gclms-question')['.gclms-multiple-choice']['.gclms-answer']);
 		lastTable.parentNode.displayAsBlock();		
 		event.stop();
 
@@ -383,7 +384,7 @@ gclms.PagesController = {
 		answersDiv.insert(gclms.Views.get('matchingAnswer').interpolate({answer_id: UUID.generate(),question_id: div.getAttribute('question:id')}));
 		answersDiv.displayAsBlock();
 		lastTable = answersDiv.select('table').last();
-		lastTable.observeRules(gclms.Triggers.get('.gclms-edit-page')['.gclms-question']['tr.gclms-matching']);
+		lastTable.observeRules(gclms.Triggers.get('.gclms-question')['tr.gclms-matching']);
 		lastTable.parentNode.displayAsBlock();
 		event.stop();
 		
@@ -397,7 +398,7 @@ gclms.PagesController = {
 		answersDiv.insert(gclms.Views.get('orderAnswer').interpolate({answer_id: UUID.generate(),question_id: div.getAttribute('question:id')}));
 		answersDiv.displayAsBlock();
 		lastTable = answersDiv.select('table').last();
-		lastTable.observeRules(gclms.Triggers.get('.gclms-edit-page')['.gclms-page-item']['tr.gclms-order']);
+		lastTable.observeRules(gclms.Triggers.get('.gclms-page-item')['tr.gclms-order']);
 		lastTable.parentNode.displayAsBlock();
 		event.stop();
 		
@@ -487,52 +488,49 @@ gclms.PagesController = {
 };
 
 gclms.Triggers.update({
-	'.gclms-edit-page' : {
-		':loaded': gclms.PagesController.loadTextareas,
-		'form.gclms-button.gclms-submit:click': gclms.PagesController.submitForm,		
-		//gclms.PagesController.submitForm,
-		'#PageAudioFile,#PageAudioFile:change': gclms.PagesController.changePageAudio,
-		'.gclms-top-buttons' : {
-			'.gclms-insert-textarea:click': gclms.PagesController.insertTextareaOnTopOfPage,
-			'.gclms-insert-question:click': gclms.PagesController.insertQuestionOnTopOfPage
-		},
-		'.gclms-page-item': {
-			':loaded': 	gclms.PagesController.configureMoveUpAndMoveDownButtons,
-			'.gclms-move-down:click,.gclms-move-up:click': gclms.PagesController.moveItem,
-			'.gclms-insert-textarea:click': gclms.PagesController.insertTextareaBelowPageItem,
-			'.gclms-insert-question:click': gclms.PagesController.insertQuestionBelowPageItem
-		},
-		'.gclms-textarea': {
-			'img.gclms-delete-textarea:click':gclms.PagesController.confirmDeleteTextarea,
-			'textarea.gclms-tinymce-enabled': gclms.PagesController.enableAdvancedTinyMCE
-		},
-		'.gclms-question': {
-			'input[type="radio"].gclms-question-type:click': gclms.PagesController.selectQuestionType,
-			'textarea.gclms-simple-tinymce-enabled.gclms-question-title': gclms.PagesController.enableSimpleTinyMCE,
-			'textarea.gclms-question-explanation': gclms.PagesController.enableAdvancedTinyMCE,
-			'img.gclms-delete-question:click':gclms.PagesController.confirmDeleteQuestion,
-			'.gclms-multiple-choice': {
-				'.gclms-answer': {
-					'tr.gclms-answer-explanation': {
-						'img.gclms-add-tinymce-box:click' : gclms.PagesController.addExplanationToMultipleChoiceAnswer,
-						'textarea': gclms.PagesController.enableAdvancedTinyMCE
-					},
-					'img.gclms-delete-answer:click': gclms.PagesController.confirmDeleteAnswer,
-					'input.gclms-multiple-choice-answer-correct:change': gclms.PagesController.toggleMultipleChoiceCorrectAnswer,
-					'textarea.gclms-simple-tinymce-enabled': gclms.PagesController.enableSimpleTinyMCE	
+	':loaded': gclms.PagesController.loadTextareas,
+	'form .gclms-button.gclms-submit a:click': gclms.PagesController.submitForm,
+	'#PageAudioFile,#PageAudioFile:change': gclms.PagesController.changePageAudio,
+	'.gclms-top-buttons' : {
+		'.gclms-insert-textarea:click': gclms.PagesController.insertTextareaOnTopOfPage,
+		'.gclms-insert-question:click': gclms.PagesController.insertQuestionOnTopOfPage
+	},
+	'.gclms-page-item': {
+		':loaded': 	gclms.PagesController.configureMoveUpAndMoveDownButtons,
+		'.gclms-move-down:click,.gclms-move-up:click': gclms.PagesController.moveItem,
+		'.gclms-insert-textarea:click': gclms.PagesController.insertTextareaBelowPageItem,
+		'.gclms-insert-question:click': gclms.PagesController.insertQuestionBelowPageItem
+	},
+	'.gclms-textarea': {
+		'img.gclms-delete-textarea:click':gclms.PagesController.confirmDeleteTextarea,
+		'textarea.gclms-tinymce-enabled': gclms.PagesController.enableAdvancedTinyMCE
+	},
+	'.gclms-question': {
+		'input[type="radio"].gclms-question-type:click': gclms.PagesController.selectQuestionType,
+		'textarea.gclms-simple-tinymce-enabled.gclms-question-title': gclms.PagesController.enableSimpleTinyMCE,
+		'textarea.gclms-question-explanation': gclms.PagesController.enableAdvancedTinyMCE,
+		'img.gclms-delete-question:click':gclms.PagesController.confirmDeleteQuestion,
+		'.gclms-multiple-choice': {
+			'.gclms-answer': {
+				'tr.gclms-answer-explanation': {
+					'img.gclms-add-tinymce-box:click' : gclms.PagesController.addExplanationToMultipleChoiceAnswer,
+					'textarea': gclms.PagesController.enableAdvancedTinyMCE
 				},
-				'img.gclms-add:click': gclms.PagesController.addMultipleChoiceAnswer
-			},
-			'.gclms-matching': {
 				'img.gclms-delete-answer:click': gclms.PagesController.confirmDeleteAnswer,
-				'img.gclms-add:click':gclms.PagesController.addMatchingAnswer
+				'input.gclms-multiple-choice-answer-correct:change': gclms.PagesController.toggleMultipleChoiceCorrectAnswer,
+				'textarea.gclms-simple-tinymce-enabled': gclms.PagesController.enableSimpleTinyMCE	
 			},
-			'tr.gclms-order' : {
-				'img.gclms-add:click': gclms.PagesController.addOrderAnswer,
-				'img.gclms-delete-answer:click': gclms.PagesController.confirmDeleteOrderAnswer,
-				'div.gclms-answers': gclms.PagesController.createSortablesForOrderQuestion
-			},
-			'tr.gclms-question-explanation img.gclms-add-tinymce-box:click': gclms.PagesController.addExplanationToQuestion
-		}
+			'img.gclms-add:click': gclms.PagesController.addMultipleChoiceAnswer
+		},
+		'.gclms-matching': {
+			'img.gclms-delete-answer:click': gclms.PagesController.confirmDeleteAnswer,
+			'img.gclms-add:click':gclms.PagesController.addMatchingAnswer
+		},
+		'tr.gclms-order' : {
+			'img.gclms-add:click': gclms.PagesController.addOrderAnswer,
+			'img.gclms-delete-answer:click': gclms.PagesController.confirmDeleteOrderAnswer,
+			'div.gclms-answers': gclms.PagesController.createSortablesForOrderQuestion
+		},
+		'tr.gclms-question-explanation img.gclms-add-tinymce-box:click': gclms.PagesController.addExplanationToQuestion
 	}
 });

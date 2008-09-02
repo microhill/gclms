@@ -13,63 +13,40 @@ echo $this->element('left_column'); ?>
 		
 <div class="gclms-center-column">
 	<div class="gclms-content">		
-		<!--script type="text/javascript">
-		    tinyMCE.init({
-		        theme : "advanced",
-		        width: "100%",
-		        plugins : "media",
-		        mode: "textareas",
-				relative_urls : false,
-		        editor_selector : "wysiwyg",
-				theme_advanced_buttons1 : "bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist",
-				theme_advanced_buttons2 : "",
-				theme_advanced_buttons3 : "",
-				theme_advanced_toolbar_location : "top",
-				theme_advanced_toolbar_align : "left",
-				extended_valid_elements : "a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]",
-				content_css : "/css/tinymce.css"
-		    });
-		</script-->
 		
 		<h1><?= __('Notebook') ?></h1>
-		<h2><? __('Add Entry') ?></h2>
-		<div class="gclms-new-notebook-entry">
-			<?
-			echo $form->create();
-			echo $form->input('title',array(
-				'label' =>'Title',
-				'between' => '<br/>',
-				'id' => 'gclms-new-entry-title'
-			));
-			echo $form->input('content',array(
-				'label' =>'',
-				'rows' => 20,
-				'cols' => 88,
-				'id' => 'gclms-new-entry-content',
-				'label' => false
-			));
-			echo $this->element('buttons',array('buttons' => array(
-				array(
-					'text' => __('Save',true),
-					'hover_color' => 'green',
-					'class' => 'gclms-submit'
-				)
-			)));
-			echo $form->end();
-			?>
-		</div>
-		<div id="gclms-notebook-entries">
-			<? foreach($this->data as $entry): ?>
-				<div class="gclms-notebook-entry" id="<?= $entry['NotebookEntry']['id'] ?>">
-					<h2><a href="#"><?
-					if(!empty($entry['NotebookEntry']['title']))
-						echo $entry['NotebookEntry']['title'];
-					else
-						echo $myTime->niceShortDate($entry['NotebookEntry']['modified'])
-					?></a> <em><?= $myTime->niceShortDate($entry['NotebookEntry']['modified']) ?></em></h2>
-					<div class="gclms-notebook-entry-content"></div>
-				</div>
-			<? endforeach; ?>
-		</div>
+
+		<? if(!empty($archive)): ?>
+			<div id="gclms-notebook-archive">
+				<h2><? __('Archive') ?></h2>
+				<ul>
+					<? foreach($archive as $entry): ?>
+						<li class="gclms-notebook-entry" id="<?= $entry['NotebookEntry']['id'] ?>">
+							<a href="/notebook/view/<?= $entry['NotebookEntry']['id'] ?>" title="Last modified: <?= $myTime->niceShortDate($entry['NotebookEntry']['modified']) ?>"><?= $entry['NotebookEntry']['title'];?></a>
+						</li>
+					<? endforeach; ?>
+				</ul>
+			</div>
+		<? endif; ?>
+		<?= $this->element('buttons',array('buttons' => array(
+			array(
+				'text' => __('Add Entry',true),
+				'href' => '/notebook/add'
+			)
+		)));
+		?>
+		
+		<? if(!empty($entries)): ?>
+			<div class="gclms-notebook-entries">
+				<? foreach($entries as $entry): ?>
+					<div class="gclms-notebook-entry">
+						<h2><a href="<?= $groupAndCoursePath ?>/notebook/view/<?= $entry['NotebookEntry']['id'] ?>"><?= $entry['NotebookEntry']['title'];?></a></h2>
+						<p class="gclms-notebook-entry-modified"><?= $myTime->niceShortDate($entry['NotebookEntry']['modified']) ?></p>
+						<?= $entry['NotebookEntry']['content'] ?>
+					</div>
+				<? endforeach; ?>
+			</div>
+		<? endif; ?>
+		
 	</div>
 </div><?= $this->element('right_column'); ?>

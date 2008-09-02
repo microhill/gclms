@@ -56,11 +56,19 @@ class CommonComponent extends Object {
     }
 	
     function delete($id) {
-        if($this->controller->{$this->controller->uses[0]}->delete($id) && !empty($this->itemName))
-			$this->controller->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully deleted.',true));
-		else if(!empty($this->itemName))
+        if($this->controller->{$this->controller->uses[0]}->delete($id)) {
+        	if(!empty($this->itemName)) {
+        		$this->controller->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully deleted.',true));
+        	}
+			if(method_exists($this->controller,'afterDelete')) {
+				$this->controller->afterDelete();
+			}
+			$this->afterSave();
+		}
+		else if(!empty($this->itemName)) {
 			$this->controller->Notifications->add(__('There was an error when attempting to delete the ' . low($this->itemName) . '.',true),'error');
-		$this->afterSave();
+			$this->controller->redirect($this->controller->referer());
+		}
     }
 	
 	function afterSave() {
@@ -71,9 +79,8 @@ class CommonComponent extends Object {
 		if(empty($this->controller->redirect)) {
 			if(!empty($this->controller->params['administration']))
 				$this->controller->params['administration'] = '/' . $this->controller->params['administration'];
-			$this->controller->redirect(@$this->params['administration'] . $this->controller->viewVars['groupAndCoursePath'] . '/' . Inflector::underscore($this->controller->name));
-		} else
-			$this->controller->redirect($this->controller->redirect);
-		exit;
+			$this->controller->redirect = @$this->controller->params['administration'] . $this->controller->viewVars['groupAndCoursePath'] . '/' . Inflector::underscore($this->controller->name);
+		}
+		$this->controller->redirect($this->controller->redirect);
 	}
 }

@@ -2,19 +2,18 @@
 
 var gclms = {};
 
-function __(text) {
-	return gclms.translated_phrases[text]; 
+function __(text){
+    try {
+        if(isset(gclms.translated_phrases[text])) {
+			return gclms.translated_phrases[text];	
+		}
+    } catch (e) {}
+	return text;
 }
 
 gclms.translated_phrases = [];
 
 gclms.AppController = {
-	gotoFramedLink: function(event) {
-		event.stop();
-		location.href = this.getAttribute('href') + '?framed';
-	},
-
-	/*
 	confirmRemove: function(event) {
 		event.stop();
 		gclms.popup.create({
@@ -30,11 +29,10 @@ gclms.AppController = {
 		if(form.getAttribute('gclms:deleteAction')) {
 			self.location.href = form.getAttribute('gclms:deleteAction');
 		} else {
-			action = this.up('form').getAttribute('action').split('edit');
-			self.location.href = action[0] + 'delete' + action[1];
+			action = this.up('form').getAttribute('action').split('/edit/');
+			self.location.href = action[0] + '/delete/' + action[1];
 		}
 	},
-	*/
 	showTooltip: function() {
 		if(!gclms.tooltip) {
 			gclms.tooltip = new Element('div', {
@@ -192,17 +190,26 @@ gclms.AppController = {
 				$('UserEmail').removeClassName('gclms-openid');				
 			}
 		}
-	}
+	},
+	submitForm: function(event) {
+		event.stop();
+		var form = this.up('form');
+		if($('gclms-page').hasClassName('gclms-framed')) {
+			form.setAttribute('action',form.getAttribute('action') + '?framed');
+		}
+		form.submit();
+	},
+	
 };
 
 gclms.Views = $H({});
 
 gclms.Triggers = $H({
-	'input#UserEmail:keyup,input#UserEmail:change,input#UserEmail:click,input#UserEmail:focus,input#UserEmail' : gclms.AppController.updateLoginPanel,
+	'#UserLogin input#UserEmail:keyup,#UserLogin input#UserEmail:change,#UserLogin input#UserEmail:click,#UserLogin input#UserEmail:focus,#UserLogin input#UserEmail' : gclms.AppController.updateLoginPanel,
 	'img.gclms-tooltip-button:mouseover': gclms.AppController.showTooltip,
 	'img.gclms-tooltip-button:mouseout': gclms.AppController.hideTooltip,
 	'.gclms-recordset' : {
-		'.gclms-recordset tr:click,.gclms-descriptive-recordset tr:click' : function() {
+		'tr:click,.gclms-descriptive-recordset tr:click' : function() {
 			tr = this.nodeName.toLowerCase() == 'tr' ? this : this.up('tr');
 			self.location.href = tr.select('a').first().getAttribute('href').toLowerCase();
 		},
@@ -227,13 +234,17 @@ gclms.Triggers = $H({
 		}
 	},
 
-	'.gclms-menubar button.gclms-add:click' : function(event) {
-		if(this.getAttribute('link:href')) {
-			self.location.href = this.getAttribute('link:href');
-		}
+	'.gclms-buttons': {
+		'.gclms-button.gclms-add a:click': function(event) {
+			if(this.getAttribute('gclms:link-href')) {
+				event.stop();
+				self.location.href = this.getAttribute('gclms:link-href');
+			}
+	
+		},
+		'.gclms-button.gclms-delete a:click': gclms.AppController.confirmRemove
 	},
 	'.gclms-content': {
-		'.gclms-button.gclms-delete:click': gclms.AppController.confirmRemove,
 		'.gclms-button:mousedown': function() {
 			this.down('td').addClassName('gclms-pressed');
 		},
@@ -278,8 +289,7 @@ gclms.popup = {
 	'create' : gclms.AppController.createPopup
 };
 
-document.observe("dom:loaded", function() {
-
+document.observe('dom:loaded', function() {
 	gclms.group = document.body.getAttribute('gclms:group');
 	gclms.course = document.body.getAttribute('gclms:course');
 	gclms.virtualClass = document.body.getAttribute('gclms:virtual-class');

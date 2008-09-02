@@ -205,16 +205,13 @@ legend {
 
 form {}
 
+	/*
 	form input.gclms-save,
 	form input.gclms-cancel
 	form input.gclms-delete {
 		font-size: 1.3em;
 	}
-
-	form input.gclms-save:hover,
-	form input.gclms-cancel:hover {
-		color: green;
-	}
+	*/
 
 	form div {
 		margin-top: 8px;
@@ -1207,19 +1204,20 @@ img.gclms-tooltip-button {
 }
 
 table.gclms-button {
-	cursor: pointer;
 	border-spacing: 0;
 }
 	
 	.gclms-button a {
 		text-decoration: none;
 		color: black;
+		cursor: pointer;
 	}
 	
-	.gclms-button:hover a {
+	.gclms-button a:hover {
 		text-decoration: underline;
 	}
 
+	.gclms-button.gclms-add,
 	.gclms-button.gclms-submit,
 	.gclms-button.gclms-delete {
 		font-size: 1.34em;		
@@ -1285,10 +1283,13 @@ table.gclms-button {
 		border-left: 1px solid #aaa;
 		border-right: 1px solid #aaa;
 		margin: 0;
-		padding-left: 8px;
-		padding-right: 8px;
 		line-height: 1.55em;
 	}
+	
+		.gclms-button .gclms-contain a {
+		padding-left: 8px;
+		padding-right: 8px;	
+		}
 	
 .gclms-buttons {
 	overflow: hidden;

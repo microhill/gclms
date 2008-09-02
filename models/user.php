@@ -41,6 +41,9 @@ class User extends AppModel {
 		'email' => array(
 			'rule' => VALID_NOT_EMPTY
 		),
+		'alias' => array(
+			'rule' => VALID_NOT_EMPTY
+		),		
 		'new_password' => array(
 			'rule' => array('checkNewPassword')
 		),

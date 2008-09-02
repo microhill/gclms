@@ -26,5 +26,6 @@ gclms.Triggers.update({
 		}
 	},
 	'div.gclms-add-course': gclms.CourseController.loadLanguageDetector,
-	'div.gclms-add-course #CourseTitle:change': gclms.CourseController.detectLanguage
+	'div.gclms-add-course #CourseTitle:change': gclms.CourseController.detectLanguage,
+	'form .gclms-button.gclms-submit a:click': gclms.AppController.submitForm,
 });

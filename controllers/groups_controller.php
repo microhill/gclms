@@ -54,7 +54,7 @@ class GroupsController extends AppController {
 			$this->User->contain();
 			$superAdminsitrators = $this->User->findAll(array('super_administrator' => 1));
 			foreach($superAdminsitrators as $superAdminsitrator) {
-				mail ($superAdminsitrator['User']['email'], __('Group Application',true), 'Someone has registered a group and is awaiting your approval.');
+				mail($superAdminsitrator['User']['email'], __('Group Application',true), 'Someone has registered a group and is awaiting your approval.','From: ' . Configure::read('App.administrator_email'));
 			}
 			$this->Notifications->add(__('Thank you for submitting your group. We will review your submission, and you will be notified by email indicating whether your group has been accepted.',true));
 			$this->redirect('/');

@@ -150,7 +150,7 @@ class AppController extends Controller {
     function administration_delete($id) { $this->Common->delete($id); }
     function delete($id) { $this->Common->delete($id); }
 
-    function afterDelete() { $this->afterSave(); }
+    //function afterDelete() { $this->afterSave(); }
 
 	function isAuthorized() {
  		$user = $this->viewVars['user'];

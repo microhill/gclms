@@ -177,7 +177,7 @@ gclms.ClassroomController = {
 	},
 	
 	activateNotebookTab: function() {
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/notebook?framed';
+		url = '/notebook?framed';
 		currentSrc = Ext.get('notebookViewportContent').dom.src;
 		if(currentSrc.indexOf(url) == -1) {
 			Ext.get('notebookViewportContent').dom.src = url;

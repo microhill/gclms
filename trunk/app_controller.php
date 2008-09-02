@@ -98,6 +98,7 @@ class AppController extends Controller {
 		
 		// Framed
 		$this->set('framed',isset($this->params['url']['framed']));
+		$this->set('framed_url_suffix',isset($this->params['url']['framed']) ? '?framed' : '');
     }
 	
 	function loadLocale() {

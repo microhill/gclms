@@ -43,6 +43,12 @@ echo $this->element('left_column'); ?>
 						<h2><a href="<?= $groupAndCoursePath ?>/notebook/view/<?= $entry['NotebookEntry']['id'] ?>"><?= $entry['NotebookEntry']['title'];?></a></h2>
 						<p class="gclms-notebook-entry-modified"><?= $myTime->niceShortDate($entry['NotebookEntry']['modified']) ?></p>
 						<?= $entry['NotebookEntry']['content'] ?>
+						<p class="gclms-entry-meta">
+							<? if(empty($entry['NotebookEntry']['private'])): ?>
+								<a href="/notebook/view/<?= $entry['NotebookEntry']['id'] ?>#comments">Comments (<?= count($entry['NotebookEntryComment']) ?>)</a>
+							<? endif; ?>
+							<a href="/notebook/edit/<?= $entry['NotebookEntry']['id'] ?>"><? __('Edit') ?></a>							
+						</p>
 					</div>
 				<? endforeach; ?>
 			</div>

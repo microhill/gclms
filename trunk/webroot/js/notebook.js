@@ -25,26 +25,7 @@ gclms.notebookTinyMCEConfig = {
 gclms.NotebookController = {
 	enableTinyMCE: function() {
 		tinyMCE.settings = gclms.notebookTinyMCEConfig;
-		//tinyMCE.execCommand('mceAddControl', false, this.id);
-	},
-	
-	getContent: function(event) {
-		event.stop();
-		var div = this.up('div.gclms-notebook-entry');
-		var content = div.down('div.gclms-notebook-entry-content');
-		content.innerHTML = '<img src="/img/permanent/spinner2007-09-14.gif"/>';
-		content.displayAsBlock();
-
-		gclms.NotebookEntry.getContent({
-			id: div.id,
-			callback: function(transport) {
-				content.innerHTML = transport.responseText;
-			}
-		});
-	},
-	
-	gotoLink: function(event) {
-		this.setAttribute('href',this.getAttribute('href') + '?framed');
+		tinyMCE.execCommand('mceAddControl', false, this.id);
 	}
 }
 
@@ -59,27 +40,15 @@ gclms.NotebookEntry = {
 			},
 			onComplete: options.callback
 		});
-	},
-	getContent: function(options) {
-		var request = new Ajax.Request(this.ajaxUrl + 'content', {
-			method: 'post',
-			parameters: {
-				'data[NotebookEntry][id]': options.id
-			},
-			onComplete: options.callback
-		});
 	}
 }
 
 gclms.Triggers.update({
 	'div.gclms-framed': {
-		'a:click': gclms.NotebookController.gotoLink
-	},
-	'.gclms-notebook-entry': {
-		'h2 a:click': gclms.NotebookController.getContent
+		'a:click': gclms.AppController.updateLink
 	},
 	'form .gclms-button a:click': gclms.AppController.submitForm,
-	'textarea': gclms.NotebookController.enableTinyMCE
+	'textarea#gclms-new-entry-content': gclms.NotebookController.enableTinyMCE
 });
 
 gclms.Views.update({

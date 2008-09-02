@@ -69,6 +69,7 @@ class PagesController extends AppController {
 		App::import('Vendor', 'mimetypehandler'.DS.'mimetypehandler');
 		$mime = new MimetypeHandler();
 
+		/*
 		if($handle = opendir($directory)) {
 		    while (false !== ($file = readdir($handle))) {
 		        if(is_dir($directory . DS . $file))
@@ -91,6 +92,7 @@ class PagesController extends AppController {
 			$this->data['Node']['external_audio_file'] = $this->data['Node']['audio_file'];
 			$this->data['Node']['audio_file'] = 'External URL';
 		}
+		*/
 		
 		$this->set('title',$this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('App.name'));
     }

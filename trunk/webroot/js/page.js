@@ -555,7 +555,7 @@ gclms.PageController = {
 
 gclms.Triggers.update({
     'div.gclms-page': gclms.PageController.loadPage,
-    'img.gclms-notebook:click': gclms.PageController.loadNotebook,
+    'img[src="/img/notebook-32.png"]:click': gclms.PageController.loadNotebook,
     '#gradeQuestions:click': gclms.PageController.gradeQuestions,
     '.gclms-multiple-choice': {
         'input[type="radio"]:change': gclms.PageController.checkMultipleChoiceSingleSelectionQuestion,

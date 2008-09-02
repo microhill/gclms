@@ -6,6 +6,7 @@ $javascript->link(array(
 	'prototype_extensions',
 	'gclms',
 	'vendors/uuid',
+	'vendors/tinymce3.1.0.1/tiny_mce',
 	'notebook'
 ), false);
 
@@ -36,43 +37,45 @@ echo $this->element('left_column'); ?>
 		<p>
 			<a href="/notebook/edit/<?= $this->data['NotebookEntry']['id'] ?>" class="gclms-edit-notebook-entry"><?= __('Edit') ?></a>
 		</p>
-		
-		<? if(!empty($this->data['NotebookEntryComment'])): ?>
-			<h2><? __('Comments') ?></h2>
-			<div class="gclms-notebook-entry-comments">
-				<? foreach($this->data['NotebookEntryComment'] as $comment): ?>
-					<div class="gclms-notebook-entry-comment">
-						<p>Posted by <?= $comment['User']['alias'] ?> at <?= $comment['created'] ?></p>
-						<?= $comment['content'] ?>
-					</div>
-				<? endforeach; ?>
-			</div>
+				
+		<? if(!empty($entry['NotebookEntry']['private'])): ?>
+			<? if(!empty($this->data['NotebookEntryComment'])): ?>
+				<h2><? __('Comments') ?></h2>
+				<div class="gclms-notebook-entry-comments">
+					<? foreach($this->data['NotebookEntryComment'] as $comment): ?>
+						<div class="gclms-notebook-entry-comment">
+							<p>Posted by <?= $comment['User']['alias'] ?> at <?= $comment['created'] ?></p>
+							<?= $comment['content'] ?>
+						</div>
+					<? endforeach; ?>
+				</div>
+			<? endif; ?>
+
+			<h2 id="comments"><? __('Leave a comment') ?></h2>
+			
+			<?= $form->create('NotebookEntryComment',array(
+				'url' => '/notebook/add_comment',
+				'class' => 'gclms-add-comment'
+			)); ?>
+				<?= $form->hidden('notebook_entry_id',array(
+					'value' => $this->data['NotebookEntry']['id']
+				)); ?>
+				<?= $form->input('content',array(
+					'label' =>'',
+					'rows' => 10,
+					'cols' => 60,
+					'class' => 'gclms-comment-content',
+					'label' => false
+				)); ?>
+				<?= $this->element('buttons',array('buttons' => array(
+					array(
+						'text' => __('Submit Comment',true),
+						'hover_color' => 'green',
+						'class' => 'gclms-submit'
+					)
+				)));
+				?>
+			<?= $form->end(); ?>
 		<? endif; ?>
-		
-		<h2><? __('Leave a comment') ?></h2>
-		
-		<?= $form->create('NotebookEntryComment',array(
-			'url' => '/notebook/add_comment',
-			'class' => 'gclms-add-comment'
-		)); ?>
-			<?= $form->hidden('notebook_entry_id',array(
-				'value' => $this->data['NotebookEntry']['id']
-			)); ?>
-			<?= $form->input('content',array(
-				'label' =>'',
-				'rows' => 10,
-				'cols' => 60,
-				'class' => 'gclms-comment-content',
-				'label' => false
-			)); ?>
-			<?= $this->element('buttons',array('buttons' => array(
-				array(
-					'text' => __('Submit Comment',true),
-					'hover_color' => 'green',
-					'class' => 'gclms-submit'
-				)
-			)));
-			?>
-		<?= $form->end(); ?>
 	</div>
 </div><?= $this->element('right_column'); ?>

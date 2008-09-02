@@ -18,7 +18,7 @@ echo $this->element('left_column'); ?>
 		<h1><?= __('Edit Notebook Entry') ?></h1>
 		
 		<?
-		echo $form->create();
+		echo $form->create('NotebookEntry',array('url' => '/notebook/edit/' . $this->data['NotebookEntry']['id']));
 		include 'form.ctp';
 		?>
 

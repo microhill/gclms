@@ -9,7 +9,7 @@ class NotebookController extends AppController {
     	$archive = $this->NotebookEntry->find('all',array(
 			'conditions' => array('NotebookEntry.user_id' => $this->viewVars['user']['id']), //,'NotebookEntry.course_id' => $this->viewVars['course']['id']
 			'order' => 'NotebookEntry.modified ASC',
-			'fields' => array('id','title','modified')
+			'fields' => array('id','title','private','modified')
 		));
     	$this->set('archive',$archive);
 
@@ -24,12 +24,25 @@ class NotebookController extends AppController {
 	}
 	
 	function edit($id) {
-		
+		if(!empty($this->data)) {
+			$this->data['NotebookEntry']['id'] = $id;
+			if($this->NotebookEntry->save($this->data))
+				$this->redirect('/notebook/view/' . $id . $this->viewVars['framed_url_suffix']);
+		}
+		$this->data = $this->NotebookEntry->findById($id);
 	}
 	
 	function add() {
+		if(!empty($this->data)) {
+			$this->data['NotebookEntry']['user_id'] = $this->viewVars['user']['id'];
+			if($this->NotebookEntry->save($this->data)) {
+				$id = $this->NotebookEntry->id;
+				$this->redirect('/notebook/view/' . $id . $this->viewVars['framed_url_suffix']);
+			}
+		}
+
 		if(!empty($this->data) && $this->NotebookEntry->save($this->data)) {
-			$this->redirect('/notebook');
+			$this->redirect('/notebook' . $this->viewVars['framed_url_suffix']);
 		}
 	}
 	
@@ -38,15 +51,22 @@ class NotebookController extends AppController {
 	}
 	
     function index() {
-
-		
     	$entries = $this->NotebookEntry->find('all',array(
 			'conditions' => array('NotebookEntry.user_id' => $this->viewVars['user']['id']), // ,'NotebookEntry.course_id' => $this->viewVars['course']['id']
-			'order' => 'NotebookEntry.modified ASC',
-			'fields' => array('id','title','modified','content'),
-			'limit' => 5
+			'order' => 'NotebookEntry.modified DESC',
+			'fields' => array('id','title','modified','private','content'),
+			//'limit' => 5
 		));
 
-    	$this->set('entries',$entries);
+	
+		$this->set('entries',$entries);
+
+    	$this->NotebookEntry->contain();
+    	$archive = $this->NotebookEntry->find('all',array(
+			'conditions' => array('NotebookEntry.user_id' => $this->viewVars['user']['id']), //,'NotebookEntry.course_id' => $this->viewVars['course']['id']
+			'order' => 'NotebookEntry.modified ASC',
+			'fields' => array('id','title','private','modified')
+		));
+    	$this->set('archive',$archive);
     }
 }

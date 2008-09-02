@@ -14,6 +14,20 @@ function __(text){
 gclms.translated_phrases = [];
 
 gclms.AppController = {
+	updateLink: function(event) {
+		var href = this.getAttribute('href');
+		if(href.include('?framed')) {
+			return true;
+		}
+		if(href.include('#')) {
+			href = this.getAttribute('href').split('#');
+			href = href[0] + '?framed#' + href[1];	
+		} else {
+			href += '?framed';
+		}
+		this.setAttribute('href',href);
+	},
+
 	confirmRemove: function(event) {
 		event.stop();
 		gclms.popup.create({

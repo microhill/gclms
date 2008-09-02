@@ -34,11 +34,11 @@ echo $form->input('content',array(
 <div>
 <?
 echo $form->radio('private',
-	array('1' => 'Yes', '0' => 'No'),
+	array(1 => 'Yes', 0 => 'No'),
 	array(
 		'legend' =>  false,
 		'separator' => '<br />',
-		'value' => 1
+		'value' => isset($this->data['NotebookEntry']['private']) ? $this->data['NotebookEntry']['private'] : 1
 	)
 );
 ?>

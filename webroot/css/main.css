@@ -1210,7 +1210,6 @@ table.gclms-button {
 	.gclms-button a {
 		text-decoration: none;
 		color: black;
-		cursor: pointer;
 	}
 	
 	.gclms-button a:hover {

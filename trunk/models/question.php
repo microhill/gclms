@@ -64,7 +64,12 @@ class Question extends AppModel {
 		if(empty($questionData[$type . 'Answer']))
 			$questionData[$type . 'Answer'] = array();
 			
-		$newAnswerIds = array_keys($questionData[$type . 'Answer']);
+		if(empty($questionData[$type . 'Answer']) || !is_array($questionData[$type . 'Answer'])) {
+			$newAnswerIds = array();
+		} else {
+			$newAnswerIds = array_keys($questionData[$type . 'Answer']);
+		}
+		
 		$deletedAnswerIds = array_diff($existingAnswerIds,$newAnswerIds);
 	
 		foreach($deletedAnswerIds as $answerId) {

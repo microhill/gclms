@@ -36,7 +36,7 @@ echo $this->element('left_column'); ?>
 			<a href="/notebook/edit/<?= $this->data['NotebookEntry']['id'] ?>" class="gclms-edit-notebook-entry"><?= __('Edit') ?></a>
 		</p>
 				
-		<? if(!empty($entry['NotebookEntry']['private'])): ?>
+		<? if(empty($entry['NotebookEntry']['private'])): ?>
 			<? if(!empty($this->data['NotebookEntryComment'])): ?>
 				<h2><? __('Comments') ?></h2>
 				<div class="gclms-notebook-entry-comments">

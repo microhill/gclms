@@ -13,7 +13,17 @@
 				}
 			}
 			//pr($url);
-			$trail[] = $html->link(__($title,true),$url,array('target'=>'_top','class' => @$class));
+
+			$attributes = array();
+			if(!empty($class)) {
+				$attributes['class'] = $class;
+			}
+			
+			if($this->name == 'Classroom') {
+				$attributes['target'] = '_top';
+			}
+
+			$trail[] = $html->link(__($title,true),$url,$attributes);
 		}
 
 		$divider = ' > ';

@@ -55,7 +55,7 @@ gclms.ContentController = {
 		gclms.ContentController.toggleMenubarButtons();
 		
 		gclms.Node.convertType({
-			id: li.getAttribute('gclms:node-id'),
+			id: li.getAttribute('gclms-node-id'),
 			type: type
 		});	
 	},
@@ -66,7 +66,7 @@ gclms.ContentController = {
 
 		var li = $$('#gclms-nodes a.selected').first().up('li');
 		if(li.hasClassName('gclms-page')) {
-			self.location = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/pages/edit/' + li.getAttribute('gclms:node-id');
+			self.location = '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/pages/edit/' + li.getAttribute('gclms-node-id');
 		}
 	},
 	confirmDeleteNode: function() {		
@@ -86,7 +86,7 @@ gclms.ContentController = {
 	deleteNode: function() {
 		var li = $$('#gclms-nodes a.selected').first().up('li');
 
-		gclms.Node.remove({id: li.getAttribute('gclms:node-id')});
+		gclms.Node.remove({id: li.getAttribute('gclms-node-id')});
 		var ul = li.up('ul');
 	
 		if(previousNode = li.previous('li')) {
@@ -122,7 +122,7 @@ gclms.ContentController = {
 		a.innerHTML = title;
 		
 		gclms.Node.rename({
-			id: a.up('li').getAttribute('gclms:node-id'),
+			id: a.up('li').getAttribute('gclms-node-id'),
 			title: title
 		});	
 	},
@@ -157,7 +157,7 @@ gclms.ContentController = {
 	
 		var ul = gclms.ContentController.selectListForNodeAddition();
 		var parentNode = ul.up('li.gclms-node');
-		var parentNodeId = parentNode ? parentNode.getAttribute('gclms:node-id') : 0;
+		var parentNodeId = parentNode ? parentNode.getAttribute('gclms-node-id') : 0;
 			
 		ul.insert(gclms.Views.get('node').interpolate({
 			id: id,
@@ -221,8 +221,8 @@ gclms.ContentController = {
 		}
 
 		gclms.Node.increaseIndent({
-			parentNodeId: previousNode.getAttribute('gclms:node-id'),
-			id: selectedNode.getAttribute('gclms:node-id'),
+			parentNodeId: previousNode.getAttribute('gclms-node-id'),
+			id: selectedNode.getAttribute('gclms-node-id'),
 			callback: function(request) {
 				document.body.insert(request.responseText);
 			}
@@ -255,8 +255,8 @@ gclms.ContentController = {
 		}
 		
 		gclms.Node.decreaseIndent({
-			parentNodeId: parentNodeList.up('li').getAttribute('gclms:node-id'),
-			id: selectedNode.getAttribute('gclms:node-id')
+			parentNodeId: parentNodeList.up('li').getAttribute('gclms-node-id'),
+			id: selectedNode.getAttribute('gclms-node-id')
 		});	
 		
 		parentNode.insert({after: selectedNode});
@@ -314,7 +314,7 @@ gclms.ContentController = {
 			
 		var selectedNode = selectedAnchor.up('li');
 			
-		if(!selectedNode || selectedNode.getAttribute('gclms:node-id') == '0') {
+		if(!selectedNode || selectedNode.getAttribute('gclms-node-id') == '0') {
 			return false;
 		}
 		
@@ -380,11 +380,11 @@ gclms.ContentController = {
 		if (ul.down('li')) {
 			var nodeIds = [];
 			$$('#' + ul.getAttribute('id') + ' > li').each(function(node){
-				nodeIds.push(node.getAttribute('gclms:node-id'));
+				nodeIds.push(node.getAttribute('gclms-node-id'));
 			});	
 			gclms.Node.reorder({
 				nodeIds: nodeIds,
-				parentNodeId: ul.up('li').getAttribute('gclms:node-id')
+				parentNodeId: ul.up('li').getAttribute('gclms-node-id')
 			});
 		}
 		
@@ -426,7 +426,7 @@ gclms.ContentController = {
 };
 
 gclms.Node = {
-	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/content/',
+	ajaxUrl: '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/content/',
 	PAGE_TYPE_INT: 0,
 	LABEL_TYPE_INT: 1,	
 	add: function(options) {
@@ -488,7 +488,7 @@ gclms.Node = {
 };
 
 gclms.Views.update({
-	node: '<li id="node_#{id}" gclms:node-id="#{id}" class="gclms-node #{typeClass}"> <img class="gclms-expand-button" src="/img/blank-1.png"/><span class="gclms-handle"> <img class="gclms-icon" src="/img/blank-1.png"/> <a href="#">#{title}</a></span><ul id="list_#{id}"></ul></li>'
+	node: '<li id="node_#{id}" gclms-node-id="#{id}" class="gclms-node #{typeClass}"> <img class="gclms-expand-button" src="/img/blank-1.png"/><span class="gclms-handle"> <img class="gclms-icon" src="/img/blank-1.png"/> <a href="#">#{title}</a></span><ul id="list_#{id}"></ul></li>'
 });
 
 Event.observe(window, 'scroll', gclms.ContentController.updateMenubars.bind(this));

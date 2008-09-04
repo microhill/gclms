@@ -169,11 +169,17 @@ gclms.PageController = {
         };
 		//	
 		swfobject.embedSWF('/js/vendors/flowplayer2.2.2/FlowPlayerLight.swf', $(parentNode).identify(), w, h, '9.0.0', '/js/vendors/swfobject2.1/expressInstall.swf', flashvars, params, attributes);
-    }
+    },
+	
+	enableTinyMCE: function() {
+		tinyMCE.settings = gclms.notebookAndEssayTinyMCEConfig;
+		tinyMCE.execCommand('mceAddControl', false, this.identify());
+	}
 };
 
 gclms.Triggers.update({
-    'div.gclms-page': gclms.PageController.loadPage,
+    'div.gclms-essay-question textarea': gclms.PageController.enableTinyMCE,
+	'div.gclms-page': gclms.PageController.loadPage,
     'img[src="/img/notebook-32.png"]:click': gclms.PageController.loadNotebook,
     //'#gradeQuestions:click': gclms.PageController.gradeQuestions,
     'div.gclms-framed': {
@@ -188,9 +194,6 @@ gclms.Triggers.update({
 	//'object[codebase*=swflash.cab]': gclms.PageController.loadFlashPlayer,
 	'param[value*="flv"],param[value*="mp4"]': gclms.PageController.loadFlashPlayer
 });
-
-
-
 
 /*
     gradeQuestions: function(event){
@@ -284,7 +287,7 @@ gclms.Triggers.update({
             return false;
         });
         $('gradeResults').update('Submitting grade...');
-        var request = new Ajax.Request('/' + document.body.getAttribute('gclms:group') + '/grades/update_assessment/section:' + document.body.getAttribute('section:id') + '/page:' + document.body.getAttribute('page:id') + '/grade:' + totalCorrectAnswers + '/maximum_possible:' + totalQuestions, {
+        var request = new Ajax.Request('/' + document.body.getAttribute('gclms-group') + '/grades/update_assessment/section:' + document.body.getAttribute('section:id') + '/page:' + document.body.getAttribute('page:id') + '/grade:' + totalCorrectAnswers + '/maximum_possible:' + totalQuestions, {
             onSuccess: function(request){
                 document.body.insert(request.responseText);
                 $('gradeResults').update('Your score is ' + totalCorrectAnswers + ' out of ' + totalQuestions + '.');
@@ -292,3 +295,23 @@ gclms.Triggers.update({
         });
     },
 */
+
+gclms.notebookAndEssayTinyMCEConfig = {
+	theme : 'advanced',
+	content_css: '/css/tinymce.css',
+	//theme_advanced_buttons1 : '',
+	convert_urls: false,
+	tab_focus : ':next',
+	gecko_spellcheck: true,
+	mode: 'none',
+	theme_advanced_toolbar_location : 'top',
+	theme_advanced_toolbar_align : 'left',
+	theme_advanced_buttons1 : 'bold,italic,underline,blockquote,bullist,numlist,removeformat',
+	theme_advanced_buttons2 : '',
+    language: document.body.getAttribute('gclms-language'),
+	//cleanup_serializer: 'xml',
+	button_tile_map: true,
+	extended_valid_elements : 'a[name|href|target|title],em,i,ol,ul,li,u,strong,b,u',
+	plugins: 'paste',
+	paste_auto_cleanup_on_paste: true
+};

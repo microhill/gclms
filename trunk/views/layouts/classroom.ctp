@@ -17,11 +17,11 @@
 	?>
 </head>
 <body
-	gclms:group="<?= @$group['web_path'] ?>"
-	gclms:course="<?= @$course['web_path'] ?>"
+	gclms-group="<?= @$group['web_path'] ?>"
+	gclms-course="<?= @$course['web_path'] ?>"
 	gclms:virtual-class="<?= @$class['id'] ?>"
-	gclms:controller="<?= $this->name ?>"
-	gclms:action="<?= $this->action ?>">
+	gclms-controller="<?= $this->name ?>"
+	gclms-action="<?= $this->action ?>">
 
 	<?= $this->element('no_column_background'); ?>
 	

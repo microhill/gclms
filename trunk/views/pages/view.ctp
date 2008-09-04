@@ -3,6 +3,13 @@ $html->css('page', null, null, false);
 $html->css($groupAndCoursePath . '/files/css/' . date('Y-m-d'), null, null, false);
 //$html->css($groupAndCoursePath . '/files/css', null, null, false);
 
+//If there are any essay questions
+if(in_array('5',Set::extract($node['Question'],'{n}.type'))) {
+	$javascript->link(array(
+		'vendors/tinymce3.1.0.1/tiny_mce'
+	), false);
+}
+
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',

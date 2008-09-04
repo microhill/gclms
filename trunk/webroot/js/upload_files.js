@@ -165,7 +165,7 @@ gclms.UploadFilesController = {
 };
 
 gclms.File = {
-	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/files/',
+	ajaxUrl: '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/files/',
 	remove: function(options){
 		var request = new Ajax.Request(this.ajaxUrl + 'delete', {
 			method: 'post',

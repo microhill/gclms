@@ -104,7 +104,7 @@ echo $this->element('left_column');
 
 		<div id="gclms-nodes" class="gclms-nodes gclms-expandable-list">
 			<ul id="<?= String::uuid() ?>">
-				<li gclms:node-id="0" class="gclms-course">
+				<li gclms-node-id="0" class="gclms-course">
 					<img class="gclms-icon" src="/img/blank-1.png" alt="Icon" />
 					<span>
 						<img class="gclms-icon" src="/img/blank-1.png" alt="Icon" />
@@ -126,7 +126,7 @@ echo $this->element('left_column');
 						echo '<ul id="' . String::uuid() . '">';
 						
 						foreach($nodes as $node) {
-							echo '<li id="node_' . $node['id'] . '" gclms:node-id="' . $node['id'] . '" class="gclms-node';			 
+							echo '<li id="node_' . $node['id'] . '" gclms-node-id="' . $node['id'] . '" class="gclms-node';			 
 							
 							if(!empty($node['ChildNode'])) {
 								if($level < 1)

@@ -82,7 +82,7 @@ gclms.ChaptersController = {
 		$$('#editChapter > button').first().disable();
 	},
 	edit: function(event){
-		self.location = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/chapters/edit/' + $$('#chapters a.selected').first().up('li').getAttribute('chapter:id');
+		self.location = '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/chapters/edit/' + $$('#chapters a.selected').first().up('li').getAttribute('chapter:id');
 	},
 	createSortables: function() {
 		Sortable.create($('chapters'),{
@@ -103,7 +103,7 @@ gclms.ChaptersController = {
 }
 
 gclms.Chapter = {
-	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/chapters/',
+	ajaxUrl: '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/chapters/',
 	add: function(options) {
 		new Ajax.Request(this.ajaxUrl + 'add',{
 			method: 'post',

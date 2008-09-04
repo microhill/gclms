@@ -3,12 +3,12 @@
 <? include 'views/layouts/head.ctp'; ?>
 
 <body
-		gclms:group="<?= @$group['web_path'] ?>"
-		gclms:course="<?= @$course['web_path'] ?>"
-		gclms:controller="<?= $this->name ?>"
-		gclms:action="<?= $this->action ?>"
-		gclms:direction="<? echo $text_direction; ?>"
-		gclms:language="<?= Configure::read('Config.language') ?>">
+		gclms-group="<?= @$group['web_path'] ?>"
+		gclms-course="<?= @$course['web_path'] ?>"
+		gclms-controller="<?= $this->name ?>"
+		gclms-action="<?= $this->action ?>"
+		gclms-direction="<? echo $text_direction; ?>"
+		gclms-language="<?= Configure::read('Config.language') ?>">
 	<div id="gclms-page" class="gclms-framed">
 		<?= $content_for_layout; ?>
 	</div>

@@ -5,6 +5,12 @@
 
 .gclms-notebook-entry-created {
 	font-style: italic;
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.gclms-notebook-entry h1 {
+	margin-bottom: 0;
 }
 
 .gclms-notebook-entry h1 a,.gclms-notebook-entry h2 a {

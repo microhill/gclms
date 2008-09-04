@@ -292,7 +292,7 @@ gclms.SelfCheckController = {
 		var question = this.up('.gclms-essay-question');
 		gclms.QuestionResponse.save({
 			questionId: question.getAttribute('gclms:question-id'),
-			answer: $F(question.down('textarea')),
+			answer: tinyMCE.get(question.down('textarea').id).getContent(),
 			callback: function(transport) {
 				//document.body.insert(transport.responseText);
 			}
@@ -301,7 +301,7 @@ gclms.SelfCheckController = {
 };
 
 gclms.QuestionResponse = {
-	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/question_responses/',
+	ajaxUrl: '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/question_responses/',
 	save: function(options){
 		var request = new Ajax.Request(this.ajaxUrl + 'save_essay', {
 			method: 'post',

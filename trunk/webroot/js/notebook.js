@@ -1,12 +1,12 @@
 gclms.NotebookController = {
 	enableTinyMCE: function() {
-		tinyMCE.settings = gclms.notebookTinyMCEConfig;
+		tinyMCE.settings = gclms.notebookAndEssayTinyMCEConfig;
 		tinyMCE.execCommand('mceAddControl', false, this.id);
 	}
 }
 
 gclms.NotebookEntry = {
-	ajaxUrl: '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/notebook/',
+	ajaxUrl: '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/notebook/',
 	add: function(options){
 		var request = new Ajax.Request(this.ajaxUrl + 'add.json', {
 			method: 'post',
@@ -38,7 +38,7 @@ if (!window.google || !google.gears) {
 }
 */
 
-gclms.notebookTinyMCEConfig = {
+gclms.notebookAndEssayTinyMCEConfig = {
 	theme : 'advanced',
 	content_css: '/css/tinymce.css',
 	//theme_advanced_buttons1 : '',
@@ -52,7 +52,7 @@ gclms.notebookTinyMCEConfig = {
 	theme_advanced_buttons2 : '',
 	width: '100%',
 	height: '300px',
-    language: document.body.getAttribute('gclms:language'),
+    language: document.body.getAttribute('gclms-language'),
 	//cleanup_serializer: 'xml',
 	button_tile_map: true,
 	extended_valid_elements : 'a[name|href|target|title],em,i,ol,ul,li,u,strong,b,u',

@@ -5,7 +5,7 @@ gclms.ClassroomController = {
 			Ext.get('lessonViewportContent').dom.src = gclms.urlPrefix + 'pages/view/' + href[1] + '?framed';
 		}
 		
-		//url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('gclms:virtual-class')
+		//url = '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/' + document.body.getAttribute('gclms:virtual-class')
 
 		Ext.BLANK_IMAGE_URL = '/img/blank-1.png';
 		
@@ -142,21 +142,21 @@ gclms.ClassroomController = {
 	},
 	
 	expandBooksViewport: function(){
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/books?framed';
+		url = '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/books?framed';
 		if(!Ext.get('booksViewportContent').loaded)
 			Ext.get('booksViewportContent').dom.src = url;
 		Ext.get('booksViewportContent').loaded = true;	
 	},
 	
 	expandArticlesViewport: function(){
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/articles?framed';
+		url = '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/articles?framed';
 		if(!Ext.get('articlesViewportContent').loaded)
 			Ext.get('articlesViewportContent').dom.src = url;
 		Ext.get('articlesViewportContent').loaded = true;
 	},
 	
 	expandGlossaryViewport: function(){
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/glossary?framed';
+		url = '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/glossary?framed';
 		if(!Ext.get('glossaryViewportContent').loaded)
 			Ext.get('glossaryViewportContent').dom.src = url;
 		Ext.get('glossaryViewportContent').loaded = true;
@@ -167,7 +167,7 @@ gclms.ClassroomController = {
 	},
 	
 	activateDiscussionTab: function() {
-		url = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/' + document.body.getAttribute('gclms:virtual-class') + '/discussion/forums?framed';
+		url = '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/' + document.body.getAttribute('gclms:virtual-class') + '/discussion/forums?framed';
 		currentSrc = Ext.get('discussionViewportContent').dom.src;
 		if(currentSrc.indexOf(url) == -1) {
 			Ext.get('discussionViewportContent').dom.src = url;

@@ -1,6 +1,6 @@
 <div class="gclms-essay-question" gclms:question-id="<?= $question['id'] ?>">
 	<h5><?= strip_tags($question['title'],'<a><em><b>') ?></h5>
-	<textarea><?= @$question['response'] ?></textarea>
+	<textarea cols="30" rows="10" id="<?= String::uuid() ?>"><?= @$question['response'] ?></textarea>
 	<? if(!empty($question['explanation'])): ?>
 		<div class="gclms-explanation">
 			<?= $question['explanation'] ?>

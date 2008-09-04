@@ -26,7 +26,7 @@ ChatRules = {
 	}
 }
 
-if(document.body.getAttribute('gclms:controller') == 'Chat') {
+if(document.body.getAttribute('gclms-controller') == 'Chat') {
 	gclms.Triggers.update(ChatRules);
 	if($('chatMessages')) {
 		new PeriodicalExecuter(updateChatRoom, 6);

@@ -12,7 +12,7 @@
 		echo '<ul>';
 		
 		foreach($nodes as $node) {
-			echo '<li gclms:node-id="' . $node['id'] . '" class="';			 
+			echo '<li gclms-node-id="' . $node['id'] . '" class="';			 
 			
 			if(!empty($node['ChildNode'])) {
 				if($level < 2)

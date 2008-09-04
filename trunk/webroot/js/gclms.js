@@ -1,10 +1,10 @@
-/*global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, $F, $H, __ */
+/*global $, $$, Ajax, Element, GCLMS, Sortable, document, window, self, UUID, $F, $H, __, Event, tinyMCE */
 
 var gclms = {};
 
 function __(text){
     try {
-        if(isset(gclms.translated_phrases[text])) {
+        if(gclms.translated_phrases[text]) {
 			return gclms.translated_phrases[text];	
 		}
     } catch (e) {}
@@ -39,11 +39,11 @@ gclms.AppController = {
 		});
 	},
 	remove: function() {
-		form = this.up('form');
+		var form = this.up('form');
 		if(form.getAttribute('gclms:deleteAction')) {
 			self.location.href = form.getAttribute('gclms:deleteAction');
 		} else {
-			action = this.up('form').getAttribute('action').split('/edit/');
+			var action = this.up('form').getAttribute('action').split('/edit/');
 			self.location.href = action[0] + '/delete/' + action[1];
 		}
 	},
@@ -212,8 +212,7 @@ gclms.AppController = {
 			form.setAttribute('action',form.getAttribute('action') + '?framed');
 		}
 		form.submit();
-	},
-	
+	}
 };
 
 gclms.Views = $H({});
@@ -224,10 +223,11 @@ gclms.Triggers = $H({
 	'img.gclms-tooltip-button:mouseout': gclms.AppController.hideTooltip,
 	'.gclms-recordset' : {
 		'tr:click,.gclms-descriptive-recordset tr:click' : function() {
-			tr = this.nodeName.toLowerCase() == 'tr' ? this : this.up('tr');
+			var tr = this.nodeName.toLowerCase() == 'tr' ? this : this.up('tr');
 			self.location.href = tr.select('a').first().getAttribute('href').toLowerCase();
 		},
 		'.gclms-headers th:click,.gclms-pagination .gclms-right a:click,.gclms-pagination .gclms-left a:click' : function(event) {
+			var element;
 			if(this.nodeName == 'TH') {
 				element = this.getElementsByTagName('a').item(0);
 			} else {
@@ -238,7 +238,7 @@ gclms.Triggers = $H({
 				return false;
 			}
 		
-			response = new Ajax.Updater('table',element.getAttribute('href'), {
+			var response = new Ajax.Updater('table',element.getAttribute('href'), {
 				requestHeaders: ['X-Update', 'table'],
 				onComplete: function() {
 					$('table').observeRules(gclms.Triggers.get('.gclms-records'));
@@ -284,9 +284,9 @@ gclms.Triggers = $H({
 	*/
 
 	'.gclms-panel .gclms-top-right:click' : function(event) {
-		panel = $(this).up('.gclms-panel');
-		div = panel.select('.gclms-panel-content').first();
-		button = panel.select('.gclms-button').first();
+		var panel = $(this).up('.gclms-panel');
+		var div = panel.select('.gclms-panel-content').first();
+		var button = panel.select('.gclms-button').first();
 		if(div.style.display == 'none') {
 			div.displayAsBlock();
 			button.removeClassName('gclms-down');
@@ -333,7 +333,6 @@ gclms.simpleTinyMCEConfig = {
 	theme_advanced_buttons1 : '',
 	convert_urls: false,
 	tab_focus : ':next',
-	cleanup_serializer: 'xml',
 	gecko_spellcheck: true,
 	mode: "none",
 	theme_advanced_toolbar_location : 'top',
@@ -417,6 +416,7 @@ gclms.fileBrowser = function(field_name, url, type, win) {
 		type = 'images';
 	}
 
+	var cmsURL;
 	if(type == 'images' || type == 'media') {
 	   	cmsURL = '/' + document.body.getAttribute('gclms:group') + '/' + document.body.getAttribute('gclms:course') + '/files/' + type + '/all';
 	} else {

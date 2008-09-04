@@ -2,11 +2,11 @@
 $html->css('notebook', null, null, false);
 
 $javascript->link(array(
+	'vendors/tinymce3.1.0.1/tiny_mce',
 	'vendors/prototype',
 	'prototype_extensions',
 	'gclms',
 	'vendors/uuid',
-	'vendors/tinymce3.1.0.1/tiny_mce',
 	'notebook'
 ), false);
 

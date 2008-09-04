@@ -1,4 +1,4 @@
-<?php
+<?
 class GroupsController extends AppController {
     var $uses = array('Group','GroupAdministrator','ClassEnrollee');
 	var $helpers = array('Paginator','MyPaginator','Text');

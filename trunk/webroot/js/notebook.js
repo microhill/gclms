@@ -1,27 +1,3 @@
-gclms.notebookTinyMCEConfig = {
-	theme : 'advanced',
-	extended_valid_elements : 'a[name|href|target|title],em',
-	theme_advanced_buttons1 : '',
-	convert_urls: false,
-	tab_focus : ':next',
-	cleanup_serializer: 'xml',
-	gecko_spellcheck: true,
-	mode: "none",
-	theme_advanced_toolbar_location : 'top',
-	theme_advanced_toolbar_align : 'left',
-	theme_advanced_buttons1 : 'italic,bold,bullist,numlist,removeformat',
-	theme_advanced_buttons2 : '',
-	file_browser_callback : 'gclms.fileBrowser',
-	width: '100%',
-	height: '200px',
-    language: document.body.getAttribute('gclms:language'),
-	cleanup_serializer: 'xml',
-	button_tile_map: true,
-	theme_advanced_blockformats : '',
-	skin: 'gclms',
-	extended_valid_elements : 'a[name|href|target|title],em,i,ol,ul,li,u'
-};
-
 gclms.NotebookController = {
 	enableTinyMCE: function() {
 		tinyMCE.settings = gclms.notebookTinyMCEConfig;
@@ -44,10 +20,10 @@ gclms.NotebookEntry = {
 }
 
 gclms.Triggers.update({
+	'form .gclms-button a:click': gclms.AppController.submitForm,
 	'div.gclms-framed': {
 		'a:click': gclms.AppController.updateLink
 	},
-	'form .gclms-button a:click': gclms.AppController.submitForm,
 	'textarea#gclms-new-entry-content': gclms.NotebookController.enableTinyMCE
 });
 
@@ -61,3 +37,25 @@ if (!window.google || !google.gears) {
 			"&return=" + location.href;
 }
 */
+
+gclms.notebookTinyMCEConfig = {
+	theme : 'advanced',
+	content_css: '/css/tinymce.css',
+	//theme_advanced_buttons1 : '',
+	convert_urls: false,
+	tab_focus : ':next',
+	gecko_spellcheck: true,
+	mode: 'none',
+	theme_advanced_toolbar_location : 'top',
+	theme_advanced_toolbar_align : 'left',
+	theme_advanced_buttons1 : 'bold,italic,underline,blockquote,bullist,numlist,removeformat',
+	theme_advanced_buttons2 : '',
+	width: '100%',
+	height: '300px',
+    language: document.body.getAttribute('gclms:language'),
+	//cleanup_serializer: 'xml',
+	button_tile_map: true,
+	extended_valid_elements : 'a[name|href|target|title],em,i,ol,ul,li,u,strong,b,u',
+	plugins: 'paste',
+	paste_auto_cleanup_on_paste: true
+};

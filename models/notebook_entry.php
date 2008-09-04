@@ -1,4 +1,4 @@
-<?php
+<?
 class NotebookEntry extends AppModel {
 	var $belongsTo = array('Course','User');
 	var $hasMany = array('NotebookEntryComment');
@@ -10,10 +10,23 @@ class NotebookEntry extends AppModel {
 			
 		$purifier = new HTMLPurifier($config);
 		
-		$this->data['NotebookEntry']['title'] = $purifier->purify($this->data['NotebookEntry']['title']);
-		$this->data['NotebookEntry']['content'] = $purifier->purify($this->data['NotebookEntry']['content']);
+		$this->data['NotebookEntry']['title'] = $purifier->purify(strip_tags($this->data['NotebookEntry']['title'],'i,em'));
+		$this->data['NotebookEntry']['content'] = $purifier->purify(@$this->data['NotebookEntry']['content']);
 		
 		return true;
+	}
+	
+	function getQuestionResponse(&$entry,$user_id) {
+		if(!empty($entry['NotebookEntry']['question_id']))	{
+			if(!isset($this->QuestionResponse)) {
+				App::import('Model','QuestionResponse');
+				$this->QuestionResponse = new QuestionResponse;		
+			}
+			$entry['NotebookEntry']['content'] = $this->QuestionResponse->field('answer',array(
+				'QuestionResponse.user_id' => $user_id,
+				'QuestionResponse.question_id' => $entry['NotebookEntry']['question_id']
+			));
+		}
 	}
 	
 	var $validate = array(
@@ -21,7 +34,7 @@ class NotebookEntry extends AppModel {
 			'rule' => VALID_NOT_EMPTY
 		),
 		'content' => array(
-			'rule' => VALID_NOT_EMPTY
+			//'rule' => VALID_NOT_EMPTY
 		)
 	);
 }

@@ -296,3 +296,9 @@ div.gclms-multiple-choice.gclms-single-selection .gclms-answer-status {
 .gclms-correct-answers-json {
 	display: none;
 }
+
+.gclms-essay-question textarea {
+	height: 200px;
+	width: 400px;
+	font-size: 1.1em;
+}

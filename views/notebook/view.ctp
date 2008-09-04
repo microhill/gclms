@@ -6,7 +6,6 @@ $javascript->link(array(
 	'prototype_extensions',
 	'gclms',
 	'vendors/uuid',
-	'vendors/tinymce3.1.0.1/tiny_mce',
 	'notebook'
 ), false);
 
@@ -29,7 +28,7 @@ echo $this->element('left_column'); ?>
 		<? endif; ?>
 		<div class="gclms-notebook-entry">
 			<h1><a href="<?= $groupAndCoursePath ?>/notebook/view/<?= $this->data['NotebookEntry']['id'] ?>"><?= $this->data['NotebookEntry']['title'];?></a></h1>
-			<p class="gclms-notebook-entry-modified"><?= $myTime->niceShortDate($this->data['NotebookEntry']['modified']) ?></p>
+			<p class="gclms-notebook-entry-created"><?= $myTime->niceShortDate($this->data['NotebookEntry']['created']) ?></p>
 			<?= $this->data['NotebookEntry']['content'] ?>
 		</div>
 		

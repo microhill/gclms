@@ -1,4 +1,4 @@
-<?php
+<?
 class RegisterController extends AppController {
     var $uses = array('User');
 

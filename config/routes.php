@@ -61,6 +61,8 @@ if (file_exists(CONFIGS.'installed.txt')) {
 	Router::connect('/register/:action/*', array('controller' => 'register'));
 	Router::connect('/profile/:action/*', array('controller' => 'profile'));
 	
+	//Router::connect('/question_responses/:action/*', array('controller' => 'question_responses'));
+	
 	Router::connect('/notebook/:action/*', array('controller' => 'notebook'));
 	//Router::connect('/user/:user/:controller', array('controller' => 'profile'),array('user' => $UUID));
 	
@@ -69,8 +71,6 @@ if (file_exists(CONFIGS.'installed.txt')) {
 	//[0-9]+
 	
 	Router::connect('/users/:action/*', array('controller' => 'users'));
-	
-
 	
 	//Configure::load('plugins');
 	//$activatedPlugins = implode('|',array_keys(Configure::read('Plugins.activated')));

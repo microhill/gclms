@@ -28,6 +28,21 @@ class PagesController extends AppController {
 			
 		$node['Node']['previous_page_id'] = $this->Node->findPreviousPageId($node);
 		$node['Node']['next_page_id'] = $this->Node->findNextPageId($node);
+		
+		App::import('Model','QuestionResponse');
+		$this->QuestionResponse = new QuestionResponse;
+
+		foreach($node['Question'] as &$question) {
+			if($question['type'] == 5) { //if essay question
+				$question_response = $this->QuestionResponse->find('first',array(
+					'conditions' => array('QuestionResponse.user_id' => $this->viewVars['user']['id'],'QuestionResponse.question_id' => $question['id'])
+				));
+				if(!empty($question_response)) {
+					$question['response'] = $question_response['QuestionResponse']['answer'];
+				}
+			}
+		}
+		
 		//pr($node['Node']['next_page_id']);
 		$this->set('node',$node);
 		

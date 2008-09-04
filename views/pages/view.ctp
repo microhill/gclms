@@ -11,7 +11,8 @@ $javascript->link(array(
 	'vendors/scriptaculous1.8.1/dragdrop',
 	'vendors/scriptaculous1.8.1/effects',
 	'vendors/swfobject2.1/swfobject',
-	'page'
+	'page',
+	'page_selfcheck'
 ), false);
 
 echo $this->element('no_column_background');

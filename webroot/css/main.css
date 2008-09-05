@@ -1121,14 +1121,14 @@ img.gclms-tooltip-button {
 }
 
 	.gclms-menubar td {
-		background-image: url('/img/button-background.png');
-		background-color: #ededed;
+		background-image: url('http://www.google.com/images/button-bg.gif');
+		background-color: #ddd;
 		margin-right: 4px;
 	}
 
 	.gclms-menubar button {
 		font-size: 1.1em;
-		border: 1px solid #8B8B8B;
+		border: 1px solid #aaa;
 		background-color: transparent;
 		background-repeat: no-repeat;
 		

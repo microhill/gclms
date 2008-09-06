@@ -18,10 +18,10 @@ echo $this->element('no_column_background'); ?>
 		<table class="gclms-buttons">
 			<tr>
 				<td>
-					<button href="<?= $groupAndCoursePath ?>/forums/add_topic/forum:<?= $forum['Forum']['id'] ?>">New Topic</button>
+					<button href="<?= $groupAndCoursePath ?>/forum_posts/add/forum:<?= $forum['Forum']['id'] ?>">New Topic</button>
 				</td>
 				<td>
-					<button href="<?= $groupAndCoursePath ?>/forums/delete_forum/<?= $forum['Forum']['id'] ?>">Delete Forum</button>
+					<button href="<?= $groupAndCoursePath ?>/forums/delete/<?= $forum['Forum']['id'] ?>">Delete Forum</button>
 				</td>
 			</tr>
 		</table>

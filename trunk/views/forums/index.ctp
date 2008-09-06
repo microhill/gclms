@@ -1,4 +1,6 @@
 <?
+$html->css('forums', null, null, false);
+
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
@@ -8,11 +10,11 @@ echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
 		<h1><? __('Forums') ?></h1>
-		<button href="forums/add_forum">Add Forum</button>
+		<button href="forums/add">Add Forum</button>
 		
-		<div class="Records">
+		<div class="gclms-records">
 			<table class="gclms-tabular">
-				<tr class="Headers">
+				<tr class="gclms-headers">
 					<th>
 						<div class="gclms-left">Forum</div>
 					</th>
@@ -28,9 +30,9 @@ echo $this->element('left_column'); ?>
 				</tr>
 			<? foreach($this->data as $forum): ?>
 				<tbody class="gclms-descriptive-recordset">
-					<tr>
+					<tr href="<?= $groupAndCoursePath ?>/forums/view/<?= $forum['Forum']['id'] ?>">
 						<td>
-							<span class="gclms-forum-title"><a href="<?= $groupAndCoursePath ?>/forums/forum/<?= $forum['Forum']['id'] ?>"><?= $forum['Forum']['title'] ?></a></span>
+							<span class="gclms-forum-title"><?= $forum['Forum']['title'] ?></span>
 							<?
 							if(!empty($forum['Forum']['title']))
 								echo '<br/>' . $forum['Forum']['description'];

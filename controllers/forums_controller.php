@@ -1,7 +1,13 @@
 <?
-class DiscussionController extends AppController {
+class ForumsController extends AppController {
     var $uses = array('Forum','ForumPost');
 	var $helpers = array('Time','MyTime','Text');
+
+	function beforeRender() {
+		$this->defaultBreadcrumbsAndLogo();
+		$this->Breadcrumbs->addCrumb('Forums','/' . $this->viewVars['groupAndCoursePath'] . '/discussion');
+		parent::beforeRender();
+	}
 
 	function forums() {
 		return $this->index();

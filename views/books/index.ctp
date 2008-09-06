@@ -16,15 +16,7 @@ echo $this->element('left_column'); ?>
 		<?= $this->element('notifications'); ?>
 		<? if(!$framed): ?>
 			<h1><? __('Books') ?></h1>
-			<? echo $this->element('buttons',array('buttons' => array(
-				array(
-					'id' => 'addBook',
-					'class' => 'gclms-add',
-					'text' => __('Add Book',true),
-					'href' => 'books/add'
-				)
-			)));
-			?>
+			<button href="books/add"><? __('Add') ?></button>
 		<? endif; ?>
 
 		<div id="gclms-books">

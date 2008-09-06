@@ -290,11 +290,12 @@ gclms.SelfCheckController = {
 	saveEssayQuestion: function(event) {
 		event.stop();
 		var question = this.up('.gclms-essay-question');
+		alert(tinyMCE.get(question.down('textarea').id).getContent());
 		gclms.QuestionResponse.save({
 			questionId: question.getAttribute('gclms:question-id'),
 			answer: tinyMCE.get(question.down('textarea').id).getContent(),
 			callback: function(transport) {
-				//document.body.insert(transport.responseText);
+				document.body.insert(transport.responseText);
 			}
 		});
 	}

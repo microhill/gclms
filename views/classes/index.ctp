@@ -11,19 +11,8 @@ echo $this->element('left_column');
 <div class="gclms-center-column">
 	<div class="gclms-content">
 		<h1><? __('Classes') ?></h1>
+		<button href="classes/add">Add</button>
 		<?
-		
-		echo $this->element('menubar',array('buttons' => array(
-			array(
-				'id' => 'gclms-add',
-				'class' => 'gclms-add',
-				'label' => 'Add',
-				'strings' => array(
-					'link:href' => $groupWebPath . '/classes/add'
-				),
-				'accesskey' => 'a'
-		))));
-
 		foreach($this->data as $course_id => $classes) {
 			?><p><strong><?= $courses[$course_id]['title'] ?></strong></p><ul><?
 			foreach($classes as $class) {

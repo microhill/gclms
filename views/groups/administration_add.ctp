@@ -16,8 +16,7 @@ echo $this->element('no_column_background'); ?>
 		<?
 		echo $form->create('Group', array('action' => 'add','type'=>'file'));
 		include('form.ctp');
-		echo $this->element('save_button');
-		echo $form->end();
+		echo $form->end('Save');
 		?>
 	</div>
 </div>

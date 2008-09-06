@@ -15,17 +15,7 @@ echo $this->element('left_column'); ?>
 		<?= $this->element('notifications'); ?>
 		<? if(!$framed): ?>
 			<h1><? __('Glossary') ?></h1>
-			<div id="gclms-menubars">
-				<?
-				echo $this->element('menubar',array('buttons' => array(
-					array(
-						'id' => 'addGlossaryTerm',
-						'class' => 'gclms-add',
-						'label' => __('Add Term',true),
-						'accesskey' => 'a'
-					)
-				)));
-				?>
+			<button href="glossary/add"><? __('Add') ?></button>
 			</div>
 		<? endif; ?>
 		<ul class="glossary">

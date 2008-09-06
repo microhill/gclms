@@ -15,7 +15,6 @@ echo $this->element('no_column_background'); ?>
 	<?
 	echo $form->create('User', array('url'=>'/administration/users/add'));
 	include('form.ctp');
-	echo $this->element('save_button');
-	echo $form->end();
+	echo $form->end('Save');
 	?>
 </div>

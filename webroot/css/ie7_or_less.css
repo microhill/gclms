@@ -10,3 +10,7 @@ legend {
     font-family: Segoe UI, Arial, Tahoma, Helvetica, sans-serif;
     -moz-outline: 0px none;
 }
+
+input[type="submit"],input[type="button"],button {
+	padding: 0 5px 0 5px;
+}

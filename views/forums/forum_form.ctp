@@ -11,9 +11,9 @@ echo $form->input('description',array(
 
 echo $form->radio('type',
 	array(
-		0 => __('This forum is created for each classroom', true),
-		1 => __('This is a persistent forum open to any user', true),
-		2 => __('Only associated facilitators can view this forum', true)
+		0 => __('Template; particiation specific to facilitated class', true),
+		1 => __('Persistent; open to any user', true),
+		2 => __('Persistent; open to associated facilitators', true)
 	),
 	array(
 		'separator' => '<br />'

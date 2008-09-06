@@ -36,7 +36,7 @@ class ForumsController extends AppController {
 		
 		if($this->Forum->delete($id))
 		
-		$this->afterSave();	
+		$this->Common->afterSave();	
 	}
 	
 	function forum($id) {

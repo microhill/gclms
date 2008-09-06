@@ -6,6 +6,7 @@ $javascript->link(array(
 	'prototype_extensions',
 	'gclms'
 ), false);
+
 echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">

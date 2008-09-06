@@ -8,10 +8,7 @@ class ForumsController extends AppController {
 		$this->Breadcrumbs->addCrumb('Forums','/' . $this->viewVars['groupAndCoursePath'] . '/forums');
 		parent::beforeRender();
 	}
-
-	function forums() {
-		return $this->index();
-	}
+	
 	function index() {
 		$this->data = $this->Forum->findAll();
 	}	

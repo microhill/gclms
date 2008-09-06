@@ -21,7 +21,7 @@ echo $this->element('no_column_background'); ?>
 					<button href="<?= $groupAndCoursePath ?>/forum_posts/add/forum:<?= $forum['Forum']['id'] ?>">New Topic</button>
 				</td>
 				<td>
-					<button href="<?= $groupAndCoursePath ?>/forums/delete/<?= $forum['Forum']['id'] ?>">Delete Forum</button>
+					<button href="<?= $groupAndCoursePath ?>/forums/delete/<?= $forum['Forum']['id'] ?>" gclms:confirm-text="<? __('Are you sure you want to delete this forum?') ?>">Delete Forum</button>
 				</td>
 			</tr>
 		</table>
@@ -44,7 +44,7 @@ echo $this->element('no_column_background'); ?>
 				</tr>
 			<? foreach($this->data as $post): ?>
 				<tbody class="gclms-descriptive-recordset">
-					<tr href="<?= $groupAndCoursePath ?>/forums/topic/<?= $post['ForumPost']['id'] ?>">
+					<tr href="<?= $groupAndCoursePath ?>/forum_posts/view/<?= $post['ForumPost']['id'] ?>">
 						<td>
 							<span class="gclms-forum-post-title"><?= $post['ForumPost']['title'] ?></span>
 							<?

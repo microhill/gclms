@@ -209,7 +209,19 @@ gclms.AppController = {
 		this.addClassName('gclms-disabled');
 	},
 	gotoLink: function() {
-		location.href = this.getAttribute('href');
+		if(this.getAttribute('gclms:confirm-text')) {
+			gclms.popup.create({
+				text: this.getAttribute('gclms:confirm-text'),
+				confirmButtonText: __('Yes'),
+				cancelButtonText: __('No'),
+				type: 'confirm',
+				callback: function() {
+					location.href = this.getAttribute('href');
+				}.bind(this)
+			});
+		} else {
+			location.href = this.getAttribute('href');
+		}
 	}
 };
 

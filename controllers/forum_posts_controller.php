@@ -9,7 +9,7 @@ class ForumPostsController extends AppController {
 		parent::beforeRender();
 	}
 	
-	function add_topic() {
+	function add() {
 		$this->set('forum',$this->Forum->findById($this->passedArgs['forum']));
 		
 		if(!empty($this->data)) {
@@ -17,18 +17,17 @@ class ForumPostsController extends AppController {
 		}
 		
 		parent::add('ForumPost');
-		return $this->render('add_topic');
+		return $this->render('add');
 	}
 	
-	function edit_topic() {
+	function edit() {
 		parent::edit('ForumPost');
-		return $this->render('edit_topic');
+		return $this->render('edit');
 	}
 	
-	function topic($id) {
+	function view($id) {
 		$this->ForumPost->contain(array('Forum','User','Reply' => 'User'));
 		$this->data = $this->ForumPost->findById($id);
-		return $this->render('topic');
 	}
 	
 	function reply($id) {

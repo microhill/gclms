@@ -12,8 +12,8 @@ echo $this->element('no_column_background'); ?>
 	<?= $this->element('notifications'); ?>
 	<h1><?= __('Add Forum') ?></h1>    
 	<?
-	echo $form->create('Forum', array('url'=>$groupAndCoursePath . '/forums/add_forum'));
-	include('forum_form.ctp');
+	echo $form->create('Forum', array('url'=>$groupAndCoursePath . '/forums/add'));
+	include('form.ctp');
 	echo $form->submit(__('Save',true),array('class'=>'gclms-save'));
 	echo $form->end();
 	?>

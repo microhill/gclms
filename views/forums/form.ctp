@@ -16,6 +16,7 @@ echo $form->radio('type',
 		2 => __('Persistent; open to associated facilitators', true)
 	),
 	array(
-		'separator' => '<br />'
+		'separator' => '<br />',
+		'value' => isset($this->data['Forum']['type']) ? $this->data['Forum']['type'] : 0
 	)
 );

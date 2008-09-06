@@ -207,14 +207,6 @@ gclms.AppController = {
 	},
 	submitForm: function(event) {
 		this.addClassName('gclms-disabled');
-		/*
-		event.stop();
-		var form = this.up('form');
-		if($('gclms-page').hasClassName('gclms-framed')) {
-			form.setAttribute('action',form.getAttribute('action') + '?framed');
-		}
-		form.submit();
-		*/
 	},
 	gotoLink: function() {
 		location.href = this.getAttribute('href');
@@ -272,6 +264,7 @@ gclms.Triggers = $H({
 			this.down('td').removeClassName('gclms-pressed');
 		},
 		'button[href]:click': gclms.AppController.gotoLink,
+		'.gclms-records tr:click': gclms.AppController.gotoLink,
 		'form input[type="submit"]:click': gclms.AppController.submitForm
 	},
 

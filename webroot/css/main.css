@@ -778,7 +778,7 @@ td.gclms-az {
 }
 
 .gclms-records {
-	margin-left: -2px;
+	margin-top: 6px;
 }
 
 	.gclms-records .gclms-left {
@@ -1320,11 +1320,9 @@ table.gclms-button {
 	
 .gclms-buttons {
 	overflow: hidden;
+	border-collapse: collapse;
+	border: none; 
 }
-
-	.gclms-buttons .gclms-button {
-		float: left;
-	}
 
 .gclms-translated-phrases {
 	display: none;

@@ -4,7 +4,8 @@ $javascript->link(array(
 	'prototype_extensions',
 	'gclms'
 ), false);
-?>
+
+echo $this->element('no_column_background'); ?>
 
 <div class="gclms-center-column">
 	<div class="gclms-content">
@@ -21,7 +22,12 @@ $javascript->link(array(
 				<tbody>
 					<tr>
 						<td width="20%">
-							<div><?= $this->data['User']['username'] ?></div>
+							<div>
+								<?= $this->data['User']['alias'] ?>
+								<p>
+									<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($this->data['User']['email']) ?>"&default="<?= urlencode(@$default) ?>&size=40" />
+								</p>
+							</div>
 						</td>
 						<td>
 							<div><?= nl2br($this->data['ForumPost']['content']) ?></div>
@@ -39,10 +45,10 @@ $javascript->link(array(
 					<tbody>
 						<tr>
 							<td width="20%">
-								<div><?= $post['User']['username'] ?></div>
+								<div><?= $this->data['User']['alias'] ?></div>
 							</td>
 							<td>
-								<div><?= nl2br($post['content']) ?></div>
+								<div><?= nl2br($this->data['FormPost']['content']) ?></div>
 							</td>
 						</tr>
 					</tbody>

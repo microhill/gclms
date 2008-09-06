@@ -276,7 +276,7 @@ gclms.Triggers = $H({
 			this.down('td').removeClassName('gclms-pressed');
 		},
 		'button[href]:click': gclms.AppController.gotoLink,
-		'.gclms-records tr:click': gclms.AppController.gotoLink,
+		'.gclms-records tr[href]:click': gclms.AppController.gotoLink,
 		'form input[type="submit"]:click': gclms.AppController.submitForm
 	},
 

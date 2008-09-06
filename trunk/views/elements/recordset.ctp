@@ -33,19 +33,9 @@ if(@$showDefaultAddButton) {
 <h1><?= Inflector::humanize(__($heading,true)); ?></h1>
 <? endif; ?>
 
-<? if(@$showDefaultAddButton) {
-
-	echo $this->element('buttons',array('buttons' => array(
-		array(
-			'id' => 'gclms-add',
-			'class' => 'gclms-add',
-			'text' => __('Add',true),
-			'phrases' => array(
-				'gclms:link-href' => $defaultAddButtonUri
-			)
-	))));
-}
-?>
+<? if(@$showDefaultAddButton): ?>
+	<button href="<?= $defaultAddButtonUri ?>"><? __('Add') ?></button>
+<? endif; ?>
 
 <table class="gclms-records" width="100%">
 	<tr>

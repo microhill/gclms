@@ -20,8 +20,6 @@ echo $this->element('no_column_background'); ?>
 			'size' => 40
 		));
 
-		echo $this->element('save_button');
-
-		echo $form->end(); ?>
+		echo $form->end('Save'); ?>
 	</div>
 </div>

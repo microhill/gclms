@@ -15,17 +15,7 @@ echo $this->element('left_column'); ?>
 		<?= $this->element('notifications'); ?>
 		<? if(!$framed): ?>
 			<h1><? __('Articles') ?></h1>
-			<div id="gclms-menubars">
-				<? echo $this->element('menubar',array('buttons' => array(
-					array(
-						'id' => 'addArticle',
-						'class' => 'gclms-add',
-						'label' => __('Add Article',true),
-						'accesskey' => 'a'
-					)
-				)));
-				?>
-			</div>
+			<button href="articles/add"><? __('Add') ?></button>
 		<? endif; ?>
 		<ul class="articles">
 			<? foreach($this->data as $article): ?>

@@ -8,8 +8,7 @@
 		echo $form->hidden('course_id',array('value'=>$course['id']));
 		include('form.ctp');
 
-		echo $this->element('save_button');
-		echo $form->end();
+		echo $form->end('Save');
 		?>
 	</div>
 </div>

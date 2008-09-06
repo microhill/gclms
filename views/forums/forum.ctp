@@ -5,15 +5,15 @@ $javascript->link(array(
 	'gclms'
 ), false);
 ?>
-<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/discussion"><? __('Back to list of forums') ?></a></div>
+<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/forums"><? __('Back to list of forums') ?></a></div>
 
 <h1><?= $forum['Forum']['title'] ?></h1>
 
 <div class="gclms-buttons">
 	<table>
 		<tr>
-			<td><a href="<?= $groupAndCoursePath ?>/discussion/add_topic/forum:<?= $forum['Forum']['id'] ?>">New Topic</a></td>
-			<td><a href="<?= $groupAndCoursePath ?>/discussion/delete_forum/<?= $forum['Forum']['id'] ?>">Delete Forum</a></td>
+			<td><a href="<?= $groupAndCoursePath ?>/forums/add_topic/forum:<?= $forum['Forum']['id'] ?>">New Topic</a></td>
+			<td><a href="<?= $groupAndCoursePath ?>/forums/delete_forum/<?= $forum['Forum']['id'] ?>">Delete Forum</a></td>
 		</tr>
 	</table>
 </div>
@@ -38,7 +38,7 @@ $javascript->link(array(
 		<tbody class="gclms-descriptive-recordset">
 			<tr>
 				<td>
-					<span class="gclms-forum-post-title"><a href="<?= $groupAndCoursePath ?>/discussion/topic/<?= $post['ForumPost']['id'] ?>"><?= $post['ForumPost']['title'] ?></a></span>
+					<span class="gclms-forum-post-title"><a href="<?= $groupAndCoursePath ?>/forums/topic/<?= $post['ForumPost']['id'] ?>"><?= $post['ForumPost']['title'] ?></a></span>
 					<?
 					if(!empty($forum['ForumPost']['title']))
 						echo '<br/>' . $post['ForumPost']['description'];

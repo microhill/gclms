@@ -5,11 +5,11 @@ $javascript->link(array(
 	'gclms'
 ), false);
 ?>
-<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/discussion/forum/<?= $this->data['ForumPost']['forum_id'] ?>"><? __('Back to forum') ?></a></div>
+<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/forums/forum/<?= $this->data['ForumPost']['forum_id'] ?>"><? __('Back to forum') ?></a></div>
 
 <h1><?= $this->data['ForumPost']['title'] ?></h1>
 
-<div class="Records gclms-discussion-posts">
+<div class="Records gclms-forums-posts">
 	<table class="gclms-tabular">
 		<tr class="Headers">
 			<th colspan="2">
@@ -51,14 +51,14 @@ $javascript->link(array(
 <!-- div class="gclms-buttons">
 	<table>
 		<tr>
-			<td><a href="<?= $groupAndCoursePath ?>/discussion/reply">Post Reply</a></td>
+			<td><a href="<?= $groupAndCoursePath ?>/forums/reply">Post Reply</a></td>
 		</tr>
 	</table>
 </div -->
 
-<div id="gclms-discussion-reply">
+<div id="gclms-forums-reply">
 	<?
-	echo $form->create('Reply', array('url'=>$groupAndCoursePath . '/discussion/reply/topic:' . $this->data['ForumPost']['id']));
+	echo $form->create('Reply', array('url'=>$groupAndCoursePath . '/forums/reply/topic:' . $this->data['ForumPost']['id']));
 	echo $form->input('content',array(
 		'label' => __('Reply',true),
 		'between' => '<br/>',

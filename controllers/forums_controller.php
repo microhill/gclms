@@ -5,7 +5,7 @@ class ForumsController extends AppController {
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
-		$this->Breadcrumbs->addCrumb('Forums','/' . $this->viewVars['groupAndCoursePath'] . '/discussion');
+		$this->Breadcrumbs->addCrumb('Forums','/' . $this->viewVars['groupAndCoursePath'] . '/forums');
 		parent::beforeRender();
 	}
 
@@ -81,10 +81,10 @@ class ForumsController extends AppController {
 	
 	function afterSave() {
 		if($this->action == 'add_topic' || $this->action == 'edit_topic') {
-			$this->redirect($this->viewVars['groupAndCoursePath'] . '/discussion/forum/' . $this->viewVars['forum']['Forum']['id']);
+			$this->redirect($this->viewVars['groupAndCoursePath'] . '/forums/forum/' . $this->viewVars['forum']['Forum']['id']);
 		}
 		if($this->action == 'reply') {
-			$this->redirect($this->viewVars['groupAndCoursePath'] . '/discussion/topic/' . $this->passedArgs['topic']);
+			$this->redirect($this->viewVars['groupAndCoursePath'] . '/forums/topic/' . $this->passedArgs['topic']);
 		}
 		parent::afterSave();	
 	}

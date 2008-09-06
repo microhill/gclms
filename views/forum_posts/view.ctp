@@ -1,4 +1,6 @@
 <?
+$html->css('forum', null, null, false);
+
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
@@ -23,37 +25,40 @@ echo $this->element('no_column_background'); ?>
 					<tr>
 						<td width="20%">
 							<div>
-								<?= $this->data['User']['alias'] ?>
-								<p>
+								<div class="gclms-alias"><?= $this->data['User']['alias'] ?></div>
+								<div class="gclms-avatar">
 									<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($this->data['User']['email']) ?>"&default="<?= urlencode(@$default) ?>&size=40" />
-								</p>
+								</div>
 							</div>
 						</td>
-						<td>
-							<div><?= nl2br($this->data['ForumPost']['content']) ?></div>
+						<td class="gclms-forum-post-content">
+							<?= nl2br($this->data['ForumPost']['content']) ?>
 						</td>
 					</tr>
 				</tbody>
-			</table>
 			<? foreach($this->data['Reply'] as $post): ?>
-				<table class="gclms-tabular">
-					<tr class="Headers">
+				<tbody>
+					<tr class="gclms-headers">
 						<th colspan="2">
 							<div class="gclms-left"><?= $myTime->niceShort($post['created']) ?></div>
 						</th>	
 					</tr>
-					<tbody>
-						<tr>
-							<td width="20%">
-								<div><?= $this->data['User']['alias'] ?></div>
-							</td>
-							<td>
-								<div><?= nl2br($this->data['FormPost']['content']) ?></div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+					<tr>
+						<td width="20%">
+							<div>
+								<div class="gclms-alias"><?= $post['User']['alias'] ?></div>
+								<div class="gclms-avatar">
+									<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($this->data['User']['email']) ?>"&default="<?= urlencode(@$default) ?>&size=40" />
+								</div>
+							</div>
+						</td>
+						<td class="gclms-forum-post-content">
+							<?= nl2br($post['content']) ?>
+						</td>
+					</tr>
+				</tbody>
 			<? endforeach; ?>
+			</table>
 		</div>
 		
 		<!-- div class="gclms-buttons">
@@ -66,7 +71,7 @@ echo $this->element('no_column_background'); ?>
 		
 		<div id="gclms-forums-reply">
 			<?
-			echo $form->create('Reply', array('url'=>$groupAndCoursePath . '/forums/reply/topic:' . $this->data['ForumPost']['id']));
+			echo $form->create('Reply', array('url'=>$groupAndCoursePath . '/forum_posts/view/' . $this->data['ForumPost']['id']));
 			echo $form->input('content',array(
 				'label' => __('Reply',true),
 				'between' => '<br/>',

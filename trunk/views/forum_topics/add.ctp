@@ -12,7 +12,7 @@ echo $this->element('no_column_background'); ?>
 	<?= $this->element('notifications'); ?>
 	<h1><?= __('Add Topic') ?></h1>    
 	<?
-	echo $form->create('ForumPost', array('url'=>$groupAndCoursePath . '/forum_posts/add/forum:' . $forum['Forum']['id']));
+	echo $form->create('ForumPost', array('url'=>$groupAndCoursePath . '/forum_topics/add/forum:' . $forum['Forum']['id']));
 	echo $form->hidden('forum_id',array('value'=>$forum['Forum']['id']));
 	include('form.ctp');
 	echo $form->submit(__('Save',true),array('class'=>'gclms-save'));

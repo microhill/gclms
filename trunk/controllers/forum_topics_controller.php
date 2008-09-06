@@ -1,6 +1,6 @@
 <?
-class ForumPostsController extends AppController {
-    var $uses = array('Forum','ForumPost');
+class ForumTopicsController extends AppController {
+    var $uses = array('ForumPost','Forum');
 	var $helpers = array('Time','MyTime','Text');
 
 	function beforeRender() {

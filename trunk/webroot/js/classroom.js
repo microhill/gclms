@@ -82,14 +82,14 @@ gclms.ClassroomController = {
 	                listeners: {activate: gclms.Triggers.get('#notebookTab:activate')}
 	            });
 				
-		     if($('discussionViewportContent'))
+		     if($('forumsViewportContent'))
 		         tabItems.push({
-					id: 'discussionTab',
-	                title: 'Discussion',
-	                contentEl: 'discussionViewportContent',
+					id: 'forumsTab',
+	                title: 'Forums',
+	                contentEl: 'forumsViewportContent',
 	                autoScroll: false,
 	                //border:false,
-	                listeners: {activate: gclms.Triggers.get('#discussionTab:activate')}
+	                listeners: {activate: gclms.Triggers.get('#forumsTab:activate')}
 	            });
 				
 		     if($('chatViewportContent'))
@@ -166,11 +166,11 @@ gclms.ClassroomController = {
 		
 	},
 	
-	activateDiscussionTab: function() {
-		url = '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/' + document.body.getAttribute('gclms:virtual-class') + '/discussion/forums?framed';
-		currentSrc = Ext.get('discussionViewportContent').dom.src;
+	activateForumsTab: function() {
+		url = '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/' + document.body.getAttribute('gclms:virtual-class') + '/forums/forums?framed';
+		currentSrc = Ext.get('forumsViewportContent').dom.src;
 		if(currentSrc.indexOf(url) == -1) {
-			Ext.get('discussionViewportContent').dom.src = url;
+			Ext.get('forumsViewportContent').dom.src = url;
 		}
 		
 		return true;
@@ -416,7 +416,7 @@ gclms.Triggers.update({
 		'a:click' : gclms.ClassroomController.gotoViewportLink
 	},
 	'#chatTab:activate' : gclms.ClassroomController.activateChatTab,
-	'#discussionTab:activate' : gclms.ClassroomController.activateDiscussionTab,
+	'#forumsTab:activate' : gclms.ClassroomController.activateForumsTab,
 	'#notebookTab:activate' : gclms.ClassroomController.activateNotebookTab,
 	'.page': {
 		'a[href*="/articles/"]:click': gclms.ClassroomController.gotoArticleLink,

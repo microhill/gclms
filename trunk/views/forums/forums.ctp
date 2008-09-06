@@ -8,7 +8,7 @@ echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
 		<h1><? __('Forums') ?></h1>
-		<button href="discussion/add_forum">Add Forum</button>
+		<button href="forums/add_forum">Add Forum</button>
 		
 		<div class="Records">
 			<table class="gclms-tabular">
@@ -30,7 +30,7 @@ echo $this->element('left_column'); ?>
 				<tbody class="gclms-descriptive-recordset">
 					<tr>
 						<td>
-							<span class="gclms-forum-title"><a href="<?= $groupAndCoursePath ?>/discussion/forum/<?= $forum['Forum']['id'] ?>"><?= $forum['Forum']['title'] ?></a></span>
+							<span class="gclms-forum-title"><a href="<?= $groupAndCoursePath ?>/forums/forum/<?= $forum['Forum']['id'] ?>"><?= $forum['Forum']['title'] ?></a></span>
 							<?
 							if(!empty($forum['Forum']['title']))
 								echo '<br/>' . $forum['Forum']['description'];

@@ -3,11 +3,13 @@
 	white-space: nowrap;
 }
 
-.gclms-last-reply {
+.gclms-last-reply,
+.gclms-last-post {
 	font-size: .9em;
 }
 
 .gclms-last-reply,
+.gclms-last-post,
 .gclms-replies,
 .gclms-author {
 	width: 1px;

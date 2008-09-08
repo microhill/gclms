@@ -47,8 +47,12 @@ echo $this->element('left_column'); ?>
 								<div class="gclms-center"><?= $forum['Forum']['post_count'] ?></div>
 							</td>
 							<td class="gclms-last-post">
-							 	<?= @$forum['LastPost']['created'] ?><br/>
-							 	<?= @$forum['LastPost']['User']['username'] ?>
+								<? if(!empty($forum['Forum']['last_post'])): ?>
+								 	<?= $forum['Forum']['last_post']['ForumPost']['created'] ?><br/>
+								 	<?= $forum['Forum']['last_post']['User']['alias'] ?>
+								<? else: ?>
+									<br/><br/>
+								<? endif; ?>
 							</td>		
 						</tr>
 					</tbody>

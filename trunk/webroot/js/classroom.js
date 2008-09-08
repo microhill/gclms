@@ -167,7 +167,7 @@ gclms.ClassroomController = {
 	},
 	
 	activateForumsTab: function() {
-		url = '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/' + document.body.getAttribute('gclms:virtual-class') + '/forums/forums?framed';
+		url = '/' + document.body.getAttribute('gclms-group') + '/' + document.body.getAttribute('gclms-course') + '/' + document.body.getAttribute('gclms:virtual-class') + '/forums?framed';
 		currentSrc = Ext.get('forumsViewportContent').dom.src;
 		if(currentSrc.indexOf(url) == -1) {
 			Ext.get('forumsViewportContent').dom.src = url;

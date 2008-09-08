@@ -56,9 +56,9 @@ class CommonComponent extends Object {
     }
 	
     function delete($id) {
-        if($this->controller->{$this->controller->uses[0]}->delete($id)) {
+		if($this->controller->{$this->controller->uses[0]}->delete($id)) {
         	if(!empty($this->itemName)) {
-        		$this->controller->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully deleted.',true));
+				$this->controller->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully deleted.',true));
         	}
 			if(method_exists($this->controller,'afterDelete')) {
 				$this->controller->afterDelete();

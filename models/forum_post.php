@@ -6,10 +6,9 @@ class ForumPost extends AppModel {
 	
 	var $hasMany = array('Reply' => array(
 		'className'     => 'ForumPost',
-		'foreignKey'    => 'parent_post_id',
+		'foreignKey'    => 'origin_post_id',
 		'order'    => 		'Reply.created ASC',
-		'conditions'    => 'Reply.parent_post_id != 0',
-		'dependent'=> true
+		'conditions'    => 'Reply.origin_post_id != 0'
 	));
 	
 	function afterFind2($results,$primary = false) {

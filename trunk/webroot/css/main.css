@@ -141,7 +141,7 @@ input[type="submit"]:active,input[type="button"]:active,button:active {
 }
 
 form input[type="submit"] {
-	font-size: 1.25em;
+	font-size: 1.3em;
 }
 
 /* Layout */
@@ -350,6 +350,10 @@ div.gclms-notifications div {
 		max-width: 90%;
 		padding: 2px;
 		background-position: 3px 50%;
+	}
+	
+	.gclms-login form input[type="submit"] {
+		font-size: 1.1em;
 	}
 
 	.gclms-login input.gclms-openid {
@@ -1322,6 +1326,11 @@ table.gclms-button {
 	border-collapse: collapse;
 	border: none; 
 }
+
+	.gclms-buttons td {
+		padding-left: 0;
+		padding-right: 2px;
+	}
 
 .gclms-translated-phrases {
 	display: none;

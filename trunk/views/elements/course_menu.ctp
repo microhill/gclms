@@ -4,7 +4,7 @@ $menu = array(
 	//array('label' => __('Grades', true), 'class' => 'Grades', 'active' => isset($tests) || isset($test) ? true : false, 'url' => '/' . $this->viewVars['group']['web_path'] . '/grades/' . $this->viewVars['course']['web_path']),
 
 	//If group admin?
-	array('label' => __('Pages and Assessments', true), 'class' => 'gclms-course-content', 'active' => $this->name == 'Content', 'url' => $groupAndCoursePath . '/content'),
+	array('label' => __('Pages', true), 'class' => 'gclms-course-content', 'active' => $this->name == 'Content', 'url' => $groupAndCoursePath . '/content'),
 	array('label' => __('Forums', true), 'class' => 'gclms-forums', 'active' => $this->name == 'Forums', 'url' => $groupAndCoursePath . '/forums'),
 	array('label' => __('Files', true), 'class' => 'gclms-files', 'active' => $this->name == 'Files', 'url' => $groupAndCoursePath . '/files'),
 	array('label' => __('Books', true), 'class' => 'gclms-books', 'active' => $this->name == 'Books' || $this->name == 'Chapters', 'url' => $groupAndCoursePath . '/books'),

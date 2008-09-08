@@ -61,7 +61,7 @@ echo $this->element('no_column_background'); ?>
 						</td>
 						<td class="gclms-last-reply">
 							<? if(!empty($post['ForumPost']['last_post']) && $post['ForumPost']['last_post']['ForumPost']['id'] != $post['ForumPost']['id']): ?>
-							 	<?= $post['ForumPost']['last_post']['ForumPost']['created'] ?><br/>
+							 	<?= $myTime->niceShort($post['ForumPost']['last_post']['ForumPost']['created']) ?><br/>
 							 	<?= $post['ForumPost']['last_post']['User']['alias'] ?>
 							<? else: ?>
 								<br/><br/>

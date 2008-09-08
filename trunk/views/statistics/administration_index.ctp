@@ -7,7 +7,7 @@ echo $this->element('left_column'); ?>
 	
 		<p><?= sprintf('This site has a total of %s groups, %s courses, and %s users.',$group_count,$course_count,$user_count) ?></p>
 		
-		<h2>Pages Created</h2>
+		<h2>New Pages</h2>
 		<p><img src="http://chart.apis.google.com/chart?cht=lc&chf=bg,s,f6f6f6&chd=t:<?= implode(',',$pages_created) ?>&chs=600x200" /></p>
 		
 		<h2>New Users</h2>

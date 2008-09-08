@@ -27,14 +27,14 @@ echo $this->element('left_column'); ?>
 		<? if(max($forum_posts_created)): ?>
 		<p><img src="http://chart.apis.google.com/chart?cht=lc&chxl=0:1|2&chxl=0:|<?= $date_range ?>|1:|0|<?= max($forum_posts_created) ?>&chxt=x,y&chds=<?= min($forum_posts_created) ?>,<?= max($forum_posts_created) ?>&chf=bg,s,f6f6f6&chd=t:<?= implode(',',$forum_posts_created) ?>&chs=600x200" /></p>
 		<? else: ?>
-		<p><? __('No activity in the past 31 days.') ?></p>
+		<p><? __('No activity in the past 31 days (today not included).') ?></p>
 		<? endif; ?>
 		
 		<h2>New Users</h2>
 		<? if(max($users_created)): ?>
 		<p><img src="http://chart.apis.google.com/chart?cht=lc&chxl=0:1|2&chxl=0:|<?= $date_range ?>|1:|0|<?= max($users_created) ?>&chxt=x,y&chds=<?= min($users_created) ?>,<?= max($users_created) ?>&chf=bg,s,f6f6f6&chd=t:<?= implode(',',$users_created) ?>&chs=600x200" /></p>
 		<? else: ?>
-		<p><? __('No activity in the past 31 days.') ?></p>
+		<p><? __('No activity in the past 31 days (today not included).') ?></p>
 		<? endif; ?>
 	</div>
 </div>

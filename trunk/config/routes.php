@@ -52,7 +52,7 @@ if (file_exists(CONFIGS.'installed.txt')) {
 		array('controller'=>'Update'),
 		array('action'=> 'index', 'controller' => 'update'));
 
-	Router::connect('/administration',array($cake_admin => $cake_admin,'controller' => 'panel','action' => 'index'));
+	Router::connect('/administration',array($cake_admin => $cake_admin,'controller' => 'statistics','action' => 'index'));
 	Router::connect('/administration/:controller/:action/*',array($cake_admin => $cake_admin));
 	Router::connect('/administration/:controller/*',array($cake_admin => $cake_admin));
 	Router::connect('/administration/*',array($cake_admin => $cake_admin,'controller'=>'panel'));

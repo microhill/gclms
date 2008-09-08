@@ -64,7 +64,7 @@ class NotebookController extends AppController {
 			}
 			
 			if($this->NotebookEntry->save($this->data))
-				$this->redirect('/notebook/view/' . $id . $this->viewVars['framed_url_suffix']);
+				$this->redirect('/notebook/view/' . $id . $this->viewVars['framed_suffix']);
 		}
 		$this->data = $this->NotebookEntry->findById($id);
 		$this->NotebookEntry->getQuestionResponse(&$this->data,$this->viewVars['user']['id']);
@@ -75,12 +75,12 @@ class NotebookController extends AppController {
 			$this->data['NotebookEntry']['user_id'] = $this->viewVars['user']['id'];
 			if($this->NotebookEntry->save($this->data)) {
 				$id = $this->NotebookEntry->id;
-				$this->redirect('/notebook/view/' . $id . $this->viewVars['framed_url_suffix']);
+				$this->redirect('/notebook/view/' . $id . $this->viewVars['framed_suffix']);
 			}
 		}
 
 		if(!empty($this->data) && $this->NotebookEntry->save($this->data)) {
-			$this->redirect('/notebook' . $this->viewVars['framed_url_suffix']);
+			$this->redirect('/notebook' . $this->viewVars['framed_suffix']);
 		}
 	}
 	

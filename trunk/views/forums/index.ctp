@@ -32,7 +32,7 @@ echo $this->element('left_column'); ?>
 					</tr>
 				<? foreach($this->data as $forum): ?>
 					<tbody class="gclms-descriptive-recordset">
-						<tr href="<?= $groupAndCoursePath ?>/forums/view/<?= $forum['Forum']['id'] ?>">
+						<tr href="<?= $groupAndCoursePath ?>/forums/view/<?= $forum['Forum']['id'] . $framed_suffix ?>">
 							<td>
 								<span class="gclms-forum-title"><?= $forum['Forum']['title'] ?></span>
 								<?

@@ -30,5 +30,15 @@ class ForumsController extends AppController {
 		$this->data = $this->ForumPost->find('all',array(
 			'conditions' => array('ForumPost.forum_id' => $id,'ForumPost.parent_post_id' => '')
 		));
+		foreach($this->data as &$forum_post) {
+			$forum_post['ForumPost']['reply_count'] = $this->ForumPost->find('count',array(
+				'conditions' => array('ForumPost.origin_post_id' => $forum_post['ForumPost']['id'])
+			));
+			$this->ForumPost->contain('User');
+			$forum_post['ForumPost']['last_post'] = $this->ForumPost->find('first',array(
+				'conditions' => array('ForumPost.origin_post_id' => $forum_post['ForumPost']['id']),
+				'order' => 'ForumPost.created DESC'
+			));
+		}
 	}
 }

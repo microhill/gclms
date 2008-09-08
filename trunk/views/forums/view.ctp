@@ -39,7 +39,7 @@ echo $this->element('no_column_background'); ?>
 						<div class="gclms-center">Author</div>
 					</th>
 					<th>
-						<div class="gclms-left">Last post</div>
+						<div class="gclms-left">Last reply</div>
 					</th>		
 				</tr>
 			<?
@@ -53,15 +53,19 @@ echo $this->element('no_column_background'); ?>
 								echo '<br/>' . $post['ForumPost']['description'];
 							?>
 						</td>
-						<td>
-							<div class="gclms-center"><?= @$post['ForumPost']['total_replies'] ?></div>
+						<td class="gclms-replies">
+							<div class="gclms-center"><?= @$post['ForumPost']['reply_count'] ?></div>
 						</td>
-						<td>
-							<div class="gclms-center"><?= @$post['User']['username'] ?></div>
+						<td class="gclms-author">
+							<div class="gclms-center"><a href="/users/<?= $post['User']['id'] ?>"><?= $post['User']['alias'] ?></a></div>
 						</td>
-						<td>
-						 	<?= @$post['ForumPost']['last_post_timestamp'] ?><br/>
-						 	<?= @$post['ForumPost']['last_post_username'] ?>
+						<td class="gclms-last-reply">
+							<? if(!empty($post['ForumPost']['last_post']) && $post['ForumPost']['last_post']['ForumPost']['id'] != $post['ForumPost']['id']): ?>
+							 	<?= $post['ForumPost']['last_post']['ForumPost']['created'] ?><br/>
+							 	<?= $post['ForumPost']['last_post']['User']['alias'] ?>
+							<? else: ?>
+								<br/><br/>
+							<? endif; ?>
 						</td>		
 					</tr>
 				</tbody>

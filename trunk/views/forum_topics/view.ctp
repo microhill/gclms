@@ -49,7 +49,7 @@ echo $this->element('no_column_background'); ?>
 						<div>
 							<div class="gclms-alias"><?= $post['User']['alias'] ?></div>
 							<div class="gclms-avatar">
-								<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($this->data['User']['email']) ?>"&default="<?= urlencode(@$default) ?>&size=40" />
+								<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($post['User']['email']) ?>&default=<?= urlencode(@$default) ?>&size=96" />
 							</div>
 						</div>
 					</td>

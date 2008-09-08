@@ -16,11 +16,16 @@ class ForumTopicsController extends AppController {
 			$this->data['ForumPost']['user_id'] = $this->viewVars['user']['id'];
 		}
 		
-		parent::add('ForumPost');
+		return parent::add('ForumPost');
 	}
 
 	function afterSave() {
 		$this->redirect($this->viewVars['groupAndCoursePath'] . '/forum_topics/view/' . $this->ForumPost->id);	
+	}
+
+	function delete($id) {
+		$this->redirect = $this->viewVars['groupAndCoursePath'] . '/forums/view/' . $this->ForumPost->field('forum_id',array('id' => $id));	
+		return parent::delete($id);
 	}
 	
 	function edit() {

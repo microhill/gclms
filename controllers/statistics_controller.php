@@ -22,7 +22,7 @@ class StatisticsController extends AppController {
 		$this->Node = new Node;
 		
 		$pages_created = array();
-		for($x = 1; $x <= 30; $x++) {
+		for($x = 1; $x <= 31; $x++) {
 			$pages_created[$x] = $this->Node->find('count',array(
 				'conditions' => array(
 					'Node.created >' => date('Y-m-d G:H:s', strtotime('-' . $x .' days')),
@@ -33,7 +33,7 @@ class StatisticsController extends AppController {
 		$this->set('pages_created',array_reverse($pages_created));
 		
 		$users_created = array();
-		for($x = 1; $x <= 30; $x++) {
+		for($x = 1; $x <= 31; $x++) {
 			$users_created[$x] = $this->User->find('count',array(
 				'conditions' => array(
 					'User.created >' => date('Y-m-d G:H:s', strtotime('-' . $x .' days')),
@@ -47,7 +47,7 @@ class StatisticsController extends AppController {
 		$this->ForumPost = new ForumPost;
 		
 		$forum_posts_created = array();
-		for($x = 1; $x <= 30; $x++) {
+		for($x = 1; $x <= 31; $x++) {
 			$forum_posts_created[$x] = $this->ForumPost->find('count',array(
 				'conditions' => array(
 					'ForumPost.created >' => date('Y-m-d G:H:s', strtotime('-' . $x .' days')),

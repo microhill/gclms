@@ -16,8 +16,8 @@ class ForumTopicsController extends AppController {
 			$this->data['ForumPost']['user_id'] = $this->viewVars['user']['id'];
 		}
 		
+		$this->redirect = '';
 		parent::add('ForumPost');
-		return $this->render('add');
 	}
 	
 	function edit() {
@@ -37,6 +37,7 @@ class ForumTopicsController extends AppController {
 	function reply($id) {
 		$this->data['ForumPost'] = $this->data['Reply'];
 		$this->data['ForumPost']['parent_post_id'] = $id;
+		$this->data['ForumPost']['forum_id'] = $this->ForumPost->field('forum_id',array('ForumPost.id' => $id));
 		
 		$this->data['ForumPost']['user_id'] = $this->viewVars['user']['id'];
 		$this->redirect = Controller::referer();

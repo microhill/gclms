@@ -21,8 +21,15 @@ class ForumsController extends AppController {
 	}
 	
 	function index() {
-		$this->Forum->contain(array('LastPost' => 'User'));
+		$this->Forum->contain();
 		$this->data = $this->Forum->find('all');
+		foreach($this->data as &$forum) {
+			$this->ForumPost->contain('User');
+			$forum['Forum']['last_post'] = $this->ForumPost->find('first',array(
+				'conditions' => array('ForumPost.forum_id' => $forum['Forum']['id']),
+				'order' => 'ForumPost.created DESC'
+			));
+		}
 	}
 	
 	function view($id) {

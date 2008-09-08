@@ -2,11 +2,13 @@
 class Forum extends AppModel {
     var $belongsTo = array('Course','VirtualClass');
 	var $hasMany = array('ForumPost');
+	/*
 	var $hasOne = array('LastPost' => array(
 		'className' => 'ForumPost',
 		'order' => 'LastPost.created ASC',
 		'fields' => array('created','user_id')
 	));
+	*/
 	
 	function afterFind($results,$primary = false) {
 		if(!$primary)

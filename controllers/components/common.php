@@ -72,15 +72,17 @@ class CommonComponent extends Object {
     }
 	
 	function afterSave() {
+		if(is_string(@$this->controller->redirect)) {
+			$this->controller->redirect($this->controller->redirect);
+		}
+		
 		if(method_exists($this->controller,'afterSave')) {
 			$this->controller->afterSave();
 		}
 
-		if(empty($this->controller->redirect)) {
-			if(!empty($this->controller->params['administration']))
-				$this->controller->params['administration'] = '/' . $this->controller->params['administration'];
-			$this->controller->redirect = @$this->controller->params['administration'] . $this->controller->viewVars['groupAndCoursePath'] . '/' . Inflector::underscore($this->controller->name);
-		}
+		if(!empty($this->controller->params['administration']))
+			$this->controller->params['administration'] = '/' . $this->controller->params['administration'];
+		$this->controller->redirect = @$this->controller->params['administration'] . $this->controller->viewVars['groupAndCoursePath'] . '/' . Inflector::underscore($this->controller->name);
 		$this->controller->redirect($this->controller->redirect);
 	}
 }

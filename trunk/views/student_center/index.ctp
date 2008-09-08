@@ -14,8 +14,10 @@ echo $this->element('left_column');
 		<h1><?
 		__('Welcome');
 		
-		if($user['first_name'])
-			echo ', ' . $user['first_name']
+		if($user['alias'])
+			echo ', ' . $user['alias'];
+		else if($user['first_name'])
+			echo ', ' . $user['first_name'];
 		?></h1>
 
 		<img src="/files/front-page-looking-up.jpg" style="float: right;margin-left: 12px;margin-bottom: 8px;" />

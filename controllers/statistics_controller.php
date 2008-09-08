@@ -32,6 +32,17 @@ class StatisticsController extends AppController {
 		}
 		$this->set('pages_created',array_reverse($pages_created));
 		
+		$pages_modified = array();
+		for($x = 1; $x <= 31; $x++) {
+			$pages_modified[$x] = $this->Node->find('count',array(
+				'conditions' => array(
+					'Node.modified >' => date('Y-m-d G:H:s', strtotime('-' . $x .' days')),
+					'Node.modified <' => date('Y-m-d G:H:s', strtotime('-' . $x + 1 .' days'))		
+				)
+			));
+		}
+		$this->set('pages_modified',array_reverse($pages_modified));
+		
 		$users_created = array();
 		for($x = 1; $x <= 31; $x++) {
 			$users_created[$x] = $this->User->find('count',array(

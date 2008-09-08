@@ -22,7 +22,9 @@ class ForumsController extends AppController {
 	
 	function index() {
 		$this->Forum->contain();
-		$this->data = $this->Forum->find('all');
+		$this->data = $this->Forum->find('all',array(
+			'conditions' => array('Forum.course_id' => $this->viewVars['course']['id'])
+		));
 		foreach($this->data as &$forum) {
 			$this->ForumPost->contain('User');
 			$forum['Forum']['last_post'] = $this->ForumPost->find('first',array(

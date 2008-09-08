@@ -14,7 +14,7 @@ echo $form->radio('type',
 		0 => __('Template; particiation specific to facilitated class', true),
 		1 => __('Persistent; open to any user who has been enrolled in an associated class', true),
 		2 => __('Persistent; open to associated facilitators', true),
-		3 => __('Persistent; open to any user', true)
+		3 => __('Persistent; viewable to the public and open to any verified user', true)
 	),
 	array(
 		'separator' => '<br />',

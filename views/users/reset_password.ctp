@@ -8,8 +8,8 @@
 			<h2><?= __('Reset Your Password') ?></h2>    
 			<?php $session->flash('Auth.login'); ?>
 		    <?= $form->create('User', array('url' => '/users/reset_password','id'=>'UserLogin'));?>
-		        <?= $form->input('username',array(
-		        	'label' => array('text' => __("Username", true)),
+		        <?= $form->input('email',array(
+		        	'label' => 'Email',
 		        	'between' => '<br/>'
 		        ));?>
 		        <p><?= __('A new password will be sent to your e-mail address.') ?></p>

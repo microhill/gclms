@@ -1,4 +1,4 @@
-/*global $, $$, $F, Ajax, Element, gclms, Sortable, document, window, tinyMCE, self, UUID, __, tmpTextareaView, tmpQuestionView, tmpQuestionExplanationView, tmpMultipleChoiceAnswerView, tmpMultipleChoiceAnswerExplanationView, tmpMatchingAnswerView, tmpOrderAnswerView */
+/*global $, $$, $F, Ajax, Element, gclms, Sortable, document, window, tinyMCE, self, UUID, __, tmpTextareaView, tmpQuestionView, tmpQuestionExplanationView, tmpMultipleChoiceAnswerView, tmpMultipleChoiceAnswerExplanationView, tmpMatchingAnswerView, tmpOrderAnswerView, scroll */
 
 gclms.PagesController = {
 	addExplanationToQuestion: function() {
@@ -141,12 +141,13 @@ gclms.PagesController = {
 		}
 		
 		$$('div.gclms-page-item').each(function(node){
+			var type,id;
 			if(node.hasClassName('gclms-textarea')) {
 				id = node.getAttribute('textarea:id');
-				var type = 'Textarea';
+				type = 'Textarea';
 			} else {
 				id = node.getAttribute('question:id');
-				var type = 'Question';
+				type = 'Question';
 			}
 
 			try {
@@ -156,7 +157,7 @@ gclms.PagesController = {
 					type: 'hidden'
 				}));
 			} catch(error) {
-				alert(error);
+				//alert(error);
 			}
 		}.bind(this));
 		this.up('form').submit();
@@ -180,6 +181,7 @@ gclms.PagesController = {
 		event.stop();
 		var pageItem = this.up('div.gclms-page-item');
 
+		var adjacentPageItem;
 		if (this.hasClassName('gclms-move-down') && !(adjacentPageItem = pageItem.next('div.gclms-page-item'))) {
 			return false;
 		} else if (this.hasClassName('gclms-move-up') && !(adjacentPageItem = pageItem.previous('div.gclms-page-item'))) {
@@ -226,7 +228,7 @@ gclms.PagesController = {
 	},
 	
 	deleteAnswer: function() {
-		div = this.up('div').up('div');
+		var div = this.up('div').up('div');
 		div.select('textarea').each(function(textarea){
 			gclms.PagesController.removeTinyMCE.bind(textarea)();
 			//tinyMCE.execCommand('mceRemoveControl', false, textarea.id);
@@ -269,7 +271,7 @@ gclms.PagesController = {
 	},
 	
 	deletePageItem: function() {
-		div = this.up('div.gclms-page-item');
+		var div = this.up('div.gclms-page-item');
 		div.select('textarea').each(function(textarea){
 			gclms.PagesController.removeTinyMCE.bind(textarea)();
 		});
@@ -307,7 +309,7 @@ gclms.PagesController = {
 	*/
 	
 	selectQuestionType: function(event) {
-		div = this.up('div');
+		var div = this.up('div');
 
 		/*
 		 * 0: Multiple choice
@@ -340,7 +342,7 @@ gclms.PagesController = {
 			case '0':
 				div.down('.gclms-multiple-choice').displayAsTableRow();
 				div.down('.gclms-question-explanation').hide();
-				try{div.down('.gclms-multiple-choice input[type="text"]').focus();}catch(e){}
+				try{div.down('.gclms-multiple-choice input[type="text"]').focus();}catch(e1){}
 				break;
 			case '1':
 				div.down('.gclms-true-false').displayAsTableRow();
@@ -352,11 +354,11 @@ gclms.PagesController = {
 				break;
 			case '3':
 				div.down('.gclms-order').displayAsTableRow();
-				try{div.down('.gclms-order input[type="text"]').focus();}catch(e){}
+				try{div.down('.gclms-order input[type="text"]').focus();}catch(e2){}
 				break;
 			case '4':
 				div.down('.gclms-order').displayAsTableRow();
-				try{div.down('.gclms-order input[type="text"]').focus();}catch(e){}
+				try{div.down('.gclms-order input[type="text"]').focus();}catch(e3){}
 				break;
 			case '5':
 				break;
@@ -366,10 +368,10 @@ gclms.PagesController = {
 	addMultipleChoiceAnswer: function(event) {
 		var div = this.up('div.gclms-question');
 
-		answersDiv = div.select('tr.gclms-multiple-choice .gclms-answers').first();
+		var answersDiv = div.select('tr.gclms-multiple-choice .gclms-answers').first();
 		answersDiv.insert(gclms.Views.get('multipleChoiceAnswer').interpolate({answer_id: UUID.generate(),question_id: div.getAttribute('question:id')}));		
 		answersDiv.displayAsBlock();
-		lastTable = answersDiv.select('table').last();
+		var lastTable = answersDiv.select('table').last();
 		lastTable.observeRules(gclms.Triggers.get('.gclms-question')['.gclms-multiple-choice']['.gclms-answer']);
 		lastTable.parentNode.displayAsBlock();		
 		event.stop();
@@ -378,12 +380,12 @@ gclms.PagesController = {
 	},
 	
 	addMatchingAnswer: function(event) {
-		div = this.up('div.gclms-question');
+		var div = this.up('div.gclms-question');
 		
-		answersDiv = div.select('tr.gclms-matching .gclms-answers').first();
+		var answersDiv = div.select('tr.gclms-matching .gclms-answers').first();
 		answersDiv.insert(gclms.Views.get('matchingAnswer').interpolate({answer_id: UUID.generate(),question_id: div.getAttribute('question:id')}));
 		answersDiv.displayAsBlock();
-		lastTable = answersDiv.select('table').last();
+		var lastTable = answersDiv.select('table').last();
 		lastTable.observeRules(gclms.Triggers.get('.gclms-question')['tr.gclms-matching']);
 		lastTable.parentNode.displayAsBlock();
 		event.stop();
@@ -392,12 +394,12 @@ gclms.PagesController = {
 	},
 	
 	addOrderAnswer: function(event) {
-		div = this.up('div.gclms-question');
+		var div = this.up('div.gclms-question');
 		
-		answersDiv = div.select('tr.gclms-order .gclms-answers').first();
+		var answersDiv = div.select('tr.gclms-order .gclms-answers').first();
 		answersDiv.insert(gclms.Views.get('orderAnswer').interpolate({answer_id: UUID.generate(),question_id: div.getAttribute('question:id')}));
 		answersDiv.displayAsBlock();
-		lastTable = answersDiv.select('table').last();
+		var lastTable = answersDiv.select('table').last();
 		lastTable.observeRules(gclms.Triggers.get('.gclms-page-item')['tr.gclms-order']);
 		lastTable.parentNode.displayAsBlock();
 		event.stop();
@@ -418,7 +420,7 @@ gclms.PagesController = {
 	// If more than answer is correct, then use general question-explanation
 	toggleMultipleChoiceCorrectAnswer: function() {
 		var question = this.up('div.gclms-question');
-		var totalCorrectAnswers = 0
+		var totalCorrectAnswers = 0;
 		question.select('input.gclms-multiple-choice-answer-correct').each(function(checkbox){
 			if(checkbox.checked) {
 				totalCorrectAnswers++;
@@ -426,7 +428,7 @@ gclms.PagesController = {
 		});
 
 		var questionExplanation = question.down('.gclms-question-explanation');
-		var previousTotalCorrectAnswers = parseInt(question.getAttribute('gclms:total-correct'));
+		var previousTotalCorrectAnswers = parseInt(question.getAttribute('gclms:total-correct'),10);
 		if(totalCorrectAnswers == 1 && (previousTotalCorrectAnswers == 2)) {
 			/*
 			gclms.popup.create({
@@ -435,7 +437,7 @@ gclms.PagesController = {
 				type: 'alert'
 			})*/
 			// Put question-explanation into first answer-explanation
-			questionExplanationTextarea = questionExplanation.down('textarea');
+			var questionExplanationTextarea = questionExplanation.down('textarea');
 			
 			question.select('tr.gclms-answer-explanation').each(function(tr) {
 				var textarea = tr.down('textarea');
@@ -465,8 +467,8 @@ gclms.PagesController = {
 			*/
 			var newExplanation = '';
 			question.select('tr.gclms-answer-explanation').each(function(tr) {
-				var textarea;
-				if (textarea = tr.down('textarea')) {
+				var textarea = tr.down('textarea');
+				if (textarea) {
 					newExplanation += tinyMCE.get(textarea.id).getContent();
 					tinyMCE.execCommand('mceToggleEditor', false, textarea.id);
 				}

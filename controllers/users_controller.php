@@ -86,7 +86,8 @@ class UsersController extends AppController {
     
     function reset_password() {
     	if(!empty($this->data)) {
-    		$user = $this->User->findByUsername($this->data['User']['email']);
+    		$this->User->contain();
+			$user = $this->User->findByEmail($this->data['User']['email']);
     		if(empty($user['User']['id'])) {
 	    		$this->Notifications->add(__('Username could not be found.',true),'error');
     		} else {

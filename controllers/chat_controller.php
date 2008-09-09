@@ -20,7 +20,7 @@ class ChatController extends AppController {
     }
     
     function index() {
-    	$this->ChatMessage->contain(array('User'=>array('alias')));
+    	$this->ChatMessage->contain(array('User'=>array('alias','email')));
     	//$chat_messages = $this->ChatMessage->findAll(array('virtual_class_id' => $this->viewVars['class']['id']),null,'ChatMessage.created DESC',30);
 		
 		$chat_messages = $this->ChatMessage->find('all',array(
@@ -65,7 +65,7 @@ class ChatController extends AppController {
 		}
 
 		//Get most recent list of chat partipicants in room
-		$this->ChatParticipant->contain(array('User.fields' => array('alias')));
+		$this->ChatParticipant->contain(array('User.fields' => array('alias','email')));
 		$chat_participants = $this->ChatParticipant->find('all',array(
 			'conditions' => array(
 				'course_id' => $this->viewVars['course']['id'],

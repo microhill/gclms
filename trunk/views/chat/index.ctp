@@ -17,19 +17,33 @@ echo $this->element('left_column'); ?>
 			$latestDatetime = strtotime($chat_messages[sizeof($chat_messages) - 1]['ChatMessage']['created']);
 		?>
 		<div id="gclms-chat-messages" gclms:user-alias="<?= $user['alias'] ?>" gclms:last-message-datetime="<?= isset($latestDatetime) ? $latestDatetime : time() ?>">
-			<? foreach($chat_messages as $chat_message): ?>
-				<div class="gclms-chat-message">
-					<span class="gclms-name"><?= $chat_message['User']['alias'] ?>:</span>
-					<?= $text->autoLinkUrls($chat_message['ChatMessage']['content']) ?>
-				</div>
+			<?
+			$lastMessageAuthor = null;
+			foreach($chat_messages as $chat_message): ?>
+				<? if($lastMessageAuthor != $chat_message['User']['alias']): ?>
+					<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($chat_message['User']['email']) ?>&default=<?= urlencode(@$default) ?>&size=40" />
+					<span class="gclms-author"><?= $chat_message['User']['alias'] ?></span>:
+				<? else: ?>
+					<br/>
+				<? endif; ?>
+				<span class="gclms-chat-message" gclms:message-timestamp="<? $chat_message['ChatMessage']['created'] ?>"><?= $text->autoLinkUrls($chat_message['ChatMessage']['content']) ?></span>
+				<?
+				$lastMessageAuthor = $chat_message['User']['alias'];
+				?>
 			<? endforeach; ?>
 		</div>
-		<table id="gclms-new-chat-message">
-			<tr>
-				<td><input type="text" id="gclms-chat-message-text" /></td>
-				<td><button id="gclms-send-message-button" class="gclms-send"><? __('Send') ?></button></td>
-			</tr>
-		</table>
+		<div id="gclms-new-chat-message">
+			<table>
+				<tr>
+					<td>
+						<textarea id="gclms-chat-message-text"></textarea>
+					</td>
+					<td id="gclms-button-cell">
+						<button id="gclms-send-message-button"><? __('Send message') ?></button>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>
 

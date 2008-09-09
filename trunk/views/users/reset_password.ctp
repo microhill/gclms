@@ -13,11 +13,7 @@
 		        	'between' => '<br/>'
 		        ));?>
 		        <p><?= __('A new password will be sent to your e-mail address.') ?></p>
-		        <?
-		        echo $form->submit('Reset');
-		        
-		        echo $form->end();
-		        ?>
+		        <?= $form->end('Reset'); ?>
 		</div>
 	</div>
 </div>

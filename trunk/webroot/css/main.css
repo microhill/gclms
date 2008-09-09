@@ -212,12 +212,6 @@ form input[type="submit"] {
 		text-decoration: underline;
 	}
 
-.gclms-message {
-	padding: 6px;
-	border: 1px solid red;
-	background-color: #ffeeee;
-}
-
 .gclms-success-message {
 	border: 1px solid green;
 }
@@ -254,6 +248,7 @@ form {}
 	background-color: white;
 	padding: 10px;
 	padding-left: 12px;
+	
 }
 
 .gclms-choose-language {

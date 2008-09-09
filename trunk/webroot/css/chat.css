@@ -1,26 +1,62 @@
 #gclms-chat-messages {
-	height: 250px;
+	height: 500px;
 	overflow: auto;
+	line-height: 1.6em;
 }
 
-	#gclms-chat-messages .gclms-name {
+	#gclms-chat-messages img {
+		float: left;
+		margin-right: 8px;
+		clear: both;
+	}
+
+	#gclms-chat-messages .gclms-author {
 		font-weight: bold;
 	}
 	
 #gclms-new-chat-message {
 	margin-top: 4px;
+	border-collapse: collapse;
+	position:fixed;
+	bottom: -8px;
+	padding-bottom: 6px;
+	margin: 10px 0;
+	width: 50%;
 }
+
+	#gclms-new-chat-message table {
+		width: 100%;
+	}
+
+		#gclms-new-chat-message td {
+			border-collapse: collapse;
+			vertical-align: top;
+		}
+		
+		#gclms-new-chat-message textarea {
+			font-size: 1.1em;
+			height: 3em;
+			width: 100%;
+		}
 	
-	gclms-new-chat-message input {
-		font-size: 1.4em;
+		#gclms-button-cell {
+			width: 13em;
+			padding-left: 6px;
+		}
+	
+#gclms-chat-participants {
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+	#gclms-chat-participants li {
+		overflow: hidden;
+		font-size: 1.2em;
+		margin-bottom: 6px;
 	}
 	
-#gclms-chat-participants div {
-	background-image: url(/img/permanent/icons/2007-09-13/chat-user-16.png);
-	background-repeat: no-repeat;
-	background-position: center left;
-	padding-left: 20px;
-	padding-bottom: 3px;
-	padding-top: 2px;
-	margin-bottom: 4px;
-}
+	#gclms-chat-participants img {
+		float: left;
+		margin-right: 6px;
+	}

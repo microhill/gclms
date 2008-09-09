@@ -14,9 +14,10 @@ gclms.ChatController = {
 			content: chatMessageText
 		});
 
-		$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message').interpolate({
+		$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message-same-author').interpolate({
 			alias: $('gclms-chat-messages').getAttribute('gclms:user-alias'),
-			content: chatMessageText
+			content: chatMessageText,
+			timestamp: 1
 		})});
 
 		$('gclms-chat-messages').scrollTop = $('gclms-chat-messages').scrollHeight;
@@ -77,6 +78,14 @@ gclms.ChatController = {
 	loadChatRoom: function() {
 		var chatExecutor = new PeriodicalExecuter(gclms.ChatController.updateChatRoom, 6);
 		$('gclms-chat-messages').scrollTop = $('gclms-chat-messages').scrollHeight;
+	},
+	
+	addOddRowClass: function() {
+		this.addClassName('gclms-odd');
+	},
+	
+	addEvenRowClass: function() {
+		this.addClassName('gclms-even');
 	}
 };
 
@@ -99,16 +108,20 @@ gclms.ChatMessage = {
 			},
 			onComplete: options.callback
 		});
-	},
+	}
 };
 
 gclms.Triggers.update({
 	'#gclms-chat-message-text:keydown, #gclms-send-message-button:click': gclms.ChatController.sendMessage,
 	//'window:unload': gclms.ChatController.leaveChatroom,
-	'#gclms-chat-messages': gclms.ChatController.loadChatRoom
+	'#gclms-chat-messages': gclms.ChatController.loadChatRoom,
+	'table': {
+		'#gclms-chat-messages tr:nth-child(odd)': gclms.ChatController.addOddRowClass,
+		'#gclms-chat-messages tr:nth-child(even)': gclms.ChatController.addEvenRowClass	
+	}
 });
 
 gclms.Views.update({
 	'chat-participant': '<div id="#{id}">#{alias}</div>',
-	'chat-message': '<div class="gclms-chat-message"><span class="gclms-name">#{alias}:</span> #{content}</div>'
+	'chat-message-same-author': '<br/><span class="gclms-chat-message">#{content}</span>'
 });

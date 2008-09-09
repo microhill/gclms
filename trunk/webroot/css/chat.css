@@ -1,21 +1,21 @@
-#chatMessages {
+#gclms-chat-messages {
 	height: 250px;
 	overflow: auto;
 }
 
-	#chatMessages .name {
+	#gclms-chat-messages .gclms-name {
 		font-weight: bold;
 	}
 	
-#newChatMessage {
+#gclms-new-chat-message {
 	margin-top: 4px;
 }
 	
-	#newChatMessage input {
+	gclms-new-chat-message input {
 		font-size: 1.4em;
 	}
 	
-#chatParticipants div {
+#gclms-chat-participants div {
 	background-image: url(/img/permanent/icons/2007-09-13/chat-user-16.png);
 	background-repeat: no-repeat;
 	background-position: center left;

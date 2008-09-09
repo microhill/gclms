@@ -1,4 +1,14 @@
-<?= $this->element('left_column'); ?>
+<?
+$html->css('chat', null, null, false);
+
+$javascript->link(array(
+	'vendors/prototype',
+	'prototype_extensions',
+	'gclms',
+	'chat'
+), false);
+
+echo $this->element('left_column'); ?>
 		
 <div class="gclms-center-column">
 	<div class="gclms-content">
@@ -6,19 +16,20 @@
 		if($chat_messages)		
 			$latestDatetime = strtotime($chat_messages[sizeof($chat_messages) - 1]['ChatMessage']['created']);
 		?>
-		<div id="chatMessages" chat:myName="<?= $user['first_name'] . ' ' . $user['last_name'] ?>" ajax:latestDatetime = "<?= isset($latestDatetime) ? $latestDatetime : time() ?>" ajax:urlPrefix="/<?= $group['web_path'] ?>/chat/" ajax:urlSuffix="<?= '/section:' . $virtual_class['id'] ?>">
-			<?
-			foreach($chat_messages as $chat_message) {
-				echo '<div class="chatMessage"><span class="name">' . $chat_message['User']['first_name'] . ' ' . $chat_message['User']['last_name'] . ':</span> ' . $text->autoLinkUrls($chat_message['ChatMessage']['content']) . '</div>';
-			}
-			?>
+		<div id="gclms-chat-messages" gclms:user-alias="<?= $user['alias'] ?>" gclms:last-message-datetime="<?= isset($latestDatetime) ? $latestDatetime : time() ?>">
+			<? foreach($chat_messages as $chat_message): ?>
+				<div class="gclms-chat-message">
+					<span class="gclms-name"><?= $chat_message['User']['alias'] ?>:</span>
+					<?= $text->autoLinkUrls($chat_message['ChatMessage']['content']) ?>
+				</div>
+			<? endforeach; ?>
 		</div>
-		<div id="newChatMessage">
-		<?
-		echo $form->input('ChatMessage.text',array('class'=>'text','label' => '','div'=>false,'ajax:url'=>'/' . $group['web_path'] . '/chat/send/section:' . $virtual_class['id']));
-		echo $form->submit(__('Send',true),array('class'=>'send','div'=>false,'id'=>'SendMessageButton'));	
-		?>
-		</div>
+		<table id="gclms-new-chat-message">
+			<tr>
+				<td><input type="text" id="gclms-chat-message-text" /></td>
+				<td><button id="gclms-send-message-button" class="gclms-send"><? __('Send') ?></button></td>
+			</tr>
+		</table>
 	</div>
 </div>
 

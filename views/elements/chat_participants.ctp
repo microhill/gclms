@@ -1,7 +1,11 @@
-<div id="chatParticipants">
+<div id="gclms-chat-participants">
 	<?
 	foreach($chat_participants as $chat_participant) {
-		echo '<div>' . $chat_participant['User']['first_name'] . ' ' . $chat_participant['User']['last_name'] . '</div>';
+		echo '<div>' . $chat_participant['User']['alias'] . '</div>';
 	}
 	?>
 </div>
+
+<p>
+	<button id="gclms-upload-file">Upload File</button>
+</p>

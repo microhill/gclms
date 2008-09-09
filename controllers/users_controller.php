@@ -26,7 +26,25 @@ class UsersController extends AppController {
 		if(count($user) != 1)
 			die();
 		$this->set(compact('user'));
-	}	
+	}
+	
+	function view() {
+		App::import('Model','NotebookEntry');
+		$this->NotebookEntry = new NotebookEntry;
+		
+		if($this->viewVars['user']['id'] == $this->params['user']) {
+			$conditions = array('NotebookEntry.user_id');
+		} else {
+			$conditions = array('NotebookEntry.user_id','NotebookEntry.private' => 0);
+		}
+		$this->NotebookEntry->contain();
+		$notebook_entries = $this->NotebookEntry->find('all',array(
+			'conditions' => $conditions,
+			'limit' => 5,
+			'order' => 'NotebookEntry.created DESC'
+		));
+		$this->set('notebook_entries',$notebook_entries);
+	}
     
 	function verify($code) {
 		$code = trim($code);

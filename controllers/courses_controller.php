@@ -157,7 +157,7 @@ class CoursesController extends AppController {
 		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		$this->set(compact('nodes'));
 		
-		if(empty($this->viewVars['virtual_class']['id'])) {
+		if(empty($this->viewVars['class']['id'])) {
 			/*
 			$this->FacilitatedClass->contain();
 			$virtual_classes = $this->FacilitatedClass->findAllByCourseId($this->viewVars['course']['id']);
@@ -165,7 +165,7 @@ class CoursesController extends AppController {
 			*/
 		} else {
 			$this->Announcement->contain();
-			$news_items = $this->Announcement->findAllByFacilitatedClassId($this->viewVars['virtual_class']['id']);
+			$news_items = $this->Announcement->findAllByFacilitatedClassId($this->viewVars['class']['id']);
 			$this->set('news_items',$news_items);
 		}
 

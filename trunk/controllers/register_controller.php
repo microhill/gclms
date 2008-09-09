@@ -32,7 +32,7 @@ class RegisterController extends AppController {
 			$this->User->create();
 			$this->User->save($this->data);
 			
-			mail($this->data['User']['email'],__('Student registration',true),sprintf(__('Thank you for registering as a student. Visit the following URL to verify your student account.\b\b ' . Configure::write('App.domain') . 'users/verify/' . $this->data['User']['verification_code'],true)), 'From: aaronshaf@gmail.com');
+			mail($this->data['User']['email'],__('Student registration',true),sprintf(__('Thank you for registering as a student. Visit the following URL to verify your student account.\b\b ' . Configure::read('App.domain') . 'users/verify/' . $this->data['User']['verification_code'],true)), 'From: aaronshaf@gmail.com');
 			$this->Notifications->add(__('Thank you for registering as a student. Please check your e-mail to activate your student account.',true));
 			$this->redirect('/');
 			exit;

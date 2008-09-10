@@ -1,9 +1,9 @@
-/*global gclms, $, $F, Ajax, PeriodicalExecuter, document, Position */
+/*global gclms, $, $$, $F, Ajax, PeriodicalExecuter, document, Position, UUID */
 
 gclms.ChatController = {
 	sendMessage: function(event) {	
-		var chatMessageText = $F('gclms-chat-message-text').stripTags().strip();
-		if((event.keyCode != 13 && event.type != 'click') || chatMessageText.blank()) {
+		var content = $F('gclms-chat-message-text').stripTags().strip();
+		if((event.keyCode != 13 && event.type != 'click') || content.blank()) {
 			return false;
 		}
 		event.stop();
@@ -11,19 +11,30 @@ gclms.ChatController = {
 		$('gclms-chat-message-text').value = '';
 
 		var id = UUID.generate();
-		$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message-same-author').interpolate({
-			alias: $('gclms-chat-messages').getAttribute('gclms:user-alias'),
-			content: chatMessageText,
-			id: id
-		})});
+		
+		var lastAuthor = $$('.gclms-chat-message-with-author-identity span.gclms-author').last().innerHTML;
+		if (lastAuthor != $('gclms-chat-messages').getAttribute('gclms:user-alias')) {
+			$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message-new-author').interpolate({
+				id: id,
+				alias: $('gclms-chat-messages').getAttribute('gclms:user-alias'),
+				gravatar_id: $($('gclms-chat-messages').getAttribute('gclms:user-id')).getAttribute('gclms:gravatar-id'),
+				content: content
+			})});
+		} else {
+			$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message-same-author').interpolate({
+				id: id,
+				alias: $('gclms-chat-messages').getAttribute('gclms:user-alias'),
+				content: content
+			})});	
+		}
+		$('gclms-chat-messages').scrollTop = $('gclms-chat-messages').scrollHeight;
 
 		gclms.ChatMessage.send({
-			content: chatMessageText,
+			content: content,
 			id: id
 		});
 
-		$('gclms-chat-messages').scrollTop = $('gclms-chat-messages').scrollHeight;
-		$('gclms-chat-message-text').focus();		
+		$('gclms-chat-message-text').focus();
 	},
 	
 	
@@ -32,12 +43,17 @@ gclms.ChatController = {
 	},
 	
 	resizeChatroom: function() {
+		var newHeight = $('gclms-new-chat-message').cumulativeOffset().top - $('gclms-chat-messages').cumulativeOffset().top - 10;
+		$('gclms-chat-messages').style.height = newHeight + 'px';
+		/*
 		var newHeight = document.documentElement.clientHeight - Position.cumulativeOffset($('gclms-chat-messages'))[1] - $('gclms-new-chat-message').getDimensions().height - 14;
 		$('gclms-chat-messages').style.height = newHeight + 'px';
 		$('gclms-chat-message-text').style.width = ($('gclms-chat-messages').getDimensions().width - $('gclms-send-message-button').getDimensions().width) - 6 + 'px';
+		*/
 	},
 	
-	updateChatRoom: function() {
+	updateChatRoom: function(executer) {
+		executer.stop();
 		var latestDatetime = $('gclms-chat-messages').getAttribute('gclms:last-message-datetime');
 		gclms.ChatMessage.get({
 			latestDatetime: latestDatetime,
@@ -63,18 +79,29 @@ gclms.ChatController = {
 					$('gclms-chat-participants').innerHTML = newHTML;
 				}
 				//alert(json.ChatMessages.length);
-				var id;
+				var id,lastAuthor;
 				if(json.ChatMessages.length) {
 					for(x = 0;x < json.ChatMessages.length;x++) {
 						id = json.ChatMessages[x].ChatMessage.id;
 						if($(id)) {
 							$(id).innerHTML = json.ChatMessages[x].ChatMessage.content;
 						} else {
-							$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message-same-author').interpolate({
-								id: json.ChatMessages[x].ChatMessage.id,
-								content: json.ChatMessages[x].ChatMessage.content,
-								timestamp: json.ChatMessages[x].ChatMessage.created
-							})});							
+							lastAuthor = $$('.gclms-chat-message-with-author-identity span.gclms-author').last().innerHTML;
+							if(lastAuthor != json.ChatMessages[x].User.alias) {
+								$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message-new-author').interpolate({
+									id: json.ChatMessages[x].ChatMessage.id,
+									alias: json.ChatMessages[x].User.alias,
+									gravatar_id: $(json.ChatMessages[x].User.id).getAttribute('gclms:gravatar-id'),
+									content: json.ChatMessages[x].ChatMessage.content,
+									timestamp: json.ChatMessages[x].ChatMessage.created
+								})});
+							} else {
+								$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message-same-author').interpolate({
+									id: json.ChatMessages[x].ChatMessage.id,
+									content: json.ChatMessages[x].ChatMessage.content,
+									timestamp: json.ChatMessages[x].ChatMessage.created
+								})});
+							}
 						}
 
 						$('gclms-chat-messages').scrollTop = $('gclms-chat-messages').scrollHeight;
@@ -84,10 +111,12 @@ gclms.ChatController = {
 				}
 			}
 		});
+		var chatExecutor = new PeriodicalExecuter(gclms.ChatController.updateChatRoom, 6);
 	},
 	
 	loadChatRoom: function() {
 		var chatExecutor = new PeriodicalExecuter(gclms.ChatController.updateChatRoom, 6);
+		gclms.ChatController.resizeChatroom();
 		$('gclms-chat-messages').scrollTop = $('gclms-chat-messages').scrollHeight;
 	},
 	
@@ -133,8 +162,11 @@ gclms.Triggers.update({
 	}
 });
 
+//Because my 'triggers' prototype extension doesn't support window events yet...
+Event.observe(window, 'resize', gclms.ChatController.resizeChatroom);
+
 gclms.Views.update({
-	'chat-participant': '<li id="#{id}"><img src="http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_id}&size=50" />  #{alias}</li>',
+	'chat-participant': '<li id="#{id}" gclms:gravatar-id="#{gravatar_id}"><img src="http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_id}&size=50" />  #{alias}</li>',
 	'chat-message-same-author': '<div class="gclms-chat-message"><span id="#{id}" gclms:message-timestamp="#{timestamp}">#{content}</span></div>',
-	'chat-message-new-author': '<div class="gclms-chat-message-with-author-identity"><img src="http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_id}&default=&size=40" /> <span class="gclms-author">#{alias}</span>: <span id="#{id}" gclms:message-timestamp="#{timestamp}">#{content}</span></div>'
+	'chat-message-new-author': '<div class="gclms-chat-message-with-author-identity"><img class="gclms-gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_id}&default=&size=50" /> <span class="gclms-author">#{alias}</span>: <span id="#{id}" gclms:message-timestamp="#{timestamp}">#{content}</span></div>'
 });

@@ -17,13 +17,13 @@ echo $this->element('left_column'); ?>
 		if($chat_messages)		
 			$latestDatetime = strtotime($chat_messages[sizeof($chat_messages) - 1]['ChatMessage']['created']);
 		?>
-		<div id="gclms-chat-messages" gclms:user-alias="<?= $user['alias'] ?>" gclms:last-message-datetime="<?= isset($latestDatetime) ? $latestDatetime : time() ?>">
+		<div id="gclms-chat-messages" gclms:user-id="<?= $user['id'] ?>" gclms:user-alias="<?= $user['alias'] ?>" gclms:last-message-datetime="<?= isset($latestDatetime) ? $latestDatetime : time() ?>">
 			<?
 			$lastMessageAuthor = null;
 			foreach($chat_messages as $chat_message): ?>
 				<? if($lastMessageAuthor != $chat_message['User']['alias']): ?>
 					<div class="gclms-chat-message-with-author-identity">
-						<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($chat_message['User']['email']) ?>&default=<?= urlencode(@$default) ?>&size=40" />
+						<img class="gclms-gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($chat_message['User']['email']) ?>&default=<?= urlencode(@$default) ?>&size=50" />
 						<span class="gclms-author"><?= $chat_message['User']['alias'] ?></span>:
 				<? else: ?>
 					<div class="gclms-chat-message">

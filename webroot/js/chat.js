@@ -171,7 +171,7 @@ gclms.Triggers.update({
 Event.observe(window, 'resize', gclms.ChatController.resizeChatroom);
 
 gclms.Views.update({
-	'chat-participant': '<li id="#{id}" gclms:gravatar-id="#{gravatar_id}"><img src="http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_id}&size=48" />  #{alias}</li>',
+	'chat-participant': '<li id="#{id}" gclms:gravatar-id="#{gravatar_id}"><img class="gclms-gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_id}&size=48" />  #{alias}</li>',
 	'chat-message-same-author': '<div class="gclms-chat-message"><span id="#{id}" gclms:message-timestamp="#{timestamp}">#{content}</span></div>',
 	'chat-message-new-author': '<div class="gclms-chat-message-with-author-identity"><img class="gclms-gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_id}&default=&size=48" /> <span class="gclms-author">#{alias}</span>: <span id="#{id}" gclms:message-timestamp="#{timestamp}">#{content}</span></div>'
 });

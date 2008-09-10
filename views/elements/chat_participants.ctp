@@ -6,7 +6,7 @@
 		$gravatar_id = md5($chat_participant['User']['email']);
 		?>
 		<li id="<?= $chat_participant['User']['id'] ?>" gclms:gravatar-id="<?= $gravatar_id ?>">
-			<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= $gravatar_id ?>&size=48&default=<?= urlencode(Configure::read('App.domain') . 'img/icons/oxygen_refit/48x48/apps/user-info.png') ?>" /> <?= $chat_participant['User']['alias'] ?>
+			<img class="gclms-gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=<?= $gravatar_id ?>&size=48&default=<?= urlencode(Configure::read('App.domain') . 'img/icons/oxygen_refit/48x48/apps/user-info.png') ?>" /> <?= $chat_participant['User']['alias'] ?>
 		</li>
 	<? endforeach; ?>
 </ul>

@@ -45,11 +45,7 @@ gclms.ChatController = {
 	resizeChatroom: function() {
 		var newHeight = $('gclms-new-chat-message').cumulativeOffset().top - $('gclms-chat-messages').cumulativeOffset().top - 10;
 		$('gclms-chat-messages').style.height = newHeight + 'px';
-		/*
-		var newHeight = document.documentElement.clientHeight - Position.cumulativeOffset($('gclms-chat-messages'))[1] - $('gclms-new-chat-message').getDimensions().height - 14;
-		$('gclms-chat-messages').style.height = newHeight + 'px';
-		$('gclms-chat-message-text').style.width = ($('gclms-chat-messages').getDimensions().width - $('gclms-send-message-button').getDimensions().width) - 6 + 'px';
-		*/
+		$('gclms-chat-messages').scrollTop = $('gclms-chat-messages').scrollHeight;
 	},
 	
 	updateChatRoom: function(executer) {
@@ -116,8 +112,7 @@ gclms.ChatController = {
 	
 	loadChatRoom: function() {
 		var chatExecutor = new PeriodicalExecuter(gclms.ChatController.updateChatRoom, 6);
-		gclms.ChatController.resizeChatroom();
-		$('gclms-chat-messages').scrollTop = $('gclms-chat-messages').scrollHeight;
+		gclms.ChatController.resizeChatroom();		
 	},
 	
 	addOddRowClass: function() {

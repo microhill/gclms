@@ -80,7 +80,7 @@ class ChatController extends AppController {
 		}
 		
 		foreach($chat_participants as &$chat_participant) { 	
-			$chat_participant['ChatParticipant']['gravatar_id'] = md5($chat_participant['User']['email']);
+			$chat_participant['User']['gravatar_id'] = md5($chat_participant['User']['email']);
 		}
 		
 		return $chat_participants;
@@ -93,25 +93,29 @@ class ChatController extends AppController {
     
     function send() {
     	if(!$this->RequestHandler->isAjax())
-    		die();
+    		die;
+			
+		if($this->ChatParticipant->field('id',array('id' => $this->data['ChatMessage']['id'])))
+			die;
     		
     	$this->data['ChatMessage']['content'] = trim($this->data['ChatMessage']['content']);
     	if(empty($this->data['ChatMessage']['content']))
     		die();
     	
     	$data = array('ChatMessage' => array(
-    		'user_id' => $this->viewVars['user']['id'],
+    		'id' => $this->data['ChatMessage']['id'],
+			'user_id' => $this->viewVars['user']['id'],
     		'course_id' => $this->viewVars['course']['id'], 
 			'virtual_class_id' => @$this->viewVars['class']['id'], 
 			'content' => $this->data['ChatMessage']['content']
 		));
     	$this->ChatMessage->save($data);
-    	die();
+    	die;
     }
     
     function get() {
 		$datetime = $this->data['latest_datetime'];
-		
+
 		//$mrClean = new Sanitize();
     	//$datetime = $mrClean->paranoid($datetime);
     	$datetime = date('Y-m-d H:i:s',$datetime);
@@ -121,7 +125,7 @@ class ChatController extends AppController {
 			'conditions' => array(
 				'ChatMessage.course_id' => $this->viewVars['course']['id'],
 				'ChatMessage.virtual_class_id' => @$this->viewVars['class']['id'],
-				//'ChatMessage.created' => '> ' . $datetime
+				'ChatMessage.created > ' => $datetime
 			),
 			'order' => 'ChatMessage.created DESC'
 		));

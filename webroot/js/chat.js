@@ -2,6 +2,7 @@
 
 gclms.ChatController = {
 	loadChatRoom: function() {
+		$('gclms-chat-message-text').focus();
 		var chatExecutor = new PeriodicalExecuter(gclms.ChatController.updateChatRoom, 6);
 		gclms.ChatController.resizeChatroom();
 		soundManager.onload = function() {

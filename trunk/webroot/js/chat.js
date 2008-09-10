@@ -11,8 +11,13 @@ gclms.ChatController = {
 		$('gclms-chat-message-text').value = '';
 
 		var id = UUID.generate();
-		
-		var lastAuthor = $$('.gclms-chat-message-with-author-identity span.gclms-author').last().innerHTML;
+	
+        if ($('gclms-chat-messages').down('.gclms-chat-message-with-author-identity')) {
+            var lastAuthor = $$('.gclms-chat-message-with-author-identity span.gclms-author').last().innerHTML;
+        }
+        else {
+            var lastAuthor = null;
+        }
 		if (lastAuthor != $('gclms-chat-messages').getAttribute('gclms:user-alias')) {
 			$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message-new-author').interpolate({
 				id: id,
@@ -82,7 +87,12 @@ gclms.ChatController = {
 						if($(id)) {
 							$(id).innerHTML = json.ChatMessages[x].ChatMessage.content;
 						} else {
-							lastAuthor = $$('.gclms-chat-message-with-author-identity span.gclms-author').last().innerHTML;
+					        if ($('gclms-chat-messages').down('.gclms-chat-message-with-author-identity')) {
+					            var lastAuthor = $$('.gclms-chat-message-with-author-identity span.gclms-author').last().innerHTML;
+					        }
+					        else {
+					            var lastAuthor = null;
+					        }
 							if(lastAuthor != json.ChatMessages[x].User.alias) {
 								$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message-new-author').interpolate({
 									id: json.ChatMessages[x].ChatMessage.id,

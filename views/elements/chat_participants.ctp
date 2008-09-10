@@ -10,3 +10,7 @@
 		</li>
 	<? endforeach; ?>
 </ul>
+
+<div id="soundmanager-debug">
+	
+</div>

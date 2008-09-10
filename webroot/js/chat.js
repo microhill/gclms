@@ -1,6 +1,14 @@
-/*global gclms, $, $$, $F, Ajax, PeriodicalExecuter, document, Position, UUID */
+/*global gclms, $, $$, $F, Ajax, PeriodicalExecuter, document, Position, UUID, soundManager */
 
 gclms.ChatController = {
+	loadChatRoom: function() {
+		var chatExecutor = new PeriodicalExecuter(gclms.ChatController.updateChatRoom, 6);
+		gclms.ChatController.resizeChatroom();
+		soundManager.onload = function() {
+			soundManager.createSound('newMessage','/webroot/sounds/new-message.mp3');
+		}
+	},
+
 	sendMessage: function(event) {	
 		var content = $F('gclms-chat-message-text').stripTags().strip();
 		if((event.keyCode != 13 && event.type != 'click') || content.blank()) {
@@ -91,14 +99,15 @@ gclms.ChatController = {
 					}
 				}
 
-				var id,lastAuthor;
+				var id,lastAuthor,newMessageFromOtherAuthor = false;
 				if(json.ChatMessages.length) {
 					for(x = 0;x < json.ChatMessages.length;x++) {
 						id = json.ChatMessages[x].ChatMessage.id;
 						if($(id)) {
 							$(id).innerHTML = json.ChatMessages[x].ChatMessage.content;
 						} else {
-					        if ($('gclms-chat-messages').down('.gclms-chat-message-with-author-identity')) {
+					        newMessageFromOtherAuthor = true;
+							if ($('gclms-chat-messages').down('.gclms-chat-message-with-author-identity')) {
 					            var lastAuthor = $$('.gclms-chat-message-with-author-identity span.gclms-author').last().innerHTML;
 					        }
 					        else {
@@ -125,15 +134,13 @@ gclms.ChatController = {
 						var latestDatetime = json.ChatMessages[x].ChatMessage.created;
 					}
 					$('gclms-chat-messages').setAttribute('gclms:last-message-datetime',latestDatetime);
+					if(newMessageFromOtherAuthor) {
+						soundManager.play('newMessage');
+					}
 				}
 			}
 		});
 		var chatExecutor = new PeriodicalExecuter(gclms.ChatController.updateChatRoom, 6);
-	},
-	
-	loadChatRoom: function() {
-		var chatExecutor = new PeriodicalExecuter(gclms.ChatController.updateChatRoom, 6);
-		gclms.ChatController.resizeChatroom();		
 	}
 };
 
@@ -168,6 +175,8 @@ gclms.Triggers.update({
 
 //Because my 'triggers' prototype extension doesn't support window events yet...
 Event.observe(window, 'resize', gclms.ChatController.resizeChatroom);
+
+soundManager.url = '/js/vendors/soundmanager2.77/';
 
 gclms.Views.update({
 	'chat-participant': '<li id="#{id}" gclms:gravatar-id="#{gravatar_id}"><img class="gclms-gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_id}&size=48" />  #{alias}</li>',

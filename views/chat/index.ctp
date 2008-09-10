@@ -4,6 +4,7 @@ $html->css('chat', null, null, false);
 $javascript->link(array(
 	'vendors/prototype',
 	'prototype_extensions',
+	'vendors/soundmanager2.77/soundmanager2-nodebug-jsmin',
 	'vendors/uuid',
 	'gclms',
 	'chat'

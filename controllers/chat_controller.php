@@ -43,17 +43,15 @@ class ChatController extends AppController {
     function updateChatParticipants() {
 		//Get chat participant record of current user
 		$this->ChatParticipant->contain();
-		$chat_participant = $this->ChatParticipant->find('first',array(
-			'fields' => array('id'),
-			'conditions' =>  array(
+		$chat_participant = $this->ChatParticipant->field('id',array(
 				'ChatParticipant.user_id'=> $this->viewVars['user']['id'],
 				'ChatParticipant.course_id' => $this->viewVars['course']['id'],
 				'ChatParticipant.virtual_class_id' => @$this->viewVars['class']['id']
-		)));
+		));
 		
 		//If it exists, updated it; otherwise, create it
-		if(!empty($chat_participant['ChatParticipant']['id'])) {
-			$this->ChatParticipant->id = $chat_participant['ChatParticipant']['id'];
+		if(!empty($chat_participant)) {
+			$this->ChatParticipant->id = $chat_participant;
 			$this->ChatParticipant->saveField('modified',date('Y-m-d H:i:s'));
 		} else {
 			$chat_participant = array('ChatParticipant' => array(
@@ -65,7 +63,7 @@ class ChatController extends AppController {
 		}
 
 		//Get most recent list of chat partipicants in room
-		$this->ChatParticipant->contain(array('User.fields' => array('alias','email')));
+		$this->ChatParticipant->contain(array('User.fields' => array('id','alias','email')));
 		$chat_participants = $this->ChatParticipant->find('all',array(
 			'conditions' => array(
 				'course_id' => $this->viewVars['course']['id'],
@@ -80,6 +78,11 @@ class ChatController extends AppController {
 				$chat_participant = null;
 			}
 		}
+		
+		foreach($chat_participants as &$chat_participant) { 	
+			$chat_participant['ChatParticipant']['gravatar_id'] = md5($chat_participant['User']['email']);
+		}
+		
 		return $chat_participants;
     }
     
@@ -118,8 +121,7 @@ class ChatController extends AppController {
 			'conditions' => array(
 				'ChatMessage.course_id' => $this->viewVars['course']['id'],
 				'ChatMessage.virtual_class_id' => @$this->viewVars['class']['id'],
-				'ChatMessage.created' => '> ' . $datetime,
-				'ChatMessage.user_id' => '<> ' . $this->viewVars['user']['id']
+				//'ChatMessage.created' => '> ' . $datetime
 			),
 			'order' => 'ChatMessage.created DESC'
 		));

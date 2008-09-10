@@ -21,12 +21,13 @@ echo $this->element('left_column'); ?>
 			$lastMessageAuthor = null;
 			foreach($chat_messages as $chat_message): ?>
 				<? if($lastMessageAuthor != $chat_message['User']['alias']): ?>
+					<div style="clear: both; margin-top: 4px;">
 					<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($chat_message['User']['email']) ?>&default=<?= urlencode(@$default) ?>&size=40" />
 					<span class="gclms-author"><?= $chat_message['User']['alias'] ?></span>:
 				<? else: ?>
-					<br/>
+					<div>
 				<? endif; ?>
-				<span class="gclms-chat-message" gclms:message-timestamp="<? $chat_message['ChatMessage']['created'] ?>"><?= $text->autoLinkUrls($chat_message['ChatMessage']['content']) ?></span>
+				<span class="gclms-chat-message" gclms:message-timestamp="<? $chat_message['ChatMessage']['created'] ?>"><?= $text->autoLinkUrls($chat_message['ChatMessage']['content']) ?></span></div>
 				<?
 				$lastMessageAuthor = $chat_message['User']['alias'];
 				?>

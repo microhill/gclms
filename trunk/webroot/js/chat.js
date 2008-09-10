@@ -40,23 +40,25 @@ gclms.ChatController = {
 		gclms.ChatMessage.get({
 			latestDatetime: latestDatetime,
 			callback: function(transport,json) {
+				//I'm not sure why this works, but without it Firefox throws an error upon page load
 				try {
-					if(!json || !json.ChatMessages) {
+					if(!json) {
 						return false;
 					}	
 				} catch(e) {
 					return false;
-				}
+				}				
 
 				if(json.ChatParticipants.length) {
 					var newHTML = '';
 					for(var x = 0;x < json.ChatParticipants.length;x++) {
 						newHTML += gclms.Views.get('chat-participant').interpolate({
-							alias: json.ChatMessages[x].User.alias,
-							content: json.ChatMessages[x].ChatMessage.content
+							id: json.ChatParticipants[x].User.id,
+							alias: json.ChatParticipants[x].User.alias,
+							gravatar_id: json.ChatParticipants[x].User.gravatar_id
 						});
 					}
-					$('gclms-chat-participants').replace(newHTML);
+					$('gclms-chat-participants').innerHTML = newHTML;
 				}
 	
 				if(json.ChatMessages.length) {
@@ -122,6 +124,6 @@ gclms.Triggers.update({
 });
 
 gclms.Views.update({
-	'chat-participant': '<div id="#{id}">#{alias}</div>',
+	'chat-participant': '<li id="#{id}"><img src="http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_id}&size=50" />  #{alias}</li>',
 	'chat-message-same-author': '<br/><span class="gclms-chat-message">#{content}</span>'
 });

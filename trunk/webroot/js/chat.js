@@ -71,15 +71,26 @@ gclms.ChatController = {
 				if(json.ChatParticipants.length) {
 					var newHTML = '';
 					for(var x = 0;x < json.ChatParticipants.length;x++) {
-						newHTML += gclms.Views.get('chat-participant').interpolate({
-							id: json.ChatParticipants[x].User.id,
-							alias: json.ChatParticipants[x].User.alias,
-							gravatar_id: json.ChatParticipants[x].User.gravatar_id
+						$$('gclms-chat-participants li').each(function(li) {
+							li.addClassName('gclms-to-be-removed');
+						});
+						
+						if($(json.ChatParticipants[x].User.id)) {
+							$(json.ChatParticipants[x].User.id).removeClassName('gclms-to-be-removed');
+						} else {
+							$('gclms-chat-participants').insert({bottom: gclms.Views.get('chat-participant').interpolate({
+								id: json.ChatParticipants[x].User.id,
+								alias: json.ChatParticipants[x].User.alias,
+								gravatar_id: json.ChatParticipants[x].User.gravatar_id
+							})});				
+						}
+						
+						$$('gclms-chat-participants li.gclms-to-be-removed').each(function(li) {
+							li.remove();
 						});
 					}
-					$('gclms-chat-participants').innerHTML = newHTML;
 				}
-				//alert(json.ChatMessages.length);
+
 				var id,lastAuthor;
 				if(json.ChatMessages.length) {
 					for(x = 0;x < json.ChatMessages.length;x++) {
@@ -123,14 +134,6 @@ gclms.ChatController = {
 	loadChatRoom: function() {
 		var chatExecutor = new PeriodicalExecuter(gclms.ChatController.updateChatRoom, 6);
 		gclms.ChatController.resizeChatroom();		
-	},
-	
-	addOddRowClass: function() {
-		this.addClassName('gclms-odd');
-	},
-	
-	addEvenRowClass: function() {
-		this.addClassName('gclms-even');
 	}
 };
 
@@ -160,11 +163,7 @@ gclms.ChatMessage = {
 gclms.Triggers.update({
 	'#gclms-chat-message-text:keydown, #gclms-send-message-button:click': gclms.ChatController.sendMessage,
 	//'window:unload': gclms.ChatController.leaveChatroom,
-	'#gclms-chat-messages': gclms.ChatController.loadChatRoom,
-	'table': {
-		'#gclms-chat-messages tr:nth-child(odd)': gclms.ChatController.addOddRowClass,
-		'#gclms-chat-messages tr:nth-child(even)': gclms.ChatController.addEvenRowClass	
-	}
+	'#gclms-chat-messages': gclms.ChatController.loadChatRoom
 });
 
 //Because my 'triggers' prototype extension doesn't support window events yet...

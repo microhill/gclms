@@ -1,18 +1,24 @@
+
+
 #gclms-chat-messages {
-	height: 500px;
+	height: 250px;
 	overflow: auto;
 	line-height: 1.6em;
 }
-
-	#gclms-chat-messages img {
-		float: left;
-		margin-right: 8px;
+	
+	.gclms-chat-message-with-author-identity {
 		clear: both;
 	}
-
-	#gclms-chat-messages .gclms-author {
-		font-weight: bold;
-	}
+	
+		.gclms-chat-message-with-author-identity img {
+			float: left;
+			margin-right: 8px;
+			margin-top: 4px;
+		}
+	
+		.gclms-author {
+			font-weight: bold;
+		}
 	
 #gclms-new-chat-message {
 	margin-top: 4px;

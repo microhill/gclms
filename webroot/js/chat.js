@@ -2,23 +2,25 @@
 
 gclms.ChatController = {
 	sendMessage: function(event) {	
-		var chatMessageText = $F('gclms-chat-message-text');
-		if((event.keyCode != 13 && event.type != 'click') || !chatMessageText) {
+		var chatMessageText = $F('gclms-chat-message-text').stripTags().strip();
+		if((event.keyCode != 13 && event.type != 'click') || chatMessageText.blank()) {
 			return false;
 		}
 		event.stop();
 
 		$('gclms-chat-message-text').value = '';
 
-		gclms.ChatMessage.send({
-			content: chatMessageText
-		});
-
+		var id = UUID.generate();
 		$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message-same-author').interpolate({
 			alias: $('gclms-chat-messages').getAttribute('gclms:user-alias'),
 			content: chatMessageText,
-			timestamp: 1
+			id: id
 		})});
+
+		gclms.ChatMessage.send({
+			content: chatMessageText,
+			id: id
+		});
 
 		$('gclms-chat-messages').scrollTop = $('gclms-chat-messages').scrollHeight;
 		$('gclms-chat-message-text').focus();		
@@ -60,14 +62,21 @@ gclms.ChatController = {
 					}
 					$('gclms-chat-participants').innerHTML = newHTML;
 				}
-	
+				//alert(json.ChatMessages.length);
+				var id;
 				if(json.ChatMessages.length) {
 					for(x = 0;x < json.ChatMessages.length;x++) {
-						$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message').interpolate({
-							alias: json.ChatMessages[x].User.alias,
-							content: json.ChatMessages[x].ChatMessage.content
-						})});
-	
+						id = json.ChatMessages[x].ChatMessage.id;
+						if($(id)) {
+							$(id).innerHTML = json.ChatMessages[x].ChatMessage.content;
+						} else {
+							$('gclms-chat-messages').insert({bottom: gclms.Views.get('chat-message-same-author').interpolate({
+								id: json.ChatMessages[x].ChatMessage.id,
+								content: json.ChatMessages[x].ChatMessage.content,
+								timestamp: json.ChatMessages[x].ChatMessage.created
+							})});							
+						}
+
 						$('gclms-chat-messages').scrollTop = $('gclms-chat-messages').scrollHeight;
 						var latestDatetime = json.ChatMessages[x].ChatMessage.created;
 					}
@@ -106,6 +115,7 @@ gclms.ChatMessage = {
 		var request = new Ajax.Request(gclms.urlPrefix + 'chat/send.json',{
 			method: 'post',
 			parameters: {
+				'data[ChatMessage][id]': options.id,
 				'data[ChatMessage][content]': options.content
 			},
 			onComplete: options.callback
@@ -125,5 +135,6 @@ gclms.Triggers.update({
 
 gclms.Views.update({
 	'chat-participant': '<li id="#{id}"><img src="http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_id}&size=50" />  #{alias}</li>',
-	'chat-message-same-author': '<br/><span class="gclms-chat-message">#{content}</span>'
+	'chat-message-same-author': '<div class="gclms-chat-message"><span id="#{id}" gclms:message-timestamp="#{timestamp}">#{content}</span></div>',
+	'chat-message-new-author': '<div class="gclms-chat-message-with-author-identity"><img src="http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_id}&default=&size=40" /> <span class="gclms-author">#{alias}</span>: <span id="#{id}" gclms:message-timestamp="#{timestamp}">#{content}</span></div>'
 });

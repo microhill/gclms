@@ -135,7 +135,7 @@ class FilesController extends AppController {
 			$path_parts['extension'] = strtolower($path_parts['extension']);
 			
 			if($path_parts['extension'] == 'jpg' || $path_parts['extension'] == 'gif' || $path_parts['extension'] == 'png' || $path_parts['extension'] == 'jpeg') {
-				$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files/create_thumbnail/' . basename($this->params['url']['key']));
+				$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files/create_thumbnail/' . urlencode(basename($this->params['url']['key'])));
 				exit;				
 			}
 		} else if(!empty($this->params['file'])) {

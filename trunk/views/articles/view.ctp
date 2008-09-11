@@ -25,6 +25,9 @@ echo $this->element('left_column'); ?>
         <h1>
             <?= $this->data['Article']['title'] ?>
         </h1>
-        <?= $this->data['Article']['content'] ?>
+        <?
+		$this->data['Article']['content'] = $glossary->linkify($this->data['Article']['content'],$groupAndCoursePath . '/glossary/view/',$glossary_terms);
+		echo $this->data['Article']['content'];
+		?>
     </div>
 </div>

@@ -97,6 +97,7 @@ gclms.UploadFilesController = {
 	},
 	
 	confirmDeleteFiles: function(event) {
+		return false;
 		event.stop();
 		gclms.popup.create({
 			text: 'Are you sure?',

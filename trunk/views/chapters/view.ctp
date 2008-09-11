@@ -19,7 +19,10 @@ echo $this->element('left_column'); ?>
         </div>
 		<div class="gclms-step-back"><a href="/<?= $group['web_path'] ?>/<?= $course['web_path'] ?>/books"><? __('Back to Books') ?></a></div>
 		<h1><?= $this->data['Chapter']['title'] ?></h1>
-		<?= $this->data['Chapter']['content'] ?>
+        <?
+		$this->data['Chapter']['content'] = $glossary->linkify($this->data['Chapter']['content'],$groupAndCoursePath . '/glossary/view/',$glossary_terms);
+		echo $this->data['Chapter']['content'];
+		?>
 	</div>
 </div>
 

@@ -3,7 +3,7 @@ $html->css('chapters', null, null, false);
 
 $javascript->link(array(
 	'vendors/prototype1.6.0.2',
-	'prototype_extensions1.0',
+	'vendors/prototype_extensions1.0',
 	'gclms',
 	'vendors/uuid1.0',
 	'vendors/scriptaculous1.8.1/scriptaculous',

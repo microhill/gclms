@@ -12,7 +12,7 @@
 	</div>
 	<?
 	$javascript->link('vendors/prototype1.6.0.2', false);
-	$javascript->link('prototype_extensions1.0', false);
+	$javascript->link('vendors/prototype_extensions1.0', false);
 	$javascript->link('gclms', false);
 	echo $asset->js_for_layout();
 	?>

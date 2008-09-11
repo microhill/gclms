@@ -1,7 +1,7 @@
 <?
 $javascript->link(array(
 	'vendors/prototype1.6.0.2',
-	'prototype_extensions1.0'
+	'vendors/prototype_extensions1.0'
 ), false);
 
 echo $this->element('no_column_background'); ?>

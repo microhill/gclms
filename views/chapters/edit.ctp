@@ -28,7 +28,7 @@ echo $this->element('no_column_background'); ?>
 		'cols' => 100
 	));
 
-	echo $this->element('save_and_delete_buttons',array(
+	echo $this->element('save_and_delete',array(
 		'confirm_delete_text' => __('Are you sure you want to delete this chapter?',true)
 	));
 

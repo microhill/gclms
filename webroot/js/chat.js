@@ -53,7 +53,7 @@ gclms.ChatController = {
 	
 	
 	leaveChatroom: function() {
-		//var request = new Ajax.Request(urlPrefix + 'leave/', {asynchronous:false})
+		var request = new Ajax.Request(gclms.ChatMessage.ajaxUrl + 'leave/', {asynchronous:false})
 	},
 	
 	resizeChatroom: function() {

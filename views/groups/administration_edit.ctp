@@ -19,9 +19,11 @@ echo $this->element('no_column_background'); ?>
 		'type' => 'file'
 	));
 	include('form.ctp');
-	echo $this->element('save_and_delete_buttons',array(
-		'confirm_delete_text' => __('Are you sure you want to delete this article?',true)
+
+	echo $this->element('save_and_delete',array(
+		'delete_url' => $groupAndCoursePath . '/administration/groups/delete/' . $this->data['Group']['id'],
+		'confirm_delete_text' => __('Are you sure you want to delete this group?',true)
 	));
-	echo $form->end();
-	?>
+	
+	echo $form->end(); ?>
 </div>

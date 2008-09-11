@@ -73,14 +73,14 @@ if($this->action != 'register') {
 		return $row;
 	}
 		
-	echo '<div>';
 	if(!empty($data['GroupAdministrators'])) {
+		echo '<div>';
 		echo $form->label('Group.Administrators', 'Group Administrators') . '<br/>';
 		echo $this->element('mini_recordset', array('data' => $data['GroupAdministrators'],'model'=>'GroupAdministrator','dataCustomizer'=>'customizeCellData','headers'=>array(
 				__('Username',true),__('Name',true),__('Email',true)
 			),'fields'=>array(
 				'username','full_name','email'
 			)));
+		echo '</div>';
 	}
-	echo '</div>';
 }

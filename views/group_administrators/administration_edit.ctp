@@ -28,8 +28,11 @@ echo $this->element('no_column_background'); ?>
 		'selected' => @$data['GroupAdministrator']['group_id'],
 		'disabled' => 'disabled'
 	));
+	
+	echo $this->element('save_and_delete',array(
+		'confirm_delete_text' => __('Are you sure you want to delete this course?',true)
+	));
 
-	echo $form->submit(__('Delete',true),array('class'=>'gclms-delete','gclms:confirm-text'=>__('Are you sure you want to delete this?',true)));
 	echo $form->end();
 	?>
 </div>

@@ -8,7 +8,7 @@
 		echo $form->create('GlossaryTerm',array('url' => $groupAndCoursePath . '/glossary/edit/' . $this->data['GlossaryTerm']['id']));
 		include('form.ctp');
 		
-		echo $this->element('save_and_delete_buttons',array(
+		echo $this->element('save_and_delete',array(
 			'confirm_delete_text' => __('Are you sure you want to delete this glossary term?',true)
 		));
 

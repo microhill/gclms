@@ -2,7 +2,7 @@
 $html->css('files', null, null, false);
 
 $javascript->link(array(
-	'vendors/prototype',
+	'vendors/prototype1.6.0.2',
 	'prototype_extensions',
 	'vendors/tinymce3.1.0.1/tiny_mce_popup',
 	'tinymce_popup'

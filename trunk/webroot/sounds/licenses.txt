@@ -1,0 +1,3 @@
+new-message.mp3 is GPL'd and is gtk-events/toggled.wav from:
+
+http://security.ubuntu.com/ubuntu/pool/main/u/ubuntu-sounds/ubuntu-sounds_0.3.tar.gz

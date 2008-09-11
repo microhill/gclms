@@ -2,10 +2,17 @@
 
 =Version 0.3=
 
+===September 8-15, 2008===
+
+ * urlencoded key for s3 thumbnail creation
+ * chat functionality added
+
 ===September 1-7, 2008===
 
  * Fixed various bugs in site administration
  * Fixing bug caused by page-save when a question doesn't have supplied possible answers
+ * Sorry, having updated this list in awhile...
+ * Forum functionality added
 
 ===August 25-31, 2008===
 

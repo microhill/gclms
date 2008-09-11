@@ -16,7 +16,7 @@
 Header unset ETag
 </IfModule> 
 
-<IfModule mod_header.c>
+<IfModule mod_headers.c>
 	ExpiresByType application/x-javascript "access plus 2 days"
 	ExpiresByType text/css "access plus 2 days"
 </IfModule>

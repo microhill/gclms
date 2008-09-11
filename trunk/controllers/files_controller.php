@@ -143,8 +143,11 @@ class FilesController extends AppController {
 			exit;
 		}
 		
+		if(empty($this->viewVars['accessKey'])) {
+			die('S3 configuration not successfully loaded');
+		}
+		
 		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);
-		$this->log($this->viewVars);
 		$files = $s3->getBucket($this->viewVars['bucket'],'courses/' . $this->viewVars['course']['id'] . '/',null,null,'/'); //, $prefix = null, $marker = null, $maxKeys = null
 		
 		$total_size = 0;

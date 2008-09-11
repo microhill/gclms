@@ -3,8 +3,10 @@
 	# Header set Cache-Control "max-age=29030400, public"
 	Header unset ETag
 	# Header set Expires "Thu, 15 Apr 2010 20:00:00 GMT"
+</IfModule>
+
+<IfModule mod_expires.c>
 	ExpiresDefault "access plus 10 years"
-	ExpiresByType text/javascript "access plus 1 years"
 </IfModule>
 	
 FileETag None

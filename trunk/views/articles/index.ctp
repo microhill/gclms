@@ -3,7 +3,7 @@ $html->css('articles', null, null, false);
 
 $javascript->link(array(
 	'vendors/prototype1.6.0.2',
-	'prototype_extensions',
+	'prototype_extensions1.0',
 	'gclms',
 	'articles'
 ), false);

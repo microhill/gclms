@@ -1,7 +1,7 @@
 <?
 $javascript->link(array(
 	'vendors/prototype1.6.0.2',
-	'prototype_extensions',
+	'prototype_extensions1.0',
 	'vendors/tinymce3.1.0.1/tiny_mce',
 	'gclms',
 	'edit_article.js'

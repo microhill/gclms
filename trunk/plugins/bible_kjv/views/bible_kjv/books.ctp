@@ -68,7 +68,7 @@
 	</ul>
 </div>
 <?
-$javascript->link('vendors/prototype', false);
+$javascript->link('vendors/prototype1.6.0.2', false);
 $javascript->link('prototype_extensions', false);
 $javascript->link('bible', false);
 ?>

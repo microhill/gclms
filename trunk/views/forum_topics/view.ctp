@@ -2,7 +2,7 @@
 $html->css('forum', null, null, false);
 
 $javascript->link(array(
-	'vendors/prototype',
+	'vendors/prototype1.6.0.2',
 	'prototype_extensions',
 	'gclms'
 ), false);

@@ -2,10 +2,10 @@
 $html->css('notebook', null, null, false);
 
 $javascript->link(array(
-	'vendors/prototype',
+	'vendors/prototype1.6.0.2',
 	'prototype_extensions',
 	'gclms',
-	'vendors/uuid',
+	'vendors/uuid1.0',
 	'notebook'
 ), false);
 

@@ -31,7 +31,7 @@ echo $this->element('no_column_background'); ?>
 </div>
 <?
 echo $javascript->link(array(
-	'vendors/prototype',
+	'vendors/prototype1.6.0.2',
 	'prototype_extensions',
 	'gclms',
 	'generate_archive'

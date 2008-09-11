@@ -3,10 +3,10 @@ $html->css('books', null, null, false);
 $html->css('/' . $group['web_path'] . '/files/css', null, null, false);
 
 $javascript->link(array(
-	'vendors/prototype',
+	'vendors/prototype1.6.0.2',
 	'prototype_extensions',
+	'vendors/uuid1.0',
 	'gclms',
-	'vendors/uuid',
 	'books'
 ), false);
 

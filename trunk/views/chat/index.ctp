@@ -2,10 +2,10 @@
 $html->css('chat', null, null, false);
 
 $javascript->link(array(
-	'vendors/prototype',
+	'vendors/prototype1.6.0.2',
 	'prototype_extensions',
 	'vendors/soundmanager2.77/soundmanager2-nodebug-jsmin',
-	'vendors/uuid',
+	'vendors/uuid1.0',
 	'gclms',
 	'chat'
 ), false);

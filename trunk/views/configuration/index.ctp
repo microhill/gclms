@@ -20,7 +20,6 @@ echo $this->element('no_column_background'); ?>
 	
 	include(ROOT . DS . APP_DIR . DS . 'views' . DS . 'groups' . DS . 'form.ctp');
 	
-	echo $this->element('save_button');
-	echo $form->end();
+	echo $form->end('Save');
 	?>
 </div>

@@ -12,7 +12,7 @@ if(in_array('5',Set::extract($node['Question'],'{n}.type'))) {
 
 $javascript->link(array(
 	'vendors/prototype1.6.0.2',
-	'prototype_extensions1.0',
+	'vendors/prototype_extensions1.0',
 	'gclms',
 	'vendors/scriptaculous1.8.1/scriptaculous',
 	'vendors/scriptaculous1.8.1/dragdrop',

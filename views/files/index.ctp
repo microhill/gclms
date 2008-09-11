@@ -3,7 +3,7 @@ $html->css('files', null, null, false);
 
 $javascript->link(array(
 	'vendors/prototype1.6.0.2',
-	'prototype_extensions1.0',
+	'vendors/prototype_extensions1.0',
 	'gclms',
 	'vendors/swfobject2.0/swfobject',
 	'vendors/swfupload2.1.0/swfupload',

@@ -16,7 +16,7 @@ echo $this->element('no_column_background'); ?>
 		echo $form->create('Article',array('url' => $groupAndCoursePath . '/articles/edit/' . $this->data['Article']['id']));
 		include('form.ctp');
 		
-		echo $this->element('save_and_delete_buttons',array(
+		echo $this->element('save_and_delete',array(
 			'confirm_delete_text' => __('Are you sure you want to delete this article?',true)
 		));
 

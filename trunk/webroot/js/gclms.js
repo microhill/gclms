@@ -39,6 +39,8 @@ gclms.AppController = {
 		});
 	},
 	remove: function() {
+		location.href = this.getAttribute('href');
+		/*
 		var form = this.up('form');
 		if(form.getAttribute('gclms:deleteAction')) {
 			self.location.href = form.getAttribute('gclms:deleteAction');
@@ -46,6 +48,7 @@ gclms.AppController = {
 			var action = this.up('form').getAttribute('action').split('/edit/');
 			self.location.href = action[0] + '/delete/' + action[1];
 		}
+		*/
 	},
 	showTooltip: function() {
 		if(!gclms.tooltip) {
@@ -266,7 +269,7 @@ gclms.Triggers = $H({
 			}
 	
 		},
-		'.gclms-button.gclms-delete a:click': gclms.AppController.confirmRemove
+		'button.gclms-delete:click': gclms.AppController.confirmRemove
 	},
 	'.gclms-content': {
 		'.gclms-button:mousedown': function() {

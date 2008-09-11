@@ -15,8 +15,7 @@ echo $this->element('no_column_background'); ?>
 		echo $form->create('Course',array('url'=>'/' . $group['web_path'] . '/courses/add'));
 		echo $form->hidden('group_id',array('value' => $group['id']));
 		include('form.ctp');
-		echo $form->submit(__('Save',true),array('class'=>'gclms-save'));
-		echo $form->end();
+		echo $form->end('Save');
 		?>
 	</div>
 </div>

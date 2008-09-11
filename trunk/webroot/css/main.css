@@ -140,7 +140,8 @@ input[type="submit"]:active,input[type="button"]:active,button:active {
 	padding: 2px 7px 0px 9px;
 }
 
-form input[type="submit"] {
+form input[type="submit"],
+button.gclms-delete {
 	font-size: 1.3em;
 }
 
@@ -226,14 +227,6 @@ form input[type="submit"] {
 }
 
 form {}
-
-	/*
-	form input.gclms-save,
-	form input.gclms-cancel
-	form input.gclms-delete {
-		font-size: 1.3em;
-	}
-	*/
 
 	form div {
 		margin-top: 8px;
@@ -1246,11 +1239,13 @@ table.gclms-button {
 		text-decoration: underline;
 	}
 
+	/*
 	.gclms-button.gclms-add,
 	.gclms-button.gclms-submit,
 	.gclms-button.gclms-delete {
 		font-size: 1.34em;		
 	}
+	*/
 	
 	.gclms-button td {
 		padding: 1px;

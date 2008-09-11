@@ -194,7 +194,7 @@ class FilesController extends AppController {
 		$this->set('total_size',$this->get_file_size($total_size));
 		*/
 		
-		$this->set('title',__('Media Files',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
+		$this->set('title',__('Files',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
 		$this->Notifications->add(
 			__('You need to install the latest version of <a href="http://www.adobe.com/products/flashplayer/">Adobe Flash Player</a>.',true),
 			'error',

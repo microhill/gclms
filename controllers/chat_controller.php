@@ -1,5 +1,4 @@
 <?
-
 uses('sanitize');
 
 class ChatController extends AppController {

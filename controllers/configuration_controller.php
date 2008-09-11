@@ -1,4 +1,4 @@
-<?php
+<?
 class ConfigurationController extends AppController {
 	var $uses = array('Group');
 	var $itemName = 'Group';

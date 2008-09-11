@@ -4,7 +4,8 @@
 <body
 		gclms-group="<?= @$group['web_path'] ?>"
 		gclms-course="<?= @$course['web_path'] ?>"
-		gclms-controller="<?= $this->name ?>"
+		<? if(!empty($class)): ?>gclms-class="<?= @$class['id'] ?>"<? endif; ?>
+		gclms-controller="<?= $this->params['controller'] ?>"
 		gclms-action="<?= $this->action ?>"
 		gclms-direction="<?= $text_direction ?>"
 		gclms-language="<?= Configure::read('Config.language') ?>">

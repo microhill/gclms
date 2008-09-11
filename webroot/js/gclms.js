@@ -322,26 +322,18 @@ gclms.popup = {
 };
 
 document.observe('dom:loaded', function() {
-	gclms.group = document.body.getAttribute('gclms-group');
-	gclms.course = document.body.getAttribute('gclms-course');
-	gclms.virtualClass = document.body.getAttribute('gclms:virtual-class');
-	
-	if(gclms.group && gclms.course && gclms.virtualClass) {
-		gclms.urlPrefix = '/' + gclms.group + '/' + gclms.course + '/' + gclms.virtualClass + '/';
-	} else if(gclms.group && gclms.course) {
-		gclms.urlPrefix = '/' + gclms.group + '/' + gclms.course + '/';
-	}
-
 	$(document.body).observeRules(gclms.Triggers);
-
-	/*
-	firstTextInput = $$('input[type="text"]:first');
-	if(firstTextInput.length) {
-		firstTextInput[0].focus();
-		firstTextInput[0].select();
-	}
-	*/
 });
+
+gclms.group = document.body.getAttribute('gclms-group');
+gclms.course = document.body.getAttribute('gclms-course');
+gclms.virtualClass = document.body.getAttribute('gclms-class');
+
+if(gclms.group && gclms.course && gclms.virtualClass) {
+	gclms.urlPrefix = '/' + gclms.group + '/' + gclms.course + '/' + gclms.virtualClass + '/';
+} else if(gclms.group && gclms.course) {
+	gclms.urlPrefix = '/' + gclms.group + '/' + gclms.course + '/';
+}
 
 gclms.simpleTinyMCEConfig = {
 	theme : 'advanced',

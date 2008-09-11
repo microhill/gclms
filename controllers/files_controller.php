@@ -4,7 +4,7 @@ class FilesController extends AppController {
 	var $components = array('Notifications','RequestHandler');
 
 	function beforeFilter() {
-		Configure::load('S3');
+		Configure::load('s3');
 		$this->set('bucket',Configure::read('S3.bucket'));
 		$this->set('accessKey',Configure::read('S3.accessKey'));
 		$this->set('secretKey',Configure::read('S3.secretKey'));

@@ -1,6 +1,7 @@
 <?
 class ArticlesController extends AppController {
     var $uses = array('Article');
+	var $helpers = array('Scripturizer','Glossary');
 	var $itemName = 'Article';
 
 	function beforeRender() {
@@ -17,7 +18,11 @@ class ArticlesController extends AppController {
 	function view($id) {
 		$this->Article->contain();
 		$this->data = $this->Article->findById($id);
-		
+
+		$this->GlossaryTerm =& ClassRegistry::init('GlossaryTerm'); 
+		$glossary_terms = $this->GlossaryTerm->findAll(array('course_id'=>$this->viewVars['course']['id']),array('id','term'));
+		$this->set('glossary_terms',$glossary_terms);
+
 		$this->set('title',$this->data['Article']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
 	}
 	

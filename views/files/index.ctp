@@ -15,27 +15,17 @@ echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
 		<?= $this->element('notifications'); ?>
-		<h1><? __('Media Files') ?></h1>	
-				<?
-				if(0)
-				echo $this->element('menubar',array('buttons' => array(
-					array(
-						'id' => 'gclms-upload-files',
-						'class' => 'gclms-add',
-						'label' => __('Add Files',true)
-					),
-					array(
-						'id' => 'gclms-delete',
-						'class' => 'gclms-delete',
-						'label' => __('Delete',true)
-					),
-					//array(
-					//	'id' => 'gclms-rename',
-					//	'class' => 'gclms-rename',
-					//	'label' => __('Rename',true)
-					//)
-				)));
-				?>
+		<h1><? __('Media Files') ?></h1>
+		<table class="gclms-buttons">
+			<tr>
+				<td>
+					<button class="gclms-delete-files">Delete</button>
+				</td>
+				<td>
+					<button class="gclms-rename">Rename</button>
+				</td>
+			</tr>
+		</table>
 		<? if(!empty($files)): ?>
 			<table class="gclms-tabular" cellspacing="0" id="gclms-files">
 				<tr>

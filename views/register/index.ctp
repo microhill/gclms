@@ -24,7 +24,7 @@
 		'label' =>  __('Last Name', true),
 		'between' => '<br/>'
 	));
-	echo $form->input('new_alias',array(
+	echo $form->input('alias',array(
 		'label' =>  __('Alias', true),
 		'between' => '<br/>'
 	));

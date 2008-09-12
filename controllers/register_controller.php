@@ -13,7 +13,7 @@ class RegisterController extends AppController {
 
     function index() {
     	if(!empty($this->data)) {
-			if($this->User->findByAlias($this->data['User']['new_alias'])) {
+			if($this->User->findByAlias($this->data['User']['alias'])) {
 				$this->Notifications->add(__('The alias you provided is already in use.',true),'error');
 				return false;
 			}

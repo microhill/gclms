@@ -318,24 +318,24 @@ gclms.QuestionResponse = {
 gclms.Triggers.update({
     '.gclms-multiple-choice': {
         'input[type="radio"]:change': gclms.SelfCheckController.checkMultipleChoiceSingleSelectionQuestion,
-        '.gclms-button.gclms-check-answer-button:click': gclms.SelfCheckController.checkMultipleChoiceMultipleSelectionQuestion
+        'button.gclms-check-answer-button:click': gclms.SelfCheckController.checkMultipleChoiceMultipleSelectionQuestion
     },
     '.gclms-matching': {
-        '.gclms-button.gclms-check-answer-button:click': gclms.SelfCheckController.checkMatchingQuestion,
+        'button.gclms-check-answer-button:click': gclms.SelfCheckController.checkMatchingQuestion,
         'div.gclms-draggable': gclms.PageController.createMatchingDraggables,
         'div.gclms-droppable': gclms.PageController.createMatchingDroppables
     },
     '.gclms-fill-in-the-blank': {
         'input:keyup': gclms.PageController.expandFillInTheBlankField,
-        '.gclms-button.gclms-check-answer-button:click': gclms.SelfCheckController.checkFillInTheBlankQuestion
+        'button.gclms-check-answer-button:click': gclms.SelfCheckController.checkFillInTheBlankQuestion
     },
     '.gclms-order-question': {
         'ul': gclms.SelfCheckController.createOrderSortable,
-        '.gclms-button.gclms-check-answer-button:click': gclms.SelfCheckController.checkOrderQuestion
+        'button.gclms-check-answer-button:click': gclms.SelfCheckController.checkOrderQuestion
     },
     '.gclms-essay-question': {
-		'.gclms-button.gclms-check-answer-button a:click': gclms.SelfCheckController.checkEssayQuestion,
-		'.gclms-button.gclms-save-answer-button a:click': gclms.SelfCheckController.saveEssayQuestion
+		'button.gclms-check-answer-button a:click': gclms.SelfCheckController.checkEssayQuestion,
+		'button.gclms-save-answer-button a:click': gclms.SelfCheckController.saveEssayQuestion
 	},
-    '.gclms-true-false .gclms-button.gclms-check-answer-button:click': gclms.SelfCheckController.checkTrueFalseQuestion
+    '.gclms-true-false button.gclms-check-answer-button:click': gclms.SelfCheckController.checkTrueFalseQuestion
 });

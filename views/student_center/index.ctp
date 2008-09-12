@@ -20,7 +20,7 @@ echo $this->element('left_column');
 			echo ', ' . $user['first_name'];
 		?></h1>
 
-		<img src="/files/front-page-looking-up.jpg" style="float: right;margin-left: 12px;margin-bottom: 8px;" />
+		<!-- img src="/files/front-page-looking-up.jpg" style="float: right;margin-left: 12px;margin-bottom: 8px;" / -->
 
 		<p><? __('The Internet Biblical Seminary is') ?>:</p>
 		<ol>

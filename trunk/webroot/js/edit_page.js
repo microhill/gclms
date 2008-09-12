@@ -491,7 +491,7 @@ gclms.PagesController = {
 
 gclms.Triggers.update({
 	':loaded': gclms.PagesController.loadTextareas,
-	'form .gclms-button.gclms-submit a:click': gclms.PagesController.submitForm,
+	'form input[type="submit"]:click': gclms.PagesController.submitForm,
 	'#PageAudioFile,#PageAudioFile:change': gclms.PagesController.changePageAudio,
 	'.gclms-top-buttons' : {
 		'.gclms-insert-textarea:click': gclms.PagesController.insertTextareaOnTopOfPage,

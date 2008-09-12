@@ -16,7 +16,7 @@ echo $this->element('left_column'); ?>
 	<div class="gclms-content">
 		<?= $this->element('notifications'); ?>
 		<h1><? __('Media Files') ?></h1>
-		<table class="gclms-buttons">
+		<!-- table class="gclms-buttons">
 			<tr>
 				<td>
 					<button class="gclms-delete-files">Delete</button>
@@ -25,7 +25,7 @@ echo $this->element('left_column'); ?>
 					<button class="gclms-rename">Rename</button>
 				</td>
 			</tr>
-		</table>
+		</table -->
 		<? if(!empty($files)): ?>
 			<table class="gclms-tabular" cellspacing="0" id="gclms-files">
 				<tr>

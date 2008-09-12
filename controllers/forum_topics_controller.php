@@ -15,7 +15,7 @@ class ForumTopicsController extends AppController {
 		if(!empty($this->data)) {
 			$this->data['ForumPost']['user_id'] = $this->viewVars['user']['id'];
 		}
-		
+
 		return parent::add('ForumPost');
 	}
 

@@ -39,13 +39,6 @@ gclms.PageController = {
          */
     },
     
-    createOrderSortable: function(event){
-        Sortable.create(this.getAttribute('id'), {
-            containment: this,
-            scroll: window
-        });
-    },
-    
     createMatchingDraggables: function(event){
         var draggable = new Draggable(this, {
             revert: true,

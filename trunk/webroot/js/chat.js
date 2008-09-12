@@ -8,7 +8,7 @@ gclms.ChatController = {
 		var chatExecutor = new PeriodicalExecuter(gclms.ChatController.updateChatRoom, 6);
 		gclms.ChatController.resizeChatroom();
 		soundManager.onload = function() {
-			soundManager.createSound('newMessage','/webroot/sounds/new-message.mp3');
+			soundManager.createSound('newMessage','/sounds/new-message.mp3');
 		}
 	},
 

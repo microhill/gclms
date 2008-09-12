@@ -75,7 +75,7 @@ class SeleniumController extends AppController {
 		$allTestSuite->title = 'All Tests';
 		$allTestSuite->title();
 		
-		$testSuiteFileNames = listClasses(SELENIUM_TESTS);
+		$testSuiteFileNames = Configure::listObjects('file', SELENIUM_TESTS);
 		
 		foreach ($testSuiteFileNames as $testSuiteFileName) {
 			require(SELENIUM_TESTS.DS.$testSuiteFileName);

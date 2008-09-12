@@ -23,7 +23,9 @@ class VisualizeShell extends Shell {
 
     var $PREFIX = APP_DIR;
 
-    var $graphToolPath = 'dot.exe'; // cake visualize -tool C:\dev\_tools_\graphviz-2.16\bin\dot.exe
+    var $graphToolPath = 'C:\PROGRA~1\Graphviz2.20\bin\dot.exe'; // cake visualize -tool C:\dev\_tools_\graphviz-2.16\bin\dot.exe
+    
+    //cake visualize -tool C:\Program Files\Graphviz2.20\bin\dot.exe
 
 
     function help() {

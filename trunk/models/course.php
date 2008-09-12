@@ -14,10 +14,10 @@ class Course extends AppModel {
 				'on' => 'create',
 				'message' => 'Path already used in group by another course')
 		),
-		'description' => array(
+		/* 'description' => array(
 			'rule' => VALID_NOT_EMPTY,
 			'Description is required'
-		)
+		) */
 	);
 	
 	function checkWebPath() {

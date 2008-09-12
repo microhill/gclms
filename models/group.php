@@ -15,13 +15,24 @@ class Group extends AppModel {
 	var $hasMany = array('Course');
 
 	var $validate = array(
+		'web_path' => array(
+			'rule' => 'validWebPath',
+			'message' => 'Not a valid group name'
+		),
 		'name' => array(
 			'rule' => VALID_NOT_EMPTY
 		),
 		'logo' => array(
-			'validLogo' => 'validLogo'
+			'rule' => 'validLogo'
 		)
 	);
+	
+	function validWebPath() {
+		if(empty($this->data['Group']['web_path']) || $this->data['Group']['web_path'] == 'test') {
+			return false;
+		}
+		return true;
+	}
 	
 	function generateList() {
 		$groups = $this->findAll(null,array('id','name'),'Group.name ASC');

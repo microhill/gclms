@@ -8,6 +8,7 @@
  * Chat functionality added
  * Seemingly fixed indent bugs that were causing the need for the clean_up script in course structure
  * Visual database schematics updated
+ * Fixed book editor. Users may again create,remove,update,delete chapters
 
 ===September 1-7, 2008===
 

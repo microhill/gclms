@@ -1,7 +1,7 @@
 <?
 class ChaptersController extends AppController {
     var $uses = array('Chapter','Book');
-	var $helpers = array('Paginator','MyPaginator');
+	var $helpers = array('Paginator','MyPaginator','Glossary');
 	var $itemName = 'Chapter';
 
 	function beforeRender() {

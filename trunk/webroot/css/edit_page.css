@@ -21,6 +21,15 @@
 	.gclms-order > table > tbody > tr > td {
 		width: 98%;
 	}
+	
+	table.gclms-buttons {
+		width: 1%;
+	}
+	
+	table.gclms-buttons tbody tr td {
+		width: 1%;
+		white-space: nowrap;
+	}
 
 	.gclms-edit-page .gclms-add {
 		font-size: 1.2em;

@@ -37,18 +37,30 @@ class User extends AppModel {
 			)
 	);
 	
+	function beforeSave() {
+		if($this->id) {
+			return true;
+		}
+		$this->data['User']['verification_code'] = String::uuid();
+		mail($this->data['User']['email'],__('Student registration',true),sprintf(__("Thank you for registering as a student. Visit the following URL to verify your student account.\b\b " . Configure::read('App.domain') . 'users/verify/' . $this->data['User']['verification_code'],true)), 'From: aaronshaf@gmail.com');
+		return true;
+	}
+	
 	var $validate = array(
 		'email' => array(
-			'rule' => VALID_NOT_EMPTY
+			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank'),
+			array('rule' => 'notDuplicateEmail','message' => 'The email you provided is already in use')
 		),
 		'alias' => array(
-			'rule' => VALID_NOT_EMPTY
+			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank'),
+			array('rule' => 'notDuplicateAlias','message' => 'The alias you provided is already in use')
 		),		
 		'new_password' => array(
-			'rule' => array('checkNewPassword')
+			array('rule' => 'checkNewPassword','message' => 'Passwords do not match'),
+			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank')
 		),
 		'repeat_new_password' => array(
-			'rule' => array('doNothing')
+			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank')
 		),
 		'first_name' => array(
 			'rule' => VALID_NOT_EMPTY
@@ -56,21 +68,45 @@ class User extends AppModel {
 		'last_name' => array(
 			'rule' => VALID_NOT_EMPTY
 		)
-	);	
+	);
+	
+	function notDuplicateEmail() {
+		if($this->id) {
+			return true;
+		}
+		
+		$this->contain();
+		$user = $this->findByEmail($this->data['User']['email']);
+		if(!empty($user))
+			return false;
+		return true;
+	}
+	
+	function notDuplicateAlias() {
+		if($this->id) {
+			return true;
+		}
+		
+		$this->contain();
+		$user = $this->findByAlias($this->data['User']['alias']);
+		if(!empty($user))
+			return false;
+		return true;
+	}
 	
 	function doNothing() { // for now!
 		return true;
 	}
 	
 	function checkNewPassword() {
-		if(empty($this->data['User']['new_password']) && empty($this->data['User']['repeat_new_password']))
+		if($this->id && empty($this->data['User']['new_password']) && empty($this->data['User']['repeat_new_password']))
 			return true;
 			//Configure::read('Security.salt')
 		if($this->data['User']['new_password'] == $this->data['User']['repeat_new_password']) {
 			$this->data['User']['password'] = Security::hash(Configure::read('Security.salt') . $this->data['User']['repeat_new_password'], 'sha1');
 			return true;
-		} else
-			return false;
+		}
+		return false;
 	}
     
     function findAllGroups($id) {

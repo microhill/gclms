@@ -22,11 +22,10 @@
 		gclms-course="<?= @$course['web_path'] ?>"
 		gclms-controller="<?= $this->name ?>"
 		gclms-action="<?= $this->action ?>"
-	>
+	>awef
 		<?=  $content_for_layout; ?>
 		<script type="text/javascript" src="/js/vendors/prototype.js"></script>
 		<script type="text/javascript" src="/js/prototype_extensions.js"></script>		
-		<script type="text/javascript" src="/js/vendors/scriptaculous1.8.1/scriptaculous.js"></script>
 		<script type="text/javascript" src="/js/vendors/scriptaculous1.8.1/effects.js"></script>
 		<script type="text/javascript" src="/js/vendors/scriptaculous1.8.1/dragdrop.js"></script>
 		<script type="text/javascript" src="/js/vendors/scriptaculous1.8.1/slider.js"></script>

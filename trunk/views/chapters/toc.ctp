@@ -7,6 +7,7 @@ $javascript->link(array(
 	'gclms',
 	'vendors/uuid1.0',
 	'vendors/scriptaculous1.8.1/dragdrop',
+	'vendors/scriptaculous1.8.1/effects',
 	'edit_chapters'
 ), false);
 

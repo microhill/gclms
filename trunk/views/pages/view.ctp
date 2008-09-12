@@ -14,8 +14,8 @@ $javascript->link(array(
 	'vendors/prototype1.6.0.2',
 	'vendors/prototype_extensions1.0',
 	'gclms',
-	'vendors/scriptaculous1.8.1/dragdrop',
 	'vendors/scriptaculous1.8.1/effects',
+	'vendors/scriptaculous1.8.1/dragdrop',
 	'vendors/swfobject2.1/swfobject',
 	'page',
 	'page_selfcheck'

@@ -22,7 +22,7 @@ gclms.NotebookEntry = {
 gclms.Triggers.update({
 	'form .gclms-button a:click': gclms.AppController.submitForm,
 	'div.gclms-framed': {
-		'a:click': gclms.AppController.updateLink
+		'a:click,button[href]:click': gclms.AppController.updateHref
 	},
 	'textarea#gclms-new-entry-content': gclms.NotebookController.enableTinyMCE
 });

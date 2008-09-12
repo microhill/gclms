@@ -10,10 +10,10 @@ $javascript->link(array(
 echo $this->element('no_column_background'); ?>
 
 <div class="gclms-content">
-	<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/forums/view/<?= $this->data['ForumPost']['forum_id'] ?><?= $framed_suffix ?>"><? __('Back to forum') ?></a></div>
+	<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/forums/view/<?= $this->data['ForumPost']['forum_id'] ?>"><? __('Back to forum') ?></a></div>
 	<h1><?= $this->data['ForumPost']['title'] ?></h1>
 	
-	<button href="<?= $groupAndCoursePath ?>/forum_topics/delete/<?= $this->data['ForumPost']['id'] ?><?= $framed_suffix ?>" gclms:confirm-text="<? __('Are you sure you want to delete this post?') ?>">Delete Topic</button>	
+	<button href="<?= $groupAndCoursePath ?>/forum_topics/delete/<?= $this->data['ForumPost']['id'] ?>" gclms:confirm-text="<? __('Are you sure you want to delete this post?') ?>">Delete Topic</button>	
 
 	<div class="gclms-records gclms-forums-posts">
 		<table class="gclms-tabular">

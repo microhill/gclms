@@ -171,6 +171,9 @@ gclms.AppController = {
 			event.stop();
 		});
 		
+		gclms.popup.overlay.select('.gclms-popup-dialog').each(function(div){
+			div.remove();
+		});
 		gclms.popup.overlay.insert(gclms.popup.dialog);
 		if(gclms.popup.dialog.select('input[type="text"]').first()) {
 			gclms.popup.dialog.select('input[type="text"]').first().focus();

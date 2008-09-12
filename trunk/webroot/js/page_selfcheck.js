@@ -298,7 +298,14 @@ gclms.SelfCheckController = {
 				document.body.insert(transport.responseText);
 			}
 		});
-	}
+	},
+    
+    createOrderSortable: function(event){
+        Sortable.create(this.getAttribute('id'), {
+            containment: this,
+            scroll: window
+        });
+    }
 };
 
 gclms.QuestionResponse = {

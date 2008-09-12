@@ -1,3 +1,7 @@
+.gclms-forum-title {
+	font-weight: bold;
+}
+
 .gclms-topic-count, .gclms-post-count, .gclms-last-post {
 	width: 1px;
 	white-space: nowrap;

@@ -1,0 +1,84 @@
+digraph G {
+	overlap=false;
+	splines=true;
+	node [fontname="Helvetica",fontsize=9];
+	edge [fontname="Helvetica",fontsize=8];
+	ranksep=0.1;
+	nodesep=0.1;
+	_schema_info [shape="plaintext", label="2008", fontname="Helvetica",fontsize=8];
+	"Announcement" [label="{Announcement|id : string[36]\nvirtual_class_id : string[36]\ntitle : string[255]\npost_date : date\ncontent : text\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"Answer" [label="{Answer|id : string[36]\nquestion_id : string[36]\ntext1 : text\ntext2 : string[255]\ntext3 : text\norder : integer[3]\ncorrect : boolean[1]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"Article" [label="{Article|id : string[36]\ncourse_id : string[36]\ntitle : string[255]\ncontent : text\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"Book" [label="{Book|id : string[36]\ncourse_id : string[36]\ntitle : string[255]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"CakeSession" [label="{CakeSession|id : string[255]\ndata : text\nexpires : integer[11]\n}" shape="record"];
+	"Chapter" [label="{Chapter|id : string[36]\nbook_id : string[36]\ntitle : string[255]\ncontent : text\norder : integer[3]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"ChatMessage" [label="{ChatMessage|id : string[36]\ncourse_id : string[36]\nvirtual_class_id : string[36]\nuser_id : string[36]\ncontent : string[255]\ncreated : datetime\n}" shape="record"];
+	"ChatParticipant" [label="{ChatParticipant|id : string[36]\nuser_id : string[36]\ncourse_id : string[36]\nvirtual_class_id : string[36]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"ClassCompletion" [label="{ClassCompletion|id : string[36]\nuser_id : string[36]\ncourse_id : string[36]\nvirtual_class_id : string[36]\ndate : date\ngrade : integer[5]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"ClassEnrollee" [label="{ClassEnrollee|id : string[36]\nvirtual_class_id : string[36]\nuser_id : string[36]\ncompletion_deadline : date\ncreated : datetime\n}" shape="record"];
+	"ClassFacilitator" [label="{ClassFacilitator|id : string[36]\nvirtual_class_id : string[36]\nuser_id : string[36]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"CourseAdministrator" [label="{CourseAdministrator|id : string[36]\ncourse_id : string[36]\nuser_id : string[36]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"CourseFile" [label="{CourseFile|id : string[36]\ncourse_id : string[36]\nfilename : string[255]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"CourseImage" [label="{CourseImage|id : string[36]\ncourse_id : string[36]\nfilename : string[255]\nwidth : integer[11]\nheight : integer[11]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"Course" [label="{Course|id : string[36]\ngroup_id : string[36]\ntitle : string[255]\nweb_path : string[255]\ndescription : text\ncss : text\nlanguage : string[6], default: \"en\"\nopen : boolean[1], default: \"1\"\nredistribution_allowed : boolean[1]\ncommercial_use_allowed : boolean[1]\nderivative_works_allowed : boolean[1]\nindependent_study_allowed : boolean[1]\nactive : boolean[1]\ncreated : datetime\nmodified : datetime\ndeprecated : boolean[1]\n}" shape="record"];
+	"ForumPost" [label="{ForumPost|id : string[36]\nuser_id : string[36]\nforum_id : string[36]\norigin_post_id : string[36]\nparent_post_id : string[36]\ntitle : string[255]\ncontent : text\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"Forum" [label="{Forum|id : string[36]\ncourse_id : string[36]\nvirtual_class_id : string[36]\ntitle : string[255]\ndescription : string[255]\ntype : integer[1]\norder : integer[3]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"GlossaryTerm" [label="{GlossaryTerm|id : string[36]\ncourse_id : string[36]\nterm : string[255]\ndescription : text\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"GroupAdministrator" [label="{GroupAdministrator|id : string[36]\ngroup_id : string[36]\nuser_id : string[36]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"GroupFacilitator" [label="{GroupFacilitator|id : string[36]\nuser_id : string[36]\ngroup_id : string[36]\napproved : boolean[1]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"Group" [label="{Group|id : string[36]\nname : string[255]\nweb_path : string[255]\nlogo : string[255]\nlogo_updated : datetime\nexternal_web_address : string[255]\nphone : string[255]\naddress_1 : string[255]\naddress_2 : string[255]\ncity : string[255]\nstate : string[255]\npostal_code : string[255]\ncountry_id : string[255]\ndescription : text\napproved : integer[255], default: \"1\"\ncreated : datetime\nmodified : datetime\ndeprecated : boolean[1]\n}" shape="record"];
+	"Node" [label="{Node|id : string[36]\ncourse_id : string[36]\nparent_node_id : string[36]\ngrade_recorded : boolean[1]\ntitle : string[255]\ntype : integer[1]\naudio_file : string[255]\norder : integer[4]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"NotebookEntry" [label="{NotebookEntry|id : string[36]\nuser_id : string[36]\ncourse_id : string[36]\nquestion_id : string[36]\ntitle : string[255]\ncontent : text\ncreated : datetime\nprivate : boolean[1], default: \"1\"\nmodified : datetime\n}" shape="record"];
+	"NotebookEntryComment" [label="{NotebookEntryComment|id : string[36]\nnotebook_entry_id : string[36]\nuser_id : string[36]\ncontent : text\ncreated : datetime\n}" shape="record"];
+	"QuestionResponse" [label="{QuestionResponse|id : string[36]\nuser_id : string[36]\nquestion_id : string[36]\ncorrect : boolean[1]\nanswer : text\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"Question" [label="{Question|id : string[36]\nnode_id : string[36]\ntitle : text\ntype : integer[2], default: \"1\"\norder : integer[3], default: \"1\"\ntext_answer : string[255]\ntrue_false_answer : boolean[1]\nleft_column_header : string[255]\nright_column_header : string[255]\nexplanation : text\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"RegistrationCode" [label="{RegistrationCode|id : string[36]\nuser_id : string[36]\ncode : string[255]\ncreated : datetime\nupdated : datetime\n}" shape="record"];
+	"Textarea" [label="{Textarea|id : string[36]\nnode_id : string[36]\ncontent : text\norder : integer[3], default: \"9999\"\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"User" [label="{User|id : string[36]\nemail : string[255]\npassword : string[255]\nalias : string[255]\nfirst_name : string[255]\nlast_name : string[255]\naddress_1 : string[255]\naddress_2 : string[255]\ncity : string[255]\nstate : string[255]\npostal_code : string[255]\nmailing_list : boolean[1], default: \"1\"\nautoplay_audio : boolean[1]\nverification_code : string[255]\nverified : boolean[1]\nsuper_administrator : boolean[1]\ncreated : datetime\nupdated : datetime\n}" shape="record"];
+	"VirtualClass" [label="{VirtualClass|id : string[36]\ngroup_id : string[36]\ncourse_id : string[36]\nalias : string[255]\nfacilitated : integer[4], default: \"1\"\nenrollment_deadline : date\nstart : date\nend : date\ntime_limit_years : integer[2]\ntime_limit_months : integer[11]\ntime_limit_days : integer[11]\ncapacity : integer[11]\ncreated : datetime\nmodified : datetime\n}" shape="record"];
+	"Announcement" -> "VirtualClass" [label="virtual_class_id"]
+	"Answer" -> "Question" [label="question_id"]
+	"Article" -> "Course" [label="course_id"]
+	"Book" -> "Course" [label="course_id"]
+	"Chapter" -> "Book" [label="book_id"]
+	"ChatMessage" -> "Course" [label="course_id"]
+	"ChatMessage" -> "VirtualClass" [label="virtual_class_id"]
+	"ChatMessage" -> "User" [label="user_id"]
+	"ChatParticipant" -> "User" [label="user_id"]
+	"ChatParticipant" -> "Course" [label="course_id"]
+	"ChatParticipant" -> "VirtualClass" [label="virtual_class_id"]
+	"ClassCompletion" -> "User" [label="user_id"]
+	"ClassCompletion" -> "Course" [label="course_id"]
+	"ClassCompletion" -> "VirtualClass" [label="virtual_class_id"]
+	"ClassEnrollee" -> "VirtualClass" [label="virtual_class_id"]
+	"ClassEnrollee" -> "User" [label="user_id"]
+	"ClassFacilitator" -> "VirtualClass" [label="virtual_class_id"]
+	"ClassFacilitator" -> "User" [label="user_id"]
+	"CourseAdministrator" -> "Course" [label="course_id"]
+	"CourseAdministrator" -> "User" [label="user_id"]
+	"CourseFile" -> "Course" [label="course_id"]
+	"CourseImage" -> "Course" [label="course_id"]
+	"Course" -> "Group" [label="group_id"]
+	"ForumPost" -> "User" [label="user_id"]
+	"ForumPost" -> "Forum" [label="forum_id"]
+	"Forum" -> "Course" [label="course_id"]
+	"Forum" -> "VirtualClass" [label="virtual_class_id"]
+	"GlossaryTerm" -> "Course" [label="course_id"]
+	"GroupAdministrator" -> "Group" [label="group_id"]
+	"GroupAdministrator" -> "User" [label="user_id"]
+	"GroupFacilitator" -> "User" [label="user_id"]
+	"GroupFacilitator" -> "Group" [label="group_id"]
+	"Node" -> "Course" [label="course_id"]
+	"NotebookEntry" -> "User" [label="user_id"]
+	"NotebookEntry" -> "Course" [label="course_id"]
+	"NotebookEntry" -> "Question" [label="question_id"]
+	"NotebookEntryComment" -> "NotebookEntry" [label="notebook_entry_id"]
+	"NotebookEntryComment" -> "User" [label="user_id"]
+	"QuestionResponse" -> "User" [label="user_id"]
+	"QuestionResponse" -> "Question" [label="question_id"]
+	"Question" -> "Node" [label="node_id"]
+	"RegistrationCode" -> "User" [label="user_id"]
+	"Textarea" -> "Node" [label="node_id"]
+	"VirtualClass" -> "Group" [label="group_id"]
+	"VirtualClass" -> "Course" [label="course_id"]
+}

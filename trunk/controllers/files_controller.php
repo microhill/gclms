@@ -291,6 +291,9 @@ class FilesController extends AppController {
 			'conditions' => array('CourseImage.course_id' => $this->viewVars['course']['id']),
 			'fields' => array('filename','width','height')
 		));
+		if(empty($course_images)) {
+			die('No images found. Try uploading some.');
+		}
 		$course_images = array_combine(
 			Set::extract($course_images, '{n}.CourseImage.filename'),
 			Set::extract($course_images, '{n}.CourseImage')

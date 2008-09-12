@@ -32,7 +32,6 @@
 					'vendors/prototype1.6.0.2',
 					'vendors/prototype_extensions1.0',
 					'gclms',
-					'vendors/scriptaculous1.8.1/scriptaculous',
 					'vendors/scriptaculous1.8.1/dragdrop',
 					'page'
 				));

@@ -11,14 +11,12 @@ if(in_array('5',Set::extract($node['Question'],'{n}.type'))) {
 }
 
 $javascript->link(array(
-	//'vendors/prototype1.6.0.2',
-	'http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js',
+	'vendors/prototype1.6.0.2',
 	'vendors/prototype_extensions1.0',
-	//'http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.1/scriptaculous.js',
-	'http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.1/effects.js',
-	'http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.1/dragdrop.js',
-	'vendors/swfobject2.1/swfobject',
 	'gclms',
+	'vendors/scriptaculous1.8.1/dragdrop',
+	'vendors/scriptaculous1.8.1/effects',
+	'vendors/swfobject2.1/swfobject',
 	'page',
 	'page_selfcheck'
 ), false);

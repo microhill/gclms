@@ -8,7 +8,7 @@ $javascript->link(array(
 echo $this->element('no_column_background'); ?>
 
 <div class="gclms-content">
-	<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/forums<?= $framed_suffix ?>"><? __('Cancel and go back') ?></a></div>
+	<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/forums"><? __('Cancel and go back') ?></a></div>
 	<?= $this->element('notifications'); ?>
 	<h1><?= __('Add Forum') ?></h1>    
 	<?

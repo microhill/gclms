@@ -14,7 +14,7 @@ function __(text){
 gclms.translated_phrases = [];
 
 gclms.AppController = {
-	updateLink: function(event) {
+	updateHref: function(event) {
 		var href = this.getAttribute('href');
 		if(href.include('?framed')) {
 			return true;
@@ -26,6 +26,15 @@ gclms.AppController = {
 			href += '?framed';
 		}
 		this.setAttribute('href',href);
+	},
+	
+	updateAction: function(event) {
+		var action = this.getAttribute('action');
+		if(action.include('?framed')) {
+			return true;
+		}
+		action += '?framed';
+		this.setAttribute('action',action);
 	},
 
 	confirmRemove: function(event) {
@@ -263,27 +272,20 @@ gclms.Triggers = $H({
 			event.stop();
 		}
 	},
-
-	'.gclms-buttons': {
-		'.gclms-button.gclms-add a:click': function(event) {
-			if(this.getAttribute('gclms:link-href')) {
-				event.stop();
-				self.location.href = this.getAttribute('gclms:link-href');
-			}
+	'.gclms-framed': {
+		'a[href]': gclms.AppController.updateHref,	
+		'button[href]': gclms.AppController.updateHref,	
+		'tr[href]': gclms.AppController.updateHref,
+		'form[action]': gclms.AppController.updateAction
+	} ,
 	
-		},
-		'button.gclms-delete:click': gclms.AppController.confirmRemove
-	},
 	'.gclms-content': {
-		'.gclms-button:mousedown': function() {
-			this.down('td').addClassName('gclms-pressed');
-		},
-		'.gclms-button:mouseup,.gclms-button:mouseout': function() {
-			this.down('td').removeClassName('gclms-pressed');
+		'.gclms-buttons': {
+			'button.gclms-delete:click': gclms.AppController.confirmRemove
 		},
 		'button[href]:click': gclms.AppController.gotoLink,
 		'.gclms-records tr[href]:click': gclms.AppController.gotoLink,
-		'form input[type="submit"]:click': gclms.AppController.submitForm
+		'form:submit,form input[type="submit"]:click': gclms.AppController.submitForm
 	},
 
 	'body.gclms-install ul.gclms-menu a:click' : function(event) {

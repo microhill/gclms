@@ -4,23 +4,24 @@ $html->css('forums', null, null, false);
 $javascript->link(array(
 	'vendors/prototype1.6.0.2',
 	'vendors/prototype_extensions1.0',
-	'gclms'
+	'gclms',
+	'forums'
 ), false);
 
 echo $this->element('no_column_background'); ?>
 
 <div class="gclms-content">
-	<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/forums<?= $framed_suffix ?>"><? __('Back to forums') ?></a></div>
+	<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/forums"><? __('Back to forums') ?></a></div>
 	
 	<h1><?= $forum['Forum']['title'] ?></h1>
 	
 	<table class="gclms-buttons">
 		<tr>
 			<td>
-				<button href="<?= $groupAndCoursePath ?>/forum_topics/add/forum:<?= $forum['Forum']['id'] . $framed_suffix ?>">New Topic</button>
+				<button href="<?= $groupAndCoursePath ?>/forum_topics/add/forum:<?= $forum['Forum']['id'] ?>">New Topic</button>
 			</td>
 			<td>
-				<button href="<?= $groupAndCoursePath ?>/forums/delete/<?= $forum['Forum']['id'] . $framed_suffix ?>" gclms:confirm-text="<? __('Are you sure you want to delete this forum?') ?>">Delete Forum</button>
+				<button href="<?= $groupAndCoursePath ?>/forums/delete/<?= $forum['Forum']['id'] ?>" gclms:confirm-text="<? __('Are you sure you want to delete this forum?') ?>">Delete Forum</button>
 			</td>
 		</tr>
 	</table>

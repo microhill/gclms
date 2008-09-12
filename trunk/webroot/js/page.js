@@ -110,7 +110,7 @@ gclms.PageController = {
         var url = this.getAttribute('href').split('chapters/view/');
         
         top.Ext.getCmp('booksViewport').expand();
-        top.$('booksViewportContent').src = gclms.urlPrefix + 'chapters/view/' + url[1] + '?framed';
+        top.$('booksViewportContent').src = gclms.urlPrefix + 'chapters/view/' + url[1];
         event.stop();
     },
     
@@ -118,7 +118,7 @@ gclms.PageController = {
         var url = this.getAttribute('href').split('articles/view/');
         
         top.Ext.getCmp('articlesViewport').expand();
-        top.$('articlesViewportContent').src = gclms.urlPrefix + 'articles/view/' + url[1] + '?framed';
+        top.$('articlesViewportContent').src = gclms.urlPrefix + 'articles/view/' + url[1];
         event.stop();
     },
     
@@ -127,7 +127,7 @@ gclms.PageController = {
         
         top.Ext.getCmp('glossaryViewport').expand();
         //if (!top.$('glossaryViewportContent').contentDocument.body.innerHTML) {
-        top.$('glossaryViewportContent').src = gclms.urlPrefix + 'glossary/view/' + url[1] + '?framed';
+        top.$('glossaryViewportContent').src = gclms.urlPrefix + 'glossary/view/' + url[1];
         event.stop();
     },
     

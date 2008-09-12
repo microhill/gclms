@@ -34,11 +34,8 @@ echo $this->element('left_column'); ?>
 					<tbody class="gclms-descriptive-recordset">
 						<tr href="<?= $groupAndCoursePath ?>/forums/view/<?= $forum['Forum']['id'] . $framed_suffix ?>">
 							<td>
-								<span class="gclms-forum-title"><?= $forum['Forum']['title'] ?></span>
-								<?
-								if(!empty($forum['Forum']['title']))
-									echo '<br/>' . $forum['Forum']['description'];
-								?>
+								<span class="gclms-forum-title"><?= $forum['Forum']['title'] ?></span><br/>
+								<span class="gclms-forum-description"><?= $forum['Forum']['description'] ?></span>
 							</td>
 							<td class="gclms-topic-count">
 								<div class="gclms-center"><?= $forum['Forum']['topic_count'] ?></div>

@@ -1,10 +1,12 @@
 <?
 if(empty($delete_url)) {
-	$delete_url = '/';	
+	$delete_url = '';
 	if(!empty($this->params['administration']))
-		$delete_url .= $this->params['administration'] . '/';
+		$delete_url .= '/' . $this->params['administration'];
 	if(!empty($groupAndCoursePath))
 		$delete_url .= $groupAndCoursePath . '/';
+	else
+		$delete_url .= '/';
 	if(!empty($this->params['controller']))
 		$delete_url .= $this->params['controller'] . '/';
 	$delete_url .= 'delete/' . $this->data[$this->params['models'][0]]['id'];

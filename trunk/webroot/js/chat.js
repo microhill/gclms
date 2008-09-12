@@ -178,6 +178,7 @@ gclms.Triggers.update({
 Event.observe(window, 'resize', gclms.ChatController.resizeChatroom);
 
 soundManager.url = '/js/vendors/soundmanager2.77/';
+soundManager.debugMode = true;
 
 gclms.Views.update({
 	'chat-participant': '<li id="#{id}" gclms:gravatar-id="#{gravatar_id}"><img class="gclms-gravatar" src="http://www.gravatar.com/avatar.php?gravatar_id=#{gravatar_id}&size=48" />  #{alias}</li>',

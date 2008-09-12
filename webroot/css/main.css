@@ -775,6 +775,7 @@ td.gclms-az {
 
 .gclms-records {
 	margin-top: 6px;
+	border-collapse: collapse;
 }
 
 	.gclms-records .gclms-left {

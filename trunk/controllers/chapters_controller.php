@@ -1,7 +1,7 @@
 <?
 class ChaptersController extends AppController {
     var $uses = array('Chapter','Book');
-	var $helpers = array('Paginator','MyPaginator','Glossary');
+	var $helpers = array('Glossary');
 	var $itemName = 'Chapter';
 
 	function beforeRender() {
@@ -80,7 +80,7 @@ class ChaptersController extends AppController {
     }
 	
 	function delete($id) {
-		$this->data = $this->Chapter->findById($id,array('book_id'));
+		$this->redirect = $this->viewVars['groupAndCoursePath'] . '/books';
 		return parent::delete($id);
 	}
 

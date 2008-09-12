@@ -4,8 +4,9 @@
 }
 
 .gclms-last-reply,
-.gclms-last-post {
-	font-size: .9em;
+.gclms-last-post,
+.gclms-forum-description {
+	font-size: .95em;
 }
 
 .gclms-last-reply,

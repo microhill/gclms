@@ -62,7 +62,6 @@ class FilesController extends AppController {
 		App::import('Vendor','s3');
 
 		$key = 'courses/' . $this->viewVars['course']['id'] . '/' . $file;
-		prd($this);		
 		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);
 
 		App::import('Vendor','phpthumb' . DS . 'phpthumbclass');

@@ -7,6 +7,7 @@
  * urlencoded key for s3 thumbnail creation; problem with uploading files which have ampersands still remain
  * Chat functionality added
  * Seemingly fixed indent bugs that were causing the need for the clean_up script in course structure
+ * Visual database schematics updated
 
 ===September 1-7, 2008===
 

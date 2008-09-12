@@ -34,7 +34,7 @@ class Node extends AppModel {
 	
 	function getLastOrderInParentNode($courseId,$parentNodeId) {
 		$order = $this->field('order',array('Node.course_id' => $courseId, 'Node.parent_node_id' => $parentNodeId),'Node.order DESC');
-		return $order === false ? 0 : $order;
+		return $order === false ? -1 : $order;
 	}
 	
 	// Finds previous node of type page; recursive

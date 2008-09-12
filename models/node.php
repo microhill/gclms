@@ -181,7 +181,10 @@ class Node extends AppModel {
 	function updateOrdersWithOldNodeData($node) {
 		$order = $node['Node']['order'];
 		$nodes = $this->find('all',array(
-			'conditions' => array('Node.course_id' => $node['Node']['course_id'],'Node.parent_node_id' => $node['Node']['parent_node_id'],'Node.order' => '> ' . $order)
+			'conditions' => array(
+				'Node.course_id' => $node['Node']['course_id'],
+				'Node.parent_node_id' => $node['Node']['parent_node_id'],
+				'Node.order >' => $order)
 		));
 		
 		//$nodes = $this->findAll(array());
@@ -194,11 +197,16 @@ class Node extends AppModel {
 	function updateOrdersWithNewNodeData($node) {
 		$order = $node['Node']['order'];
 		$this->contain();
-		$nodes = $this->findAll(array('Node.parent_node_id' => $node['Node']['parent_node_id'],'Node.order' => '>= ' . $order,'Node.id' => '<> ' . $node['Node']['id']));
+		$nodes = $this->find('all',array(
+			'conditions' => array(
+				'Node.parent_node_id' => $node['Node']['parent_node_id'],
+				'Node.order >=' => $order,
+				'Node.id <>' => $node['Node']['id'])
+		));
 				
 		foreach($nodes as $node) {
 			$this->id = $node['Node']['id'];
-			$this->saveField('order',++$order);
+			$this->saveField('order',$order++);
 		}
 	}
 	

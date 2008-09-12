@@ -141,7 +141,7 @@ input[type="submit"]:active,input[type="button"]:active,button:active {
 }
 
 form input[type="submit"],
-button.gclms-delete {
+form button.gclms-delete {
 	font-size: 1.3em;
 }
 

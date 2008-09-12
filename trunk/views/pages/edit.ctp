@@ -11,6 +11,7 @@ $javascript->link(array(
 	'vendors/uuid1.0',
 	'vendors/scriptaculous1.8.1/effects',
 	'vendors/scriptaculous1.8.1/dragdrop',
+	'vendors/client_detection1.6.1',
 	'gclms',
 	'edit_page'
 ), false);

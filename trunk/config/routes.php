@@ -33,10 +33,6 @@ $cake_admin = Configure::read('Routing.admin');
 
 Router::connectNamed(array('group','course','file','class','user')); 
 
-//Router::connect('/:group/:course/:controller/:action/*', array('group'=>null, 'courses'=>null));
-
-//Router::parseExtensions('json');
-//Router::parseExtensions('css');
 Router::parseExtensions('rss','json');
 
 Router::connect('/selenium/results', array('controller' => 'selenium', 'action' => 'results'));
@@ -44,7 +40,6 @@ Router::connect('/selenium/*', array('controller' => 'selenium', 'action' => 'di
 
 if (file_exists(CONFIGS.'installed.txt')) {
 	Router::connect('/', array('controller' => 'student_center', 'action' => 'index'));
-	//Router::connect('/tests', array('controller' => 'tests', 'action' => 'index'));
 
 	Router::connect('/users/users/*',array('controller' => 'users','action' => 'logout'));
 
@@ -104,5 +99,3 @@ if (file_exists(CONFIGS.'installed.txt')) {
 }
 
 Configure::write('Database.configuration_file_exists', file_exists(CONFIGS.'database.php') ? false : true);
-
-//pr(Router::parse($this->here['here']));die();

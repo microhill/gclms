@@ -1,7 +1,7 @@
 <?
 class MediaFilesHelper extends AppHelper {
 	function transform_to_s3_links($text,$course_id) {
-		Configure::load('S3');
+		Configure::load('s3');
 		$bucket = Configure::read('S3.bucket');
 		
 		$pattern = 'src="../../files/';

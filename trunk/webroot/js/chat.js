@@ -1,5 +1,7 @@
 /*global gclms, $, $$, $F, Ajax, PeriodicalExecuter, document, Position, UUID, soundManager */
 
+soundManager.debugMode = true;
+
 gclms.ChatController = {
 	loadChatRoom: function() {
 		$('gclms-chat-message-text').focus();

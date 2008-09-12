@@ -1,4 +1,4 @@
-#summary Record of changes made to GCLMS
+#summary Record of changes made to GCLMS. This is a partial listing. A more updated, recent list is available here: http://code.google.com/p/gclms/source/list
 
 =Version 0.3=
 

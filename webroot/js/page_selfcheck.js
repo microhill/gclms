@@ -282,15 +282,14 @@ gclms.SelfCheckController = {
     },
 	
     checkEssayQuestion: function(event){
-        event.stop();
+	    event.stop();
         this.up('div.gclms-essay-question').down('.gclms-explanation').displayAsBlock();
-        this.up('div.gclms-buttons').remove();
+        this.up('.gclms-buttons').remove();
     },
 	
 	saveEssayQuestion: function(event) {
 		event.stop();
 		var question = this.up('.gclms-essay-question');
-		alert(tinyMCE.get(question.down('textarea').id).getContent());
 		gclms.QuestionResponse.save({
 			questionId: question.getAttribute('gclms:question-id'),
 			answer: tinyMCE.get(question.down('textarea').id).getContent(),
@@ -341,8 +340,8 @@ gclms.Triggers.update({
         'button.gclms-check-answer-button:click': gclms.SelfCheckController.checkOrderQuestion
     },
     '.gclms-essay-question': {
-		'button.gclms-check-answer-button a:click': gclms.SelfCheckController.checkEssayQuestion,
-		'button.gclms-save-answer-button a:click': gclms.SelfCheckController.saveEssayQuestion
+		'button.gclms-check-answer-button:click': gclms.SelfCheckController.checkEssayQuestion,
+		'button.gclms-save-answer-button:click': gclms.SelfCheckController.saveEssayQuestion
 	},
     '.gclms-true-false button.gclms-check-answer-button:click': gclms.SelfCheckController.checkTrueFalseQuestion
 });

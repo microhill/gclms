@@ -8,10 +8,10 @@ $javascript->link(array(
 	'vendors/tinymce3.1.0.1/tiny_mce',
 	'vendors/prototype1.6.0.2',
 	'vendors/prototype_extensions1.0',
-	'gclms',
 	'vendors/uuid1.0',
 	'vendors/scriptaculous1.8.1/effects',
 	'vendors/scriptaculous1.8.1/dragdrop',
+	'gclms',
 	'edit_page'
 ), false);
 ?>

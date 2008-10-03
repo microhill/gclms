@@ -1,5 +1,4 @@
-<?
-$menu = array(
+<?= $this->element('menu', array("items" => array(
 	array('label' => __('Course Home', true), 'class' => 'gclms-home', 'active' => $this->name == 'Courses' && $this->action != 'edit', 'url' => $groupAndCoursePath),
 	//array('label' => __('Grades', true), 'class' => 'Grades', 'active' => isset($tests) || isset($test) ? true : false, 'url' => '/' . $this->viewVars['group']['web_path'] . '/grades/' . $this->viewVars['course']['web_path']),
 
@@ -13,6 +12,4 @@ $menu = array(
 	array('label' => __('Glossary', true), 'class' => 'gclms-glossary', 'active' => $this->name == 'Glossary', 'url' => $groupAndCoursePath . '/glossary'),
 	array('label' => __('Configure Course', true), 'class' => 'gclms-configuration', 'active' => $this->name == 'Courses' && $this->action == 'edit', 'url' => $groupAndCoursePath . '/configuration'),
 	array('label' => __('Export Course', true), 'class' => 'gclms-export', 'active' => $this->name == 'Export', 'url' => $groupAndCoursePath . '/export')
-);
-
-echo $this->element('menu', array("items" => $menu));
+)));

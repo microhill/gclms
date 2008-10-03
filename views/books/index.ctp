@@ -2,7 +2,7 @@
 $html->css('books', null, null, false);
 
 $javascript->link(array(
-	'vendors/prototype1.6.0.2',
+	'vendors/prototype1.6.0.3',
 	'vendors/prototype_extensions1.0',
 	'gclms',
 	'vendors/uuid1.0',
@@ -12,7 +12,7 @@ $javascript->link(array(
 echo $this->element('left_column'); ?>
 
 <div class="gclms-center-column">
-	<div class="gclms-content articles">	
+	<div class="gclms-content gclms-articles">	
 		<?= $this->element('notifications'); ?>
 		<? if(!$framed): ?>
 			<h1><? __('Books') ?></h1>

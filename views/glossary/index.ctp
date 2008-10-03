@@ -3,7 +3,7 @@ $html->css('glossary', null, null, false);
 
 //These js files shouldn't be loaded if in framed view
 $javascript->link(array(
-	'vendors/prototype1.6.0.2',
+	'vendors/prototype1.6.0.3',
 	'vendors/prototype_extensions1.0',
 	'gclms',
 	'glossary'

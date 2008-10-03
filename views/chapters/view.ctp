@@ -3,7 +3,7 @@ $html->css('books', null, null, false);
 $html->css('/' . $group['web_path'] . '/files/css', null, null, false);
 
 $javascript->link(array(
-	'vendors/prototype1.6.0.2',
+	'vendors/prototype1.6.0.3',
 	'vendors/prototype_extensions1.0',
 	'vendors/uuid1.0',
 	'gclms',

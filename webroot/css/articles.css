@@ -1,13 +1,13 @@
-.articles ul {
+.gclms-articles ul {
 	list-style: none;
 }
 
-	.articles ul li  {
+	.gclms-articles ul li  {
 		margin-top: 8px;
 		margin-bottom: 8px;		
 	}
 
-	.articles ul a {
+	.gclms-articles ul a {
 		background-image: url(/img/icons/oxygen/16x16/mimetypes/application-text.png);
 		background-repeat: no-repeat;
 		padding-left: 20px;

@@ -16,7 +16,7 @@ class VirtualClass extends AppModel {
     var $belongsTo = array('Course','Group');
 
 	var $validate = array(
-		'alias' => array(
+		'title' => array(
 			'rule' => VALID_NOT_EMPTY,
 			'duplicateAlias' => 'checkAlias'
 		),
@@ -26,8 +26,8 @@ class VirtualClass extends AppModel {
 		'enrollment_deadline' => 'checkEnrollmentDeadline'
 	);
 	
-	function checkAlias() {
-		if($this->findByGroupIdAndAlias($this->data['VirtualClass']['group_id'],$this->data['VirtualClass']['alias']))
+	function checkTitle() {
+		if($this->findByGroupIdAndTitle($this->data['VirtualClass']['group_id'],$this->data['VirtualClass']['title']))
 			return false;
 		return true;
 	}

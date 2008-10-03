@@ -67,12 +67,12 @@ Element.addMethods({
         $(element).style.display = $(element).style.display == 'none' ? 'block' : 'none';
         return element;
     },
-    
+
     displayAsBlock: function(element){
         $(element).style.display = 'block';
         return element;
     },
-    
+	    
     displayAsInline: function(element){
         $(element).style.display = 'inline';
         return element;

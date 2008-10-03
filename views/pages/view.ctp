@@ -11,7 +11,7 @@ if(in_array('5',Set::extract($node['Question'],'{n}.type'))) {
 }
 
 $javascript->link(array(
-	'vendors/prototype1.6.0.2',
+	'vendors/prototype1.6.0.3',
 	'vendors/prototype_extensions1.0',
 	'vendors/scriptaculous1.8.1/effects',
 	'vendors/scriptaculous1.8.1/dragdrop',
@@ -37,9 +37,9 @@ echo $this->element('no_column_background');
 	
 		<? if(!$offline): ?>
 		<div class="gclms-option-buttons">
-			<a class="gclms-edit-page" href="<?= $groupAndCoursePath ?>/pages/edit/<?= $node['Node']['id'] ?>" target="_top"><? __('Edit') ?></a>
+			<a class="gclms-edit-page gclms-no-frames" href="<?= $groupAndCoursePath ?>/pages/edit/<?= $node['Node']['id'] ?>" target="_top"><? __('Edit') ?></a>
 			<? if($framed): ?>
-				<a class="gclms-view-with-frames" href="<?= $groupAndCoursePath ?>/pages/view/<?= $node['Node']['id'] ?>" target="_top"><? __('View without frames') ?></a>						
+				<a class="gclms-view-with-frames gclms-no-frames" href="<?= $groupAndCoursePath ?>/pages/view/<?= $node['Node']['id'] ?>" target="_top"><? __('View without frames') ?></a>						
 			<? else: ?>
 				<a class="gclms-view-with-frames" href="<?= $groupAndCoursePath ?>/classroom/framed#<?= $node['Node']['id'] ?>"><? __('View with frames') ?></a>			
 			<? endif ?>

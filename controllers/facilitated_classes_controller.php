@@ -3,7 +3,7 @@ class FacilitatedClassesController extends AppController {
     var $uses = array('FacilitatedClass','Course','Group');
 	var $helpers = array('Html','Form','MyForm','Paginator','MyPaginator','Time','MyTime');
 	var $itemName = 'Class';
-	var $paginate = array('order' => 'alias');
+	var $paginate = array('order' => 'username');
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();

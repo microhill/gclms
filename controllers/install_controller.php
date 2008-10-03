@@ -107,7 +107,7 @@ class InstallController extends AppController {
 			
 			$this->User->save(array(
 				'email' => $this->data['User']['email'],
-				'alias' => $this->data['User']['alias'],
+				'username' => $this->data['User']['username'],
 				'password' => $this->data['User']['password'],
 				'first_name' => $this->data['User']['first_name'],
 				'last_name' => $this->data['User']['last_name'],

@@ -3,7 +3,7 @@ $html->css('notebook', null, null, false);
 
 $javascript->link(array(
 	'vendors/tinymce3.1.0.1/tiny_mce',
-	'vendors/prototype1.6.0.2',
+	'vendors/prototype1.6.0.3',
 	'vendors/prototype_extensions1.0',
 	'gclms',
 	'vendors/uuid1.0',

@@ -26,4 +26,3 @@
 </div>
 
 <?= $this->element('right_column'); ?>
-

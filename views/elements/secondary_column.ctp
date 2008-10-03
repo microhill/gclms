@@ -43,28 +43,10 @@
 	if(!$offline && ($this->name == 'StudentCenter' || $this->name == 'Groups'))
 		echo $this->element('choose_language');
 
-	if($this->name == 'Lessons' && $this->action == 'index')
-		echo $this->element('panel',array(
-			'title' => 'What can I do here?',
-			'content' => $this->element('units_and_lessons_tutorial')
-		));
-	else if($this->name == 'Lessons' && $this->action == 'view')
-		echo $this->element('panel',array(
-			'title' => 'What can I do here?',
-			'content' => $this->element('topics_and_pages_tutorial')
-		));
-
 	if(!isset($course) && isset($virtual_classes) && isset($group) && isset($course)) {
 		echo $this->element('panel',array(
 			'title' => 'Open Classes',
 			'content' => $this->element('open_classes')
-		));
-	}
-
-	if(isset($lessons) && $this->name != 'Lessons' && !empty($course['web_path'])) {
-		echo $this->element('panel',array(
-			'title' => 'Course Audio',
-			'content' => $this->element('course_audio')
 		));
 	}
 	

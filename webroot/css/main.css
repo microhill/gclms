@@ -54,14 +54,14 @@ h1 {
 	}
 
 h2 {
-	font-size: 1.65em;
+	font-size: 1.55em;
 	line-height: 1.1em;
 	/* margin-top: 14px;
 	margin-bottom: 14px; */
 }
 
 h3 {
-	font-size: 1.5em;
+	font-size: 1.45em;
 }
 
 h4 {
@@ -151,24 +151,24 @@ form button.gclms-delete {
 	clear: both;
 }
 	
-	.gclms-noframes .gclms-center-column p {
+	#gclms-page.gclms-noframes .gclms-center-column p {
 		line-height: 1.45em;
 		margin-top: .75em;
 		margin-bottom: .75em;
 	}
 	
-	.gclms-noframes .gclms-center-column ul,
-	.gclms-noframes .gclms-center-column ol {
+	#gclms-page.gclms-noframes .gclms-center-column ul,
+	#gclms-page.gclms-noframes .gclms-center-column ol {
 		margin: 0;
 		/* padding-top: 12px;
 		padding-bottom: 12px; */
 	}
 
-	.gclms-noframes .gclms-content {
+	#gclms-page.gclms-noframes .gclms-content {
 		padding: 12px;
 	}
 
-	.gclms-framed .gclms-content {
+	#gclms-page.gclms-framed .gclms-content {
 		padding: 12px;
 	}
 
@@ -379,27 +379,27 @@ a.gclms-group-web-address {
 
 /* Menu */
 
-.gclms-left-column-menu {
+.gclms-primary-column-menu {
 	list-style: none;
 	margin-top: 3px;
 	padding: 0;
 }
 
-	.gclms-left-column-menu li {
+	.gclms-primary-column-menu li {
 		width: 100%;
 		border: 1px solid #efefef;
 		margin-bottom: 2px;
 	}
 	
-		.gclms-left-column-menu li.gclms-active,
-		.gclms-left-column-menu li:hover {
+		.gclms-primary-column-menu li.gclms-active,
+		.gclms-primary-column-menu li:hover {
 			background-color: #D3EDFA;
 			background-image: url(../img/permanent/tabular_row_background2007-09-14.png);
 			border: 1px solid #B2CED9;
 			background-repeat: repeat-x;
 		}
 
-		.gclms-left-column-menu li a {
+		.gclms-primary-column-menu li a {
 			margin: 5px;
 			padding-bottom: 2px;
 			font-size: 1.25em;
@@ -412,144 +412,144 @@ a.gclms-group-web-address {
 			white-space: nowrap;
 		}
 
-	.gclms-left-column-menu .gclms-home a {
+	.gclms-primary-column-menu .gclms-home a {
 		background-image: url(../img/icons/oxygen_refit/32x32/actions/go-home.png);
 	}
 	
-	.gclms-left-column-menu .gclms-course-content a,
-	.gclms-left-column-menu .course-content-courses a {
+	.gclms-primary-column-menu .gclms-course-content a,
+	.gclms-primary-column-menu .course-content-courses a {
 		background-image: url(../img/lessons-32.png);
 	}
 
 /*
-.gclms-center-column .gclms-left-column-menu li a,
-.gclms-right-column .gclms-left-column-menu li a {
+.gclms-center-column .gclms-primary-column-menu li a,
+.gclms-right-column .gclms-primary-column-menu li a {
 	border: 1px solid #f4f4f4;
 }
 */
 
-	.gclms-left-column-menu .gclms-profile a {
+	.gclms-primary-column-menu .gclms-profile a {
 		background-image: url(../img/profile-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-forums a {
+	.gclms-primary-column-menu .gclms-forums a {
 		background-image: url(../img/icons/oxygen_refit/32x32/actions/stock_contact-list.png);
 	}
 
-	.gclms-left-column-menu .gclms-chat a {
+	.gclms-primary-column-menu .gclms-chat a {
 		background-image: url(../img/icons/oxygen_refit/32x32/apps/package_games_sports.png);
 	}
 
-	.gclms-left-column-menu .gclms-grades a {
+	.gclms-primary-column-menu .gclms-grades a {
 		background-image: url(../img/permanent/icons/2007-09-13/grades-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-nodes a,
-	.gclms-left-column-menu .gclms-courses a {
+	.gclms-primary-column-menu .gclms-nodes a,
+	.gclms-primary-column-menu .gclms-courses a {
 		background-image: url(../img/lessons-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-notebook a {
+	.gclms-primary-column-menu .gclms-notebook a {
 		background-image: url(../img/notebook-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-users a {
+	.gclms-primary-column-menu .gclms-users a {
 		background-image: url(../img/permanent/icons/2007-09-13/users-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-groups a {
+	.gclms-primary-column-menu .gclms-groups a {
 		background-image: url(../img/permanent/icons/2007-09-13/groups-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-statistics a {
+	.gclms-primary-column-menu .gclms-statistics a {
 		background-image: url(../img/icons/oxygen_refit/32x32/apps/gnumeric.png);
 	}
 
-	.gclms-left-column-menu .gclms-study-programs a {
+	.gclms-primary-column-menu .gclms-study-programs a {
 		background-image: url(../img/permanent/icons/2007-09-13/programs-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-configuration a {
+	.gclms-primary-column-menu .gclms-configuration a {
 		background-image: url(../img/preferences-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-administration a {
+	.gclms-primary-column-menu .gclms-administration a {
 		background-image: url(../img/permanent/icons/2007-09-13/administration-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-profile a {
+	.gclms-primary-column-menu .gclms-profile a {
 		background-image: url(../img/profile-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-group-administrators a {
+	.gclms-primary-column-menu .gclms-group-administrators a {
 		background-image: url(../img/permanent/icons/2007-09-13/group_administrators-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-database a {
+	.gclms-primary-column-menu .gclms-database a {
 		background-image: url(../img/permanent/icons/2007-09-13/database-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-tables a {
+	.gclms-primary-column-menu .gclms-tables a {
 		background-image: url(../img/permanent/icons/2007-09-13/tables-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-first-user a {
+	.gclms-primary-column-menu .gclms-first-user a {
 		background-image: url(../img/permanent/icons/2007-09-13/profile-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-facilitators a {
+	.gclms-primary-column-menu .gclms-facilitators a {
 		background-image: url(../img/permanent/icons/2007-09-13/users-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-courses a {
+	.gclms-primary-column-menu .gclms-courses a {
 		background-image: url(../img/lessons-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-grading a {
+	.gclms-primary-column-menu .gclms-grading a {
 		background-image: url(../img/permanent/icons/2007-09-13/grades-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-files a {
+	.gclms-primary-column-menu .gclms-files a {
 		background-image: url(../img/folder-32.png);
 	}
 	
-	.gclms-left-column-menu .gclms-add a {
+	.gclms-primary-column-menu .gclms-add a {
 		background-image: url(../img/add-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-certificates a {
+	.gclms-primary-column-menu .gclms-certificates a {
 		background-image: url(../img/permanent/icons/2007-09-13/certificates-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-glossary a {
+	.gclms-primary-column-menu .gclms-glossary a {
 		background-image: url(../img/glossary-32.png);
 	}
 	
-	.gclms-left-column-menu .gclms-export a {
+	.gclms-primary-column-menu .gclms-export a {
 		background-image: url(../img/icons/oxygen/32x32/actions/file-export.png);
 	}
 
-	.gclms-left-column-menu .gclms-books a {
+	.gclms-primary-column-menu .gclms-books a {
 		background-image: url(../img/book-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-announcements a {
+	.gclms-primary-column-menu .gclms-announcements a {
 		background-image: url(../img/permanent/icons/2007-09-13/news-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-register a {
+	.gclms-primary-column-menu .gclms-register a {
 		background-image: url(../img/register-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-register a {
+	.gclms-primary-column-menu .gclms-register a {
 		background-image: url(../img/register-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-articles a {
+	.gclms-primary-column-menu .gclms-articles a {
 		background-image: url(../img/articles-32.png);
 	}
 
-	.gclms-left-column-menu .gclms-plugins a {
+	.gclms-primary-column-menu .gclms-plugins a {
 		background-image: url(../img/icons/oxygen/32x32/emblems/emblem-system.png);
 	}
 
@@ -601,9 +601,28 @@ a.gclms-group-web-address {
 		 z-index: 1001;
 	     text-align: center;
 	}
+	
+		.gclms-popup-dialog .gclms-title {
+			font-size: 1.3em;
+			font-weight: bold;
+			text-align: left;
+		}
+	
+		.gclms-popup-dialog table.gclms-buttons {
+			mmargin: auto;
+		}
 
 		.gclms-popup-dialog input[type='text'] {
 			width: 96.5%;
+		}
+		
+		.gclms-popup-dialog form {
+			text-align: left;
+		}
+		
+		input#gclms-search-input {
+			width: 200px;
+			font-size: 1.2em;
 		}
 	
 		.gclms-popup-dialog button {
@@ -619,21 +638,21 @@ a.gclms-group-web-address {
 		}
 		
 		.gclms-popup-dialog .gclms-ok {
+			margin-right: 4px;
+			/*
 			background-color: green;
 			color: white;
 			border: 1px solid #006633;
-			margin-right: 4px;
 			background-image: url(../img/popup-dialog-ok-background.png);
-			cursor: pointer;
+			*/
 		}
 
-		.gclms-popup-dialog .gclms-cancel {
+		.gclms-popup-dialog2 .gclms-cancel {
 			background-color: red;
 			color: white;
 			border: 1px solid #9D0000;
 			margin-left: 4px;
 			background-image: url(../img/popup-dialog-cancel-background.png);
-			cursor: pointer;
 		}
 
 .cake-sql-log {

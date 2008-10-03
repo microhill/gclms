@@ -1,5 +1,8 @@
 <?
 foreach($items as $item) {
+	if(empty($item))
+		continue;
+			
 	$link_options = array('escape' => false);
 
 	$label = isset($item['label']) ? $item['label'] : Inflector::humanize(@$item['controller']);

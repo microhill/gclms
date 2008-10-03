@@ -73,7 +73,10 @@ if (file_exists(CONFIGS.'installed.txt')) {
 	
 	Router::connect('/:group/', array('controller' => 'groups','action' => 'show'));
 
-	Router::connect('/:group/(files|configuration|facilitators|classes|courses)/:action/*', array(), array('controller' => 'files|configuration|facilitators|classes|courses'));
+	// Ugh, why are these needed?
+	Router::connect('/:group/:controller', array('action' => 'index'),array('controller' => 'files|configuration|permissions|classes|courses'));
+	
+	Router::connect('/:group/(files|configuration|permissions|classes|courses)/:action/*', array(), array('controller' => 'files|configuration|permissions|classes|courses'));
 	Router::connect('/:group/:course', array('controller' => 'courses','action' => 'show'));
 
 	Router::connect('/:group/:course/configuration/delete',array('controller'=>'courses','action'=>'delete'));

@@ -15,6 +15,9 @@ gclms.translated_phrases = [];
 
 gclms.AppController = {
 	updateHref: function(event) {
+		if(this.hasClassName('gclms-no-frames')) {
+			return true;
+		}
 		var href = this.getAttribute('href');
 		if(href.include('?framed')) {
 			return true;
@@ -80,127 +83,6 @@ gclms.AppController = {
 	},
 	hideTooltip: function() {
 		$('gclms-tooltip').hide();
-	},
-	createPopup: function(options) {
-		options = $H({
-			modal: false,
-			type: 'prompt',
-			value: '',
-			confirmButtonText: 'OK',
-			cancelButtonText: 'Cancel',
-			callback: null,
-			cancelCallback: null
-		}).update(options);
-	
-		gclms.popup.callback = options.get('callback');
-		gclms.popup.cancelCallback = options.get('cancelCallback');
-			
-		if(!gclms.popup.overlay) {
-			gclms.popup.overlay = new Element('div',{
-				className: 'gclms-popup-overlay'
-			});
-			gclms.popup.overlay.observe('click',function(event) {
-				gclms.popup.overlay.hide();
-			});
-		}
-		gclms.popup.overlay.style.display = 'block';
-		
-		gclms.popup.dialog = new Element('div',{
-			className: 'gclms-popup-dialog'
-		});
-		document.body.insert(gclms.popup.overlay);
-	
-		gclms.popup.dialog.insert(new Element('p').insert(options.get('text')));
-	
-		if(options.get('type') == 'prompt'){
-			gclms.popup.dialog.insert(new Element('p').insert(new Element('input',{
-				type: 'text',
-				id: 'gclmsPopupDialogInputText',
-				value: options.get('value')
-			})));
-			gclms.popup.dialog.select('input[type="text"]').first().observe('keydown',function(event){
-				if(event.keyCode == Event.KEY_ESC) {
-					this.up('div.gclms-popup-overlay').hide();	
-					if(gclms.popup.cancelCallback) {
-						gclms.popup.cancelCallback();
-					}
-				}
-				if(event.keyCode == Event.KEY_RETURN) {
-					this.up('div.gclms-popup-overlay').hide();
-					if(gclms.popup.callback) {
-						gclms.popup.callback(gclms.popup.dialog.select('input[type="text"]').first().value);
-					}
-				}
-			});
-			
-			gclms.popup.getCallbackValue = function() {
-				return gclms.popup.dialog.select('input[type="text"]').first().value;
-			};
-		} else if(options.get('type') == 'confirm'){
-			gclms.popup.getCallbackValue = function() {
-				return true;
-			};			
-		}
-		
-		var div = new Element('div');
-		div.appendChild(new Element('button',{
-			className: 'gclms-ok',
-			id: 'gclmsPopupDialogOkButton'
-		})).insert(options.get('confirmButtonText'));
-	
-		div.select('button.gclms-ok').first().observe('click',function(event){
-			gclms.AppController.closePopup({executeCallback: true});
-		});
-		
-		if(options.get('type') == 'confirm') {
-			gclms.popup.keyDownHandler = function(event) {
-				if (event.keyCode == 89) {
-					gclms.AppController.closePopup({executeCallback: true});
-				} else if (event.keyCode == 78) {
-					gclms.AppController.closePopup({executeCallback: false});
-				}
-			};
-			document.observe('keydown',gclms.popup.keyDownHandler);
-		}
-		
-		if(options.get('cancelButtonText') !== null) {
-			div.appendChild(new Element('button',{
-				className: 'gclms-cancel',
-				id: 'gclms-popup-dialog-cancel-button'
-			})).insert(options.get('cancelButtonText'));
-			
-			div.select('button.gclms-cancel').first().observe('click',function(event){
-				gclms.AppController.closePopup({executeCallback: false});
-			});
-		}
-	
-		gclms.popup.dialog.insert(div);
-		
-		gclms.popup.dialog.observe('click',function(event){
-			event.stop();
-		});
-		
-		gclms.popup.overlay.select('.gclms-popup-dialog').each(function(div){
-			div.remove();
-		});
-		gclms.popup.overlay.insert(gclms.popup.dialog);
-		if(gclms.popup.dialog.select('input[type="text"]').first()) {
-			gclms.popup.dialog.select('input[type="text"]').first().focus();
-			gclms.popup.dialog.select('input[type="text"]').first().select();
-		}
-		
-		// Vertically center the dialog
-		gclms.popup.dialog.setStyle({marginTop: (gclms.popup.overlay.offsetHeight / 2) -  (gclms.popup.dialog.offsetHeight / 2) + 'px'});
-	},
-	closePopup: function(options) {
-		$$('div.gclms-popup-overlay').first().hide();
-		gclms.popup.dialog.remove();
-		document.stopObserving('keydown',gclms.popup.keyDownHandler);
-		if (options.executeCallback && gclms.popup.callback) {
-			gclms.popup.callback(gclms.popup.getCallbackValue());
-		} else if (gclms.popup.cancelCallback) {
-			gclms.popup.cancelCallback();
-		}
 	},
 	updateLoginPanel: function(event) {
 		//alert(event.keyCode)
@@ -273,7 +155,7 @@ gclms.Triggers = $H({
 		}
 	},
 	'.gclms-framed': {
-		'a[href]': gclms.AppController.updateHref,	
+		'a[href]:click': gclms.AppController.updateHref,	
 		'button[href]': gclms.AppController.updateHref,	
 		'tr[href]': gclms.AppController.updateHref,
 		'form[action]': gclms.AppController.updateAction
@@ -321,10 +203,6 @@ gclms.Triggers = $H({
 		event.stop();
 	}
 });
-	
-gclms.popup = {
-	'create' : gclms.AppController.createPopup
-};
 
 document.observe('dom:loaded', function() {
 	$(document.body).observeRules(gclms.Triggers);

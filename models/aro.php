@@ -1,0 +1,3 @@
+<?
+class Aro extends AppModel {
+}

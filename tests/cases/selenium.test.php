@@ -4,7 +4,7 @@ App::import('Vendor', 'selenium' . DS . 'Selenium');
 class SeleniumTest extends UnitTestCase
 {
     function setUp() {
-        $this->selenium = new Testing_Selenium('*firefox c:\Program Files\Mozilla Firefox\firefox.exe', 'http://lms');
+        $this->selenium = new Testing_Selenium('*firefox', 'http://lms');
         $result = $this->selenium->start();
     }
 

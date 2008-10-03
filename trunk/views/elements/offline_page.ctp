@@ -29,7 +29,7 @@
 			<div class="gclms-page gclms-noframes">
 				<?
 				$javascript->link(array(
-					'vendors/prototype1.6.0.2',
+					'vendors/prototype1.6.0.3',
 					'vendors/prototype_extensions1.0',
 					'gclms',
 					'vendors/scriptaculous1.8.1/effects',

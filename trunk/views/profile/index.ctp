@@ -25,6 +25,10 @@ echo $this->element('no_column_background');
 		'label' =>  __('Last name', true),
 		'between' => '<br/>'
 	));
+	echo $form->input('hide_full_name',array(
+		'label' =>  __('Display full name', true),
+		'between' => '<br/>'
+	));
 	echo $form->input('new_password',array(
 		'label' =>  __('New password', true),
 		'between' => '<br/>',

@@ -128,12 +128,14 @@ gclms.PageController = {
         parent.Ext.getCmp('classroomTabs').activate('notebookTab');
     },
     
+	/*
     gotoPageLink: function(event){
         if (!this.parentNode.hasClassName('gclms-option-buttons')) {
 			location.href = this.getAttribute('href') + '?framed';
 			event.stop();
 		}
     },
+    */
     
     highlightCurrentPage: function(){
         try {
@@ -177,7 +179,7 @@ gclms.Triggers.update({
     //'#gradeQuestions:click': gclms.PageController.gradeQuestions,
     'div.gclms-framed': {
         ':loaded': gclms.PageController.highlightCurrentPage,
-        'a[href*="/pages/view"]:click': gclms.PageController.gotoPageLink,
+        //'a[href*="/pages/view"]:click': gclms.PageController.gotoPageLink,
         'a[href*="/www.bibleapi.net"]:click': gclms.PageController.loadBibleVerse,
         'a[href*="/chapters/view"]:click': gclms.PageController.loadChapter,
         'a[href*="/articles/view"]:click': gclms.PageController.loadArticle,

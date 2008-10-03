@@ -2,6 +2,18 @@
 	<?= $this->element('no_column_background'); ?>
 <? else: ?>
 <div class="gclms-left-column">
-	<?= $text_direction == 'rtl' ? $this->element('secondary_column') : $this->element('primary_column'); ?>
+	<?
+	if($text_direction == 'rtl') {
+		if(!empty($secondary_column))
+			echo $secondary_column;
+		else
+			echo $this->element('secondary_column');
+	} else {
+		if(!empty($primary_column))
+			echo $primary_column;
+		else
+			echo $this->element('primary_column');
+	}
+	?>
 </div>
 <? endif; ?>

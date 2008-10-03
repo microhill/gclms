@@ -1,6 +1,6 @@
 <?
 $javascript->link(array(
-	'vendors/prototype1.6.0.2',
+	'vendors/prototype1.6.0.3',
 	'vendors/prototype_extensions1.0',
 	'gclms',
 	'glossary'

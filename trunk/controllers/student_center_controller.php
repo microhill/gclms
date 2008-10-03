@@ -1,6 +1,6 @@
 <?
 class StudentCenterController extends AppController {
-	var $uses = array('ClassEnrollee','GroupFacilitator');
+	var $uses = array('ClassEnrollee');
     var $components = array('RequestHandler','Breadcrumbs');
 
 	function beforeFilter() {

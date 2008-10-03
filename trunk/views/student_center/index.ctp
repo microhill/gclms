@@ -1,6 +1,6 @@
 <?
 $javascript->link(array(
-	'vendors/prototype1.6.0.2',
+	'vendors/prototype1.6.0.3',
 	'vendors/prototype_extensions1.0',
 	'gclms'
 ), false);
@@ -14,10 +14,10 @@ echo $this->element('left_column');
 		<h1><?
 		__('Welcome');
 		
-		if($user['alias'])
-			echo ', ' . $user['alias'];
-		else if($user['first_name'])
+		if($user['first_name'])
 			echo ', ' . $user['first_name'];
+		else
+			echo ', ' . $user['username'];
 		?></h1>
 
 		<!-- img src="/files/front-page-looking-up.jpg" style="float: right;margin-left: 12px;margin-bottom: 8px;" / -->

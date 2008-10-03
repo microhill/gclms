@@ -1,8 +1,4 @@
-<?
-
-
-echo $this->element('left_column');
-?>
+<?= $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
 		<h1><?= __('Facilitator Application') ?></h1>    

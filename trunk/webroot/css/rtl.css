@@ -132,16 +132,16 @@ input[type="radio"] {
 		padding-left: 8px;		
 	}
 	
-.gclms-left-column-menu {
+.gclms-primary-column-menu {
 	margin-left: 5px;
 	margin-right: 3px;		
 }
 
-	.gclms-left-column-menu li {
+	.gclms-primary-column-menu li {
 		float: right;		
 	}
 	
-		.gclms-left-column-menu li a {
+		.gclms-primary-column-menu li a {
 			margin-right: 6px;
 			padding-right: 40px;
 			background-position: center right;	

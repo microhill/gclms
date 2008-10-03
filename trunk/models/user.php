@@ -3,6 +3,7 @@ class User extends AppModel {
 	var $recursive = 1;
     
 	var $hasAndBelongsToMany = array(
+		/*
 		'GroupsAdministrating' => array(
 				'className'    => 'Group',
 				'joinTable'    => 'group_administrators',
@@ -11,30 +12,33 @@ class User extends AppModel {
 				'unique'       => true,
 				'fields' 		=> array('id','web_path','name')
 			),
-		'GroupsFacilitating' => array(
+		*/
+		/*'GroupsFacilitating' => array(
 				'className'    => 'Group',
 				'joinTable'    => 'group_facilitators',
 				'foreignKey'   => 'user_id',
 				'associationForeignKey'=> 'group_id',
 				'unique'       => true,
 				'fields' 		=> array('id','web_path','name')
-			),
+			),*/
 		'ClassesTaking' => array(
 				'className'    => 'VirtualClass',
 				'joinTable'    => 'class_enrollees',
 				'foreignKey'   => 'user_id',
 				'associationForeignKey'=> 'virtual_class_id',
 				'unique'       => true,
-				'fields' 		=> array('id','alias')
+				'fields' 		=> array('id','title')
 			),
+		/*
 		'ClassesFacilitating'	=> array(
 				'className'   	=> 'VirtualClass',
 				'joinTable'   	=> 'class_facilitators',
 				'foreignKey' 	=> 'user_id',
 				'associationForeignKey'=> 'virtual_class_id',
 				'unique'      	=> true,
-				'fields'		=> array('id','alias')
+				'fields'		=> array('id','title')
 			)
+		*/
 	);
 	
 	function beforeSave() {
@@ -116,12 +120,14 @@ class User extends AppModel {
 	        	Set::extract($groups, 'GroupsAdministrating.{n}.web_path'),
 				Set::extract($groups, 'GroupsAdministrating.{n}.name')
 			) : array();
-    	$groups2 = count($groups['GroupsFacilitating']) ?
+    	/*
+		$groups2 = count($groups['GroupsFacilitating']) ?
 			array_combine(
 	        	Set::extract($groups, 'GroupsFacilitating.{n}.web_path'),
 				Set::extract($groups, 'GroupsFacilitating.{n}.alias')
 			) : array();
-		return $groups1 + $groups2;
+		*/
+		return $groups1; // + $groups2;
     }
     
     function findAllClasses($id) {
@@ -131,11 +137,14 @@ class User extends AppModel {
 	        	Set::extract($groups, 'ClassesTaking.{n}.id'),
 				Set::extract($groups, 'ClassesTaking.{n}.alias')
 			) : array();
-    	$groups2 = count($groups['ClassesFacilitating']) ?
+    	/*
+		$groups2 = count($groups['ClassesFacilitating']) ?
 			array_combine(
 	        	Set::extract($groups, 'ClassesFacilitating.{n}.id'),
 				Set::extract($groups, 'ClassesFacilitating.{n}.alias')
 			) : array();
-		return $groups1 + $groups2;	
+		*/
+		//return $groups1 + $groups2;	
+		return $groups1;
     }
 }

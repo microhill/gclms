@@ -1,7 +1,7 @@
 <?php
 class ForumPost extends AppModel {
     var $belongsTo = array('Forum','User' => array(
-		'fields' => array('id','alias','email')
+		'fields' => array('id','username','email')
 	));
 	
 	var $hasMany = array('Reply' => array(

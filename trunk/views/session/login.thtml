@@ -1,8 +1,0 @@
-<div class="gclms-left-column">
-</div>
-
-<div class="gclms-center-column">
-	<div class="gclms-content">
-		<?php include('views/elements/login.ctp'); ?>
-	</div>
-</div>

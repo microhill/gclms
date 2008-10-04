@@ -10,9 +10,6 @@ $javascript->link(array(
 echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<h1><? __('Permissions') ?></h1>
-		<button href="forums/add">Grant Permissions to User</button>
-		
 		<? include('table.ctp'); ?>
 	</div>
 </div>

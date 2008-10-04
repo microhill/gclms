@@ -1,6 +1,6 @@
 <?
 class PermissionsController extends AppController {
-    var $uses = array('Permission','User');
+    var $uses = array('User','Permission');
 	var $components = array('Common','Breadcrumbs','Languages','RequestHandler','Notifications');
 	var $helpers = array('Paginator','MyPaginator');
 
@@ -16,8 +16,11 @@ class PermissionsController extends AppController {
 			'conditions' => array('Permission.group_id' => $this->viewVars['group']['id']),
 			'fields' => 'DISTINCT User.id'
 		));
-		
-		$this->Common->index();
+
+		$this->paginate['fields'] = array('DISTINCT User.id','User.id','User.first_name','User.last_name');
+		$this->data = $this->paginate('Permission',array(
+			'Permission.group_id' => $this->viewVars['group']['id']
+		));
 	}
 	
 	function add() {

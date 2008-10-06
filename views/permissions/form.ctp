@@ -8,7 +8,7 @@
 	</div>
 <? endif; ?>
 
-<div id="gclms-user-permissions" class="<? if(empty($this->data['User'])): ?>gclms-hidden<? endif; ?>" style="clear: both;">
+<div id="gclms-user-permissions" class="<? if(empty($user['User'])): ?>gclms-hidden<? endif; ?>" style="clear: both;">
 	<h2>Group-wide Permissions</h2>
 	
 	<p>

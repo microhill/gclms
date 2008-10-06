@@ -3,7 +3,6 @@ class User extends AppModel {
 	var $recursive = 1;
     
 	var $hasAndBelongsToMany = array(
-		/*
 		'GroupsAdministrating' => array(
 				'className'    => 'Group',
 				'joinTable'    => 'group_administrators',
@@ -12,7 +11,6 @@ class User extends AppModel {
 				'unique'       => true,
 				'fields' 		=> array('id','web_path','name')
 			),
-		*/
 		/*'GroupsFacilitating' => array(
 				'className'    => 'Group',
 				'joinTable'    => 'group_facilitators',

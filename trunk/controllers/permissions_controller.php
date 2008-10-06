@@ -44,6 +44,29 @@ class PermissionsController extends AppController {
 			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/permissions');
 		}
 		
+		$this->getCoursesAndClasses();
+	}
+	
+	function edit($user_id) {		
+		if(empty($user_id))
+			die;
+		
+		$this->data = array();
+		
+		$this->data['Permissions'] = $this->Permission->getFromUser($user_id,$this->viewVars['group']['id']);
+		
+		$this->User->contain();
+		$user = $this->User->find('first',array(
+			'fields' => array('id','username','email'),
+			'conditions' => array(				
+				'User.id' => $id
+		)));
+		$this->data['User'] = $user['User'];
+		
+		$this->getCoursesAndClasses();
+	}
+	
+	private function getCoursesAndClasses() {
 		$this->Course->contain('id','title');
 		$courses = $this->Course->find('list',array(
 			'conditions' => array('Course.group_id' => $this->viewVars['group']['id'])
@@ -55,10 +78,8 @@ class PermissionsController extends AppController {
 		$courses = $this->VirtualClass->find('list',array(
 			'conditions' => array('group_id' => $this->viewVars['group']['id'])
 		));
-		$this->set('classes',$courses);
+		$this->set('classes',$courses);	
 	}
-	
-	function edit() {}
 	
 	private function save_permissions() {
 		$default = array(

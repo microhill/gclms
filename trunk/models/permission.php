@@ -24,4 +24,29 @@ class Permission extends AppModel {
 
 		return parent::save($data);
 	}
+	
+	function getFromUser($user_id,$group_id) {
+		$this->Permission->contain();
+		$permissions = $this->Permission->find('all',array(
+			'conditions' => array('user_id' => $id)
+		));
+		
+		//Courses
+		$course_permissions = array();
+		foreach($permissions as &$permission) {				
+			if(!$permission['Permission']['course_id']) {
+				continue;
+			}
+			
+			switch($permission['Permission']['model']) {
+				case 'Node':
+					//$course_permissions[''] = ;
+					break;
+			}
+			
+			unset($permission);	
+		}
+		
+		//Group-wide
+	}
 }

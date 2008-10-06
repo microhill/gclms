@@ -8,7 +8,7 @@ $headers = array(
 $fields = array('User.first_name','User.last_name');
 
 function customizeRowURL($row,$defaultUrl) {
-	return '/permissions/edit/' . $defaultUrl['id'];
+	return '/' . $defaultUrl['group']['web_path'] . '/permissions/edit/' . $defaultUrl['id'];
 }
 
 function customizeCellData($row,$helpers) {

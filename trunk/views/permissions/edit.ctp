@@ -9,5 +9,10 @@ $html->css('permissions', null, null, false);
 		Edit permissions for %
 	</h1>
 	
+	<?
+	$courses2 = Set::extract($this->data['Permissions'],'{n}.Permission.course_id');
+	pr($this->data['Permissions']);
+	?>
+	
 	<? include('form.ctp') ?>
 </div>

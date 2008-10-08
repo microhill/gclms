@@ -50,19 +50,24 @@ class PermissionsController extends AppController {
 	function edit($user_id) {		
 		if(empty($user_id))
 			die;
-		
-		$this->data = array();
-		
-		$this->data['Permissions'] = $this->Permission->findAllByUserAndGroup($user_id,$this->viewVars['group']['id']);
-		
-		$this->User->contain();
-		$user = $this->User->find('first',array(
-			'fields' => array('id','username','email'),
-			'conditions' => array(				
-				'User.id' => $user_id
-		)));
-		$this->data['User'] = $user['User'];
-		
+
+		if(!empty($this->data)) {
+			$this->Permission->saveAll($this->data,$this->viewVars['user']['id'],$this->viewVars['group']['id']);
+
+			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/permissions');
+		} else {
+			$this->data = array();
+			
+			$this->data['Permissions'] = $this->Permission->findAllByUserAndGroup($user_id,$this->viewVars['group']['id']);
+			
+			$this->User->contain();
+			$user = $this->User->find('first',array(
+				'fields' => array('id','username','email'),
+				'conditions' => array(				
+					'User.id' => $user_id
+			)));
+			$this->data['User'] = $user['User'];
+		}
 		$this->getCoursesAndClasses();
 	}
 	

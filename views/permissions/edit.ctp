@@ -9,5 +9,10 @@ $html->css('permissions', null, null, false);
 		<? __('Edit User Permissions') ?>
 	</h1>
 
+	<?= $form->create('Permission',array('url' => $groupAndCoursePath . '/permissions/edit/' . $this->data['User']['id'])) ?>
 	<? include('form.ctp') ?>
+	<?= $form->submit('Save',array(
+		'id' => 'gclms-save-button'
+	)) ?>
+	<?= $form->end() ?>
 </div>

@@ -4,7 +4,9 @@
 		<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($this->data['User']['email']) ?>&default=<?= urlencode(@$default) ?>&size=96" style="float:left;margin-right: 10px;margin-bottom: 10px;" />
 		<h2><?= $this->data['User']['username'] ?></h2>
 		<div><em><?= $this->data['User']['email'] ?></em></div>
-		<p><button id="gclms-change-user"><? __('Change') ?></button></p>
+		<? if($this->action == 'add'): ?>
+			<p><button id="gclms-change-user"><? __('Change') ?></button></p>
+		<? endif; ?>
 	</div>
 <? endif; ?>
 
@@ -42,26 +44,36 @@
 	</p>
 	
 	<h2>Specific Course Permissions</h2>
-	<div id="gclms-course-selection">
-		<table class="gclms-buttons">
-			<tr>
-				<td>
-					<?
-					echo $form->input('Course.selection',array(
-						'options' => $courses,
-						'div' => false,
-						'label' => false,
-						'id' => 'gclms-unselected-courses',
-						'name' => ''
-					));
-					?>
-				</td>
-				<td>
-					<button id="gclms-add-course"><? __('Add Course') ?></button>
-				</td>
-			</tr>
-		</table>
-	</div>
+	<?
+	$courseSelectionList = $courses;
+	foreach($this->data['Permissions']['courses'] as $course_id => $course) {
+		unset($courseSelectionList[$course_id]);
+	}
+	?>
+
+	<? if(!empty($courseSelectionList)): ?>
+		<div id="gclms-course-selection">
+			<table class="gclms-buttons">
+				<tr>
+					<td>
+						<?
+						echo $form->input('Course.selection',array(
+							'options' => $courseSelectionList,
+							'div' => false,
+							'label' => false,
+							'id' => 'gclms-unselected-courses',
+							'name' => ''
+						));
+						?>
+					</td>
+					<td>
+						<button id="gclms-add-course"><? __('Add Course') ?></button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	<? endif; ?>
+
 	<div id="gclms-courses">
 		<?
 		if(!empty($this->data['Permissions']['courses'])) {

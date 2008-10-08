@@ -39,7 +39,7 @@ class PermissionsController extends AppController {
 			if(!empty($user))
 				$this->data['User'] = $user['User'];
 		} else if(!empty($this->data)) {
-			$this->save_permissions();
+			$this->Permission->saveAll($this->data,$this->viewVars['user']['id'],$this->viewVars['group']['id']);
 
 			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/permissions');
 		}
@@ -53,13 +53,13 @@ class PermissionsController extends AppController {
 		
 		$this->data = array();
 		
-		$this->data['Permissions'] = $this->Permission->getFromUser($user_id,$this->viewVars['group']['id']);
+		$this->data['Permissions'] = $this->Permission->findAllByUserAndGroup($user_id,$this->viewVars['group']['id']);
 		
 		$this->User->contain();
 		$user = $this->User->find('first',array(
 			'fields' => array('id','username','email'),
 			'conditions' => array(				
-				'User.id' => $id
+				'User.id' => $user_id
 		)));
 		$this->data['User'] = $user['User'];
 		
@@ -80,68 +80,6 @@ class PermissionsController extends AppController {
 		));
 		$this->set('classes',$courses);	
 	}
-	
-	private function save_permissions() {
-		$default = array(
-			'user_id' => $this->viewVars['user']['id'],
-			'group_id' => $this->viewVars['group']['id']
-		);
-		
-		$this->Permission->save(am(array(
-			'model' => 'Course',
-			'crud' => empty($this->data['Permissions']['group']['manage_courses']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
-		),$default));
-
-		$this->Permission->save(am(array(
-			'model' => 'Permission',
-			'crud' => empty($this->data['Permissions']['group']['manage_user_permissions']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
-		),$default));
-
-		$this->Permission->save(am(array(
-			'model' => 'VirtualClass',
-			'crud' => empty($this->data['Permissions']['group']['manage_classes']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
-		),$default));
-		
-		foreach($this->data['Permissions']['courses'] as $course_id => $permissions) {
-			$this->Permission->save(am(array(
-				'course_id' => $course_id,
-				'model' => 'Node',
-				'crud' => empty($this->data['Permissions']['courses'][$course_id]['manage_content']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
-			),$default));
-			
-			if($this->data['Permissions']['courses'][$course_id]['add_class_for_approval']) {
-				$this->Permission->save(am(array(
-					'course_id' => $course_id,
-					'model' => 'VirtualClass',
-					'crud' => array('_create' => 1,'_read' => 0,'_update' => 0,'_delete' => 0)
-				),$default));	
-			} else {
-				$this->Permission->save(am(array(
-					'course_id' => $course_id,
-					'model' => 'VirtualClass',
-					'crud' => empty($this->data['Permissions']['courses'][$course_id]['add_class_without_approval']) ? array() : array('_create' => 1,'_read' => 0,'_update' => 1,'_delete' => 0)
-				),$default));
-			}
-			
-			$this->Permission->save(am(array(
-				'course_id' => $course_id,
-				'model' => 'Forum',
-				'crud' => empty($this->data['Permissions']['courses'][$course_id]['manage_forums']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
-			),$default));
-			
-			$this->Permission->save(am(array(
-				'course_id' => $course_id,
-				'model' => 'ChatMessage',
-				'crud' => empty($this->data['Permissions']['courses'][$course_id]['moderate_chatroom']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
-			),$default));
-		}
-		
-		/*
-		foreach($this->data['Permissions']['classes'] as $class) {
-			
-		}
-		*/
-	} 
 	
 	function update() {
 		//get all groups, make aco's

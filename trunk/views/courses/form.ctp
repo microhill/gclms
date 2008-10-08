@@ -17,6 +17,14 @@ echo $form->input('language',array(
 	'escape' => false
 ));
 
+echo $form->radio('published_status',
+	array(0 => __('Draft', true),1 => __('Published', true)),
+	array(
+		'legend' =>  __('Status', true),
+		'separator' => '<br />'
+	)
+);
+
 echo $form->radio('open',
 	array(0 => __('No', true),1 => __('Yes', true)),
 	array(

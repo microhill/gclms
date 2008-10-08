@@ -14,6 +14,8 @@ $html->css('permissions', null, null, false);
 ?>
 <div class="gclms-content">
 	<?= $this->element('notifications'); ?>
+	<div class="gclms-step-back"><a href="/<?= $group['web_path'] ?>/permissions"><? __('Cancel and go back') ?></a></div>
+	
 	<h1>
 		<? __('Add Permissions to User') ?>
 	</h1>

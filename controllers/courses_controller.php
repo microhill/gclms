@@ -178,4 +178,29 @@ class CoursesController extends AppController {
 		$this->redirect('/' . $this->params['group'] . '/' . stringToSlug($this->data['Course']['web_path']));
 		exit;
 	}
+	
+	function findAllInGroupAccessibleUser($group_id,$user_id) {
+		if(User::allow(array(
+			'group' => $group_id,
+			'model' => 'Course',
+			'action' => 'read'
+		))) {
+			return $this->find('all',array(
+				'conditions' => array('group_id' => $group_id),
+				'order' => 'Course.title ASC'
+			));
+		}
+		
+		$this->Permission &= ClassRegistry::init('Permission');
+		$this->Permission->contain();
+		$permissions = $this->Permission->find('all',array(
+			'conditions' => array(
+				'group_id' => $group_id,
+				'course_id <>' => null,
+				'model' => 'Node',
+				'_read' => 1
+			),
+			'fields' => 'course_id'
+		));
+	}
 }

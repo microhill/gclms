@@ -37,7 +37,21 @@ class GroupsController extends AppController {
 	
 	function show() {
 		$this->Course->contain();
-		$courses = $this->Course->findAll(array("Course.group_id" => $this->viewVars['group']['id']),null,'Course.title ASC');
+		if(User::allow(array(
+			'group' => $this->viewVars['group']['id'],
+			'model' => 'Course',
+			'action' => 'read'
+		))) {
+			
+		} else {
+			
+		}
+		
+		$courses = $this->Course->find('all',array(
+			'conditions' => array('Course.group_id' => $this->viewVars['group']['id']),
+			'order' => 'Course.title ASC'
+		));
+		
 		$this->set(compact('courses'));
 		
 		$this->set('title',$this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('App.name'));

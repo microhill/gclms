@@ -8,7 +8,7 @@
 	</div>
 <? endif; ?>
 
-<div id="gclms-user-permissions" class="<? if(empty($user['User'])): ?>gclms-hidden<? endif; ?>" style="clear: both;">
+<div id="gclms-user-permissions" class="<? if(empty($this->data['User'])): ?>gclms-hidden<? endif; ?>" style="clear: both;">
 	<h2>Group-wide Permissions</h2>
 	
 	<p>
@@ -16,7 +16,8 @@
 			'label' => 'Manage courses',
 			'type' => 'checkbox',
 			'between' => ' ',
-			'name' => 'data[Permissions][group][manage_courses]'
+			'name' => 'data[Permissions][group][manage_courses]',
+			'checked' => @$this->data['Permissions']['group']['manage_courses']
 		)) ?>
 	</p>
 	
@@ -25,7 +26,8 @@
 			'label' => 'Manage user permissions',
 			'type' => 'checkbox',
 			'between' => ' ',
-			'name' => 'data[Permissions][group][manage_user_permissions]'
+			'name' => 'data[Permissions][group][manage_user_permissions]',
+			'checked' => @$this->data['Permissions']['group']['manage_user_permissions']
 		)) ?>
 	</p>
 	
@@ -34,7 +36,8 @@
 			'label' => 'Manage classes',
 			'type' => 'checkbox',
 			'between' => ' ',
-			'name' => 'data[Permissions][group][manage_classes]'
+			'name' => 'data[Permissions][group][manage_classes]',
+			'checked' => @$this->data['Permissions']['group']['manage_classes']
 		)) ?>
 	</p>
 	
@@ -60,7 +63,12 @@
 		</table>
 	</div>
 	<div id="gclms-courses">
-		
+		<? foreach($this->data['Permissions']['courses'] as $course_id => $course) {
+			echo $this->element('../permissions/course_permissions',array(
+				'course_title' => $courses[$course_id],
+				'course_id' => $course_id
+			));
+		} ?>
 	</div>
 
 	<? if(!empty($classes)): ?>

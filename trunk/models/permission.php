@@ -7,19 +7,23 @@ class Permission extends AppModel {
 		
 		$crud = $data['crud'];
 		unset($data['crud']);
-		$this->contain('id');	
+		$this->contain('id');
 		$permission = $this->find('first',array(
 			'conditions' => array($data),
 			'fields' => 'id'
 		));
+		if(empty($crud) || (empty($crud['_create']) && empty($crud['_read']) && empty($crud['_update']) && empty($crud['_delete']))) {
+			if(!empty($permission)) {
+				$this->id = $permission['Permission']['id'];
+				$this->delete($permission['Permission']['id']);
+			}
+			return true;
+		}
+		
 		if(!empty($permission)) {
 			$this->id = $permission['Permission']['id'];
-			if(empty($crud) || (empty($crud['_create']) && empty($crud['_read']) && empty($crud['_update']) && empty($crud['_delete']))) {
-				$this->delete($permission['Permission']['id']);
-				return true;
-			}
 		}
-
+		
 		$data = array_merge($data,$crud);
 
 		return parent::save($data);
@@ -122,38 +126,40 @@ class Permission extends AppModel {
 			'crud' => empty($data['Permissions']['group']['manage_classes']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
 		),$default));
 		
-		foreach($data['Permissions']['courses'] as $course_id => $permissions) {
-			$this->save(am(array(
-				'course_id' => $course_id,
-				'model' => 'Node',
-				'crud' => empty($data['Permissions']['courses'][$course_id]['manage_content']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
-			),$default));
-			
-			if($data['Permissions']['courses'][$course_id]['add_class_for_approval']) {
+		if(!empty($data['Permissions']['courses'])) {
+			foreach($data['Permissions']['courses'] as $course_id => $permissions) {
 				$this->save(am(array(
 					'course_id' => $course_id,
-					'model' => 'VirtualClass',
-					'crud' => array('_create' => 1,'_read' => 0,'_update' => 0,'_delete' => 0)
-				),$default));	
-			} else {
-				$this->save(am(array(
-					'course_id' => $course_id,
-					'model' => 'VirtualClass',
-					'crud' => empty($data['Permissions']['courses'][$course_id]['add_class_without_approval']) ? array() : array('_create' => 1,'_read' => 0,'_update' => 1,'_delete' => 0)
+					'model' => 'Node',
+					'crud' => empty($data['Permissions']['courses'][$course_id]['manage_content']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
 				),$default));
-			}
-			
-			$this->save(am(array(
-				'course_id' => $course_id,
-				'model' => 'Forum',
-				'crud' => empty($data['Permissions']['courses'][$course_id]['manage_forums']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
-			),$default));
-			
-			$this->save(am(array(
-				'course_id' => $course_id,
-				'model' => 'ChatMessage',
-				'crud' => empty($data['Permissions']['courses'][$course_id]['moderate_chatroom']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
-			),$default));
+				
+				if($data['Permissions']['courses'][$course_id]['add_class_for_approval']) {
+					$this->save(am(array(
+						'course_id' => $course_id,
+						'model' => 'VirtualClass',
+						'crud' => array('_create' => 1,'_read' => 0,'_update' => 0,'_delete' => 0)
+					),$default));	
+				} else {
+					$this->save(am(array(
+						'course_id' => $course_id,
+						'model' => 'VirtualClass',
+						'crud' => empty($data['Permissions']['courses'][$course_id]['add_class_without_approval']) ? array() : array('_create' => 1,'_read' => 0,'_update' => 1,'_delete' => 0)
+					),$default));
+				}
+				
+				$this->save(am(array(
+					'course_id' => $course_id,
+					'model' => 'Forum',
+					'crud' => empty($data['Permissions']['courses'][$course_id]['manage_forums']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
+				),$default));
+				
+				$this->save(am(array(
+					'course_id' => $course_id,
+					'model' => 'ChatMessage',
+					'crud' => empty($data['Permissions']['courses'][$course_id]['moderate_chatroom']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
+				),$default));
+			}	
 		}
 		
 		/*

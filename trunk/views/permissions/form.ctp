@@ -63,12 +63,16 @@
 		</table>
 	</div>
 	<div id="gclms-courses">
-		<? foreach($this->data['Permissions']['courses'] as $course_id => $course) {
-			echo $this->element('../permissions/course_permissions',array(
-				'course_title' => $courses[$course_id],
-				'course_id' => $course_id
-			));
-		} ?>
+		<?
+		if(!empty($this->data['Permissions']['courses'])) {
+			foreach($this->data['Permissions']['courses'] as $course_id => $course) {
+				echo $this->element('../permissions/course_permissions',array(
+					'course_title' => $courses[$course_id],
+					'course_id' => $course_id
+				));
+			}	
+		}
+		?>
 	</div>
 
 	<? if(!empty($classes)): ?>

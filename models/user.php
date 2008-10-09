@@ -102,28 +102,29 @@ class User extends AppModel {
 	}
     
     function findAllGroups($id) {
-    	$groups = $this->findById($id,array('id'));
-    	$groups1 = count($groups['GroupsAdministrating']) ?
+		$user = $this->find('first',array(
+			'conditions' => array('id' => $id),
+			'fields' => 'id',
+			'contain' => array('GroupsAdministrating')
+		));
+    	$groups = count($user['GroupsAdministrating']) ?
 			array_combine(
-	        	Set::extract($groups, 'GroupsAdministrating.{n}.web_path'),
-				Set::extract($groups, 'GroupsAdministrating.{n}.name')
+	        	Set::extract($user, 'GroupsAdministrating.{n}.web_path'),
+				Set::extract($user, 'GroupsAdministrating.{n}.name')
 			) : array();
-    	/*
-		$groups2 = count($groups['GroupsFacilitating']) ?
-			array_combine(
-	        	Set::extract($groups, 'GroupsFacilitating.{n}.web_path'),
-				Set::extract($groups, 'GroupsFacilitating.{n}.alias')
-			) : array();
-		*/
-		return $groups1; // + $groups2;
+		return $groups;
     }
     
     function findAllClasses($id) {
-    	$groups = $this->findById($id,array('id'));
-    	$groups1 = count(($groups['ClassesTaking'])) ?
+		$user = $this->find('first',array(
+			'conditions' => array('id' => $id),
+			'fields' => 'id',
+			'contain' => array('ClassesTaking')
+		));
+    	$classes1 = count(($user['ClassesTaking'])) ?
 			array_combine(
-	        	Set::extract($groups, 'ClassesTaking.{n}.id'),
-				Set::extract($groups, 'ClassesTaking.{n}.alias')
+	        	Set::extract($user, 'ClassesTaking.{n}.id'),
+				Set::extract($user, 'ClassesTaking.{n}.alias')
 			) : array();
     	/*
 		$groups2 = count($groups['ClassesFacilitating']) ?
@@ -133,7 +134,7 @@ class User extends AppModel {
 			) : array();
 		*/
 		//return $groups1 + $groups2;	
-		return $groups1;
+		return $classes1;
     }
 	
 	// See "Accessing User Sessions From Models (or Anywhere)" at http://www.pseudocoder.com/archives/2008/10/06/accessing-user-sessions-from-models-or-anywhere-in-cakephp-revealed/

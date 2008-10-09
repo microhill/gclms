@@ -79,4 +79,12 @@ class Group extends AppModel {
 
 		return true;
 	}
+	
+	function findLatestParticipating($limit = 5) {
+		return $this->find('all',array(
+			'order' => 'Group.created DESC',
+			'limit' => $limit,
+			'contain' => false
+		));
+	}
 }

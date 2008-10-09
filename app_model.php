@@ -2,7 +2,7 @@
 class AppModel extends Model {
 	var $validate = array(''=>'');
 	//var $useDbConfig = 'test';
-	//var $actsAs = array('Containable');
+	var $actsAs = array('Containable');
 
 	function generateEnumList($fieldName) {
 		foreach($this->_tableInfo->value as $field) {

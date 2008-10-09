@@ -33,11 +33,17 @@ class StudentCenterController extends AppController {
     }
 
     function index(){
-		$this->Group->contain();
-		$this->set('participating_groups',$this->Group->findall(null,null,'Group.created DESC',5));
+		$this->set('participating_groups',$this->Group->find('all',array(
+			'order' => 'Group.created DESC',
+			'limit' => 5,
+			'contain' => false
+		)));
 		
-        $this->Course->contain(array('Group' => array('web_path')));
-        $this->set('new_courses',$this->Course->findall(null,null,'Course.created DESC',5));
+		$this->set('new_courses',$this->Course->find('all',array(
+			'order' => 'Course.created DESC',
+			'limit' => 5,
+			'contain' => array('Group' => array('web_path'))
+		)));
 
 		$isFeed = ife($this->RequestHandler->prefers('rss') == 'rss', true, false);
 

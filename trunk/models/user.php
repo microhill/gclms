@@ -1,13 +1,13 @@
 <?
 class User extends AppModel {   
-	var $recursive = 1;
+	var $recursive = 0;
     
 	var $hasAndBelongsToMany = array(
 		'GroupsAdministrating' => array(
 				'className'    => 'Group',
 				'joinTable'    => 'group_administrators',
 				'foreignKey'   => 'user_id',
-				'associationForeignKey'=> 'group_id',
+				'associationForeignKey' => 'group_id',
 				'unique'       => true,
 				'fields' 		=> array('id','web_path','name')
 			),
@@ -58,7 +58,7 @@ class User extends AppModel {
 			array('rule' => 'notDuplicateAlias','message' => 'The alias you provided is already in use')
 		),		
 		'new_password' => array(
-			array('rule' => 'checkNewPassword','message' => 'Passwords do not match'),
+			array('rule' => 'checkDepulicatePassword','message' => 'Passwords do not match'),
 			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank')
 		),
 		'repeat_new_password' => array(
@@ -100,12 +100,11 @@ class User extends AppModel {
 		return true;
 	}
 	
-	function checkNewPassword() {
+	function checkDuplicatePassword() {
 		if($this->id && empty($this->data['User']['new_password']) && empty($this->data['User']['repeat_new_password']))
 			return true;
-			//Configure::read('Security.salt')
 		if($this->data['User']['new_password'] == $this->data['User']['repeat_new_password']) {
-			$this->data['User']['password'] = Security::hash(Configure::read('Security.salt') . $this->data['User']['repeat_new_password'], 'sha1');
+			$this->data['User']['password'] = Security::hash($this->data['User']['repeat_new_password'], 'sha1',true);
 			return true;
 		}
 		return false;
@@ -156,8 +155,8 @@ class User extends AppModel {
 		}
 		
 		if (!$instance) {
-			trigger_error(__('User not set.', true), E_USER_WARNING);
-			return false;
+			//trigger_error(__('User not set.', true), E_USER_WARNING);
+			return $instance;
 		}
 	
 		return $instance[0];
@@ -190,5 +189,35 @@ class User extends AppModel {
 	
 	function allow($options) {
 		return true;	
+	}
+	
+	function identify($data) {
+		$password = Security::hash($data['User']['password'], 'sha1',true);
+		
+		if(strpos($data['User']['username'],'@') !== false) {
+			$user = $this->find('first',array(
+				'conditions' => array(
+					'User.email' => $data['User']['username'],
+					'User.password' => $password
+				),
+				'contain' => array('GroupsAdministrating','ClassesTaking')
+			));
+		} else if(strpos($data['User']['username'],'http://') === false) {
+			$this->contain('GroupsAdministrating','ClassesTaking');
+			$user = $this->find('first',array(
+				'conditions' => array(
+					'User.username' => $data['User']['username'],
+					'User.password' => $password
+				),
+				'contain' => array('GroupsAdministrating','ClassesTaking')
+			));
+		} else {
+			//OpenID	
+		}
+
+		if(empty($user))
+			return false;
+			
+		return $user;
 	}
 }

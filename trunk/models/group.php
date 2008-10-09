@@ -1,6 +1,8 @@
 <?
 class Group extends AppModel {
-    var $hasAndBelongsToMany = array(
+    var $recursive = 0;
+	
+	var $hasAndBelongsToMany = array(
 		'GroupAdministrators' =>
 			array(
 				'className'   	=> 'User',

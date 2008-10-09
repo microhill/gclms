@@ -1,4 +1,5 @@
 <?
+/*
 include(CAKE_CORE_INCLUDE_PATH . DS . 'cake' . DS . 'libs' . DS . 'controller' . DS . 'components' . DS . 'auth.php');
 
 class MyAuthComponent extends AuthComponent {
@@ -29,3 +30,4 @@ class MyAuthComponent extends AuthComponent {
 		return $redir;
 	}
 }
+*/

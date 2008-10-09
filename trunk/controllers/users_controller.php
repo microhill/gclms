@@ -6,10 +6,10 @@ class UsersController extends AppController {
 	var $helpers = array('Paginator','MyPaginator');
 	var $itemName = 'User';
 	var $paginate = array('order' => 'email');
-	var $components = array('Notifications','MyAuth');
+	var $components = array('Notifications');
 
 	function beforeFilter() {
-		$this->MyAuth->allowedActions = array('register','choose_language','reset_password','verify','logout');
+		//$this->Auth->allowedActions = array('register','choose_language','reset_password','verify','logout');
 		$this->Breadcrumbs->addHomeCrumb();
 
 		$cake_admin = isset($this->params[Configure::read('Routing.admin')]) ? Configure::read('Routing.admin') : null;
@@ -93,6 +93,16 @@ class UsersController extends AppController {
 	}
 
 	function login() {
+		if(!empty($this->data)) {
+			if($user = $this->User->identify($this->data)) {
+				$this->Session->write('User',$user);
+			} else {
+				$this->Notifications->add('Error when attempting to log in','error');
+			}
+		} else {
+			die('What, you think you can login without any login credentials?');
+		}
+		$this->redirect(Controller::referer());
 	}
 	
 	function choose_language() {
@@ -101,9 +111,8 @@ class UsersController extends AppController {
 	}
 
     function logout() {
-		$this->MyAuth->logout();
+		$this->Session->destroy();
 		$this->redirect('/');
-		exit;
     }
     
     function reset_password() {

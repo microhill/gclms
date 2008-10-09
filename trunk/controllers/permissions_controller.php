@@ -39,7 +39,7 @@ class PermissionsController extends AppController {
 			if(!empty($user))
 				$this->data['User'] = $user['User'];
 		} else if(!empty($this->data)) {
-			$this->Permission->saveAll($this->data,$this->viewVars['user']['id'],$this->viewVars['group']['id']);
+			$this->Permission->saveAll($this->data,User::get('id'),$this->viewVars['group']['id']);
 
 			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/permissions');
 		}
@@ -52,7 +52,7 @@ class PermissionsController extends AppController {
 			die;
 
 		if(!empty($this->data)) {
-			$this->Permission->saveAll($this->data,$this->viewVars['user']['id'],$this->viewVars['group']['id']);
+			$this->Permission->saveAll($this->data,User::get('id'),$this->viewVars['group']['id']);
 
 			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/permissions');
 		} else {

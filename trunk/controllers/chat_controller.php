@@ -43,7 +43,7 @@ class ChatController extends AppController {
 		//Get chat participant record of current user
 		$this->ChatParticipant->contain();
 		$chat_participant = $this->ChatParticipant->field('id',array(
-				'ChatParticipant.user_id'=> $this->viewVars['user']['id'],
+				'ChatParticipant.user_id'=> User::get('id'),
 				'ChatParticipant.course_id' => $this->viewVars['course']['id'],
 				'ChatParticipant.virtual_class_id' => @$this->viewVars['class']['id']
 		));
@@ -54,7 +54,7 @@ class ChatController extends AppController {
 			$this->ChatParticipant->saveField('modified',date('Y-m-d H:i:s'));
 		} else {
 			$chat_participant = array('ChatParticipant' => array(
-				'user_id' => $this->viewVars['user']['id'],
+				'user_id' => User::get('id'),
 				'course_id' => $this->viewVars['course']['id'],
 				'virtual_class_id' => @$this->viewVars['class']['id'],
 				'modified' => date('Y-m-d H:i:s')));
@@ -86,7 +86,7 @@ class ChatController extends AppController {
     }
     
     function leave() {
-    	$this->ChatParticipant->query('delete from chat_participants where user_id = ' . $this->viewVars['user']['id'] . ' AND virtual_class_id = ' . $this->viewVars['class']['id'] . ';');
+    	$this->ChatParticipant->query('delete from chat_participants where user_id = ' . User::get('id') . ' AND virtual_class_id = ' . $this->viewVars['class']['id'] . ';');
     	exit;
     }
     
@@ -103,7 +103,7 @@ class ChatController extends AppController {
     	
     	$data = array('ChatMessage' => array(
     		'id' => $this->data['ChatMessage']['id'],
-			'user_id' => $this->viewVars['user']['id'],
+			'user_id' => User::get('id'),
     		'course_id' => $this->viewVars['course']['id'], 
 			'virtual_class_id' => @$this->viewVars['class']['id'], 
 			'content' => $this->data['ChatMessage']['content']

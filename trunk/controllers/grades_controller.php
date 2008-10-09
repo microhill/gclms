@@ -28,13 +28,13 @@ class GradesController extends AppController {
 				 || !isset($this->passedArgs['maximum_possible']) || !isset($this->passedArgs['section']))
 			die();
 		
-		$grade = $this->Grade->find(array('user_id' => $this->viewVars['user']['id'], 'page_id' => $this->passedArgs['page']));
+		$grade = $this->Grade->find(array('user_id' => User::get('id'), 'page_id' => $this->passedArgs['page']));
 		if($grade)
 			die();
 			
 		$this->Grade->save(array(
 			'virtual_class_id' => $this->passedArgs['section'],
-			'user_id' => $this->viewVars['user']['id'],
+			'user_id' => User::get('id'),
 			'grade' => $this->passedArgs['grade'],
 			'maximum_possible' => $this->passedArgs['maximum_possible'],
 			'page_id' => $this->passedArgs['page']

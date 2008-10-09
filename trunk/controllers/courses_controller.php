@@ -104,7 +104,7 @@ class CoursesController extends AppController {
 	}
 
 	function enroll($id) {
-		$data = array('ClassEnrollee' => array('virtual_class_id' => (int) $id,'user_id' => (int) $this->viewVars['user']['id']));
+		$data = array('ClassEnrollee' => array('virtual_class_id' => (int) $id,'user_id' => (int) User::get('id')));
 		
 		if(!$this->ClassEnrollee->find($data))
 			$this->ClassEnrollee->save($data);

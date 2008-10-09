@@ -1,6 +1,6 @@
 <div class="gclms-content">
 	<?
-	if(empty($user) && !(Browser::agent() == 'IE' && Browser::version() < 7))
+	if(!User::get('id') && !(Browser::agent() == 'IE' && Browser::version() < 7))
 		echo $this->element('panel',array(
 			'title' => 'Login',
 			'content' => $this->element('login')

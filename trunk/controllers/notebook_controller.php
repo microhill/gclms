@@ -7,19 +7,19 @@ class NotebookController extends AppController {
     function index() {
     	$this->NotebookEntry->contain('NotebookEntryComment');
     	$entries = $this->NotebookEntry->find('all',array(
-			'conditions' => array('NotebookEntry.user_id' => $this->viewVars['user']['id']), // ,'NotebookEntry.course_id' => $this->viewVars['course']['id']
+			'conditions' => array('NotebookEntry.user_id' => User::get('id')), // ,'NotebookEntry.course_id' => $this->viewVars['course']['id']
 			//'limit' => 5
 		));
 		
 		foreach($entries as &$entry) {
-			$this->NotebookEntry->getQuestionResponse($entry,$this->viewVars['user']['id']);
+			$this->NotebookEntry->getQuestionResponse($entry,User::get('id'));
 		}
 	
 		$this->set('entries',$entries);
 
     	$this->NotebookEntry->contain();
     	$archive = $this->NotebookEntry->find('all',array(
-			'conditions' => array('NotebookEntry.user_id' => $this->viewVars['user']['id']), //,'NotebookEntry.course_id' => $this->viewVars['course']['id']
+			'conditions' => array('NotebookEntry.user_id' => User::get('id')), //,'NotebookEntry.course_id' => $this->viewVars['course']['id']
 			'order' => 'NotebookEntry.created ASC',
 			'fields' => array('id','title','private','modified')
 		));
@@ -29,18 +29,18 @@ class NotebookController extends AppController {
 	function view($id) {
     	$this->NotebookEntry->contain();
     	$archive = $this->NotebookEntry->find('all',array(
-			'conditions' => array('NotebookEntry.user_id' => $this->viewVars['user']['id']), //,'NotebookEntry.course_id' => $this->viewVars['course']['id']
+			'conditions' => array('NotebookEntry.user_id' => User::get('id')), //,'NotebookEntry.course_id' => $this->viewVars['course']['id']
 			'order' => 'NotebookEntry.modified ASC'
 		));
     	$this->set('archive',$archive);
 
     	$this->NotebookEntry->contain(array('NotebookEntryComment' => 'User'));
     	$this->data = $this->NotebookEntry->findById($id);
-		$this->NotebookEntry->getQuestionResponse(&$this->data,$this->viewVars['user']['id']);
+		$this->NotebookEntry->getQuestionResponse(&$this->data,User::get('id'));
 	}
 	
 	function add_comment() {
-		$this->data['NotebookEntryComment']['user_id'] = $this->viewVars['user']['id'];
+		$this->data['NotebookEntryComment']['user_id'] = User::get('id');
 		$this->NotebookEntryComment->save($this->data['NotebookEntryComment']);
 		$this->redirect(Controller::referer());
 	}
@@ -56,7 +56,7 @@ class NotebookController extends AppController {
 				$this->QuestionResponse = new QuestionResponse;
 				$this->QuestionResponse->contain();
 				$question_response = $this->QuestionResponse->find('first',array(
-					'conditions' => array('QuestionResponse.user_id' => $this->viewVars['user']['id'],'QuestionResponse.question_id' => $notebook_entry['NotebookEntry']['question_id'])
+					'conditions' => array('QuestionResponse.user_id' => User::get('id'),'QuestionResponse.question_id' => $notebook_entry['NotebookEntry']['question_id'])
 				));
 				$this->QuestionResponse->id = $question_response['QuestionResponse']['id'];
 				$this->QuestionResponse->saveField('answer',$this->data['NotebookEntry']['content']);
@@ -67,12 +67,12 @@ class NotebookController extends AppController {
 				$this->redirect('/notebook/view/' . $id . $this->viewVars['framed_suffix']);
 		}
 		$this->data = $this->NotebookEntry->findById($id);
-		$this->NotebookEntry->getQuestionResponse(&$this->data,$this->viewVars['user']['id']);
+		$this->NotebookEntry->getQuestionResponse(&$this->data,User::get('id'));
 	}
 	
 	function add() {
 		if(!empty($this->data)) {
-			$this->data['NotebookEntry']['user_id'] = $this->viewVars['user']['id'];
+			$this->data['NotebookEntry']['user_id'] = User::get('id');
 			if($this->NotebookEntry->save($this->data)) {
 				$id = $this->NotebookEntry->id;
 				$this->redirect('/notebook/view/' . $id . $this->viewVars['framed_suffix']);

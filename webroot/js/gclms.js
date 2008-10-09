@@ -92,13 +92,13 @@ gclms.AppController = {
 			//$('UserPasswordDiv').hide();
 		}
 		
-		if($F('UserEmail').strip().indexOf('http:') === 0) {
-			if(!$('UserEmail').hasClassName('gclms-openid')) {
-				$('UserEmail').addClassName('gclms-openid');
+		if($F('UserUsername').strip().indexOf('http:') === 0) {
+			if(!$('UserUsername').hasClassName('gclms-openid')) {
+				$('UserUsername').addClassName('gclms-openid');
 			}
 		} else {
-			if($('UserEmail').hasClassName('gclms-openid')) {
-				$('UserEmail').removeClassName('gclms-openid');				
+			if($('UserUsername').hasClassName('gclms-openid')) {
+				$('UserUsername').removeClassName('gclms-openid');				
 			}
 		}
 	},
@@ -125,7 +125,7 @@ gclms.AppController = {
 gclms.Views = $H({});
 
 gclms.Triggers = $H({
-	'#UserLogin input#UserEmail:keyup,#UserLogin input#UserEmail:change,#UserLogin input#UserEmail:click,#UserLogin input#UserEmail:focus,#UserLogin input#UserEmail' : gclms.AppController.updateLoginPanel,
+	'#UserLogin input#UserUsername:keyup,#UserLogin input#UserUsername:change,#UserLogin input#UserUsername:click,#UserLogin input#UserUsername:focus,#UserLogin input#UserUsername' : gclms.AppController.updateLoginPanel,
 	'img.gclms-tooltip-button:mouseover': gclms.AppController.showTooltip,
 	'img.gclms-tooltip-button:mouseout': gclms.AppController.hideTooltip,
 	'.gclms-recordset' : {

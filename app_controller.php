@@ -3,7 +3,7 @@ uses('L10n');
 
 App::import('Vendor', 'browserdetection'.DS.'browserdetection');
 class AppController extends Controller {
-    var $components = array('Common','Breadcrumbs','Languages','RequestHandler','Notifications','Auth');
+    var $components = array('Common','Breadcrumbs','Languages','RequestHandler','Notifications');
 	var $uses = array('Group','GroupAdministrator','Course','User');
 	var $paginateDefaults = array('limit' => 12);
 	var $helpers = array('Html','Form','Ajax','Asset');
@@ -20,16 +20,24 @@ class AppController extends Controller {
 
     	$this->paginate = am($this->paginateDefaults,$this->paginate);
        	$this->set('itemName', @$this->itemName);
-	   	$this->MyAuth->fields = array('username' => 'email', 'password' => 'password');
-       	$this->MyAuth->logoutRedirect = '/';
-       	$this->MyAuth->loginRedirect = '/';
-       	$this->MyAuth->logoutAction = array('controller'=>'users','action'=>'logout');
-       	$this->MyAuth->loginAction = array('controller'=>'users','action'=>'login');
-       	$this->MyAuth->authorize = 'controller';
 
+		/*
+		$this->Auth->fields = array('username' => 'email', 'password' => 'password');
+		$this->Auth->userScope = array('User.verified' => 1);
+       	$this->Auth->logoutRedirect = '/';
+       	$this->Auth->loginRedirect = '/';
+       	//$this->Auth->logoutAction = array('controller'=>'users','action'=>'logout');
+       	//$this->Auth->loginAction = array('controller'=>'users','action'=>'login');
+       	$this->Auth->authorize = 'controller';
+		$this->Auth->allow('*');
+		*/
+		
        	$group = !empty($group['Group']['web_path']) ? $group['Group']['web_path'] : null;
 		$cakeAdmin = isset($this->params[Configure::read('Routing.admin')]) ? Configure::read('Routing.admin') : null;
-		User::set($this->Auth->user());  
+
+		if($this->Session->check('User'))
+			User::set($this->Session->read('User'));  
+
        	//$this->set('user', $this->Session->read('Auth.User'));
 		$this->set('languages', $this->Languages->generateList());
 		$this->set('showDefaultAddButton',true);

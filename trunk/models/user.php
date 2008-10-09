@@ -9,16 +9,9 @@ class User extends AppModel {
 				'foreignKey'   => 'user_id',
 				'associationForeignKey' => 'group_id',
 				'unique'       => true,
-				'fields' 		=> array('id','web_path','name')
+				'fields' 		=> array('id','web_path','name'),
+				'recursive' => false
 			),
-		/*'GroupsFacilitating' => array(
-				'className'    => 'Group',
-				'joinTable'    => 'group_facilitators',
-				'foreignKey'   => 'user_id',
-				'associationForeignKey'=> 'group_id',
-				'unique'       => true,
-				'fields' 		=> array('id','web_path','name')
-			),*/
 		'ClassesTaking' => array(
 				'className'    => 'VirtualClass',
 				'joinTable'    => 'class_enrollees',
@@ -27,7 +20,6 @@ class User extends AppModel {
 				'unique'       => true,
 				'fields' 		=> array('id','title')
 			),
-		/*
 		'ClassesFacilitating'	=> array(
 				'className'   	=> 'VirtualClass',
 				'joinTable'   	=> 'class_facilitators',
@@ -35,8 +27,7 @@ class User extends AppModel {
 				'associationForeignKey'=> 'virtual_class_id',
 				'unique'      	=> true,
 				'fields'		=> array('id','title')
-			)
-		*/
+		)
 	);
 	
 	function beforeSave() {
@@ -200,16 +191,16 @@ class User extends AppModel {
 					'User.email' => $data['User']['username'],
 					'User.password' => $password
 				),
-				'contain' => array('GroupsAdministrating','ClassesTaking')
+				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified','super_administrator')
 			));
 		} else if(strpos($data['User']['username'],'http://') === false) {
 			$this->contain('GroupsAdministrating','ClassesTaking');
 			$user = $this->find('first',array(
 				'conditions' => array(
 					'User.username' => $data['User']['username'],
-					'User.password' => $password
+					'User.password' => $password,
 				),
-				'contain' => array('GroupsAdministrating','ClassesTaking')
+				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified','super_administrator')
 			));
 		} else {
 			//OpenID	

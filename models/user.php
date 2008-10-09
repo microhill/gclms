@@ -145,4 +145,50 @@ class User extends AppModel {
 		//return $groups1 + $groups2;	
 		return $groups1;
     }
+	
+	// See "Accessing User Sessions From Models (or Anywhere)" at http://www.pseudocoder.com/archives/2008/10/06/accessing-user-sessions-from-models-or-anywhere-in-cakephp-revealed/
+	
+	function &getInstance($user = null) {
+		static $instance = array();
+		
+		if($user) {
+			$instance[0] =& $user;
+		}
+		
+		if (!$instance) {
+			trigger_error(__('User not set.', true), E_USER_WARNING);
+			return false;
+		}
+	
+		return $instance[0];
+	}
+	
+	function set($user) {
+		User::getInstance($user);
+	}
+	
+	function get($path) {
+		$_user =& User::getInstance();
+		
+		$path = str_replace('.', '/', $path);
+		if (strpos($path, 'User') !== 0) {
+			$path = sprintf('User/%s', $path);
+		}
+		
+		if (strpos($path, '/') !== 0) {
+			$path = sprintf('/%s', $path);
+		}
+		
+		$value = Set::extract($path, $_user);
+		
+		if (!$value) {
+			return false;
+		}
+		
+		return $value[0];
+	}
+	
+	function allow($options) {
+		return true;	
+	}
 }

@@ -54,7 +54,7 @@ class UsersController extends AppController {
 		App::import('Model','NotebookEntry');
 		$this->NotebookEntry = new NotebookEntry;
 		
-		if($this->viewVars['user']['id'] == $this->params['user']) {
+		if(User::get('id') == $this->params['user']) {
 			$conditions = array('NotebookEntry.user_id');
 		} else {
 			$conditions = array('NotebookEntry.user_id','NotebookEntry.private' => 0);

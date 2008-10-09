@@ -10,24 +10,24 @@ class QuestionResponsesController extends AppController {
 			die('No data.');
 			
 		$question_response = $this->QuestionResponse->find('first',array(
-			'conditions' => array('QuestionResponse.user_id' => $this->viewVars['user']['id'],'QuestionResponse.question_id' => $this->data['QuestionResponse']['question_id']),
+			'conditions' => array('QuestionResponse.user_id' => User::get('id'),'QuestionResponse.question_id' => $this->data['QuestionResponse']['question_id']),
 			'contain' => false
 		));
 		if(!empty($question_response['QuestionResponse']['id'])) {
 			$this->QuestionResponse->id = $question_response['QuestionResponse']['id'];
 		}
 
-		$this->data['QuestionResponse']['user_id'] = $this->viewVars['user']['id'];
+		$this->data['QuestionResponse']['user_id'] = User::get('id');
 		if($this->QuestionResponse->save($this->data['QuestionResponse'])) {
 			$notebook_entry = $this->NotebookEntry->find('first',array(
-				'conditions' => array('NotebookEntry.user_id' => $this->viewVars['user']['id'],'NotebookEntry.question_id' => $this->data['QuestionResponse']['question_id']),
+				'conditions' => array('NotebookEntry.user_id' => User::get('id'),'NotebookEntry.question_id' => $this->data['QuestionResponse']['question_id']),
 				'contain' => false
 			));
 			if(!empty($notebook_entry)) {
 				$this->NotebookEntry->id = $notebook_entry['NotebookEntry']['id'];
 			} else {
 				$notebook_entry = array('NotebookEntry' => array(
-					'user_id' => $this->viewVars['user']['id'],
+					'user_id' => User::get('id'),
 					'course_id' => $this->viewVars['course']['id'],
 					'question_id' => $this->data['QuestionResponse']['question_id']
 				));

@@ -13,7 +13,7 @@ class ForumTopicsController extends AppController {
 		$this->set('forum',$this->Forum->findById($this->passedArgs['forum']));
 		
 		if(!empty($this->data)) {
-			$this->data['ForumPost']['user_id'] = $this->viewVars['user']['id'];
+			$this->data['ForumPost']['user_id'] = User::get('id');
 		}
 
 		return parent::add('ForumPost');
@@ -47,7 +47,7 @@ class ForumTopicsController extends AppController {
 		$this->data['ForumPost']['origin_post_id'] = $this->data['ForumPost']['parent_post_id'] = $id;
 		$this->data['ForumPost']['forum_id'] = $this->ForumPost->field('forum_id',array('ForumPost.id' => $id));
 		
-		$this->data['ForumPost']['user_id'] = $this->viewVars['user']['id'];
+		$this->data['ForumPost']['user_id'] = User::get('id');
 		$this->redirect = Controller::referer();
 		return parent::add('ForumPost');
 	}

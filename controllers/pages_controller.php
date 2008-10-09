@@ -35,7 +35,7 @@ class PagesController extends AppController {
 		foreach($node['Question'] as &$question) {
 			if($question['type'] == 5) { //if essay question
 				$question_response = $this->QuestionResponse->find('first',array(
-					'conditions' => array('QuestionResponse.user_id' => $this->viewVars['user']['id'],'QuestionResponse.question_id' => $question['id'])
+					'conditions' => array('QuestionResponse.user_id' => User::get('id'),'QuestionResponse.question_id' => $question['id'])
 				));
 				if(!empty($question_response)) {
 					$question['response'] = $question_response['QuestionResponse']['answer'];

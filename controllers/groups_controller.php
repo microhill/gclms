@@ -63,7 +63,7 @@ class GroupsController extends AppController {
 			$group = $this->Group->save($this->data);
 			$this->GroupAdministrator->save(array('GroupAdministrator' => array(
 				'group_id' => $this->Group->getLastInsertId(),
-				'user_id' => $this->viewVars['user']['id']
+				'user_id' => User::get('id')
 			)));
 			$this->User->contain();
 			$superAdminsitrators = $this->User->findAll(array('super_administrator' => 1));

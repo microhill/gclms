@@ -14,10 +14,10 @@ echo $this->element('left_column');
 		<h1><?
 		__('Welcome');
 		
-		if($user['first_name'])
-			echo ', ' . $user['first_name'];
+		if(User::get('first_name'))
+			echo ', ' . User::get('first_name');
 		else
-			echo ', ' . $user['username'];
+			echo ', ' . User::get('username');
 		?></h1>
 
 		<!-- img src="/files/front-page-looking-up.jpg" style="float: right;margin-left: 12px;margin-bottom: 8px;" / -->

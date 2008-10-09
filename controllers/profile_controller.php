@@ -10,7 +10,7 @@ class ProfileController extends AppController {
 	}
     
 	function index() {
-		parent::edit($this->viewVars['user']['id']);
+		parent::edit(User::get('id'));
 	}
 	
 	function afterSave() {

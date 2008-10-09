@@ -41,4 +41,12 @@ class Course extends AppModel {
 			return false;
 		return true;
 	}
+	
+	function findLatestPublished($limit = 5) {
+		return $this->find('all',array(
+			'order' => 'Course.created DESC',
+			'limit' => $limit,
+			'contain' => array('Group' => array('web_path'))
+		));
+	}
 }

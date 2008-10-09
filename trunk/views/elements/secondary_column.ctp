@@ -10,22 +10,21 @@
 		echo $this->element('chat_participants');
 	}
 
-	if(empty($this->params['administration']) && !empty($user) && $this->name == 'StudentCenter') {
+	if(empty($this->params['administration']) && User::get('id') && $this->name == 'StudentCenter') {
 		echo $this->element('panel',array(
 			'title' => 'My Classes',
 			'content' => $this->element('class_listing')
 		));
-
-		if(sizeof($participating_groups) == 1) {
-			$groupName = $participating_groups[0]['Group']['name'];
+		if(sizeof($my_groups) == 1 && 0) {
+			$groupName = $my_groups[0]['Group']['name'];
 			
 			echo $this->element('panel',array(
 				'title' => $groupName,
 				'content' => $this->element('group_menu2',array(
-					'group' => $participating_groups[0]['Group']
+					'group' => $my_groups[0]['Group']
 				))
 			));
-		} else if(sizeof($participating_groups) > 1){
+		} else {
 			echo $this->element('panel',array(
 				'title' => 'My Groups',
 				'content' => $this->element('group_listing')

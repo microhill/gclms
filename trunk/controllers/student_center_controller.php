@@ -33,21 +33,14 @@ class StudentCenterController extends AppController {
     }
 
     function index(){
-		$this->set('participating_groups',$this->Group->find('all',array(
-			'order' => 'Group.created DESC',
-			'limit' => 5,
-			'contain' => false
-		)));
-		
-		$this->set('new_courses',$this->Course->find('all',array(
-			'order' => 'Course.created DESC',
-			'limit' => 5,
-			'contain' => array('Group' => array('web_path'))
-		)));
+		$this->set('my_groups',$this->User->findAllGroups(User::get('id')));
+		$this->set('my_classes',$this->User->findAllClasses(User::get('id')));
 
-		$isFeed = ife($this->RequestHandler->prefers('rss') == 'rss', true, false);
+		$this->set('participating_groups',$this->Group->findLatestParticipating());
+		$this->set('new_courses',$this->Course->findLatestPublished());
 
 		// provide different title and a description for the feed
+		$isFeed = ife($this->RequestHandler->prefers('rss') == 'rss', true, false);
 		if ($isFeed) {
 			$this->set('channel', array('title' => 'New Courses at the Internet Biblical Seminary', 'description' => 'A list of courses that have recently been made available on the Internet Biblical Seminary.'));
 		}

@@ -15,9 +15,9 @@
 
 	<?
 	/*
-	if(!empty($group['web_path'])) {
+	if(!empty(Group::get('web_path'))) {
 		$cssLastUpdated = empty($group['css_updated']) ? '' : '/' . $group['css_updated'] . '.css';
-		echo '<link rel="stylesheet" type="text/css" href="/' . $group['web_path'] . '/files/css' . $cssLastUpdated . '" />';
+		echo '<link rel="stylesheet" type="text/css" href="/' . Group::get('web_path') . '/files/css' . $cssLastUpdated . '" />';
 	}
 	*/
 	

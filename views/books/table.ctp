@@ -1,5 +1,5 @@
 <?
-$myPaginator->options(array('url' => '/' . $group['web_path'] . '/books/course:' . $course['web_path']));
+$myPaginator->options(array('url' => '/' . Group::get('web_path') . '/books/course:' . $course['web_path']));
 
 $headers = array(
 	$myPaginator->sort(__('Title',true),'Book.title')
@@ -19,6 +19,6 @@ echo $this->element('recordset',array(
 	'fields' => $fields,
 	'heading' => 'Books',
 	'data' => $data,
-	'addButtonUrl' => '/' . $group['web_path'] . '/books/add/course:' . $course['web_path']
+	'addButtonUrl' => '/' . Group::get('web_path') . '/books/add/course:' . $course['web_path']
 ));
 ?>

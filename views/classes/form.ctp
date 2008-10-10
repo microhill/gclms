@@ -1,5 +1,5 @@
 <?
-echo $form->hidden('group_id',array('value'=>$group['id']));
+echo $form->hidden('group_id',array('value'=>Group::get('id')));
 
 echo $form->input('alias',array(
 	'label' =>  __('Alias', true),

@@ -22,7 +22,7 @@ class BreadcrumbsComponent extends Object {
 	}	
 	
 	function addGroupCrumb() {
-		$this->addCrumb($this->controller->viewVars['group']['name'],'/' . $this->controller->viewVars['group']['web_path']);
+		$this->addCrumb(Group::get('name'),'/' . Group::get('web_path'));
 	}
 	
 	function addCourseCrumb() {

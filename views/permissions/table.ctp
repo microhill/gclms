@@ -1,5 +1,5 @@
 <?
-$myPaginator->options(array('url' => '/' . $group['web_path'] . '/permissions/index'));	
+$myPaginator->options(array('url' => '/' . Group::get('web_path') . '/permissions/index'));	
 
 $headers = array(
 	$myPaginator->sort(__('First Name',true),'first_name'),
@@ -8,7 +8,7 @@ $headers = array(
 $fields = array('User.first_name','User.last_name');
 
 function customizeRowURL($row,$defaultUrl) {
-	return '/' . $defaultUrl['group']['web_path'] . '/permissions/edit/' . $defaultUrl['id'];
+	return '/' . Group::get('web_path') . '/permissions/edit/' . $defaultUrl['id'];
 }
 
 function customizeCellData($row,$helpers) {

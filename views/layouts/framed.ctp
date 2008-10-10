@@ -3,7 +3,7 @@
 <? include 'views/layouts/head.ctp'; ?>
 
 <body
-		gclms-group="<?= @$group['web_path'] ?>"
+		gclms-group="<?= @Group::get('web_path') ?>"
 		gclms-course="<?= @$course['web_path'] ?>"
 		gclms-controller="<?= $this->name ?>"
 		gclms-action="<?= $this->action ?>"

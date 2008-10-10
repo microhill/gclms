@@ -72,16 +72,16 @@ class PermissionsController extends AppController {
 	}
 	
 	private function getCoursesAndClasses() {
-		$this->Course->contain('id','title');
 		$courses = $this->Course->find('list',array(
-			'conditions' => array('Course.group_id' => Group::get('id'))
+			'conditions' => array('Course.group_id' => Group::get('id')),
+			'fields' => array('id,title')
 		));
 		$this->set('courses',$courses);
 		
 		$this->VirtualClass =& ClassRegistry::init('VirtualClass'); 
-		$this->VirtualClass->contain('id','title');
 		$courses = $this->VirtualClass->find('list',array(
-			'conditions' => array('group_id' => Group::get('id'))
+			'conditions' => array('group_id' => Group::get('id')),
+			'fields' => array('id','title')
 		));
 		$this->set('classes',$courses);	
 	}

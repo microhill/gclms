@@ -4,7 +4,7 @@
 		<?
 		echo $form->create('FacilitatedClass',array(
 			'id' => null,
-			'url'=> '/' . $group['web_path'] . '/virtual_classes/edit/' . $this->data['FacilitatedClass']['id']
+			'url'=> '/' . Group::get('web_path') . '/virtual_classes/edit/' . $this->data['FacilitatedClass']['id']
 		));
 		include('form.ctp');
 

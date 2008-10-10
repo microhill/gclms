@@ -14,7 +14,7 @@ class AppController extends Controller {
 			return false;
 		}
 
-		$this->loadSessionVariables();
+		$this->loadVariables();
 		
 		$this->loadLocale();
 
@@ -62,7 +62,7 @@ class AppController extends Controller {
 		}
     }
 
-    function loadSessionVariables() {
+    function loadVariables() {
 		if($this->Session->check('Language.default')) {
 			$this->set('default_language',$this->Session->read('Language.default'));
 		} else {
@@ -78,6 +78,7 @@ class AppController extends Controller {
 			));
 			Group::set($group);
        	}
+		$groupWebPath = isset($this->viewVars['group']['web_path']) ? '/' . $this->viewVars['group']['web_path'] : null;
 		
 		// Course
        	if(!empty($this->params['course'])) {
@@ -87,7 +88,7 @@ class AppController extends Controller {
 			));
 			$this->set('course',$course['Course']);
        	}
-    	$this->set('courseWebPath', isset($this->viewVars['course']['web_path']) ? '/' . $this->viewVars['course']['web_path'] : null);
+		$courseWebPath = isset($this->viewVars['course']['web_path']) ? '/' . $this->viewVars['course']['web_path'] : null;
 						
 		// Class
        	if(!empty($this->params['class'])) {
@@ -102,8 +103,9 @@ class AppController extends Controller {
 			));
 			$this->set('class', $class['VirtualClass']);
        	}
-    	$this->set('classWebPath', isset($this->viewVars['class']['id']) ? '/' . $this->viewVars['class']['id'] : null);
-    	$this->set('groupAndCoursePath', $this->viewVars['groupWebPath'] . $this->viewVars['courseWebPath'] . $this->viewVars['classWebPath']);
+		$classWebPath = isset($this->viewVars['class']['web_path']) ? '/' . $this->viewVars['class']['web_path'] : null;
+		
+    	$this->set('groupAndCoursePath', $groupWebPath . $courseWebPath . $classWebPath);
 		
 		// Offline
 		$this->set('offline',isset($this->params['url']['offline']));

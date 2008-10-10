@@ -1,7 +1,6 @@
 <?
 class Group extends AppModel {
     var $recursive = 0;
-	
 	var $hasAndBelongsToMany = array(
 		'GroupAdministrators' =>
 			array(
@@ -86,5 +85,44 @@ class Group extends AppModel {
 			'limit' => $limit,
 			'contain' => false
 		));
+	}
+	
+	function &getInstance($group = null) {
+		static $instance = array();
+		
+		if($group) {
+			$instance[0] =& $group;
+		}
+		
+		if (!$instance) {
+			return $instance;
+		}
+	
+		return $instance[0];
+	}
+	
+	function set($group) {
+		Group::getInstance($group);
+	}
+	
+	function get($path) {
+		$_group =& Group::getInstance();
+		
+		$path = str_replace('.', '/', $path);
+		if (strpos($path, 'Group') !== 0) {
+			$path = sprintf('Group/%s', $path);
+		}
+		
+		if (strpos($path, '/') !== 0) {
+			$path = sprintf('/%s', $path);
+		}
+		
+		$value = Set::extract($path, $_group);
+		
+		if (!$value) {
+			return false;
+		}
+		
+		return $value[0];
 	}
 }

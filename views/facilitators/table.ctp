@@ -18,6 +18,6 @@ echo $this->element('recordset',array(
 	'headers' => $headers,
 	'fields' => $fields,
 	'heading' => __('Facilitators', true),
-	'addButtonUrl' => '/' . $group['web_path'] . '/facilitators/add'
+	'addButtonUrl' => '/' . Group::get('web_path') . '/facilitators/add'
 ));
 ?>

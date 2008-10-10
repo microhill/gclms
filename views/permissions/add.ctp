@@ -14,13 +14,13 @@ $html->css('permissions', null, null, false);
 ?>
 <div class="gclms-content">
 	<?= $this->element('notifications'); ?>
-	<div class="gclms-step-back"><a href="/<?= $group['web_path'] ?>/permissions"><? __('Cancel and go back') ?></a></div>
+	<div class="gclms-step-back"><a href="/<?= Group::get('web_path') ?>/permissions"><? __('Cancel and go back') ?></a></div>
 	
 	<h1>
 		<? __('Add Permissions to User') ?>
 	</h1>
 
-	<?= $form->create('User',array('url' => '/' . $group['web_path'] . '/permissions/add')) ?>
+	<?= $form->create('User',array('url' => '/' . Group::get('web_path') . '/permissions/add')) ?>
 	
 	<div id="gclms-user-search" class="<? if(!empty($this->data['User'])): ?>gclms-hidden<? endif; ?>">
 		<?= $form->input('User.search_name',array(

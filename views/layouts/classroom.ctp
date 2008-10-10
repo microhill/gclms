@@ -17,7 +17,7 @@
 	?>
 </head>
 <body
-	gclms-group="<?= @$group['web_path'] ?>"
+	gclms-group="<?= @Group::get('web_path') ?>"
 	gclms-course="<?= @$course['web_path'] ?>"
 	gclms:virtual-class="<?= @$class['id'] ?>"
 	gclms-controller="<?= $this->name ?>"

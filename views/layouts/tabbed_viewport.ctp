@@ -7,7 +7,7 @@
 	</head>
 	
 	<body
-		gclms-group="<?= @$group['web_path'] ?>"
+		gclms-group="<?= @Group::get('web_path') ?>"
 		gclms-course="<?= @$course['web_path'] ?>"
 	>
 		<?=  $content_for_layout; ?>	

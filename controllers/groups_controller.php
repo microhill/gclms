@@ -8,6 +8,7 @@ class GroupsController extends AppController {
 	function beforeFilter() {
 		$this->Breadcrumbs->addHomeCrumb();
 		
+		/*
 		if($this->Session->check('Auth.User')) {
 			$user = $this->Session->read('Auth.User');
 			
@@ -18,6 +19,7 @@ class GroupsController extends AppController {
 			$courses = $this->User->findAllClasses($user['id']);
 			$this->set('courses', $courses);
 		}
+		*/
 		
 		parent::beforeFilter();
 	}
@@ -47,8 +49,6 @@ class GroupsController extends AppController {
 			'contain' => false,
 			'fields' => array('group_id','course_id','model','foreign_key','_create','_read','_update','_delete')
 		));
-		
-		prd($permissions);
 
 		$this->Course->contain();
 		if(User::allow(array(

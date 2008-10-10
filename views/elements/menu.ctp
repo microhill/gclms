@@ -20,7 +20,7 @@ foreach($items as $item) {
 		
 		if(!is_string(@$item)) {
 			if(isset($group))
-				$url['group'] = $group['web_path'];
+				$url['group'] = Group::get('web_path');
 				
 			if(isset($course['web_path']) && !isset($item['courses']) && @$item['controller'] != 'courses')
 				$url['courses'] = $course['web_path'];

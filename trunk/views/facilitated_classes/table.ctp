@@ -25,6 +25,6 @@ echo $this->element('recordset',array(
 	'headers' => $headers,
 	'fields' => $fields,
 	'heading' => __('Facilitated Classes', true),
-	'addButtonUrl' => '/' . $group['web_path'] . '/virtual_classes/add'
+	'addButtonUrl' => '/' . Group::get('web_path') . '/virtual_classes/add'
 ));
 ?>

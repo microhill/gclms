@@ -9,11 +9,11 @@ $javascript->link(array(
 
 echo $this->element('no_column_background'); ?>
 <div class="gclms-content gclms-add-course">
-	<div class="gclms-step-back"><a href="/<?= $group['web_path'] ?>"><? __('Cancel and go back') ?></a></div>
+	<div class="gclms-step-back"><a href="/<?= Group::get('web_path') ?>"><? __('Cancel and go back') ?></a></div>
 	<h1><?= __('Add Course') ?></h1>    
 		<?
-		echo $form->create('Course',array('url'=>'/' . $group['web_path'] . '/courses/add'));
-		echo $form->hidden('group_id',array('value' => $group['id']));
+		echo $form->create('Course',array('url'=>'/' . Group::get('web_path') . '/courses/add'));
+		echo $form->hidden('group_id',array('value' => Group::get('id')));
 		include('form.ctp');
 		echo $form->end('Save');
 		?>

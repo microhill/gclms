@@ -1,6 +1,7 @@
 <?
 class Course extends AppModel {
-    var $belongsTo = array('Group');
+    var $recursive = 0;	
+	var $belongsTo = array('Group');
 	
 	var $validate = array(
 		'title' => array(

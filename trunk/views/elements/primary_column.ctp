@@ -4,7 +4,7 @@
 		echo $this->element('class_menu');		
 	} else if(!empty($course)) {
 		echo $this->element('course_menu');
-	} else if(!empty($group)) {
+	} else if(Group::get('id')) {
 		echo $this->element('group_menu');
 	} else if(!empty($this->params['administration'])) {
 		echo $this->element('super_admin_menu');

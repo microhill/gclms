@@ -28,6 +28,6 @@ echo $this->element('recordset',array(
 	'headers' => $headers,
 	'fields' => $fields,
 	'heading' => __('Classes', true),
-	'addButtonUrl' => '/' . $group['web_path'] . '/classes/add',
+	'addButtonUrl' => '/' . Group::get('web_path') . '/classes/add',
 	'data' => $this->data
 ));

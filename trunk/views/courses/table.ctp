@@ -1,6 +1,6 @@
 <?
-if(isset($group['web_path']))
-	$myPaginator->options(array('url'=>array('group'=>@$group['web_path'],'courses'=>null)));	
+if(isset(Group::get('web_path')))
+	$myPaginator->options(array('url'=>array('group'=>@Group::get('web_path'),'courses'=>null)));	
 
 $headers = array(
 	$myPaginator->sort(__('Name',true),'name'),

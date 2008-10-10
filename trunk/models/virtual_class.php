@@ -1,5 +1,6 @@
 <?
 class VirtualClass extends AppModel {
+    var $recursive = 0;
 	var $hasMany = array('ChatMessage','ChatParticipant','Announcement');
     
     var $hasAndBelongsToMany = array(

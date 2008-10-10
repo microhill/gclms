@@ -25,7 +25,7 @@ if(!isset($heading) && !empty($heading)) {
 }
 	
 if(@$showDefaultAddButton) {
-	$defaultAddButtonUri = !empty($addButtonUrl) ? $addButtonUrl : Router::url(array($adminParam=>$adminParam,'action'=>'add','group'=>'/' . @$group['web_path']));
+	$defaultAddButtonUri = !empty($addButtonUrl) ? $addButtonUrl : Router::url(array($adminParam=>$adminParam,'action'=>'add','group'=>'/' . @Group::get('web_path')));
 }
 ?>
 
@@ -49,8 +49,6 @@ if(@$showDefaultAddButton) {
 					    $cellData = array_intersect_key_and_sort(customizeCellData($row,$this->loaded), $fields);
 					    $defaultUrl = array(
 							'groupAndCoursePath'=>$groupAndCoursePath,
-							'group'=>@$group,
-							'course'=>@$course,
 							'action'=>'view',
 							'id'=>$row[$modelName]['id'],
 							'section'=>@$virtual_class['id']);

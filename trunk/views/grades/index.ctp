@@ -19,7 +19,7 @@
 			'fields' => $fields,
 			'heading' => __('Your Grades', true),
 			'showDefaultAddButton' => false,
-			'addButtonUrl' => '/' . $group['web_path'] . '/virtual_classes/add'
+			'addButtonUrl' => '/' . Group::get('web_path') . '/virtual_classes/add'
 		));
 		?>
 	</div>

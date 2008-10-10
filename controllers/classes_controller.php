@@ -9,14 +9,14 @@ class ClassesController extends AppController {
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
 		if($this->action == 'index') {
-			$this->Breadcrumbs->addCrumb('Classes','/' . $this->viewVars['group']['web_path'] . '/classes');
+			$this->Breadcrumbs->addCrumb('Classes','/' . Group::get('web_path') . '/classes');
 		}
 		parent::beforeRender();
 	}
 	
 	function index() {
 		$this->VirtualClass->contain(array('Course' => array('id','title','web_path')));
-		$classes = $this->VirtualClass->findAll(array('VirtualClass.group_id' => $this->viewVars['group']['id']));
+		$classes = $this->VirtualClass->findAll(array('VirtualClass.group_id' => Group::get('id')));
 		$this->data = array();
 		$courses = array();
 		
@@ -30,7 +30,7 @@ class ClassesController extends AppController {
 	function add(){
 		if(!empty($this->data)) {
 			if($this->VirtualClass->save($this->data)) {
-				$this->redirect('/' . $this->viewVars['group']['web_path'] . '/classes');
+				$this->redirect('/' . Group::get('web_path') . '/classes');
 			}
 		}
 		
@@ -64,7 +64,7 @@ class ClassesController extends AppController {
 		$news_items = $this->Announcement->findAllByFacilitatedClassId($id);
 		$this->set('news_items',$news_items);
 		
-		$this->set('title',$this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('App.name'));
+		$this->set('title',$this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name') . ' &raquo; ' . Configure::read('App.name'));
 	}
 	*/
 }

@@ -15,8 +15,6 @@ class PagesController extends AppController {
 		$this->Breadcrumbs->addHomeCrumb();
 
 		$this->Breadcrumbs->addGroupCrumb();
-		if(!empty($this->viewVars['group']['logo']) && $this->name != 'Classroom')
-			$this->set('logo',$this->viewVars['group']['logo']);
 
 		$this->Breadcrumbs->addCrumb($this->viewVars['course']['title'],array('url' => $this->viewVars['groupAndCoursePath'],'class' => 'gclms-course-menu'));
 
@@ -52,7 +50,7 @@ class PagesController extends AppController {
 		$this->set('glossary_terms',$glossary_terms);
 		
 		//$this->Breadcrumbs->addCrumb($node['Node']['title'], $this->viewVars['groupAndCoursePath'] . '/pages/view/' . $this->data['Node']['id']);
-		$this->set('title',$node['Node']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
+		$this->set('title',$node['Node']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name'));
 	}
 
     function add_multiple_choice_answer($id) {
@@ -109,7 +107,7 @@ class PagesController extends AppController {
 		}
 		*/
 		
-		$this->set('title',$this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('App.name'));
+		$this->set('title',Group::get('name') . ' &raquo; ' . Configure::read('App.name'));
     }
 
 	function save($id) {
@@ -176,11 +174,11 @@ class PagesController extends AppController {
 	}
 
 	function afterSave() {
-		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/pages/view/' . $this->Node->id);
+		$this->redirect('/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path'] . '/pages/view/' . $this->Node->id);
 	}
 
 	function afterDelete() {
-		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path']);
+		$this->redirect('/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path']);
 	}
 
     function rename($id) {

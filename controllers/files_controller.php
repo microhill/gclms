@@ -134,7 +134,7 @@ class FilesController extends AppController {
 			$path_parts['extension'] = strtolower($path_parts['extension']);
 			
 			if($path_parts['extension'] == 'jpg' || $path_parts['extension'] == 'gif' || $path_parts['extension'] == 'png' || $path_parts['extension'] == 'jpeg') {
-				$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files/create_thumbnail/' . urlencode(basename($this->params['url']['key'])));
+				$this->redirect('/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path'] . '/files/create_thumbnail/' . urlencode(basename($this->params['url']['key'])));
 				exit;				
 			}
 		} else if(!empty($this->params['file'])) {
@@ -152,7 +152,7 @@ class FilesController extends AppController {
 		$total_size = 0;
 		foreach($files as &$file) {
 			$total_size += $file['size'];
-			$file['uri'] = '/' . $this->viewVars['group']['web_path'] . '/' .$this->viewVars['course']['web_path'] . '/files/' . basename($file['name']);
+			$file['uri'] = '/' . Group::get('web_path') . '/' .$this->viewVars['course']['web_path'] . '/files/' . basename($file['name']);
 			$file['size'] = $this->get_file_size($file['size']);
 		}
 		
@@ -183,7 +183,7 @@ class FilesController extends AppController {
 					$files[strtolower($file)] = array(
 		            	'basename' => $file,
 		            	'type' => $mime->getMimetype($directory . DS . $file),
-		            	'uri' => '/' . $this->viewVars['group']['web_path'] . '/' .$this->viewVars['course']['web_path'] . '/files/' . $file,
+		            	'uri' => '/' . Group::get('web_path') . '/' .$this->viewVars['course']['web_path'] . '/files/' . $file,
 						'size' => $this->get_file_size($size)
 		            );
 					$total_size += $size;
@@ -197,7 +197,7 @@ class FilesController extends AppController {
 		$this->set('total_size',$this->get_file_size($total_size));
 		*/
 		
-		$this->set('title',__('Files',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
+		$this->set('title',__('Files',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name'));
 		$this->Notifications->add(
 			__('You need to install the latest version of <a href="http://www.adobe.com/products/flashplayer/">Adobe Flash Player</a>.',true),
 			'error',
@@ -212,13 +212,13 @@ class FilesController extends AppController {
 		$directory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
 		
 		if(!file_exists($directory))
-			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files');
+			$this->redirect('/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path'] . '/files');
 			
 		$files = scandir_excluding_dirs($directory);
 		
 		if(empty($files)){
 			unlink($directory);
-			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/files');				
+			$this->redirect('/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path'] . '/files');				
 		}
 		
 		$file = $files[0];
@@ -249,7 +249,7 @@ class FilesController extends AppController {
 	}
 
 	function afterSave() {
-		$this->redirect = array('group'=>$this->viewVars['group']['web_path'],'action'=>'','controller' => null,'course'=>$this->viewVars['course']['web_path'],'lesson'=>$this->viewVars['lesson']['order']);
+		$this->redirect = array('group'=>Group::get('web_path'),'action'=>'','controller' => null,'course'=>$this->viewVars['course']['web_path'],'lesson'=>$this->viewVars['lesson']['order']);
 		parent::afterSave();
 	}
 
@@ -383,8 +383,8 @@ class FilesController extends AppController {
 	}
 
 	function logo() {
-		if(!empty($this->viewVars['group']['logo']))
-			$file = ROOT . DS . APP_DIR . DS . 'files' . DS . 'logos' . DS . $this->viewVars['group']['id'] . '.img';
+		if(Group::get('logo'))
+			$file = ROOT . DS . APP_DIR . DS . 'files' . DS . 'logos' . DS . Group::get('id') . '.img';
 
 		if (!isset($file) || !file_exists($file))
 			$file = ROOT . DS . APP_DIR . DS . WEBROOT_DIR . DS . 'img' . DS .'ibs' . DS . 'logo.png';
@@ -393,7 +393,7 @@ class FilesController extends AppController {
 		$path_parts = pathinfo($file);
 
 		header('Content-type: image/' . $imageInfo['mime']);
-		header('Content-Disposition: inline; filename="' . $this->viewVars['group']['logo'] . '"');
+		header('Content-Disposition: inline; filename="' . Group::get('logo') . '"');
 		header('Last-Modified: '.date('D, d M Y H:i:s', filemtime($file)).' GMT');
 		header('Expires: Thu, 15 Apr 2010 20:00:00 GMT');
 		header('Content-length: ' . filesize($file));
@@ -407,12 +407,12 @@ class FilesController extends AppController {
 
 	function group_css() {
 		header('Content-type: text/css');
-		header('Content-length: ' . strlen($this->viewVars['group']['css']));
+		header('Content-length: ' . strlen(Group::get('css')));
     	header("Cache-Control: public");
     	header("Cache-Control: maxage=604800");
 		//header('Expires: Thu, 15 Apr 2010 20:00:00 GMT');
 		//header('Last-Modified: '.date('D, d M Y H:i:s', filemtime($file)).' GMT');
-		echo $this->viewVars['group']['css'];
+		echo Group::get('css');
 		exit;
 	}
 

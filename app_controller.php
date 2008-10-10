@@ -36,7 +36,7 @@ class AppController extends Controller {
 		$cakeAdmin = isset($this->params[Configure::read('Routing.admin')]) ? Configure::read('Routing.admin') : null;
 
 		if($this->Session->check('User'))
-			User::set($this->Session->read('User'));  
+			User::set($this->Session->read('User'));
 
        	//$this->set('user', $this->Session->read('Auth.User'));
 		$this->set('languages', $this->Languages->generateList());
@@ -72,16 +72,18 @@ class AppController extends Controller {
        	// Group
        	if(isset($this->params['group'])) {
 			$this->Group->contain();
-			$group = $this->Group->find(array('Group.web_path' => $this->params['group']),array('id','name','web_path','external_web_address','logo','logo_updated','description','web_path'));
-			$this->set('group',$group['Group']);
+			$group = $this->Group->find('first',array(
+				'conditions' => array('Group.web_path' => $this->params['group']),
+				'fields' => array('id','name','web_path','external_web_address','logo','logo_updated','description','web_path')
+			));
+			Group::set($group);
        	}
-    	$this->set('groupWebPath', isset($this->viewVars['group']['web_path']) ? '/' . $this->viewVars['group']['web_path'] : null);
 		
 		// Course
        	if(!empty($this->params['course'])) {
 			$course = $this->Course->find('first',array(
 				'fields' => array('id','group_id','title','web_path','description','language','open','redistribution_allowed','commercial_use_allowed','derivative_works_allowed','css','published_status'),
-				'conditions' => array('Course.web_path' => $this->params['course'],'Course.group_id' => $this->viewVars['group']['id'])
+				'conditions' => array('Course.web_path' => $this->params['course'],'Course.group_id' => Group::get('id'))
 			));
 			$this->set('course',$course['Course']);
        	}
@@ -136,8 +138,6 @@ class AppController extends Controller {
 
 		if(isset($this->params['group'])) {
 			$this->Breadcrumbs->addGroupCrumb();
-			if(!empty($this->viewVars['group']['logo']) && $this->name != 'Classroom')
-				$this->set('logo',$this->viewVars['group']['logo']);
 		}
 
 		if(isset($this->params['course'])) {

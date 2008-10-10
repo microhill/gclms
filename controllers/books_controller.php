@@ -15,7 +15,7 @@ class BooksController extends AppController {
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
-		$this->Breadcrumbs->addCrumb('Books','/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path']). '/books';
+		$this->Breadcrumbs->addCrumb('Books','/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path']). '/books';
 		parent::beforeRender();
 	}
 	
@@ -24,7 +24,7 @@ class BooksController extends AppController {
 		$books = $this->Book->findAll(array("Book.course_id" => $this->viewVars['course']['id']),null,'Book.title ASC');
 		$this->set(compact('books'));
 		
-		$this->set('title',__('Books',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
+		$this->set('title',__('Books',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name'));
 	}
 
     function rename($id) {
@@ -46,10 +46,10 @@ class BooksController extends AppController {
 		$chapter = $this->Chapter->findById($id);
 		$this->set('chapter',$chapter);
 		
-		$this->set('title',$chapter['Chapter']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
+		$this->set('title',$chapter['Chapter']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name'));		
 	}
 
 	function afterSave() {
-		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/books');
+		$this->redirect('/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path'] . '/books');
 	}
 }

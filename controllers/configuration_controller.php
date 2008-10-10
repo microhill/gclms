@@ -10,7 +10,7 @@ class ConfigurationController extends AppController {
 
 	function beforeRender() {
 		if(isset($this->params['group'])) {
-			$this->Breadcrumbs->addCrumb($this->viewVars['group']['name'],'/' . $this->viewVars['group']['web_path']);
+			$this->Breadcrumbs->addCrumb(Group::get('name'),'/' . Group::get('web_path'));
 		} else {
 			$this->Breadcrumbs->addCrumb('Site Administration',array(Configure::read('Routing.admin')=>Configure::read('Routing.admin'),'controller'=>'panel'));
 			if($this->action != Configure::read('Routing.admin') . '_index')
@@ -22,9 +22,9 @@ class ConfigurationController extends AppController {
 
 	function index() {
 		if(empty($this->data)) {
-        	$this->data = $this->Group->findById($this->viewVars['group']['id']);
+        	$this->data = $this->Group->findById(Group::get('id'));
 		} else {
-			parent::edit($this->viewVars['group']['id']);	
+			parent::edit(Group::get('id'));	
 		}
 	}
 	

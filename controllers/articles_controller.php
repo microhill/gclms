@@ -12,7 +12,7 @@ class ArticlesController extends AppController {
 
 	function index() {
 		$this->data = $this->Article->findAllByCourseId(array('course_id'=>$this->viewVars['course']['id']),null,'Article.title ASC');
-		$this->set('title',__('Articles',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
+		$this->set('title',__('Articles',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name'));
 	}
 
 	function view($id) {
@@ -23,12 +23,12 @@ class ArticlesController extends AppController {
 		$glossary_terms = $this->GlossaryTerm->findAll(array('course_id'=>$this->viewVars['course']['id']),array('id','term'));
 		$this->set('glossary_terms',$glossary_terms);
 
-		$this->set('title',$this->data['Article']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
+		$this->set('title',$this->data['Article']['title'] . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name'));		
 	}
 	
 	function afterSave() {		
 		if(!empty($this->Article->id) && $this->action != 'delete') {
-			$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/articles/view/' . $this->Article->id;
+			$this->redirect = '/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path'] . '/articles/view/' . $this->Article->id;
 		}
 	}
 }

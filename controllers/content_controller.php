@@ -5,7 +5,7 @@ class ContentController extends AppController {
 	
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
-		$this->Breadcrumbs->addCrumb('Edit Course Content','/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path']). '/content';
+		$this->Breadcrumbs->addCrumb('Edit Course Content','/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path']). '/content';
 		parent::beforeRender();
 	}
 	
@@ -62,7 +62,7 @@ class ContentController extends AppController {
 		$this->data =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		
 		
-		$this->set('title',__('Course Content',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
+		$this->set('title',__('Course Content',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name'));		
     }
     
     function debug() {		
@@ -129,7 +129,7 @@ class ContentController extends AppController {
     }
 	
 	function afterSave() {
-		$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/content'; 
+		$this->redirect = '/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path'] . '/content'; 
 		parent::afterSave();
 	}
 	

@@ -25,7 +25,7 @@ if(!isset($heading) && !empty($heading)) {
 }
 	
 if(@$showDefaultAddButton) {
-	$defaultAddButtonUri = !empty($addButtonUrl) ? $addButtonUrl : Router::url(array($adminParam=>$adminParam,'action'=>'add','group'=>@$groupWebPath));
+	$defaultAddButtonUri = !empty($addButtonUrl) ? $addButtonUrl : Router::url(array($adminParam=>$adminParam,'action'=>'add','group'=>'/' . @$group['web_path']));
 }
 ?>
 

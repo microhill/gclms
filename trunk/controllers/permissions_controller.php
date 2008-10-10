@@ -13,13 +13,13 @@ class PermissionsController extends AppController {
 	function index() {
 		$this->Permission->contain('User');
 		$this->data = $this->Permission->find('all',array(
-			'conditions' => array('Permission.group_id' => $this->viewVars['group']['id']),
+			'conditions' => array('Permission.group_id' => Group::get('id')),
 			'fields' => 'DISTINCT User.id'
 		));
 
 		$this->paginate['fields'] = array('DISTINCT User.id','User.id','User.first_name','User.last_name');
 		$this->data = $this->paginate('Permission',array(
-			'Permission.group_id' => $this->viewVars['group']['id']
+			'Permission.group_id' => Group::get('id')
 		));
 	}
 	
@@ -39,9 +39,9 @@ class PermissionsController extends AppController {
 			if(!empty($user))
 				$this->data['User'] = $user['User'];
 		} else if(!empty($this->data)) {
-			$this->Permission->saveAll($this->data,User::get('id'),$this->viewVars['group']['id']);
+			$this->Permission->saveAll($this->data,User::get('id'),Group::get('id'));
 
-			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/permissions');
+			$this->redirect('/' . Group::get('web_path') . '/permissions');
 		}
 		
 		$this->getCoursesAndClasses();
@@ -52,13 +52,13 @@ class PermissionsController extends AppController {
 			die;
 
 		if(!empty($this->data)) {
-			$this->Permission->saveAll($this->data,User::get('id'),$this->viewVars['group']['id']);
+			$this->Permission->saveAll($this->data,User::get('id'),Group::get('id'));
 
-			$this->redirect('/' . $this->viewVars['group']['web_path'] . '/permissions');
+			$this->redirect('/' . Group::get('web_path') . '/permissions');
 		} else {
 			$this->data = array();
 			
-			$this->data['Permissions'] = $this->Permission->findAllByUserAndGroup($user_id,$this->viewVars['group']['id']);
+			$this->data['Permissions'] = $this->Permission->findAllByUserAndGroup($user_id,Group::get('id'));
 			
 			$this->User->contain();
 			$user = $this->User->find('first',array(
@@ -74,14 +74,14 @@ class PermissionsController extends AppController {
 	private function getCoursesAndClasses() {
 		$this->Course->contain('id','title');
 		$courses = $this->Course->find('list',array(
-			'conditions' => array('Course.group_id' => $this->viewVars['group']['id'])
+			'conditions' => array('Course.group_id' => Group::get('id'))
 		));
 		$this->set('courses',$courses);
 		
 		$this->VirtualClass =& ClassRegistry::init('VirtualClass'); 
 		$this->VirtualClass->contain('id','title');
 		$courses = $this->VirtualClass->find('list',array(
-			'conditions' => array('group_id' => $this->viewVars['group']['id'])
+			'conditions' => array('group_id' => Group::get('id'))
 		));
 		$this->set('classes',$courses);	
 	}

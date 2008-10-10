@@ -11,14 +11,14 @@ class GlossaryController extends AppController {
 	
 	function index() {
 		$this->data = $this->GlossaryTerm->findAllByCourseId(array('course_id'=>$this->viewVars['course']['id']),null,'GlossaryTerm.term ASC');
-		$this->set('title',__('Glossary',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);
+		$this->set('title',__('Glossary',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name'));
 	}
 	
 	function view($id) {
 		$this->GlossaryTerm->contain();
 		$this->data = $this->GlossaryTerm->findById($id);
 		
-		$this->set('title',$this->data['GlossaryTerm']['term'] . ' &raquo; ' . __('Glossary',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name']);		
+		$this->set('title',$this->data['GlossaryTerm']['term'] . ' &raquo; ' . __('Glossary',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name'));		
 	}
 
 	function table() {
@@ -28,7 +28,7 @@ class GlossaryController extends AppController {
 	
 	function afterSave() {
 		if(!empty($this->data['GlossaryTerm']['id']) && $this->action != 'delete') {
-			$this->redirect = '/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/glossary/view/' . $this->data['GlossaryTerm']['id'];
+			$this->redirect = '/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path'] . '/glossary/view/' . $this->data['GlossaryTerm']['id'];
 		}
 	}
 }

@@ -12,7 +12,7 @@ class GradingController extends AppController {
 
 	function beforeRender() {
 		if(isset($this->params['group'])) {
-			$this->Breadcrumbs->addCrumb($this->viewVars['group']['name'],array(Configure::read('Routing.admin')=>Configure::read('Routing.admin'),'controller'=>'panel'));
+			$this->Breadcrumbs->addCrumb(Group::get('name'),array(Configure::read('Routing.admin')=>Configure::read('Routing.admin'),'controller'=>'panel'));
 		} else {
 			$this->Breadcrumbs->addCrumb('Site Administration',array(Configure::read('Routing.admin')=>Configure::read('Routing.admin'),'controller'=>'panel'));
 			if($this->action != Configure::read('Routing.admin') . '_index')

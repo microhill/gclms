@@ -8,7 +8,7 @@ class FacilitatedClassesController extends AppController {
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
 		
-		$this->Breadcrumbs->addCrumb('Facilitated Classes','/' . $this->viewVars['group']['web_path'] . '/virtual_classes');
+		$this->Breadcrumbs->addCrumb('Facilitated Classes','/' . Group::get('web_path') . '/virtual_classes');
 		
 		if($this->action == 'add' || $this->action == 'edit') {
 			$this->set('courses',
@@ -20,23 +20,23 @@ class FacilitatedClassesController extends AppController {
 	}
 	
 	function add() {
-		$this->set('available_courses',$this->Course->generateList(array('Course.group_id' => $this->viewVars['group']['id']),'Course.title ASC',null,'{n}.Course.id','{n}.Course.title'));
+		$this->set('available_courses',$this->Course->generateList(array('Course.group_id' => Group::get('id')),'Course.title ASC',null,'{n}.Course.id','{n}.Course.title'));
 		
 		parent::add();
 	}
 	
 	function edit($id) {
-		$this->set('available_courses',$this->Course->generateList(array('Course.group_id' => $this->viewVars['group']['id']),'Course.title ASC',null,'{n}.Course.id','{n}.Course.title'));
+		$this->set('available_courses',$this->Course->generateList(array('Course.group_id' => Group::get('id')),'Course.title ASC',null,'{n}.Course.id','{n}.Course.title'));
 		
 		parent::edit($id);
 	}
 	
 	function afterSave() {
-		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/virtual_classes');
+		$this->redirect('/' . Group::get('web_path') . '/virtual_classes');
 	}
 
 	function index() {
-		if(!empty($this->viewVars['group'])) {
+		if(Group::get('id')) {
 			//$this->Lesson->unbindModel(array('belongsTo' => array('Course'),'hasMany' => array('Page')));
 			//$lesson = $this->Lesson->find(array('Lesson.order' => $this->passedArgs['lesson'], 'Lesson.course_id' => $this->viewVars['course']['id']));
 		

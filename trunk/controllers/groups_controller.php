@@ -24,9 +24,7 @@ class GroupsController extends AppController {
 	
 	function beforeRender() {
 		if(isset($this->params['group'])) {
-			$this->Breadcrumbs->addCrumb($this->viewVars['group']['name'],'/' . $this->viewVars['group']['web_path']);
-			if(!empty($this->viewVars['group']['logo']))
-				$this->set('logo',$this->viewVars['group']['logo']);
+			$this->Breadcrumbs->addCrumb(Group::get('name'),'/' . Group::get('web_path'));
 		} else if($this->action != 'register') {
 			$this->Breadcrumbs->addSiteAdministrationCrumb();
 			$this->Breadcrumbs->addCrumb('Groups','/administration/groups');
@@ -36,9 +34,25 @@ class GroupsController extends AppController {
 	}
 	
 	function show() {
+
+
+		$this->Permission =& ClassRegistry::init('Permission');
+
+		$permissions = $this->Permission->find('all',array(
+			'conditions' => array(
+				'user_id' => User::get('id'),
+				'group_id' => Group::get('id'),
+				'model' => array('Course','Permission')
+			),
+			'contain' => false,
+			'fields' => array('group_id','course_id','model','foreign_key','_create','_read','_update','_delete')
+		));
+		
+		prd($permissions);
+
 		$this->Course->contain();
 		if(User::allow(array(
-			'group' => $this->viewVars['group']['id'],
+			'group' => Group::get('id'),
 			'model' => 'Course',
 			'action' => 'read'
 		))) {
@@ -48,13 +62,13 @@ class GroupsController extends AppController {
 		}
 		
 		$courses = $this->Course->find('all',array(
-			'conditions' => array('Course.group_id' => $this->viewVars['group']['id']),
+			'conditions' => array('Course.group_id' => Group::get('id')),
 			'order' => 'Course.title ASC'
 		));
 		
 		$this->set(compact('courses'));
 		
-		$this->set('title',$this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('App.name'));
+		$this->set('title',Group::get('name') . ' &raquo; ' . Configure::read('App.name'));
 	}
 
 	function register() {

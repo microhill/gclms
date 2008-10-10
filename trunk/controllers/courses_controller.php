@@ -16,10 +16,10 @@ class CoursesController extends AppController {
 	function recent() {
         $this->Course->contain(array('Group' => array('web_path')));
 		
-		if(empty($this->viewVars['group'])) {
+		if(!Group::get('id')) {
 			$this->data = $this->Course->findall(null,null,'Course.created DESC',10);
 		} else {
-			$this->data = $this->Course->findall(array('Course.group_id' => $this->viewVars['group']['id']),null,'Course.created DESC',10);
+			$this->data = $this->Course->findall(array('Course.group_id' => Group::get('id')),null,'Course.created DESC',10);
 		}
 		
 		$this->RequestHandler->isRss();
@@ -169,7 +169,7 @@ class CoursesController extends AppController {
 			$this->set('news_items',$news_items);
 		}
 
-		$this->set('title',$this->viewVars['course']['title'] . ' &raquo; ' . $this->viewVars['group']['name'] . ' &raquo; ' . Configure::read('App.name'));
+		$this->set('title',$this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name') . ' &raquo; ' . Configure::read('App.name'));
 
 		$this->render('description');
 	}

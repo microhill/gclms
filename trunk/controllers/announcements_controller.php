@@ -38,6 +38,6 @@ class AnnouncementsController extends AppController {
 	}
 	
 	function afterSave() {
-		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/' . $this->viewVars['course']['web_path'] . '/news/section:' . $this->viewVars['class']['id']);
+		$this->redirect('/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path'] . '/news/section:' . $this->viewVars['class']['id']);
 	}
 }

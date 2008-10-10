@@ -10,7 +10,7 @@ class BooksController extends AppController {
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
-		$this->Breadcrumbs->addCrumb('Books','/' . $this->viewVars['group']['web_path'] . '/glossary/course:' . $this->viewVars['course']['web_path']);
+		$this->Breadcrumbs->addCrumb('Books','/' . Group::get('web_path') . '/glossary/course:' . $this->viewVars['course']['web_path']);
 		parent::beforeRender();
 	}
 
@@ -103,7 +103,7 @@ class BooksController extends AppController {
 
 	    zip_close($zip);
 
-		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/books/course:' . $this->viewVars['course']['web_path']);
+		$this->redirect('/' . Group::get('web_path') . '/books/course:' . $this->viewVars['course']['web_path']);
 	}
 
 	function delete() {
@@ -114,6 +114,6 @@ class BooksController extends AppController {
 	}
 
 	function afterSave() {
-		$this->redirect('/' . $this->viewVars['group']['web_path'] . '/books/course:' . $this->viewVars['course']['web_path']);
+		$this->redirect('/' . Group::get('web_path') . '/books/course:' . $this->viewVars['course']['web_path']);
 	}
 }

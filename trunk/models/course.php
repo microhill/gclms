@@ -50,4 +50,43 @@ class Course extends AppModel {
 			'contain' => array('Group' => array('web_path'))
 		));
 	}
+	
+	function &getInstance($course = null) {
+		static $instance = array();
+		
+		if($course) {
+			$instance[0] =& $course;
+		}
+		
+		if (!$instance) {
+			return $instance;
+		}
+	
+		return $instance[0];
+	}
+	
+	function set($course) {
+		Course::getInstance($course);
+	}
+	
+	function get($path) {
+		$_course =& Course::getInstance();
+		
+		$path = str_replace('.', '/', $path);
+		if (strpos($path, 'Course') !== 0) {
+			$path = sprintf('Course/%s', $path);
+		}
+		
+		if (strpos($path, '/') !== 0) {
+			$path = sprintf('/%s', $path);
+		}
+		
+		$value = Set::extract($path, $_course);
+		
+		if (!$value) {
+			return false;
+		}
+		
+		return $value[0];
+	}
 }

@@ -65,4 +65,43 @@ class VirtualClass extends AppModel {
 		}
 		return true;
 	}
+	
+	function &getInstance($class = null) {
+		static $instance = array();
+		
+		if($class) {
+			$instance[0] =& $class;
+		}
+		
+		if (!$instance) {
+			return $instance;
+		}
+	
+		return $instance[0];
+	}
+	
+	function set($class) {
+		VirtualClass::getInstance($class);
+	}
+	
+	function get($path) {
+		$_virtual_class =& VirtualClass::getInstance();
+		
+		$path = str_replace('.', '/', $path);
+		if (strpos($path, 'VirtualClass') !== 0) {
+			$path = sprintf('VirtualClass/%s', $path);
+		}
+		
+		if (strpos($path, '/') !== 0) {
+			$path = sprintf('/%s', $path);
+		}
+		
+		$value = Set::extract($path, $_virtual_class);
+		
+		if (!$value) {
+			return false;
+		}
+		
+		return $value[0];
+	}
 }

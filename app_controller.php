@@ -86,7 +86,8 @@ class AppController extends Controller {
 				'fields' => array('id','group_id','title','web_path','description','language','open','redistribution_allowed','commercial_use_allowed','derivative_works_allowed','css','published_status'),
 				'conditions' => array('Course.web_path' => $this->params['course'],'Course.group_id' => Group::get('id'))
 			));
-			$this->set('course',$course['Course']);
+			$this->set('course',$course['Course']); //needs purging
+			Course::set($course);
        	}
 		$courseWebPath = isset($this->viewVars['course']['web_path']) ? '/' . $this->viewVars['course']['web_path'] : null;
 						
@@ -101,7 +102,8 @@ class AppController extends Controller {
        		$class = $this->VirtualClass->find('first',array(
 				'conditions' => array('VirtualClass.id' => $this->params['class'])
 			));
-			$this->set('class', $class['VirtualClass']);
+			$this->set('class', $class['VirtualClass']); //needs purging
+			VirtualClass::set($class);
        	}
 		$classWebPath = isset($this->viewVars['class']['web_path']) ? '/' . $this->viewVars['class']['web_path'] : null;
 		

@@ -36,21 +36,18 @@ class GroupsController extends AppController {
 	}
 	
 	function show() {
-
-
 		$this->Permission =& ClassRegistry::init('Permission');
 
-		$permissions = $this->Permission->find('all',array(
-			'conditions' => array(
-				'user_id' => User::get('id'),
-				'group_id' => Group::get('id'),
-				'model' => array('Course','Permission')
-			),
-			'contain' => false,
-			'fields' => array('group_id','course_id','model','foreign_key','_create','_read','_update','_delete')
+		/*
+		$permissions = $this->Permission->set(array(
+			'model' => array('Course','Permission')
 		));
+		*/
+		
+		$permissions = $this->Permission->cache('Course','Permission','Group');
+		
 
-		$this->Course->contain();
+		/*
 		if(User::allow(array(
 			'group' => Group::get('id'),
 			'model' => 'Course',
@@ -60,7 +57,9 @@ class GroupsController extends AppController {
 		} else {
 			
 		}
-		
+		*/
+
+		$this->Course->contain();
 		$courses = $this->Course->find('all',array(
 			'conditions' => array('Course.group_id' => Group::get('id')),
 			'order' => 'Course.title ASC'

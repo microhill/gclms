@@ -14,12 +14,12 @@
 	<h2>Group-wide Permissions</h2>
 	
 	<p>
-		<?= $form->input('manage_courses',array(
-			'label' => 'Manage courses',
+		<?= $form->input('manage_configuration',array(
+			'label' => 'Manage group configuration',
 			'type' => 'checkbox',
 			'between' => ' ',
-			'name' => 'data[Permissions][group][manage_courses]',
-			'checked' => @$this->data['Permissions']['group']['manage_courses']
+			'name' => 'data[Permissions][group][manage_configuration]',
+			'checked' => @$this->data['Permissions']['group']['manage_configuration']
 		)) ?>
 	</p>
 	
@@ -30,6 +30,16 @@
 			'between' => ' ',
 			'name' => 'data[Permissions][group][manage_user_permissions]',
 			'checked' => @$this->data['Permissions']['group']['manage_user_permissions']
+		)) ?>
+	</p>
+	
+	<p>
+		<?= $form->input('manage_courses',array(
+			'label' => 'Manage courses',
+			'type' => 'checkbox',
+			'between' => ' ',
+			'name' => 'data[Permissions][group][manage_courses]',
+			'checked' => @$this->data['Permissions']['group']['manage_courses']
 		)) ?>
 	</p>
 	

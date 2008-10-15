@@ -7,10 +7,10 @@ class Permission extends AppModel {
 		
 		$crud = $data['crud'];
 		unset($data['crud']);
-		$this->contain('id');
 		$permission = $this->find('first',array(
 			'conditions' => array($data),
-			'fields' => 'id'
+			'fields' => 'id',
+			'contain' => false
 		));
 		if(empty($crud) || (empty($crud['_create']) && empty($crud['_read']) && empty($crud['_update']) && empty($crud['_delete']))) {
 			if(!empty($permission)) {
@@ -77,11 +77,14 @@ class Permission extends AppModel {
 		$group_permissions = array();
 		foreach($permissions as &$permission) {				
 			switch($permission['Permission']['model']) {
-				case 'Course':
-					$group_permissions['manage_courses'] = $this->_check($permission,array('create' => 1,'read' => 1,'update' => 1,'delete' => 1)) ? 1 : 0;
- 					break;
 				case 'Permission':
 					$group_permissions['manage_user_permissions'] = $this->_check($permission,array('create' => 1,'read' => 1,'update' => 1,'delete' => 1)) ? 1 : 0;
+ 					break;
+				case 'Group':
+					$group_permissions['manage_configuration'] = $this->_check($permission,array('create' => 1,'read' => 1,'update' => 1,'delete' => 1)) ? 1 : 0;
+ 					break;
+				case 'Course':
+					$group_permissions['manage_courses'] = $this->_check($permission,array('create' => 1,'read' => 1,'update' => 1,'delete' => 1)) ? 1 : 0;
  					break;
 				case 'VirtualClass':
 					$group_permissions['manage_classes'] = $this->_check($permission,array('create' => 1,'read' => 1,'update' => 1,'delete' => 1)) ? 1 : 0;
@@ -112,13 +115,18 @@ class Permission extends AppModel {
 		);
 		
 		$this->save(am(array(
-			'model' => 'Course',
-			'crud' => empty($data['Permissions']['group']['manage_courses']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
+			'model' => 'Group',
+			'crud' => empty($data['Permissions']['group']['manage_configuration']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
 		),$default));
-
+		
 		$this->save(am(array(
 			'model' => 'Permission',
 			'crud' => empty($data['Permissions']['group']['manage_user_permissions']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
+		),$default));
+		
+		$this->save(am(array(
+			'model' => 'Course',
+			'crud' => empty($data['Permissions']['group']['manage_courses']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
 		),$default));
 
 		$this->save(am(array(

@@ -78,7 +78,7 @@ class AppController extends Controller {
 			));
 			Group::set($group);
        	}
-		$groupWebPath = isset($this->viewVars['group']['web_path']) ? '/' . $this->viewVars['group']['web_path'] : null;
+		$groupWebPath = Group::get('web_path') ? '/' . Group::get('web_path') : null;
 		
 		// Course
        	if(!empty($this->params['course'])) {
@@ -106,7 +106,7 @@ class AppController extends Controller {
 			VirtualClass::set($class);
        	}
 		$classWebPath = isset($this->viewVars['class']['web_path']) ? '/' . $this->viewVars['class']['web_path'] : null;
-		
+
     	$this->set('groupAndCoursePath', $groupWebPath . $courseWebPath . $classWebPath);
 		
 		// Offline

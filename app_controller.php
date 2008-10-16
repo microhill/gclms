@@ -4,7 +4,7 @@ uses('L10n');
 App::import('Vendor', 'browserdetection'.DS.'browserdetection');
 class AppController extends Controller {
     var $components = array('Common','Breadcrumbs','Languages','RequestHandler','Notifications');
-	var $uses = array('Group','GroupAdministrator','Course','User');
+	var $uses = array('Group','GroupAdministrator','Course','User','Permission');
 	var $paginateDefaults = array('limit' => 12);
 	var $helpers = array('Html','Form','Ajax','Asset');
 	var $css_for_layout = array();
@@ -36,7 +36,7 @@ class AppController extends Controller {
 		$cakeAdmin = isset($this->params[Configure::read('Routing.admin')]) ? Configure::read('Routing.admin') : null;
 
 		if($this->Session->check('User'))
-			User::set($this->Session->read('User'));
+			User::store($this->Session->read('User'));
 
        	//$this->set('user', $this->Session->read('Auth.User'));
 		$this->set('languages', $this->Languages->generateList());
@@ -76,7 +76,7 @@ class AppController extends Controller {
 				'conditions' => array('Group.web_path' => $this->params['group']),
 				'fields' => array('id','name','web_path','external_web_address','logo','logo_updated','description','web_path')
 			));
-			Group::set($group);
+			Group::store($group);
        	}
 		$groupWebPath = Group::get('web_path') ? '/' . Group::get('web_path') : null;
 		
@@ -87,7 +87,7 @@ class AppController extends Controller {
 				'conditions' => array('Course.web_path' => $this->params['course'],'Course.group_id' => Group::get('id'))
 			));
 			$this->set('course',$course['Course']); //needs purging
-			Course::set($course);
+			Course::store($course);
        	}
 		$courseWebPath = isset($this->viewVars['course']['web_path']) ? '/' . $this->viewVars['course']['web_path'] : null;
 						
@@ -103,7 +103,7 @@ class AppController extends Controller {
 				'conditions' => array('VirtualClass.id' => $this->params['class'])
 			));
 			$this->set('class', $class['VirtualClass']); //needs purging
-			VirtualClass::set($class);
+			VirtualClass::store($class);
        	}
 		$classWebPath = isset($this->viewVars['class']['web_path']) ? '/' . $this->viewVars['class']['web_path'] : null;
 

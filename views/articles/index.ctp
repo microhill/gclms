@@ -20,7 +20,7 @@ echo $this->element('left_column'); ?>
 		<ul class="articles">
 			<? foreach($this->data as $article): ?>
 				<li>
-					<a href="/<?= $group['web_path'] ?>/<?= $course['web_path'] ?>/articles/view/<?= $article['Article']['id'] ?>"><?= $article['Article']['title'] ?></a>
+					<a href="/<?= Group::get('web_path') ?>/<?= $course['web_path'] ?>/articles/view/<?= $article['Article']['id'] ?>"><?= $article['Article']['title'] ?></a>
 				</li>
 			<? endforeach; ?>
 		</ul>

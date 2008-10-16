@@ -101,7 +101,7 @@ class Group extends AppModel {
 		return $instance[0];
 	}
 	
-	function set($group) {
+	function store($group) {
 		Group::getInstance($group);
 	}
 	
@@ -116,7 +116,8 @@ class Group extends AppModel {
 		if (strpos($path, '/') !== 0) {
 			$path = sprintf('/%s', $path);
 		}
-		
+		//pr($path);
+		//pr($_group);
 		$value = Set::extract($path, $_group);
 		
 		if (!$value) {

@@ -4,8 +4,8 @@ class ConfigurationController extends AppController {
 	var $itemName = 'Group';
 
 	function beforeFilter() {
-		$this->Breadcrumbs->addHomeCrumb();
 		parent::beforeFilter();
+		$this->Breadcrumbs->addHomeCrumb();
 	}
 
 	function beforeRender() {
@@ -21,6 +21,8 @@ class ConfigurationController extends AppController {
 	}
 
 	function index() {
+		$this->Permission->cache('Group');
+		
 		if(empty($this->data)) {
         	$this->data = $this->Group->findById(Group::get('id'));
 		} else {
@@ -29,7 +31,7 @@ class ConfigurationController extends AppController {
 	}
 	
 	function afterSave() {
-		$this->redirect('/' . $this->viewVars['groupWebPath']);
+		$this->redirect('/' . Group::get('web_path'));
 		exit;
 	}
 }

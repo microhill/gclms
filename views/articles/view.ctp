@@ -1,5 +1,5 @@
 <?
-$html->css('/' . $group['web_path'] . '/files/css', null, null, false);
+$html->css('/' . Group::get('web_path') . '/files/css', null, null, false);
 
 $javascript->link(array(
 	'vendors/prototype1.6.0.3',

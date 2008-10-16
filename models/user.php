@@ -154,7 +154,7 @@ class User extends AppModel {
 		return $instance[0];
 	}
 	
-	function set($user) {
+	function store($user) {
 		User::getInstance($user);
 	}
 	

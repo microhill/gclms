@@ -61,7 +61,8 @@
 	}
 	?>
 
-	<? if(!empty($courseSelectionList)): ?>
+	<?
+	if(!empty($courseSelectionList)): ?>
 		<div id="gclms-course-selection">
 			<table class="gclms-buttons">
 				<tr>

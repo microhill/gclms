@@ -80,7 +80,7 @@ class VirtualClass extends AppModel {
 		return $instance[0];
 	}
 	
-	function set($class) {
+	function store($class) {
 		VirtualClass::getInstance($class);
 	}
 	

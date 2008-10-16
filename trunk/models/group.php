@@ -116,8 +116,7 @@ class Group extends AppModel {
 		if (strpos($path, '/') !== 0) {
 			$path = sprintf('/%s', $path);
 		}
-		//pr($path);
-		//pr($_group);
+
 		$value = Set::extract($path, $_group);
 		
 		if (!$value) {

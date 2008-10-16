@@ -11,6 +11,8 @@ class PermissionsController extends AppController {
 	}
 
 	function index() {
+		$this->Permission->cache('Course','Permission','Group');
+		
 		$this->Permission->contain('User');
 		$this->data = $this->Permission->find('all',array(
 			'conditions' => array('Permission.group_id' => Group::get('id')),
@@ -52,7 +54,6 @@ class PermissionsController extends AppController {
 
 		if(!empty($this->data)) {
 			$this->Permission->saveAll($this->data,User::get('id'),Group::get('id'));
-			die;
 			$this->redirect('/' . Group::get('web_path') . '/permissions');
 		} else {
 			$this->data = array();
@@ -73,7 +74,7 @@ class PermissionsController extends AppController {
 	private function getCoursesAndClasses() {
 		$courses = $this->Course->find('list',array(
 			'conditions' => array('Course.group_id' => Group::get('id')),
-			'fields' => array('id,title')
+			'fields' => array('id','title')
 		));
 		$this->set('courses',$courses);
 		

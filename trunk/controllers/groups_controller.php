@@ -44,7 +44,7 @@ class GroupsController extends AppController {
 		));
 		*/
 		
-		$permissions = $this->Permission->cache('Course','Permission','Group');
+		$this->Permission->cache('Course','Permission','Group','VirtualClass');
 		
 
 		/*

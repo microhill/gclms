@@ -76,7 +76,7 @@ echo $this->element('left_column'); ?>
 			<? endforeach; ?>
 			</table>
 		<? endif; ?>
-		<div id="SWFUploadTarget" swfupload:uploadScript="/<?= $group['web_path'] ?>/<?= $course['web_path'] ?>/files/upload/file">
+		<div id="SWFUploadTarget" swfupload:uploadScript="/<?= Group::get('web_path') ?>/<?= $course['web_path'] ?>/files/upload/file">
 			<button id="gclms-cancel-queue-button" class="cancelButton">
 				<img src="/img/permanent/icons/2007-09-13/cancel-12.png"/> <? __('Cancel File Upload(s)') ?>
 			</button>

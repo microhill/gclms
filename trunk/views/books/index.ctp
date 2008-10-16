@@ -41,7 +41,7 @@ echo $this->element('left_column'); ?>
 				<? endif;
 				echo '<ul>';
 				foreach($book['Chapter'] as $chapter) {
-					echo '<li><a href="/' . $group['web_path'] . '/' . $course['web_path'] . '/chapters/view/' . $chapter['id'] . '">' . $chapter['title'] . '</a></li>';
+					echo '<li><a href="/' . Group::get('web_path') . '/' . $course['web_path'] . '/chapters/view/' . $chapter['id'] . '">' . $chapter['title'] . '</a></li>';
 				}
 				echo '</ul>';
 				echo '</div>';

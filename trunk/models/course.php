@@ -65,7 +65,7 @@ class Course extends AppModel {
 		return $instance[0];
 	}
 	
-	function set($course) {
+	function store($course) {
 		Course::getInstance($course);
 	}
 	

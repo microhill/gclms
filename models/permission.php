@@ -3,12 +3,14 @@ class Permission extends AppModel {
     var $belongsTo = array('User','Group','Course','VirtualClass');
 	
 	function save($data) {
-		$this->id = null;
+		$this->id = false;
+		$this->data = array();
 		
 		$crud = $data['crud'];
 		unset($data['crud']);
+
 		$permission = $this->find('first',array(
-			'conditions' => array($data),
+			'conditions' => $data,
 			'fields' => 'id',
 			'contain' => false
 		));
@@ -22,11 +24,12 @@ class Permission extends AppModel {
 		
 		if(!empty($permission)) {
 			$this->id = $permission['Permission']['id'];
+			$data['id'] = $permission['Permission']['id'];
 		}
 		
-		$data = array_merge($data,$crud);
-
-		return parent::save($data);
+		$data = array('Permission' => array_merge($data,$crud));
+		$this->data = $data;
+		return parent::save();
 	}
 	
 	function findAllByUserAndGroup($user_id,$group_id) {

@@ -1,36 +1,12 @@
 <?
 class Permission extends AppModel {
     var $belongsTo = array('User','Group','Course','VirtualClass');
-	
-	function save($data) {
-		$this->id = false;
-		$this->data = array();
-		
-		$crud = $data['crud'];
-		unset($data['crud']);
 
-		$permission = $this->find('first',array(
-			'conditions' => $data,
-			'fields' => 'id',
-			'contain' => false
-		));
-		if(empty($crud) || (empty($crud['_create']) && empty($crud['_read']) && empty($crud['_update']) && empty($crud['_delete']))) {
-			if(!empty($permission)) {
-				$this->id = $permission['Permission']['id'];
-				$this->delete($permission['Permission']['id']);
-			}
-			return true;
-		}
-		
-		if(!empty($permission)) {
-			$this->id = $permission['Permission']['id'];
-			$data['id'] = $permission['Permission']['id'];
-		}
-		
-		$data = array('Permission' => array_merge($data,$crud));
-		$this->data = $data;
-		return parent::save();
-	}
+	var $validate = array(
+		'user_id' => array(
+			'rule' => VALID_NOT_EMPTY
+		)
+	);
 	
 	function findAllByUserAndGroup($user_id,$group_id) {
 		$this->contain();
@@ -84,7 +60,8 @@ class Permission extends AppModel {
 					$group_permissions['manage_user_permissions'] = $this->_check($permission,array('create' => 1,'read' => 1,'update' => 1,'delete' => 1)) ? 1 : 0;
  					break;
 				case 'Group':
-					$group_permissions['manage_configuration'] = $this->_check($permission,array('create' => 1,'read' => 1,'update' => 1,'delete' => 1)) ? 1 : 0;
+					$group_permissions['administer'] = $this->_check($permission,array('create' => 1,'read' => 1,'update' => 1,'delete' => 1)) ? 1 : 0;
+					$group_permissions['manage_configuration'] = $this->_check($permission,array('read' => 1,'update' => 1)) ? 1 : 0;
  					break;
 				case 'Course':
 					$group_permissions['manage_courses'] = $this->_check($permission,array('create' => 1,'read' => 1,'update' => 1,'delete' => 1)) ? 1 : 0;
@@ -101,14 +78,21 @@ class Permission extends AppModel {
 		);
 	}
 	
-	private function _check($data,$crud) {
-		if($data['Permission']['_create'] == $crud['create']
+	private function _check($data,$actions) {
+		foreach($actions as $action_name => $action_permission) {
+			if($data['Permission']['_' . $action_name] != $action_permission)
+				return false;
+		}
+		return true;
+		/*
+		if($data['Permission']['_create'] == @$crud['create']
 				&& $data['Permission']['_read'] == $crud['read']
 				&& $data['Permission']['_update'] == $crud['update']
 				&& $data['Permission']['_delete'] == $crud['delete']) {
 			return true;
 		}
 		return false;
+		*/
 	}
 	
 	function saveAll($data,$user_id,$group_id) {
@@ -117,11 +101,18 @@ class Permission extends AppModel {
 			'group_id' => $group_id
 		);
 		
-		$this->save(am(array(
-			'model' => 'Group',
-			'crud' => empty($data['Permissions']['group']['manage_configuration']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
-		),$default));
-		
+		if(!empty($data['Permissions']['group']['administer'])) {
+			$this->save(am(array(
+				'model' => 'Group',
+				'crud' => array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
+			),$default));	
+		} else {
+			$this->save(am(array(
+				'model' => 'Group',
+				'crud' => empty($data['Permissions']['group']['manage_configuration']) ? array() : array('_create' => 0,'_read' => 1,'_update' => 1,'_delete' => 0)
+			),$default));	
+		}
+
 		$this->save(am(array(
 			'model' => 'Permission',
 			'crud' => empty($data['Permissions']['group']['manage_user_permissions']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
@@ -178,6 +169,36 @@ class Permission extends AppModel {
 			
 		}
 		*/
+	}
+	
+	function save($data) {
+		$this->id = false;
+		$this->data = array();
+		
+		$crud = $data['crud'];
+		unset($data['crud']);
+
+		$permission = $this->find('first',array(
+			'conditions' => $data,
+			'fields' => 'id',
+			'contain' => false
+		));
+		if(empty($crud) || (empty($crud['_create']) && empty($crud['_read']) && empty($crud['_update']) && empty($crud['_delete']))) {
+			if(!empty($permission)) {
+				$this->id = $permission['Permission']['id'];
+				$this->delete($permission['Permission']['id']);
+			}
+			return true;
+		}
+		
+		if(!empty($permission)) {
+			$this->id = $permission['Permission']['id'];
+			$data['id'] = $permission['Permission']['id'];
+		}
+		
+		$data = array('Permission' => array_merge($data,$crud));
+		$this->data = $data;
+		return parent::save();
 	}
 		
 	function cache($conditions,$setResults = false) {

@@ -3,15 +3,6 @@ class User extends AppModel {
 	var $recursive = 0;
     
 	var $hasAndBelongsToMany = array(
-		'GroupsAdministrating' => array(
-				'className'    => 'Group',
-				'joinTable'    => 'group_administrators',
-				'foreignKey'   => 'user_id',
-				'associationForeignKey' => 'group_id',
-				'unique'       => true,
-				'fields' 		=> array('id','web_path','name'),
-				'recursive' => false
-			),
 		'ClassesTaking' => array(
 				'className'    => 'VirtualClass',
 				'joinTable'    => 'class_enrollees',
@@ -102,6 +93,7 @@ class User extends AppModel {
 	}
     
     function findAllGroups($id) {
+		/*
 		$user = $this->find('first',array(
 			'conditions' => array('id' => $id),
 			'fields' => 'id',
@@ -113,6 +105,8 @@ class User extends AppModel {
 				Set::extract($user, 'GroupsAdministrating.{n}.name')
 			) : array();
 		return $groups;
+		*/
+		return array();
     }
     
     function findAllClasses($id) {

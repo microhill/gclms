@@ -1,6 +1,6 @@
 <?php
 class GroupAdministratorsController extends AppController {
-    var $uses = array('GroupAdministrator','Group','User');
+    var $uses = array('User','Group');
 	var $helpers = array('Paginator','MyPaginator');
 	var $itemName = 'Group administrator';
 	var $paginate = array('order' => 'Name');

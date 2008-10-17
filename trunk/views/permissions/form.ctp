@@ -14,6 +14,16 @@
 	<h2>Group-wide Permissions</h2>
 	
 	<p>
+		<?= $form->input('administer',array(
+			'label' => 'Administer group',
+			'type' => 'checkbox',
+			'between' => ' ',
+			'name' => 'data[Permissions][group][administer]',
+			'checked' => @$this->data['Permissions']['group']['administer']
+		)) ?>
+	</p>
+	
+	<p>
 		<?= $form->input('manage_configuration',array(
 			'label' => 'Manage group configuration',
 			'type' => 'checkbox',

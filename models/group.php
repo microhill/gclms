@@ -1,17 +1,6 @@
 <?
 class Group extends AppModel {
     var $recursive = 0;
-	var $hasAndBelongsToMany = array(
-		'GroupAdministrators' =>
-			array(
-				'className'   	=> 'User',
-		    	'joinTable'   	=> 'group_administrators',
-		        'foreignKey'  	=> 'group_id',
-		        'associationForeignKey'=> 'user_id',
-		        'unique'      	=> true,
-		        'fields'		=> array('id','email','first_name','last_name','email')
-			)
-    );	
 
 	var $hasMany = array('Course');
 

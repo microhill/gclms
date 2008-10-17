@@ -1,6 +1,6 @@
 <?
 class GroupsController extends AppController {
-    var $uses = array('Group','GroupAdministrator','ClassEnrollee');
+    var $uses = array('Group','ClassEnrollee');
 	var $helpers = array('Paginator','MyPaginator','Text');
 	var $itemName = 'Group';
 	var $paginate = array('order' => 'name');
@@ -69,15 +69,11 @@ class GroupsController extends AppController {
 		
 		$this->set('title',Group::get('name') . ' &raquo; ' . Configure::read('App.name'));
 	}
-
+	/*
 	function register() {
 		$this->Breadcrumbs->addCrumb('Register Your Group','/groups/register');
 		if(!empty($this->data)) {
 			$group = $this->Group->save($this->data);
-			$this->GroupAdministrator->save(array('GroupAdministrator' => array(
-				'group_id' => $this->Group->getLastInsertId(),
-				'user_id' => User::get('id')
-			)));
 			$this->User->contain();
 			$superAdminsitrators = $this->User->findAll(array('super_administrator' => 1));
 			foreach($superAdminsitrators as $superAdminsitrator) {
@@ -88,4 +84,5 @@ class GroupsController extends AppController {
 			exit;
 		}	
 	}
+	*/
 }

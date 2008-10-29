@@ -1,4 +1,4 @@
-<?php
+<?
 class Forum extends AppModel {
     var $belongsTo = array('Course','VirtualClass');
 	var $hasMany = array('ForumPost');

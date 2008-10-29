@@ -1,4 +1,4 @@
-<?php
+<?
 class ProfileController extends AppController {
     var $uses = array('User');
 	var $itemName = 'Profile';

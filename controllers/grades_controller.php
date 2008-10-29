@@ -1,4 +1,4 @@
-<?php
+<?
 class GradesController extends AppController {
 	var $uses = array('Grade');
 	var $helpers = array('Paginator','MyPaginator');

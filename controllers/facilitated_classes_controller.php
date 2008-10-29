@@ -1,4 +1,4 @@
-<?php
+<?
 class FacilitatedClassesController extends AppController {
     var $uses = array('FacilitatedClass','Course','Group');
 	var $helpers = array('Html','Form','MyForm','Paginator','MyPaginator','Time','MyTime');

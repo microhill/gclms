@@ -1,24 +1,23 @@
 <?
-$html->css('permissions', null, null, false);
+$html->css('administrators', null, null, false);
 
 $javascript->link(array(
 	'vendors/prototype1.6.0.3',
 	'vendors/prototype_extensions1.0',
 	'gclms',
-	'permissions'
+	'administrators'
 ), false);
 
-echo $this->element('no_column_background');
-?>
+echo $this->element('no_column_background'); ?>
 <div class="gclms-content">
 	<?= $this->element('notifications'); ?>
 	<div class="gclms-step-back"><a href="/<?= Group::get('web_path') ?>/permissions"><? __('Cancel and go back') ?></a></div>
 	
 	<h1>
-		<? __('Add Permissions to User') ?>
+		<? __('Add Administrator') ?>
 	</h1>
 
-	<?= $form->create('User',array('url' => '/' . Group::get('web_path') . '/permissions/add')) ?>
+	<?= $form->create('User',array('url' => '/administration/administrators/add')) ?>
 	
 	<div id="gclms-user-search" class="<? if(!empty($this->data['User'])): ?>gclms-hidden<? endif; ?>">
 		<?= $form->input('User.search_name',array(
@@ -46,9 +45,11 @@ echo $this->element('no_column_background');
 	
 	<?= $form->end() ?>
 	
-	<?= $form->create('Permission',array('url' => $groupAndCoursePath . '/permissions/add')) ?>
+	<?= $form->create('Permission',array('url' => '/administration/administrators/add')) ?>
 	
-	<? include('form.ctp') ?>
+	<?
+	include('form.ctp')
+	?>
 	<?= $form->submit('Save',array(
 		'class' => empty($this->data['User']) ? 'gclms-hidden' : '',
 		'id' => 'gclms-save-button'

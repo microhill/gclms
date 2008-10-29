@@ -1,4 +1,4 @@
-<?php
+<?
 class Chapter extends AppModel {
     var $belongsTo = array('Book');
 

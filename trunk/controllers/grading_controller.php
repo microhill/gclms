@@ -1,4 +1,4 @@
-<?php
+<?
 class GradingController extends AppController {
 	var $uses = array();
 	var $components = array('Security');

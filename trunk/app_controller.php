@@ -154,7 +154,6 @@ class AppController extends Controller {
 	
     function administration_index() {$this->index();}
 	function index() { $this->Common->index(); }
-	function table() { $this->Common->table(); }
 
     function administration_edit($id = null, $model = null) { $this->Common->edit($id,$model); }	
     function edit($id = null, $model = null) { $this->Common->edit($id,$model); }

@@ -1,4 +1,4 @@
-<?php
+<?
 class NotebookEntryComment extends AppModel {
 	var $belongsTo = array('NotebookEntry','User');
 	

@@ -10,7 +10,7 @@ echo $this->element('no_column_background'); ?>
 
 <div class="gclms-content">
 	<div class="gclms-step-back"><a href="/administration/group_administrators"><? __('Cancel and go back') ?></a></div>
-	<h1><?= __('Edit Group Administrator') ?></h1>    
+	<h1><?= __('Edit Administrator') ?></h1>    
 
 	<?
 	echo $form->create('GroupAdministrator', array('class' => 'Disabled','action'=>'edit'));

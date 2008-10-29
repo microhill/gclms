@@ -1,6 +1,7 @@
 <?
 class StatisticsController extends AppController {
 	var $uses = array();
+	var $components = array('Security');
 	
 	function beforeRender() {
 		$this->Breadcrumbs->addHomeCrumb();

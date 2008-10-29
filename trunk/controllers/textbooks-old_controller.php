@@ -1,4 +1,4 @@
-<?php
+<?
 class BooksController extends AppController {
     var $uses = array('Course');
 

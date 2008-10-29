@@ -1,4 +1,4 @@
-<?php
+<?
 class ForumPost extends AppModel {
     var $belongsTo = array('Forum','User' => array(
 		'fields' => array('id','username','email')

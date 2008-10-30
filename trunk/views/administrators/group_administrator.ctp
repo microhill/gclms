@@ -6,6 +6,6 @@
 		'name' => 'data[Groups][' . $group_id . ']',
 		'checked' => true, //@$this->data['Permissions']['courses'][$course_id]['manage_content'] ? true : false,
 		'id' => 'data[GroupAdministrators][' . $group_id . '][manage_content]',
-		'value' => $group_name
+		'value' => 1
 	)) ?>
 </div>

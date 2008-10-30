@@ -31,6 +31,7 @@ class AdministratorsController extends AppController {
 			'fields' => 'DISTINCT User.id',
 			'contain' => array('User')
 		));
+		prd($data);
 		$this->set(compact('data'));
 		//pr($this->paginate);
 	}
@@ -62,9 +63,8 @@ class AdministratorsController extends AppController {
 			if(!empty($user))
 				$this->data['User'] = $user['User'];
 		} else if(!empty($this->data)) {
-			prd($this->data);
-		
-			
+			$this->save($this->data);		
+			$this->redirect('/administration/administrators');
 			
 			//$this->Permission->saveAll($this->data,User::get('id'),Group::get('id'));
 			//$this->redirect('/' . Group::get('web_path') . '/permissions');
@@ -83,7 +83,7 @@ class AdministratorsController extends AppController {
 				'group_id' => null,
 				'course_id' => null,
 				'virtual_class_id' => null,
-				'model' => 1,
+				'model' => '*',
 				'crud' => array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
 			));
 		} else {
@@ -92,15 +92,51 @@ class AdministratorsController extends AppController {
 				'group_id' => null,
 				'course_id' => null,
 				'virtual_class_id' => null,
-				'model' => 1,
+				'model' => '*',
 				'crud' => array()
 			));
 		}
 		
-		$groups = $this->Group->find('list',array(
+		$groups = $this->Group->find('all',array(
 			'fields' => array('id'),
 			'contain' => false
 		));
-
+		
+		//prd($groups);
+		//prd($this->data);
+		
+		foreach($groups as $group) {
+			if($this->data['Groups'][$group['Group']['id']]) {
+				$this->Permission->save(array(
+					'group_id' => $group['Group']['id'],
+					'user_id' => $this->data['User']['id'],
+					'course_id' => null,
+					'virtual_class_id' => null,
+					'foreign_key' => null,
+					'model' => '*',
+					'crud' => array(
+						'_create' => 1,
+						'_read' => 1,
+						'_update' => 1,
+						'_delete' => 1
+					)
+				));
+			} else {
+				$this->Permission->save(array(
+					'group_id' => $group['Group']['id'],
+					'user_id' => $this->data['User']['id'],
+					'course_id' => null,
+					'virtual_class_id' => null,
+					'foreign_key' => null,
+					'model' => '*',
+					'crud' => array(
+						'_create' => 0,
+						'_read' => 0,
+						'_update' => 0,
+						'_delete' => 0
+					)
+				));
+			}
+		}
 	}
 }

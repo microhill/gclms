@@ -93,6 +93,22 @@ class User extends AppModel {
 	}
     
     function findAllGroups($id) {
+		$this->Permission =& ClassRegistry::init('Permission');
+		$groups = $this->Permission->find('all',array(
+			'conditions' => array(
+				'user_id' => User::get('id'),
+				'group_id <>' => null,
+				'course_id' => null, 
+				'model' => '*',
+			),
+			'fields' => array('id'),
+			'contain' => array('Group' => array('web_path','name'))
+		));
+		$groups = array_combine(
+			Set::extract($groups,'{n}.Group.web_path'),
+			Set::extract($groups,'{n}.Group.name')
+		);
+		
 		/*
 		$user = $this->find('first',array(
 			'conditions' => array('id' => $id),
@@ -106,7 +122,7 @@ class User extends AppModel {
 			) : array();
 		return $groups;
 		*/
-		return array();
+		return $groups;
     }
     
     function findAllClasses($id) {
@@ -167,7 +183,7 @@ class User extends AppModel {
 		$value = Set::extract($path, $_user);
 		
 		if (!$value) {
-			return false;
+			return null;
 		}
 		
 		return $value[0];
@@ -189,7 +205,7 @@ class User extends AppModel {
 				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified','super_administrator')
 			));
 		} else if(strpos($data['User']['username'],'http://') === false) {
-			$this->contain('GroupsAdministrating','ClassesTaking');
+			$this->contain('ClassesTaking');
 			$user = $this->find('first',array(
 				'conditions' => array(
 					'User.username' => $data['User']['username'],

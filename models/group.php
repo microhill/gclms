@@ -109,7 +109,7 @@ class Group extends AppModel {
 		$value = Set::extract($path, $_group);
 		
 		if (!$value) {
-			return false;
+			return null;
 		}
 		
 		return $value[0];

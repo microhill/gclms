@@ -59,9 +59,8 @@ class Permission extends AppModel {
 				case 'Permission':
 					$group_permissions['manage_user_permissions'] = $this->_check($permission,array('create' => 1,'read' => 1,'update' => 1,'delete' => 1)) ? 1 : 0;
  					break;
-				case 'Group':
+				case '*':
 					$group_permissions['administer'] = $this->_check($permission,array('create' => 1,'read' => 1,'update' => 1,'delete' => 1)) ? 1 : 0;
-					$group_permissions['manage_configuration'] = $this->_check($permission,array('read' => 1,'update' => 1)) ? 1 : 0;
  					break;
 				case 'Course':
 					$group_permissions['manage_courses'] = $this->_check($permission,array('create' => 1,'read' => 1,'update' => 1,'delete' => 1)) ? 1 : 0;
@@ -103,13 +102,8 @@ class Permission extends AppModel {
 		
 		if(!empty($data['Permissions']['group']['administer'])) {
 			$this->save(am(array(
-				'model' => 'Group',
+				'model' => '*',
 				'crud' => array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
-			),$default));	
-		} else {
-			$this->save(am(array(
-				'model' => 'Group',
-				'crud' => empty($data['Permissions']['group']['manage_configuration']) ? array() : array('_create' => 0,'_read' => 1,'_update' => 1,'_delete' => 0)
 			),$default));	
 		}
 
@@ -208,16 +202,19 @@ class Permission extends AppModel {
 		}
 		
 		$user_id = User::get('id');
-		$user_id = $user_id ? $user_id : null;
+		if(empty($user_id))
+			return false;
+		
+		//$user_id = $user_id ? $user_id : null;
 		
 		$group_id = Group::get('id');
-		$group_id = $group_id ? $group_id : null;
+		//$group_id = $group_id ? $group_id : null;
 		
 		$course_id = Course::get('id');
-		$course_id = $course_id ? $course_id : null;
+		//$course_id = $course_id ? $course_id : null;
 		
 		$class_id = VirtualClass::get('id');
-		$class_id = $course_id ? $class_id : null;
+		//$class_id = $course_id ? $class_id : null;
 
 		$defaults = array(
 			'user_id' => $user_id,
@@ -225,7 +222,7 @@ class Permission extends AppModel {
 			'course_id' => $course_id,
 			'virtual_class_id' => $class_id,
 			'foreign_key' => null
-			);
+		);
 
 		$permissions = $this->find('all',array(
 			'conditions' => am(array(
@@ -237,7 +234,7 @@ class Permission extends AppModel {
 		
 		if($setResults)
 			Permission::set($permissions);
-		
+
 		return $permissions;
 	}
 	

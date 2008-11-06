@@ -23,17 +23,14 @@ class AdministratorsController extends AppController {
 		//$data = $this->paginate();
 		//prd($this);
 
-		$data = $this->Permission->find('all',array(
+		$this->data = $this->Permission->find('all',array(
 			'conditions' => array(
 				'virtual_class_id' => null,
 				'model' => '*'
 			),
-			'fields' => 'DISTINCT User.id',
+			'fields' => array('DISTINCT User.id','User.username'),
 			'contain' => array('User')
 		));
-		prd($data);
-		$this->set(compact('data'));
-		//pr($this->paginate);
 	}
 	
 	function administration_add() {
@@ -63,12 +60,58 @@ class AdministratorsController extends AppController {
 			if(!empty($user))
 				$this->data['User'] = $user['User'];
 		} else if(!empty($this->data)) {
-			$this->save($this->data);		
-			$this->redirect('/administration/administrators');
-			
-			//$this->Permission->saveAll($this->data,User::get('id'),Group::get('id'));
-			//$this->redirect('/' . Group::get('web_path') . '/permissions');
+			if($this->save($this->data))
+				$this->redirect('/administration/administrators');
 		}
+		
+		$groups = $this->Group->find('list',array(
+			'fields' => array('id','name')
+		));
+		$this->set('groups',$groups);
+	}
+	
+	function administration_edit($id) {
+		if(empty($id)) {
+			die;	
+		}
+		
+		if(!empty($this->data)) {
+			if($this->save($this->data))
+				$this->redirect('/administration/administrators');
+		}
+		
+		$this->User->contain();
+		$user = $this->User->find('first',array(
+			'fields' => array('id','username','email'),
+			'conditions' => array(				
+				'User.id' => $id
+		)));
+		$this->data['User'] = $user['User'];
+		
+		$site_administrator = $this->Permission->find('first',array(
+			'conditions' => array(
+				'user_id' => $user['User']['id'],
+				'group_id' => null,
+				'course_id' => null,
+				'model' => '*'
+			),
+			'fields' => array('id'),
+			'contain' => false
+		));
+		$this->set('site_administrator',!empty($site_administrator));
+		
+		$groups_administering = $this->Permission->find('all',array(
+			'conditions' => array(
+				'user_id' => $user['User']['id'],
+				'group_id <>' => null,
+				'course_id' => null,
+				'model' => '*'
+			),
+			'fields' => array('group_id'),
+			'contain' => false
+		));
+		$groups_administering = Set::extract($groups_administering, '{n}.Permission.group_id');
+		$this->set('groups_administering',$groups_administering);			
 		
 		$groups = $this->Group->find('list',array(
 			'fields' => array('id','name')
@@ -106,7 +149,7 @@ class AdministratorsController extends AppController {
 		//prd($this->data);
 		
 		foreach($groups as $group) {
-			if($this->data['Groups'][$group['Group']['id']]) {
+			if(@$this->data['Groups'][$group['Group']['id']]) {
 				$this->Permission->save(array(
 					'group_id' => $group['Group']['id'],
 					'user_id' => $this->data['User']['id'],
@@ -138,5 +181,7 @@ class AdministratorsController extends AppController {
 				));
 			}
 		}
+		
+		return true;
 	}
 }

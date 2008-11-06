@@ -17,14 +17,16 @@
 			'type' => 'checkbox',
 			'between' => ' ',
 			'name' => 'data[SiteAdministrator]',
-			'checked' => @$this->data['SiteAdministrator']
+			'checked' => @$site_administrator
 		)) ?>
 	</p>
 	
 	<h2>Groups Administrating</h2>
 	<?
-	foreach($groups_administering as $group_id => $group) {
-		unset($groups[$group_id]);
+	$unselected_groups = $groups;
+	
+	foreach($groups_administering as $group_id) {
+		unset($unselected_groups[$group_id]);
 	}
 	?>
 
@@ -54,10 +56,10 @@
 
 	<div id="gclms-groups">
 		<?
-		if(!empty($groups_adminstering)) {
-			foreach($groups_adminstering as $group_id => $group) {
-				echo $this->element('../permissions/group_permissions',array(
-					'group_title' => $groups[$group_id],
+		if(!empty($groups_administering)) {
+			foreach($groups_administering as $group_id) {
+				echo $this->element('../administrators/group_administrator',array(
+					'group_name' => $groups[$group_id],
 					'group_id' => $group_id
 				));
 			}	

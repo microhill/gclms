@@ -24,16 +24,6 @@
 	</p>
 	
 	<p>
-		<?= $form->input('manage_configuration',array(
-			'label' => 'Manage group configuration',
-			'type' => 'checkbox',
-			'between' => ' ',
-			'name' => 'data[Permissions][group][manage_configuration]',
-			'checked' => @$this->data['Permissions']['group']['manage_configuration']
-		)) ?>
-	</p>
-	
-	<p>
 		<?= $form->input('manage_user_permissions',array(
 			'label' => 'Manage user permissions',
 			'type' => 'checkbox',

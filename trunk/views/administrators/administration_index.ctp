@@ -12,9 +12,15 @@ echo $this->element('left_column'); ?>
 		<?= $this->element('notifications'); ?>
 		<h1><?= __('Administrators') ?></h1>
 		<button href="administrators/add"><? __('Add') ?></button>
+		<ul>
 		<?
-		pr($this->data);
+		foreach($this->data as $administrator) {
+			?>
+			<li><a href="administrators/edit/<?= $administrator['User']['id'] ?>"><?= $administrator['User']['username'] ?></a></li>
+			<?
+		}
 		?>
+		</ul>
 	</div>
 </div>
 

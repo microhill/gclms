@@ -99,7 +99,7 @@ class VirtualClass extends AppModel {
 		$value = Set::extract($path, $_virtual_class);
 		
 		if (!$value) {
-			return false;
+			return null;
 		}
 		
 		return $value[0];

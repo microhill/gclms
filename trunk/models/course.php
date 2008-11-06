@@ -84,7 +84,7 @@ class Course extends AppModel {
 		$value = Set::extract($path, $_course);
 		
 		if (!$value) {
-			return false;
+			return null;
 		}
 		
 		return $value[0];

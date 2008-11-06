@@ -15,6 +15,8 @@ class ClassesController extends AppController {
 	}
 	
 	function index() {
+		$this->Permission->cache('Course','Permission','Group','VirtualClass');
+
 		$this->VirtualClass->contain(array('Course' => array('id','title','web_path')));
 		$classes = $this->VirtualClass->findAll(array('VirtualClass.group_id' => Group::get('id')));
 		$this->data = array();

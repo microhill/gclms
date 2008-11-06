@@ -32,7 +32,7 @@
 		}
 	}
 	
-	if(empty($this->params['administration']) && !empty($user) && $this->name == 'Groups') {
+	if(empty($this->params['administration']) && User::get('id') && $this->name == 'Groups') {
 		echo $this->element('panel',array(
 			'title' => 'Courses',
 			'content' => $this->element('course_listing')

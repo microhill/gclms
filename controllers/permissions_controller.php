@@ -11,7 +11,7 @@ class PermissionsController extends AppController {
 	}
 
 	function index() {
-		$this->Permission->cache('Course','Permission','Group');
+		$this->Permission->cache('Course','Permission','Group','VirtualClass');
 		
 		$this->Permission->contain('User');
 		$this->data = $this->Permission->find('all',array(

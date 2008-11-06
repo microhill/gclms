@@ -36,14 +36,7 @@ class GroupsController extends AppController {
 	}
 	
 	function show() {
-		$this->Permission =& ClassRegistry::init('Permission');
-
-		/*
-		$permissions = $this->Permission->set(array(
-			'model' => array('Course','Permission')
-		));
-		*/
-		
+		$this->Permission =& ClassRegistry::init('Permission');		
 		$this->Permission->cache('Course','Permission','Group','VirtualClass');
 		
 

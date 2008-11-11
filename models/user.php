@@ -22,9 +22,10 @@ class User extends AppModel {
 	);
 	
 	function beforeSave() {
-		if($this->id) {
+		if($this->id || !$this->find('first')) {
 			return true;
 		}
+
 		$this->data['User']['verification_code'] = String::uuid();
 		mail($this->data['User']['email'],__('Student registration',true),sprintf(__("Thank you for registering as a student. Visit the following URL to verify your student account: " . Configure::read('App.domain') . 'users/verify/' . $this->data['User']['verification_code'],true)), 'From: aaronshaf@gmail.com');
 		return true;

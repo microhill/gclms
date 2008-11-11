@@ -3,20 +3,25 @@ uses('L10n');
 
 App::import('Vendor', 'browserdetection'.DS.'browserdetection');
 class AppController extends Controller {
-    var $components = array('Common','Breadcrumbs','Languages','RequestHandler','Notifications');
-	var $uses = array('Group','Course','User','Permission');
-	var $paginateDefaults = array('limit' => 12);
+	var $components = array('Common','Breadcrumbs','Languages','RequestHandler','Notifications');
 	var $helpers = array('Html','Form','Ajax','Asset');
+	//var $uses = array('Group','Course','User','Permission');
+
+	var $paginateDefaults = array('limit' => 12);
 	var $css_for_layout = array();
 
     function beforeFilter() {
-		if(Configure::read('Configuration.database_set') && $this->name == 'Update') {
-			return false;
+		if($this->name == 'Install') { //!Configure::read('Config.database_set') && 
+			return true;
 		}
-
-		$this->loadVariables();
 		
+		$this->Group =& ClassRegistry::init('Group');
+		$this->Course =& ClassRegistry::init('Course');
+		$this->User =& ClassRegistry::init('User');
+		$this->Permission =& ClassRegistry::init('Permission');
+
 		$this->loadLocale();
+		$this->loadVariables();
 
     	$this->paginate = am($this->paginateDefaults,$this->paginate);
        	$this->set('itemName', @$this->itemName);
@@ -30,6 +35,7 @@ class AppController extends Controller {
        	//$this->Auth->loginAction = array('controller'=>'users','action'=>'login');
        	$this->Auth->authorize = 'controller';
 		$this->Auth->allow('*');
+		//
 		*/
 		
        	$group = !empty($group['Group']['web_path']) ? $group['Group']['web_path'] : null;

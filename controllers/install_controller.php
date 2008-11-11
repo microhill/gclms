@@ -2,12 +2,12 @@
 uses('model' . DS . 'connection_manager');
 
 class InstallController extends AppController {
-	var $uses = null;
+	var $uses = array();
 	var $components = array('Breadcrumbs','Languages');
-    var $layout = 'install';
+    var $layout = 'default';
     
     function beforeRender() {
-		$this->Breadcrumbs->addCrumb(__('Great Commission Learning Management System',true),'http://code.google.com/p/great-commission-lms/');
+		$this->Breadcrumbs->addCrumb(__('Great Commission Learning Management System',true),'/');
 		$this->Breadcrumbs->addCrumb(__('Installer',true),'');
 		parent::beforeRender();
 	}
@@ -60,24 +60,25 @@ class InstallController extends AppController {
     
     function tables() {
 		$db = ConnectionManager::getDataSource('default');
-        $result = $db->query('show tables');		
-        if(1 || empty($result)) {
+        $result = $db->query('show tables');
+		
+        if(empty($result)) {
 	        if(!$db->isConnected()) {
 	            echo 'Could not connect to database. Please check the settings in app/config/database.php and try again';
 	            exit;
 	        }
 			$this->__executeSQLScript($db,CONFIGS.'sql'.DS.'gclms.sql');
-			//$this->__executeSQLScript($db,CONFIGS.'sql'.DS.'languages.sql');
         }
 		$this->redirect('/install/configuration');
 		exit;
     }
     
     function configuration() {
-		if(!empty($this->data['Site']['name']) && !empty($this->data['Site']['domain'])) {
+		if(!empty($this->data['App']['name']) && !empty($this->data['App']['domain']) && !empty($this->data['App']['administrator_email'])) {
 			$content = "<?\n" 
-					. "Configure::write('App.name', '" . $this->data['Site']['name'] . "');\n"
-					. "Configure::write('App.domain', '" . $this->data['Site']['domain'] . "');\n"
+					. "Configure::write('App.name', '" . $this->data['App']['name'] . "');\n"
+					. "Configure::write('App.domain', '" . $this->data['App']['domain'] . "');\n"
+					. "Configure::write('App.administrator_email', '" . $this->data['App']['administrator_email'] . "');\n"
 					. "Configure::write('debug', 1);";
 			
 			file_put_contents(CONFIGS.'options.php', $content);    		
@@ -111,7 +112,7 @@ class InstallController extends AppController {
 				'password' => $this->data['User']['password'],
 				'first_name' => $this->data['User']['first_name'],
 				'last_name' => $this->data['User']['last_name'],
-				'super_administrator' => 1
+				'verified' => 1
 			));
 		}
    		if(count($db->query('select id from users;')))

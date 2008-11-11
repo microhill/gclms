@@ -16,6 +16,11 @@
 			'between' => '<br/>'
 		));
 		
+		echo $form->input('App.administrator_email',array(
+			'label' =>  __('Administrator e-mail', true),
+			'between' => '<br/>'
+		));
+		
 		echo $form->submit(__('Next',true),array('class'=>'Next'));
 		?>
 	</div>

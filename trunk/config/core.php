@@ -26,6 +26,9 @@
  * @lastmodified	$Date: 2008-01-01 15:18:17 -0700 (Tue, 01 Jan 2008) $
  * @license			http://www.opensource.org/licenses/mit-license.php The MIT License
  */
+
+	Configure::write('App.lms_name', 'Great Commission Learning Management System');
+
 /**
  * CakePHP Debug Level:
  *
@@ -101,7 +104,7 @@
  * To use database sessions, execute the SQL file found at /app/config/sql/sessions.sql.
  *
  */
-	Configure::write('Session.save', 'database');
+	
 /**
  * The name of the table used to store CakePHP database sessions.
  *

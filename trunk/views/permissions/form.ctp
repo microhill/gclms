@@ -35,7 +35,7 @@
 	
 	<p>
 		<?= $form->input('manage_courses',array(
-			'label' => 'Manage courses',
+			'label' => 'Manage all courses',
 			'type' => 'checkbox',
 			'between' => ' ',
 			'name' => 'data[Permissions][group][manage_courses]',
@@ -45,7 +45,7 @@
 	
 	<p>
 		<?= $form->input('manage_classes',array(
-			'label' => 'Manage classes',
+			'label' => 'Manage all classes',
 			'type' => 'checkbox',
 			'between' => ' ',
 			'name' => 'data[Permissions][group][manage_classes]',
@@ -56,9 +56,12 @@
 	<h2>Specific Course Permissions</h2>
 	<?
 	$courseSelectionList = $courses;
-	foreach($this->data['Permissions']['courses'] as $course_id => $course) {
-		unset($courseSelectionList[$course_id]);
+	if(!empty($this->data['Permissions']['courses'])) {
+		foreach($this->data['Permissions']['courses'] as $course_id => $course) {
+			unset($courseSelectionList[$course_id]);
+		}		
 	}
+
 	?>
 
 	<?
@@ -78,7 +81,7 @@
 						?>
 					</td>
 					<td>
-						<button id="gclms-add-course"><? __('Add Course') ?></button>
+						<button id="gclms-add-course"><? __('Select Course') ?></button>
 					</td>
 				</tr>
 			</table>
@@ -107,7 +110,7 @@
 				'label' => false,
 				'id' => 'gclms-class-selection'
 			));
-			?><button id="gclms-add-class"><? __('Add Class') ?></button>	
+			?><button id="gclms-add-class"><? __('Select Class') ?></button>	
 		</p>
 	<? endif; ?>
 </div>

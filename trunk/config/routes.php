@@ -38,7 +38,9 @@ Router::parseExtensions('rss','json');
 Router::connect('/selenium/results', array('controller' => 'selenium', 'action' => 'results'));
 Router::connect('/selenium/*', array('controller' => 'selenium', 'action' => 'display'));
 
-if (file_exists(CONFIGS.'installed.txt')) {
+//Configure::write('Session.save', 'database');
+
+if (file_exists(CONFIGS . 'installed.txt')) {
 	Router::connect('/', array('controller' => 'student_center', 'action' => 'index'));
 
 	Router::connect('/users/users/*',array('controller' => 'users','action' => 'logout'));

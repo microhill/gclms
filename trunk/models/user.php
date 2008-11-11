@@ -105,10 +105,14 @@ class User extends AppModel {
 			'fields' => array('id'),
 			'contain' => array('Group' => array('web_path','name'))
 		));
-		$groups = array_combine(
-			Set::extract($groups,'{n}.Group.web_path'),
-			Set::extract($groups,'{n}.Group.name')
-		);
+		if(!empty($groups)) {
+			$groups = array_combine(
+				Set::extract($groups,'{n}.Group.web_path'),
+				Set::extract($groups,'{n}.Group.name')
+			);			
+		} else {
+			$groups = array();
+		}
 		
 		/*
 		$user = $this->find('first',array(
@@ -203,7 +207,7 @@ class User extends AppModel {
 					'User.email' => $data['User']['username'],
 					'User.password' => $password
 				),
-				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified','super_administrator')
+				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified')
 			));
 		} else if(strpos($data['User']['username'],'http://') === false) {
 			$this->contain('ClassesTaking');
@@ -212,7 +216,7 @@ class User extends AppModel {
 					'User.username' => $data['User']['username'],
 					'User.password' => $password,
 				),
-				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified','super_administrator')
+				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified')
 			));
 		} else {
 			//OpenID	

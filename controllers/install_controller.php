@@ -101,8 +101,7 @@ class InstallController extends AppController {
 				&& !empty($this->data['User']['last_name'])
 				&& !empty($this->data['User']['email'])) {
 
-			App::Import('Model','User');
-			$this->User = new User;
+			$this->User =& ClassRegistry::init('User');
 	
 			$this->data['User']['password'] = Security::hash(Configure::read('Security.salt') . $this->data['User']['password'], 'sha1');
 			
@@ -113,6 +112,14 @@ class InstallController extends AppController {
 				'first_name' => $this->data['User']['first_name'],
 				'last_name' => $this->data['User']['last_name'],
 				'verified' => 1
+			));
+			
+			$this->Permission =& ClassRegistry::init('Permission');
+			
+			$this->Permission->save(array(
+				'user_id' => $this->User->id,
+				'model' => '*',
+				'crud' => array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
 			));
 		}
    		if(count($db->query('select id from users;')))

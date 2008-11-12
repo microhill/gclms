@@ -195,7 +195,7 @@ class Permission extends AppModel {
 		return parent::save();
 	}
 		
-	function cache($conditions,$setResults = false) {
+	function cache($conditions,$setResults = true) {
 		if(is_string($conditions)) {
 			$conditions = array('model' => func_get_args());
 			$setResults = true;
@@ -204,6 +204,23 @@ class Permission extends AppModel {
 		$user_id = User::get('id');
 		if(empty($user_id))
 			return false;
+
+		if(false !== $key = array_search('administration',$conditions['model'])) {
+			$permission = $this->find('first',array(
+				'conditions' => array(
+					'user_id' => $user_id,
+					'model' => '*',
+					'group_id' => null
+				),
+				'contain' => false,
+				'fields' => array('group_id','course_id','model','foreign_key','_create','_read','_update','_delete')
+			));
+
+			if($setResults)
+				Permission::set($permission);
+
+			unset($conditions['model'][$key]);
+		}
 		
 		//$user_id = $user_id ? $user_id : null;
 		
@@ -223,14 +240,18 @@ class Permission extends AppModel {
 			'virtual_class_id' => $class_id,
 			'foreign_key' => null
 		);
-
-		$permissions = $this->find('all',array(
-			'conditions' => am(array(
-				'model' => $conditions['model']
-			),$defaults),
-			'contain' => false,
-			'fields' => array('group_id','course_id','model','foreign_key','_create','_read','_update','_delete')
-		));
+	
+		if(!empty($conditions['model'])) {
+			$permissions = $this->find('all',array(
+				'conditions' => am(array(
+					'model' => $conditions['model']
+				),$defaults),
+				'contain' => false,
+				'fields' => array('group_id','course_id','model','foreign_key','_create','_read','_update','_delete')
+			));
+		} else {
+			$permissions = array();
+		}
 		
 		if($setResults)
 			Permission::set($permissions);
@@ -260,6 +281,11 @@ class Permission extends AppModel {
 	
 	function set($permission) {
 		Permission::getInstance($permission);
+	}
+	
+	function debug() {
+		$_permission =& Permission::getInstance();
+		prd($_permission);
 	}
 	
 	function get($path = null) {

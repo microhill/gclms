@@ -37,6 +37,8 @@ class StudentCenterController extends AppController {
 			$this->set('my_groups',$this->User->findAllGroups(User::get('id')));
 			$this->set('my_classes',$this->User->findAllClasses(User::get('id')));			
 		}
+		
+		$this->Permission->cache('administration');
 
 		$this->set('participating_groups',$this->Group->findLatestParticipating());
 		$this->set('new_courses',$this->Course->findLatestPublished());

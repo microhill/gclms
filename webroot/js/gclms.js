@@ -123,7 +123,6 @@ gclms.AppController = {
 };
 
 gclms.Views = $H({});
-
 gclms.Triggers = $H({
 	'#UserLogin input#UserUsername:keyup,#UserLogin input#UserUsername:change,#UserLogin input#UserUsername:click,#UserLogin input#UserUsername:focus,#UserLogin input#UserUsername' : gclms.AppController.updateLoginPanel,
 	'img.gclms-tooltip-button:mouseover': gclms.AppController.showTooltip,

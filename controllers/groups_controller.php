@@ -1,7 +1,7 @@
 <?
 class GroupsController extends AppController {
     var $uses = array('Group','ClassEnrollee');
-	var $helpers = array('Paginator','MyPaginator','Text');
+	var $helpers = array('MyPaginator','Text');
 	var $itemName = 'Group';
 	var $paginate = array('order' => 'name');
 
@@ -33,6 +33,15 @@ class GroupsController extends AppController {
 		}
 		
 		parent::beforeRender();
+	}
+	
+	function table($page = 1,$limit = 15,$sort = 'name',$direction = 'ASC'){
+		$this->data = $this->Group->find('all',array(
+			'fields' => array('id','name','web_path'),
+			'limit' => $limit,
+			'sort' => $sort . ' ' . $direction,
+			'recursive' => false
+		));
 	}
 	
 	function show() {

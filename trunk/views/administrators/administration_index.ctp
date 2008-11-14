@@ -10,16 +10,9 @@ echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
 		<?= $this->element('notifications'); ?>
-		<h1><?= __('Administrators') ?></h1>
-		<button href="administrators/add"><? __('Add') ?></button>
-		<ul>
-		<?
-		foreach($this->data as $administrator) {
-			?>
-			<li><a href="administrators/edit/<?= $administrator['User']['id'] ?>"><?= $administrator['User']['username'] ?></a></li>
-			<?
-		}
-		?>
+		<h1><? __('Administrators') ?></h1>
+		<button href="administrators/users/add"><? __('Add') ?></button>
+		<? include('table.ctp'); ?>
 		</ul>
 	</div>
 </div>

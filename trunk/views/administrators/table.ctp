@@ -1,10 +1,5 @@
 <?
 $myPaginator->options(array('url' => '/administration/group_administrators/index'));	
-$headers = array(
-	$myPaginator->sort(__('Email',true),'email'),
-	$myPaginator->sort(__('Name',true),'last_name')	
-);
-$fields = array('User.email','User.full_name');
 
 function customizeCellData($row,$helpers) {
 	$row['User']['full_name'] = $row['User']['first_name'] . ' ' . $row['User']['last_name'];
@@ -13,12 +8,16 @@ function customizeCellData($row,$helpers) {
 }
 
 function customizeRowURL($row,$defaultUrl) {
-	return '/administration/group_administrators/edit/' . $row['User']['id'] . '/';
+	return '/administration/administrators/edit/' . $row['User']['id'];
 }
 
-echo $this->element('recordset',array(
-	'headers' => $headers,
-	'fields' => $fields,
-	'heading' => 'Administrators',
-	'data' => $data
+echo $this->element('recordset2',array(
+	'records' => $this->data,
+	'fields' => array('User.username','User.full_name'),
+	'headers' => array(
+		$myPaginator->sort(__('Username',true),'username'),
+		$myPaginator->sort(__('Name',true),'last_name')	
+	),
+	'cell_customizer' => 'customizeCellData',
+	'row_url_customizer' => 'customizeRowURL'
 ));

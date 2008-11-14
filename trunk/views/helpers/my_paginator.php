@@ -1,5 +1,14 @@
 <?
-class MyPaginatorHelper extends PaginatorHelper {	
+class MyPaginatorHelper extends Helper {	
+	function options () {
+		
+	}
+	
+	function sort () {
+		
+	}
+
+	/*
 	function sort($title, $key = null, $options = array()) {
 		if(@$this->passedArgs['sort'] == $key) {
 			$options['class'] = $this->passedArgs['direction'] == 'asc' ? 'SortAsc' : 'SortDesc';	
@@ -53,4 +62,5 @@ class MyPaginatorHelper extends PaginatorHelper {
 		
 		return $this->Html->link($title, $newUrl, $options);
 	}
+	*/
 }

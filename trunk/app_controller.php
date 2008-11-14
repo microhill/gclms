@@ -6,9 +6,9 @@ class AppController extends Controller {
 	var $components = array('Common','Breadcrumbs','Languages','RequestHandler','Notifications');
 	var $helpers = array('Html','Form','Ajax','Asset');
 	//var $uses = array('Group','Course','User','Permission');
-
 	var $paginateDefaults = array('limit' => 12);
 	var $css_for_layout = array();
+	var $layout = 'gclms';
 
     function beforeFilter() {
 		if($this->name == 'Install') { //!Configure::read('Config.database_set') && 

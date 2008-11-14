@@ -10,6 +10,8 @@ echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
 		<?= $this->element('notifications'); ?>
+		<h1><? __('Users') ?></h1>
+		<button href="/administration/users/add"><? __('Add') ?></button>
 		<? include('table.ctp'); ?>
 	</div>
 </div>

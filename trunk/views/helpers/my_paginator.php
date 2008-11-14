@@ -1,11 +1,14 @@
 <?
 class MyPaginatorHelper extends Helper {	
-	function options () {
-		
+	var $options = array('test' => 'test');
+	
+	function options ($options) {
+		$this->options = am($this->options,$options);
 	}
 	
-	function sort () {
-		
+	function sort($label,$field) {
+		$tmp = '';
+		return '<a href="' . $this->options['url'] . $tmp . '">' . $label . '</a>';
 	}
 
 	/*

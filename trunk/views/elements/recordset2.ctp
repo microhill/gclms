@@ -4,49 +4,24 @@
  *
  * @param string $heading
  * @param array $data
- * @param array $showDefaultAddButton
- * @param array $addButtonUrl
- * @param array $defaultAddButtonTitle
- * @param array $buttons
- *
- * Customizing functions
- * 
- * customizeCellData
- * customizeRowURL
  *
  */
 if(!isset($modelName))
 	$modelName = $this->params['models'][0];
-
-$adminParam = isset($this->params[Configure::read('Routing.admin')]) ? Configure::read('Routing.admin') : null;
-
-if(!isset($heading) && !empty($heading)) {
-	$heading = $this->viewPath;
-}
-	
-if(@$showDefaultAddButton) {
-	$defaultAddButtonUri = !empty($addButtonUrl) ? $addButtonUrl : Router::url(array($adminParam=>$adminParam,'action'=>'add','group'=>'/' . @Group::get('web_path')));
-}
 ?>
-
-<? if(!empty($heading)): ?>
-<h1><?= Inflector::humanize(__($heading,true)); ?></h1>
-<? endif; ?>
-
-<? if(@$showDefaultAddButton): ?>
-	<button href="<?= $defaultAddButtonUri ?>"><? __('Add') ?></button>
-<? endif; ?>
-
 <table class="gclms-records" width="100%">
 	<tr>
 		<td  colspan="3">
-			<? if(!empty($data)): ?>
+			<? if(!empty($records)): ?>
 			<table class="gclms-tabular gclms-hover-rows" cellspacing="0">
 				<?= $html->tableHeaders(order($headers,$text_direction), array('class'=>'Headers')) ?>
 			    <tbody class="gclms-recordset">
 				    <?
-				    foreach ($data as $row) {
-					    $cellData = array_intersect_key_and_sort(customizeCellData($row,$this->loaded), $fields);
+				    foreach ($records as $row) {
+				    	if(function_exists(@$cell_customizer))
+						    $cellData = array_intersect_key_and_sort($cell_customizer($row,$this->loaded), $fields);
+						else	
+						    $cellData = array_intersect_key_and_sort($row, $fields);
 					    $defaultUrl = array(
 							'groupAndCoursePath'=>$groupAndCoursePath,
 							'action'=>'view',
@@ -74,7 +49,7 @@ if(@$showDefaultAddButton) {
 			<? endif; ?>
 		</td>
 	</tr>
-<? if(!empty($data) && !empty($myPaginator->__defaultModel)): ?>
+<? if(!empty($records) && !empty($myPaginator->__defaultModel)): ?>
 	<tr class="gclms-pagination">
 		<td class="gclms-left"><?= $myPaginator->prev('Previous Page'); ?></td>
 		<td class="gclms-center">

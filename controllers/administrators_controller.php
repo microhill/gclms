@@ -1,6 +1,7 @@
 <?
 class AdministratorsController extends AppController {
     var $uses = array('User','Group');
+	var $helpers = array('MyPaginator');
 	var $itemName = 'Administrator';
 	var $paginate = array(
 		'order' => 'username',
@@ -19,16 +20,15 @@ class AdministratorsController extends AppController {
 		parent::beforeFilter();
 	}
 	
-	function administration_index() {
-		//$data = $this->paginate();
-		//prd($this);
-
+	function table($page = 1,$limit = 15,$sort = 'User.username',$direction = 'ASC'){
 		$this->data = $this->Permission->find('all',array(
 			'conditions' => array(
 				'virtual_class_id' => null,
 				'model' => '*'
 			),
-			'fields' => array('DISTINCT User.id','User.username'),
+			'fields' => array('DISTINCT User.id','User.username','User.first_name','User.last_name'),
+			'limit' => $limit,
+			'sort' => $sort . ' ' . $direction,
 			'contain' => array('User')
 		));
 	}

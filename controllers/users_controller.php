@@ -3,7 +3,7 @@ uses('Sanitize');
 
 class UsersController extends AppController {
     var $uses = array('User');
-	var $helpers = array('Paginator','MyPaginator');
+	var $helpers = array('MyPaginator');
 	var $itemName = 'User';
 	var $paginate = array('order' => 'email');
 	var $components = array('Notifications');
@@ -18,6 +18,15 @@ class UsersController extends AppController {
 			$this->Breadcrumbs->addCrumb('Users','/administration/users');
 		}
 		parent::beforeFilter();
+	}
+	
+	function table($page = 1,$limit = 15,$sort = 'username',$direction = 'ASC'){
+		$this->data = $this->User->find('all',array(
+			'fields' => array('id','username','first_name','last_name','email'),
+			'limit' => $limit,
+			'sort' => $sort . ' ' . $direction,
+			'recursive' => false
+		));
 	}
 	
 	function administration_dropdown($email_or_username) {

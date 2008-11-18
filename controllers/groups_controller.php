@@ -46,7 +46,7 @@ class GroupsController extends AppController {
 	
 	function show() {
 		$this->Permission =& ClassRegistry::init('Permission');		
-		$this->Permission->cache('Course','Permission','Group','VirtualClass');
+		$this->Permission->cache('SiteAdministration','GroupAdministration','Course','Permission','Group','VirtualClass');
 		
 
 		/*

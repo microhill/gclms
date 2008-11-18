@@ -6,10 +6,6 @@
 			'content' => $this->element('login')
 		));
 
-	if(!empty($chat_participants)) {
-		echo $this->element('chat_participants');
-	}
-
 	if(empty($this->params['administration']) && User::get('id') && $this->name == 'StudentCenter') {
 		echo $this->element('panel',array(
 			'title' => 'My Classes',
@@ -32,13 +28,6 @@
 		}
 	}
 	
-	if(empty($this->params['administration']) && User::get('id') && $this->name == 'Groups') {
-		echo $this->element('panel',array(
-			'title' => 'Courses',
-			'content' => $this->element('course_listing')
-		));
-	}
-
 	if(!$offline && ($this->name == 'StudentCenter' || $this->name == 'Groups'))
 		echo $this->element('choose_language');
 
@@ -47,10 +36,6 @@
 			'title' => 'Open Classes',
 			'content' => $this->element('open_classes')
 		));
-	}
-	
-	if($this->name == 'Announcements') {
-		echo $this->element('../class/secondary_column');
 	}
 
 	?>

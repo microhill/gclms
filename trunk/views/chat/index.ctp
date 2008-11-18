@@ -10,7 +10,11 @@ $javascript->link(array(
 	'chat'
 ), false);
 
-echo $this->element('left_column'); ?>
+$secondary_column = $this->element('chat_participants');
+
+<?= $this->element('left_column',array(
+		'secondary_column' => $secondary_column
+	)); ?>
 		
 <div class="gclms-center-column">
 	<div class="gclms-content">
@@ -51,4 +55,6 @@ echo $this->element('left_column'); ?>
 	</div>
 </div>
 
-<?= $this->element('right_column'); ?>
+<?= $this->element('right_column',array(
+		'secondary_column' => $secondary_column
+	)); ?>

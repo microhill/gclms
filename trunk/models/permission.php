@@ -204,34 +204,50 @@ class Permission extends AppModel {
 		$user_id = User::get('id');
 		if(empty($user_id))
 			return false;
+		
+		$group_id = Group::get('id');
+		$course_id = Course::get('id');
+		$class_id = VirtualClass::get('id');
 
-		if(false !== $key = array_search('administration',$conditions['model'])) {
+		if(false !== $key = array_search('SiteAdministration',$conditions['model'])) {
 			$permission = $this->find('first',array(
 				'conditions' => array(
 					'user_id' => $user_id,
 					'model' => '*',
-					'group_id' => null
+					'group_id' => null,
+					'course_id' => null,
+					'virtual_class_id' => null,
+					'foreign_key' => null
 				),
 				'contain' => false,
-				'fields' => array('group_id','course_id','model','foreign_key','_create','_read','_update','_delete')
+				'fields' => array('group_id','model')
 			));
 
 			if($setResults)
-				Permission::set($permission);
+				Permission::set('SiteAdministrator');
 
 			unset($conditions['model'][$key]);
 		}
-		
-		//$user_id = $user_id ? $user_id : null;
-		
-		$group_id = Group::get('id');
-		//$group_id = $group_id ? $group_id : null;
-		
-		$course_id = Course::get('id');
-		//$course_id = $course_id ? $course_id : null;
-		
-		$class_id = VirtualClass::get('id');
-		//$class_id = $course_id ? $class_id : null;
+
+		if(false !== $key = array_search('GroupAdministration',$conditions['model'])) {
+			$permission = $this->find('first',array(
+				'conditions' => array(
+					'user_id' => $user_id,
+					'model' => '*',
+					'group_id' => $group_id,
+					'course_id' => null,
+					'virtual_class_id' => null,
+					'foreign_key' => null
+				),
+				'contain' => false,
+				'fields' => array('group_id','model','_create','_read','_update','_delete')
+			));
+
+			if($setResults)
+				Permission::set(array($permission));
+
+			unset($conditions['model'][$key]);
+		}
 
 		$defaults = array(
 			'user_id' => $user_id,
@@ -314,8 +330,20 @@ class Permission extends AppModel {
 	}
 	
 	function check($model,$actions = '*',$foreign_key = null) {
+		$permissions = Permission::get();
+		
+		if(@$permissions[0] == 'SiteAdministrator') {
+			return true;
+		}
+		
+		if(Group::get('id')) {
+			$permission = Set::extract('/Permission[model=*][_create=1][_read=1][_update=1][_delete=1]/.[:first]',$permissions);
+			if(!empty($permission))
+				return true;
+		}
+		
 		if($actions = '*' && $foreign_key == null) {
-			$permission = Set::extract('/Permission[model=' . $model . '][_create=1][_read=1][_update=1][_delete=1]/.[:first]',Permission::get());
+			$permission = Set::extract('/Permission[model=' . $model . '][_create=1][_read=1][_update=1][_delete=1]/.[:first]',$permissions);
 			return !empty($permission);
 		}
 		

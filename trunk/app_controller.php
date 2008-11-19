@@ -41,8 +41,10 @@ class AppController extends Controller {
        	$group = !empty($group['Group']['web_path']) ? $group['Group']['web_path'] : null;
 		$cakeAdmin = isset($this->params[Configure::read('Routing.admin')]) ? Configure::read('Routing.admin') : null;
 
-		if($this->Session->check('User'))
-			User::store($this->Session->read('User'));
+		if($this->Session->check('User')) {
+			User::set($this->Session->read('User'));
+			$this->Permission->cache('SiteAdministration');
+		}
 
        	//$this->set('user', $this->Session->read('Auth.User'));
 		$this->set('languages', $this->Languages->generateList());

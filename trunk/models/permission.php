@@ -224,7 +224,7 @@ class Permission extends AppModel {
 			));
 
 			if($setResults)
-				Permission::set('SiteAdministrator');
+				Permission::set(array('SiteAdministrator','Permission'));
 
 			unset($conditions['model'][$key]);
 		}
@@ -331,7 +331,7 @@ class Permission extends AppModel {
 	
 	function check($model,$actions = '*',$foreign_key = null) {
 		$permissions = Permission::get();
-		
+
 		if(@$permissions[0] == 'SiteAdministrator') {
 			return true;
 		}

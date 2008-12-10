@@ -160,7 +160,7 @@ class AppController extends Controller {
     function administration_add($model = null) { $this->add($model); }
     function add($model = null) { $this->Common->add($model); }
 	
-    function administration_index() {$this->index();}
+    function administration_index() {$this->Common->index();}
 	function index() { $this->Common->index(); }
 
     function administration_edit($id = null, $model = null) { $this->Common->edit($id,$model); }	

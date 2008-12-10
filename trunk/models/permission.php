@@ -77,23 +77,6 @@ class Permission extends AppModel {
 		);
 	}
 	
-	private function _check($data,$actions) {
-		foreach($actions as $action_name => $action_permission) {
-			if($data['Permission']['_' . $action_name] != $action_permission)
-				return false;
-		}
-		return true;
-		/*
-		if($data['Permission']['_create'] == @$crud['create']
-				&& $data['Permission']['_read'] == $crud['read']
-				&& $data['Permission']['_update'] == $crud['update']
-				&& $data['Permission']['_delete'] == $crud['delete']) {
-			return true;
-		}
-		return false;
-		*/
-	}
-	
 	function saveAll($data,$user_id,$group_id) {
 		$default = array(
 			'user_id' => $user_id,
@@ -208,7 +191,9 @@ class Permission extends AppModel {
 		$group_id = Group::get('id');
 		$course_id = Course::get('id');
 		$class_id = VirtualClass::get('id');
-
+		
+		//pr($conditions);
+		
 		if(false !== $key = array_search('SiteAdministration',$conditions['model'])) {
 			$permission = $this->find('first',array(
 				'conditions' => array(
@@ -224,7 +209,7 @@ class Permission extends AppModel {
 			));
 
 			if($setResults)
-				Permission::set(array('SiteAdministrator','Permission'));
+				Permission::set(array('SiteAdministrator'));
 
 			unset($conditions['model'][$key]);
 		}
@@ -258,13 +243,7 @@ class Permission extends AppModel {
 		);
 	
 		if(!empty($conditions['model'])) {
-			$permissions = $this->find('all',array(
-				'conditions' => am(array(
-					'model' => $conditions['model']
-				),$defaults),
-				'contain' => false,
-				'fields' => array('group_id','course_id','model','foreign_key','_create','_read','_update','_delete')
-			));
+			$permissions = $this->__find($conditions,$defaults);
 		} else {
 			$permissions = array();
 		}
@@ -273,6 +252,37 @@ class Permission extends AppModel {
 			Permission::set($permissions);
 
 		return $permissions;
+	}
+	
+	private function __find($conditions,$defaults) {
+		if($this->check('SiteAdministrator') || $this->check('CourseAdministrator')) {
+			return array(
+				'Permission' => am($defaults,$conditions,array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1))
+			);
+		}
+		prd('2');		
+		return $this->find('first',array(
+			'conditions' => am($defaults,$conditions),
+			'recusive' => false,
+			'fields' => array('group_id','course_id','model','foreign_key','_create','_read','_update','_delete')
+		));
+	}
+
+	private function _check($data,$actions) {
+		foreach($actions as $action_name => $action_permission) {
+			if($data['Permission']['_' . $action_name] != $action_permission)
+				return false;
+		}
+		return true;
+		/*
+		if($data['Permission']['_create'] == @$crud['create']
+				&& $data['Permission']['_read'] == $crud['read']
+				&& $data['Permission']['_update'] == $crud['update']
+				&& $data['Permission']['_delete'] == $crud['delete']) {
+			return true;
+		}
+		return false;
+		*/
 	}
 	
 	function allow($model,$actions,$foreign_key) {
@@ -335,12 +345,25 @@ class Permission extends AppModel {
 		if(@$permissions[0] == 'SiteAdministrator') {
 			return true;
 		}
+
+		if(@$permissions[0] == 'CourseAdministrator') {
+			$group_id = Group::get('id') ? Group::get('id') : $foreign_key;
+			if(empty($group_id)) {
+				throw Exception('Woops');
+			}
+			$permission = Set::extract('/Permission[group_id=' . $group_id . '][model=*][_create=1][_read=1][_update=1][_delete=1]/.[:first]',$permissions);
+			if(!empty($permission))
+				return true;
+			return false;
+		}
 		
+		/*
 		if(Group::get('id')) {
 			$permission = Set::extract('/Permission[model=*][_create=1][_read=1][_update=1][_delete=1]/.[:first]',$permissions);
 			if(!empty($permission))
 				return true;
 		}
+		*/
 		
 		if($actions = '*' && $foreign_key == null) {
 			$permission = Set::extract('/Permission[model=' . $model . '][_create=1][_read=1][_update=1][_delete=1]/.[:first]',$permissions);

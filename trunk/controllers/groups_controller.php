@@ -24,6 +24,14 @@ class GroupsController extends AppController {
 		parent::beforeFilter();
 	}
 	
+	function administration_index() {
+		if(!Permission::check('SiteAdministration')) {
+			$this->cakeError('permission');
+		}
+
+		$this->Common->index();	
+	}
+	
 	function beforeRender() {
 		if(isset($this->params['group'])) {
 			$this->Breadcrumbs->addCrumb(Group::get('name'),'/' . Group::get('web_path'));
@@ -47,30 +55,28 @@ class GroupsController extends AppController {
 	function show() {
 		$this->Permission =& ClassRegistry::init('Permission');		
 		$this->Permission->cache('SiteAdministration','GroupAdministration','Course','Permission','Group','VirtualClass');
-		
-
-		/*
-		if(User::allow(array(
-			'group' => Group::get('id'),
-			'model' => 'Course',
-			'action' => 'read'
-		))) {
-			
-		} else {
-			
-		}
-		*/
 
 		$this->Course->contain();
 		$courses = $this->Course->find('all',array(
 			'conditions' => array('Course.group_id' => Group::get('id')),
-			'order' => 'Course.title ASC'
+			'order' => 'Course.title ASC',
+			'fields' => array('id','title','web_path','published_status'),
+			'recursive' => false
 		));
+		
+		$unpublished_courses = Set::extract('/Course[published_status=1]/.[:first]',$courses);
+		foreach($unpublished_courses as $course) {
+			$this->Permission->cache(array(
+				'model' => 'Course',
+				'foreign_key' => $course['id']
+			));
+		}
 		
 		$this->set(compact('courses'));
 		
 		$this->set('title',Group::get('name') . ' &raquo; ' . Configure::read('App.name'));
 	}
+	
 	/*
 	function register() {
 		$this->Breadcrumbs->addCrumb('Register Your Group','/groups/register');

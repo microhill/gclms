@@ -10,6 +10,10 @@ class StatisticsController extends AppController {
 	}
 	
 	function administration_index() {
+		if(!Permission::check('SiteAdministration')) {
+			$this->cakeError('permission');
+		}
+		
 		$group_count = $this->Group->find('count');
 		$this->set('group_count',$group_count);
 		

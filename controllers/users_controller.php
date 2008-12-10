@@ -20,6 +20,14 @@ class UsersController extends AppController {
 		parent::beforeFilter();
 	}
 	
+	function administration_index() {
+		if(!Permission::check('SiteAdministration')) {
+			$this->cakeError('permission');
+		}
+
+		$this->Common->index();	
+	}
+	
 	function table($page = 1,$limit = 15,$sort = 'username',$direction = 'ASC'){
 		$this->data = $this->User->find('all',array(
 			'fields' => array('id','username','first_name','last_name','email'),

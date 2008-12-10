@@ -7,14 +7,17 @@ $javascript->link(array(
 
 $primary_column = $this->element('group_menu');
 
-$secondary_column = <<<END
-<div class="gclms-content">
-	{$this->element('panel',array(
+//$published_courses = Set::extract('/Course[published_status=1]/.[:first]',$courses);
+//$unpublished_courses = Set::extract('/Course[published_status=0]/.[:first]',$courses);
+
+$secondary_column = '<div class="gclms-content">';
+$secondary_column .= $this->element('panel',array(
 			'title' => 'Courses',
-			'content' => $this->element('course_listing')
-		))}
-</div>
-END;
+			'content' => $this->element('course_listing'),
+			'courses' => $courses
+		));
+
+$secondary_column .= '</div>';
 
 echo $this->element('left_column',array(
 	'primary_column' => $primary_column,

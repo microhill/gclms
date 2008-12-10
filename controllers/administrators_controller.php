@@ -18,6 +18,10 @@ class AdministratorsController extends AppController {
 		
 		$this->set('groups',$this->Group->generateList());
 		parent::beforeFilter();
+		
+		if(!Permission::check('SiteAdministration')) {
+			$this->cakeError('permission');
+		}
 	}
 	
 	function table($page = 1,$limit = 15,$sort = 'User.username',$direction = 'ASC'){

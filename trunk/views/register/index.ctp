@@ -24,8 +24,8 @@
 		'label' =>  __('Last Name', true),
 		'between' => '<br/>'
 	));
-	echo $form->input('alias',array(
-		'label' =>  __('Alias', true),
+	echo $form->input('username',array(
+		'label' =>  __('Username', true),
 		'between' => '<br/>'
 	));
 	echo $form->input('address_1',array(

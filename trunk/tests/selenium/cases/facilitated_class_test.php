@@ -61,13 +61,13 @@ class FacilitatedClassTest extends SeleniumTestCase {
 	 * The course must already exist, so make sure you are using one that is already in
 	 * the dropdown select box. Also, type must be Online or Inperson.
 	 * 
-	 * @param string  $alias  Class Alias, this can be anything you want.
+	 * @param string  $username  Class Username, this can be anything you want.
 	 * @param string  $course Course, must already exist, can't make something up.
 	 * @param string  $type   Class type, must be Online or Inperson.
 	 * @param integer $maxcap The class capacity of students.
 	 */
-	protected function addFacilitatedClass($alias, $course, $type, $maxcap) {
-		$this->type('FacilitatedClassAlias', $alias);
+	protected function addFacilitatedClass($username, $course, $type, $maxcap) {
+		$this->type('FacilitatedClassUsername', $username);
 		$this->select("FacilitatedClassCourseId", "label=".$course);
 		if ($type == "Online") {
 			$this->click("FacilitatedClassType1"); // Online

@@ -42,7 +42,7 @@ echo $this->element('left_column'); ?>
 				<div class="gclms-notebook-entry-comments">
 					<? foreach($this->data['NotebookEntryComment'] as $comment): ?>
 						<div class="gclms-notebook-entry-comment">
-							<p>Posted by <?= $comment['User']['alias'] ?> at <?= $comment['created'] ?></p>
+							<p>Posted by <?= $comment['User']['username'] ?> at <?= $comment['created'] ?></p>
 							<?= $comment['content'] ?>
 						</div>
 					<? endforeach; ?>

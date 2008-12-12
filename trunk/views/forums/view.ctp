@@ -58,12 +58,12 @@ echo $this->element('no_column_background'); ?>
 							<div class="gclms-center"><?= @$post['ForumPost']['reply_count'] ?></div>
 						</td>
 						<td class="gclms-author">
-							<div class="gclms-center"><a href="/users/<?= $post['User']['id'] ?>"><?= $post['User']['alias'] ?></a></div>
+							<div class="gclms-center"><a href="/users/<?= $post['User']['id'] ?>"><?= $post['User']['username'] ?></a></div>
 						</td>
 						<td class="gclms-last-reply">
 							<? if(!empty($post['ForumPost']['last_post']) && $post['ForumPost']['last_post']['ForumPost']['id'] != $post['ForumPost']['id']): ?>
 							 	<?= $myTime->niceShort($post['ForumPost']['last_post']['ForumPost']['created']) ?><br/>
-							 	<?= $post['ForumPost']['last_post']['User']['alias'] ?>
+							 	<?= $post['ForumPost']['last_post']['User']['username'] ?>
 							<? else: ?>
 								<br/><br/>
 							<? endif; ?>

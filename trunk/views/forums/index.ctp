@@ -46,7 +46,7 @@ echo $this->element('left_column'); ?>
 							<td class="gclms-last-post">
 								<? if(!empty($forum['Forum']['last_post'])): ?>
 								 	<?= $myTime->niceShort($forum['Forum']['last_post']['ForumPost']['created']) ?><br/>
-								 	<?= $forum['Forum']['last_post']['User']['alias'] ?>
+								 	<?= $forum['Forum']['last_post']['User']['username'] ?>
 								<? else: ?>
 									<br/><br/>
 								<? endif; ?>

@@ -1,11 +1,11 @@
 <?
 $headers = array(
-	$myPaginator->sort(__('Alias',true),'alias'),
+	$myPaginator->sort(__('Username',true),'username'),
 	__('Course', true),
 	__('Begins - Ends', true)
 );
 $fields = array(
-	'FacilitatedClass.alias',
+	'FacilitatedClass.username',
 	'Course.title',
 	'FacilitatedClass.beginning'
 );

@@ -119,7 +119,7 @@ class ChatController extends AppController {
     	//$datetime = $mrClean->paranoid($datetime);
     	$datetime = date('Y-m-d H:i:s',$datetime);
     	
-    	$this->ChatMessage->contain(array('User'=>array('id','alias')));
+    	$this->ChatMessage->contain(array('User'=>array('id','username')));
 		$chat_messages = $this->ChatMessage->find('all',array(
 			'conditions' => array(
 				'ChatMessage.course_id' => $this->viewVars['course']['id'],

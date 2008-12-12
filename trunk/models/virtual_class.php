@@ -19,7 +19,7 @@ class VirtualClass extends AppModel {
 	var $validate = array(
 		'title' => array(
 			'rule' => VALID_NOT_EMPTY,
-			'duplicateAlias' => 'checkAlias'
+			'duplicateUsername' => 'checkUsername'
 		),
 		'has_student_time_limit' => 'checkTimeLimit',
 		'start' => 'checkStartDate',

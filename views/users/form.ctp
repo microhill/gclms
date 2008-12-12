@@ -3,8 +3,8 @@ echo $form->input('email',array(
 	'label' =>  __('Email', true),
 	'between' => '<br/>'
 ));
-echo $form->input('alias',array(
-	'label' =>  __('Alias', true),
+echo $form->input('username',array(
+	'label' =>  __('Username', true),
 	'between' => '<br/>'
 ));
 echo $form->input('first_name',array(

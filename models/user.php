@@ -41,9 +41,9 @@ class User extends AppModel {
 			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank'),
 			array('rule' => 'notDuplicateEmail','message' => 'The email you provided is already in use')
 		),
-		'alias' => array(
+		'username' => array(
 			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank'),
-			array('rule' => 'notDuplicateAlias','message' => 'The alias you provided is already in use')
+			array('rule' => 'notDuplicateUsername','message' => 'The username you provided is already in use')
 		),		
 		'new_password' => array(
 			array('rule' => 'checkDepulicatePassword','message' => 'Passwords do not match'),
@@ -72,13 +72,13 @@ class User extends AppModel {
 		return true;
 	}
 	
-	function notDuplicateAlias() {
+	function notDuplicateUsername() {
 		if($this->id) {
 			return true;
 		}
 		
 		$this->contain();
-		$user = $this->findByAlias($this->data['User']['alias']);
+		$user = $this->findByUsername($this->data['User']['username']);
 		if(!empty($user))
 			return false;
 		return true;
@@ -144,13 +144,13 @@ class User extends AppModel {
     	$classes1 = count(($user['ClassesTaking'])) ?
 			array_combine(
 	        	Set::extract($user, 'ClassesTaking.{n}.id'),
-				Set::extract($user, 'ClassesTaking.{n}.alias')
+				Set::extract($user, 'ClassesTaking.{n}.username')
 			) : array();
     	/*
 		$groups2 = count($groups['ClassesFacilitating']) ?
 			array_combine(
 	        	Set::extract($groups, 'ClassesFacilitating.{n}.id'),
-				Set::extract($groups, 'ClassesFacilitating.{n}.alias')
+				Set::extract($groups, 'ClassesFacilitating.{n}.username')
 			) : array();
 		*/
 		//return $groups1 + $groups2;	

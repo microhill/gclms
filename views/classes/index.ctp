@@ -20,7 +20,7 @@ echo $this->element('left_column');
 				
 				?>
 				<li>
-					<a href="<?= $groupAndCoursePath ?>/<?= $class['id'] ?>"><?= $class['alias'] ?></a> (<a href="<?= $groupWebPath ?>/classes/edit/<?= $class['id'] ?>">edit</a>)<br/>
+					<a href="<?= $groupAndCoursePath ?>/<?= $class['id'] ?>"><?= $class['username'] ?></a> (<a href="<?= $groupWebPath ?>/classes/edit/<?= $class['id'] ?>">edit</a>)<br/>
 					<?
 					if(!empty($class['start'])) {
 						echo $myTime->niceShortDate($class['start']) . ' - ' . $myTime->niceShortDate($class['end']);

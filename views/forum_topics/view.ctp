@@ -26,7 +26,7 @@ echo $this->element('no_column_background'); ?>
 				<tr>
 					<td width="20%">
 						<div>
-							<div class="gclms-alias"><?= $this->data['User']['alias'] ?></div>
+							<div class="gclms-username"><?= $this->data['User']['username'] ?></div>
 							<div class="gclms-avatar">
 								<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($this->data['User']['email']) ?>&default=<?= urlencode(@$default) ?>&size=96" />
 							</div>
@@ -47,7 +47,7 @@ echo $this->element('no_column_background'); ?>
 				<tr>
 					<td width="20%">
 						<div>
-							<div class="gclms-alias"><?= $post['User']['alias'] ?></div>
+							<div class="gclms-username"><?= $post['User']['username'] ?></div>
 							<div class="gclms-avatar">
 								<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($post['User']['email']) ?>&default=<?= urlencode(@$default) ?>&size=96" />
 							</div>

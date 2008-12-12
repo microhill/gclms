@@ -2,13 +2,13 @@
 $myPaginator->options();	
 
 $headers = array(
-	$myPaginator->sort(__('Alias',true),'alias'),
+	$myPaginator->sort(__('Username',true),'username'),
 	__('Course', true),
 	__('Begins - Ends', true)
 );
 
 $fields = array(
-	'VirtualClass.alias',
+	'VirtualClass.username',
 	'Course.title',
 	'VirtualClass.beginning'
 );

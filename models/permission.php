@@ -191,10 +191,8 @@ class Permission extends AppModel {
 		$group_id = Group::get('id');
 		$course_id = Course::get('id');
 		$class_id = VirtualClass::get('id');
-		
-		//pr($conditions);
-		
-		if(false !== $key = array_search('SiteAdministration',$conditions['model'])) {
+
+		if(is_array($conditions['model']) && false !== $key = array_search('SiteAdministration',$conditions['model'])) {
 			$permission = $this->find('first',array(
 				'conditions' => array(
 					'user_id' => $user_id,
@@ -214,7 +212,7 @@ class Permission extends AppModel {
 			unset($conditions['model'][$key]);
 		}
 
-		if(false !== $key = array_search('GroupAdministration',$conditions['model'])) {
+		if(is_array($conditions['model']) && false !== $key = array_search('GroupAdministration',$conditions['model'])) {
 			$permission = $this->find('first',array(
 				'conditions' => array(
 					'user_id' => $user_id,

@@ -4,7 +4,7 @@
 	<div class="gclms-content">
 		<?
 		$headers = array(
-			//$myPaginator->sort(__('Alias',true),'alias')
+			//$myPaginator->sort(__('Username',true),'username')
 			__('Group', true),
 			__('Courses', true),
 			__('Facilitation', true)

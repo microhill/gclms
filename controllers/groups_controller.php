@@ -54,7 +54,7 @@ class GroupsController extends AppController {
 	
 	function show() {
 		$this->Permission =& ClassRegistry::init('Permission');		
-		$this->Permission->cache('SiteAdministration','GroupAdministration','Course','Permission','Group','VirtualClass');
+		$this->Permission->cache('GroupAdministration','Course','Permission','Group','VirtualClass');
 
 		$this->Course->contain();
 		$courses = $this->Course->find('all',array(

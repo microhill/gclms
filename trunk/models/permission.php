@@ -195,12 +195,12 @@ class Permission extends AppModel {
 		if(is_array($conditions['model']) && false !== $key = array_search('SiteAdministration',$conditions['model'])) {
 			$permission = $this->find('first',array(
 				'conditions' => array(
-					'user_id' => $user_id,
-					'model' => '*',
-					'group_id' => null,
-					'course_id' => null,
-					'virtual_class_id' => null,
-					'foreign_key' => null
+					'Permission.user_id' => $user_id,
+					'Permission.model' => '*',
+					'Permission.group_id' => null,
+					'Permission.course_id' => null,
+					'Permission.virtual_class_id' => null,
+					'Permission.foreign_key' => null
 				),
 				'contain' => false,
 				'fields' => array('group_id','model')
@@ -215,12 +215,12 @@ class Permission extends AppModel {
 		if(is_array($conditions['model']) && false !== $key = array_search('GroupAdministration',$conditions['model'])) {
 			$permission = $this->find('first',array(
 				'conditions' => array(
-					'user_id' => $user_id,
-					'model' => '*',
-					'group_id' => $group_id,
-					'course_id' => null,
-					'virtual_class_id' => null,
-					'foreign_key' => null
+					'Permission.user_id' => $user_id,
+					'Permission.model' => '*',
+					'Permission.group_id' => $group_id,
+					'Permission.course_id' => null,
+					'Permission.virtual_class_id' => null,
+					'Permission.foreign_key' => null
 				),
 				'contain' => false,
 				'fields' => array('group_id','model','_create','_read','_update','_delete')
@@ -233,11 +233,11 @@ class Permission extends AppModel {
 		}
 
 		$defaults = array(
-			'user_id' => $user_id,
-			'group_id' => $group_id,
-			'course_id' => $course_id,
-			'virtual_class_id' => $class_id,
-			'foreign_key' => null
+			'Permission.user_id' => $user_id,
+			'Permission.group_id' => $group_id,
+			'Permission.course_id' => $course_id,
+			'Permission.virtual_class_id' => $class_id,
+			'Permission.foreign_key' => null
 		);
 	
 		if(!empty($conditions['model'])) {
@@ -262,7 +262,7 @@ class Permission extends AppModel {
 		return $this->find('first',array(
 			'conditions' => am($defaults,$conditions),
 			'recusive' => false,
-			'fields' => array('group_id','course_id','model','foreign_key','_create','_read','_update','_delete')
+			'fields' => array('Permission.group_id','Permission.course_id','Permission.model','Permission.foreign_key','Permission._create','Permission._read','Permission._update','Permission._delete')
 		));
 	}
 

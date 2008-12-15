@@ -36,18 +36,17 @@ class User extends AppModel {
 		return true;
 	}
 	
-	/*
 	var $validate = array(
-		//'email' => array(
-		//	array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank'),
-		//	array('rule' => 'notDuplicateEmail','message' => 'The email you provided is already in use')
-		//),
+		'email' => array(
+			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank'),
+			array('rule' => 'notDuplicateEmail','message' => 'The email you provided is already in use')
+		),
 		'username' => array(
 			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank'),
 			array('rule' => 'notDuplicateUsername','message' => 'The username you provided is already in use')
 		),		
 		'new_password' => array(
-			array('rule' => 'checkDepulicatePassword','message' => 'Passwords do not match'),
+			array('rule' => 'checkDuplicatePassword','message' => 'Passwords do not match'),
 			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank')
 		),
 		'repeat_new_password' => array(
@@ -60,7 +59,6 @@ class User extends AppModel {
 			'rule' => VALID_NOT_EMPTY
 		)
 	);
-	*/
 	
 	function notDuplicateEmail() {
 		if($this->id) {

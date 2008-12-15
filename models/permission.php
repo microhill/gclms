@@ -206,7 +206,7 @@ class Permission extends AppModel {
 				'fields' => array('group_id','model')
 			));
 
-			if($setResults)
+			if($permission && $setResults)
 				Permission::set(array('SiteAdministrator'));
 
 			unset($conditions['model'][$key]);
@@ -226,7 +226,7 @@ class Permission extends AppModel {
 				'fields' => array('group_id','model','_create','_read','_update','_delete')
 			));
 
-			if($setResults)
+			if($permission && $setResults)
 				Permission::set(array($permission));
 
 			unset($conditions['model'][$key]);
@@ -258,7 +258,7 @@ class Permission extends AppModel {
 				'Permission' => am($defaults,$conditions,array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1))
 			);
 		}
-		prd('2');		
+
 		return $this->find('first',array(
 			'conditions' => am($defaults,$conditions),
 			'recusive' => false,

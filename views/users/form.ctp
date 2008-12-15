@@ -7,6 +7,16 @@ echo $form->input('username',array(
 	'label' =>  __('Username', true),
 	'between' => '<br/>'
 ));
+echo $form->input('new_password',array(
+	'label' =>  __('Password', true),
+	'type' => 'password',
+	'between' => '<br/>'
+));
+echo $form->input('repeat_new_password',array(
+	'label' =>  __('Repeat Password', true),
+	'type' => 'password',
+	'between' => '<br/>'
+));
 echo $form->input('first_name',array(
 	'label' =>  __('First Name', true),
 	'between' => '<br/>'

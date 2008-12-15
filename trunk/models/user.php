@@ -21,7 +21,7 @@ class User extends AppModel {
 		)
 	);
 	
-	function beforeSave($data) {
+	function beforeSave2($data) {
 		if($this->id || !$this->find('first')) {
 			return true;
 		}
@@ -36,11 +36,12 @@ class User extends AppModel {
 		return true;
 	}
 	
+	/*
 	var $validate = array(
-		'email' => array(
-			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank'),
-			array('rule' => 'notDuplicateEmail','message' => 'The email you provided is already in use')
-		),
+		//'email' => array(
+		//	array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank'),
+		//	array('rule' => 'notDuplicateEmail','message' => 'The email you provided is already in use')
+		//),
 		'username' => array(
 			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank'),
 			array('rule' => 'notDuplicateUsername','message' => 'The username you provided is already in use')
@@ -59,6 +60,7 @@ class User extends AppModel {
 			'rule' => VALID_NOT_EMPTY
 		)
 	);
+	*/
 	
 	function notDuplicateEmail() {
 		if($this->id) {
@@ -174,7 +176,7 @@ class User extends AppModel {
 		return $instance[0];
 	}
 	
-	function set($user) {
+	function store($user) {
 		User::getInstance($user);
 	}
 	

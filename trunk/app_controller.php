@@ -42,7 +42,7 @@ class AppController extends Controller {
 		$cakeAdmin = isset($this->params[Configure::read('Routing.admin')]) ? Configure::read('Routing.admin') : null;
 
 		if($this->Session->check('User')) {
-			User::set($this->Session->read('User'));
+			User::store($this->Session->read('User'));
 			$this->Permission->cache('SiteAdministration');
 		}
 

@@ -10,7 +10,6 @@ gclms.popup = Class.create({
 			text: null
 		}).update(options);
 		
-		
 		this.overlay = new Element('div',{
 			className: 'gclms-popup-overlay'
 		});
@@ -45,11 +44,12 @@ gclms.popup = Class.create({
 		this.dialog.setStyle({marginTop: (this.overlay.offsetHeight / 2) -  (this.dialog.offsetHeight / 2) + 'px'});
 	},
 
-	close: function() {
+	close: function(options) {
 		$$('div.gclms-popup-overlay').first().remove();
 
 		document.stopObserving('keydown',this.keyDownHandler);
-		if (this.executeCallback && this.options.get('callback')) {
+
+		if (options.executeCallback && this.options.get('callback')) {
 			this.options.get('callback')(this.getCallbackValue());
 		} else if (this.options.get('cancelCallback')) {
 			this.options.get('cancelCallback')();
@@ -171,4 +171,3 @@ gclms.search = Class.create(gclms.popup, {
 		this.dialog.insert(template);
 	}
 });
-

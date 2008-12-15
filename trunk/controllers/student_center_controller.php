@@ -49,6 +49,6 @@ class StudentCenterController extends AppController {
 			$this->set('channel', array('title' => 'New Courses at the Internet Biblical Seminary', 'description' => 'A list of courses that have recently been made available on the Internet Biblical Seminary.'));
 		}
 		
-		$this->set('title','Internet Biblical Seminary - A hub for evangelical Christian e-learning');
+		$this->set('title',Configure::read('App.name'));
     }
 }

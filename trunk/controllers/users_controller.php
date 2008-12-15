@@ -20,6 +20,10 @@ class UsersController extends AppController {
 		parent::beforeFilter();
 	}
 	
+	function administration_add() {
+		$this->Common->add();	
+	}
+	
 	function administration_index() {
 		if(!Permission::check('SiteAdministration')) {
 			$this->cakeError('permission');

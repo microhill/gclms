@@ -42,7 +42,7 @@ gclms.AppController = {
 
 	confirmRemove: function(event) {
 		event.stop();
-		gclms.popup.create({
+		var popup = new gclms.confirm({
 			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),

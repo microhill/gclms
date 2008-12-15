@@ -22,10 +22,11 @@ class CommonComponent extends Object {
 
 		if(!empty($this->controller->data)) {
 			if($this->controller->{$model}->save($this->controller->data)) {
-				if(!empty($this->itemName))
+				if(!empty($this->controller->itemName))
 					$this->controller->Notifications->add(__(ucfirst(low($this->controller->itemName)) . ' successfully added.',true));
+				
 				$this->controller->data[$model]['id'] = $this->controller->{$model}->id;
-				$this->afterSave();
+				$this->afterSave();				
 			} else {
 				if(!empty($this->controller->itemName))
 					$this->controller->Notifications->add(__('There was an error when attempting to add the ' . low($this->controller->itemName) . '.',true),'error');

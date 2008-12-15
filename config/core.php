@@ -230,3 +230,5 @@
  * 					);
  */
 	Cache::config('default', array('engine' => 'File'));
+	
+	include('options.php');

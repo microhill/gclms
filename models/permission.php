@@ -339,13 +339,23 @@ class Permission extends AppModel {
 	
 	function check($model,$actions = '*',$foreign_key = null) {
 		$permissions = Permission::get();
+		$group_id = Group::get('id');
+		$course_id = Course::get('id');
 
+		//Check against site admin rights
 		if(@$permissions[0] == 'SiteAdministrator') {
 			return true;
 		}
 
-		if(@$permissions[0] == 'CourseAdministrator') {
-			$group_id = Group::get('id') ? Group::get('id') : $foreign_key;
+		//Check against group admin rights
+		if($group_id && in_array($model,array('Group','VirtualClass','Permission','Course'))) {
+			if(Set::extract('/Permission[group_id=' . $group_id . '][model=*][_create=1][_read=1][_update=1][_delete=1]/.[:first]',$permissions))
+				return true;
+		}
+
+		//Check against course admin rights
+		if(@$permissions[1] == 'CourseAdministrator') {
+			$group_id = $group_id ? $group_id : $foreign_key;
 			if(empty($group_id)) {
 				throw Exception('Woops');
 			}

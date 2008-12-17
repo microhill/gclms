@@ -4,6 +4,15 @@ class PermissionsController extends AppController {
 	var $components = array('Common','Breadcrumbs','Languages','RequestHandler','Notifications');
 	var $helpers = array('Paginator','MyPaginator');
 
+	function beforeFilter() {		
+		parent::beforeFilter();
+		$this->Permission->cache('GroupAdministration','Course','Permission','Group','VirtualClass');
+		
+		if(!Permission::check('Permission')) {
+			$this->cakeError('permission');
+		}
+	}
+
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
 		$this->Breadcrumbs->addCrumb('User Permissions','/' . $this->viewVars['groupAndCoursePath'] . '/permissions');
@@ -11,8 +20,6 @@ class PermissionsController extends AppController {
 	}
 
 	function index() {
-		$this->Permission->cache('Course','Permission','Group','VirtualClass');
-		
 		$this->Permission->contain('User');
 		$this->data = $this->Permission->find('all',array(
 			'conditions' => array('Permission.group_id' => Group::get('id')),
@@ -84,27 +91,5 @@ class PermissionsController extends AppController {
 			'fields' => array('id','title')
 		));
 		$this->set('classes',$courses);	
-	}
-	
-	function update() {
-		//get all groups, make aco's
-		$this->Group->contain();
-		$groups = $this->Group->find('all',array(
-			
-		));
-		
-		foreach($groups as $group) {
-			//Check if group has ACO
-			
-			/*
-			$this->Acl->Aco->create();			
-			$this->Acl->Aco->save(array(
-				'model' => 'Group',
-				'foreign_key' => $group['Group']['id']
-			));
-			*/
-		}
-
-		//
 	}
 }

@@ -7,7 +7,7 @@ class GroupsController extends AppController {
 
 	function beforeFilter() {
 		$this->Breadcrumbs->addHomeCrumb();
-		
+
 		/*
 		if($this->Session->check('Auth.User')) {
 			$user = $this->Session->read('Auth.User');
@@ -55,7 +55,7 @@ class GroupsController extends AppController {
 	function show() {
 		$this->Permission =& ClassRegistry::init('Permission');		
 		$this->Permission->cache('GroupAdministration','Course','Permission','Group','VirtualClass');
-
+		
 		$this->Course->contain();
 		$courses = $this->Course->find('all',array(
 			'conditions' => array('Course.group_id' => Group::get('id')),

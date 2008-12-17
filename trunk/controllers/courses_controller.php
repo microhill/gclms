@@ -10,6 +10,11 @@ class CoursesController extends AppController {
 	}
 	
 	function delete() {
+		$this->Permission->cache('Course');
+		if(!Permission::check('Course')) {
+			$this->cakeError('permission');
+		}
+
         parent::delete($this->viewVars['course']['id']);
 	}
 	
@@ -26,6 +31,13 @@ class CoursesController extends AppController {
 	}
 
 	function index() {
+		//$this->Permission->cache('Course');
+		/*
+		if(!Permission::check('Course')) {
+			$this->cakeError('permission');
+		}
+		*/
+
 		$this->RequestHandler->isRss();
 
 		if(isset($this->params['course'])) {

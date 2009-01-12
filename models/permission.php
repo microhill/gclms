@@ -365,8 +365,6 @@ class Permission extends AppModel {
 		//Check against course admin rights
 		if($course_id && in_array($model,array('Group','Content','VirtualClass','Permission','Course'))) {
 			//
-			echo '1';
-			Permission::debug();
 			//if(Set::extract('/Permission[group_id=' . $group_id . '][model=*][_create=1][_read=1][_update=1][_delete=1]/.[:first]',$permissions))
 				//return true;
 		}

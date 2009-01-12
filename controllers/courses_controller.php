@@ -4,6 +4,15 @@ class CoursesController extends AppController {
 	var $helpers = array('Time','MyTime','Scripturizer','Glossary','License');
 	var $itemName = 'Course';
 
+	function beforeFilter() {
+		parent::beforeFilter();
+		
+		$this->Permission->cache('GroupAdministration','Course');
+		if(!Permission::check('Group')) {
+			//$this->cakeError('permission');
+		}
+	}
+
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
 		parent::beforeRender();
@@ -172,11 +181,11 @@ class CoursesController extends AppController {
 		$this->set(compact('data'));
 	}
 
-	function show() {		
+	function show() {
 		$this->Node->contain();
 		$nodes = $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		$this->set(compact('nodes'));
-		
+			
 		if(empty($this->viewVars['class']['id'])) {
 			/*
 			$this->FacilitatedClass->contain();

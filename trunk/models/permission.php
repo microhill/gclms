@@ -77,12 +77,14 @@ class Permission extends AppModel {
 		);
 	}
 	
+	//Save all permission info for user pertaining to group
 	function saveAll($data,$user_id,$group_id) {
 		$default = array(
 			'user_id' => $user_id,
 			'group_id' => $group_id
 		);
 		
+		//Group-wide permissions
 		if(!empty($data['Permissions']['group']['administer'])) {
 			$this->save(am(array(
 				'model' => '*',
@@ -105,6 +107,7 @@ class Permission extends AppModel {
 			'crud' => empty($data['Permissions']['group']['manage_classes']) ? array() : array('_create' => 1,'_read' => 1,'_update' => 1,'_delete' => 1)
 		),$default));
 		
+		//Course-wide permissions		
 		if(!empty($data['Permissions']['courses'])) {
 			foreach($data['Permissions']['courses'] as $course_id => $permissions) {
 				$this->save(am(array(
@@ -140,7 +143,8 @@ class Permission extends AppModel {
 				),$default));
 			}	
 		}
-		
+
+		//Class-specific permissions
 		/*
 		foreach($data['Permissions']['classes'] as $class) {
 			
@@ -177,7 +181,10 @@ class Permission extends AppModel {
 		$this->data = $data;
 		return parent::save();
 	}
-		
+	
+	/*
+	 * $conditions can an array. Or all the arguments can be strings to specify models to check
+	 */
 	function cache($conditions,$setResults = true) {
 		if(is_string($conditions)) {
 			$conditions = array('model' => func_get_args());
@@ -192,6 +199,7 @@ class Permission extends AppModel {
 		$course_id = Course::get('id');
 		$class_id = VirtualClass::get('id');
 
+		//Check for SiteAdministration
 		if(is_array($conditions['model']) && false !== $key = array_search('SiteAdministration',$conditions['model'])) {
 			$permission = $this->find('first',array(
 				'conditions' => array(
@@ -211,7 +219,8 @@ class Permission extends AppModel {
 
 			unset($conditions['model'][$key]);
 		}
-
+		
+		//Check for GroupAdministration
 		if(is_array($conditions['model']) && false !== $key = array_search('GroupAdministration',$conditions['model'])) {
 			$permission = $this->find('first',array(
 				'conditions' => array(
@@ -354,6 +363,15 @@ class Permission extends AppModel {
 		}
 
 		//Check against course admin rights
+		if($course_id && in_array($model,array('Group','Content','VirtualClass','Permission','Course'))) {
+			//
+			echo '1';
+			Permission::debug();
+			//if(Set::extract('/Permission[group_id=' . $group_id . '][model=*][_create=1][_read=1][_update=1][_delete=1]/.[:first]',$permissions))
+				//return true;
+		}
+		
+		/*
 		if(@$permissions[1] == 'CourseAdministrator') {
 			$group_id = $group_id ? $group_id : $foreign_key;
 			if(empty($group_id)) {
@@ -364,7 +382,8 @@ class Permission extends AppModel {
 				return true;
 			return false;
 		}
-		
+		*/
+	
 		/*
 		if(Group::get('id')) {
 			$permission = Set::extract('/Permission[model=*][_create=1][_read=1][_update=1][_delete=1]/.[:first]',$permissions);

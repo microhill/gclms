@@ -6,6 +6,15 @@ class ClassesController extends AppController {
 	var $paginate = array('order' => 'title');
 	var $itemName = 'Class';
 
+	function beforeFilter() {
+		parent::beforeFilter();
+		
+		$this->Permission->cache('GroupAdministration');
+		if(!Permission::check('Group')) {
+			$this->cakeError('permission');
+		}
+	}
+
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
 		if($this->action == 'index') {

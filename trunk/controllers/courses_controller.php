@@ -29,6 +29,14 @@ class CoursesController extends AppController {
 		
 		$this->RequestHandler->isRss();
 	}
+	
+	function add() {
+		$this->Permission->cache('GroupAdministration','Course');
+		
+		if(!Permission::check('Course')) {
+			$this->cakeError('permission');
+		}
+	}
 
 	function index() {
 		//$this->Permission->cache('Course');
@@ -166,7 +174,7 @@ class CoursesController extends AppController {
 
 	function show() {		
 		$this->Node->contain();
-		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
+		$nodes = $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		$this->set(compact('nodes'));
 		
 		if(empty($this->viewVars['class']['id'])) {

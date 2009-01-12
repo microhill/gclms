@@ -2,7 +2,7 @@
 	<?php $session->flash('Auth.login'); ?>
     <?= $form->create('User', array('url' => '/users/login','id'=>'UserLogin'));?>
         <?= $form->input('username',array(
-        	'label' => array('text' => __("E-mail, Student ID, or OpenID", true)),
+        	'label' => array('text' => __("E-mail or Student ID", true)),
         	'between' => '<br/>'
         ));?>
         <?= $form->input('password',array(

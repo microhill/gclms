@@ -5,6 +5,12 @@ class ConfigurationController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
+		
+		$this->Permission->cache('GroupAdministration','Group');
+		if(!Permission::check('Group')) {
+			$this->cakeError('permission');
+		}
+		
 		$this->Breadcrumbs->addHomeCrumb();
 	}
 
@@ -21,8 +27,6 @@ class ConfigurationController extends AppController {
 	}
 
 	function index() {
-		$this->Permission->cache('Group');
-		
 		if(empty($this->data)) {
         	$this->data = $this->Group->findById(Group::get('id'));
 		} else {

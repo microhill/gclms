@@ -53,7 +53,6 @@ class GroupsController extends AppController {
 	}
 	
 	function show() {
-		$this->Permission =& ClassRegistry::init('Permission');		
 		$this->Permission->cache('GroupAdministration','Course','Permission','Group','VirtualClass');
 		
 		$this->Course->contain();
@@ -66,12 +65,10 @@ class GroupsController extends AppController {
 		
 		$unpublished_courses = Set::extract('/Course[published_status=1]/.[:first]',$courses);
 		foreach($unpublished_courses as $course) {
-			/*
 			$this->Permission->cache(array(
 				'model' => 'Course',
 				'foreign_key' => $course['id']
 			));
-			*/
 		}
 		
 		$this->set(compact('courses'));

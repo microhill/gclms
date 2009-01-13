@@ -1,6 +1,6 @@
 <?
 echo $this->element('panel',array(
-	'title' => $class['username'],
+	'title' => $class['title'],
 	'content' => $this->element('../class/info')
 ));
 

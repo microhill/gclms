@@ -4,13 +4,7 @@ uses('sanitize');
 class ChatController extends AppController {
     var $uses = array('ChatMessage','ChatParticipant');
     var $helpers = array('Text');
-    var $components = array('RequestHandler','Breadcrumbs'); //'MyAuth',
-    
-    function beforeFilter() {
-		//$this->MyAuth->allowedActions = array('*');
-       	
-		parent::beforeFilter();
-    }
+    var $components = array('RequestHandler','Breadcrumbs');
     
     function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();

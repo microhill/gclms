@@ -18,10 +18,6 @@ App::import('Vendor', 'selenium'.DS.'selenium_test_case');
 class SeleniumController extends AppController {
 	var $uses = null;
 	var $autoRender = false;
-	
-    function beforeFilter() {
-		$this->MyAuth->allowedActions = array('*');
-    }
 
 	function display() {
 		$path = func_get_args();

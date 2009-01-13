@@ -4,7 +4,7 @@ class PagesController extends AppController {
 	var $helpers = array('Scripturizer','Glossary','MediaFiles','License','Form','MyForm','Javascript','TranslatedPhrases');
     var $itemName = 'Node';
     var $components = array('Notifications','RequestHandler');
-
+	
     function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
 

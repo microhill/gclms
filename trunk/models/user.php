@@ -205,7 +205,7 @@ class User extends AppModel {
 	
 	function identify($data) {
 		$password = Security::hash($data['User']['password'], 'sha1',true);
-		die($password);
+
 		if(strpos($data['User']['username'],'@') !== false) {
 			$user = $this->find('first',array(
 				'conditions' => array(

@@ -4,7 +4,6 @@ class AnnouncementsController extends AppController {
 	var $helpers = array('Paginator','MyPaginator','Form','MyForm','Time','MyTime');
 	var $itemName = 'News Term';
 	var $paginate = array('order' => 'title');
-	var $components = array('MyAuth');
 
 	function beforeFilter() {
 		parent::beforeFilter();

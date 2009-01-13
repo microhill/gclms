@@ -2,7 +2,6 @@
 class ClassroomController extends AppController {
     var $uses = array('Course','Group','VirtualClass','ClassEnrollee','Node');
 	var $helpers = array('Scripturizer','Glossary','License');
-	var $components = array('MyAuth');
 
 	function beforeRender() {
 		$this->Breadcrumbs->addHomeCrumb();

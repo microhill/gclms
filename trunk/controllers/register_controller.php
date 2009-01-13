@@ -3,7 +3,6 @@ class RegisterController extends AppController {
     var $uses = array('User');
 
     function beforeFilter() {
-		$this->MyAuth->allowedActions = array('*');
 		//$this->Security->requirePost('save');
 		$this->Breadcrumbs->addHomeCrumb();
 		parent::beforeFilter();

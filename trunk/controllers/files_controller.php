@@ -14,7 +14,7 @@ class FilesController extends AppController {
 
     function upload() {
 		if(empty($this->viewVars['course']['id']))
-			exit(0);
+			exit;
 
 		if(!empty($this->params['form']['Filedata']['tmp_name'])) {
 			$newFile = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'] . DS . str_replace(' ','',low($this->params['form']['Filedata']['name']));
@@ -27,7 +27,7 @@ class FilesController extends AppController {
 			//$this->Notifications->add(__('File successfully uploaded.',true));
 		}
 			
-		exit(0);
+		exit;
     }
 
     function beforeRender() {

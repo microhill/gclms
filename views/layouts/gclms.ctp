@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<?= Configure::read('Config.language') ?>" dir="<?= empty($text_direction) ? 'ltr' : $text_direction ?>">
 <? include 'views/layouts/head.ctp'; ?>
 <body
-		gclms-group="<?= @Group::get('web_path') ?>"
-		gclms-course="<?= @$course['web_path'] ?>"
+		gclms-group="<?= Group::get('web_path') ?>"
+		gclms-course="<?= Course::get('web_path') ?>"
 		<? if(!empty($class)): ?>gclms-class="<?= @$class['id'] ?>"<? endif; ?>
 		gclms-controller="<?= @$this->params['controller'] ?>"
 		gclms-action="<?= $this->action ?>"

@@ -215,7 +215,6 @@ class User extends AppModel {
 				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified')
 			));
 		} else if(strpos($data['User']['username'],'http://') === false) {
-			$this->contain('ClassesTaking');
 			$user = $this->find('first',array(
 				'conditions' => array(
 					'User.username' => $data['User']['username'],

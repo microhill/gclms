@@ -10,7 +10,7 @@
 	<head>
 		<title><?= $page['Page']['title'] ?> - <?= $group['name'] ?></title>
 	
-	    <?= $html->css(am('page',$css_for_layout,$text_direction;)) ?>
+	    <?= $html->css(am('page',$css_for_layout,$text_direction)) ?>
 		<?	
 		//$cssLastUpdated = empty($group['css_updated']) ? '' : '/' . $group['css_updated'] . '.css';
 		echo '<link rel="stylesheet" type="text/css" href="' . $groupAndCoursePath . '/files/css/1' . '" />';
@@ -18,11 +18,11 @@
 	</head>
 	
 	<body
-		gclms-group="<?= @Group::get('web_path') ?>"
-		gclms-course="<?= @$course['web_path'] ?>"
+		gclms-group="<?= Group::get('web_path') ?>"
+		gclms-course="<?= Course::get('web_path') ?>"
 		gclms-controller="<?= $this->name ?>"
 		gclms-action="<?= $this->action ?>"
-	>awef
+	>
 		<?=  $content_for_layout; ?>
 		<script type="text/javascript" src="/js/vendors/prototype.js"></script>
 		<script type="text/javascript" src="/js/prototype_extensions.js"></script>		

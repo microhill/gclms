@@ -1,8 +1,8 @@
 <?
 echo $form->hidden('group_id',array('value'=>Group::get('id')));
 
-echo $form->input('username',array(
-	'label' =>  __('Username', true),
+echo $form->input('name',array(
+	'label' =>  __('Name', true),
 	'between' => '<br/>'
 ));
 

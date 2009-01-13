@@ -94,13 +94,13 @@ echo $this->element('left_column'); ?>
 		$acl = empty($course['open']) ? 'private' : 'public-read';
 
 		$policy = array(
-			'expiration' => '2009-01-01T00:00:00Z',
+			'expiration' => date('Y-m-d',strtotime('+2 days')) . 'T00:00:00Z',
 			'conditions' => array(
 				array('bucket' => Configure::read('S3.bucket')),
 				array('success_action_redirect' => Configure::read('App.domain') . $this->here),
 				array('starts-with','$key','courses/' . $course['id'] . '/'),
 				array('starts-with','$Content-Type',''),
-				array('content-length-range',10,31457280),
+				array('content-length-range',3,31457280),
 				array('acl'=>$acl)
 			)
 		);
@@ -120,7 +120,6 @@ echo $this->element('left_column'); ?>
 			<!-- input type="hidden" name="acl" value="public" -->
 			<input type="hidden" name="success_action_redirect" value="<?= Configure::read('App.domain') . $this->here ?>"/>
 			<!-- input type="hidden" name="Content-Type" value="image/jpeg" -->
-			
 			
 			<? __('Choose file to upload:') ?>
 			<input name="file" type="file"> <input type="submit" value="Upload File"> 

@@ -204,6 +204,7 @@ class User extends AppModel {
 	}
 	
 	function identify($data) {
+		$data['User']['username'] = trim($data['User']['username']);
 		$password = Security::hash($data['User']['password'], 'sha1',true);
 
 		if(strpos($data['User']['username'],'@') !== false) {

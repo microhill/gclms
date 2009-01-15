@@ -97,8 +97,12 @@ gclms.UploadFilesController = {
 	},
 	
 	confirmDeleteFiles: function(event) {
-		return false;
 		event.stop();
+		gclms.UploadFilesController.deleteFiles();
+		
+		/*
+		var popup = new gclms.prompt();
+		
 		gclms.popup.create({
 			text: 'Are you sure?',
 			confirmButtonText: __('Yes'),
@@ -106,6 +110,7 @@ gclms.UploadFilesController = {
 			type: 'confirm',
 			callback: gclms.UploadFilesController.deleteFiles
 		});
+		*/
 	},
 	
 	deleteFiles: function () {
@@ -113,6 +118,8 @@ gclms.UploadFilesController = {
 		$$('input.gclms-file-select:checked').each(function(input){
 			files.push(input.value);
 		});
+		this.up('form').submit();
+		return false;
 		gclms.File.remove({
 			files: files.join(),
 			callback: function(transport) {
@@ -179,11 +186,12 @@ gclms.File = {
 };
 
 gclms.Triggers.update({
+	'.gclms-delete-files:click': gclms.UploadFilesController.deleteFiles,
+
 	/*
 	'#SWFUploadFileListingFiles': gclms.UploadFilesController.loadSwfObject,
 	'#gclms-upload-files:click': gclms.UploadFilesController.selectFiles,
 	'#gclms-cancel-queue-button:click': gclms.UploadFilesController.cancelUpload,
-	'#gclms-delete:click': gclms.UploadFilesController.confirmDeleteFiles,
 	'#gclms-select-all:change': gclms.UploadFilesController.selectAll,
 	'input.gclms-file-select': {
 		':loaded': gclms.UploadFilesController.updateFileRowClass,

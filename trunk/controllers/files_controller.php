@@ -134,7 +134,7 @@ class FilesController extends AppController {
 			$path_parts['extension'] = strtolower($path_parts['extension']);
 			
 			if($path_parts['extension'] == 'jpg' || $path_parts['extension'] == 'gif' || $path_parts['extension'] == 'png' || $path_parts['extension'] == 'jpeg') {
-				$this->redirect('/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path'] . '/files/create_thumbnail/' . urlencode(basename($this->params['url']['key'])));
+				$this->redirect('/' . Group::get('web_path') . '/' . Course::get('web_path') . '/files/create_thumbnail/' . urlencode(basename($this->params['url']['key'])));
 				exit;				
 			}
 		} else if(!empty($this->params['file'])) {
@@ -147,7 +147,7 @@ class FilesController extends AppController {
 		}
 		
 		$s3 = new S3($this->viewVars['accessKey'], $this->viewVars['secretKey']);
-		$files = $s3->getBucket($this->viewVars['bucket'],'courses/' . $this->viewVars['course']['id'] . '/',null,null,'/'); //, $prefix = null, $marker = null, $maxKeys = null
+		$files = $s3->getBucket($this->viewVars['bucket'],'courses/' . Course::get('id') . '/',null,null,'/'); //, $prefix = null, $marker = null, $maxKeys = null
 		
 		$total_size = 0;
 		foreach($files as &$file) {
@@ -238,6 +238,16 @@ class FilesController extends AppController {
 	}
 	
 	function delete() {
+		App::import('Vendor','s3');
+		$s3 = new S3(Configure::read('S3.accessKey'), Configure::read('S3.secretKey'));
+
+		foreach($this->data['Files'] as $file) {
+			$s3->deleteObject(Configure::read('S3.bucket'),'courses/' . Course::get('id') . '/' . $file);
+		}
+
+		$this->redirect($this->viewVars['groupAndCoursePath'] . '/files');
+		
+		/*
 		$this->RequestHandler->setContent('json', 'text/x-json');
 		$directory = ROOT . DS . APP_DIR . DS . 'files' . DS . 'courses' . DS . $this->viewVars['course']['id'];
 		$files = explode(',',$this->data['files']);
@@ -246,6 +256,7 @@ class FilesController extends AppController {
 		}
 		$this->RequestHandler->setContent('json', 'text/x-json');
 		$this->data = $files;
+		*/
 	}
 
 	function afterSave() {

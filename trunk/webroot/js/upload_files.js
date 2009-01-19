@@ -74,11 +74,15 @@ gclms.UploadFilesController = {
 	},
 	
 	uploadStart: function(file) {
-		alert(file.type);
-		$('gclms-files').down('tbody').insert(gclms.Views.get('file').interpolate({
+		var extension = file.type.split('.')[1];
+		if(gclms.mime_types[extension]) {
+			this.addFileParam(file.id,'Content-Type',gclms.mime_types[extension])
+		}
+
+		$('gclms-files').down('tbody').insert({bottom: gclms.Views.get('file').interpolate({
 			name: file.name,
 			size: file.size
-		}));
+		})});
 		return true;
 	},
 	

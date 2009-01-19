@@ -12,8 +12,8 @@
 			case 'image/gif':
 				$extension = 'gif';
 		}
-		$lastModified = date('YmdHis', strtotime($group['logo_updated']));
-		echo '<img src="/' . Group::get('web_path') . '/files/logo/' . $lastModified . '.' . $extension . '" ' . $imageInfo[3] . ' alt="' . __('Logo for ',true) . $group['name'] . '" />';
+		$lastModified = date('YmdHis', strtotime(Group::get('logo_updated')));
+		echo '<img src="/' . Group::get('web_path') . '/files/logo/' . $lastModified . '.' . $extension . '" ' . $imageInfo[3] . ' alt="' . __('Logo for ',true) . Group::get('name') . '" />';
 	} else {
 		$file = ROOT . DS . APP_DIR . DS . 'webroot' . DS . 'img' . DS . 'logos' . DS . Configure::read('Config.language') . '.png';
 		if(file_exists($file)) {

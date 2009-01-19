@@ -1,5 +1,5 @@
 gclms.UploadFilesController = {
-	loadPage: function() {
+	loadPage: function() {		
 		var swfu;
 
 		var settings = {
@@ -147,6 +147,20 @@ gclms.UploadFilesController = {
 		else {
 			this.up('tr').removeClassName('gclms-selected');
 		}
+	},
+	
+	confirmDeleteFiles: function(event) {
+		event.stop();
+		var popup = new gclms.confirm({
+			text: 'Are you sure?',
+			callback: gclms.UploadFilesController.deleteFiles.bind(this)
+		});
+	},
+	
+	deleteFiles: function() {
+		var form = this.up('form');
+		form.setAttribute('action',form.getAttribute('action') + 'delete')
+		form.submit();
 	}
 };
 
@@ -169,7 +183,7 @@ gclms.Views.update({
 
 gclms.Triggers.update({
 	'#gclms-select-all:loaded': gclms.UploadFilesController.loadPage,
-	'.gclms-delete-files:click': gclms.UploadFilesController.deleteFiles,
+	'.gclms-delete-files:click': gclms.UploadFilesController.confirmDeleteFiles,
 	'#gclms-select-all:change': gclms.UploadFilesController.selectAll,
 	'input.gclms-file-select': {
 		':loaded': gclms.UploadFilesController.updateFileRowClass,
@@ -352,24 +366,7 @@ SWFUpload.prototype.loadUI = function() {
 		});
 		$('gclms-cancel-queue-button').hide();
 	},
-	
-	confirmDeleteFiles: function(event) {
-		event.stop();
-		gclms.UploadFilesController.deleteFiles();
 		
-		/*
-		var popup = new gclms.prompt();
-		
-		gclms.popup.create({
-			text: 'Are you sure?',
-			confirmButtonText: __('Yes'),
-			cancelButtonText: __('No'),
-			type: 'confirm',
-			callback: gclms.UploadFilesController.deleteFiles
-		});
-		*-/
-	},
-	
 	deleteFiles: function () {
 		var files = [];
 		$$('input.gclms-file-select:checked').each(function(input){

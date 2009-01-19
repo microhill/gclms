@@ -18,7 +18,7 @@ class BreadcrumbsComponent extends Object {
 	}
 	
 	function addSiteAdministrationCrumb() {
-		$this->addCrumb('Site Administration','/administration/panel');
+		$this->addCrumb('Site Administration','/administration');
 	}	
 	
 	function addGroupCrumb() {

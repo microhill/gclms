@@ -19,7 +19,7 @@ echo $this->element('left_column'); ?>
 	<div class="gclms-content">
 		<?= $this->element('notifications'); ?>
 		<h1><? __('Media Files') ?></h1>
-		<form action="<?= $groupAndCoursePath ?>/files/delete" method="post">
+		<form action="<?= $groupAndCoursePath ?>/files/" method="post">
 			<table class="gclms-buttons">
 				<tr>
 					<td>

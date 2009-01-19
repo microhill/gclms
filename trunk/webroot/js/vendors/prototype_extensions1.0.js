@@ -54,9 +54,15 @@ Element.addMethods({
                 });
             }
             else {
-                $(element).select(rule.key).each(function(element){
-                    element.observeRules(rule.value);
-                });
+                //Change this
+				try {
+					$(element).select(rule.key).each(function(element){
+	                    element.observeRules(rule.value);
+	                });					
+				} catch(e) {
+					alert(rule.key)
+				}
+
             }
         });
         

@@ -5,8 +5,9 @@ $javascript->link(array(
 	'vendors/prototype1.6.0.3',
 	'vendors/prototype_extensions1.0',
 	'gclms',
-	'vendors/swfobject2.0/swfobject',
-	'vendors/swfupload2.1.0/swfupload',
+	'vendors/swfupload2.2.0/swfupload',
+	//'http://demo.swfupload.org/v220beta4/simpledemo/js/swfupload.queue.js',
+	//'http://demo.swfupload.org/v220beta4/simpledemo/js/handlers.js',
 	'upload_files',
 	'popup'
 ), false);
@@ -100,11 +101,13 @@ echo $this->element('left_column'); ?>
 			'expiration' => date('Y-m-d',strtotime('+2 days')) . 'T00:00:00Z',
 			'conditions' => array(
 				array('bucket' => Configure::read('S3.bucket')),
-				array('success_action_redirect' => Configure::read('App.domain') . $this->here),
+				//array('success_action_redirect' => Configure::read('App.domain') . $this->here),
 				array('starts-with','$key','courses/' . $course['id'] . '/'),
+				array('starts-with','$Filename',''),
 				array('starts-with','$Content-Type',''),
 				array('content-length-range',3,31457280),
-				array('acl'=>$acl)
+				array('acl'=>$acl),
+				array('success_action_status'=>'201')
 			)
 		);
 		
@@ -113,20 +116,26 @@ echo $this->element('left_column'); ?>
 		$signature = base64_encode(hash_hmac('sha1', $policy, Configure::read('S3.secretKey'), TRUE));
 		?>
 		
-		<form action2="http://test/upload" action="<?= $form_action ?>" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="key" value="courses/<?= $course['id'] ?>/${filename}"/>
-			<input type="hidden" name="AWSAccessKeyId" value="<?= Configure::read('S3.accessKey') ?>"/> 
-			<input type="hidden" name="acl" value="<?= $acl ?>"/>
-			<input type="hidden" name="policy" value="<?= $policy ?>"/>
-			<input type="hidden" name="signature" value="<?= $signature ?>"/>
-			<input type="hidden" name="Content-Type" value="application/octet-stream"/>
-			<!-- input type="hidden" name="acl" value="public" -->
-			<input type="hidden" name="success_action_redirect" value="<?= Configure::read('App.domain') . $this->here ?>"/>
-			<!-- input type="hidden" name="Content-Type" value="image/jpeg" -->
+		<form action="<?= $form_action ?>" method="post" enctype="multipart/form-data">
+			<input type="hidden" id="s3key" name="key" value="courses/<?= $course['id'] ?>/${filename}"/>
+			<input type="hidden" id="s3awsaccesskeyid" name="AWSAccessKeyId" value="<?= Configure::read('S3.accessKey') ?>"/> 
+			<input type="hidden" id="s3acl" name="acl" value="<?= $acl ?>"/>
+			<input type="hidden" id="s3policy" name="policy" value="<?= $policy ?>"/>
+			<input type="hidden" id="s3signature" name="signature" value="<?= $signature ?>"/>
+			<input type="hidden" id="s3contenttype" name="Content-Type" value="application/octet-stream"/>
+			<input type="hidden" id="s3successactionredirect" name="success_action_redirect" value="<?= Configure::read('App.domain') . $this->here ?>"/>
+			<input type="hidden" id="s3successactionstatus" name="success_action_status" value="201"/>
 			
-			<? __('Choose file to upload:') ?>
-			<input name="file" type="file"> <input type="submit" value="Upload File"> 
+			<!-- input name="filename" type="file"> <input type="submit" value="Upload File" --> 
 		</form>
+
+		<form id="form1" action="<?= $form_action ?>" method="post" enctype="multipart/form-data">	
+			<div>
+				<span id="spanButtonPlaceHolder"></span>
+				<input id="btnCancel" type="button" value="Cancel All Uploads" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; font-size: 8pt; height: 29px;" />
+			</div>
+		</form>
+		<div id="divServerData"></div>
 	</div>
 </div>
 

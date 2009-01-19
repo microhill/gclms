@@ -9,6 +9,7 @@ $javascript->link(array(
 	//'http://demo.swfupload.org/v220beta4/simpledemo/js/swfupload.queue.js',
 	//'http://demo.swfupload.org/v220beta4/simpledemo/js/handlers.js',
 	'upload_files',
+	'mime_types',
 	'popup'
 ), false);
 

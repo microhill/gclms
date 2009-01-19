@@ -11,10 +11,11 @@ class FilesController extends AppController {
 
 		parent::beforeFilter();
 	
-		$this->Permission->cache('GroupAdmimistrator','Content');
+		$this->Permission->cache('GroupAdministration','Content');
 		if(!Permission::check('Content')) {
 			$this->cakeError('permission');
 		}
+
 	}
 
     function upload() {

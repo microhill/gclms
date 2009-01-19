@@ -46,7 +46,7 @@ class FilesController extends AppController {
 				break;
 			}
 		}
-		return round($size) . ' ' . $val;
+		return round($size) . $val;
 	}
 	
 	function create_thumbnail($file) {
@@ -241,8 +241,10 @@ class FilesController extends AppController {
 		App::import('Vendor','s3');
 		$s3 = new S3(Configure::read('S3.accessKey'), Configure::read('S3.secretKey'));
 
-		foreach($this->data['Files'] as $file) {
-			$s3->deleteObject(Configure::read('S3.bucket'),'courses/' . Course::get('id') . '/' . $file);
+		if(!empty($this->data['Files'])) {
+			foreach($this->data['Files'] as $file) {
+				$s3->deleteObject(Configure::read('S3.bucket'),'courses/' . Course::get('id') . '/' . $file);
+			}			
 		}
 
 		$this->redirect($this->viewVars['groupAndCoursePath'] . '/files');

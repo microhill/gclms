@@ -73,7 +73,11 @@ gclms.UploadFilesController = {
 		}
 	},
 	
-	uploadStart: function() {
+	uploadStart: function(file) {
+		$('gclms-files').down('tbody').insert(gclms.Views.get('file').interpolate({
+			name: file.name,
+			size: file.size
+		}));
 		return true;
 	},
 	
@@ -86,7 +90,7 @@ gclms.UploadFilesController = {
 	},
 	
 	uploadSuccess: function(file, serverData) {
-		$('divServerData').replace(serverData.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/\t/g, "    ").replace(/  /g, " &nbsp;"));
+		//$('divServerData').replace(serverData.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/\t/g, "    ").replace(/  /g, " &nbsp;"));
 		window.location.reload();
 	},
 	
@@ -153,6 +157,10 @@ gclms.File = {
 		});
 	}
 };
+
+gclms.Views.update({
+	file: '<tr class="gclms-file"><td><input type="checkbox" class="gclms-file-select" disabled="disabled"/></td><td>#{name}</td><td style="white-space: nowrap;">#{size}</td></tr>'
+});
 
 gclms.Triggers.update({
 	'#gclms-select-all:loaded': gclms.UploadFilesController.loadPage,

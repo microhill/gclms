@@ -24,12 +24,12 @@ echo $this->element('left_column'); ?>
 					<td>
 						<button class="gclms-delete-files">Delete</button>
 					</td>
-					<td>
+					<!--td>
 						<button class="gclms-rename">Rename</button>
-					</td>
+					</td-->
 				</tr>
 			</table>
-			<? if(!empty($files)): ?>
+
 				<table class="gclms-tabular" cellspacing="0" id="gclms-files">
 					<tr>
 						<th style="width: 1px;">
@@ -42,55 +42,53 @@ echo $this->element('left_column'); ?>
 							<? __('Size') ?> (<?= @$total_size ?>)
 						</th>
 					</tr>
-				<?
+					<tbody>
+					<?
+					if(!empty($files)) {
+						foreach($files as $file):
+							/*
+							if(eregi('application/pdf',$file['type'])) {
+								$type = 'pdf';
+							} else if(eregi('video',$file['type'])) {
+								$type = 'video';
+							} else if(eregi('audio',$file['type'])) {
+								$type = 'audio';
+							} else if(eregi('application/msword',$file['type'])) {
+								$type = 'word';
+							} else if(eregi('image',$file['type'])) {
+								$type = 'image';
+							} else if(eregi('text',$file['type'])) {
+								$type = 'document';
+							} else {
+								$type = 'mime';
+							}
+							*/
 				
-				foreach($files as $file):
-					/*
-					if(eregi('application/pdf',$file['type'])) {
-						$type = 'pdf';
-					} else if(eregi('video',$file['type'])) {
-						$type = 'video';
-					} else if(eregi('audio',$file['type'])) {
-						$type = 'audio';
-					} else if(eregi('application/msword',$file['type'])) {
-						$type = 'word';
-					} else if(eregi('image',$file['type'])) {
-						$type = 'image';
-					} else if(eregi('text',$file['type'])) {
-						$type = 'document';
-					} else {
-						$type = 'mime';
+							//echo "<li class='" . $type . "'><a href='" . $file['uri'] . "'>" . $file['basename'] . "</a>" . '</li>';		
+							?>
+							<tr class="gclms-file">
+								<td>
+									<input type="checkbox" class="gclms-file-select" name="data[Files][]" value="<?= basename($file['name']) ?>" />
+								</td>
+								<td>
+									<a href="<?= $file['uri'] ?>"><?= basename($file['name']) ?></a>			
+								</td>
+								<td style="white-space: nowrap;">
+									<?= $file['size'] ?>
+								</td>
+							</tr>
+						<? endforeach;						
 					}
-					*/
-		
-					//echo "<li class='" . $type . "'><a href='" . $file['uri'] . "'>" . $file['basename'] . "</a>" . '</li>';		
 					?>
-					<tr class="gclms-file">
-						<td>
-							<input type="checkbox" class="gclms-file-select" name="data[Files][]" value="<?= basename($file['name']) ?>" />
-						</td>
-						<td>
-							<a href="<?= $file['uri'] ?>"><?= basename($file['name']) ?></a>			
-						</td>
-						<td style="white-space: nowrap;">
-							<?= $file['size'] ?>
-						</td>
-					</tr>
-				<? endforeach; ?>
+
+					</tbody>
 				</table>
-			<? endif; ?>
 		</form>
 		<div id="SWFUploadTarget" swfupload:uploadScript="/<?= Group::get('web_path') ?>/<?= $course['web_path'] ?>/files/upload/file">
 			<button id="gclms-cancel-queue-button" class="cancelButton">
 				<img src="/img/permanent/icons/2007-09-13/cancel-12.png"/> <? __('Cancel File Upload(s)') ?>
 			</button>
-		</div>
-
-		<!--div id="SWFUploadFileListingFiles"></div -->
-
-		<br class="clr" />
-
-		<div id="downloadProgress"></div>
+		</div>		
 		
 		<?
 		$form_action = 'https://' . Configure::read('S3.bucket') . '.s3.amazonaws.com/';
@@ -116,7 +114,9 @@ echo $this->element('left_column'); ?>
 		$signature = base64_encode(hash_hmac('sha1', $policy, Configure::read('S3.secretKey'), TRUE));
 		?>
 		
-		<form action="<?= $form_action ?>" method="post" enctype="multipart/form-data">
+		<div id="downloadProgress"></div>
+
+		<form id="form1" action="<?= $form_action ?>" method="post" enctype="multipart/form-data">	
 			<input type="hidden" id="s3key" name="key" value="courses/<?= $course['id'] ?>/${filename}"/>
 			<input type="hidden" id="s3awsaccesskeyid" name="AWSAccessKeyId" value="<?= Configure::read('S3.accessKey') ?>"/> 
 			<input type="hidden" id="s3acl" name="acl" value="<?= $acl ?>"/>
@@ -125,11 +125,6 @@ echo $this->element('left_column'); ?>
 			<input type="hidden" id="s3contenttype" name="Content-Type" value="application/octet-stream"/>
 			<input type="hidden" id="s3successactionredirect" name="success_action_redirect" value="<?= Configure::read('App.domain') . $this->here ?>"/>
 			<input type="hidden" id="s3successactionstatus" name="success_action_status" value="201"/>
-			
-			<!-- input name="filename" type="file"> <input type="submit" value="Upload File" --> 
-		</form>
-
-		<form id="form1" action="<?= $form_action ?>" method="post" enctype="multipart/form-data">	
 			<div>
 				<span id="spanButtonPlaceHolder"></span>
 				<input id="btnCancel" type="button" value="Cancel All Uploads" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; font-size: 8pt; height: 29px;" />

@@ -156,12 +156,14 @@ class FilesController extends AppController {
 		$files = $s3->getBucket($this->viewVars['bucket'],'courses/' . Course::get('id') . '/',null,null,'/'); //, $prefix = null, $marker = null, $maxKeys = null
 		
 		$total_size = 0;
-		foreach($files as &$file) {
-			$total_size += $file['size'];
-			$file['uri'] = '/' . Group::get('web_path') . '/' .$this->viewVars['course']['web_path'] . '/files/' . basename($file['name']);
-			$file['size'] = $this->get_file_size($file['size']);
+		if(!empty($files)) {
+			foreach($files as &$file) {
+				$total_size += $file['size'];
+				$file['uri'] = '/' . Group::get('web_path') . '/' .$this->viewVars['course']['web_path'] . '/files/' . basename($file['name']);
+				$file['size'] = $this->get_file_size($file['size']);
+			}	
 		}
-		
+				
 		$this->set(compact('files'));
 		$this->set('total_size',$this->get_file_size($total_size));
 		/*

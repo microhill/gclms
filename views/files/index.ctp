@@ -83,12 +83,7 @@ echo $this->element('left_column'); ?>
 
 					</tbody>
 				</table>
-		</form>
-		<div id="SWFUploadTarget" swfupload:uploadScript="/<?= Group::get('web_path') ?>/<?= $course['web_path'] ?>/files/upload/file">
-			<button id="gclms-cancel-queue-button" class="cancelButton">
-				<img src="/img/permanent/icons/2007-09-13/cancel-12.png"/> <? __('Cancel File Upload(s)') ?>
-			</button>
-		</div>		
+		</form>	
 		
 		<?
 		$form_action = 'https://' . Configure::read('S3.bucket') . '.s3.amazonaws.com/';
@@ -127,7 +122,7 @@ echo $this->element('left_column'); ?>
 			<input type="hidden" id="s3successactionstatus" name="success_action_status" value="201"/>
 			<div>
 				<span id="spanButtonPlaceHolder"></span>
-				<input id="btnCancel" type="button" value="Cancel All Uploads" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; font-size: 8pt; height: 29px;" />
+				<!-- input id="btnCancel" type="button" value="Cancel All Uploads" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; font-size: 8pt; height: 29px;" / -->
 			</div>
 		</form>
 		<div id="divServerData"></div>

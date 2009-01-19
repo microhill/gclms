@@ -10,6 +10,11 @@ class FilesController extends AppController {
 		$this->set('secretKey',Configure::read('S3.secretKey'));
 
 		parent::beforeFilter();
+	
+		$this->Permission->cache('GroupAdmimistrator','Content');
+		if(!Permission::check('Content')) {
+			$this->cakeError('permission');
+		}
 	}
 
     function upload() {

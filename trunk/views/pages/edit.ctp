@@ -13,7 +13,8 @@ $javascript->link(array(
 	'vendors/scriptaculous1.8.1/dragdrop',
 	'vendors/client_detection1.6.1',
 	'gclms',
-	'edit_page'
+	'edit_page',
+	'popup'
 ), false);
 ?>
 <?= $this->element('no_column_background'); ?>

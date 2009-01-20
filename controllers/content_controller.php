@@ -2,6 +2,15 @@
 class ContentController extends AppController {
     var $uses = array('Node','Group','User','Course');
 	var $itemName = 'Node';
+
+	function beforeFilter() {
+		parent::beforeFilter();
+	
+		$this->Permission->cache('GroupAdministration','Content');
+		if(!Permission::check('Content')) {
+			$this->cakeError('permission');
+		}
+	}
 	
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();

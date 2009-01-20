@@ -16,6 +16,7 @@
 		array('controller' => 'Notebook', 'label' => __('Notebook', true), 'class' => 'gclms-notebook', 'url' => $groupAndCoursePath . '/notebook'),
 		array('label' => __('Forums', true), 'class' => 'gclms-forums', 'active' => $this->name == 'Forums', 'url' => $groupAndCoursePath . '/forums'),
 		array('label' => __('Chat', true), 'class' => 'gclms-chat', 'active' => $this->name == 'Chat', 'url' => $groupAndCoursePath . '/chat'),
+		array('label' => __('Assignments', true), 'class' => 'gclms-assignments', 'active' => $this->name == 'Assignments', 'url' => $groupAndCoursePath . '/assignments'),
 		array('controller' => 'Grades', 'label' => __('Grades', true), 'url' => $groupAndCoursePath . '/grades'),
 		//array('label' => __('Configure Class', true), 'class' => 'gclms-configuration', 'active' => $this->name == 'Courses' && $this->action == 'edit', 'url' => $groupAndCoursePath . '/configuration')
 	);

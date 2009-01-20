@@ -113,8 +113,7 @@ class AppController extends Controller {
 			$this->set('class', $class['VirtualClass']); //needs purging
 			VirtualClass::store($class);
        	}
-		$classWebPath = isset($this->viewVars['class']['web_path']) ? '/' . $this->viewVars['class']['web_path'] : null;
-
+		$classWebPath = VirtualClass::get('id') ? '/' . VirtualClass::get('id') : null;
     	$this->set('groupAndCoursePath', $groupWebPath . $courseWebPath . $classWebPath);
 		
 		// Offline

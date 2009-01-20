@@ -15,7 +15,6 @@ class FilesController extends AppController {
 		if(!Permission::check('Content')) {
 			$this->cakeError('permission');
 		}
-
 	}
 
     function upload() {

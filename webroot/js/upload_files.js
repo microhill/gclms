@@ -151,6 +151,9 @@ gclms.UploadFilesController = {
 	
 	confirmDeleteFiles: function(event) {
 		event.stop();
+		if(!$$('input.gclms-file-select:checked').length) {
+			return false;
+		}
 		var popup = new gclms.confirm({
 			text: 'Are you sure?',
 			callback: gclms.UploadFilesController.deleteFiles.bind(this)

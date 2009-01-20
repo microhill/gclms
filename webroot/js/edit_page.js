@@ -133,7 +133,7 @@ gclms.PagesController = {
 			}
 		});
 		if(!noQuestionTitlesEmpty) {
-			gclms.popup.create({
+			var alert = new gclms.alert({
 				text: this.getAttribute('gclms:no-empty-question-title-message'),
 				cancelButtonText: null,
 				type: 'alert'
@@ -217,7 +217,7 @@ gclms.PagesController = {
 	confirmDeleteAnswer: function(event) {
 		event.stop();
 				
-		gclms.popup.create({
+		var confirm = new gclms.confirm({
 			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
@@ -239,7 +239,7 @@ gclms.PagesController = {
 	confirmDeleteOrderAnswer: function(event) {
 		event.stop();
 				
-		gclms.popup.create({
+		var confirm = new gclms.confirm({
 			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
@@ -257,7 +257,7 @@ gclms.PagesController = {
 		event.stop();
 		this.style.color = 'red';
 				
-		gclms.popup.create({
+		var confirm = new gclms.confirm({
 			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
@@ -283,7 +283,7 @@ gclms.PagesController = {
 		event.stop();
 		this.style.color = 'red';
 				
-		gclms.popup.create({
+		var confirm = new gclms.confirm({
 			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),

@@ -8,7 +8,8 @@ $javascript->link(array(
 	'vendors/uuid1.0',
 	'vendors/scriptaculous1.8.1/effects',
 	'vendors/scriptaculous1.8.1/dragdrop',
-	'edit_content'
+	'edit_content',
+	'popup'
 ), false);
 
 echo $this->element('left_column');

@@ -74,7 +74,7 @@ gclms.ContentController = {
 			return false;	
 		}			
 		
-		gclms.popup.create({
+		var confirm = new gclms.confirm({
 			text: this.down('button').getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
@@ -105,7 +105,7 @@ gclms.ContentController = {
 			return false;
 		}			
 
-		gclms.popup.create({
+		var prompt = new gclms.prompt.create({
 			text: this.down('button').getAttribute('gclms:prompt-text'),
 			value: $('gclms-nodes').down('a.selected').innerHTML,
 			callback: gclms.ContentController.renameNode
@@ -127,14 +127,14 @@ gclms.ContentController = {
 		});	
 	},
 	getLabelTitleForAddition: function() {
-		gclms.popup.create({
+		var prompt = new gclms.prompt({
 			text: this.down('button').getAttribute('gclms:prompt-text'),
 			callback: gclms.ContentController.addLabel
 		});
 		return false;
 	},
 	getPageTitleForAddition: function() {
-		gclms.popup.create({
+		var prompt = new gclms.prompt({
 			text: this.down('button').getAttribute('gclms:prompt-text'),
 			callback: gclms.ContentController.addPage
 		});

@@ -11,7 +11,7 @@ $javascript->link(array(
 ), false);
 
 $secondary_column = $this->element('chat_participants');
-
+?>
 <?= $this->element('left_column',array(
 		'secondary_column' => $secondary_column
 	)); ?>

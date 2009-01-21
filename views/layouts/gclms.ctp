@@ -8,7 +8,7 @@
 		gclms-controller="<?= @$this->params['controller'] ?>"
 		gclms-action="<?= $this->action ?>"
 		gclms-direction="<?= empty($text_direction) ? 'ltr' : $text_direction ?>"
-		gclms-language="<?= Configure::read('Config.language') ?>">
+		gclms-language="<? $language_code_parts = explode('-',Configure::read('Config.language')); echo $language_code_parts[0]; ?>">
 	<div style="min-height: 100%;">
 		<?= $this->element('banner') ?>
 		

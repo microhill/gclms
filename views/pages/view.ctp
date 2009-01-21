@@ -6,7 +6,7 @@ $html->css($groupAndCoursePath . '/files/css/' . date('Y-m-d'), null, null, fals
 //If there are any essay questions
 if(in_array('5',Set::extract($node['Question'],'{n}.type'))) {
 	$javascript->link(array(
-		'vendors/tinymce3.1.0.1/tiny_mce'
+		'vendors/tinymce3.2.1.1/tiny_mce'
 	), false);
 }
 

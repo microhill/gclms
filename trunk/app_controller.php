@@ -1,7 +1,7 @@
 <?
-uses('L10n');
-
+App::import('Core', 'l10n');
 App::import('Vendor', 'browserdetection'.DS.'browserdetection');
+
 class AppController extends Controller {
 	var $components = array('Common','Breadcrumbs','Languages','RequestHandler','Notifications');
 	var $helpers = array('Html','Form','Ajax','Asset');
@@ -125,17 +125,17 @@ class AppController extends Controller {
     }
 	
 	function loadLocale() {
-		if(!empty($this->viewVars['course']['language'])) {
-			$this->Session->write('Config.language',$this->viewVars['course']['language']);
+		if(Course::get('language')) {
+			$this->Session->write('Config.language',Course::get('language'));
 		} else if($this->Session->check('Language.default')) {
 			$this->Session->write('Config.language',$this->Session->read('Language.default'));
        	} else {
        		$this->Session->write('Config.language','en');
        	}
 
-		$this->L10n = new L10n();		
-		if(!empty($this->viewVars['course']['language'])) {
-			$language = $this->viewVars['course']['language'];
+		$this->L10n = new L10n();
+		if(Course::get('language')) {
+			$language = Course::get('language');
 		} else {
 			$language = $this->Session->read('Config.language');	
 		}

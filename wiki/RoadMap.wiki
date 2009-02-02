@@ -1,5 +1,7 @@
 #summary Development plan
 
+_This document is old and hasn't been updated in awhile_
+
 =Milestone 1 http://buy1.snapon.com/images/checkmark.gif=
 ==Authoring==
  * Course structuring tool

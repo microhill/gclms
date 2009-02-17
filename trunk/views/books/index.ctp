@@ -6,6 +6,7 @@ $javascript->link(array(
 	'vendors/prototype_extensions1.0',
 	'gclms',
 	'vendors/uuid1.0',
+	'popup',
 	'edit_books'
 ), false);
 

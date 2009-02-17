@@ -7,7 +7,9 @@ gclms.popup = Class.create({
 			cancelButtonText: 'Cancel',
 			callback: null,
 			cancelCallback: null,
-			text: null
+			text: null,
+			height: null,
+			width: null
 		}).update(options);
 		
 		this.overlay = new Element('div',{
@@ -83,6 +85,27 @@ gclms.popup = Class.create({
 	}
 });
 
+gclms.selector = Class.create(gclms.popup, {
+	initialize: function($super, options) {
+		$super(options);
+	},
+	
+	setup: function() {
+		var request = new Ajax.Request(this.options.get('url'), {
+			method: 'get',
+			onSuccess: function(transport) {
+				this.dialog.insert(transport.responseText);
+				this.dialog.select('a').each(function(a){
+					a.observe('click',function(event) {
+						this.options.get('callback')(event.element());
+						this.close();
+					}.bind(this));					
+				}.bind(this));
+			}.bind(this)
+		});
+	}
+});
+
 gclms.alert = Class.create(gclms.popup, {
 	initialize: function($super, options) {
 		$super(options);
@@ -140,18 +163,18 @@ gclms.prompt = Class.create(gclms.popup, {
 		
 		this.dialog.select('input[type="text"]').first().observe('keydown',function(event){
 			if(event.keyCode == Event.KEY_ESC) {
-				this.up('div.gclms-popup-overlay').remove();	
+				$('gclms-popup-dialog-ok-button').up('div.gclms-popup-overlay').remove();	
 				if(this.options.get('cancelCallback')) {
 					this.options.get('cancelCallback')();
 				}
 			}
 			if(event.keyCode == Event.KEY_RETURN) {
-				this.up('div.gclms-popup-overlay').remove();
+				$('gclms-popup-dialog-ok-button').up('div.gclms-popup-overlay').remove();
 				if(this.options.get('callback')) {
 					this.options.get('callback')(this.dialog.select('input[type="text"]').first().value);
 				}
 			}
-		});
+		}.bind(this));
 		
 		this.getCallbackValue = function() {
 			return this.dialog.select('input[type="text"]').first().value;

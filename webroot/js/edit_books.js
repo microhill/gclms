@@ -27,7 +27,7 @@ gclms.BooksController = {
 	// New functions
 		
 	getChapterTitleForAddition: function() {
-		gclms.popup.create({
+		var prompt = new gclms.prompt({
 			text: this.getAttribute('gclms:prompt-text'),
 			callback: gclms.BooksController.addChapter.bind(this)
 		});
@@ -59,7 +59,7 @@ gclms.BooksController = {
 	},
 	
 	getBookTitleForRename: function() {
-		gclms.popup.create({
+		var prompt = new gclms.prompt({
 			text: this.getAttribute('gclms:prompt-text'),
 			value: this.up('.gclms-book').down('h2').innerHTML,
 			callback: gclms.BooksController.renameBook.bind(this)
@@ -82,11 +82,10 @@ gclms.BooksController = {
 	},
 	
 	confirmDeleteBook: function() {
-		gclms.popup.create({
+		var confirm = new gclms.confirm({
 			text: this.getAttribute('gclms:confirm-text'),
 			confirmButtonText: __('Yes'),
 			cancelButtonText: __('No'),
-			type: 'confirm',
 			callback: gclms.BooksController.deleteBook.bind(this)
 		});
 		return false;

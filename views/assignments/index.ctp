@@ -6,7 +6,7 @@ $javascript->link(array(
 ), false);
 
 $primary_column = $this->element('class_menu');
-$secondary_column = $this->element('../class/secondary_column');
+$secondary_column = ''; //$this->element('../class/secondary_column');
 
 echo $this->element('left_column',array(
 	'primary_column' => $primary_column,

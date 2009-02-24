@@ -5,7 +5,14 @@ $javascript->link(array(
 	'gclms'
 ), false);
 
-echo $this->element('left_column'); ?>
+$primary_column = $this->element('course_menu');
+$secondary_column = $this->element('../class/secondary_column');
+
+echo $this->element('left_column',array(
+	'primary_column' => $primary_column,
+	'secondary_column' => $secondary_column
+));
+?>
 		
 <div class="gclms-center-column">
 	<div class="gclms-content">
@@ -28,4 +35,7 @@ echo $this->element('left_column'); ?>
 	</div>
 </div>
 
-<?= $this->element('right_column'); ?>
+<?= $this->element('right_column',array(
+	'primary_column' => $primary_column,
+	'secondary_column' => $secondary_column
+));?>

@@ -37,7 +37,7 @@
 					'page'
 				));
 				
-				echo $this->element('no_column_background'); ?>
+				?>
 				<h1><?= $node['title'] ?></h1>
 				<?
 				$classUri = null;

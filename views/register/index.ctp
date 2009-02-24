@@ -1,4 +1,3 @@
-<? echo $this->element('no_column_background'); ?>
 <div class="gclms-content">
 	<?= $this->element('notifications'); ?>
 	<h1><?= __('Register') ?></h1>    

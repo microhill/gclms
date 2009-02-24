@@ -5,7 +5,33 @@ $javascript->link(array(
 	'gclms'
 ), false);
 
-$primary_column = $this->element('home_menu');
+$menu->addMenu(array(
+	'name' => 'navigation',
+	'label' => __('Navigation',true),
+	'section' => 'primary_column'
+));
+
+$menu->addMenuItem('navigation',array(
+	'label' => __('Course Catalogue', true),
+	'class' => 'gclms-courses',
+	'active' => $this->name == 'Courses' && $this->action != 'index',
+	'url' => '/courses'
+));
+
+$menu->addMenuItem('navigation',array(
+	'label' => __('My Profile', true),
+	'class' => 'gclms-profile',
+	'active' => $this->name == 'Courses' && $this->action != 'index',
+	'url' => '/profile'
+));
+
+Permission::check('SiteAdministration') ? $menu->addMenuItem('navigation',array(
+	'label' => __('Site Administration', true),
+	'class' => 'gclms-administration',
+	'url' => '/administration'
+)) : null;
+
+$primary_column = $this->element('primary_column');
 $secondary_column = '';
 
 echo $this->element('left_column',array(

@@ -6,7 +6,7 @@ $javascript->link(array(
 	'vendors/tinymce3.2.1.1/tiny_mce'
 ), false);
 
-echo $this->element('no_column_background'); ?>
+?>
 <div class="gclms-content">
 	<?= $this->element('notifications'); ?>
 	<div class="gclms-step-back"><a href="<?= $groupAndCoursePath . '/books' ?>"><? __('Cancel and go back') ?></a></div>

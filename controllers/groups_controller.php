@@ -1,7 +1,7 @@
 <?
 class GroupsController extends AppController {
     var $uses = array('Group','ClassEnrollee');
-	var $helpers = array('MyPaginator','Text','Menu');
+	var $helpers = array('MyPaginator','Text');
 	var $itemName = 'Group';
 	var $paginate = array('order' => 'name');
 

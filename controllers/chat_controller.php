@@ -3,7 +3,7 @@ uses('sanitize');
 
 class ChatController extends AppController {
     var $uses = array('ChatMessage','ChatParticipant');
-    var $helpers = array('Text','Menu');
+    var $helpers = array('Text');
     var $components = array('RequestHandler','Breadcrumbs');
     
     function beforeRender() {

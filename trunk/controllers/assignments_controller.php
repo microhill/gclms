@@ -1,7 +1,7 @@
 <?
 class AssignmentsController extends AppController {
     var $uses = array('Assignment','VirtualClass','Node');
-	var $helpers = array('Form','MyForm','Time','MyTime');
+	var $helpers = array('Form','MyForm','Time','MyTime','Menu');
 
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -17,6 +17,27 @@ class AssignmentsController extends AppController {
 		//$this->Node->contain();
 		//$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		//$this->set(compact('nodes'));
+	}
+	
+	function add() {
+		/*
+		if(!empty($this->data)) {
+			if($this->{$model}->save($this->data)) {
+				if(!empty($this->itemName))
+					$this->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully added.',true));
+				
+				$this->data[$model]['id'] = $this->{$model}->id;
+				$this->afterSave();				
+			} else {
+				if(!empty($this->itemName))
+					$this->Notifications->add(__('There was an error when attempting to add the ' . low($this->itemName) . '.',true),'error');
+			}
+		}
+		*/
+	}
+	
+	function edit($id = null) {
+		
 	}
 	
 	function save($id = null) {

@@ -2,6 +2,7 @@
 class FilesController extends AppController {
     var $uses = array('User','Group','Course');
 	var $components = array('Notifications','RequestHandler');
+	var $helpers = array('Menu');
 
 	function beforeFilter() {
 		Configure::load('s3');

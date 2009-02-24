@@ -1,6 +1,7 @@
 <?
 class BooksController extends AppController {
     var $uses = array('Book');
+	var $helpers = array('Menu');
 	var $itemName = 'Book';
 
 	function add() {

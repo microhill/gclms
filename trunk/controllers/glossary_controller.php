@@ -1,6 +1,7 @@
 <?
 class GlossaryController extends AppController {
     var $uses = array('GlossaryTerm');
+	var $helpers = array('Menu');
 	var $itemName = 'Glossary Term';
 
 	function beforeRender() {

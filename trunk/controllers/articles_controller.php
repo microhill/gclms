@@ -1,7 +1,7 @@
 <?
 class ArticlesController extends AppController {
     var $uses = array('Article');
-	var $helpers = array('Scripturizer','Glossary');
+	var $helpers = array('Scripturizer','Glossary','Menu');
 	var $itemName = 'Article';
 
 	function beforeRender() {

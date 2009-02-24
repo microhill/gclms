@@ -2,7 +2,6 @@
 class StudentCenterController extends AppController {
 	var $uses = array('ClassEnrollee');
     var $components = array('RequestHandler','Breadcrumbs');
-	var $helpers = array('Menu');
 
 	function beforeFilter() {
 		if($this->Session->check('Auth.User')) {

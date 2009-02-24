@@ -1,7 +1,7 @@
 <?
 class AdministratorsController extends AppController {
     var $uses = array('User','Group');
-	var $helpers = array('MyPaginator','Menu');
+	var $helpers = array('MyPaginator');
 	var $itemName = 'Administrator';
 	var $paginate = array(
 		'order' => 'username',

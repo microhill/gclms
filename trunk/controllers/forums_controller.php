@@ -1,7 +1,7 @@
 <?
 class ForumsController extends AppController {
     var $uses = array('Forum','ForumPost');
-	var $helpers = array('Time','MyTime','Text','Menu');
+	var $helpers = array('Time','MyTime','Text');
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();

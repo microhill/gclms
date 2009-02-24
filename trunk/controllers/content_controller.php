@@ -1,7 +1,6 @@
 <?
 class ContentController extends AppController {
     var $uses = array('Node','Group','User','Course');
-	var $helpers = array('Menu');
 	var $itemName = 'Node';
 
 	function beforeFilter() {

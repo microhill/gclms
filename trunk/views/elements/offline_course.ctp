@@ -33,7 +33,7 @@
 				'course'
 			));
 			
-			echo $this->element('no_column_background'); ?>
+			?>
 			<div class="gclms-center-column">
 				<div class="gclms-content">
 					<?= $this->element('notifications'); ?>

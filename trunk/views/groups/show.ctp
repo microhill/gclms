@@ -5,8 +5,6 @@ $javascript->link(array(
 	'gclms'
 ), false);
 
-$primary_column = $this->element('group_menu');
-
 //$published_courses = Set::extract('/Course[published_status=1]/.[:first]',$courses);
 //$unpublished_courses = Set::extract('/Course[published_status=0]/.[:first]',$courses);
 
@@ -20,7 +18,6 @@ $secondary_column .= $this->element('panel',array(
 $secondary_column .= '</div>';
 
 echo $this->element('left_column',array(
-	'primary_column' => $primary_column,
 	'secondary_column' => $secondary_column
 ));
 ?>
@@ -41,6 +38,5 @@ echo $this->element('left_column',array(
 </div>
 
 <?= $this->element('right_column',array(
-	'primary_column' => $primary_column,
 	'secondary_column' => $secondary_column
 )); ?>

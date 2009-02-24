@@ -4,7 +4,7 @@ $javascript->link(array(
 	'vendors/prototype_extensions1.0'
 ), false);
 
-echo $this->element('no_column_background'); ?>
+?>
 
 <div class="gclms-content">	
 	<h1><?= __('Creating thumbnail...') ?></h1>

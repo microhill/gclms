@@ -6,7 +6,7 @@ echo $javascript->link(array(
 	'generate_archive'
 ));
 
-echo $this->element('no_column_background'); ?>
+?>
 <div class="gclms-content">
 	<h1><? __('Generating Archive') ?></h1>
 	<?

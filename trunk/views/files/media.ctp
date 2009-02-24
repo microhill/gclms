@@ -8,7 +8,7 @@ $javascript->link(array(
 	'tinymce_popup'
 ), false);
 
-echo $this->element('no_column_background'); ?>
+?>
 <div class="gclms-content gclms-files">
 	<? if(empty($files)): ?>
 		Empty.

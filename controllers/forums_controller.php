@@ -1,7 +1,7 @@
 <?
 class ForumsController extends AppController {
     var $uses = array('Forum','ForumPost');
-	var $helpers = array('Time','MyTime','Text');
+	var $helpers = array('Time','MyTime','Text','Menu');
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
@@ -49,5 +49,13 @@ class ForumsController extends AppController {
 				'order' => 'ForumPost.created DESC'
 			));
 		}
+	}
+	
+	function list_for_popup() {
+		$this->layout = 'blank';
+		$forums = $this->Forum->find('all',array(
+			'conditions' => array('Forum.course_id' => Course::get('id'))
+		));
+		$this->set('forums',$forums);
 	}
 }

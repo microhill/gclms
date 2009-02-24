@@ -1,7 +1,7 @@
 <?
 class GradesController extends AppController {
 	var $uses = array('Grade');
-	var $helpers = array('Paginator','MyPaginator');
+	var $helpers = array('Paginator','MyPaginator','Menu');
 	var $paginate = array('order' => 'email');
 	
 	function beforeFilter() {

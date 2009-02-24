@@ -1,7 +1,7 @@
 <?
 class CoursesController extends AppController {
     var $uses = array('Course','Group','Node','ClassEnrollee','Announcement','GlossaryTerm','Article','GlossaryTerm','Book','Node');
-	var $helpers = array('Time','MyTime','Scripturizer','Glossary','License');
+	var $helpers = array('Time','MyTime','Scripturizer','Glossary','License','Menu');
 	var $itemName = 'Course';
 
 	function beforeFilter() {

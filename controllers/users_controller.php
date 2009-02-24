@@ -3,7 +3,7 @@ uses('Sanitize');
 
 class UsersController extends AppController {
     var $uses = array('User');
-	var $helpers = array('MyPaginator');
+	var $helpers = array('MyPaginator','Menu');
 	var $itemName = 'User';
 	var $paginate = array('order' => 'email');
 	var $components = array('Notifications');

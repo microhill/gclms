@@ -1,7 +1,7 @@
 <?
 class ClassesController extends AppController {
     var $uses = array('VirtualClass');
-	var $helpers = array('Paginator','MyPaginator','MyForm','Time','MyTime');
+	var $helpers = array('Paginator','MyPaginator','MyForm','Time','MyTime','Menu');
 	var $paginate = array('order' => 'title');
 	var $itemName = 'Class';
 

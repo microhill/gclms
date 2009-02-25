@@ -1,24 +1,22 @@
 <?
 class MenuHelper extends AppHelper {	
-	var $menuLabels = array();
-	var $sections = array();
+	var $sections = array();	
+	var $menus = array();
 	var $menuItems = array();
 
 	function addMenu($options) {
 		$options = am(array(
 			'section' => 'primary_column'
 		),$options);
-		
-		$this->labels[$options['name']] = $options['label'];
+		$this->menus[$options['name']] = $options;
 
 		if(empty($this->sections[$options['section']])) {
 			$this->sections[$options['section']] = array();
 		}
-		
 		array_push($this->sections[$options['section']],$options['name']);
 	}
 
-	function addMenuItem($name,$options) {
+	function addMenuItem($name,$options) {		
 		if(empty($this->menuItems[$name])) {
 			$this->menuItems[$name] = array();
 		}
@@ -27,7 +25,10 @@ class MenuHelper extends AppHelper {
 	}
 
 	function renderMenu($name = null) {
-		$html = '<ul>';
+		$html = '<ul';
+		if(!empty($this->menus[$name]['class']))
+			$html .= ' class="' . $this->menus[$name]['class'] . '"';
+		$html .= '>';
 
 		if(!empty($this->menuItems[$name])) {
 			foreach($this->menuItems[$name] as $menuItem) {
@@ -42,7 +43,7 @@ class MenuHelper extends AppHelper {
 				$html .= '>';
 				
 				$html .= '<a href="' . $menuItem['url'] . '">';
-				$html .= $menuItem['label'];
+				$html .= $menuItem['content'];
 				$html .= '</a>';
 				
 				$html .= '</li>';
@@ -55,7 +56,7 @@ class MenuHelper extends AppHelper {
 			$view->element('panel');
 			
 			return $view->element('panel',array(
-				'title' => $this->labels[$name],
+				'title' => $this->menus[$name]['label'],
 				'content' => $html
 			));
 		}
@@ -63,8 +64,10 @@ class MenuHelper extends AppHelper {
 	
 	function renderSection($section) {
 		$html = '';
-		foreach($this->sections[$section] as $menu) {
-			$html .= $this->renderMenu($menu);
+		if(!empty($this->sections[$section])) {
+			foreach($this->sections[$section] as $menu) {
+				$html .= $this->renderMenu($menu);
+			}	
 		}
 		
 		return $html;

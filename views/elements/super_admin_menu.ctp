@@ -19,28 +19,28 @@ $menu->addMenu(array(
 ));
 
 $menu->addMenuItem('site_administration',array(
-	'label' => __('Statistics', true),
+	'content' => __('Statistics', true),
 	'class' => 'gclms-statistics',
 	'active' => $this->name == 'Statistics',
 	'url' => '/administration/statistics'
 ));
 
 $menu->addMenuItem('site_administration',array(
-	'label' => __('Groups', true),
+	'content' => __('Groups', true),
 	'class' => 'gclms-groups',
 	'active' => $this->name == 'Groups',
 	'url' => '/administration/groups'
 ));
 
 $menu->addMenuItem('site_administration',array(
-	'label' => __('Administrators', true),
+	'content' => __('Administrators', true),
 	'class' => 'gclms-users',
 	'active' => $this->name == 'Administrators',
 	'url' => '/administration/administrators'
 ));
 
 $menu->addMenuItem('site_administration',array(
-	'label' => __('Users', true),
+	'content' => __('Users', true),
 	'class' => 'gclms-users',
 	'active' => $this->name == 'Users',
 	'url' => '/administration/users'

@@ -12,21 +12,21 @@ $menu->addMenu(array(
 ));
 
 $menu->addMenuItem('navigation',array(
-	'label' => __('Course Catalogue', true),
+	'content' => __('Course Catalogue', true),
 	'class' => 'gclms-courses',
 	'active' => $this->name == 'Courses' && $this->action != 'index',
 	'url' => '/courses'
 ));
 
 $menu->addMenuItem('navigation',array(
-	'label' => __('My Profile', true),
+	'content' => __('My Profile', true),
 	'class' => 'gclms-profile',
 	'active' => $this->name == 'Courses' && $this->action != 'index',
 	'url' => '/profile'
 ));
 
 Permission::check('SiteAdministration') ? $menu->addMenuItem('navigation',array(
-	'label' => __('Site Administration', true),
+	'content' => __('Site Administration', true),
 	'class' => 'gclms-administration',
 	'url' => '/administration'
 )) : null;

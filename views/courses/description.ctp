@@ -6,6 +6,24 @@ $javascript->link(array(
 	'course'
 ), false);
 
+$menu->addMenu(array(
+	'name' => 'available_classes',
+	'label' => __('Available Classes',true),
+	'section' => 'secondary_column',
+	'class' => 'gclms-unbulleted-list gclms-available-classes'
+));
+
+foreach($available_classes as $class) {	
+	$content = '<strong>' . $class['VirtualClass']['title'] . '</strong><br/>';
+	if($class['VirtualClass']['start'] && $class['VirtualClass']['end'])
+		$content .= $myTime->niceShortDate($class['VirtualClass']['start']) . ' - ' . $myTime->niceShortDate($class['VirtualClass']['end']);
+	
+	$menu->addMenuItem('available_classes',array(
+		'content' => $content,
+		'url' => Course::get('web_path') . '/' . $class['VirtualClass']['id']
+	));
+}
+
 echo $this->element('left_column'); ?>
 
 <div class="gclms-center-column">

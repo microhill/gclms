@@ -18,7 +18,7 @@ echo $this->element('left_column');
 <div class="gclms-center-column">
 	<div class="gclms-content">	
 		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
-		<h1><? __('Course Structure') ?> </h1>
+		<h1><? __('Lesson Structure') ?> </h1>
 		<div id="gclms-menubars">
 			<div id="gclms-menubars-floater">
 				<?

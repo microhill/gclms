@@ -32,15 +32,20 @@ echo $form->input('type',array(
 ?>
 </p>
 
-<p id="gclms-page-chooser">
-	<label>Page</label><br/>
+<p id="gclms-quiz-location">
+	<label>Page where quiz is located</label><br/>
 	<input disabled="disabled" /><button>Change</button>
 </p>
 
 <p id="gclms-forum-chooser">
-	<label>Forum</label><br/>
+	<label>Associated forum</label><br/>
 	<input disabled="disabled" type="text" id="AssignmentForumTitle" /><input type="hidden" name="data[Assignment][forum_id]" id="AssignmentForumId" /><button>Change</button>
 	<div class="gclms-hidden" id="gclms-forum-list"></div>
+</p>
+
+<p id="gclms-reminder-location">
+	<label>Inform/remind student of assignment after this lesson page</label><br/>
+	<input disabled="disabled" /><button>Change</button>
 </p>
 
 <fieldset>

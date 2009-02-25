@@ -22,7 +22,7 @@ $secondary_column = $this->element('chat_participants');
 		if($chat_messages)		
 			$latestDatetime = strtotime($chat_messages[sizeof($chat_messages) - 1]['ChatMessage']['created']);
 		?>
-		<div id="gclms-chat-messages" gclms:user-id="<?= $user['id'] ?>" gclms:user-username="<?= $user['username'] ?>" gclms:last-message-datetime="<?= isset($latestDatetime) ? $latestDatetime : time() ?>">
+		<div id="gclms-chat-messages" gclms:user-id="<?= User::get('id') ?>" gclms:user-username="<?= User::get('username') ?>" gclms:last-message-datetime="<?= isset($latestDatetime) ? $latestDatetime : time() ?>">
 			<?
 			$lastMessageAuthor = null;
 			foreach($chat_messages as $chat_message): ?>

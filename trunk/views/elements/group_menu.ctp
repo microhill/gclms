@@ -14,7 +14,7 @@ $menu->addMenu(array(
 ));
 
 $menu->addMenuItem('group',array(
-	'label' => __('Group Home', true),
+	'content' => __('Group Home', true),
 	'class' => 'gclms-home',
 	'active' => $this->viewPath == 'groups' && count($this->params['pass']) == 0,
 	'url' => '/' . $this->params['group']
@@ -22,7 +22,7 @@ $menu->addMenuItem('group',array(
 
 if(Permission::check('VirtualClass'))
 	$menu->addMenuItem('group',array(
-		'label' => __('Classes', true),
+		'content' => __('Classes', true),
 		'class' => 'gclms-courses',
 		'active' => $this->viewPath == 'classes',
 		'url' => '/' . $this->params['group'] . '/classes'
@@ -30,7 +30,7 @@ if(Permission::check('VirtualClass'))
 
 if(Permission::check('Permission'))
 	$menu->addMenuItem('group',array(
-		'label' => __('User Permissions', true),
+		'content' => __('User Permissions', true),
 		'class' => 'gclms-facilitators',
 		'active' => $this->viewPath == 'permissions',
 		'url' => '/' . Group::get('web_path') . '/permissions'
@@ -38,14 +38,14 @@ if(Permission::check('Permission'))
 
 if(Permission::check('Course'))
 	$menu->addMenuItem('group',array(
-		'label' => __('Courses', true),
+		'content' => __('Courses', true),
 		'class' => 'gclms-add',
 		'url' => '/' . Group::get('web_path') . '/courses/add'
 	));
 
 if(Permission::check('Group'))
 	$menu->addMenuItem('group',array(
-		'label' => __('Configuration', true),
+		'content' => __('Configuration', true),
 		'class' => 'gclms-configuration',
 		'url' => '/' . Group::get('web_path') . '/configuration'
 	));

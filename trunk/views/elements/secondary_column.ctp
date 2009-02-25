@@ -37,6 +37,8 @@
 			'content' => $this->element('open_classes')
 		));
 	}
+	
+	echo $menu->renderSection('secondary_column');
 
 	?>
 	<div><!-- This empty tag fixes an IE bug --></div>

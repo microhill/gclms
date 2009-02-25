@@ -6,35 +6,35 @@ $menu->addMenu(array(
 ));
 
 $menu->addMenuItem('course',array(
-	'label' => __('Course Home', true),
+	'content' => __('Course Home', true),
 	'class' => 'gclms-home',
 	'active' => $this->name == 'Courses' && $this->action != 'edit',
 	'url' => $groupAndCoursePath
 ));
 
 $menu->addMenuItem('course',array(
-	'label' => __('Glossary', true),
+	'content' => __('Glossary', true),
 	'class' => 'gclms-glossary',
 	'active' =>  $this->name == 'Glossary',
 	'url' => $groupAndCoursePath . '/glossary'
 ));
 
 Permission::check('Course') ? $menu->addMenuItem('course',array(
-	'label' => __('Files', true),
+	'content' => __('Files', true),
 	'class' => 'gclms-files',
 	'active' =>  $this->name == 'Files',
 	'url' => $groupAndCoursePath . '/files'
 )) : null;
 
 $menu->addMenuItem('course',array(
-	'label' => __('Articles', true),
+	'content' => __('Articles', true),
 	'class' => 'gclms-articles',
 	'active' =>  $this->name == 'Articles',
 	'url' => $groupAndCoursePath . '/articles'
 ));
 
 $menu->addMenuItem('course',array(
-	'label' => __('Books', true),
+	'content' => __('Books', true),
 	'class' => 'gclms-books',
 	'active' =>  $this->name == 'Books' || $this->name == 'Chapters',
 	'url' => $groupAndCoursePath . '/books'
@@ -47,14 +47,14 @@ $menu->addMenu(array(
 ));
 
 $menu->addMenuItem('interaction',array(
-	'label' => __('Forums', true),
+	'content' => __('Forums', true),
 	'class' => 'gclms-forums',
 	'active' => $this->name == 'Forums',
 	'url' => $groupAndCoursePath . '/forums'
 ));
 
 $menu->addMenuItem('interaction',array(
-	'label' => __('Chat', true),
+	'content' => __('Chat', true),
 	'class' => 'gclms-chat',
 	'active' => $this->name == 'Chat',
 	'url' => $groupAndCoursePath . '/chat'
@@ -67,28 +67,28 @@ $menu->addMenu(array(
 ));
 
 1 ? $menu->addMenuItem('administration',array(
-	'label' => __('Default Assignments', true),
+	'content' => __('Default Assignments', true),
 	'class' => 'gclms-assignments',
 	'active' =>  $this->name == 'Assignments',
 	'url' => $groupAndCoursePath . '/assignments'
 )) : null;
 
 Permission::check('Content') ? $menu->addMenuItem('administration',array(
-	'label' => __('Course Structure', true),
+	'content' => __('Lesson Structure', true),
 	'class' => 'gclms-course-content',
 	'active' =>  $this->name == 'Content',
 	'url' => $groupAndCoursePath . '/content'
 )) : null;
 
 Permission::check('Course') ? $menu->addMenuItem('administration',array(
-	'label' => __('Configure Course', true),
+	'content' => __('Configure Course', true),
 	'class' => 'gclms-configuration',
 	'active' =>  $this->name == 'Courses' && $this->action == 'edit',
 	'url' => $groupAndCoursePath . '/configuration'
 )) : null;
 
 Permission::check('Course') ? $menu->addMenuItem('administration',array(
-	'label' => __('Export Course', true),
+	'content' => __('Export Course', true),
 	'class' => 'gclms-export',
 	'active' =>  $this->name == 'Export',
 	'url' => $groupAndCoursePath . '/export'

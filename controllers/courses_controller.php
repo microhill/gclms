@@ -187,11 +187,13 @@ class CoursesController extends AppController {
 		$this->set(compact('nodes'));
 			
 		if(empty($this->viewVars['class']['id'])) {
-			/*
-			$this->FacilitatedClass->contain();
-			$virtual_classes = $this->FacilitatedClass->findAllByCourseId($this->viewVars['course']['id']);
-			$this->set('virtual_classes',$virtual_classes);
-			*/
+			$this->VirtualClass =& ClassRegistry::init('VirtualClass');
+			
+			$classes = $this->VirtualClass->find('all',array(
+				'conditions' => array('VirtualClass.course_id' => $this->viewVars['course']['id']),
+				'contain' => false
+			));
+			$this->set('available_classes',$classes);
 		} else {
 			$this->Announcement->contain();
 			$news_items = $this->Announcement->findAllByFacilitatedClassId($this->viewVars['class']['id']);

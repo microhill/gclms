@@ -5,7 +5,7 @@ $javascript->link(array(
 	'gclms'
 ), false);
 
-$primary_column = $this->element('class_menu');
+$primary_column = $this->element('primary_column');
 $secondary_column = $this->element('../class/secondary_column');
 
 echo $this->element('left_column',array(
@@ -18,8 +18,6 @@ echo $this->element('left_column',array(
 	<div class="gclms-content">
 		<h1><?= $course['title'] ?></h1>
 		<?
-		//pr($announcments);
-		
 		if(!empty($nodes))
 			echo $this->element('nodes_tree',array(
 				'nodes' => $nodes,

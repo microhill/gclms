@@ -32,6 +32,13 @@ echo $form->input('type',array(
 ?>
 </p>
 
+<?= $form->input('points',array(
+	'label' =>  __('Points', true),
+	'between' => '<br/>',
+	'size' => 5
+));
+?>
+
 <p id="gclms-quiz-location">
 	<label>Page where quiz is located</label><br/>
 	<input disabled="disabled" /><button>Change</button>
@@ -51,7 +58,7 @@ echo $form->input('type',array(
 <fieldset>
 <p id="gclms-time-limit-chooser">
 <?
-echo $form->input('Time_limit',array(
+echo $form->input('time_limit',array(
 	'label' =>  __('Time limit (minutes)', true),
 	'between' => '<br/>',
 	'size' => 5,
@@ -71,7 +78,7 @@ echo $form->input('has_availability_date',array(
 	'div' => false
 ));
 
-echo $form->input('availability_day_week',array(
+echo $form->input('availability_date_week',array(
 	'label' =>  false,
 	'options' => $weeks,
 	'between' => false,
@@ -79,7 +86,7 @@ echo $form->input('availability_day_week',array(
 ));
 echo ' ';
 
-echo $form->input('availability_day_day',array(
+echo $form->input('availability_date_day',array(
 	'label' =>  false,
 	'options' => $days,
 	'between' => false,
@@ -101,7 +108,7 @@ echo $form->input('has_due_date',array(
 	'div' => false
 ));
 
-echo $form->input('due_day_week',array(
+echo $form->input('due_date_week',array(
 	'label' =>  false,
 	'options' => $weeks,
 	'between' => false,
@@ -109,7 +116,7 @@ echo $form->input('due_day_week',array(
 ));
 echo ' ';
 
-echo $form->input('due_day_day',array(
+echo $form->input('due_date_day',array(
 	'label' =>  false,
 	'options' => $days,
 	'between' => false,
@@ -136,11 +143,6 @@ echo $form->input('description',array(
 	'rows' => 13,
 	'cols' => 80,
 	'class' => 'wysiwyg'
-));
-echo $form->input('points',array(
-	'label' =>  __('Points', true),
-	'between' => '<br/>',
-	'size' => 5
 ));
 ?>
 <p><?= $form->checkbox('overridable', array(

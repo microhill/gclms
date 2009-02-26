@@ -10,10 +10,9 @@ $javascript->link(array(
 echo $this->element('no_column_background');
 ?>
 <div class="gclms-content">
-	<h1><?= __('Add Assignment') ?></h1>    
+	<h1><?= __('Edit Assignment') ?></h1>    
 		<?
-		echo $form->create('Assignment',array('id' => null,'url' => $groupAndCoursePath . '/assignments/add'));
-		echo $form->hidden('course_id',array('value'=>Course::get('id')));
+		echo $form->create('Assignment',array('url' => $groupAndCoursePath . '/assignments/edit/' . $this->data['Assignment']['id']));
 		include('form.ctp');
 		echo $form->submit(__('Save',true),array('class'=>'gclms-save'));
 		echo $form->end();

@@ -9,35 +9,62 @@ class AssignmentsController extends AppController {
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
-
+		$this->Breadcrumbs->addCrumb('Assignments','/' . $this->viewVars['groupAndCoursePath'] . '/assignments');
 		parent::beforeRender();
 	}
 
 	function index() {
-		//$this->Node->contain();
-		//$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
-		//$this->set(compact('nodes'));
+		$this->data = $this->Assignment->find('all',array(
+			'conditions' => array(
+				'Assignment.course_id' => Course::get('id'),
+				'Assignment.virtual_class_id' => VirtualClass::get('id'),
+			),
+			'order' => 'Assignment.due_date, Assignment.title',
+			'contain' => false
+		));
 	}
 	
 	function add() {
-		/*
 		if(!empty($this->data)) {
-			if($this->{$model}->save($this->data)) {
-				if(!empty($this->itemName))
-					$this->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully added.',true));
+			if($this->Assignment->save($this->data)) {
+				//if(!empty($this->itemName))
+					//$this->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully added.',true));
 				
-				$this->data[$model]['id'] = $this->{$model}->id;
+				$this->data['Assignment']['id'] = $this->Assignment->id;
 				$this->afterSave();				
 			} else {
-				if(!empty($this->itemName))
-					$this->Notifications->add(__('There was an error when attempting to add the ' . low($this->itemName) . '.',true),'error');
+				//if(!empty($this->itemName))
+					//$this->Notifications->add(__('There was an error when attempting to add the ' . low($this->itemName) . '.',true),'error');
 			}
 		}
-		*/
 	}
 	
-	function edit($id = null) {
-		
+	function edit($id) {
+		if(!empty($this->data)) {
+			$this->data['Assignment']['id'] = $id;
+			if($this->Assignment->save($this->data)) {				
+				//if(!empty($this->itemName))
+					//$this->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully added.',true));
+				
+				$this->data['Assignments']['id'] = $this->Assignment->id;
+				$this->afterSave();
+			} else {
+				//if(!empty($this->itemName))
+					//$this->Notifications->add(__('There was an error when attempting to add the ' . low($this->itemName) . '.',true),'error');
+			}
+		} else {
+			$this->data = $this->Assignment->find('first',array(
+				'conditions' => array('Assignment.id' => $id),
+				'contain' => false
+			));
+		}
+	}
+	
+	function delete() {
+		foreach($this->data['Assignments'] as $assignment) {
+			$this->Assignment->delete($assignment);			
+		}
+		$this->afterSave();
 	}
 	
 	function save($id = null) {
@@ -50,6 +77,6 @@ class AssignmentsController extends AppController {
 	}
 	
 	function afterSave() {
-		//$this->redirect('/' . Group::get('web_path') . '/' . $this->viewVars['course']['web_path'] . '/news/section:' . $this->viewVars['class']['id']);
+		$this->redirect('/' . $this->viewVars['groupAndCoursePath'] . '/assignments');
 	}
 }

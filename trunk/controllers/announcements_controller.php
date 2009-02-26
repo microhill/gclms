@@ -21,12 +21,7 @@ class AnnouncementsController extends AppController {
 		$nodes =  $this->Node->findAllInCourse($this->viewVars['course']['id']);
 		$this->set(compact('nodes'));
 	}
-
-	function table() {
-		$data = $this->paginate();
-		$this->set(compact('data'));
-	}
-	
+		
 	function save($id = null) {
 		$this->cleanUpFields();
 		

@@ -26,6 +26,13 @@ $menu->addMenuItem('site_administration',array(
 ));
 
 $menu->addMenuItem('site_administration',array(
+	'content' => __('Site Pages', true),
+	'class' => 'gclms-articles',
+	'active' => $this->name == 'SitePages',
+	'url' => '/administration/site_pages'
+));
+
+$menu->addMenuItem('site_administration',array(
 	'content' => __('Groups', true),
 	'class' => 'gclms-groups',
 	'active' => $this->name == 'Groups',

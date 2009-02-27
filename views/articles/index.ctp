@@ -15,7 +15,9 @@ echo $this->element('left_column'); ?>
 		<?= $this->element('notifications'); ?>
 		<? if(!$framed): ?>
 			<h1><? __('Articles') ?></h1>
-			<button href="articles/add"><? __('Add') ?></button>
+			<? if(Permission::check('Content')): ?>
+				<button href="articles/add"><? __('Add') ?></button>
+			<? endif; ?>
 		<? endif; ?>
 		<ul class="articles">
 			<? foreach($this->data as $article): ?>

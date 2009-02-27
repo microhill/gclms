@@ -17,7 +17,9 @@ echo $this->element('left_column'); ?>
 		<?= $this->element('notifications'); ?>
 		<? if(!$framed): ?>
 			<h1><? __('Books') ?></h1>
-			<button href="books/add"><? __('Add') ?></button>
+			<? if(Permission::check('Content')): ?>	
+				<button href="books/add"><? __('Add') ?></button>
+			<? endif; ?>
 		<? endif; ?>
 
 		<div id="gclms-books">
@@ -26,19 +28,21 @@ echo $this->element('left_column'); ?>
 				echo '<div class="gclms-book" gclms:id="' . $book['Book']['id'] . '">';
 				echo '<h2>' . $book['Book']['title'] . '</h2>';
 				if(!$framed) :?>
-					<table>
-						<tr>
-							<td>
-								<button class="gclms-add" gclms:prompt-text="Enter the new name of the chapter:"><? __('Add Chapter') ?></button>
-							</td>
-							<td>
-								<button class="gclms-rename" gclms:prompt-text="Enter the new name of the book:"><? __('Rename Book') ?></button>
-							</td>
-							<td>
-								<button class="gclms-delete" gclms:confirm-text="Are you sure you want to delete this book?"><? __('Delete Book') ?></button>
-							</td>
-						</tr>
-					</table>
+					<? if(Permission::check('Content')): ?>	
+						<table>
+							<tr>
+								<td>
+									<button class="gclms-add" gclms:prompt-text="Enter the new name of the chapter:"><? __('Add Chapter') ?></button>
+								</td>
+								<td>
+									<button class="gclms-rename" gclms:prompt-text="Enter the new name of the book:"><? __('Rename Book') ?></button>
+								</td>
+								<td>
+									<button class="gclms-delete" gclms:confirm-text="Are you sure you want to delete this book?"><? __('Delete Book') ?></button>
+								</td>
+							</tr>
+						</table>
+					<? endif; ?>
 				<? endif;
 				echo '<ul>';
 				foreach($book['Chapter'] as $chapter) {

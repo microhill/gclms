@@ -10,9 +10,7 @@ $javascript->link(array(
 
 ?>
 <div class="gclms-content">
-	<?= $this->element('notifications'); ?>
-	<div class="gclms-step-back"><a href="/<?= Group::get('web_path') ?>/permissions"><? __('Cancel and go back') ?></a></div>
-	
+	<?= $this->element('notifications'); ?>	
 	<h1>
 		<? __('Add Administrator') ?>
 	</h1>

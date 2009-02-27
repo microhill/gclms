@@ -17,7 +17,6 @@ $javascript->link(array(
 	'popup'
 ), false);
 ?>
-<?= $this->element('no_column_background'); ?>
 <div class="gclms-content gclms-edit-page">
     <div class="gclms-step-back">
         <a href="<?= $groupAndCoursePath ?>/content">

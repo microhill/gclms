@@ -22,8 +22,6 @@
 	gclms:virtual-class="<?= @$class['id'] ?>"
 	gclms-controller="<?= $this->name ?>"
 	gclms-action="<?= $this->action ?>">
-
-	<?= $this->element('no_column_background'); ?>
 	
 	<div id="header">
 		<?= $this->element('../classroom/header') ?>

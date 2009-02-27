@@ -83,8 +83,6 @@ echo $this->element('left_column',array(
 				</table>
 			<? endif; ?>
 		</form>
-
-
 	</div>
 </div>
 

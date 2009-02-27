@@ -1,5 +1,3 @@
-<?= $this->element('no_column_background'); ?>
-
 <div class="gclms-content">
 	<?= $this->element('notifications'); ?>
 	<div class="gclms-step-back"><a href="<?= $groupAndCoursePath . '/glossary' ?>"><? __('Cancel and go back') ?></a></div>

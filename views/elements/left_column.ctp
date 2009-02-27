@@ -1,5 +1,4 @@
 <? if($framed): ?>
-	<?= $this->element('no_column_background'); ?>
 <? else: ?>
 <div class="gclms-left-column">
 	<?

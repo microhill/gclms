@@ -21,7 +21,6 @@ $javascript->link(array(
 	'page_selfcheck'
 ), false);
 
-echo $this->element('no_column_background');
 ?>
 
 <div class="gclms-content">

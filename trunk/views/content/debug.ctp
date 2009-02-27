@@ -3,8 +3,6 @@
 	display: block;
 }
 </style>
-
-<?= $this->element('no_column_background'); ?>
 <div class="gclms-content">
 	<h1><?= __('Debug') ?></h1> 
 		<?

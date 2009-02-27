@@ -7,8 +7,6 @@ $javascript->link(array(
 	'gclms',
 	'permissions'
 ), false);
-
-echo $this->element('no_column_background');
 ?>
 <div class="gclms-content">
 	<?= $this->element('notifications'); ?>

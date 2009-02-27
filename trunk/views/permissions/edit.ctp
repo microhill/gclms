@@ -1,5 +1,4 @@
 <?
-echo $this->element('no_column_background');
 
 $javascript->link(array(
 	'vendors/prototype1.6.0.3',

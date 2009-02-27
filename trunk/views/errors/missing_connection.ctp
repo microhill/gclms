@@ -1,4 +1,3 @@
-<?= $this->element('no_column_background'); ?>
 <div class="gclms-content">
 	<h1><?php __('Missing Database Connection'); ?></h1>
 	<p class="error">

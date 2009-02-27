@@ -6,8 +6,6 @@ $javascript->link(array(
 	'popup',
 	'edit_assignment.js'
 ), false);
-
-echo $this->element('no_column_background');
 ?>
 <div class="gclms-content">
 	<h1><?= __('Add Assignment') ?></h1>    

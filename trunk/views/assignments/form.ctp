@@ -51,7 +51,7 @@ echo $form->input('type',array(
 </p>
 
 <p id="gclms-reminder-location">
-	<label>Inform/remind student of assignment after this lesson page</label><br/>
+	<label><? __('Inform student of assignment after this lesson page') ?></label><br/>
 	<input disabled="disabled" /><button>Change</button>
 </p>
 
@@ -145,33 +145,25 @@ echo $form->input('description',array(
 	'class' => 'wysiwyg'
 ));
 ?>
-<p><?= $form->checkbox('overridable', array(
+<!-- p><?= $form->checkbox('overridable', array(
 	'checked' => isset($data['Assignment']['overridable']) ? $data['Assignment']['overridable'] : true
 )
-); ?> <label for="AssignmentOverridable">Facilitators can override this assignment</label></p>
-
-
-<fieldset>
-	<legend>General options</legend>
-</fieldset>
-
-<fieldset>
-	<legend>Extra options</legend>	
+); ?> <label for="AssignmentOverridable">Facilitators can override this assignment</label></p -->
 	
-	<p><?= $form->checkbox('calculated', array(
+	<!-- p><?= $form->checkbox('calculated', array(
 		'checked' => isset($data['Assignment']['calculated']) ? $data['Assignment']['calculated'] : true
 	)
-	); ?> <label for="AssignmentOverridable2">Calculated</label></p>
+	); ?> <label for="AssignmentOverridable2">Calculated</label></p -->
 	
-	<?
+	<!-- ?
 	echo $form->input('allowed_attempts',array(
 		'label' =>  __('Allowed attempts', true),
 		'between' => '<br/>',
 		'size' => 5
 	));
-	?>
+	? -->
 	
-	<p>
+	<!-- p>
 	<?
 	echo $form->input('grading_method',array(
 		'label' =>  __('Grading method', true),
@@ -184,8 +176,7 @@ echo $form->input('description',array(
 		'between' => '<br/>'
 	));
 	?>
-	</p>
-</fieldset>
+	</p -->
 
 
 

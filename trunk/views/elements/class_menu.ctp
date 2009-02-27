@@ -127,8 +127,8 @@ $menu->addMenuItem('facilitation',array(
 ));
 
 $menu->addMenuItem('facilitation',array(
-	'content' => __('Participants', true),
+	'content' => __('Students', true),
 	'class' => 'gclms-users',
-	'active' =>  $this->name == 'Participants',
-	'url' => $groupAndCoursePath . '/participants'
+	'active' =>  $this->name == 'Students',
+	'url' => $groupAndCoursePath . '/students'
 ));

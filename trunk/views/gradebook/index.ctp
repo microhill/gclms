@@ -6,7 +6,7 @@ $javascript->link(array(
 	'vendors/prototype_extensions1.0',
 	'gclms',
 	'popup',
-	//'gradebook'
+	'gradebook'
 ), false);
 
 $primary_column = $this->element('primary_column');
@@ -22,27 +22,14 @@ echo $this->element('left_column',array(
 		<h1><? __('Gradebook') ?></h1>
 		<table class="gclms-buttons">
 			<tr>
-				<td><button href="<?= $groupAndCoursePath ?>/students/add"><? __('Add assignment') ?></button></td>
+				<td><button href="<?= $groupAndCoursePath ?>/assignments/add"><? __('Add assignment') ?></button></td>
 			</tr>
 		</table>
-		<?
-		
-		?>
 		<? if(!empty($assignments)): ?>
-			<style>
-				#gclms-gradebook td.gclms-students {
-					padding: 0;
-				}
-				
-					#gclms-gradebook td.gclms-students td {
-						white-space: nowrap;
-					}
-			</style>
 			<table class="gclms-tabular" cellspacing="0" id="gclms-gradebook">
 				<tbody>
 					<tr>
-						<th>&nbsp;
-						</th>
+						<th>&nbsp;</th>
 						<td rowspan="<?= sizeof($assignments) + 1 ?>" valign="top" class="gclms-students">
 							<table>
 								<tbody>
@@ -56,15 +43,17 @@ echo $this->element('left_column',array(
 									<? foreach($assignments as $assignment): ?>
 										<tr>
 											<? foreach($enrollees as $student): ?>
-												<td>
-													<?
-													$grade = Set::extract('/User/ClassGrade[assignment_id=' . $assignment['Assignment']['id'] . ']',$student);
-													if($grade) {
-														echo $grade[0]['ClassGrade']['points'];												
-													} else {
-														echo '&nbsp;';													
-													}
-													?>
+												<?
+												$grade = Set::extract('/User/ClassGrade[assignment_id=' . $assignment['Assignment']['id'] . ']',$student);
+												?>
+												<td class="gclms-grade" gclms-grade-value="<? if($grade) echo $grade[0]['ClassGrade']['points']; ?>">
+												<?
+												if($grade) {
+													echo $grade[0]['ClassGrade']['points'];												
+												} else {
+													echo '&nbsp;';													
+												}
+												?>
 												</td>
 											<? endforeach; ?>											
 										</tr>

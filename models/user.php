@@ -203,7 +203,7 @@ class User extends AppModel {
 		return true;	
 	}
 	
-	function identify($data) {
+	function authenticate($data) {
 		$data['User']['username'] = trim($data['User']['username']);
 		$password = Security::hash($data['User']['password'], 'sha1',true);
 
@@ -230,6 +230,28 @@ class User extends AppModel {
 		if(empty($user))
 			return false;
 			
+		return $user;
+	}
+	
+	function identify($identifier) {
+		if(strpos($identifier,'@') !== false) {
+			$user = $this->find('first',array(
+				'conditions' => array(
+					'User.email' => $identifier
+				),
+				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified')
+			));
+		} else if(strpos($identifier,'http://') === false) {
+			$user = $this->find('first',array(
+				'conditions' => array(
+					'User.username' => $identifier
+				),
+				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified')
+			));
+		} else {
+			//OpenID	
+		}
+		
 		return $user;
 	}
 }

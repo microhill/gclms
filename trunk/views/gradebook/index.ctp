@@ -66,7 +66,7 @@ echo $this->element('left_column',array(
 					foreach($assignments as $assignment) {
 						?>
 						<tr>
-							<th>
+							<th width="1" style="white-space: nowrap;">
 								<?= $assignment['Assignment']['title'] ?>
 							</th>
 						</tr>

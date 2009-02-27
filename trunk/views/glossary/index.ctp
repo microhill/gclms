@@ -15,8 +15,9 @@ echo $this->element('left_column'); ?>
 		<?= $this->element('notifications'); ?>
 		<? if(!$framed): ?>
 			<h1><? __('Glossary') ?></h1>
-			<button href="glossary/add"><? __('Add') ?></button>
-			</div>
+			<? if(Permission::check('Content')): ?>
+				<button href="glossary/add"><? __('Add') ?></button>
+			<? endif; ?>
 		<? endif; ?>
 		<ul class="glossary">
 			<? foreach($this->data as $term): ?>

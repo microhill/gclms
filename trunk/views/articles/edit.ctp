@@ -4,6 +4,7 @@ $javascript->link(array(
 	'vendors/prototype_extensions1.0',
 	'vendors/tinymce3.2.1.1/tiny_mce',
 	'gclms',
+	'popup',
 	'edit_article.js'
 ), false);
 

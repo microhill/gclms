@@ -3,10 +3,6 @@ class AssignmentsController extends AppController {
     var $uses = array('Assignment','VirtualClass','Node');
 	var $helpers = array('Form','MyForm','Time','MyTime');
 
-	function beforeFilter() {
-		parent::beforeFilter();
-	}
-
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
 		$this->Breadcrumbs->addCrumb('Assignments','/' . $this->viewVars['groupAndCoursePath'] . '/assignments');

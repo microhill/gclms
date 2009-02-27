@@ -115,7 +115,7 @@ class UsersController extends AppController {
 
 	function login() {
 		if(!empty($this->data)) {
-			if($user = $this->User->identify($this->data)) {
+			if($user = $this->User->authenticate($this->data)) {
 				$this->Session->write('User',$user);
 			} else {
 				$this->Notifications->add('Error when attempting to log in','error');

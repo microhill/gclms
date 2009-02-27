@@ -1,6 +1,8 @@
 <?
 class User extends AppModel {   
 	var $recursive = 0;
+	
+	var $hasMany = array('ClassGrade','ClassEnrollee');
     
 	var $hasAndBelongsToMany = array(
 		'ClassesTaking' => array(

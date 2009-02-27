@@ -16,8 +16,7 @@ class Assignment extends AppModel {
 		return true;
 	}
 	
-	function afterFind2($results,$primary) {
-		//pr($results);
+	function afterFind($results,$primary) {
 		foreach($results as &$result) {
 			if($result['Assignment']['due_date']) {
 				$result['Assignment']['due_date_week'] = (int) ($result['Assignment']['due_date'] / 7) + 1;

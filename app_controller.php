@@ -4,7 +4,7 @@ App::import('Vendor', 'browserdetection'.DS.'browserdetection');
 
 class AppController extends Controller {
 	var $components = array('Common','Breadcrumbs','Languages','RequestHandler','Notifications');
-	var $helpers = array('Html','Form','Ajax','Asset');
+	var $helpers = array('Html','Form','Ajax','Asset','Menu');
 	//var $uses = array('Group','Course','User','Permission');
 	var $paginateDefaults = array('limit' => 12);
 	var $css_for_layout = array();

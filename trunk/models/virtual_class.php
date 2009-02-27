@@ -27,6 +27,60 @@ class VirtualClass extends AppModel {
 		'enrollment_deadline' => 'checkEnrollmentDeadline'
 	);
 	
+	function inviteStudent($identifier) {
+		$this->User =& ClassRegistry::init('User');
+		$user = $this->User->identify($identifier);
+		if($user) {
+			if($this->addStudent($user['User']['id']))
+				return true;
+		} else if(strpos($identifier,'@') !== false) {
+			//check to see if invitation has already been sent
+			
+			//mail person
+			//mail($this->data['Student']['identifier'],springf(__('Invitation to %',true),VirtualClass::get('title')),__('You have been invited to %.',true));
+			
+			$this->ClassInvitation =& ClassRegistry::init('ClassInvitation');
+			$this->ClassInvitation->save(array(
+				'identifier' => $identifier,
+				'virtual_class_id' => VirtualClass::get('id')
+			));
+			
+			return true;
+		}
+		return false;
+	}
+	
+	function addStudent($user_id) {
+		$this->ClassEnrollee =& ClassRegistry::init('ClassEnrollee');
+		if($this->ClassEnrollee->save(array(
+			'virtual_class_id' => VirtualClass::get('id'),
+			'user_id' => $user_id
+		))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	function afterSave($created) {
+		if($created) {
+			$this->Assignment =& ClassRegistry::init('Assignment');
+			$assignments = $this->Assignment->find('all',array(
+				'conditions' => array(
+					'Assignment.course_id' => $this->data['VirtualClass']['course_id'],
+					'Assignment.virtual_class_id' => null
+				),
+				'contain' => false
+			));
+			foreach($assignments as $assignment) {
+				unset($assignment['Assignment']['id']);
+				$assignment['Assignment']['virtual_class_id'] = $this->id;
+				if(!$this->Assignment->create($assignment,true) || !$this->Assignment->save())
+					die('Error');
+			}
+		}
+	}
+	
 	function checkTitle() {
 		if($this->findByGroupIdAndTitle($this->data['VirtualClass']['group_id'],$this->data['VirtualClass']['title']))
 			return false;

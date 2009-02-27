@@ -58,6 +58,8 @@ echo $this->element('left_column',array(
 								</td>
 								<td style="white-space: nowrap;">
 									<? 
+									pr($assignment);
+									
 									if($assignment['Assignment']['due_date']): ?>
 										<? __('Week') ?> <?= $assignment['Assignment']['due_date_week'] ?>,
 										<? __('day') ?> <?= $assignment['Assignment']['due_date_day'] ?>

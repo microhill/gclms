@@ -95,10 +95,10 @@ gclms.selector = Class.create(gclms.popup, {
 			method: 'get',
 			onSuccess: function(transport) {
 				this.dialog.insert(transport.responseText);
-				this.dialog.select('a').each(function(a){
+				this.dialog.select('.gclms-callback').each(function(a){
 					a.observe('click',function(event) {
-						this.options.get('callback')(event.element());
-						this.close();
+						if(this.options.get('callback')(event.element()))
+							this.close();
 					}.bind(this));					
 				}.bind(this));
 			}.bind(this)

@@ -3,8 +3,17 @@ class BooksController extends AppController {
     var $uses = array('Book');
 	var $helpers = array('Menu');
 	var $itemName = 'Book';
+	
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->Permission->cache('GroupAdministration','Content');
+	}
 
 	function add() {
+		if(!Permission::check('Content')) {
+			$this->cakeError('permission');
+		}
+		
 		if(!empty($this->data)) {
 			if($this->Book->save(array('Book'=>array(
 				'course_id' => $this->viewVars['course']['id'],
@@ -29,12 +38,20 @@ class BooksController extends AppController {
 	}
 
     function rename($id) {
+		if(!Permission::check('Content')) {
+			$this->cakeError('permission');
+		}
+		
     	$this->Book->id = $id;
     	$this->Book->saveField('title', $this->data['Book']['title']);
     	exit;
     }
 
     function delete($id) {
+		if(!Permission::check('Content')) {
+			$this->cakeError('permission');
+		}
+		
     	$this->Book->delete($id);
     	exit;
     }

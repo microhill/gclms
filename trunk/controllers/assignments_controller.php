@@ -20,6 +20,13 @@ class AssignmentsController extends AppController {
 		));
 	}
 	
+	function view($id) {
+		$this->data = $this->Assignment->find('first',array(
+			'conditions' => array('id' => $id),
+			'contain' => false
+		));
+	}
+	
 	function add() {
 		if(!empty($this->data)) {
 			if($this->Assignment->save($this->data)) {

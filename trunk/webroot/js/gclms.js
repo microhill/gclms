@@ -105,7 +105,8 @@ gclms.AppController = {
 	submitForm: function(event) {
 		this.addClassName('gclms-disabled');
 	},
-	gotoLink: function() {
+	gotoLink: function(event) {
+		event.stop();
 		if(this.getAttribute('gclms:confirm-text')) {
 			gclms.popup.create({
 				text: this.getAttribute('gclms:confirm-text'),
@@ -127,7 +128,7 @@ gclms.Triggers = $H({
 	'#UserLogin input#UserUsername:keyup,#UserLogin input#UserUsername:change,#UserLogin input#UserUsername:click,#UserLogin input#UserUsername:focus,#UserLogin input#UserUsername' : gclms.AppController.updateLoginPanel,
 	'img.gclms-tooltip-button:mouseover': gclms.AppController.showTooltip,
 	'img.gclms-tooltip-button:mouseout': gclms.AppController.hideTooltip,
-	'.gclms-recordset' : {
+	'.gclms-tabular' : {
 		'tr:click,.gclms-descriptive-recordset tr:click' : function() {
 			var tr = this.nodeName.toLowerCase() == 'tr' ? this : this.up('tr');
 			self.location.href = tr.select('a').first().getAttribute('href').toLowerCase();

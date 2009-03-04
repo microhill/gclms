@@ -1,0 +1,24 @@
+#gclms-gradebook td.gclms-students {
+	padding: 0;
+}
+
+	#gclms-gradebook td.gclms-students td {
+		white-space: nowrap;
+	}
+	
+	.gclms-grade:hover {
+		background-color: #FFFFD3;
+	}
+	
+	.gclms-grade {
+		width: 30px;
+		background-color: white;
+	}
+	
+	.gclms-grade input {
+		padding: 0;
+		margin: 0;
+		border: 0;
+		background-color: transparent;
+		width: 24px;
+	}

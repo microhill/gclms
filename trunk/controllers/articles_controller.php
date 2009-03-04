@@ -3,6 +3,11 @@ class ArticlesController extends AppController {
     var $uses = array('Article');
 	var $helpers = array('Scripturizer','Glossary');
 	var $itemName = 'Article';
+	
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->Permission->cache('GroupAdministration','Content');
+	}
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
@@ -13,6 +18,30 @@ class ArticlesController extends AppController {
 	function index() {
 		$this->data = $this->Article->findAllByCourseId(array('course_id'=>$this->viewVars['course']['id']),null,'Article.title ASC');
 		$this->set('title',__('Articles',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name'));
+	}
+	
+	function add() {
+		if(!Permission::check('Content')) {
+			$this->cakeError('permission');
+		}
+		
+		$this->Common->add();
+	}
+	
+	function edit($id) {
+		if(!Permission::check('Content')) {
+			$this->cakeError('permission');
+		}
+		
+		$this->Common->edit($id);
+	}
+	
+	function delete($id) {
+		if(!Permission::check('Content')) {
+			$this->cakeError('permission');
+		}
+		
+		$this->Common->delete($id);
 	}
 
 	function view($id) {

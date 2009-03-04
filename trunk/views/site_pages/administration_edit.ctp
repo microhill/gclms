@@ -14,7 +14,7 @@ $javascript->link(array(
 	<div class="gclms-step-back"><a href="/administration/site_pages"><? __('Cancel and go back') ?></a></div>
 	<h1><?= __('Add Site Page') ?></h1>
 		<?
-		echo $form->create('Site Page',array('url' => '/administration/site_pages/edit/' . $this->data['SitePage']['id']));
+		echo $form->create('SitePage',array('url' => '/administration/site_pages/edit/' . $this->data['SitePage']['id']));
 		include('form.ctp');
 		echo $this->element('save_and_delete',array(
 			'confirm_delete_text' => __('Are you sure you want to delete this site page?',true)

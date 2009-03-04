@@ -3,6 +3,11 @@ class GlossaryController extends AppController {
     var $uses = array('GlossaryTerm');
 	var $helpers = array('Menu');
 	var $itemName = 'Glossary Term';
+	
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->Permission->cache('GroupAdministration','Content');
+	}
 
 	function beforeRender() {
 		$this->defaultBreadcrumbsAndLogo();
@@ -13,6 +18,30 @@ class GlossaryController extends AppController {
 	function index() {
 		$this->data = $this->GlossaryTerm->findAllByCourseId(array('course_id'=>$this->viewVars['course']['id']),null,'GlossaryTerm.term ASC');
 		$this->set('title',__('Glossary',true) . ' &raquo; ' . $this->viewVars['course']['title'] . ' &raquo; ' . Group::get('name'));
+	}
+	
+	function add() {
+		if(!Permission::check('Content')) {
+			$this->cakeError('permission');
+		}
+		
+		$this->Common->add();
+	}
+	
+	function edit($id) {
+		if(!Permission::check('Content')) {
+			$this->cakeError('permission');
+		}
+		
+		$this->Common->edit($id);
+	}
+	
+	function delete($id) {
+		if(!Permission::check('Content')) {
+			$this->cakeError('permission');
+		}
+		
+		$this->Common->delete($id);
 	}
 	
 	function view($id) {

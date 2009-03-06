@@ -13,7 +13,7 @@ $javascript->link(array(
 	<?= $this->element('notifications'); ?>
 	<h1><? echo sprintf(__("%s's Profile",true),$this->data['User']['username']) ?></h1>    
 	<?	
-	echo $form->create('User', array('url' => '/profile'));
+	echo $form->create('User', array('url' => '/profile','type' => 'file'));
 	/*
 	echo $form->input('username',array(
 		'label' =>  __('Username', true),
@@ -23,30 +23,49 @@ $javascript->link(array(
 	));
 	*/
 	?>
-	<p>
+	<p class="gclms-profile">
 	<?
-	if(empty($this->data['User']['avatar'])) {
+	if(empty($this->data['User']['avatar']) || $this->data['User']['avatar'] == 'default') {
 		?><img src="/img/icons/oxygen_refit/96x96/actions/stock_people.png" /><?
 	} else if ($this->data['User']['avatar'] == 'gravatar'){
 		?><img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($this->data['User']['email']) ?>&size=96" /><?
+	} else if ($this->data['User']['avatar'] == 'upload'){
+		?><img src="http://<?= $bucket ?>.s3.amazonaws.com/avatars/<?= $this->data['User']['id'] ?>.jpg" /><?
 	}
 	?> <button id="gclms-change-picture"><? __('Change Picture') ?></button>
 	</p>
 	<fieldset id="gclms-avatar-chooser" class="gclms-hidden">
 		<legend><? __('Change Picture') ?></legend>
 		<p>
-			<? echo $form->radio('avatar',array('upload' => __('Upload an image', true))); ?>
+			<?
+			$this->data['User']['avatar'] = empty($this->data['User']['avatar']) ? 'default' : $this->data['User']['avatar'];
+			echo $form->radio('avatar',array('upload' => __('Upload an image', true)),array(
+				'name' => 'data[User][avatar]',
+				'value' => $this->data['User']['avatar']
+			)); ?>
 			<div>
 				<? echo $form->file('avatar_file'); ?>
 			</div>
 		</p>
 		
 		<p>
-			<? echo $form->radio('avatar',array('gravatar' => __('Gravatar', true))); ?>
+			<? echo $form->radio('avatar',array('gravatar' => __('Gravatar', true)),array(
+				'name' => 'data[User][avatar]',
+				'value' => $this->data['User']['avatar']
+			)); ?>
+			<div>
+				<label for="UserAvatarGravatar"><img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($this->data['User']['email']) ?>&size=96" /></label>
+			</div>
 		</p>
 		
 		<p>
-			<? echo $form->radio('avatar',array('default' => __('Use default image', true))); ?>
+			<? echo $form->radio('avatar',array('default' => __('Use default image', true)),array(
+				'name' => 'data[User][avatar]',
+				'value' => $this->data['User']['avatar']
+			)); ?>
+			<div>
+				<label for="UserAvatarDefault"><img src="/img/icons/oxygen_refit/96x96/actions/stock_people.png" /></label>
+			</div>
 		</p>
 	</fieldset>
 	<?

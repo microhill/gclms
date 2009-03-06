@@ -49,10 +49,10 @@ class User extends AppModel {
 		),		
 		'new_password' => array(
 			array('rule' => 'checkDuplicatePassword','message' => 'Passwords do not match'),
-			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank')
+			//array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank')
 		),
 		'repeat_new_password' => array(
-			array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank')
+			//array('rule' => VALID_NOT_EMPTY,'message' => 'This field cannot be left blank')
 		),
 		'first_name' => array(
 			'rule' => VALID_NOT_EMPTY
@@ -215,7 +215,7 @@ class User extends AppModel {
 					'User.email' => $data['User']['username'],
 					'User.password' => $password
 				),
-				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified')
+				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified','avatar')
 			));
 		} else if(strpos($data['User']['username'],'http://') === false) {
 			$user = $this->find('first',array(
@@ -223,7 +223,7 @@ class User extends AppModel {
 					'User.username' => $data['User']['username'],
 					'User.password' => $password,
 				),
-				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified')
+				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified','avatar')
 			));
 		} else {
 			//OpenID	
@@ -241,14 +241,14 @@ class User extends AppModel {
 				'conditions' => array(
 					'User.email' => $identifier
 				),
-				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified')
+				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified','avatar')
 			));
 		} else if(strpos($identifier,'http://') === false) {
 			$user = $this->find('first',array(
 				'conditions' => array(
 					'User.username' => $identifier
 				),
-				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified')
+				'fields' => array('id','email','username','first_name','last_name','display_full_name','verified','avatar')
 			));
 		} else {
 			//OpenID	

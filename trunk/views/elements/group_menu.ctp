@@ -9,7 +9,7 @@
 
 $menu->addMenu(array(
 	'name' => 'group',
-	'label' => __('Learn',true),
+	'title' => __('Learn',true),
 	'section' => 'primary_column'
 ));
 

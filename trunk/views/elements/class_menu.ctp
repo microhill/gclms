@@ -40,7 +40,7 @@ echo $this->element('panel',array(
 
 $menu->addMenu(array(
 	'name' => 'course',
-	'label' => __('Learn',true),
+	'title' => __('Learn',true),
 	'section' => 'primary_column'
 ));
 

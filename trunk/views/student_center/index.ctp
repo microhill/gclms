@@ -7,7 +7,7 @@ $javascript->link(array(
 
 $menu->addMenu(array(
 	'name' => 'navigation',
-	'label' => __('Navigation',true),
+	'title' => __('Navigation',true),
 	'section' => 'primary_column'
 ));
 

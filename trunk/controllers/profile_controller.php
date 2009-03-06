@@ -28,7 +28,7 @@ class ProfileController extends AppController {
 		}
 		
 		if(!empty($this->data)) {
-			if($this->data['User']['avatar'] == 'upload')
+			if($this->data['User']['avatar'] == 'upload' && !empty($this->params['data']['User']['avatar_file']['tmp_name']))
 				$this->resizeAndUploadAvatar();
 			$this->User->id = $id;
 			if($this->User->save($this->data['User'])) {
@@ -61,7 +61,7 @@ class ProfileController extends AppController {
 		$phpThumb->src = $this->params['data']['User']['avatar_file']['tmp_name'];
 		$phpThumb->w = 96; //(!isset($_GET['w'])) ? 100 : $_GET['w'];;
 		$phpThumb->h = 96; //(!isset($_GET['h'])) ? 100 : $_GET['h'];;
-		$phpThumb->q = 80; //(!isset($_GET['q'])) ? 80 : $_GET['q'];;
+		$phpThumb->q = 90; //(!isset($_GET['q'])) ? 80 : $_GET['q'];;
 		//$phpThumb->config_imagemagick_path = 'C:\Program Files\ImageMagick-6.3.6-Q16';
 		$phpThumb->config_prefer_imagemagick = false;
 		$phpThumb->config_output_format = 'jpg';

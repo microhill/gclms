@@ -8,7 +8,7 @@ $javascript->link(array(
 
 $menu->addMenu(array(
 	'name' => 'available_classes',
-	'label' => __('Available Classes',true),
+	'title' => __('Available Classes',true),
 	'section' => 'secondary_column',
 	'class' => 'gclms-unbulleted-list gclms-available-classes'
 ));

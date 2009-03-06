@@ -1,7 +1,7 @@
 <?
 $menu->addMenu(array(
 	'name' => 'course',
-	'label' => __('Learn',true),
+	'title' => __('Learn',true),
 	'section' => 'primary_column'
 ));
 
@@ -42,7 +42,7 @@ $menu->addMenuItem('course',array(
 
 $menu->addMenu(array(
 	'name' => 'interaction',
-	'label' => __('Interact',true),
+	'title' => __('Interact',true),
 	'section' => 'primary_column'
 ));
 
@@ -62,7 +62,7 @@ $menu->addMenuItem('interaction',array(
 
 $menu->addMenu(array(
 	'name' => 'administration',
-	'label' => __('Develop',true),
+	'title' => __('Develop',true),
 	'section' => 'primary_column'
 ));
 

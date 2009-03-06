@@ -1,5 +1,7 @@
 <?
 class MenuHelper extends AppHelper {	
+	var $helpers = array('Block');
+	
 	var $sections = array();	
 	var $menus = array();
 	var $menuItems = array();
@@ -24,44 +26,46 @@ class MenuHelper extends AppHelper {
 		array_push($this->menuItems[$name],$options);
 	}
 
-	function renderMenu($name = null) {
-		$html = '<ul';
-		if(!empty($this->menus[$name]['class']))
-			$html .= ' class="' . $this->menus[$name]['class'] . '"';
-		$html .= '>';
+	function renderAllToBlocks() {
+		//$view =& ClassRegistry::getObject('view');
+		
+		foreach($this->menus as $name => $options) {
+			$html = '<ul';
+			if(!empty($options['class']))
+				$html .= ' class="' . $options['class'] . '"';
+			$html .= '>';
+	
+			if(!empty($this->menuItems[$name])) {
+				foreach($this->menuItems[$name] as $menuItem) {
+					$html .= '<li ';
+	
+					if(!empty($menuItem['active']))
+						$menuItem['class'] .= ' gclms-active';
+	
+	
+					if(!empty($menuItem['class']))
+						$html .= 'class="' . $menuItem['class'] . '"';
+					$html .= '>';
+					
+					$html .= '<a href="' . $menuItem['url'] . '">';
+					$html .= $menuItem['content'];
+					$html .= '</a>';
+					
+					$html .= '</li>';
+				}
+					
+				$html .= '</ul>';
 
-		if(!empty($this->menuItems[$name])) {
-			foreach($this->menuItems[$name] as $menuItem) {
-				$html .= '<li ';
-
-				if(!empty($menuItem['active']))
-					$menuItem['class'] .= ' gclms-active';
-
-
-				if(!empty($menuItem['class']))
-					$html .= 'class="' . $menuItem['class'] . '"';
-				$html .= '>';
-				
-				$html .= '<a href="' . $menuItem['url'] . '">';
-				$html .= $menuItem['content'];
-				$html .= '</a>';
-				
-				$html .= '</li>';
+				$this->Block->add(array(
+					'name' => $name,
+					'title' => $options['title'],
+					'content' => $html
+				));
 			}
-				
-			$html .= '</ul>';
-			//prd($this->element);
-			
-			$view =& ClassRegistry::getObject('view');
-			$view->element('panel');
-			
-			return $view->element('panel',array(
-				'title' => $this->menus[$name]['label'],
-				'content' => $html
-			));
 		}
 	}
 	
+	/*
 	function renderSection($section) {
 		$html = '';
 		if(!empty($this->sections[$section])) {
@@ -72,4 +76,5 @@ class MenuHelper extends AppHelper {
 		
 		return $html;
 	}
+	*/
 }

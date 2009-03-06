@@ -61,7 +61,7 @@ if (file_exists(CONFIGS . 'installed.txt')) {
 	//Router::connect('/question_responses/:action/*', array('controller' => 'question_responses'));
 	
 	Router::connect('/notebook/:action/*', array('controller' => 'notebook'));
-	Router::connect('/user/:user', array('controller' => 'users','action' => 'view'),array('user' => $UUID));
+	Router::connect('/user/:user', array('controller' => 'users','action' => 'view')); //,array('user' => $UUID)
 	
 	Router::connect('/groups/:action/*', array('controller' => 'groups'));
 	

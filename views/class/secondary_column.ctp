@@ -18,7 +18,7 @@ echo $this->element('panel',array(
 
 $menu->addMenu(array(
 	'name' => 'upcoming_assignments',
-	'label' => __('Due Soon',true),
+	'title' => __('Due Soon',true),
 	'section' => 'secondary_column',
 	'class' => 'gclms-unbulleted-list'
 ));

@@ -5,13 +5,23 @@ $javascript->link(array(
 	'gclms'
 ), false);
 
-$primary_column = <<<END
-{$this->element('user_menu')}
-END;
+$this->element('user_menu');
+$block->add(array(
+	'name' => 'profile',
+	'title' => $user['User']['username'],
+	'content' => 'test'
+));
+
+/*
+return $view->element('panel',array(
+	'title' => $this->menus[$name]['label'],
+	'content' => $html
+));
+*/
 
 echo $this->element('left_column',array(
-	'primary_column' => $primary_column,
-	'secondary_column' => @$secondary_column
+	//'primary_column' => $primary_column,
+	//'secondary_column' => @$secondary_column
 )); ?>
 
 <div class="gclms-center-column">
@@ -25,6 +35,6 @@ echo $this->element('left_column',array(
 </div>
 
 <?= $this->element('right_column',array(
-	'primary_column' => $primary_column,
-	'secondary_column' => @$secondary_column
+	//'primary_column' => $primary_column,
+	//'secondary_column' => @$secondary_column
 )); ?>

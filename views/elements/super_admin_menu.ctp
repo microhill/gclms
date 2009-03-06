@@ -14,7 +14,7 @@ echo $this->element('menu', array("items" => array(
 
 $menu->addMenu(array(
 	'name' => 'site_administration',
-	'label' => __('Site Administration',true),
+	'title' => __('Site Administration',true),
 	'section' => 'primary_column'
 ));
 

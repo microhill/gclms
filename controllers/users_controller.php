@@ -72,10 +72,20 @@ class UsersController extends AppController {
 	}
 	
 	function view() {
-		App::import('Model','NotebookEntry');
-		$this->NotebookEntry = new NotebookEntry;
+		//User
+		$user = $this->User->find('first',array(
+			'conditions' => array('User.username' => $this->params['user']),
+			'contain' => false
+		));
+		if(empty($user)) {
+			die('User not found.');
+		}
+		$this->set('user',$user);
 		
-		if(User::get('id') == $this->params['user']) {
+		//Notebook entries
+		$this->NotebookEntry =& ClassRegistry::init('NotebookEntry');
+		
+		if(User::get('username') == $this->params['user']) {
 			$conditions = array('NotebookEntry.user_id');
 		} else {
 			$conditions = array('NotebookEntry.user_id','NotebookEntry.private' => 0);

@@ -27,12 +27,12 @@
 	*/
 	
 /*
-echo $this->element('panel',array(
+echo $this->element('block',array(
 	'title' => __('Course',true),
 	'content' => '<ul>' . $this->element('menu', array("items" => $menu1)) . '</ul>'
 ));
 
-echo $this->element('panel',array(
+echo $this->element('block',array(
 	'title' => __('Facilitator',true),
 	'content' => '<ul>' . $this->element('menu', array("items" => $menu2)) . '</ul>'
 ));

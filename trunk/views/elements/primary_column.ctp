@@ -9,7 +9,7 @@ if(!empty($class)) {
 	$this->element('super_admin_menu');
 }
 
-$menu->renderAllToBlocks();
+$menu->renderSectionToBlocks('primary_column');
 echo $block->renderSection('primary_column');
 
 /*

@@ -3,7 +3,7 @@ uses('Sanitize');
 
 class UsersController extends AppController {
     var $uses = array('User');
-	var $helpers = array('MyPaginator');
+	var $helpers = array('MyPaginator','UserDisplay');
 	var $itemName = 'User';
 	var $paginate = array('order' => 'email');
 	var $components = array('Notifications');
@@ -17,6 +17,12 @@ class UsersController extends AppController {
 			$this->Breadcrumbs->addCrumb('Site Administration','/administration/panel');
 			$this->Breadcrumbs->addCrumb('Users','/administration/users');
 		}
+		
+		Configure::load('s3');
+		$this->set('bucket',Configure::read('S3.bucket'));
+		$this->set('accessKey',Configure::read('S3.accessKey'));
+		$this->set('secretKey',Configure::read('S3.secretKey'));
+		
 		parent::beforeFilter();
 	}
 	
@@ -81,6 +87,10 @@ class UsersController extends AppController {
 			die('User not found.');
 		}
 		$this->set('user',$user);
+		
+		//My groups and classes
+		$this->set('my_groups',$this->User->findAllGroups($user['User']['id']));
+		$this->set('my_classes',$this->User->findAllClasses($user['User']['id']));
 		
 		//Notebook entries
 		$this->NotebookEntry =& ClassRegistry::init('NotebookEntry');

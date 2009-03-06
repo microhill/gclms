@@ -9,7 +9,7 @@ $javascript->link(array(
 //$unpublished_courses = Set::extract('/Course[published_status=0]/.[:first]',$courses);
 
 $secondary_column = '<div class="gclms-content">';
-$secondary_column .= $this->element('panel',array(
+$secondary_column .= $this->element('block',array(
 			'title' => 'Courses',
 			'content' => $this->element('course_listing'),
 			'courses' => $courses

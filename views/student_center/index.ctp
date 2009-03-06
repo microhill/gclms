@@ -32,7 +32,7 @@ Permission::check('SiteAdministration') ? $menu->addMenuItem('navigation',array(
 )) : null;
 
 $primary_column = $this->element('primary_column');
-$secondary_column = '';
+$secondary_column = $this->element('secondary_column');
 
 echo $this->element('left_column',array(
 	'primary_column' => $primary_column,

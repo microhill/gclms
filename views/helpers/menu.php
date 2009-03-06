@@ -26,10 +26,12 @@ class MenuHelper extends AppHelper {
 		array_push($this->menuItems[$name],$options);
 	}
 
-	function renderAllToBlocks() {
+	function renderSectionToBlocks($section) {
 		//$view =& ClassRegistry::getObject('view');
 		
-		foreach($this->menus as $name => $options) {
+		foreach($this->sections[$section] as $name) {
+			$options = $this->menus[$name];
+			
 			$html = '<ul';
 			if(!empty($options['class']))
 				$html .= ' class="' . $options['class'] . '"';
@@ -58,6 +60,7 @@ class MenuHelper extends AppHelper {
 
 				$this->Block->add(array(
 					'name' => $name,
+					'section' => $section,
 					'title' => $options['title'],
 					'content' => $html
 				));

@@ -2,6 +2,10 @@
 	margin-left: 20px;
 }
 
+#gclms-avatar-chooser span {
+	font-size: .9em;
+}
+
 .gclms-profile img {
 	vertical-align: bottom;	
 }

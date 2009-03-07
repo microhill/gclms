@@ -31,6 +31,9 @@ echo $this->element('left_column'); ?>
 <div class="gclms-center-column">
 	<div class="gclms-content">
 		<?= $this->element('notifications'); ?>
+		<h1><?= sprintf(__('Welcome, %s',true),$user['User']['first_name']) ?></h1>
+		<h2><? __('Your Progress') ?></h2>
+		<h2><? __('Notebook') ?></h2>
 		<?
 		pr($notebook_entries);
 		?>

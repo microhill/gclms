@@ -44,7 +44,8 @@ $javascript->link(array(
 				'value' => $this->data['User']['avatar']
 			)); ?>
 			<div>
-				<? echo $form->file('avatar_file'); ?>
+				<? echo $form->file('avatar_file'); ?><br/>
+				<span><? __('Image will be downsized to have a maximum dimension of 96 pixels.') ?></span>
 			</div>
 		</p>
 		
@@ -54,7 +55,8 @@ $javascript->link(array(
 				'value' => $this->data['User']['avatar']
 			)); ?>
 			<div>
-				<label for="UserAvatarGravatar"><img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($this->data['User']['email']) ?>&size=96" /></label>
+				<label for="UserAvatarGravatar"><img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($this->data['User']['email']) ?>&size=96" /></label><br/>
+				<span><? __('You can update your gravatar at <a href="http://www.gravatar.com/">gravatar.com</a>.') ?></span>
 			</div>
 		</p>
 		

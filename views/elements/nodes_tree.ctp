@@ -22,7 +22,7 @@
 			} else
 				echo ' gclms-empty';
 			echo '">';
-			$imgUrl = relativize_url($here,'/img/blank-1.png');
+			$imgUrl = '/img/blank-1.png'; //relativize_url($here,'/img/blank-1.png');
 			echo '<img class="gclms-expand-button" src="' . $imgUrl . '" alt="Icon" /> ';
 
 			if($offline)
@@ -52,7 +52,7 @@
 		$here = $this->here;
 	
 	if(!isset($url_prefix)) {
-		if(!$sibling_links) {
+		if(!@$sibling_links) {
 			$pathinfo = pathinfo($here);
 	
 			$url_prefix = $pathinfo['basename'] . '/pages/view/';

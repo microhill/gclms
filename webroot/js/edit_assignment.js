@@ -8,10 +8,9 @@ gclms.AssignmentsController = {
 	updateAssignmentTypeOptions: function() {
 		if($F('AssignmentType') == 'quiz') {
 			$('gclms-quiz-availability-date').displayAsBlock();
-			$('gclms-quiz-location').displayAsBlock();
 			$('gclms-time-limit-chooser').displayAsBlock();
+			$('gclms-attached-page').displayAsBlock();
 			$('gclms-forum-chooser').hide();
-			$('gclms-reminder-location').hide();
 		} else {
 			if($F('AssignmentType') == 'forum') {
 				$('gclms-forum-chooser').displayAsBlock();
@@ -19,9 +18,8 @@ gclms.AssignmentsController = {
 				$('gclms-forum-chooser').hide();
 			}
 			$('gclms-quiz-availability-date').hide();
-			$('gclms-quiz-location').hide();
 			$('gclms-time-limit-chooser').hide();
-			$('gclms-reminder-location').displayAsBlock();
+			$('gclms-attached-page').displayAsBlock();
 		}
 	},
 	
@@ -55,6 +53,20 @@ gclms.AssignmentsController = {
 				$('AssignmentForumTitle').value = a.innerHTML;
 			}
 		});
+	},
+	
+	choosePage: function(event) {
+		event.stop();
+		
+		var selector = new gclms.selector({
+			'url': '../../content/select',
+			'width': 500,
+			'height': 400,
+			'callback': function(a) {
+				$('AssignmentForumId').value = a.getAttribute('gclms-forum-id');
+				$('AssignmentForumTitle').value = a.innerHTML;
+			}
+		});
 	}
 }
 
@@ -66,7 +78,8 @@ gclms.Triggers.update({
 	'#AssignmentType:change': gclms.AssignmentsController.updateAssignmentTypeOptions,
 	'#AssignmentHasAvailabilityDate:change': gclms.AssignmentsController.updateAvailabilityOption,
 	'#AssignmentHasDueDate:change': gclms.AssignmentsController.updateDueDateOption,
-	'#gclms-forum-chooser button:click': gclms.AssignmentsController.chooseForum
+	'#gclms-forum-chooser button:click': gclms.AssignmentsController.chooseForum,
+	'#gclms-attached-page button:click': gclms.AssignmentsController.choosePage
 });
 
 gclms.AssignmentsController.setup();

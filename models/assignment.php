@@ -20,7 +20,7 @@ class Assignment extends AppModel {
 		foreach($results as &$result) {
 			if($result['Assignment']['due_date']) {
 				$result['Assignment']['due_date_week'] = (int) ($result['Assignment']['due_date'] / 7) + 1;
-				$result['Assignment']['due_date_day'] = $result['Assignment']['due_date'] % 7;
+				$result['Assignment']['due_date_day'] = ($result['Assignment']['due_date'] % 7) + 1;
 			}
 		}
 		

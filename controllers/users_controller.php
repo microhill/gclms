@@ -87,6 +87,7 @@ class UsersController extends AppController {
 			die('User not found.');
 		}
 		$this->set('user',$user);
+		$this->Breadcrumbs->addCrumb($this->params['user'],'/user/' . $this->params['user']);
 		
 		//My groups and classes
 		$this->set('my_groups',$this->User->findAllGroups($user['User']['id']));

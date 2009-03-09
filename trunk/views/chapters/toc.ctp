@@ -15,7 +15,7 @@ echo $this->element('left_column'); ?>
 
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
+		<div id="gclms-spinner"><img src="/img/spinner.gif" alt="Spinner" /></div>
 		<?= $this->element('notifications'); ?>
 		<div class="gclms-step-back"><a href="<?= $groupAndCoursePath ?>/books"><? __('Back to Books') ?></a></div>
 		<h1><?= $book['Book']['title'] ?> </h1>

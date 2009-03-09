@@ -1,5 +1,5 @@
 <div class="gclms-content">
-	<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>
+	<div id="gclms-spinner"><img src="/img/spinner.gif" alt="Spinner" /></div>
 	<h1><?= __('Add Facilitator') ?></h1>    
 		<?
 		echo $form->create('GroupFacilitator', array('id' => null, 'url' => '/' . Group::get('web_path') . '/facilitators/add'));

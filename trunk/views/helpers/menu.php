@@ -29,41 +29,43 @@ class MenuHelper extends AppHelper {
 	function renderSectionToBlocks($section) {
 		//$view =& ClassRegistry::getObject('view');
 		
-		foreach($this->sections[$section] as $name) {
-			$options = $this->menus[$name];
-			
-			$html = '<ul';
-			if(!empty($options['class']))
-				$html .= ' class="' . $options['class'] . '"';
-			$html .= '>';
+		if(!empty($this->sections[$section])) {
+			foreach($this->sections[$section] as $name) {
+				$options = $this->menus[$name];
+				
+				$html = '<ul';
+				if(!empty($options['class']))
+					$html .= ' class="' . $options['class'] . '"';
+				$html .= '>';
+		
+				if(!empty($this->menuItems[$name])) {
+					foreach($this->menuItems[$name] as $menuItem) {
+						$html .= '<li ';
+		
+						if(!empty($menuItem['active']))
+							$menuItem['class'] .= ' gclms-active';
+		
+		
+						if(!empty($menuItem['class']))
+							$html .= 'class="' . $menuItem['class'] . '"';
+						$html .= '>';
+						
+						$html .= '<a href="' . $menuItem['url'] . '">';
+						$html .= $menuItem['content'];
+						$html .= '</a>';
+						
+						$html .= '</li>';
+					}
+						
+					$html .= '</ul>';
 	
-			if(!empty($this->menuItems[$name])) {
-				foreach($this->menuItems[$name] as $menuItem) {
-					$html .= '<li ';
-	
-					if(!empty($menuItem['active']))
-						$menuItem['class'] .= ' gclms-active';
-	
-	
-					if(!empty($menuItem['class']))
-						$html .= 'class="' . $menuItem['class'] . '"';
-					$html .= '>';
-					
-					$html .= '<a href="' . $menuItem['url'] . '">';
-					$html .= $menuItem['content'];
-					$html .= '</a>';
-					
-					$html .= '</li>';
+					$this->Block->add(array(
+						'name' => $name,
+						'section' => $section,
+						'title' => $options['title'],
+						'content' => $html
+					));
 				}
-					
-				$html .= '</ul>';
-
-				$this->Block->add(array(
-					'name' => $name,
-					'section' => $section,
-					'title' => $options['title'],
-					'content' => $html
-				));
 			}
 		}
 	}

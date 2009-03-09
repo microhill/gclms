@@ -14,7 +14,7 @@ $javascript->link(array(
 
 echo $this->element('left_column');
 ?>
-		
+	
 <div class="gclms-center-column">
 	<div class="gclms-content">	
 		<div id="gclms-spinner"><img src="/img/permanent/spinner2007-09-14.gif" alt="Spinner" /></div>

@@ -26,7 +26,7 @@ gclms.popup = Class.create({
 		
 		document.body.insert(this.overlay);
 
-		this.setup();
+		this.beforeSetup();
 
 		if(this.buttons)
 			this.dialog.insert(this.buttons);
@@ -42,8 +42,25 @@ gclms.popup = Class.create({
 			this.dialog.select('input[type="text"]').first().select();
 		}
 		
+		//Width
+		if(this.options.get('width')) {
+			this.dialog.setStyle({
+				width: this.options.get('width') + 'px'
+			});
+		}
+
+		//Height
+		if(this.options.get('height')) {
+			this.dialog.setStyle({
+				height: this.options.get('height') + 'px',
+				overflow: 'auto'
+			});
+		}
+		
 		// Vertically center the dialog
 		this.dialog.setStyle({marginTop: (this.overlay.offsetHeight / 2) -  (this.dialog.offsetHeight / 2) + 'px'});
+		
+		this.afterSetup();
 	},
 
 	close: function(options) {
@@ -82,7 +99,10 @@ gclms.popup = Class.create({
 		this.buttons.select('button').last().observe('click',function(event){
 			this.close({executeCallback: false});
 		}.bind(this));
-	}
+	},
+	
+	beforeSetup: function() {},
+	afterSetup: function() {}
 });
 
 gclms.selector = Class.create(gclms.popup, {
@@ -90,7 +110,18 @@ gclms.selector = Class.create(gclms.popup, {
 		$super(options);
 	},
 	
-	setup: function() {
+	afterSetup: function() {
+		this.close_button = new Element('img',{
+			src: '/img/popup/close-button-28.png'
+		});		
+		this.overlay.insert(this.close_button);
+		var position = this.dialog.cumulativeOffset();
+		this.close_button.setStyle({
+			position: 'absolute',
+			left: position.left - 8 + 'px',
+			top: position.top - 8 + 'px',
+		});		
+		
 		var request = new Ajax.Request(this.options.get('url'), {
 			method: 'get',
 			onSuccess: function(transport) {
@@ -111,7 +142,7 @@ gclms.alert = Class.create(gclms.popup, {
 		$super(options);
 	},
 	
-	setup: function() {
+	beforeSetup: function() {
 		this.dialog.insert(new Element('p').insert(this.options.get('text')));
 		this.addButtonsContainer();
 		this.addOkButton();		
@@ -123,7 +154,7 @@ gclms.confirm = Class.create(gclms.popup, {
 		$super(options);
 	},
 	
-	setup: function() {
+	beforeSetup: function() {
 		this.dialog.insert(new Element('p').insert(this.options.get('text')));
 		this.addButtonsContainer();
 		this.addOkButton();
@@ -149,7 +180,7 @@ gclms.prompt = Class.create(gclms.popup, {
 		$super(options);
 	},
 	
-	setup: function() {
+	beforeSetup: function() {
 		this.dialog.insert(new Element('p').insert(this.options.get('text')));
 		this.addButtonsContainer();
 		this.addOkButton();
@@ -187,7 +218,7 @@ gclms.search = Class.create(gclms.popup, {
 		$super(options);
 	},
 	
-	setup: function() {
+	beforeSetup: function() {
 		var template = '<div class="gclms-title">Search for User</div><form><div><label>Username or e-mail</label><br/>'
 			+ '<table><tbody><tr><td><input type="text" id="gclms-search-input"></td><td><button>Search</button></td></tr></tbody></table></form></div>'
 			+ '<div id="gclm-search-results"></div>';

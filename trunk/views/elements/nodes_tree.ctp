@@ -37,7 +37,7 @@
 				//$node['id'] . $extension;
 
 			if($node['type'] == 0)
-				echo '<a href="' . $url . '">' . $node['title'] . '</a>';
+				echo '<a href="' . $url . '" gclms-node-id="' . $node['id'] . '">' . $node['title'] . '</a>';
 			else
 				echo $node['title'];
 			if(!empty($node['ChildNode']))

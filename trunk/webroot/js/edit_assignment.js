@@ -62,11 +62,28 @@ gclms.AssignmentsController = {
 			'url': '../../content/select',
 			'width': 500,
 			'height': 400,
+			'afterLoad': function() {
+				$(this.dialog).down('.gclms-nodes-tree').observeRules(gclms.Triggers.get('.gclms-nodes-tree'));
+			},
 			'callback': function(a) {
-				$('AssignmentForumId').value = a.getAttribute('gclms-forum-id');
-				$('AssignmentForumTitle').value = a.innerHTML;
+				$('AssignmentNodeId').value = a.getAttribute('gclms-node-id');
+				$('AssignmentNodeTitle').value = a.innerHTML;
+				
+				return true;
 			}
 		});
+	},
+	
+	toggleNodeExpansion: function() {
+		var li = this.up('li');
+
+		if(li.hasClassName('gclms-collapsed')) {
+			li.removeClassName('gclms-collapsed');
+			li.addClassName('gclms-expanded');
+		} else if(li.hasClassName('gclms-expanded')) {
+			li.addClassName('gclms-collapsed');
+			li.removeClassName('gclms-expanded');
+		}
 	}
 }
 
@@ -79,7 +96,12 @@ gclms.Triggers.update({
 	'#AssignmentHasAvailabilityDate:change': gclms.AssignmentsController.updateAvailabilityOption,
 	'#AssignmentHasDueDate:change': gclms.AssignmentsController.updateDueDateOption,
 	'#gclms-forum-chooser button:click': gclms.AssignmentsController.chooseForum,
-	'#gclms-attached-page button:click': gclms.AssignmentsController.choosePage
+	'#gclms-attached-page button:click': gclms.AssignmentsController.choosePage,
+	'.gclms-nodes-tree' : {
+		'li': {
+			'img.gclms-expand-button:click': gclms.AssignmentsController.toggleNodeExpansion
+		}
+	}
 });
 
 gclms.AssignmentsController.setup();

@@ -112,20 +112,30 @@ gclms.selector = Class.create(gclms.popup, {
 	
 	afterSetup: function() {
 		this.close_button = new Element('img',{
-			src: '/img/popup/close-button-28.png'
+			src: '/img/popup/close-button-20.png'
 		});		
 		this.overlay.insert(this.close_button);
 		var position = this.dialog.cumulativeOffset();
 		this.close_button.setStyle({
-			position: 'absolute',
+			position: 'fixed',
 			left: position.left - 8 + 'px',
 			top: position.top - 8 + 'px',
+		});	
+		
+		this.spinner = new Element('img',{
+			src: '/img/spinner.gif'
 		});		
+		this.dialog.insert(this.spinner);
+		this.spinner.setStyle({
+			position: 'fixed',
+			left: position.left + (this.dialog.getWidth() / 2) - 8 + 'px',
+			top: position.top + (this.dialog.getHeight() / 2) - 8 + 'px',
+		});	
 		
 		var request = new Ajax.Request(this.options.get('url'), {
 			method: 'get',
 			onSuccess: function(transport) {
-				this.dialog.insert(transport.responseText);
+				this.dialog.update(transport.responseText);
 				this.dialog.select('.gclms-callback').each(function(a){
 					a.observe('click',function(event) {
 						if(this.options.get('callback')(event.element()))

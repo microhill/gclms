@@ -14,7 +14,6 @@ $days = array();
 for($x = 0; $x < 7; $x++) {
 	$days[$x + 1] = __('Day', true) . ' ' . ($x + 1);
 }
-
 ?>
 
 <p>
@@ -50,7 +49,7 @@ echo $form->input('type',array(
 	<table cellspacing="0" border="0" cellpadding="0">
 		<tr>
 			<td>
-				<input disabled="disabled" />
+				<input id="AssignmentNodeTitle" disabled="disabled" /><input type="hidden" name="data[Assignment][node_id]" id="AssignmentNodeId" />
 			</td>
 			<td>
 				<button>Change</button>

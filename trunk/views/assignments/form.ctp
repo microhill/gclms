@@ -38,11 +38,19 @@ echo $form->input('type',array(
 ));
 ?>
 
-<p id="gclms-forum-chooser">
-	<label>Associated forum</label><br/>
-	<input disabled="disabled" type="text" id="AssignmentForumTitle" /><input type="hidden" name="data[Assignment][forum_id]" id="AssignmentForumId" /><button>Change</button>
-	<div class="gclms-hidden" id="gclms-forum-list"></div>
-</p>
+<div id="gclms-forum-chooser">
+	<label><? __('Associated forum') ?></label>
+	<table cellspacing="0" border="0" cellpadding="0">
+		<tr>
+			<td>
+				<input id="AssignmentForumTitle" disabled="disabled" /><input type="hidden" name="data[Assignment][forum_id]" id="AssignmentForumId" />
+			</td>
+			<td>
+				<button><? __('Change') ?></button>
+			</td>
+		</tr>
+	</table>
+</div>
 
 <div id="gclms-attached-page">
 	<label><? __('Page attached to') ?></label>
@@ -52,7 +60,7 @@ echo $form->input('type',array(
 				<input id="AssignmentNodeTitle" disabled="disabled" /><input type="hidden" name="data[Assignment][node_id]" id="AssignmentNodeId" />
 			</td>
 			<td>
-				<button>Change</button>
+				<button><? __('Change') ?></button>
 			</td>
 		</tr>
 	</table>

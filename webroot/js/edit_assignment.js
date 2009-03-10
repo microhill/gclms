@@ -87,10 +87,6 @@ gclms.AssignmentsController = {
 	}
 }
 
-gclms.Views.update({
-
-});
-
 gclms.Triggers.update({
 	'#AssignmentType:change': gclms.AssignmentsController.updateAssignmentTypeOptions,
 	'#AssignmentHasAvailabilityDate:change': gclms.AssignmentsController.updateAvailabilityOption,

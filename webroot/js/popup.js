@@ -1,5 +1,10 @@
 gclms.popup = Class.create({
 	initialize: function(options) {
+		gclms.popups.each(function(popup){
+			popup.close();
+		})
+		gclms.popups = $A();
+
 		this.options = $H({
 			modal: false,
 			value: '',
@@ -61,17 +66,23 @@ gclms.popup = Class.create({
 		this.dialog.setStyle({marginTop: (this.overlay.offsetHeight / 2) -  (this.dialog.offsetHeight / 2) + 'px'});
 		
 		this.afterSetup();
+		
+		gclms.popups.push(this);
 	},
 
 	close: function(options) {
-		$$('div.gclms-popup-overlay').first().remove();
-
-		document.stopObserving('keydown',this.keyDownHandler);
-
-		if (options.executeCallback && this.options.get('callback')) {
-			this.options.get('callback')(this.getCallbackValue());
-		} else if (this.options.get('cancelCallback')) {
-			this.options.get('cancelCallback')();
+		if ($$('div.gclms-popup-overlay').length) {
+			$$('div.gclms-popup-overlay').first().remove();
+			
+			document.stopObserving('keydown', this.keyDownHandler);
+			
+			if (options.executeCallback && this.options.get('callback')) {
+				this.options.get('callback')(this.getCallbackValue());
+			}
+			else 
+				if (this.options.get('cancelCallback')) {
+					this.options.get('cancelCallback')();
+				}
 		}
 	},
 	
@@ -238,3 +249,5 @@ gclms.search = Class.create(gclms.popup, {
 		this.dialog.insert(template);
 	}
 });
+
+gclms.popups = $A();

@@ -13,8 +13,8 @@ gclms.popup = Class.create({
 			callback: null,
 			cancelCallback: null,
 			text: null,
-			height: null,
-			width: null
+			height: 400,
+			width: 500
 		}).update(options);
 		
 		this.overlay = new Element('div',{
@@ -76,7 +76,11 @@ gclms.popup = Class.create({
 			
 			document.stopObserving('keydown', this.keyDownHandler);
 			
-			if (options.executeCallback && this.options.get('callback')) {
+			if(!this.options) {
+				return false;
+			}
+			
+			if(options.executeCallback && this.options.get('callback')) {
 				this.options.get('callback')(this.getCallbackValue());
 			}
 			else 

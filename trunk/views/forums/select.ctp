@@ -1,4 +1,4 @@
-<h3>Forums</h3>
+<h2>Forums</h2>
 <ul>
 <?
 foreach($forums as $forum): ?>

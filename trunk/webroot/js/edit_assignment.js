@@ -47,10 +47,15 @@ gclms.AssignmentsController = {
 		event.stop();
 		
 		var selector = new gclms.selector({
-			'url': '../forums/list_for_popup',
+			'url': '../../forums/select',
+			'afterLoad': function() {
+				$(this.dialog).down('.gclms-nodes-tree').observeRules(gclms.Triggers.get('.gclms-nodes-tree'));
+			},
 			'callback': function(a) {
 				$('AssignmentForumId').value = a.getAttribute('gclms-forum-id');
 				$('AssignmentForumTitle').value = a.innerHTML;
+				
+				return true;
 			}
 		});
 	},
@@ -60,8 +65,6 @@ gclms.AssignmentsController = {
 		
 		var selector = new gclms.selector({
 			'url': '../../content/select',
-			'width': 500,
-			'height': 400,
 			'afterLoad': function() {
 				$(this.dialog).down('.gclms-nodes-tree').observeRules(gclms.Triggers.get('.gclms-nodes-tree'));
 			},

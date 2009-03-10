@@ -1,3 +1,8 @@
 .gclms-popup-dialog h2 {
 	margin-top: 0;
 }
+
+input[disabled] {
+	background-color: white;
+	color: black;
+}

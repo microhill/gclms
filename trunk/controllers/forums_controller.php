@@ -51,7 +51,7 @@ class ForumsController extends AppController {
 		}
 	}
 	
-	function list_for_popup() {
+	function select() {
 		$this->layout = 'blank';
 		$forums = $this->Forum->find('all',array(
 			'conditions' => array('Forum.course_id' => Course::get('id'))

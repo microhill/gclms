@@ -16,7 +16,7 @@ for($x = 0; $x < 7; $x++) {
 }
 ?>
 
-<p>
+<!-- p>
 <?
 echo $form->input('type',array(
 	'label' =>  __('Type', true),
@@ -29,31 +29,40 @@ echo $form->input('type',array(
 	'between' => '<br/>'
 ));
 ?>
-</p>
+</p -->
 
-<?= $form->input('points',array(
-	'label' =>  __('Points', true),
-	'between' => '<br/>',
-	'size' => 5
-));
-?>
+<fieldset>
+	<legend><? __('Associated objects') ?></legend>
+	<div id="gclms-associated-objects">
+		
+	</div>
+	<div id="gclms-add-associated-object">
+		<table cellspacing="0" border="0" cellpadding="0">
+			<tr>
+				<td>
+					<?
+					echo $form->input('associated_object_type',array(
+						'label' =>  false,
+						'options' => array(
+							'page' => 'Page',
+							//'chatroom' => 'Chatroom',
+							'forum' => 'Forum',
+							//'wiki_page' => 'Wiki page'
+						)
+					));
+					
+					?>
+				</td>
+				<td>
+					<button class="gclms-add"><? __('Add') ?></button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</fieldset>
 
-<div id="gclms-forum-chooser">
-	<label><? __('Associated forum') ?></label>
-	<table cellspacing="0" border="0" cellpadding="0">
-		<tr>
-			<td>
-				<input id="AssignmentForumTitle" disabled="disabled" /><input type="hidden" name="data[Assignment][forum_id]" id="AssignmentForumId" />
-			</td>
-			<td>
-				<button><? __('Change') ?></button>
-			</td>
-		</tr>
-	</table>
-</div>
-
-<div id="gclms-attached-page">
-	<label><? __('Page attached to') ?></label>
+<div id="gclms-reminder-page">
+	<label><? __('Remind user of assignment after this page') ?></label>
 	<table cellspacing="0" border="0" cellpadding="0">
 		<tr>
 			<td>
@@ -66,8 +75,14 @@ echo $form->input('type',array(
 	</table>
 </div>
 
-<fieldset>
-<p id="gclms-time-limit-chooser">
+<?= $form->input('points',array(
+	'label' =>  __('Points', true),
+	'between' => '<br/>',
+	'size' => 5
+));
+?>
+
+<!-- p id="gclms-time-limit-chooser">
 <?
 echo $form->input('time_limit',array(
 	'label' =>  __('Time limit (minutes)', true),
@@ -76,9 +91,9 @@ echo $form->input('time_limit',array(
 	'div' => false
 ));
 ?>
-</p>
+</p -->
 
-<p id="gclms-quiz-availability-date" class="">
+<!--p id="gclms-quiz-availability-date" class="">
 <?
 echo __('Availability date',true) . '<br/>';
 
@@ -103,9 +118,8 @@ echo $form->input('availability_date_day',array(
 	'between' => false,
 	'div' => false
 ));
-echo '</p>';
 ?>
-
+</p -->
 <?
 
 
@@ -136,11 +150,10 @@ echo $form->input('due_date_day',array(
 echo '</p>';
 
 ?>
-<p><?= $form->checkbox('prevent_late_submission', array(
+<!-- p><?= $form->checkbox('prevent_late_submission', array(
 	'checked' => isset($data['Assignment']['prevent_late_submission']) ? $data['Assignment']['prevent_late_submission'] : true
 )
-); ?> <label for="AssignmentOverridable2">Prevent late submissions</label></p>
-</fieldset>
+); ?> <label for="AssignmentOverridable2">Prevent late submissions</label></p -->
 <?
 /*
 echo $form->date('due_date',false,array(
@@ -189,10 +202,7 @@ echo $form->input('description',array(
 	?>
 	</p -->
 
-
-
 <!--
-
 Assignment type
 
  - Quiz (id)  
@@ -216,5 +226,20 @@ Assignment type
 Future:
 
  - Wiki participation
-
 -->
+
+<script>
+var pageObjectView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('../assignments/page_object',array(
+	'id' => '#{id}',
+	'title' => '#{title}',
+	'foreign_key' => '#{foreign_key}',
+	'results_figured_into_grade' => '#{results_figured_into_grade}',
+	'percentage_of_grade' => '0'
+	
+)))); ?>;
+var forumObjectView = <?= $javascript->object(str_replace(array("\n","\r","\t",'    '),'',$this->element('../assignments/forum_object',array(
+	'id' => '#{id}',
+	'title' => '#{title}',
+	'foreign_key' => '#{foreign_key}'
+)))); ?>;
+</script>

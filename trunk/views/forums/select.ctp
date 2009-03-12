@@ -2,8 +2,10 @@
 <ul>
 <?
 foreach($forums as $forum): ?>
-	<li><a href="#" gclms-forum-id="$forum['Forum']['id']"><?= $forum['Forum']['title'] ?></a><br/>
-		<?= $forum['Forum']['description'] ?></li>
+	<li>
+		<div><a href="#" gclms-forum-id="<?= $forum['Forum']['id'] ?>"><?= $forum['Forum']['title'] ?></a></div>
+		<div class="gclms-description"><?= $forum['Forum']['description'] ?></div>
+	</li>
 <?
 endforeach;
 ?>

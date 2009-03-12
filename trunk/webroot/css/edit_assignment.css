@@ -2,7 +2,27 @@
 	margin-top: 0;
 }
 
+.gclms-popup-dialog .gclms-description {
+	font-size: .9em;
+}
+
 input[disabled] {
 	background-color: white;
 	color: black;
+}
+
+th .gclms-left {
+	margin: 0;
+}
+
+div.gclms-page-object table {
+	width: 500px;
+}
+
+.gclms-page-object th {
+	white-space: nowrap;
+}
+
+.gclms-associated-object-title {
+	width: 100%;
 }

@@ -34,7 +34,15 @@ echo $form->input('type',array(
 <fieldset>
 	<legend><? __('Associated objects') ?></legend>
 	<div id="gclms-associated-objects">
-		
+		<?
+		foreach($this->data['AssignmentAssociation'] as $assignment_association) {
+			if($assignment_association['model'] == 'Page') {
+				echo $this->element('../assignments/page_object',$assignment_association);
+			} else if($assignment_association['model'] == 'Forum') {
+				echo $this->element('../assignments/forum_object',$assignment_association);
+			}
+		}
+		?>
 	</div>
 	<div id="gclms-add-associated-object">
 		<table cellspacing="0" border="0" cellpadding="0">
@@ -44,9 +52,9 @@ echo $form->input('type',array(
 					echo $form->input('associated_object_type',array(
 						'label' =>  false,
 						'options' => array(
-							'page' => 'Page',
+							'Page' => 'Page',
 							//'chatroom' => 'Chatroom',
-							'forum' => 'Forum',
+							'Forum' => 'Forum',
 							//'wiki_page' => 'Wiki page'
 						)
 					));

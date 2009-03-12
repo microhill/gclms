@@ -1,6 +1,7 @@
 <?
 class Assignment extends AppModel {
     var $belongsTo = array('Course','VirtualClass');
+	var $hasMany = array('AssignmentAssociation');
 	
 	function beforeSave() {
 		if(VirtualClass::get('id'))

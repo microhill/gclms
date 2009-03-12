@@ -29,13 +29,12 @@ class AssignmentsController extends AppController {
 	
 	function add() {
 		if(!empty($this->data)) {
-			prd($this->data);
 			if($this->Assignment->save($this->data)) {
 				//if(!empty($this->itemName))
 					//$this->Notifications->add(__(ucfirst(low($this->itemName)) . ' successfully added.',true));
 				
 				$this->data['Assignment']['id'] = $this->Assignment->id;
-				$this->afterSave();				
+				$this->afterSave();	
 			} else {
 				//if(!empty($this->itemName))
 					//$this->Notifications->add(__('There was an error when attempting to add the ' . low($this->itemName) . '.',true),'error');

@@ -13,8 +13,8 @@ gclms.popup = Class.create({
 			callback: null,
 			cancelCallback: null,
 			text: null,
-			height: 400,
-			width: 500
+			height: null,
+			width: null
 		}).update(options);
 		
 		this.overlay = new Element('div',{
@@ -122,6 +122,11 @@ gclms.popup = Class.create({
 
 gclms.selector = Class.create(gclms.popup, {
 	initialize: function($super, options) {
+		options = $H({
+			height: 400,
+			width: 500
+		}).update(options);
+
 		$super(options);
 	},
 	

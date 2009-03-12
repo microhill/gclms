@@ -16,6 +16,19 @@ class Assignment extends AppModel {
 		return true;
 	}
 	
+	function afterSave($created) {
+		$this->AssignmentAssociation =& ClassRegistry::init('AssignmentAssociation');
+		if(!empty($this->data['Assignment']['AssociatedObject'])) {
+			foreach($this->data['Assignment']['AssociatedObject'] as $associatedObjectId => $associatedObject) {
+				$this->AssignmentAssociation->id = $associatedObjectId;
+				$associatedObject['assignment_id'] = $this->id;
+				if((int) $associatedObject['percentage_of_grade'] < 0 || (int) $associatedObject['percentage_of_grade'] > 100 || empty($associatedObject['results_figured_into_grade']))
+				$associatedObject['percentage_of_grade'] = 0;
+				$this->AssignmentAssociation->save($associatedObject);
+			}
+		}
+	}
+	
 	function afterFind($results,$primary) {
 		foreach($results as &$result) {
 			if($result['Assignment']['due_date']) {

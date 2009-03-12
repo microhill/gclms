@@ -59,7 +59,7 @@ class AssignmentsController extends AppController {
 		} else {
 			$this->data = $this->Assignment->find('first',array(
 				'conditions' => array('Assignment.id' => $id),
-				'contain' => false
+				'contain' => 'AssignmentAssociation'
 			));
 		}
 	}

@@ -13,7 +13,7 @@
 					<? __('Page title') ?>
 				</th>
 				<td>
-					<input type="hidden" name="data[Assignment][AssociatedObject][<?= $id ?>][model]" value="page" />
+					<input type="hidden" name="data[Assignment][AssociatedObject][<?= $id ?>][model]" value=Page" />
 					<input type="hidden" name="data[Assignment][AssociatedObject][<?= $id ?>][foreign_key]" value="<?= @$foreign_key ?>" />
 					<input type="text" disabled="disabled" value="<?= @$title ?>" class="gclms-associated-object-title" />
 				</td>

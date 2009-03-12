@@ -69,9 +69,9 @@ gclms.AssignmentsController = {
 		event.stop();
 
 		var type = $F('AssignmentAssociatedObjectType');
-		if($F('AssignmentAssociatedObjectType') == 'page') {
+		if($F('AssignmentAssociatedObjectType') == 'Page') {
 			gclms.AssignmentsController.addPageObject();
-		} else if($F('AssignmentAssociatedObjectType') == 'forum') {
+		} else if($F('AssignmentAssociatedObjectType') == 'Forum') {
 			gclms.AssignmentsController.addForumObject();
 		}
 	},

@@ -1,7 +1,7 @@
 gclms.popup = Class.create({
 	initialize: function(options) {
 		gclms.popups.each(function(popup){
-			popup.close();
+			popup.close({});
 		})
 		gclms.popups = $A();
 
@@ -80,7 +80,7 @@ gclms.popup = Class.create({
 				return false;
 			}
 			
-			if(options.executeCallback && this.options.get('callback')) {
+			if(options && options.executeCallback && this.options.get('callback')) {
 				this.options.get('callback')(this.getCallbackValue());
 			}
 			else 

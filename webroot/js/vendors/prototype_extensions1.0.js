@@ -85,12 +85,7 @@ Element.addMethods({
     },
     
     displayAsTableRow: function(element){
-        if (Client.browser == 'Internet Explorer' && Client.version < 8) {
-            $(element).style.display = 'block';
-        }
-        else {
-            $(element).style.display = 'table-row';
-        }
+         $(element).style.display = 'table-row'; //use block for IE < 8
         
         return element;
     },

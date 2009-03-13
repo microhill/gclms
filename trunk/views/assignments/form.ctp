@@ -76,7 +76,8 @@ echo $form->input('type',array(
 	<table cellspacing="0" border="0" cellpadding="0">
 		<tr>
 			<td>
-				<input id="AssignmentNodeTitle" disabled="disabled" /><input type="hidden" name="data[Assignment][node_id]" id="AssignmentNodeId" />
+				<input id="AssignmentNodeTitle" disabled="disabled" />
+				<?= $form->hidden('reminder_node_id'); ?>
 			</td>
 			<td>
 				<button><? __('Change') ?></button>

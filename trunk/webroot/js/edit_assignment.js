@@ -57,7 +57,7 @@ gclms.AssignmentsController = {
 				$(this.dialog).down('.gclms-nodes-tree').observeRules(gclms.Triggers.get('.gclms-nodes-tree'));
 			},
 			'callback': function(a) {
-				$('AssignmentNodeId').value = a.getAttribute('gclms-node-id');
+				$('AssignmentReminderNodeId').value = a.getAttribute('gclms-node-id');
 				$('AssignmentNodeTitle').value = a.innerHTML;
 				
 				return true;

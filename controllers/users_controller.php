@@ -108,6 +108,8 @@ class UsersController extends AppController {
 			'order' => 'NotebookEntry.created DESC'
 		));
 		$this->set('notebook_entries',$notebook_entries);
+		
+		$this->set('title',sprintf(__("%s's profile",true), $user['User']['username']));
 	}
     
 	function verify($code) {

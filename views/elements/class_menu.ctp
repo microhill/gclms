@@ -81,7 +81,7 @@ $menu->addMenuItem('course',array(
 
 $menu->addMenu(array(
 	'name' => 'interaction',
-	'label' => __('Interact',true),
+	'title' => __('Interact',true),
 	'section' => 'primary_column'
 ));
 
@@ -101,7 +101,7 @@ $menu->addMenuItem('interaction',array(
 
 $menu->addMenu(array(
 	'name' => 'facilitation',
-	'label' => __('Facilitate',true),
+	'title' => __('Facilitate',true),
 	'section' => 'primary_column'
 ));
 

@@ -73,16 +73,23 @@ class VirtualClass extends AppModel {
 				'contain' => false
 			));
 			foreach($assignments as $assignment) {
+				$sourceId = $assignment['Assignment']['id'];
 				unset($assignment['Assignment']['id']);
 				$assignment['Assignment']['virtual_class_id'] = $this->id;
-				if(!$this->Assignment->create($assignment,true) || !$this->Assignment->save())
-					die('Error');
+				if(!$this->Assignment->create($assignment,true) || !$this->Assignment->saveAndCloneAssociations($sourceId))
+					die('Error with afterSave');
 			}
 		}
 	}
 	
 	function checkTitle() {
-		if($this->findByGroupIdAndTitle($this->data['VirtualClass']['group_id'],$this->data['VirtualClass']['title']))
+		if($this->find('first',array(
+			'conditions' => array(
+				'Course.group_id' => Group::get('id'),
+				'VirtualClass.title' => $this->data['VirtualClass']['title']
+			),
+			'contain' => array('Course' => array('id','title','web_path'))
+		)))
 			return false;
 		return true;
 	}

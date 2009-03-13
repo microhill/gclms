@@ -19,9 +19,29 @@ class Assignment extends AppModel {
 		return true;
 	}
 	
+	function saveAndCloneAssociations($sourceId) {
+		$this->save();
+		
+		//$this->AssignmentAssociation =& ClassRegistry::init('AssignmentAssociation');
+		$associations = $this->AssignmentAssociation->find('all',array(
+			'conditions' => array('AssignmentAssociation.assignment_id' => $sourceId),
+			'contain' => false
+		));
+		
+		if(!empty($associations)) {
+			foreach($associations as $association) {
+				unset($association['AssignmentAssociation']['id']);
+				$association['AssignmentAssociation']['assignment_id'] = $this->id;
+				if(!$this->AssignmentAssociation->create($association,true) || !$this->AssignmentAssociation->save())
+					die('Error with saveAndCloneAssociations');
+			}
+		}
+	}
+	
 	function afterSave($created) {
 		$this->AssignmentAssociation =& ClassRegistry::init('AssignmentAssociation');
 		if(!empty($this->data['Assignment']['AssignmentAssociation'])) {
+			//Save updated associations with percentage
 			foreach($this->data['Assignment']['AssignmentAssociation'] as $associatedObjectId => $associatedObject) {
 				$this->AssignmentAssociation->id = $associatedObjectId;
 				$associatedObject['assignment_id'] = $this->id;
@@ -29,22 +49,25 @@ class Assignment extends AppModel {
 				$associatedObject['percentage_of_grade'] = 0;
 				$this->AssignmentAssociation->save($associatedObject);
 			}
+			
+			//Delete removed associations
+			$existingAssociations = $this->AssignmentAssociation->find('all',array(
+				'conditions' => array(
+					'assignment_id' => $this->id
+				),
+				'fields' => array('id'),
+				'contain' => false
+			));
+			$existingAssociationIds = Set::extract('/AssignmentAssociation/id',$existingAssociations);
+			$updatedAssociationsIds = array_keys($this->data['Assignment']['AssignmentAssociation']);
+			$associationsToDelete = array_diff($existingAssociationIds,$updatedAssociationsIds);
+	
+			$this->AssignmentAssociation->deleteAll(array(
+				'AssignmentAssociation.id' => $associationsToDelete
+			));
 		}
 		
-		$existingAssociations = $this->AssignmentAssociation->find('all',array(
-			'conditions' => array(
-				'assignment_id' => $this->id
-			),
-			'fields' => array('id'),
-			'contain' => false
-		));
-		$existingAssociationIds = Set::extract('/AssignmentAssociation/id',$existingAssociations);
-		$updatedAssociationsIds = array_keys($this->data['Assignment']['AssignmentAssociation']);
-		$associationsToDelete = array_diff($existingAssociationIds,$updatedAssociationsIds);
 
-		$this->AssignmentAssociation->deleteAll(array(
-			'AssignmentAssociation.id' => $associationsToDelete
-		));
 	}
 	
 	function afterFind($results,$primary) {

@@ -47,7 +47,8 @@ class PagesController extends AppController {
 		$assignments = $this->Assignment->find('all',array(
 			'conditions' => array(
 				'Assignment.course_id' => Course::get('id'),
-				'Assignment.virtual_class_id' => VirtualClass::get('id')
+				'Assignment.virtual_class_id' => VirtualClass::get('id'),
+				'Assignment.reminder_node_id' => $id
 			),
 			'contain' => 'AssignmentAssociation'
 		));

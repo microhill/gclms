@@ -85,6 +85,12 @@ $javascript->link(array(
 		else
 			$sectionUriComponent = '';
 		?>
+		<?
+		foreach($assignments as $assignment) {
+			echo $this->element('../pages/assignment_reminder',array('assignment' => $assignment));
+		}
+		?>
+		
 		<div id="gclms-page-navigation">
 			<?
 			$previousImage = $text_direction == 'rtl' ? 'next' : 'previous';

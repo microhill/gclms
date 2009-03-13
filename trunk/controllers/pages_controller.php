@@ -13,9 +13,7 @@ class PagesController extends AppController {
 	
 	function view($id) {		
 		$this->Breadcrumbs->addHomeCrumb();
-
 		$this->Breadcrumbs->addGroupCrumb();
-
 		$this->Breadcrumbs->addCrumb($this->viewVars['course']['title'],array('url' => $this->viewVars['groupAndCoursePath'],'class' => 'gclms-course-menu'));
 
 		$this->Node->contain(array('Question' => 'Answer','Textarea'));
@@ -43,6 +41,17 @@ class PagesController extends AppController {
 		
 		//pr($node['Node']['next_page_id']);
 		$this->set('node',$node);
+		
+		//Assignments
+		$this->Assignment =& ClassRegistry::init('Assignment');
+		$assignments = $this->Assignment->find('all',array(
+			'conditions' => array(
+				'Assignment.course_id' => Course::get('id'),
+				'Assignment.virtual_class_id' => VirtualClass::get('id')
+			),
+			'contain' => 'AssignmentAssociation'
+		));
+		$this->set('assignments',$assignments);
 		
 		//$this->GlossaryTerm = ClassRegistry::getInstance('Model', 'GlossaryTerm');
 		$this->GlossaryTerm =& ClassRegistry::init('GlossaryTerm'); 

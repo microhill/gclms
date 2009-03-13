@@ -4,7 +4,7 @@
 			<tr>
 				<th colspan="2">
 		            <div class="gclms-left">
-		                <img src="/img/icons/oxygen/16x16/actions/edit-delete.png" class="gclms-delete-associated-object gclms-delete" gclms:confirm-text="<? __('Are you sure you want to delete this?') ?>"/>
+		                <img src="/img/icons/oxygen/16x16/actions/edit-delete.png" class="gclms-delete-associated-object gclms-delete" />
 		            </div>
 				</th>
 			</tr>
@@ -13,7 +13,7 @@
 					<? __('Page title') ?>
 				</th>
 				<td>
-					<input type="hidden" name="data[Assignment][AssociatedObject][<?= $id ?>][model]" value=Page" />
+					<input type="hidden" name="data[Assignment][AssociatedObject][<?= $id ?>][model]" value="Page" />
 					<input type="hidden" name="data[Assignment][AssociatedObject][<?= $id ?>][foreign_key]" value="<?= @$foreign_key ?>" />
 					<input type="text" disabled="disabled" value="<?= @$title ?>" class="gclms-associated-object-title" />
 				</td>
@@ -28,10 +28,11 @@
 						name="data[Assignment][AssociatedObject][<?= $id ?>][results_figured_into_grade]" 
 						value="1" 
 						class="gclms-figured-into-grade"
+						<? if(!empty($percentage_of_grade)): ?>checked="checked"<? endif; ?>
 						id="results-figured-into-grade-<?= $id ?>]" />
 				</td>
 			</tr>
-			<tr class="gclms-percentage-of-grade gclms-hidden">
+			<tr class="gclms-percentage-of-grade <?= empty($percentage_of_grade) ? 'gclms-hidden' : '' ?>">
 				<th>
 					<label for="percentage-of-total-grade-<?= $id ?>]"><? __('Percentage of grade') ?></label>
 				</th>

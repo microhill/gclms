@@ -31,6 +31,21 @@ echo $form->input('type',array(
 ?>
 </p -->
 
+<div id="gclms-reminder-page">
+	<label><? __('Remind user of assignment after this page') ?></label>
+	<table cellspacing="0" border="0" cellpadding="0">
+		<tr>
+			<td>
+				<input id="AssignmentNodeTitle" disabled="disabled" />
+				<?= $form->hidden('reminder_node_id'); ?>
+			</td>
+			<td>
+				<button><? __('Change') ?></button>
+			</td>
+		</tr>
+	</table>
+</div>
+
 <fieldset>
 	<legend><? __('Associated objects') ?></legend>
 	<div id="gclms-associated-objects">
@@ -70,21 +85,6 @@ echo $form->input('type',array(
 		</table>
 	</div>
 </fieldset>
-
-<div id="gclms-reminder-page">
-	<label><? __('Remind user of assignment after this page') ?></label>
-	<table cellspacing="0" border="0" cellpadding="0">
-		<tr>
-			<td>
-				<input id="AssignmentNodeTitle" disabled="disabled" />
-				<?= $form->hidden('reminder_node_id'); ?>
-			</td>
-			<td>
-				<button><? __('Change') ?></button>
-			</td>
-		</tr>
-	</table>
-</div>
 
 <?= $form->input('points',array(
 	'label' =>  __('Points', true),

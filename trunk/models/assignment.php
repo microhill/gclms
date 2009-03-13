@@ -10,8 +10,10 @@ class Assignment extends AppModel {
 		if(VirtualClass::get('id'))
 			$this->data['Assignment']['virtual_class_id'] = VirtualClass::get('id');
 		
-		if(@$this->data['Assignment']['has_due_date']) {
+		if(!empty($this->data['Assignment']['has_due_date'])) {
 			$this->data['Assignment']['due_date'] = (((int) $this->data['Assignment']['due_date_week'] - 1) * 7) + (int) $this->data['Assignment']['due_date_day'] - 1;
+		} else {
+			$this->data['Assignment']['due_date'] = 0;
 		}
 		
 		return true;
@@ -19,8 +21,8 @@ class Assignment extends AppModel {
 	
 	function afterSave($created) {
 		$this->AssignmentAssociation =& ClassRegistry::init('AssignmentAssociation');
-		if(!empty($this->data['Assignment']['AssociatedObject'])) {
-			foreach($this->data['Assignment']['AssociatedObject'] as $associatedObjectId => $associatedObject) {
+		if(!empty($this->data['Assignment']['AssignmentAssociation'])) {
+			foreach($this->data['Assignment']['AssignmentAssociation'] as $associatedObjectId => $associatedObject) {
 				$this->AssignmentAssociation->id = $associatedObjectId;
 				$associatedObject['assignment_id'] = $this->id;
 				if((int) @$associatedObject['percentage_of_grade'] < 0 || (int) @$associatedObject['percentage_of_grade'] > 100 || empty($associatedObject['results_figured_into_grade']))
@@ -28,6 +30,21 @@ class Assignment extends AppModel {
 				$this->AssignmentAssociation->save($associatedObject);
 			}
 		}
+		
+		$existingAssociations = $this->AssignmentAssociation->find('all',array(
+			'conditions' => array(
+				'assignment_id' => $this->id
+			),
+			'fields' => array('id'),
+			'contain' => false
+		));
+		$existingAssociationIds = Set::extract('/AssignmentAssociation/id',$existingAssociations);
+		$updatedAssociationsIds = array_keys($this->data['Assignment']['AssignmentAssociation']);
+		$associationsToDelete = array_diff($existingAssociationIds,$updatedAssociationsIds);
+
+		$this->AssignmentAssociation->deleteAll(array(
+			'AssignmentAssociation.id' => $associationsToDelete
+		));
 	}
 	
 	function afterFind($results,$primary) {

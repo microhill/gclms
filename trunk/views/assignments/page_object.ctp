@@ -13,8 +13,8 @@
 					<? __('Page title') ?>
 				</th>
 				<td>
-					<input type="hidden" name="data[Assignment][AssociatedObject][<?= $id ?>][model]" value="Page" />
-					<input type="hidden" name="data[Assignment][AssociatedObject][<?= $id ?>][foreign_key]" value="<?= @$foreign_key ?>" />
+					<input type="hidden" name="data[Assignment][AssignmentAssociation][<?= $id ?>][model]" value="Page" />
+					<input type="hidden" name="data[Assignment][AssignmentAssociation][<?= $id ?>][foreign_key]" value="<?= @$foreign_key ?>" />
 					<input type="text" disabled="disabled" value="<?= @$title ?>" class="gclms-associated-object-title" />
 				</td>
 			</tr>
@@ -25,7 +25,7 @@
 				<td width="*">
 					<input 
 						type="checkbox" 
-						name="data[Assignment][AssociatedObject][<?= $id ?>][results_figured_into_grade]" 
+						name="data[Assignment][AssignmentAssociation][<?= $id ?>][results_figured_into_grade]" 
 						value="1" 
 						class="gclms-figured-into-grade"
 						<? if(!empty($percentage_of_grade)): ?>checked="checked"<? endif; ?>
@@ -37,7 +37,7 @@
 					<label for="percentage-of-total-grade-<?= $id ?>]"><? __('Percentage of grade') ?></label>
 				</th>
 				<td>
-					<select name="data[Assignment][AssociatedObject][<?= $id ?>][percentage_of_grade]" id="percentage-of-total-grade-<?= $id ?>">
+					<select name="data[Assignment][AssignmentAssociation][<?= $id ?>][percentage_of_grade]" id="percentage-of-total-grade-<?= $id ?>">
 						<? foreach(range(100,0) as $percentage): ?>
 							<option value="<?= $percentage ?>" <? if((int) $percentage_of_grade == (int) $percentage): ?>selected="selected"<? endif; ?>>
 								<?= $percentage ?>%

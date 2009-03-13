@@ -44,7 +44,6 @@ class AssignmentsController extends AppController {
 	
 	function edit($id) {
 		if(!empty($this->data)) {
-			prd($this->data);
 			$this->data['Assignment']['id'] = $id;
 			if($this->Assignment->save($this->data)) {				
 				//if(!empty($this->itemName))

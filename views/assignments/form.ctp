@@ -35,12 +35,14 @@ echo $form->input('type',array(
 	<legend><? __('Associated objects') ?></legend>
 	<div id="gclms-associated-objects">
 		<?
-		foreach($this->data['AssignmentAssociation'] as $assignment_association) {
-			if($assignment_association['model'] == 'Page') {
-				echo $this->element('../assignments/page_object',$assignment_association);
-			} else if($assignment_association['model'] == 'Forum') {
-				echo $this->element('../assignments/forum_object',$assignment_association);
-			}
+		if(!empty($this->data['AssignmentAssociation'])) {
+			foreach($this->data['AssignmentAssociation'] as $assignment_association) {
+				if($assignment_association['model'] == 'Page') {
+					echo $this->element('../assignments/page_object',$assignment_association);
+				} else if($assignment_association['model'] == 'Forum') {
+					echo $this->element('../assignments/forum_object',$assignment_association);
+				}
+			}	
 		}
 		?>
 	</div>

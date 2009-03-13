@@ -83,13 +83,13 @@ gclms.AssignmentsController = {
 				$(this.dialog).down('.gclms-nodes-tree').observeRules(gclms.Triggers.get('.gclms-nodes-tree'));
 			},
 			'callback': function(a) {
-				var pageObject = $('gclms-associated-objects').insert(gclms.Views.get('pageObject').interpolate({
+				var page = $('gclms-associated-objects').insert(gclms.Views.get('pageObject').interpolate({
 					id: UUID.generate(),
 					model: 'page',
 					foreign_key: a.getAttribute('gclms-node-id'),
 					title: a.innerHTML
 				}));
-				pageObject.observeRules(gclms.Triggers.get('.gclms-assignment-association'));
+				page.observeRules(gclms.Triggers.get('.gclms-assignment-association'));
 				
 				return true;
 			}
@@ -112,12 +112,14 @@ gclms.AssignmentsController = {
 		var selector = new gclms.selector({
 			'url': gclms.urlPrefix + 'forums/select',
 			'callback': function(a) {
-				$('gclms-associated-objects').insert(gclms.Views.get('forumObject').interpolate({
+				var forum = $('gclms-associated-objects').insert(gclms.Views.get('forumObject').interpolate({
 					id: UUID.generate(),
 					model: 'forum',
 					foreign_key: a.getAttribute('gclms-forum-id'),
 					title: a.innerHTML
 				}));
+				
+				forum.observeRules(gclms.Triggers.get('.gclms-assignment-association'));
 				
 				return true;
 			}
@@ -131,6 +133,19 @@ gclms.AssignmentsController = {
 		} else {
 			row.hide();			
 		}
+	},
+	
+	deleteAssociation: function(event) {
+		event.stop();
+		
+		var confirm = new gclms.confirm({
+			text: __('Are you sure you want to delete this?'),
+			confirmButtonText: __('Yes'),
+			cancelButtonText: __('No'),
+			callback: function() {
+				this.up('.gclms-assignment-association').remove();
+			}.bind(this)
+		});
 	}
 }
 
@@ -147,7 +162,8 @@ gclms.Triggers.update({
 	},
 	'#gclms-add-associated-object button.gclms-add:click': gclms.AssignmentsController.addAssociatedObject,
 	'.gclms-assignment-association': {
-		'.gclms-figured-into-grade:change': gclms.AssignmentsController.changeFigureResultsIntoGrade
+		'.gclms-figured-into-grade:change': gclms.AssignmentsController.changeFigureResultsIntoGrade,
+		'.gclms-delete:click': gclms.AssignmentsController.deleteAssociation
 	}
 });
 

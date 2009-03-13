@@ -19,10 +19,14 @@ div.gclms-page-object table {
 	width: 500px;
 }
 
-.gclms-page-object th {
+.gclms-assignment-association th {
 	white-space: nowrap;
 }
 
 .gclms-associated-object-title {
 	width: 100%;
+}
+
+.gclms-delete {
+	cursor: pointer;
 }

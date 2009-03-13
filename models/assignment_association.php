@@ -42,7 +42,7 @@ class AssignmentAssociation extends AppModel {
 					'conditions' => array('Forum.id' => $result['AssignmentAssociation']['foreign_key']),
 					'contain' => false
 				));
-				$result['AssignmentAssociation']['title'] = $node['Forum']['title'];
+				$result['AssignmentAssociation']['title'] = $forum['Forum']['title'];
 				/*
 				$result['Forum'] = array(
 					'title' => $forum['Forum']['title']

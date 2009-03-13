@@ -36,20 +36,14 @@ class Assignment extends AppModel {
 					die('Error with saveAndCloneAssociations');
 			}
 		}
+		
+		return true;
 	}
 	
 	function afterSave($created) {
 		$this->AssignmentAssociation =& ClassRegistry::init('AssignmentAssociation');
-		if(!empty($this->data['Assignment']['AssignmentAssociation'])) {
-			//Save updated associations with percentage
-			foreach($this->data['Assignment']['AssignmentAssociation'] as $associatedObjectId => $associatedObject) {
-				$this->AssignmentAssociation->id = $associatedObjectId;
-				$associatedObject['assignment_id'] = $this->id;
-				if((int) @$associatedObject['percentage_of_grade'] < 0 || (int) @$associatedObject['percentage_of_grade'] > 100 || empty($associatedObject['results_figured_into_grade']))
-				$associatedObject['percentage_of_grade'] = 0;
-				$this->AssignmentAssociation->save($associatedObject);
-			}
-			
+
+		if(!$created) {
 			//Delete removed associations
 			$existingAssociations = $this->AssignmentAssociation->find('all',array(
 				'conditions' => array(
@@ -59,15 +53,29 @@ class Assignment extends AppModel {
 				'contain' => false
 			));
 			$existingAssociationIds = Set::extract('/AssignmentAssociation/id',$existingAssociations);
+			//pr($existingAssociationIds);
 			$updatedAssociationsIds = array_keys($this->data['Assignment']['AssignmentAssociation']);
+			//pr($updatedAssociationsIds);
 			$associationsToDelete = array_diff($existingAssociationIds,$updatedAssociationsIds);
+			//prd($associationsToDelete);
 	
 			$this->AssignmentAssociation->deleteAll(array(
 				'AssignmentAssociation.id' => $associationsToDelete
-			));
+			));	
 		}
 		
-
+		if(!empty($this->data['Assignment']['AssignmentAssociation'])) {
+			//Save updated associations with percentage
+			foreach($this->data['Assignment']['AssignmentAssociation'] as $associatedObjectId => $associatedObject) {
+				$this->AssignmentAssociation->id = $associatedObjectId;
+				$associatedObject['assignment_id'] = $this->id;
+				if((int) @$associatedObject['percentage_of_grade'] < 0 || (int) @$associatedObject['percentage_of_grade'] > 100 || empty($associatedObject['results_figured_into_grade']))
+				$associatedObject['percentage_of_grade'] = 0;
+				$this->AssignmentAssociation->save($associatedObject);
+			}
+		} else {
+			$this->data['Assignment']['AssignmentAssociation'] = array();
+		}
 	}
 	
 	function afterFind($results,$primary) {

@@ -14,7 +14,7 @@ class VirtualClass extends AppModel {
 			)
 	);
     
-    var $belongsTo = array('Course','Group');
+    var $belongsTo = array('Course');
 
 	var $validate = array(
 		'title' => array(

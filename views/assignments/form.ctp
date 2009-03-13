@@ -140,7 +140,8 @@ echo $form->input('has_due_date',array(
 	'label' =>  false,
 	'between' => false,
 	'type' => 'checkbox',
-	'div' => false
+	'div' => false,
+	'checked' => !empty($this->data['Assignment']['due_date'])
 ));
 
 echo $form->input('due_date_week',array(

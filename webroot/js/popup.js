@@ -106,7 +106,7 @@ gclms.popup = Class.create({
 	},
 	
 	addCancelButton: function() {
-		this.buttons.down('tr').insert(new Element('td').insert(new Element('button',{
+		var td = this.buttons.down('tr').insert(new Element('td').insert(new Element('button',{
 			className: 'gclms-cancel',
 			id: 'gclms-popup-dialog-cancel-button'
 		}).insert(this.options.get('cancelButtonText'))));
@@ -205,6 +205,10 @@ gclms.confirm = Class.create(gclms.popup, {
 		this.getCallbackValue = function() {
 			return true;
 		};	
+	},
+	
+	afterSetup: function() {
+		this.dialog.down('button.gclms-cancel').focus();
 	}
 });
 

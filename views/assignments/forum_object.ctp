@@ -13,8 +13,8 @@
 					<? __('Forum title') ?>
 				</th>
 				<td width="*">
-					<input type="hidden" name="data[Assignment][AssociatedObject][<?= $id ?>][model]" value="Forum" />
-					<input type="hidden" name="data[Assignment][AssociatedObject][<?= $id ?>][foreign_key]" value="<?= @$foreign_key ?>" />
+					<input type="hidden" name="data[Assignment][AssignmentAssociation][<?= $id ?>][model]" value="Forum" />
+					<input type="hidden" name="data[Assignment][AssignmentAssociation][<?= $id ?>][foreign_key]" value="<?= @$foreign_key ?>" />
 					<input type="text" disabled="disabled" value="<?= @$title ?>" class="gclms-associated-object-title" />
 				</td>
 			</tr>

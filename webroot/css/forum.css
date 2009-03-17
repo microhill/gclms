@@ -14,3 +14,12 @@ table.gclms-tabular {
 	tr.gclms-headers th {
 		border-top: 1px solid #d8d8d8;
 	}
+	
+#gclms-thread-listing a {
+	color: blue;
+	text-decoration: underline;
+}
+
+.gclms-thread-author {
+	font-weight: bold;
+}

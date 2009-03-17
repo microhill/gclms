@@ -4,7 +4,8 @@ $html->css('forum', null, null, false);
 $javascript->link(array(
 	'vendors/prototype1.6.0.3',
 	'vendors/prototype_extensions1.0',
-	'gclms'
+	'gclms',
+	'forum_topic'
 ), false);
 
 ?>
@@ -14,6 +15,28 @@ $javascript->link(array(
 	<h1><?= $this->data['ForumPost']['title'] ?></h1>
 	
 	<button href="<?= $groupAndCoursePath ?>/forum_topics/delete/<?= $this->data['ForumPost']['id'] ?>" gclms:confirm-text="<? __('Are you sure you want to delete this post?') ?>">Delete Topic</button>	
+
+	<div id="gclms-thread-listing">
+		<table class="gclms-tabular">
+			<tr class="gclms-headers">
+				<th>
+					<? __('Threads') ?>
+				</th>
+			</tr>
+			<tr>
+				<td>
+					<ul>
+						<li>
+							<span class="gclms-thread-author"><?= $this->data['User']['username'] ?></span> <a href="#"><?= $this->data['ForumPost']['title'] ?></a> <?= $myTime->niceShort($this->data['ForumPost']['created']) ?>
+							<?
+							echo $this->element('../forum_topics/display_threads',array('threads' => $this->data['Reply'],'topic_id' => $this->data['ForumPost']['id']))
+							?>	
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+	</div>
 
 	<div class="gclms-records gclms-forums-posts">
 		<table class="gclms-tabular">
@@ -38,7 +61,7 @@ $javascript->link(array(
 				</tr>
 			</tbody>
 		<? foreach($this->data['Reply'] as $post): ?>
-			<tbody>
+			<tbody id="gclms-post-<?= $post['id'] ?>" class="gclms-hidden">
 				<tr class="gclms-headers">
 					<th colspan="2">
 						<div class="gclms-left"><?= $myTime->niceShort($post['created']) ?></div>

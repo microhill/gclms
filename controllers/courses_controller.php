@@ -45,6 +45,8 @@ class CoursesController extends AppController {
 		if(!Permission::check('Course')) {
 			$this->cakeError('permission');
 		}
+		
+		$this->Common->add();
 	}
 
 	function index() {

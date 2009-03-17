@@ -11,10 +11,10 @@ echo $form->input('description',array(
 
 echo $form->radio('type',
 	array(
-		0 => __('Template; participation specific to facilitated class', true),
-		1 => __('Persistent; open to any user who has been enrolled in an associated class', true),
-		2 => __('Persistent; open to associated facilitators', true),
-		3 => __('Persistent; viewable to the public and open to any verified user', true)
+		0 => __('Template for classes', true),
+		1 => __('Open to any user who has been enrolled in course', true), 
+		2 => __('Open to facilitators associated with course', true),
+		3 => __('Publicly viewable and open to any verified user', true)
 	),
 	array(
 		'separator' => '<br />',

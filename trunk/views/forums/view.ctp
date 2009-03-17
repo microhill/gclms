@@ -17,9 +17,11 @@ $javascript->link(array(
 	
 	<table class="gclms-buttons">
 		<tr>
+			<? if($forum['Forum']['type'] != 0): ?>
 			<td>
 				<button href="<?= $groupAndCoursePath ?>/forum_topics/add/forum:<?= $forum['Forum']['id'] ?>">New Topic</button>
 			</td>
+			<? endif; ?>
 			<td>
 				<button href="<?= $groupAndCoursePath ?>/forums/delete/<?= $forum['Forum']['id'] ?>" gclms:confirm-text="<? __('Are you sure you want to delete this forum?') ?>">Delete Forum</button>
 			</td>

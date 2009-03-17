@@ -75,7 +75,7 @@ $javascript->link(array(
 			<? endforeach; ?>
 			</table>
 		</div>
-	<? else: ?>
+	<? elseif ($forum['Forum']['type'] != 0): ?>
 		<p><? __('No topics yet.'); ?></p>
 	<? endif; ?>
 </div>

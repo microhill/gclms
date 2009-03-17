@@ -38,7 +38,7 @@ if(Permission::check('Permission'))
 
 if(Permission::check('Course'))
 	$menu->addMenuItem('group',array(
-		'content' => __('Courses', true),
+		'content' => __('Add Course', true),
 		'class' => 'gclms-add',
 		'url' => '/' . Group::get('web_path') . '/courses/add'
 	));

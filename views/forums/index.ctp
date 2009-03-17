@@ -28,13 +28,18 @@ echo $this->element('left_column'); ?>
 						</th>
 						<th>
 							<div class="gclms-left">Last post</div>
-						</th>		
+						</th>	
+						<th class="gclms-center">
+							<div class="gclms-center">Type</div>
+						</th>	
 					</tr>
 				<? foreach($this->data as $forum): ?>
 					<tbody class="gclms-descriptive-recordset">
 						<tr href="<?= $groupAndCoursePath ?>/forums/view/<?= $forum['Forum']['id'] ?>">
 							<td>
-								<span class="gclms-forum-title"><?= $forum['Forum']['title'] ?></span><br/>
+								<span class="gclms-forum-title">
+									<?= $forum['Forum']['title'] ?>
+								</span><br/>
 								<span class="gclms-forum-description"><?= $forum['Forum']['description'] ?></span>
 							</td>
 							<td class="gclms-topic-count">
@@ -51,6 +56,24 @@ echo $this->element('left_column'); ?>
 									<br/><br/>
 								<? endif; ?>
 							</td>		
+							<td class="gclms-type">
+								<?
+								switch($forum['Forum']['type']) {
+									case 0:
+										__('Template');
+										break;
+									case 1:
+										__('Course');
+										break;
+									case 2:
+										__('Facilitator');
+										break;
+									case 3:
+										__('Public');
+										break;
+								}
+								?>
+							</td>
 						</tr>
 					</tbody>
 				<? endforeach; ?>

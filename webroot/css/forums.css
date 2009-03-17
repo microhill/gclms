@@ -15,7 +15,8 @@
 .gclms-last-reply,
 .gclms-last-post,
 .gclms-replies,
-.gclms-author {
+.gclms-author,
+.gclms-type {
 	width: 1px;
 	white-space:nowrap;
 }

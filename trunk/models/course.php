@@ -4,6 +4,7 @@ class Course extends AppModel {
 	var $belongsTo = array('Group');
 	
 	var $validate = array(
+		/*
 		'title' => array(
 			'rule' => VALID_NOT_EMPTY,
 			'message' => 'Title is required'
@@ -33,7 +34,7 @@ class Course extends AppModel {
 			
 		//if($this->data['Course']['web_path'] != urlencode($this->data['Course']['web_path'])) 
 		//	return false;
-			
+
 		return true;
 	}
 	

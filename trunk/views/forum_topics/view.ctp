@@ -29,7 +29,11 @@ $javascript->link(array(
 						<li>
 							<span class="gclms-thread-author"><?= $this->data['User']['username'] ?></span> <a href="#"><?= $this->data['ForumPost']['title'] ?></a> <?= $myTime->niceShort($this->data['ForumPost']['created']) ?>
 							<?
-							echo $this->element('../forum_topics/display_threads',array('threads' => $this->data['Reply'],'topic_id' => $this->data['ForumPost']['id']))
+							echo $this->element('../forum_topics/display_threads',array(
+								'threads' => array('ForumPost' => $this->data['Reply']),
+								'topic_id' => $this->data['ForumPost']['id'],
+								'parent_post_id' => $this->data['ForumPost']['id']
+							))
 							?>	
 						</li>
 					</ul>
@@ -38,14 +42,14 @@ $javascript->link(array(
 		</table>
 	</div>
 
-	<div class="gclms-records gclms-forums-posts">
+	<div id="gclms-threads" class="gclms-records gclms-forums-posts">
 		<table class="gclms-tabular">
-			<tr class="gclms-headers">
-				<th colspan="2">
-					<div class="gclms-left"><?= $myTime->niceShort($this->data['ForumPost']['created']) ?></div>
-				</th>	
-			</tr>
-			<tbody>
+			<tbody id="gclms-thread-<?= $this->data['ForumPost']['id'] ?>" class="gclms-thread">
+				<tr class="gclms-headers">
+					<th colspan="2">
+						<div class="gclms-left"><?= $myTime->niceShort($this->data['ForumPost']['created']) ?></div>
+					</th>	
+				</tr>
 				<tr>
 					<td width="20%">
 						<div>
@@ -61,7 +65,7 @@ $javascript->link(array(
 				</tr>
 			</tbody>
 		<? foreach($this->data['Reply'] as $post): ?>
-			<tbody id="gclms-post-<?= $post['id'] ?>" class="gclms-hidden">
+			<tbody id="gclms-thread-<?= $post['id'] ?>" class="gclms-thread gclms-hidden">
 				<tr class="gclms-headers">
 					<th colspan="2">
 						<div class="gclms-left"><?= $myTime->niceShort($post['created']) ?></div>
@@ -96,6 +100,9 @@ $javascript->link(array(
 	<div id="gclms-forums-reply">
 		<?
 		echo $form->create('Reply', array('url'=>$groupAndCoursePath . '/forum_topics/view/' . $this->data['ForumPost']['id'] . $framed_suffix));
+		echo $form->hidden('parent_post_id',array(
+			'value' => $this->data['ForumPost']['id']
+		));
 		echo $form->input('content',array(
 			'label' => __('Reply',true),
 			'between' => '<br/>',

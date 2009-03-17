@@ -20,6 +20,10 @@ table.gclms-tabular {
 	text-decoration: underline;
 }
 
+	#gclms-thread-listing a.gclms-selected {
+		font-weight: bold;
+	}
+
 .gclms-thread-author {
 	font-weight: bold;
 }

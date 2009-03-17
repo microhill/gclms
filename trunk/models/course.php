@@ -4,7 +4,6 @@ class Course extends AppModel {
 	var $belongsTo = array('Group');
 	
 	var $validate = array(
-		/*
 		'title' => array(
 			'rule' => VALID_NOT_EMPTY,
 			'message' => 'Title is required'

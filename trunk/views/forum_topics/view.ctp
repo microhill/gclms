@@ -27,7 +27,7 @@ $javascript->link(array(
 				<td>
 					<ul>
 						<li>
-							<span class="gclms-thread-author"><?= $this->data['User']['username'] ?></span> <a href="#"><?= $this->data['ForumPost']['title'] ?></a> <?= $myTime->niceShort($this->data['ForumPost']['created']) ?>
+							<span class="gclms-thread-author"><?= $this->data['User']['username'] ?></span> <a href="#" gclms-thread-id="<?= $this->data['ForumPost']['id'] ?>"><?= $this->data['ForumPost']['title'] ?></a> <?= $myTime->niceShort($this->data['ForumPost']['created']) ?>
 							<?
 							echo $this->element('../forum_topics/display_threads',array(
 								'threads' => array('ForumPost' => $this->data['Reply']),

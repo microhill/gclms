@@ -87,8 +87,7 @@ echo $this->element('left_column'); ?>
 		</form>	
 		
 		<?
-		$form_action = 'https://' . Configure::read('S3.bucket') . '.s3.amazonaws.com/';
-
+		$form_action = 'http://' . Configure::read('S3.bucket') . '.s3.amazonaws.com/';
 		$acl = empty($course['open']) ? 'private' : 'public-read';
 
 		$policy = array(
@@ -112,7 +111,7 @@ echo $this->element('left_column'); ?>
 		
 		<div id="downloadProgress"></div>
 
-		<form id="form1" action="<?= $form_action ?>" method="post" enctype="multipart/form-data">	
+		<form id="gclms-upload-form" action="<?= $form_action ?>" method="post" enctype="multipart/form-data">	
 			<input type="hidden" id="s3key" name="key" value="courses/<?= $course['id'] ?>/${filename}"/>
 			<input type="hidden" id="s3awsaccesskeyid" name="AWSAccessKeyId" value="<?= Configure::read('S3.accessKey') ?>"/> 
 			<input type="hidden" id="s3acl" name="acl" value="<?= $acl ?>"/>

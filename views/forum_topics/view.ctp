@@ -89,28 +89,28 @@ $javascript->link(array(
 		</table>
 	</div>
 	
-	<!-- div class="gclms-buttons">
-		<table>
+	<div id="gclms-reply">
+		<table class="gclms-tabular">
+			<tr class="gclms-headers">
+				<th><? __('Reply') ?></th>
+			</tr>
 			<tr>
-				<td><a href="<?= $groupAndCoursePath ?>/forums/reply">Post Reply</a></td>
+				<td>
+					<?
+					echo $form->create('Reply', array('url'=>$groupAndCoursePath . '/forum_topics/view/' . $this->data['ForumPost']['id'] . $framed_suffix));
+					echo $form->hidden('parent_post_id',array(
+						'value' => $this->data['ForumPost']['id']
+					));
+					echo $form->input('content',array(
+						'label' => false,
+						'rows' => 19,
+						'cols' => 80
+					));
+					echo $form->submit(__('Post',true),array('class'=>'gclms-save'));
+					echo $form->end();
+					?>
+				</td>
 			</tr>
 		</table>
-	</div -->
-	
-	<div id="gclms-forums-reply">
-		<?
-		echo $form->create('Reply', array('url'=>$groupAndCoursePath . '/forum_topics/view/' . $this->data['ForumPost']['id'] . $framed_suffix));
-		echo $form->hidden('parent_post_id',array(
-			'value' => $this->data['ForumPost']['id']
-		));
-		echo $form->input('content',array(
-			'label' => __('Reply',true),
-			'between' => '<br/>',
-			'rows' => 19,
-			'cols' => 80
-		));
-		echo $form->submit(__('Post',true),array('class'=>'gclms-save'));
-		echo $form->end();
-		?>
 	</div>		
 </div>

@@ -27,3 +27,7 @@ table.gclms-tabular {
 .gclms-thread-author {
 	font-weight: bold;
 }
+
+#gclms-reply {
+	margin-top: 6px;
+}

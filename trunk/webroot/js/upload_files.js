@@ -1,10 +1,10 @@
 gclms.UploadFilesController = {
 	loadPage: function() {		
 		var swfu;
-
+		
 		var settings = {
-			flash_url : "http://ibsdev.s3.amazonaws.com/swfupload.swf",
-			upload_url: "/",	// Relative to the SWF file
+			flash_url : '/js/vendors/swfupload2.2.0/swfupload.swf',
+			upload_url: $('gclms-upload-form').getAttribute('action'),	// Relative to the SWF file
 			//post_params: {"PHPSESSID" : ''},
 			file_post_name: 'file',
 			file_size_limit : "100 MB",

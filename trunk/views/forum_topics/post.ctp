@@ -1,4 +1,4 @@
-<tbody id="gclms-thread-<?= $id ?>" class="gclms-thread<?= empty($hidden) ? '' : ' gclms-hidden' ?>">
+<tbody id="gclms-thread-<?= $id ?>" gclms-post-id="<?= $id ?>" class="gclms-thread<?= empty($hidden) ? '' : ' gclms-hidden' ?>">
 	<tr class="gclms-headers">
 		<th colspan="2">
 			<div class="gclms-left"><?= $myTime->niceShort($created) ?></div>
@@ -13,8 +13,15 @@
 				</div>
 			</div>
 		</td>
-		<td class="gclms-forum-post-content">
-			<?= nl2br($content) ?>
+		<td>
+			<div class="gclms-forum-post-content">
+				<?= nl2br($content) ?>
+			</div>
+			<div class="gclms-forum-post-buttons">
+				<? if(User::get('id') == $user_id): ?>
+					<button class="gclms-edit-post"><? __ ('Edit') ?></button>
+				<? endif; ?>
+			</div>
 		</td>
 	</tr>
 </tbody>

@@ -49,6 +49,7 @@ $javascript->link(array(
 				'created' => $this->data['ForumPost']['created'],
 				'content' => $this->data['ForumPost']['content'],
 				'username' => $this->data['User']['username'],
+				'user_id' => $this->data['User']['id'],
 				'email' => $this->data['User']['email'],
 				'hidden' => false
 			)); ?>
@@ -58,6 +59,7 @@ $javascript->link(array(
 				'created' => $post['created'],
 				'content' => $post['content'],
 				'username' => $post['User']['username'],
+				'user_id' => $post['User']['id'],
 				'email' => $post['User']['email'],
 				'hidden' => true
 			)); ?>
@@ -68,21 +70,32 @@ $javascript->link(array(
 	<div id="gclms-reply">
 		<table class="gclms-tabular">
 			<tr class="gclms-headers">
-				<th><? __('Reply') ?></th>
+				<th>
+					<span id="gclms-reply-header"><? __('Reply') ?></span>
+					<span id="gclms-edit-post-header" class="gclms-hidden"><? __('Edit post') ?></span>
+				</th>
 			</tr>
 			<tr>
 				<td>
 					<?
 					echo $form->create('Reply', array('url'=>$groupAndCoursePath . '/forum_topics/view/' . $this->data['ForumPost']['id'] . $framed_suffix));
+					echo $form->hidden('id');
 					echo $form->hidden('parent_post_id',array(
 						'value' => $this->data['ForumPost']['id']
 					));
 					echo $form->input('content',array(
 						'label' => false,
-						'rows' => 19,
+						'rows' => 12,
 						'cols' => 80
 					));
-					echo $form->submit(__('Post',true),array('class'=>'gclms-save'));
+					echo $form->submit(__('Save',true),array(
+						'class' => 'gclms-save gclms-hidden',
+						'id' => 'gclms-save-button'
+					));
+					echo $form->submit(__('Post',true),array(
+						'class'=>'gclms-save',
+						'id' => 'gclms-reply-button'
+					));
 					echo $form->end();
 					?>
 				</td>

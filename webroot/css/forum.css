@@ -39,3 +39,11 @@ table.gclms-tabular {
 .gclms-username {
 	font-size: 1.3em;
 }
+
+.gclms-forum-post-content {
+	min-height: 100px;
+}
+
+.gclms-forum-post-buttons {
+	text-align: right;
+}

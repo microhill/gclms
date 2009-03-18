@@ -44,11 +44,18 @@ class ForumTopicsController extends AppController {
 	
 	function reply($id) {
 		$this->data['ForumPost'] = $this->data['Reply'];
-		$this->data['ForumPost']['origin_post_id'] = $id;
-		$this->data['ForumPost']['forum_id'] = $this->ForumPost->field('forum_id',array('ForumPost.id' => $id));
+		
+		if(empty($this->data['ForumPost']['id'])) {
+			$this->data['ForumPost']['origin_post_id'] = $id;
+			$this->data['ForumPost']['forum_id'] = $this->ForumPost->field('forum_id',array('ForumPost.id' => $id));
+			$this->data['ForumPost']['user_id'] = User::get('id');
+			unset($this->data['ForumPost']['id']);
+		} else {
+			unset($this->data['ForumPost']['parent_post_id']);
+		}
+
 		$this->data['ForumPost']['title'] = substr($this->data['Reply']['content'],0,10) . '...';
 		
-		$this->data['ForumPost']['user_id'] = User::get('id');
 		$this->redirect = Controller::referer();
 		return parent::add('ForumPost');
 	}

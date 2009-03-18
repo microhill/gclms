@@ -54,7 +54,12 @@ class ForumTopicsController extends AppController {
 			unset($this->data['ForumPost']['parent_post_id']);
 		}
 
-		$this->data['ForumPost']['title'] = substr($this->data['Reply']['content'],0,10) . '...';
+		$modifiedContentForTitle = ereg_replace("\n", " ", $this->data['Reply']['content']);  
+		if(strlen($modifiedContentForTitle) > 35) {
+			$this->data['ForumPost']['title'] = substr($this->data['Reply']['content'],0,35) . '...';	
+		} else {
+			$this->data['ForumPost']['title'] = $this->data['Reply']['content'];
+		}
 		
 		$this->redirect = Controller::referer();
 		return parent::add('ForumPost');

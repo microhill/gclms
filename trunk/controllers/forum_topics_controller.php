@@ -52,13 +52,16 @@ class ForumTopicsController extends AppController {
 			unset($this->data['ForumPost']['id']);
 		} else {
 			unset($this->data['ForumPost']['parent_post_id']);
-		}
-
-		$modifiedContentForTitle = ereg_replace("\n", " ", $this->data['Reply']['content']);  
-		if(strlen($modifiedContentForTitle) > 35) {
-			$this->data['ForumPost']['title'] = substr($this->data['Reply']['content'],0,35) . '...';	
-		} else {
-			$this->data['ForumPost']['title'] = $this->data['Reply']['content'];
+			
+			$originPostId = $this->ForumPost->field('origin_post_id',array('ForumPost.id' => $this->data['ForumPost']['id']));
+			if(!empty($originPostId)) {
+				$modifiedContentForTitle = ereg_replace("\n", " ", $this->data['Reply']['content']);  
+				if(strlen($modifiedContentForTitle) > 35) {
+					$this->data['ForumPost']['title'] = substr($this->data['Reply']['content'],0,35) . '...';	
+				} else {
+					$this->data['ForumPost']['title'] = $this->data['Reply']['content'];
+				}
+			}
 		}
 		
 		$this->redirect = Controller::referer();

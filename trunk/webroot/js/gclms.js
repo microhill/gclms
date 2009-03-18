@@ -128,7 +128,7 @@ gclms.Triggers = $H({
 	'#UserLogin input#UserUsername:keyup,#UserLogin input#UserUsername:change,#UserLogin input#UserUsername:click,#UserLogin input#UserUsername:focus,#UserLogin input#UserUsername' : gclms.AppController.updateLoginPanel,
 	'img.gclms-tooltip-button:mouseover': gclms.AppController.showTooltip,
 	'img.gclms-tooltip-button:mouseout': gclms.AppController.hideTooltip,
-	'.gclms-tabular' : {
+	'.gclms-smartrows' : {
 		'tr:click,.gclms-descriptive-recordset tr:click' : function() {
 			var tr = this.nodeName.toLowerCase() == 'tr' ? this : this.up('tr');
 			self.location.href = tr.select('a').first().getAttribute('href').toLowerCase();

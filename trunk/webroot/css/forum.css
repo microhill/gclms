@@ -14,15 +14,10 @@ table.gclms-tabular {
 	tr.gclms-headers th {
 		border-top: 1px solid #d8d8d8;
 	}
-	
-#gclms-thread-listing a {
-	color: blue;
-	text-decoration: underline;
-}
 
-	#gclms-thread-listing a.gclms-selected {
-		font-weight: bold;
-	}
+#gclms-thread-listing a.gclms-selected {
+	font-weight: bold;
+}
 
 .gclms-thread-author {
 	font-weight: bold;
@@ -30,4 +25,17 @@ table.gclms-tabular {
 
 #gclms-reply {
 	margin-top: 6px;
+}
+
+.gclms-profile-column {
+	width: 200px;
+}
+
+.gclms-tabular td a {
+	color: blue;
+	text-decoration: underline;
+}
+
+.gclms-username {
+	font-size: 1.3em;
 }

@@ -44,47 +44,23 @@ $javascript->link(array(
 
 	<div id="gclms-threads" class="gclms-records gclms-forums-posts">
 		<table class="gclms-tabular">
-			<tbody id="gclms-thread-<?= $this->data['ForumPost']['id'] ?>" class="gclms-thread">
-				<tr class="gclms-headers">
-					<th colspan="2">
-						<div class="gclms-left"><?= $myTime->niceShort($this->data['ForumPost']['created']) ?></div>
-					</th>	
-				</tr>
-				<tr>
-					<td width="20%">
-						<div>
-							<div class="gclms-username"><?= $this->data['User']['username'] ?></div>
-							<div class="gclms-avatar">
-								<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($this->data['User']['email']) ?>&default=<?= urlencode(@$default) ?>&size=96" />
-							</div>
-						</div>
-					</td>
-					<td class="gclms-forum-post-content">
-						<?= nl2br($this->data['ForumPost']['content']) ?>
-					</td>
-				</tr>
-			</tbody>
+			<?= $this->element('../forum_topics/post',array(
+				'id' => $this->data['ForumPost']['id'],
+				'created' => $this->data['ForumPost']['created'],
+				'content' => $this->data['ForumPost']['content'],
+				'username' => $this->data['User']['username'],
+				'email' => $this->data['User']['email'],
+				'hidden' => false
+			)); ?>
 		<? foreach($this->data['Reply'] as $post): ?>
-			<tbody id="gclms-thread-<?= $post['id'] ?>" class="gclms-thread gclms-hidden">
-				<tr class="gclms-headers">
-					<th colspan="2">
-						<div class="gclms-left"><?= $myTime->niceShort($post['created']) ?></div>
-					</th>	
-				</tr>
-				<tr>
-					<td width="20%">
-						<div>
-							<div class="gclms-username"><?= $post['User']['username'] ?></div>
-							<div class="gclms-avatar">
-								<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?= md5($post['User']['email']) ?>&default=<?= urlencode(@$default) ?>&size=96" />
-							</div>
-						</div>
-					</td>
-					<td class="gclms-forum-post-content">
-						<?= nl2br($post['content']) ?>
-					</td>
-				</tr>
-			</tbody>
+			<?= $this->element('../forum_topics/post',array(
+				'id' => $post['id'],
+				'created' => $post['created'],
+				'content' => $post['content'],
+				'username' => $post['User']['username'],
+				'email' => $post['User']['email'],
+				'hidden' => true
+			)); ?>
 		<? endforeach; ?>
 		</table>
 	</div>

@@ -29,3 +29,12 @@ foreach($upcoming_assignments as $assignment) {
 		'url' => $groupAndCoursePath . '/assignments/view/' . $assignment['Assignment']['id']
 	));	
 }
+
+if(!ClassEnrollee::get('id')) {
+	$block->add(array(
+		'name' => 'profile',
+		'title' => __('Class Information',true),
+		'content' => $this->element('../class/summary'),
+		'section' => 'secondary_column'
+	));
+}

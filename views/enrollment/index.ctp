@@ -14,7 +14,7 @@ echo $this->element('left_column'); ?>
 	<div class="gclms-content articles">	
 		<?= $this->element('notifications'); ?>
 		<h1><?= sprintf(__('Enroll in %s (%s)?',true),VirtualClass::get('title'),Course::get('title')) ?></h1>
-		<? if(VirtualClass::get('price')): ?>
+		<? if((float) VirtualClass::get('price')): ?>
 			<p><?= sprintf(__('Price: $%s',true), VirtualClass::get('price')) ?></p>
 		<? endif; ?>
 		<form action="<?= $groupAndCoursePath ?>/enrollment/proceed" method="post">

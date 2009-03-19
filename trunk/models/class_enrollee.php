@@ -26,4 +26,29 @@ class ClassEnrollee extends AppModel {
 			}
 		}
 	}
+	
+	function store($class) {
+		ClassEnrollee::getInstance($class);
+	}
+	
+	function get($path) {
+		$_class_enrollee =& ClassEnrollee::getInstance();
+		
+		$path = str_replace('.', '/', $path);
+		if (strpos($path, 'ClassEnrollee') !== 0) {
+			$path = sprintf('ClassEnrollee/%s', $path);
+		}
+		
+		if (strpos($path, '/') !== 0) {
+			$path = sprintf('/%s', $path);
+		}
+		
+		$value = Set::extract($path, $_class_enrollee);
+		
+		if (!$value) {
+			return null;
+		}
+		
+		return $value[0];
+	}
 }

@@ -16,6 +16,20 @@ class AppModel extends Model {
 		}
 		return $return;
 	}
+	
+	function &getInstance($class = null) {
+		static $instance = array();
+		
+		if($class) {
+			$instance[0] =& $class;
+		}
+		
+		if (!$instance) {
+			return $instance;
+		}
+	
+		return $instance[0];
+	}
 
 	/*
 	function beforeDelete() {

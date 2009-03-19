@@ -20,6 +20,7 @@ echo $this->element('left_column',array(
 	
 <div class="gclms-center-column">
 	<div class="gclms-content">
+		<?= $this->element('notifications'); ?>	
 		<h1><?= Course::get('title') ?> (<?= VirtualClass::get('title') ?>)</h1>
 		<?
 		if(!empty($nodes))
@@ -29,7 +30,6 @@ echo $this->element('left_column',array(
 				'sibling_links' => false
 			));
 		?>
-		
 	</div>
 </div>
 

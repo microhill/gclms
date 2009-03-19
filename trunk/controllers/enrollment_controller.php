@@ -33,23 +33,32 @@ class EnrollmentController extends AppController {
 			die;
 		}
 
-		if((float) VirtualClass::get('price')) {
-			//Check for existing enrollment
-			$classEnrollee = $this->ClassEnrollee->find('first',array(
-				'conditions' => array(
-					'user_id' => User::get('id'),
-					'virtual_class_id' => VirtualClass::get('id')
-				),
-				'contain' => false
-			));
-			if(!empty($classEnrollee)) {
-				die('Already enrolled');
-			}
-		} else {
-			$this->ClassEnrollee->save(array(
+		//Check for existing enrollment
+		$classEnrollee = $this->ClassEnrollee->find('first',array(
+			'conditions' => array(
 				'user_id' => User::get('id'),
-				'virtual_class' => VirtualClass::get('id')
-			));
+				'virtual_class_id' => VirtualClass::get('id')
+			),
+			'contain' => false
+		));
+		
+		if(!empty($classEnrollee)) {
+			$this->Notifications->add(__('You are already enrolled in this class.',true),'error');
+			$this->redirect($this->viewVars['groupAndCoursePath']);
+		}
+
+		if((float) VirtualClass::get('price')) {
+
+		} else {
+			if($this->ClassEnrollee->save(array(
+				'user_id' => User::get('id'),
+				'virtual_class_id' => VirtualClass::get('id')
+			))) {
+				$this->Notifications->add(__('Enrollment submitted. Awaiting approval from class facilitator.',true),'success');
+			} else {
+				$this->Notifications->add(__('An error occured when attempting enrollment.',true),'error');
+			}
+
 		}
 	}
 	

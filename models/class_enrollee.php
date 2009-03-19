@@ -11,11 +11,22 @@ class ClassEnrollee extends AppModel {
 		)
 	);
 	
-	function beforeSave() {
+	function afterSave($created) {
+		if(!$created) {
+			return true;
+		}
+		
+		$class_enrollee = $this->find('first',array(
+			'conditions' => array(
+				'id' => $this->getLastInsertId()
+			),
+			'contain' => false
+		));
+		
 		if(empty($this->data['ClassEnrollee']['approved'])) {
 			//mail facilitators
 			$this->ClassFacilitator =& ClassRegistry::init('ClassFacilitator');
-			$facilitators = $this->ClassFacilitator->find(array(
+			$facilitators = $this->ClassFacilitator->find('all',array(
 				'conditions' => array(
 					'virtual_class_id' => VirtualClass::get('id')
 				)

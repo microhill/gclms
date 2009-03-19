@@ -39,7 +39,8 @@ class EnrollmentController extends AppController {
 				'conditions' => array(
 					'user_id' => User::get('id'),
 					'virtual_class_id' => VirtualClass::get('id')
-				)
+				),
+				'contain' => false
 			));
 			if(!empty($classEnrollee)) {
 				die('Already enrolled');

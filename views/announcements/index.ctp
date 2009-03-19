@@ -18,7 +18,7 @@ echo $this->element('left_column',array(
 	
 <div class="gclms-center-column">
 	<div class="gclms-content">
-		<h1><?= $course['title'] ?></h1>
+		<h1><?= Course::get('title') ?> (<?= VirtualClass::get('title') ?>)</h1>
 		<?
 		if(!empty($nodes))
 			echo $this->element('nodes_tree',array(

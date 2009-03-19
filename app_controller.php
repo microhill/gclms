@@ -98,7 +98,7 @@ class AppController extends Controller {
 			Course::store($course);
        	}
 		$courseWebPath = isset($this->viewVars['course']['web_path']) ? '/' . $this->viewVars['course']['web_path'] : null;
-						
+		
 		// Class
        	if(!empty($this->params['class'])) {
 			if(empty($this->VirtualClass)) {
@@ -115,6 +115,21 @@ class AppController extends Controller {
        	}
 		$classWebPath = VirtualClass::get('id') ? '/' . VirtualClass::get('id') : null;
     	$this->set('groupAndCoursePath', $groupWebPath . $courseWebPath . $classWebPath);
+		
+		// Class enrollee
+		if(!empty($this->params['class']) && VirtualClass::get('id')) {
+			$this->ClassEnrollee =& ClassRegistry::init('ClassEnrollee');
+			$class_enrollee = $this->ClassEnrollee->find('first',array(
+				'conditions' => array(
+					'user_id' => User::get('id'),
+					'virtual_class_id' => VirtualClass::get('id')
+				),
+				'contain' => false
+			));
+			if(!empty($class_enrollee)) {
+				ClassEnrollee::store($class_enrollee);
+			}
+		}
 		
 		// Offline
 		$this->set('offline',isset($this->params['url']['offline']));

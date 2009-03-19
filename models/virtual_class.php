@@ -127,20 +127,6 @@ class VirtualClass extends AppModel {
 		return true;
 	}
 	
-	function &getInstance($class = null) {
-		static $instance = array();
-		
-		if($class) {
-			$instance[0] =& $class;
-		}
-		
-		if (!$instance) {
-			return $instance;
-		}
-	
-		return $instance[0];
-	}
-	
 	function store($class) {
 		VirtualClass::getInstance($class);
 	}

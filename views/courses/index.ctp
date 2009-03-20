@@ -5,8 +5,10 @@ $javascript->link(array(
 	'gclms'
 ), false);
 
-$primary_column = $this->element('course_menu');
-$secondary_column = $this->element('../class/secondary_column');
+$this->element('student_center_menu');
+
+$primary_column = $this->element('primary_column');
+$secondary_column = $this->element('secondary_column');
 
 echo $this->element('left_column',array(
 	'primary_column' => $primary_column,

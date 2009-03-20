@@ -43,6 +43,10 @@ class ForumTopicsController extends AppController {
 	}
 	
 	function reply($id) {
+		if(!User::get('id')) {
+			$this->redirect('/users/login?callback=' . Controller::referer());
+		}
+		
 		$this->data['ForumPost'] = $this->data['Reply'];
 		
 		if(empty($this->data['ForumPost']['id'])) {

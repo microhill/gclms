@@ -6,7 +6,7 @@ $javascript->link(array(
 	'vendors/prototype_extensions1.0',
 	'gclms',
 	'popup',
-	//'students'
+	'students'
 ), false);
 
 $primary_column = $this->element('primary_column');
@@ -24,8 +24,9 @@ echo $this->element('left_column',array(
 			<table class="gclms-buttons">
 				<tr>
 					<td><button href="<?= $groupAndCoursePath ?>/students/add"><? __('Add') ?></button></td>
+					<td id="gclms-approve-button" class="gclms-hidden"><button href="<?= $groupAndCoursePath ?>/students/approve"><? __('Approve') ?></button></td>
 					<td><button href="<?= $groupAndCoursePath ?>/students/invite"><? __('Invite') ?></button></td>
-					<? if(!empty($enrollees) || !empty($invitations)): ?><td><button class="gclms-delete-students"><? __('Remove') ?></button></td><? endif; ?>
+					<? if(!empty($enrollees) || !empty($invitations)): ?><td><button id="gclms-delete-button" class="gclms-hidden"><? __('Remove') ?></button></td><? endif; ?>
 				</tr>
 			</table>
 			<? if(!empty($enrollees) || !empty($invitations)): ?>
@@ -48,12 +49,17 @@ echo $this->element('left_column',array(
 								</td>
 								<td>
 									<?= $enrollee['User']['username'] ?>
+									<? if(!$enrollee['ClassEnrollee']['approved']): ?>
+										<span class="gclms-awaiting-approval"><? __('(Awaiting approval)') ?></span>
+									<? endif; ?>
 								</td>
 							</tr>
 							<?
 						}
 						?>
+					</tbody>
 
+					<tbody>
 						<? if(!empty($invitations)): ?>
 							<?
 							foreach($invitations as $invitation) {
@@ -63,7 +69,7 @@ echo $this->element('left_column',array(
 										<input type="checkbox" class="gclms-student-select" name="data[Students][]" value="<?= $invitation['ClassInvitation']['id'] ?>" />
 									</td>
 									<td style="white-space: nowrap;">
-										<?= $invitation['ClassInvitation']['identifier'] ?> (<? __('invited') ?>)
+										<span class="gclms-invited"><?= $invitation['ClassInvitation']['identifier'] ?> (<? __('invited') ?>)</span>
 									</td>
 								</tr>
 								<?
